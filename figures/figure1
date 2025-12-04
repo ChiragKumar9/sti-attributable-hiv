@@ -1,0 +1,288 @@
+# Setup
+from pathlib import Path
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import rc
+from matplotlib.ticker import MaxNLocator
+from matplotlib.collections import LineCollection
+
+repo_root = Path(__file__).resolve().parent.parent
+hiv_cases = pd.read_csv(repo_root / "data" / "hiv_cases.csv")
+gc_resistance = pd.read_csv(repo_root / "data" / "gc_resistance.csv")
+hiv_gc_rr = pd.read_csv(repo_root / "data" / "hiv-gc-rr.csv")
+
+font = {"family": "serif", "serif": ["Times New Roman"], "size": 18}
+rc("font", **font)
+
+cbPalette = ["grey90", "#E69F00", "#56B4E9", "#009E73",
+             "#F0E442", "#0072B2", "#D55E00", "#CC79A7"]
+
+def setup_plot(nrows, ncols):
+    fig, ax = plt.subplots(nrows, ncols, figsize=(20, 15))
+    if nrows * ncols == 1:
+        ax.spines["top"].set_visible(False)
+        ax.spines["right"].set_visible(False)
+        ax.get_xaxis().tick_bottom()
+        ax.get_yaxis().tick_left()
+        ax.tick_params(axis="x", direction="out")
+        ax.tick_params(axis="y", direction="out")
+        # offset the spines
+        for spine in ax.spines.values():
+            spine.set_position(("outward", 5))
+        # put the grid behind
+        ax.set_axisbelow(True)
+        return fig, ax
+    for temp in ax.flatten():  # type: ignore
+        temp.spines["top"].set_visible(False)
+        temp.spines["right"].set_visible(False)
+        temp.get_xaxis().tick_bottom()
+        temp.get_yaxis().tick_left()
+        temp.tick_params(axis="x", direction="out")
+        temp.tick_params(axis="y", direction="out")
+        # offset the spines
+        for spine in temp.spines.values():
+            spine.set_position(("outward", 5))
+        # put the grid behind
+        temp.set_axisbelow(True)
+    return fig, ax
+
+# Convert percentage strings to floats, handling 'NA's
+def convert_percent(val):
+    if pd.isna(val) or val == 'NA':
+        return np.nan
+    return float(str(val).strip('%'))
+
+# --- Create 4-panel figure ---
+fig, axes = setup_plot(2, 2)
+
+# --- Panel A: Schematic of modeling approach ---
+ax_a = axes[0, 0]
+ax_a.set_title("A. Model Overview")
+
+# --- Panel B: HIV cases over time by sex in South Africa ---
+ax_b = axes[0, 1]
+
+ax_b.plot(hiv_cases['year'], hiv_cases['female'], linewidth=4,
+        label='Female', color=cbPalette[1])
+ax_b.plot(hiv_cases['year'], hiv_cases['male'], linewidth=4,
+        label='Male', color=cbPalette[5])
+
+ax_b.set_xlabel("Year")
+ax_b.set_ylabel("Number of HIV Cases (millions)")
+ax_b.set_title("B. HIV Cases Over Time by Sex in South Africa")
+ax_b.legend(frameon=False)
+
+# Add gridlines
+ax_b.grid(True, alpha=0.4, linestyle='-', linewidth=0.8, which='major')
+ax_b.minorticks_on()
+ax_b.grid(True, alpha=0.2, linestyle=':', linewidth=0.5, which='minor')
+
+# --- Panel C: Estimates of RR of HIV given GC from existing studies ---
+ax_c = axes[1, 0]
+
+# Organize copied version of data for plotting
+rr_df = hiv_gc_rr.copy()
+rr_df['rr'] = pd.to_numeric(rr_df['Point Estimate'], errors='coerce')
+rr_df['lower'] = pd.to_numeric(rr_df['Lower Bound'], errors='coerce')
+rr_df['upper'] = pd.to_numeric(rr_df['Upper Bound'], errors='coerce')
+rr_df = rr_df.dropna(subset=['rr'])
+rr_df = rr_df.sort_values('Demographic', ascending=True)
+
+# Map colors to demographic groups
+demo_colors = {
+    'Female sex workers': cbPalette[3],
+    'STI clinic patrons': cbPalette[6],
+    'Pregnant women': cbPalette[1],
+    'Mixed sex': cbPalette[2],
+    'Men': cbPalette[5],
+    'Women': cbPalette[1]
+}
+rr_df['color'] = rr_df['Demographic'].map(demo_colors).fillna(cbPalette[2])
+
+# Add spacing between demographic groups
+y_pos = 0
+rr_df['y'] = 0.0
+current_demo = None
+for idx, row in rr_df.iterrows():
+    if current_demo != row['Demographic']:
+        if current_demo is not None:
+            y_pos += 1.5  # extra space between groups
+        current_demo = row['Demographic']
+    rr_df.at[idx, 'y'] = y_pos
+    y_pos += 1
+
+# Plot CI lines
+segments = []
+segment_colors = []
+for _, row in rr_df.iterrows():
+    if pd.notna(row['lower']) and pd.notna(row['upper']):
+        segments.append([(row['lower'], row['y']), (row['upper'], row['y'])])
+        segment_colors.append(row['color'])
+
+if len(segments) > 0:
+    lc = LineCollection(segments, colors=segment_colors, linewidths=2.5, alpha=0.7, zorder=2)
+    ax_c.add_collection(lc)
+
+# Plot point estimates
+ax_c.scatter(rr_df['rr'], rr_df['y'], s=120,
+            c=rr_df['color'], edgecolors='black', linewidths=1,
+            alpha=0.9, zorder=3)
+
+# Set up plot
+ax_c.set_xscale('log')
+ax_c.set_xlim(0.04, 100) 
+ax_c.set_ylim(-1, y_pos + 1)
+
+ax_c.set_xticks([0.1, 0.5, 1, 5, 10, 25])
+ax_c.set_xticklabels(['0.1', '0.5', '1', '5', '10', '25'])
+
+ax_c.axvline(x=1, color='red', linestyle='--', linewidth=2, alpha=0.7, zorder=1)
+
+ax_c.set_xlabel("Relative Risk (95% CI)")
+ax_c.set_title("C. RR of HIV given GC")
+ax_c.set_yticks([])
+ax_c.spines['left'].set_visible(False)
+ax_c.spines['bottom'].set_bounds(0.1, 25)  # Spine extends to cover all data
+
+# Add column headers and data in table format - outside plot area 
+header_y = y_pos + 0.5
+ax_c.text(0.05, header_y, 'Study', fontsize=16, ha='left', weight='bold')
+ax_c.text(0.15, header_y, 'Region', fontsize=16, ha='left', weight='bold')
+ax_c.text(30, header_y, 'RR (95% CI)', fontsize=16, ha='left', weight='bold')
+
+# Add demographic group labels 
+demo_max_y = rr_df.groupby('Demographic')['y'].max()
+demo_colors_map = rr_df.groupby('Demographic')['color'].first()
+for demo, max_y in demo_max_y.items():
+    # Put label above the top study in the group
+    label_y = max_y + 0.5
+    ax_c.text(0.05, label_y, demo, fontsize=14,
+             ha='left', weight='bold', style='italic',
+             color=demo_colors_map[demo])
+
+# Add all study information
+for idx, row in rr_df.iterrows():
+    # Study author and year 
+    source = str(row['Source']) if isinstance(row['Source'], str) else 'Unknown'
+    source_parts = source.split()
+    if len(source_parts) >= 2:
+        author_year = f"{source_parts[0]} {source_parts[-1]}"
+    else:
+        author_year = source_parts[0] if source_parts else 'Unknown'
+    ax_c.text(0.05, row['y'], author_year, fontsize=12, ha='left', va='center')
+
+    # Region
+    region = str(row['Region']).split('(')[0].strip()[:25]
+    ax_c.text(0.15, row['y'], region, fontsize=11, ha='left', va='center')
+
+    # RR with CI - to the right of the plot
+    if pd.notna(row['lower']) and pd.notna(row['upper']):
+        rr_text = f"{row['rr']:.2f} ({row['lower']:.2f}, {row['upper']:.2f})"
+    else:
+        # for Kharsany 2020 studies, add cross-sectional study note
+        if 'Kharsany' in str(row['Source']) and '2020' in str(row['Source']):
+            rr_text = f"{row['rr']:.2f} (cross-sectional study)"
+        else:
+            rr_text = f"{row['rr']:.2f}"
+    ax_c.text(30, row['y'], rr_text, fontsize=12, ha='left', va='center')
+
+
+# --- Panel D: GC resistance to various abxs over time, in South Africa ---
+ax_d = axes[1, 1]
+
+drugs = ['Penicillin', 'Ciprofloxacin', 'Ceftriaxone', 'Azithromycin', 'Spectinomycin', 'Cefixime']
+drug_colors = [cbPalette[1], cbPalette[2], cbPalette[3], cbPalette[4], cbPalette[5], cbPalette[6]]
+
+# Convert drug columns to numeric 
+gc_data = gc_resistance.copy()
+for drug in drugs:
+    gc_data[drug + '_numeric'] = gc_data[drug].apply(convert_percent)
+
+# Manual mapping of first-line drugs by time period
+first_line_periods = {
+    'Ciprofloxacin': [(2003, 2008)],  # First-line from 2003-2008
+    'Cefixime': [(2008, 2014)],  # First-line from 2008-2015
+    'Ceftriaxone': [(2014, 2020)],  # First-line from 2015-2020
+    'Azithromycin': [(2014, 2020)]  # Co-administered with Ceftriaxone from 2015-2020
+}
+
+# For each drug, plot the resistance trend and highlight first-line periods
+for drug, color in zip(drugs, drug_colors):
+    # Get data for this drug 
+    drug_data = gc_data[['Year', drug + '_numeric', 'Sample Size']].copy()
+    drug_data = drug_data.dropna(subset=[drug + '_numeric'])
+
+    if len(drug_data) > 0:
+        # Calculate weighted average by year using groupby
+        def weighted_avg(group):
+            return np.average(group[drug + '_numeric'], weights=group['Sample Size'])
+
+        yearly_data = drug_data.groupby('Year', group_keys=False).apply(weighted_avg, include_groups=False).reset_index()
+        yearly_data.columns = ['Year', 'Resistance']
+
+        yearly_data = yearly_data.sort_values('Year')
+
+        # Check which years this drug was first-line
+        def is_first_line_year(year):
+            if drug not in first_line_periods:
+                return False
+            for start, end in first_line_periods[drug]:
+                if start <= year <= end:
+                    return True
+            return False
+
+        is_first_line = yearly_data['Year'].apply(is_first_line_year)
+
+        # Collect continuous first-line segments for efficient plotting
+        highlight_x = []
+        highlight_y = []
+        in_segment = False
+
+        for i in range(len(yearly_data)):
+            year = yearly_data.iloc[i]['Year']
+            resistance = yearly_data.iloc[i]['Resistance']
+            is_fl = is_first_line.iloc[i]
+
+            if is_fl:
+                if not in_segment:
+                    # Start a new segment
+                    if len(highlight_x) > 0:
+                        # Add NaN to break the line
+                        highlight_x.append(np.nan)
+                        highlight_y.append(np.nan)
+                    in_segment = True
+                highlight_x.append(year)
+                highlight_y.append(resistance)
+            else:
+                in_segment = False
+
+        # Plot all highlight segments at once
+        if len(highlight_x) > 0:
+            ax_d.plot(highlight_x, highlight_y, color=color, linewidth=20,
+                     alpha=0.2, zorder=2, solid_capstyle='round')
+
+        # Plot the main line (same for all)
+        ax_d.plot(yearly_data['Year'], yearly_data['Resistance'],
+                 color=color, linewidth=3, alpha=0.8,
+                 marker='o', markersize=10.67, label=drug, zorder=3)
+
+#Plot settings
+ax_d.set_xlabel("Year")
+ax_d.set_ylabel("Resistance (%)")
+ax_d.set_title("D. GC Antibiotic Resistance Trends in South Africa")
+ax_d.legend(frameon=False, loc='best', fontsize=18)
+
+ax_d.set_ylim(bottom=-1, top=None)  # Small negative padding to show 0% clearly
+ax_d.yaxis.set_major_locator(MaxNLocator(nbins=12))  
+ax_d.xaxis.set_major_locator(MaxNLocator(integer=True)) # x-axis years as integers
+
+ax_d.grid(True, alpha=0.4, linestyle='-', linewidth=0.8, which='major')
+ax_d.minorticks_on()
+ax_d.grid(True, alpha=0.2, linestyle=':', linewidth=0.5, which='minor')
+
+fig.tight_layout()
+
+# Save figure
+output_path = repo_root / "figures" / "figure1.png"
+plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='white')
