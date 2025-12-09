@@ -1,0 +1,23 @@
+[project]
+name = "averted-burden"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Chirag Kumar (@ChiragKumar9)", email = "chirag9kumar@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "geopandas>=1.1.1",
+    "ipython>=9.8.0",
+    "matplotlib>=3.10.7",
+    "polars>=1.35.2",
+    "pyarrow>=22.0.0",
+    "pyqt6==6.9.1",
+    "pyyaml>=6.0.3",
+    "scipy>=1.16.3",
+]
+
+[build-system]
+requires = ["uv_build>=0.8.22,<0.9.0"]
+build-backend = "uv_build"

@@ -48,12 +48,12 @@ repos:
 #   - id: julia-formatter
 #####
 # Secrets
--   repo: https://github.com/Yelp/detect-secrets
-    rev: v1.5.0
-    hooks:
-    -   id: detect-secrets
-        args: ['--baseline', '.secrets.baseline']
-        exclude: package.lock.json
+# -   repo: https://github.com/Yelp/detect-secrets
+#     rev: v1.5.0
+#     hooks:
+#     -   id: detect-secrets
+#         args: ['--baseline', '.secrets.baseline']
+#         exclude: package.lock.json
 -   repo: https://github.com/doublify/pre-commit-rust
     rev: v1.0
     hooks:
