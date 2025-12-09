@@ -9,6 +9,11 @@
 *.bin
 *.xls
 *.xlsx
+*.shp
+*.prj
+*.cst
+*.dbf
+*.shx
 
 # Documents
 *.doc
