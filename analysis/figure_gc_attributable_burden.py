@@ -282,7 +282,7 @@ def plot_attributable_hiv_burden_map(hiv, africa, ax, fig):
 
     # Customize the colorbar
     cbar.set_label(
-        f"Gonorrhea-attributable HIV incidence in {pl.col('year').max()} (%)",
+        "Gonorrhea-attributable HIV incidence in 2023 (%)",
         rotation=0,
         labelpad=0,
         fontsize=28,
