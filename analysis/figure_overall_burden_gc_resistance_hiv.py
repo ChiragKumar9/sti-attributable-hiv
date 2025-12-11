@@ -164,8 +164,9 @@ def plot_rr_estimates(rrs, aggregated_rrs, ax, fig):
     ax.set_xticks(
         xs, rrs["paper"].unique(maintain_order=True), rotation=-45, ha="left"
     )
-    ax.axhline(y=1, color="gray", linestyle="--")
+
     ax.set_yticks([1, 2, 3, 4, 5, 6, 7])
+    ax.set_ylim(1)
 
     ax.set_ylabel("RR(HIV | Gonorrhea)")
 

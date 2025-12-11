@@ -2,7 +2,7 @@ import os
 
 import polars as pl
 
-from averted_burden import rr_meta_estimate
+from averted_burden import conditional_exposure, rr_meta_estimate
 
 data_dir = "data"
 output_dir = "outputs"
@@ -142,16 +142,44 @@ results = pl.DataFrame(
 data = data.join(results, on=["sex"], how="inner")
 
 # adjust prevalence rates to be among hiv+ individuals
+# first we need the probability of hiv incidence
 data = data.with_columns(
-    gc_prevalence_hiv_pos=pl.col("gc_prevalence")
-    * (pl.col("rr_mu_gc_hiv_coinfection") + 1)
-    / pl.col("rr_mu_gc_hiv_coinfection"),
-    gc_prevalence_hiv_pos_lower=pl.col("gc_prevalence")
-    * (pl.col("rr_lower_gc_hiv_coinfection") + 1)
-    / pl.col("rr_lower_gc_hiv_coinfection"),
-    gc_prevalence_hiv_pos_upper=pl.col("gc_prevalence")
-    * (pl.col("rr_upper_gc_hiv_coinfection") + 1)
-    / pl.col("rr_upper_gc_hiv_coinfection"),
+    p_hiv=pl.col("hiv_incidence_number") / pl.col("population"),
+    p_hiv_lower=pl.col("hiv_incidence_number_lower") / pl.col("population"),
+    p_hiv_upper=pl.col("hiv_incidence_number_upper") / pl.col("population"),
+)
+
+data = data.with_columns(
+    gc_prevalence_hiv_pos=pl.struct(
+        ["gc_prevalence", "p_hiv", "rr_mu_gc_hiv_coinfection"]
+    ).map_elements(
+        lambda x: conditional_exposure.p_a_given_b(
+            x["gc_prevalence"],
+            x["p_hiv"],
+            x["rr_mu_gc_hiv_coinfection"],
+        ),
+        return_dtype=pl.Float64,
+    ),
+    gc_prevalence_hiv_pos_lower=pl.struct(
+        ["gc_prevalence_lower", "p_hiv_lower", "rr_lower_gc_hiv_coinfection"]
+    ).map_elements(
+        lambda x: conditional_exposure.p_a_given_b(
+            x["gc_prevalence_lower"],
+            x["p_hiv_lower"],
+            x["rr_lower_gc_hiv_coinfection"],
+        ),
+        return_dtype=pl.Float64,
+    ),
+    gc_prevalence_hiv_pos_upper=pl.struct(
+        ["gc_prevalence_upper", "p_hiv_upper", "rr_upper_gc_hiv_coinfection"]
+    ).map_elements(
+        lambda x: conditional_exposure.p_a_given_b(
+            x["gc_prevalence_upper"],
+            x["p_hiv_upper"],
+            x["rr_upper_gc_hiv_coinfection"],
+        ),
+        return_dtype=pl.Float64,
+    ),
 )
 
 # save the assembled data
