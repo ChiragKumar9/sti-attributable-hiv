@@ -107,6 +107,34 @@ hiv_gc = hiv_gc.with_columns(
     * pl.col("paf_gc_hiv_upper"),
 )
 
+# print out the dataframe sorted by paf
+print(
+    hiv_gc.sort(by="paf_gc_hiv", descending=True)[
+        [
+            "sex",
+            "year",
+            "location",
+            "paf_gc_hiv",
+            "paf_gc_hiv_lower",
+            "paf_gc_hiv_upper",
+        ]
+    ]
+)
+# print out the dataframe sorted by number attributable
+print(
+    hiv_gc.sort(by="hiv_incidence_number_attributable", descending=True)[
+        [
+            "sex",
+            "year",
+            "location",
+            "hiv_incidence_number_attributable",
+            "paf_gc_hiv",
+            "hiv_incidence_number_attributable_lower",
+            "hiv_incidence_number_attributable_upper",
+        ]
+    ]
+)
+
 # now multiply by resistance rates to get the number of cases resistant to a
 # particular drug
 
