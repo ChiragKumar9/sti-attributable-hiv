@@ -132,12 +132,12 @@ def plot_attributable_hiv_burden_region(hiv, ax, fig):
             hiv_incidence_rate_upper=pl.col(
                 "hiv_incidence_number_attributable_upper"
             )
-            / pl.col("hiv_incidence_number_lower")
+            / pl.col("hiv_incidence_number_upper")
             * 100,
             hiv_incidence_rate_lower=pl.col(
                 "hiv_incidence_number_attributable_lower"
             )
-            / pl.col("hiv_incidence_number_upper")
+            / pl.col("hiv_incidence_number_lower")
             * 100,
         )
     )

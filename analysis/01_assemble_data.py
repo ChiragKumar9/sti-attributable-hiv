@@ -2,8 +2,6 @@ import os
 
 import polars as pl
 
-from averted_burden import conditional_exposure, rr_meta_estimate
-
 data_dir = "data"
 output_dir = "outputs"
 
@@ -72,6 +70,43 @@ incidence_hiv = incidence_hiv.with_columns(
     * 100000
 )
 
+# to get the true rate of acquiring HIV, we need the prevalence of HIV
+prevalence_hiv = pl.read_csv(os.path.join(data_dir, "ihme_hiv_prevalence.csv"))
+prevalence_hiv = prevalence_hiv.filter(pl.col("cause") == "HIV/AIDS")
+prevalence_hiv = prevalence_hiv.filter(pl.col("metric") == "Number")
+prevalence_hiv = prevalence_hiv.filter(pl.col("measure") == "Prevalence")
+# sum over age groups
+prevalence_hiv = (
+    prevalence_hiv.group_by(["location", "year", "sex"])
+    .agg(
+        pl.sum("val"),
+        pl.sum("lower"),
+        pl.sum("upper"),
+    )
+    .rename(
+        {
+            "val": "hiv_prevalence",
+            "lower": "hiv_prevalence_lower",
+            "upper": "hiv_prevalence_upper",
+        }
+    )
+)
+
+# join to incidence data
+incidence_hiv = incidence_hiv.join(
+    prevalence_hiv, on=["sex", "year", "location"], how="inner"
+)
+
+# calculate the probability of a susceptible person acquiring HIV
+incidence_hiv = incidence_hiv.with_columns(
+    p_hiv=pl.col("hiv_incidence_number")
+    / (pl.col("population") - pl.col("hiv_prevalence")),
+    p_hiv_lower=pl.col("hiv_incidence_number_lower")
+    / (pl.col("population") - pl.col("hiv_prevalence_lower")),
+    p_hiv_upper=pl.col("hiv_incidence_number_upper")
+    / (pl.col("population") - pl.col("hiv_prevalence_upper")),
+)
+
 # we need prevalence of gc
 prevalence_gc = prevalence.filter(
     (pl.col("cause") == "Gonococcal infection")
@@ -104,82 +139,6 @@ data = data.with_columns(
     gc_prevalence=pl.col("gc_prevalence") / pl.col("population"),
     gc_prevalence_lower=pl.col("gc_prevalence_lower") / pl.col("population"),
     gc_prevalence_upper=pl.col("gc_prevalence_upper") / pl.col("population"),
-)
-
-# we want to calculate the prevalence of gc among hiv+ individuals
-# we scale the overall prevalence of gc by the risk of gc among hiv+ individuals
-
-rrs = pl.read_csv(os.path.join(data_dir, "RRs_GC_associated_with_HIV.csv"))
-
-rrs = rrs.with_columns(
-    log_val=pl.col("val").log(),
-    log_lower=pl.col("lower").log(),
-    log_upper=pl.col("upper").log(),
-).with_columns(sigma=(pl.col("log_upper") - pl.col("log_lower")) / (2 * 1.96))
-
-rr_mu, rr_lower, rr_upper = rr_meta_estimate.meta_estimate_rrs(
-    means=rrs["log_val"].to_list(),
-    sigmas=rrs["sigma"].to_list(),
-    group_assignments=rrs["sex"].to_list(),
-)
-
-results = pl.DataFrame(
-    {
-        "sex": list(set(rrs["sex"].to_list())),
-        "rr_mu_gc_hiv_coinfection": rr_mu,
-        "rr_lower_gc_hiv_coinfection": rr_lower,
-        "rr_upper_gc_hiv_coinfection": rr_upper,
-    }
-).with_columns(
-    # make the sex names to be the same as GBD data
-    sex=pl.when(pl.col("sex") == "Heterosexual Women")
-    .then(pl.lit("Female"))
-    .otherwise(pl.lit("Male"))
-)
-
-# group up with main data
-# note that this drops data by "both" sexes
-data = data.join(results, on=["sex"], how="inner")
-
-# adjust prevalence rates to be among hiv+ individuals
-# first we need the probability of hiv incidence
-data = data.with_columns(
-    p_hiv=pl.col("hiv_incidence_number") / pl.col("population"),
-    p_hiv_lower=pl.col("hiv_incidence_number_lower") / pl.col("population"),
-    p_hiv_upper=pl.col("hiv_incidence_number_upper") / pl.col("population"),
-)
-
-data = data.with_columns(
-    gc_prevalence_hiv_pos=pl.struct(
-        ["gc_prevalence", "p_hiv", "rr_mu_gc_hiv_coinfection"]
-    ).map_elements(
-        lambda x: conditional_exposure.p_a_given_b(
-            x["gc_prevalence"],
-            x["p_hiv"],
-            x["rr_mu_gc_hiv_coinfection"],
-        ),
-        return_dtype=pl.Float64,
-    ),
-    gc_prevalence_hiv_pos_lower=pl.struct(
-        ["gc_prevalence_lower", "p_hiv_lower", "rr_lower_gc_hiv_coinfection"]
-    ).map_elements(
-        lambda x: conditional_exposure.p_a_given_b(
-            x["gc_prevalence_lower"],
-            x["p_hiv_lower"],
-            x["rr_lower_gc_hiv_coinfection"],
-        ),
-        return_dtype=pl.Float64,
-    ),
-    gc_prevalence_hiv_pos_upper=pl.struct(
-        ["gc_prevalence_upper", "p_hiv_upper", "rr_upper_gc_hiv_coinfection"]
-    ).map_elements(
-        lambda x: conditional_exposure.p_a_given_b(
-            x["gc_prevalence_upper"],
-            x["p_hiv_upper"],
-            x["rr_upper_gc_hiv_coinfection"],
-        ),
-        return_dtype=pl.Float64,
-    ),
 )
 
 # save the assembled data
