@@ -67,7 +67,17 @@ incidence_hiv = incidence_hiv_number.join(
 incidence_hiv = incidence_hiv.with_columns(
     # recall that the rate is per 100,000 population
     population=(pl.col("hiv_incidence_number") / pl.col("hiv_incidence_rate"))
-    * 100000
+    * 100000,
+    population_lower=(
+        pl.col("hiv_incidence_number_lower")
+        / pl.col("hiv_incidence_rate_upper")
+    )
+    * 100000,
+    population_upper=(
+        pl.col("hiv_incidence_number_upper")
+        / pl.col("hiv_incidence_rate_lower")
+    )
+    * 100000,
 )
 
 # to get the true rate of acquiring HIV, we need the prevalence of HIV
@@ -102,9 +112,9 @@ incidence_hiv = incidence_hiv.with_columns(
     p_hiv=pl.col("hiv_incidence_number")
     / (pl.col("population") - pl.col("hiv_prevalence")),
     p_hiv_lower=pl.col("hiv_incidence_number_lower")
-    / (pl.col("population") - pl.col("hiv_prevalence_lower")),
+    / (pl.col("population_lower") - pl.col("hiv_prevalence_lower")),
     p_hiv_upper=pl.col("hiv_incidence_number_upper")
-    / (pl.col("population") - pl.col("hiv_prevalence_upper")),
+    / (pl.col("population_upper") - pl.col("hiv_prevalence_upper")),
 )
 
 # we need prevalence of gc
@@ -137,8 +147,10 @@ data = incidence_hiv.join(
 # convert gc prevalence to be per effective population
 data = data.with_columns(
     gc_prevalence=pl.col("gc_prevalence") / pl.col("population"),
-    gc_prevalence_lower=pl.col("gc_prevalence_lower") / pl.col("population"),
-    gc_prevalence_upper=pl.col("gc_prevalence_upper") / pl.col("population"),
+    gc_prevalence_lower=pl.col("gc_prevalence_lower")
+    / pl.col("population_lower"),
+    gc_prevalence_upper=pl.col("gc_prevalence_upper")
+    / pl.col("population_upper"),
 )
 
 # save the assembled data
