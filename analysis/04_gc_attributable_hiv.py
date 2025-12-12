@@ -42,21 +42,21 @@ hiv_gc = hiv_gc.with_columns(
         return_dtype=pl.Float64,
     ),
     p_hiv_given_gc_lower=pl.struct(
-        ["p_hiv_lower", "gc_prevalence_upper", "rr_lower_hiv_given_gc"]
+        ["p_hiv_lower", "gc_prevalence_lower", "rr_lower_hiv_given_gc"]
     ).map_elements(
         lambda x: conditional_exposure.p_a_given_b(
             x["p_hiv_lower"],
-            x["gc_prevalence_upper"],
+            x["gc_prevalence_lower"],
             x["rr_lower_hiv_given_gc"],
         ),
         return_dtype=pl.Float64,
     ),
     p_hiv_given_gc_upper=pl.struct(
-        ["p_hiv_upper", "gc_prevalence_lower", "rr_upper_hiv_given_gc"]
+        ["p_hiv_upper", "gc_prevalence_upper", "rr_upper_hiv_given_gc"]
     ).map_elements(
         lambda x: conditional_exposure.p_a_given_b(
             x["p_hiv_upper"],
-            x["gc_prevalence_lower"],
+            x["gc_prevalence_upper"],
             x["rr_upper_hiv_given_gc"],
         ),
         return_dtype=pl.Float64,
