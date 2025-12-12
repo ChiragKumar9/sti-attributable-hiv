@@ -26,7 +26,6 @@ rrs_causal = rrs_causal.with_columns(
 )
 
 # group up with main data
-# note that this drops data by "both" sexes
 hiv_gc = hiv_gc.join(rrs_causal, on=["sex"], how="inner")
 
 # use RR definition and law of total probability to calculate

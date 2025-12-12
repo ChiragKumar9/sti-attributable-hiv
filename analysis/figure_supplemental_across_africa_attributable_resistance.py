@@ -42,20 +42,29 @@ def setup_plot(nrows, ncols):
     return fig, ax
 
 
+def sum_preserve_null(column: str) -> pl.Expr:
+    """Custom aggregation function to sum while preserving nulls."""
+    return (
+        pl.when(pl.col(column).is_null().all())
+        .then(None)
+        .otherwise(pl.sum(column))
+        .alias(column)
+    )
+
+
 def plot_attributable_hiv_burden_drug_resistance(hiv, ax, label, fig):
     hiv = (
         hiv.group_by(["year"])
         .agg(
-            pl.sum("Ciprofloxacin_resistant_number"),
-            pl.sum("Ciprofloxacin_resistant_number_lower"),
-            pl.sum("Ciprofloxacin_resistant_number_upper"),
-            pl.sum("Cefixime_resistant_number"),
-            pl.sum("Cefixime_resistant_number_lower"),
-            pl.sum("Cefixime_resistant_number_upper"),
-            pl.sum("Azithromycin_resistant_number"),
-            pl.sum("Azithromycin_resistant_number_lower"),
-            pl.sum("Azithromycin_resistant_number_upper"),
-            pl.sum("population"),
+            sum_preserve_null("Ciprofloxacin_resistant_number"),
+            sum_preserve_null("Ciprofloxacin_resistant_number_lower"),
+            sum_preserve_null("Ciprofloxacin_resistant_number_upper"),
+            sum_preserve_null("Cefixime_resistant_number"),
+            sum_preserve_null("Cefixime_resistant_number_lower"),
+            sum_preserve_null("Cefixime_resistant_number_upper"),
+            sum_preserve_null("Azithromycin_resistant_number"),
+            sum_preserve_null("Azithromycin_resistant_number_lower"),
+            sum_preserve_null("Azithromycin_resistant_number_upper"),
             pl.sum("hiv_incidence_number_attributable"),
             pl.sum("hiv_incidence_number_attributable_upper"),
             pl.sum("hiv_incidence_number_attributable_lower"),
@@ -64,28 +73,28 @@ def plot_attributable_hiv_burden_drug_resistance(hiv, ax, label, fig):
             cipro=pl.col("Ciprofloxacin_resistant_number")
             / pl.col("hiv_incidence_number_attributable")
             * 100,
-            cipro_lower=pl.col("Ciprofloxacin_resistant_number_upper")
+            cipro_lower=pl.col("Ciprofloxacin_resistant_number_lower")
             / pl.col("hiv_incidence_number_attributable_lower")
             * 100,
-            cipro_upper=pl.col("Ciprofloxacin_resistant_number_lower")
+            cipro_upper=pl.col("Ciprofloxacin_resistant_number_upper")
             / pl.col("hiv_incidence_number_attributable_upper")
             * 100,
             cef=pl.col("Cefixime_resistant_number")
             / pl.col("hiv_incidence_number_attributable")
             * 100,
-            cef_lower=pl.col("Cefixime_resistant_number_upper")
+            cef_lower=pl.col("Cefixime_resistant_number_lower")
             / pl.col("hiv_incidence_number_attributable_lower")
             * 100,
-            cef_upper=pl.col("Cefixime_resistant_number_lower")
+            cef_upper=pl.col("Cefixime_resistant_number_upper")
             / pl.col("hiv_incidence_number_attributable_upper")
             * 100,
             azithro=pl.col("Azithromycin_resistant_number")
             / pl.col("hiv_incidence_number_attributable")
             * 100,
-            azithro_lower=pl.col("Azithromycin_resistant_number_upper")
+            azithro_lower=pl.col("Azithromycin_resistant_number_lower")
             / pl.col("hiv_incidence_number_attributable_lower")
             * 100,
-            azithro_upper=pl.col("Azithromycin_resistant_number_lower")
+            azithro_upper=pl.col("Azithromycin_resistant_number_upper")
             / pl.col("hiv_incidence_number_attributable_upper")
             * 100,
         )
@@ -116,41 +125,6 @@ def plot_attributable_hiv_burden_drug_resistance(hiv, ax, label, fig):
         .otherwise(pl.col("azithro_lower")),
         azithro_upper=pl.when(pl.col("azithro_upper") > 100)
         .then(100)
-        .otherwise(pl.col("azithro_upper")),
-    )
-
-    # subset the data to only include post 2007 because resistance data is not available before then
-    hiv = hiv.filter(pl.col("year") >= 2006)
-    # also note that 0s are not 0s -- they are nulls when they are part of the timeseries
-    hiv = hiv.with_columns(
-        cipro=pl.when(pl.col("Ciprofloxacin_resistant_number") == 0)
-        .then(None)
-        .otherwise(pl.col("cipro")),
-        cipro_lower=pl.when(
-            pl.col("Ciprofloxacin_resistant_number_upper") == 0
-        )
-        .then(None)
-        .otherwise(pl.col("cipro_lower")),
-        cipro_upper=pl.when(
-            pl.col("Ciprofloxacin_resistant_number_lower") == 0
-        )
-        .then(None)
-        .otherwise(pl.col("cipro_upper")),
-        # cef = pl.when(pl.col("Cefixime_resistant_number") == 0).then(None).otherwise(pl.col("cef")),
-        # cef_lower = pl.when(pl.col("Cefixime_resistant_number_upper") == 0).then(None).otherwise(pl.col("cef_lower")),
-        # cef_upper = pl.when(pl.col("Cefixime_resistant_number_lower") == 0).then(None).otherwise(pl.col("cef_upper")),
-        azithro=pl.when(pl.col("Azithromycin_resistant_number") == 0)
-        .then(None)
-        .otherwise(pl.col("azithro")),
-        azithro_lower=pl.when(
-            pl.col("Azithromycin_resistant_number_upper") == 0
-        )
-        .then(None)
-        .otherwise(pl.col("azithro_lower")),
-        azithro_upper=pl.when(
-            pl.col("Azithromycin_resistant_number_lower") == 0
-        )
-        .then(None)
         .otherwise(pl.col("azithro_upper")),
     )
 
