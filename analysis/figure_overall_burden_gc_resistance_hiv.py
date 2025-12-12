@@ -179,16 +179,18 @@ def plot_hiv_burden(hiv, ax, fig):
             pl.sum("hiv_incidence_number_upper"),
             pl.sum("hiv_incidence_number_lower"),
             pl.sum("population"),
+            pl.sum("population_upper"),
+            pl.sum("population_lower"),
         )
         .with_columns(
             hiv_incidence_rate=pl.col("hiv_incidence_number")
             / pl.col("population")
             * 100000,
             hiv_incidence_rate_upper=pl.col("hiv_incidence_number_upper")
-            / pl.col("population")
+            / pl.col("population_upper")
             * 100000,
             hiv_incidence_rate_lower=pl.col("hiv_incidence_number_lower")
-            / pl.col("population")
+            / pl.col("population_lower")
             * 100000,
         )
     )
@@ -257,7 +259,7 @@ if __name__ == "__main__":
     # estimates of the RRs
     rrs = pl.read_csv(os.path.join(data_dir, "RRs_causal_GC_given_HIV.csv"))
     aggregated_rrs = pl.read_csv(
-        os.path.join(output_dir, "meta_estimated_RRs.csv")
+        os.path.join(output_dir, "meta_estimated_RRs_causal_GC_given_HIV.csv")
     )
     ax[1].text(  # type: ignore
         -0.25,

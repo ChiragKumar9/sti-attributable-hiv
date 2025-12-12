@@ -50,16 +50,18 @@ def plot_hiv_burden(hiv, ax, label, fig):
             pl.sum("hiv_incidence_number_upper"),
             pl.sum("hiv_incidence_number_lower"),
             pl.sum("population"),
+            pl.sum("population_lower"),
+            pl.sum("population_upper"),
         )
         .with_columns(
             hiv_incidence_rate=pl.col("hiv_incidence_number")
             / pl.col("population")
             * 100000,
             hiv_incidence_rate_upper=pl.col("hiv_incidence_number_upper")
-            / pl.col("population")
+            / pl.col("population_upper")
             * 100000,
             hiv_incidence_rate_lower=pl.col("hiv_incidence_number_lower")
-            / pl.col("population")
+            / pl.col("population_lower")
             * 100000,
         )
     )
