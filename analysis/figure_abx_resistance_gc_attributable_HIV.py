@@ -53,79 +53,99 @@ def sum_preserve_null(column: str) -> pl.Expr:
 
 
 def plot_attributable_hiv_burden_drug_resistance(hiv, ax, label, fig):
-    hiv = (
-        hiv.group_by(["year"])
-        .agg(
-            sum_preserve_null("Ciprofloxacin_resistant_number"),
-            sum_preserve_null("Ciprofloxacin_resistant_number_lower"),
-            sum_preserve_null("Ciprofloxacin_resistant_number_upper"),
-            sum_preserve_null("Cefixime_resistant_number"),
-            sum_preserve_null("Cefixime_resistant_number_lower"),
-            sum_preserve_null("Cefixime_resistant_number_upper"),
-            sum_preserve_null("Azithromycin_resistant_number"),
-            sum_preserve_null("Azithromycin_resistant_number_lower"),
-            sum_preserve_null("Azithromycin_resistant_number_upper"),
-            pl.sum("hiv_incidence_number_attributable"),
-            pl.sum("hiv_incidence_number_attributable_upper"),
-            pl.sum("hiv_incidence_number_attributable_lower"),
-        )
-        .with_columns(
-            cipro=pl.col("Ciprofloxacin_resistant_number")
-            / pl.col("hiv_incidence_number_attributable")
-            * 100,
-            cipro_lower=pl.col("Ciprofloxacin_resistant_number_lower")
-            / pl.col("hiv_incidence_number_attributable_lower")
-            * 100,
-            cipro_upper=pl.col("Ciprofloxacin_resistant_number_upper")
-            / pl.col("hiv_incidence_number_attributable_upper")
-            * 100,
-            cef=pl.col("Cefixime_resistant_number")
-            / pl.col("hiv_incidence_number_attributable")
-            * 100,
-            cef_lower=pl.col("Cefixime_resistant_number_lower")
-            / pl.col("hiv_incidence_number_attributable_lower")
-            * 100,
-            cef_upper=pl.col("Cefixime_resistant_number_upper")
-            / pl.col("hiv_incidence_number_attributable_upper")
-            * 100,
-            azithro=pl.col("Azithromycin_resistant_number")
-            / pl.col("hiv_incidence_number_attributable")
-            * 100,
-            azithro_lower=pl.col("Azithromycin_resistant_number_lower")
-            / pl.col("hiv_incidence_number_attributable_lower")
-            * 100,
-            azithro_upper=pl.col("Azithromycin_resistant_number_upper")
-            / pl.col("hiv_incidence_number_attributable_upper")
-            * 100,
-        )
+    hiv = hiv.group_by(["year"]).agg(
+        sum_preserve_null("Ciprofloxacin_resistant_number"),
+        sum_preserve_null("Ciprofloxacin_resistant_number_lower"),
+        sum_preserve_null("Ciprofloxacin_resistant_number_upper"),
+        sum_preserve_null("Cefixime_resistant_number"),
+        sum_preserve_null("Cefixime_resistant_number_lower"),
+        sum_preserve_null("Cefixime_resistant_number_upper"),
+        sum_preserve_null("Azithromycin_resistant_number"),
+        sum_preserve_null("Azithromycin_resistant_number_lower"),
+        sum_preserve_null("Azithromycin_resistant_number_upper"),
+        pl.sum("hiv_incidence_number_attributable"),
+        pl.sum("hiv_incidence_number_attributable_upper"),
+        pl.sum("hiv_incidence_number_attributable_lower"),
+        pl.sum("population"),
+        pl.sum("population_upper"),
+        pl.sum("population_lower"),
     )
-    # mask all values at 100
+    # mask all values at the attributable incidence
     hiv = hiv.with_columns(
-        cipro=pl.when(pl.col("cipro") > 100)
-        .then(100)
-        .otherwise(pl.col("cipro")),
-        cipro_lower=pl.when(pl.col("cipro_lower") > 100)
-        .then(100)
-        .otherwise(pl.col("cipro_lower")),
-        cipro_upper=pl.when(pl.col("cipro_upper") > 100)
-        .then(100)
-        .otherwise(pl.col("cipro_upper")),
-        cef=pl.when(pl.col("cef") > 100).then(100).otherwise(pl.col("cef")),
-        cef_lower=pl.when(pl.col("cef_lower") > 100)
-        .then(100)
-        .otherwise(pl.col("cef_lower")),
-        cef_upper=pl.when(pl.col("cef_upper") > 100)
-        .then(100)
-        .otherwise(pl.col("cef_upper")),
-        azithro=pl.when(pl.col("azithro") > 100)
-        .then(100)
-        .otherwise(pl.col("azithro")),
-        azithro_lower=pl.when(pl.col("azithro_lower") > 100)
-        .then(100)
-        .otherwise(pl.col("azithro_lower")),
-        azithro_upper=pl.when(pl.col("azithro_upper") > 100)
-        .then(100)
-        .otherwise(pl.col("azithro_upper")),
+        cipro=pl.when(
+            pl.col("Ciprofloxacin_resistant_number")
+            > pl.col("hiv_incidence_number_attributable")
+        )
+        .then(pl.col("hiv_incidence_number_attributable"))
+        .otherwise(pl.col("Ciprofloxacin_resistant_number")),
+        cipro_lower=pl.when(
+            pl.col("Ciprofloxacin_resistant_number_lower")
+            > pl.col("hiv_incidence_number_attributable_lower")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_lower"))
+        .otherwise(pl.col("Ciprofloxacin_resistant_number_lower")),
+        cipro_upper=pl.when(
+            pl.col("Ciprofloxacin_resistant_number_upper")
+            > pl.col("hiv_incidence_number_attributable_upper")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_upper"))
+        .otherwise(pl.col("Ciprofloxacin_resistant_number_upper")),
+        cef=pl.when(
+            pl.col("Cefixime_resistant_number")
+            > pl.col("hiv_incidence_number_attributable")
+        )
+        .then(pl.col("hiv_incidence_number_attributable"))
+        .otherwise(pl.col("Cefixime_resistant_number")),
+        cef_lower=pl.when(
+            pl.col("Cefixime_resistant_number_lower")
+            > pl.col("hiv_incidence_number_attributable_lower")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_lower"))
+        .otherwise(pl.col("Cefixime_resistant_number_lower")),
+        cef_upper=pl.when(
+            pl.col("Cefixime_resistant_number_upper")
+            > pl.col("hiv_incidence_number_attributable_upper")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_upper"))
+        .otherwise(pl.col("Cefixime_resistant_number_upper")),
+        azithro=pl.when(
+            pl.col("Azithromycin_resistant_number")
+            > pl.col("hiv_incidence_number_attributable")
+        )
+        .then(pl.col("hiv_incidence_number_attributable"))
+        .otherwise(pl.col("Azithromycin_resistant_number")),
+        azithro_lower=pl.when(
+            pl.col("Azithromycin_resistant_number_lower")
+            > pl.col("hiv_incidence_number_attributable_lower")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_lower"))
+        .otherwise(pl.col("Azithromycin_resistant_number_lower")),
+        azithro_upper=pl.when(
+            pl.col("Azithromycin_resistant_number_upper")
+            > pl.col("hiv_incidence_number_attributable_upper")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_upper"))
+        .otherwise(pl.col("Azithromycin_resistant_number_upper")),
+    )
+    # make into incidence per 100,000
+    hiv = hiv.with_columns(
+        cipro=pl.col("cipro") / pl.col("population") * 100000,
+        cipro_lower=pl.col("cipro_lower")
+        / pl.col("population_lower")
+        * 100000,
+        cipro_upper=pl.col("cipro_upper")
+        / pl.col("population_upper")
+        * 100000,
+        cef=pl.col("cef") / pl.col("population") * 100000,
+        cef_lower=pl.col("cef_lower") / pl.col("population_lower") * 100000,
+        cef_upper=pl.col("cef_upper") / pl.col("population_upper") * 100000,
+        azithro=pl.col("azithro") / pl.col("population") * 100000,
+        azithro_lower=pl.col("azithro_lower")
+        / pl.col("population_lower")
+        * 100000,
+        azithro_upper=pl.col("azithro_upper")
+        / pl.col("population_upper")
+        * 100000,
     )
 
     hiv = hiv.sort(by="year")
@@ -175,9 +195,7 @@ def plot_attributable_hiv_burden_drug_resistance(hiv, ax, label, fig):
     )
 
     ax.set_xlabel("Year")
-    ax.set_ylabel(
-        f"Resistance among gonorrhea-attributable\nHIV ({label}) (%)"
-    )
+    ax.set_ylabel(f"HIV incidence per 100,000\nin {label}")
     ax.legend()
     ax.set_ylim(0)
 
@@ -265,7 +283,7 @@ if __name__ == "__main__":
     fig.savefig(
         os.path.join(
             fig_dir,
-            "figure_supplemental_across_africa_attributable_hiv_resistance.png",
+            "figure_abx_resistance_gc_attributable_hiv.png",
         ),
         dpi=300,
         bbox_inches="tight",
@@ -273,7 +291,7 @@ if __name__ == "__main__":
     fig.savefig(
         os.path.join(
             fig_dir,
-            "figure_supplemental_across_africa_attributable_hiv_resistance.pdf",
+            "figure_abx_resistance_gc_attributable_hiv.pdf",
         ),
         dpi=300,
         bbox_inches="tight",

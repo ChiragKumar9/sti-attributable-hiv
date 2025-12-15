@@ -159,7 +159,7 @@ def plot_rr_estimates(rrs, aggregated_rrs, ax, fig):
         capsize=3,
     )
 
-    ax.legend()
+    ax.legend(loc="upper left")
     ax.set_xlabel("Study")
     ax.set_xticks(
         xs, rrs["paper"].unique(maintain_order=True), rotation=-45, ha="left"
