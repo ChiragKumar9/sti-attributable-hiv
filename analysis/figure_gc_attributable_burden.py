@@ -336,8 +336,12 @@ if __name__ == "__main__":
         ha="right",
     )
     plot_attributable_hiv_burden_map(
-        hiv.filter(pl.col("sex") == "Male"), africa, "Male", ax[1, 0], fig
-    )  # type: ignore
+        hiv.filter(pl.col("sex") == "Male"),
+        africa,
+        "Male",
+        ax[1, 0],  # type: ignore
+        fig,
+    )
 
     ax[1, 1].text(  # type: ignore
         -0.25,
@@ -350,8 +354,12 @@ if __name__ == "__main__":
         ha="right",
     )
     plot_attributable_hiv_burden_map(
-        hiv.filter(pl.col("sex") == "Female"), africa, "Female", ax[1, 1], fig
-    )  # type: ignore
+        hiv.filter(pl.col("sex") == "Female"),
+        africa,
+        "Female",
+        ax[1, 1],  # type: ignore
+        fig,
+    )
 
     fig.tight_layout()
 

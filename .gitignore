@@ -2,18 +2,18 @@
 # Exclude many data and output file types by default
 
 # Data
-*.csv
+# *.csv
 *.tsv
 *.parquet
 *.dat
 *.bin
 *.xls
 *.xlsx
-*.shp
-*.prj
-*.cst
-*.dbf
-*.shx
+# *.shp
+# *.prj
+# *.cst
+# *.dbf
+# *.shx
 
 # Documents
 *.doc
