@@ -2,8 +2,9 @@ import numpy as np
 from scipy import stats
 
 
-def meta_estimate_rrs(means, sigmas, group_assignments, n=10000):
-    group_assignments_unique = list(set(group_assignments))
+def meta_estimate_rrs(
+    means, sigmas, group_assignments, group_assignments_unique, n=10000
+):
     n_unique = len(group_assignments_unique)
     mu = np.repeat(0.0, n_unique)
     nu = np.repeat(n, n_unique)
@@ -46,6 +47,8 @@ def meta_estimate_rrs(means, sigmas, group_assignments, n=10000):
                     )
                 )
             )
+            if t_scale[i] != 0.0
+            else float(np.exp(mu[i]))
             for i in range(n_unique)
         ]
     )
@@ -61,6 +64,8 @@ def meta_estimate_rrs(means, sigmas, group_assignments, n=10000):
                     )
                 )
             )
+            if t_scale[i] != 0.0
+            else float(np.exp(mu[i]))
             for i in range(n_unique)
         ]
     )
@@ -76,6 +81,8 @@ def meta_estimate_rrs(means, sigmas, group_assignments, n=10000):
                     )
                 )
             )
+            if t_scale[i] != 0.0
+            else float(np.exp(mu[i]))
             for i in range(n_unique)
         ]
     )

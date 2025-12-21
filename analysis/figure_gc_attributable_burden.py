@@ -47,25 +47,27 @@ def plot_attributable_hiv_burden_sex(hiv, ax, fig):
     hiv = (
         hiv.group_by(["year", "sex"])
         .agg(
-            pl.sum("hiv_incidence_number_attributable"),
-            pl.sum("hiv_incidence_number_attributable_upper"),
-            pl.sum("hiv_incidence_number_attributable_lower"),
+            pl.sum("hiv_incidence_number_attributable_to_gc"),
+            pl.sum("hiv_incidence_number_attributable_to_gc_upper"),
+            pl.sum("hiv_incidence_number_attributable_to_gc_lower"),
             pl.sum("population"),
             pl.sum("hiv_incidence_number"),
             pl.sum("hiv_incidence_number_upper"),
             pl.sum("hiv_incidence_number_lower"),
         )
         .with_columns(
-            hiv_incidence_rate=pl.col("hiv_incidence_number_attributable")
+            hiv_incidence_rate=pl.col(
+                "hiv_incidence_number_attributable_to_gc"
+            )
             / pl.col("hiv_incidence_number")
             * 100,
             hiv_incidence_rate_upper=pl.col(
-                "hiv_incidence_number_attributable_upper"
+                "hiv_incidence_number_attributable_to_gc_upper"
             )
             / pl.col("hiv_incidence_number_upper")
             * 100,
             hiv_incidence_rate_lower=pl.col(
-                "hiv_incidence_number_attributable_lower"
+                "hiv_incidence_number_attributable_to_gc_lower"
             )
             / pl.col("hiv_incidence_number_lower")
             * 100,
@@ -118,25 +120,27 @@ def plot_attributable_hiv_burden_region(hiv, ax, fig):
     hiv = (
         hiv.group_by(["year", "region"])
         .agg(
-            pl.sum("hiv_incidence_number_attributable"),
-            pl.sum("hiv_incidence_number_attributable_upper"),
-            pl.sum("hiv_incidence_number_attributable_lower"),
+            pl.sum("hiv_incidence_number_attributable_to_gc"),
+            pl.sum("hiv_incidence_number_attributable_to_gc_upper"),
+            pl.sum("hiv_incidence_number_attributable_to_gc_lower"),
             pl.sum("population"),
             pl.sum("hiv_incidence_number"),
             pl.sum("hiv_incidence_number_upper"),
             pl.sum("hiv_incidence_number_lower"),
         )
         .with_columns(
-            hiv_incidence_rate=pl.col("hiv_incidence_number_attributable")
+            hiv_incidence_rate=pl.col(
+                "hiv_incidence_number_attributable_to_gc"
+            )
             / pl.col("hiv_incidence_number")
             * 100,
             hiv_incidence_rate_upper=pl.col(
-                "hiv_incidence_number_attributable_upper"
+                "hiv_incidence_number_attributable_to_gc_upper"
             )
             / pl.col("hiv_incidence_number_upper")
             * 100,
             hiv_incidence_rate_lower=pl.col(
-                "hiv_incidence_number_attributable_lower"
+                "hiv_incidence_number_attributable_to_gc_lower"
             )
             / pl.col("hiv_incidence_number_lower")
             * 100,
@@ -217,45 +221,80 @@ def plot_attributable_hiv_burden_region(hiv, ax, fig):
     ax.set_ylim(0)
 
 
-def plot_attributable_hiv_burden_map(hiv, africa, label, ax, fig):
-    hiv = (
-        hiv.group_by(["year", "location"])
-        .agg(
-            pl.sum("hiv_incidence_number_attributable"),
-            pl.sum("hiv_incidence_number_attributable_upper"),
-            pl.sum("hiv_incidence_number_attributable_lower"),
-            pl.sum("population"),
-            pl.sum("hiv_incidence_number"),
-            pl.sum("hiv_incidence_number_upper"),
-            pl.sum("hiv_incidence_number_lower"),
-        )
-        .with_columns(
-            percentage_attributable=pl.col("hiv_incidence_number_attributable")
-            / pl.col("hiv_incidence_number")
-            * 100,
-            percentage_attributable_upper=pl.col(
-                "hiv_incidence_number_attributable_upper"
+def plot_attributable_hiv_burden_map(hiv, mode, africa, ax, fig):
+    if mode == "paf":
+        hiv = (
+            hiv.group_by(["year", "location"])
+            .agg(
+                pl.sum("hiv_incidence_number_attributable_to_gc"),
+                pl.sum("hiv_incidence_number_attributable_to_gc_upper"),
+                pl.sum("hiv_incidence_number_attributable_to_gc_lower"),
+                pl.sum("hiv_incidence_number"),
+                pl.sum("hiv_incidence_number_upper"),
+                pl.sum("hiv_incidence_number_lower"),
             )
-            / pl.col("hiv_incidence_number_upper")
-            * 100,
-            percentage_attributable_lower=pl.col(
-                "hiv_incidence_number_attributable_lower"
+            .with_columns(
+                percentage_attributable=pl.col(
+                    "hiv_incidence_number_attributable_to_gc"
+                )
+                / pl.col("hiv_incidence_number")
+                * 100,
+                percentage_attributable_upper=pl.col(
+                    "hiv_incidence_number_attributable_to_gc_upper"
+                )
+                / pl.col("hiv_incidence_number_upper")
+                * 100,
+                percentage_attributable_lower=pl.col(
+                    "hiv_incidence_number_attributable_to_gc_lower"
+                )
+                / pl.col("hiv_incidence_number_lower")
+                * 100,
             )
-            / pl.col("hiv_incidence_number_lower")
-            * 100,
         )
-        .filter(
-            # take the last year of data
-            pl.col("year") == pl.max("year")
+
+        column = "percentage_attributable"
+        legend = "%"
+    elif mode == "incidence":
+        hiv = (
+            hiv.group_by(["year", "location"])
+            .agg(
+                pl.sum("hiv_incidence_number_attributable_to_gc"),
+                pl.sum("hiv_incidence_number_attributable_to_gc_upper"),
+                pl.sum("hiv_incidence_number_attributable_to_gc_lower"),
+                pl.sum("population"),
+                pl.sum("population_upper"),
+                pl.sum("population_lower"),
+            )
+            .with_columns(
+                incidence_attributable=pl.col(
+                    "hiv_incidence_number_attributable_to_gc"
+                )
+                / pl.col("population")
+                * 100000,
+                incidence_attributable_upper=pl.col(
+                    "hiv_incidence_number_attributable_to_gc_upper"
+                )
+                / pl.col("population_upper")
+                * 100000,
+                incidence_attributable_lower=pl.col(
+                    "hiv_incidence_number_attributable_to_gc_lower"
+                )
+                / pl.col("population_lower")
+                * 100000,
+            )
         )
-    )
+
+        column = "incidence_attributable"
+        legend = "per 100,000"
+    else:
+        raise ValueError("mode must be 'paf' or 'incidence'")
 
     # join up with the africa shapefile
     africa = africa.merge(
         hiv.to_pandas(), left_on="ADM0_NAME", right_on="location", how="left"
     )
-    has_data_mask = africa["percentage_attributable"].notna()
-    no_data_mask = africa["percentage_attributable"].isna()
+    has_data_mask = africa[column].notna()
+    no_data_mask = africa[column].isna()
 
     africa[no_data_mask].plot(
         ax=ax, color="lightgrey", linewidth=0.3, edgecolor="grey"
@@ -263,7 +302,7 @@ def plot_attributable_hiv_burden_map(hiv, africa, label, ax, fig):
 
     # Plot counties with data
     africa[has_data_mask].plot(
-        column="percentage_attributable",
+        column=column,
         cmap="Reds",
         linewidth=0.3,
         ax=ax,
@@ -284,7 +323,7 @@ def plot_attributable_hiv_burden_map(hiv, africa, label, ax, fig):
 
     # Customize the colorbar
     cbar.set_label(
-        f"{label} HIV incidence attributable to \ngonorrhea in 2023 (%)",
+        f"HIV incidence attributable to \ngonorrhea in 2023 ({legend})",
         rotation=0,
         labelpad=0,
         fontsize=28,
@@ -296,7 +335,7 @@ def plot_attributable_hiv_burden_map(hiv, africa, label, ax, fig):
 if __name__ == "__main__":
     fig, ax = setup_plot(2, 2)  # type: ignore
 
-    hiv = pl.read_csv(os.path.join(output_dir, "hiv_attributable_to_gc.csv"))
+    hiv = pl.read_csv(os.path.join(output_dir, "hiv_attributable_to_stis.csv"))
 
     # by sex
     ax[0, 0].text(  # type: ignore
@@ -336,9 +375,9 @@ if __name__ == "__main__":
         ha="right",
     )
     plot_attributable_hiv_burden_map(
-        hiv.filter(pl.col("sex") == "Male"),
+        hiv,
+        "paf",
         africa,
-        "Male",
         ax[1, 0],  # type: ignore
         fig,
     )
@@ -354,9 +393,9 @@ if __name__ == "__main__":
         ha="right",
     )
     plot_attributable_hiv_burden_map(
-        hiv.filter(pl.col("sex") == "Female"),
+        hiv,
+        "incidence",
         africa,
-        "Female",
         ax[1, 1],  # type: ignore
         fig,
     )

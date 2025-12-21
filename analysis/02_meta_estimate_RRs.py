@@ -30,16 +30,28 @@ def workhorse(filename, output_filename):
     rrs = rrs.with_columns(
         sigma=(pl.col("log_upper") - pl.col("log_lower")) / (2 * 1.96)
     )
+    rrs = rrs.with_columns(group=pl.col("sex") + pl.col("bacteria"))
 
     rr_mu, rr_lower, rr_upper = rr_meta_estimate.meta_estimate_rrs(
         means=rrs["log_val"].to_list(),
         sigmas=rrs["sigma"].to_list(),
-        group_assignments=rrs["sex"].to_list(),
+        group_assignments=rrs["group"].to_list(),
+        group_assignments_unique=rrs["group"]
+        .unique(maintain_order=True)
+        .to_list(),
+    )
+
+    # we want to condense by bacteria and sex
+    rrs_striped = (
+        rrs.select(["bacteria", "sex"])
+        .group_by(["bacteria", "sex"], maintain_order=True)
+        .len()
     )
 
     results = pl.DataFrame(
         {
-            "sex": list(set(rrs["sex"].to_list())),
+            "bacteria": rrs_striped["bacteria"].to_list(),
+            "sex": rrs_striped["sex"].to_list(),
             "rr_mu": rr_mu,
             "rr_lower": rr_lower,
             "rr_upper": rr_upper,
@@ -50,4 +62,10 @@ def workhorse(filename, output_filename):
     results.write_csv(os.path.join(output_dir, f"{output_filename}.csv"))
 
 
-workhorse("RRs_causal_GC_given_HIV", "meta_estimated_RRs_causal_GC_given_HIV")
+workhorse(
+    "RRs_causal_STI_given_HIV", "meta_estimated_RRs_causal_STI_given_HIV"
+)
+workhorse("RRs_STI_HIV_coinfection", "meta_estimated_RRs_STI_HIV_coinfection")
+workhorse(
+    "RRs_HIV_detection_given_STI", "meta_estimated_RRs_HIV_detection_given_STI"
+)

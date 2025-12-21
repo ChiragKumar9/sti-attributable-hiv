@@ -110,7 +110,7 @@ def plot_hiv_burden(hiv, ax, label, fig):
 if __name__ == "__main__":
     fig, ax = setup_plot(2, 2)  # type: ignore
 
-    hiv = pl.read_csv(os.path.join(output_dir, "hiv_attributable_to_gc.csv"))
+    hiv = pl.read_csv(os.path.join(output_dir, "hiv_attributable_to_stis.csv"))
     ax[0, 0].text(  # type: ignore
         -0.25,
         1.08,

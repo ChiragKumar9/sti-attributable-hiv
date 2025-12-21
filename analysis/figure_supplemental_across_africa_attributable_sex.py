@@ -42,29 +42,31 @@ def setup_plot(nrows, ncols):
     return fig, ax
 
 
-def plot_attributable_hiv_burden_sex(hiv, ax, label, fig):
+def plot_attributable_hiv_burden_sex(hiv, sti, ax, label, fig):
     hiv = (
         hiv.group_by(["year", "sex"])
         .agg(
-            pl.sum("hiv_incidence_number_attributable"),
-            pl.sum("hiv_incidence_number_attributable_upper"),
-            pl.sum("hiv_incidence_number_attributable_lower"),
+            pl.sum(f"hiv_incidence_number_attributable_to_{sti}"),
+            pl.sum(f"hiv_incidence_number_attributable_to_{sti}_upper"),
+            pl.sum(f"hiv_incidence_number_attributable_to_{sti}_lower"),
             pl.sum("population"),
             pl.sum("hiv_incidence_number"),
             pl.sum("hiv_incidence_number_upper"),
             pl.sum("hiv_incidence_number_lower"),
         )
         .with_columns(
-            hiv_incidence_rate=pl.col("hiv_incidence_number_attributable")
+            hiv_incidence_rate=pl.col(
+                f"hiv_incidence_number_attributable_to_{sti}"
+            )
             / pl.col("hiv_incidence_number")
             * 100,
             hiv_incidence_rate_upper=pl.col(
-                "hiv_incidence_number_attributable_upper"
+                f"hiv_incidence_number_attributable_to_{sti}_upper"
             )
             / pl.col("hiv_incidence_number_upper")
             * 100,
             hiv_incidence_rate_lower=pl.col(
-                "hiv_incidence_number_attributable_lower"
+                f"hiv_incidence_number_attributable_to_{sti}_lower"
             )
             / pl.col("hiv_incidence_number_lower")
             * 100,
@@ -106,105 +108,121 @@ def plot_attributable_hiv_burden_sex(hiv, ax, label, fig):
     )
 
     ax.set_xlabel("Year")
-    ax.set_ylabel(f"HIV incidence attributable to gonorrhea\n({label}) (%)")
+    ax.set_ylabel(label)
     ax.legend()
     ax.set_xticks([1990, 2000, 2010, 2020])
     ax.set_ylim(0)
 
 
 if __name__ == "__main__":
-    fig, ax = setup_plot(2, 2)  # type: ignore
+    sti_map = {
+        "gc": "gonorrhea",
+        "chlamydia": "chlamydia",
+        "syphilis": "syphilis",
+        "trichomoniasis": "trichomoniasis",
+    }
 
-    hiv = pl.read_csv(os.path.join(output_dir, "hiv_attributable_to_gc.csv"))
+    for sti in sti_map.keys():
+        fig, ax = setup_plot(2, 2)  # type: ignore
 
-    # western africa
-    ax[0, 0].text(  # type: ignore
-        -0.25,
-        1.08,
-        "a",
-        transform=ax[0, 0].transAxes,  # type: ignore
-        fontsize=24,
-        fontweight="bold",
-        va="top",
-        ha="right",
-    )
-    plot_attributable_hiv_burden_sex(
-        hiv.filter(pl.col("region") == "Western"),
-        ax[0, 0],  # type: ignore
-        "Western Africa",
-        fig,
-    )
+        hiv = pl.read_csv(
+            os.path.join(output_dir, "hiv_attributable_to_stis.csv")
+        )
 
-    # eastern africa
-    ax[0, 1].text(  # type: ignore
-        -0.25,
-        1.08,
-        "b",
-        transform=ax[0, 1].transAxes,  # type: ignore
-        fontsize=24,
-        fontweight="bold",
-        va="top",
-        ha="right",
-    )
-    plot_attributable_hiv_burden_sex(
-        hiv.filter(pl.col("region") == "Eastern"),
-        ax[0, 1],  # type: ignore
-        "Eastern Africa",
-        fig,
-    )
+        base_label = f"HIV incidence attributable to {sti_map[sti]}\n"
 
-    # central africa
-    ax[1, 0].text(  # type: ignore
-        -0.25,
-        1.08,
-        "c",
-        transform=ax[1, 0].transAxes,  # type: ignore
-        fontsize=24,
-        fontweight="bold",
-        va="top",
-        ha="right",
-    )
-    plot_attributable_hiv_burden_sex(
-        hiv.filter(pl.col("region") == "Central"),
-        ax[1, 0],  # type: ignore
-        "Central Africa",
-        fig,
-    )
+        # western africa
+        ax[0, 0].text(  # type: ignore
+            -0.25,
+            1.08,
+            "a",
+            transform=ax[0, 0].transAxes,  # type: ignore
+            fontsize=24,
+            fontweight="bold",
+            va="top",
+            ha="right",
+        )
+        plot_attributable_hiv_burden_sex(
+            hiv.filter(pl.col("region") == "Western"),
+            sti,
+            ax[0, 0],  # type: ignore
+            base_label + "(Western Africa) (%)",
+            fig,
+        )
 
-    # southern africa
-    ax[1, 1].text(  # type: ignore
-        -0.25,
-        1.08,
-        "d",
-        transform=ax[1, 1].transAxes,  # type: ignore
-        fontsize=24,
-        fontweight="bold",
-        va="top",
-        ha="right",
-    )
-    plot_attributable_hiv_burden_sex(
-        hiv.filter(pl.col("region") == "Southern"),
-        ax[1, 1],  # type: ignore
-        "Southern Africa",
-        fig,
-    )
+        # eastern africa
+        ax[0, 1].text(  # type: ignore
+            -0.25,
+            1.08,
+            "b",
+            transform=ax[0, 1].transAxes,  # type: ignore
+            fontsize=24,
+            fontweight="bold",
+            va="top",
+            ha="right",
+        )
+        plot_attributable_hiv_burden_sex(
+            hiv.filter(pl.col("region") == "Eastern"),
+            sti,
+            ax[0, 1],  # type: ignore
+            base_label + "(Eastern Africa) (%)",
+            fig,
+        )
 
-    fig.tight_layout()
+        # central africa
+        ax[1, 0].text(  # type: ignore
+            -0.25,
+            1.08,
+            "c",
+            transform=ax[1, 0].transAxes,  # type: ignore
+            fontsize=24,
+            fontweight="bold",
+            va="top",
+            ha="right",
+        )
+        plot_attributable_hiv_burden_sex(
+            hiv.filter(pl.col("region") == "Central"),
+            sti,
+            ax[1, 0],  # type: ignore
+            base_label + "(Central Africa) (%)",
+            fig,
+        )
 
-    # save
-    fig.savefig(
-        os.path.join(
-            fig_dir, "figure_supplemental_attributable_hiv_region_sex.png"
-        ),
-        dpi=300,
-        bbox_inches="tight",
-    )
-    fig.savefig(
-        os.path.join(
-            fig_dir, "figure_supplemental_attributable_hiv_region_sex.pdf"
-        ),
-        dpi=300,
-        bbox_inches="tight",
-    )
+        # southern africa
+        ax[1, 1].text(  # type: ignore
+            -0.25,
+            1.08,
+            "d",
+            transform=ax[1, 1].transAxes,  # type: ignore
+            fontsize=24,
+            fontweight="bold",
+            va="top",
+            ha="right",
+        )
+        plot_attributable_hiv_burden_sex(
+            hiv.filter(pl.col("region") == "Southern"),
+            sti,
+            ax[1, 1],  # type: ignore
+            base_label + "(Southern Africa) (%)",
+            fig,
+        )
 
-    plt.show()
+        fig.tight_layout()
+
+        # save
+        fig.savefig(
+            os.path.join(
+                fig_dir,
+                f"figure_supplemental_{sti}_attributable_hiv_region_sex.png",
+            ),
+            dpi=300,
+            bbox_inches="tight",
+        )
+        fig.savefig(
+            os.path.join(
+                fig_dir,
+                f"figure_supplemental_{sti}_attributable_hiv_region_sex.pdf",
+            ),
+            dpi=300,
+            bbox_inches="tight",
+        )
