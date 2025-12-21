@@ -9,8 +9,6 @@ from averted_burden import conditional_exposure
 data_dir = "data"
 output_dir = "outputs"
 
-proportion_treated = 0.73  # need to put this data in csv
-
 hiv = pl.read_csv(os.path.join(output_dir, "hiv_attributable_to_stis.csv"))
 
 sti_transmission_increase = pl.read_csv(
@@ -37,6 +35,7 @@ sti_transmission_increase = sti_transmission_increase.with_columns(
 # paf_{sti}_hiv, paf_{sti}_hiv_lower, paf_{sti}_hiv_upper
 # hiv_incidence_number, hiv_incidence_number_lower, hiv_incidence_number_upper
 # hiv_prevalence, hiv_prevalence_lower, hiv_prevalence_upper
+# treatment_proportion, treatment_proportion_lower, treatment_proportion_upper
 # we return a dataframe with columns year, sex, indirect_hiv_averted,
 # indirect_hiv_averted_lower, indirect_hiv_averted_upper
 def calculate_indirect_averted_cases(
@@ -48,7 +47,6 @@ def calculate_indirect_averted_cases(
     sti_hiv_transmission_increase_female,
     sti_hiv_transmission_increase_lower_female,
     sti_hiv_transmission_increase_upper_female,
-    treatment_proportion: float = proportion_treated,
     hiv_to_aids=np.array([0.82, 0.72, 0.64, 0.57, 0.26, 0.19, 0.0]),
     hiv_to_aids_upper=np.array([0.95, 0.88, 0.84, 0.89, 0.50, 0.48, 0.0]),
     hiv_to_aids_lower=np.array([0.70, 0.56, 0.44, 0.25, 0.03, 0.09, 0.0]),
@@ -80,6 +78,9 @@ def calculate_indirect_averted_cases(
             "hiv_prevalence_number",
             "hiv_prevalence_number_lower",
             "hiv_prevalence_number_upper",
+            "treatment_proportion",
+            "treatment_proportion_lower",
+            "treatment_proportion_upper",
         ],
         index="year",
     )
@@ -89,38 +90,42 @@ def calculate_indirect_averted_cases(
     # assume heterosexual transmission
     df = df.with_columns(
         transmission_rate_M_F=pl.col("hiv_incidence_number_Female").shift(-1)
-        / (pl.col("hiv_prevalence_number_Male") * (1 - treatment_proportion)),
+        / (
+            pl.col("hiv_prevalence_number_Male")
+            * (1 - pl.col("treatment_proportion_Male"))
+        ),
         transmission_rate_lower_M_F=pl.col(
             "hiv_incidence_number_lower_Female"
         ).shift(-1)
         / (
             pl.col("hiv_prevalence_number_lower_Male")
-            * (1 - treatment_proportion)
+            * (1 - pl.col("treatment_proportion_upper_Male"))
         ),
         transmission_rate_upper_M_F=pl.col(
             "hiv_incidence_number_upper_Female"
         ).shift(-1)
         / (
             pl.col("hiv_prevalence_number_upper_Male")
-            * (1 - treatment_proportion)
+            * (1 - pl.col("treatment_proportion_lower_Male"))
         ),
         transmission_rate_F_M=pl.col("hiv_incidence_number_Male").shift(-1)
         / (
-            pl.col("hiv_prevalence_number_Female") * (1 - treatment_proportion)
+            pl.col("hiv_prevalence_number_Female")
+            * (1 - pl.col("treatment_proportion_Female"))
         ),
         transmission_rate_lower_F_M=pl.col(
             "hiv_incidence_number_lower_Male"
         ).shift(-1)
         / (
             pl.col("hiv_prevalence_number_lower_Female")
-            * (1 - treatment_proportion)
+            * (1 - pl.col("treatment_proportion_upper_Female"))
         ),
         transmission_rate_upper_F_M=pl.col(
             "hiv_incidence_number_upper_Male"
         ).shift(-1)
         / (
             pl.col("hiv_prevalence_number_upper_Female")
-            * (1 - treatment_proportion)
+            * (1 - pl.col("treatment_proportion_lower_Female"))
         ),
     )
 
@@ -203,23 +208,23 @@ def calculate_indirect_averted_cases(
 
         # of the directly averted cases, we only want to consider those not treated
         transmitting_direct_male = row["direct_hiv_averted_Male"] * (
-            1 - treatment_proportion
+            1 - row["treatment_proportion_Male"]
         )
         transmitting_direct_lower_male = row[
             "direct_hiv_averted_lower_Male"
-        ] * (1 - treatment_proportion)
+        ] * (1 - row["treatment_proportion_upper_Male"])
         transmitting_direct_upper_male = row[
             "direct_hiv_averted_upper_Male"
-        ] * (1 - treatment_proportion)
+        ] * (1 - row["treatment_proportion_lower_Male"])
         transmitting_direct_female = row["direct_hiv_averted_Female"] * (
-            1 - treatment_proportion
+            1 - row["treatment_proportion_Female"]
         )
         transmitting_direct_lower_female = row[
             "direct_hiv_averted_lower_Female"
-        ] * (1 - treatment_proportion)
+        ] * (1 - row["treatment_proportion_upper_Female"])
         transmitting_direct_upper_female = row[
             "direct_hiv_averted_upper_Female"
-        ] * (1 - treatment_proportion)
+        ] * (1 - row["treatment_proportion_lower_Female"])
 
         cumulative_male[idx] += transmitting_direct_male
         cumulative_lower_male[idx] += transmitting_direct_lower_male
@@ -339,10 +344,10 @@ hiv = hiv.with_columns(
 # for our upper bound scenario, multiply by some assumed fraction of STI cases averted
 STIs = ["gc", "chlamydia", "syphilis", "trichomoniasis"]
 fraction_averted_sti = {
-    "gc": 0.25,
-    "chlamydia": 0.25,
-    "syphilis": 0.25,
-    "trichomoniasis": 0.25,
+    "gc": 0.5,
+    "chlamydia": 0.5,
+    "syphilis": 0.5,
+    "trichomoniasis": 0.5,
 }
 
 # multiply by the fraction averted
@@ -375,6 +380,9 @@ for location in tqdm(hiv["location"].unique()):
                 "hiv_incidence_number",
                 "hiv_incidence_number_lower",
                 "hiv_incidence_number_upper",
+                "treatment_proportion",
+                "treatment_proportion_lower",
+                "treatment_proportion_upper",
                 # direct averted cases
                 "direct_hiv_averted_2016_gc_change",
                 "direct_hiv_averted_2016_gc_change_lower",
@@ -418,6 +426,9 @@ for location in tqdm(hiv["location"].unique()):
                     "hiv_incidence_number",
                     "hiv_incidence_number_lower",
                     "hiv_incidence_number_upper",
+                    "treatment_proportion",
+                    "treatment_proportion_lower",
+                    "treatment_proportion_upper",
                 ],
                 *[
                     f"hiv_incidence_number_attributable_to_{sti}_upper_bound{estimate}"
@@ -504,6 +515,9 @@ for location in tqdm(hiv["location"].unique()):
             "direct_hiv_averted_2016_gc_change",
             "direct_hiv_averted_2016_gc_change_lower",
             "direct_hiv_averted_2016_gc_change_upper",
+            "treatment_proportion",
+            "treatment_proportion_lower",
+            "treatment_proportion_upper",
             *[
                 f"paf_gc_hiv{estimate}"
                 for estimate in ["", "_lower", "_upper"]

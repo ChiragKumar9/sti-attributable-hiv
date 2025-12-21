@@ -203,5 +203,36 @@ data = data.with_columns(
     / pl.col("population_upper"),
 )
 
+# finally, we need hiv treatment rates over time
+hiv_treatment_rate = pl.read_csv(
+    os.path.join(data_dir, "hiv_treatment_rate.csv")
+)
+# divide by 100 to make proportions
+hiv_treatment_rate = hiv_treatment_rate.with_columns(
+    val=pl.col("val") / 100,
+    lower=pl.col("lower") / 100,
+    upper=pl.col("upper") / 100,
+)
+# rename to be more informative
+hiv_treatment_rate = hiv_treatment_rate.rename(
+    {
+        "val": "treatment_proportion",
+        "lower": "treatment_proportion_lower",
+        "upper": "treatment_proportion_upper",
+    }
+)
+# join to existing data on basis of year and sex
+data = data.join(hiv_treatment_rate, on=["year", "sex"], how="left")
+# since any missing values are pre 2023, impute hiv treatment rate as 0
+data = data.with_columns(
+    treatment_proportion=pl.col("treatment_proportion").fill_null(0),
+    treatment_proportion_lower=pl.col("treatment_proportion_lower").fill_null(
+        0
+    ),
+    treatment_proportion_upper=pl.col("treatment_proportion_upper").fill_null(
+        0
+    ),
+)
+
 # save the assembled data
 data.write_csv(os.path.join(output_dir, "hiv_sti.csv"))
