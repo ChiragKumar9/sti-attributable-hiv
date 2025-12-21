@@ -120,19 +120,19 @@ resistance.write_csv(
     os.path.join(output_dir, "estimated_resistance_rates.csv")
 )
 
-# read in our hiv gc data
-hiv_gc = pl.read_csv(os.path.join(output_dir, "hiv_gc.csv"))
+# read in our hiv sti data
+hiv_sti = pl.read_csv(os.path.join(output_dir, "hiv_sti.csv"))
 
 # map countries to regions
-hiv_gc = hiv_gc.with_columns(
+hiv_sti = hiv_sti.with_columns(
     region=pl.col("location").replace(countries_to_regions)
 )
 
 # merge
-hiv_gc = hiv_gc.join(
+hiv_sti = hiv_sti.join(
     resistance,
     on=["year", "region"],
     how="left",  # so we don't discard the years for which we don't have data
 )
 
-hiv_gc.write_csv(os.path.join(output_dir, "hiv_gc_with_abx.csv"))
+hiv_sti.write_csv(os.path.join(output_dir, "hiv_sti_with_gc_abx_r.csv"))

@@ -257,10 +257,13 @@ if __name__ == "__main__":
     plot_drug_resistance(estimated_resistance_rates, ax[0], fig)  # type: ignore
 
     # estimates of the RRs
-    rrs = pl.read_csv(os.path.join(data_dir, "RRs_causal_GC_given_HIV.csv"))
+    rrs = pl.read_csv(os.path.join(data_dir, "RRs_causal_STI_given_HIV.csv"))
     aggregated_rrs = pl.read_csv(
-        os.path.join(output_dir, "meta_estimated_RRs_causal_GC_given_HIV.csv")
+        os.path.join(output_dir, "meta_estimated_RRs_causal_STI_given_HIV.csv")
     )
+    # filter both to only gonorrhea
+    rrs = rrs.filter(pl.col("bacteria") == "Gonorrhea")
+    aggregated_rrs = aggregated_rrs.filter(pl.col("bacteria") == "Gonorrhea")
     ax[1].text(  # type: ignore
         -0.25,
         1.08,
@@ -273,7 +276,7 @@ if __name__ == "__main__":
     )
     plot_rr_estimates(rrs, aggregated_rrs, ax[1], fig)  # type: ignore
 
-    hiv = pl.read_csv(os.path.join(output_dir, "hiv_gc.csv"))
+    hiv = pl.read_csv(os.path.join(output_dir, "hiv_sti.csv"))
     ax[2].text(  # type: ignore
         -0.25,
         1.08,

@@ -1,0 +1,9 @@
+bacteria,paper,sex,val,lower,upper,notes
+Gonorrhea,"Johnson et al., 2008",Both,1.8,1.2,2.7
+Gonorrhea,"Johnson et al., 2008",Women,1.6,1.1,2.4
+Chlamydia,"Johnson et al., 2008",Both,1.8,1.1,3.1
+Chlamydia,"Johnson et al., 2008",Women,1.8,1.1,3.1
+Trichomoniasis,"Johnson et al., 2008",Both,0.9,0.7,1.3
+Trichomoniasis,"Johnson et al., 2008",Women,0.9,0.7,1.3
+Syphilis,"Johnson et al., 2008",Both,1.3,0.9,1.9
+Syphilis,"Johnson et al., 2008",Women,1.3,0.9,1.9

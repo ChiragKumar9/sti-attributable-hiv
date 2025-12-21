@@ -10,6 +10,7 @@ incidence = pl.read_csv(os.path.join(data_dir, "ihme_incidence.csv"))
 prevalence = pl.read_csv(os.path.join(data_dir, "ihme_prevalence.csv"))
 
 # aggregate data by location, summing over ages
+incidence = incidence.filter(pl.col("metric") == "Number")
 incidence = incidence.group_by(
     ["measure", "location", "sex", "cause", "metric", "year"]
 ).agg(pl.sum("val"), pl.sum("lower"), pl.sum("upper"))
@@ -18,7 +19,7 @@ prevalence = prevalence.group_by(
     ["measure", "location", "sex", "cause", "metric", "year"]
 ).agg(pl.sum("val"), pl.sum("lower"), pl.sum("upper"))
 
-# we want number and rate of incident hiv cases by country
+# we want number incident hiv cases by country
 incidence_hiv = incidence.filter((pl.col("cause") == "HIV/AIDS"))
 
 # group by sex and year, summing over locations
@@ -30,37 +31,13 @@ incidence_hiv = incidence_hiv.group_by(
     pl.sum("upper"),
 )
 
-# hiv rate and number by sex, location, year
-incidence_hiv = incidence_hiv.filter(pl.col("metric") != "Percent")
-
-incidence_hiv_number = (
-    incidence_hiv.filter(pl.col("metric") == "Number")
-    .rename(
-        {
-            "val": "hiv_incidence_number",
-            "lower": "hiv_incidence_number_lower",
-            "upper": "hiv_incidence_number_upper",
-        }
-    )
-    .drop(["measure", "metric"])
-)
-
-incidence_hiv_rate = (
-    incidence_hiv.filter(pl.col("metric") == "Rate")
-    .rename(
-        {
-            "val": "hiv_incidence_rate",
-            "lower": "hiv_incidence_rate_lower",
-            "upper": "hiv_incidence_rate_upper",
-        }
-    )
-    .drop(["measure", "metric"])
-)
-
-# join the two together
-incidence_hiv = incidence_hiv_number.join(
-    incidence_hiv_rate, on=["sex", "year", "location"], how="inner"
-)
+incidence_hiv = incidence_hiv.rename(
+    {
+        "val": "hiv_incidence_number",
+        "lower": "hiv_incidence_number_lower",
+        "upper": "hiv_incidence_number_upper",
+    }
+).drop(["measure", "metric"])
 
 # join up with population data
 population = pl.read_csv(os.path.join(data_dir, "ihme_population.csv"))
@@ -103,9 +80,9 @@ prevalence_hiv = (
     )
     .rename(
         {
-            "val": "hiv_prevalence",
-            "lower": "hiv_prevalence_lower",
-            "upper": "hiv_prevalence_upper",
+            "val": "hiv_prevalence_number",
+            "lower": "hiv_prevalence_number_lower",
+            "upper": "hiv_prevalence_number_upper",
         }
     )
 )
@@ -123,27 +100,29 @@ incidence_hiv = incidence_hiv.join(
 # IHME reports mid-year prevalence, and incidence is over the full year,
 # so we have to subtract out half of the incidence
 incidence_hiv = incidence_hiv.with_columns(
-    p_hiv=pl.col("hiv_incidence_number")
+    p_acquiring_hiv=pl.col("hiv_incidence_number")
     / (
         pl.col("population")
-        - pl.col("hiv_prevalence")
+        - pl.col("hiv_prevalence_number")
         - 0.5 * pl.col("hiv_incidence_number")
     ),
-    p_hiv_lower=pl.col("hiv_incidence_number_lower")
+    p_acquiring_hiv_lower=pl.col("hiv_incidence_number_lower")
     / (
         pl.col("population_lower")
-        - pl.col("hiv_prevalence_lower")
+        - pl.col("hiv_prevalence_number_lower")
         - 0.5 * pl.col("hiv_incidence_number_lower")
     ),
-    p_hiv_upper=pl.col("hiv_incidence_number_upper")
+    p_acquiring_hiv_upper=pl.col("hiv_incidence_number_upper")
     / (
         pl.col("population_upper")
-        - pl.col("hiv_prevalence_upper")
+        - pl.col("hiv_prevalence_number_upper")
         - 0.5 * pl.col("hiv_incidence_number_upper")
     ),
 )
 
 # we need prevalence of gc
+# we have to do this separately from the other STIs because the data are in a
+# separate CSV
 prevalence_gc = prevalence.filter(
     (pl.col("cause") == "Gonococcal infection")
     & (pl.col("metric") == "Number")
@@ -170,14 +149,59 @@ data = incidence_hiv.join(
     prevalence_gc, on=["sex", "year", "location"], how="inner"
 )
 
-# convert gc prevalence to be per effective population
+# we also want to join up with the other sti data
+prevalence_sti = pl.read_csv(os.path.join(data_dir, "ihme_sti_prevalence.csv"))
+prevalence_sti = prevalence_sti.filter(pl.col("metric") == "Number")
+prevalence_sti = prevalence_sti.group_by(
+    ["location", "sex", "cause", "year"]
+).sum()
+prevalence_sti = prevalence_sti.drop(["measure", "metric", "age"])
+# pivot wider so we have columns for each sti
+prevalence_sti = prevalence_sti.pivot(
+    on="cause", values=["val", "upper", "lower"]
+)
+# rename
+prevalence_sti = prevalence_sti.rename(
+    {
+        "val_Chlamydial infection": "chlamydia_prevalence",
+        "val_Trichomoniasis": "trichomoniasis_prevalence",
+        "val_Syphilis": "syphilis_prevalence",
+        "upper_Chlamydial infection": "chlamydia_prevalence_upper",
+        "upper_Trichomoniasis": "trichomoniasis_prevalence_upper",
+        "upper_Syphilis": "syphilis_prevalence_upper",
+        "lower_Chlamydial infection": "chlamydia_prevalence_lower",
+        "lower_Trichomoniasis": "trichomoniasis_prevalence_lower",
+        "lower_Syphilis": "syphilis_prevalence_lower",
+    }
+)
+
+# join with existing dataframe
+data = data.join(prevalence_sti, on=["sex", "year", "location"], how="inner")
+
+# convert sti prevalence to be per effective population
 data = data.with_columns(
     gc_prevalence=pl.col("gc_prevalence") / pl.col("population"),
     gc_prevalence_lower=pl.col("gc_prevalence_lower")
     / pl.col("population_lower"),
     gc_prevalence_upper=pl.col("gc_prevalence_upper")
     / pl.col("population_upper"),
+    chlamydia_prevalence=pl.col("chlamydia_prevalence") / pl.col("population"),
+    chlamydia_prevalence_lower=pl.col("chlamydia_prevalence_lower")
+    / pl.col("population_lower"),
+    chlamydia_prevalence_upper=pl.col("chlamydia_prevalence_upper")
+    / pl.col("population_upper"),
+    syphilis_prevalence=pl.col("syphilis_prevalence") / pl.col("population"),
+    syphilis_prevalence_lower=pl.col("syphilis_prevalence_lower")
+    / pl.col("population_lower"),
+    syphilis_prevalence_upper=pl.col("syphilis_prevalence_upper")
+    / pl.col("population_upper"),
+    trichomoniasis_prevalence=pl.col("trichomoniasis_prevalence")
+    / pl.col("population"),
+    trichomoniasis_prevalence_lower=pl.col("trichomoniasis_prevalence_lower")
+    / pl.col("population_lower"),
+    trichomoniasis_prevalence_upper=pl.col("trichomoniasis_prevalence_upper")
+    / pl.col("population_upper"),
 )
 
 # save the assembled data
-data.write_csv(os.path.join(output_dir, "hiv_gc.csv"))
+data.write_csv(os.path.join(output_dir, "hiv_sti.csv"))
