@@ -1,9 +1,0 @@
-bacteria,sex,rr_mu,rr_lower,rr_upper
-Gonorrhea,Heterosexual Women,1.89,1.4810440491029855,2.4118796481195077
-Chlamydia,Heterosexual Women,1.83,1.1325241973086602,2.957022912144706
-Trichomoniasis,Heterosexual Women,1.54,1.3525707054228415,1.7534018668980331
-Gonorrhea,Heterosexual Men,1.18,1.18,1.18
-Chlamydia,Heterosexual Men,0.61,0.61,0.61
-Trichomoniasis,Heterosexual Men,2.81,2.81,2.81
-Syphilis,Heterosexual Men,1.62,1.62,1.62
-Syphilis,Heterosexual Women,2.5,2.5,2.5
