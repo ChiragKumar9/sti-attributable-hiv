@@ -330,15 +330,15 @@ hiv = hiv.with_columns(
     direct_hiv_averted_2016_gc_change=pl.col(
         "hiv_incidence_number_attributable_to_gc"
     )
-    * 0.8,
+    * pl.when(pl.col("sex") == "Male").then(0.8).otherwise(0.2),
     direct_hiv_averted_2016_gc_change_lower=pl.col(
         "hiv_incidence_number_attributable_to_gc_lower"
     )
-    * 0.8,
+    * pl.when(pl.col("sex") == "Male").then(0.8).otherwise(0.2),
     direct_hiv_averted_2016_gc_change_upper=pl.col(
         "hiv_incidence_number_attributable_to_gc_upper"
     )
-    * 0.8,
+    * pl.when(pl.col("sex") == "Male").then(0.8).otherwise(0.2),
 )
 
 # for our upper bound scenario, multiply by some assumed fraction of STI cases averted
