@@ -157,7 +157,7 @@ def plot_best_case(hiv, ax, year, label, fig):
     ax.axhline(
         0.1 * hiv.filter(pl.col("year") == year)["reference"][0],
         linestyle="--",
-        color="black",
+        color="#009CDE",
         label="SDG target",
     )
 
