@@ -2,12 +2,17 @@ import os
 
 import numpy as np
 import polars as pl
+import yaml
 from tqdm.auto import tqdm
 
 from averted_burden import conditional_exposure
 
 data_dir = "data"
 output_dir = "outputs"
+
+# read params
+with open("params.yml", "r") as f:
+    params = yaml.safe_load(f)
 
 hiv = pl.read_csv(os.path.join(output_dir, "hiv_attributable_to_stis.csv"))
 
@@ -327,35 +332,35 @@ def calculate_indirect_averted_cases(
 # calculate direct averted cases by the policy switch from cipro to azithro
 # post 2016, assume 80% resistance to cipro
 hiv = hiv.with_columns(
+    gc_treatment_rate=pl.when(pl.col("sex") == "Male")
+    .then(pl.lit(params["male_sti_treatment"]))
+    .otherwise(pl.lit(params["female_sti_treatment"]))
+)
+
+hiv = hiv.with_columns(
     direct_hiv_averted_2016_gc_change=pl.col(
         "hiv_incidence_number_attributable_to_gc"
     )
-    * pl.when(pl.col("sex") == "Male").then(0.8).otherwise(0.2),
+    * pl.col("gc_treatment_rate"),
     direct_hiv_averted_2016_gc_change_lower=pl.col(
         "hiv_incidence_number_attributable_to_gc_lower"
     )
-    * pl.when(pl.col("sex") == "Male").then(0.8).otherwise(0.2),
+    * pl.col("gc_treatment_rate"),
     direct_hiv_averted_2016_gc_change_upper=pl.col(
         "hiv_incidence_number_attributable_to_gc_upper"
     )
-    * pl.when(pl.col("sex") == "Male").then(0.8).otherwise(0.2),
+    * pl.col("gc_treatment_rate"),
 )
 
 # for our upper bound scenario, multiply by some assumed fraction of STI cases averted
 STIs = ["gc", "chlamydia", "syphilis", "trichomoniasis"]
-fraction_averted_sti = {
-    "gc": 0.5,
-    "chlamydia": 0.5,
-    "syphilis": 0.5,
-    "trichomoniasis": 0.5,
-}
 
 # multiply by the fraction averted
 hiv = hiv.with_columns(
     [
         (
             pl.col(f"hiv_incidence_number_attributable_to_{sti}{estimate}")
-            * fraction_averted_sti[sti]
+            * pl.lit(params["upper_bound_sdg"][sti])
         ).alias(
             f"hiv_incidence_number_attributable_to_{sti}_upper_bound{estimate}"
         )

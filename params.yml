@@ -1,0 +1,7 @@
+male_sti_treatment: 0.8
+female_sti_treatment: 0.2
+upper_bound_sdg:
+  gc: 0.5
+  chlamydia: 0.5
+  syphilis: 0.5
+  trichomoniasis: 0.5
