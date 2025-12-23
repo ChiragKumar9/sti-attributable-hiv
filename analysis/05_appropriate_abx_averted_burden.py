@@ -330,7 +330,6 @@ def calculate_indirect_averted_cases(
 # run the analyses with different set ups of direct averted infections
 
 # calculate direct averted cases by the policy switch from cipro to azithro
-# post 2016, assume 80% resistance to cipro
 hiv = hiv.with_columns(
     gc_treatment_rate=pl.when(pl.col("sex") == "Male")
     .then(pl.lit(params["male_sti_treatment"]))
