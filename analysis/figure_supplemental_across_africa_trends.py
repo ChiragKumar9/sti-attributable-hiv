@@ -42,7 +42,7 @@ def setup_plot(nrows, ncols):
     return fig, ax
 
 
-def plot_hiv_burden(hiv, ax, label, fig):
+def plot_hiv_burden(hiv, ax, label, fig, legend=False):
     hiv = (
         hiv.group_by(["year", "sex"])
         .agg(
@@ -102,7 +102,8 @@ def plot_hiv_burden(hiv, ax, label, fig):
 
     ax.set_xlabel("Year")
     ax.set_ylabel(f"HIV incidence per 100,000\nin {label} Africa")
-    ax.legend()
+    if legend:
+        ax.legend()
     ax.set_xticks([1990, 2000, 2010, 2020])
     ax.set_ylim(0)
 

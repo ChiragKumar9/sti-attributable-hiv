@@ -42,7 +42,7 @@ def setup_plot(nrows, ncols):
     return fig, ax
 
 
-def plot_best_case(hiv, ax, year, label, fig):
+def plot_best_case(hiv, ax, year, label, fig, legend=False):
     hiv = (
         hiv.group_by(["year"])
         .agg(
@@ -164,7 +164,8 @@ def plot_best_case(hiv, ax, year, label, fig):
     ax.set_xlabel("Year")
     ax.set_ylabel(f"HIV incidence per 100,000\nin {label}")
     ax.set_xticks([2010, 2015, 2020])
-    ax.legend()
+    if legend:
+        ax.legend()
     ax.set_ylim(0)
 
 
@@ -191,6 +192,7 @@ if __name__ == "__main__":
         2010,
         "Western Africa",
         fig,
+        legend=True,
     )
 
     ax[0, 1].text(  # type: ignore

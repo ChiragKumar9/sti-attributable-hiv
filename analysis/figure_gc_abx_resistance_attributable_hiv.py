@@ -52,7 +52,9 @@ def sum_preserve_null(column: str) -> pl.Expr:
     )
 
 
-def plot_attributable_hiv_burden_drug_resistance(hiv, ax, label, fig):
+def plot_attributable_hiv_burden_drug_resistance(
+    hiv, ax, label, fig, legend=False
+):
     hiv = hiv.group_by(["year"]).agg(
         sum_preserve_null("Ciprofloxacin_resistant_number"),
         sum_preserve_null("Ciprofloxacin_resistant_number_lower"),
@@ -196,7 +198,8 @@ def plot_attributable_hiv_burden_drug_resistance(hiv, ax, label, fig):
 
     ax.set_xlabel("Year")
     ax.set_ylabel(f"HIV incidence per 100,000\nin {label}")
-    ax.legend()
+    if legend:
+        ax.legend()
     ax.set_ylim(0)
 
 
@@ -221,6 +224,7 @@ if __name__ == "__main__":
         ax[0, 0],  # type: ignore
         "Western Africa",
         fig,
+        legend=True,
     )
 
     # eastern africa

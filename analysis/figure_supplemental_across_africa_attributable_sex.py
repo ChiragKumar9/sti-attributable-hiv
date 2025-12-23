@@ -42,7 +42,7 @@ def setup_plot(nrows, ncols):
     return fig, ax
 
 
-def plot_attributable_hiv_burden_sex(hiv, sti, ax, label, fig):
+def plot_attributable_hiv_burden_sex(hiv, sti, ax, label, fig, legend=False):
     hiv = (
         hiv.group_by(["year", "sex"])
         .agg(
@@ -109,7 +109,8 @@ def plot_attributable_hiv_burden_sex(hiv, sti, ax, label, fig):
 
     ax.set_xlabel("Year")
     ax.set_ylabel(label)
-    ax.legend()
+    if legend:
+        ax.legend()
     ax.set_xticks([1990, 2000, 2010, 2020])
     ax.set_ylim(0)
 
@@ -129,7 +130,11 @@ if __name__ == "__main__":
             os.path.join(output_dir, "hiv_attributable_to_stis.csv")
         )
 
-        base_label = f"HIV incidence attributable to {sti_map[sti]}\n"
+        if sti == "trichomoniasis":
+            # because trich is a long name
+            base_label = "HIV incidence attributable to\ntrichomoniasis "
+        else:
+            base_label = f"HIV incidence attributable to {sti_map[sti]}\n"
 
         # western africa
         ax[0, 0].text(  # type: ignore
@@ -148,6 +153,7 @@ if __name__ == "__main__":
             ax[0, 0],  # type: ignore
             base_label + "(Western Africa) (%)",
             fig,
+            legend=True,
         )
 
         # eastern africa
