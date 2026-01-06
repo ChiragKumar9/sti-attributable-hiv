@@ -1,17 +1,17 @@
 bacteria,paper,sex,val,lower,upper,notes
-Gonorrhea,"Barker et al., 2022",Heterosexual Men,2.80,1.5,5.2,"Only one study reported"
-Gonorrhea,"Barker et al., 2022",Heterosexual Women,2.64,1.92,3.63,"Estimate from using the studies with only the highest quality data"
+Gonorrhea,"Barker et al., 2022",Heterosexual Men,2.80,1.5,5.2,"Adjusted RR, using only one study, high-risk pop"
+Gonorrhea,"Barker et al., 2022",Heterosexual Women,2.64,1.92,3.63,"Highest quality data only, high-risk pop, adjusted"
 Gonorrhea,"Røttingen et al., 2001",Heterosexual Women,2.6,1.9,3.4,
-Gonorrhea,"Røttingen et al., 2001",Heterosexual Men,3.9,2.0,7.7,
-Syphilis,"Barker et al., 2022",Heterosexual Women,1.49,0.98,2.26,"Highest quality data"
-Syphilis,"Barker et al., 2022",Heterosexual Men,2.10,0.92,4.80,"Adjusted RR"
+Gonorrhea,"Røttingen et al., 2001",Heterosexual Men,3.9,2.0,7.7, "Using only one study"
+Syphilis,"Barker et al., 2022",Heterosexual Women,1.49,0.98,2.26,"Highest quality data only, high-risk pop, adjusted"
+Syphilis,"Barker et al., 2022",Heterosexual Men,2.10,0.92,4.80,"Adjusted RR, using only one study, high-risk pop, adjusted"
 Syphilis,"Røttingen et al., 2001",Heterosexual Women,2.1,1.4,3.1
 Syphilis,"Røttingen et al., 2001",Heterosexual Men,2.5,1.4,4.4
-Trichomoniasis,"Barker et al., 2022",Heterosexual Women,1.51,1.25,1.84,"Highest quality data"
+Trichomoniasis,"Barker et al., 2022",Heterosexual Women,1.51,1.25,1.84,"Highest quality data only, high-risk pop, adjusted"
 Trichomoniasis,"Røttingen et al., 2001",Heterosexual Women,1.5,1.2,1.9
 Trichomoniasis,Assumed,Heterosexual Men,1.0,1.0,1.0
 Trichomoniasis,Assumed,Heterosexual Men,1.0,1.0,1.0
-Chlamydia,"Barker et al., 2022",Heterosexual Women,1.90,1.40,2.56,"Highest quality data"
-Chlamydia,"Barker et al., 2022",Heterosexual Men,0.80,0.30,1.90,"Only one study reported"
+Chlamydia,"Barker et al., 2022",Heterosexual Women,1.90,1.40,2.56,"Highest quality data only, high-risk pop"
+Chlamydia,"Barker et al., 2022",Heterosexual Men,0.80,0.30,1.90,"Unadjusted RR, using only one study, high-risk pop"
 Chlamydia,"Røttingen et al., 2001",Heterosexual Women,2.8,1.8,4.4
-Chlamydia,"Røttingen et al., 2001",Heterosexual Men,0.8,0.3,2.0
+Chlamydia,"Røttingen et al., 2001",Heterosexual Men,0.8,0.3,2.0, "Using only one study"
