@@ -2,8 +2,8 @@ bacteria,paper,sex,val,lower,upper,notes
 Gonorrhea,"Jarolimova et al., 2022",Heterosexual Women,1.89,1.48,2.41
 Chlamydia,"Jarolimova et al., 2022",Heterosexual Women,1.83,1.13,2.95
 Trichomoniasis,"Jarolimova et al., 2022",Heterosexual Women,1.54,1.35,1.75
-Gonorrhea,"Kharsany et al., 2020",Heterosexual Men,1.18, 0.69, 1.99
-Chlamydia,"Kharsany et al., 2020",Heterosexual Men,0.61,0.43, 0.88
-Trichomoniasis,"Kharsany et al., 2020",Heterosexual Men,2.81,2.03, 3.89
-Syphilis,"Kharsany et al., 2020",Heterosexual Men,1.62,0.94, 2.78
-Syphilis,"Kharsany et al., 2020",Heterosexual Women,2.50,1.67, 3.74
+Gonorrhea,"Kharsany et al., 2020",Heterosexual Men,1.18,0.69,1.99
+Chlamydia,"Kharsany et al., 2020",Heterosexual Men,0.61,0.43,0.88
+Trichomoniasis,"Kharsany et al., 2020",Heterosexual Men,2.81,2.03,3.89
+Syphilis,"Kharsany et al., 2020",Heterosexual Men,1.62,0.94,2.78
+Syphilis,"Kharsany et al., 2020",Heterosexual Women,2.50,1.67,3.74
