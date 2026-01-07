@@ -205,8 +205,17 @@ data = data.with_columns(
 
 # finally, we need hiv treatment rates over time
 hiv_treatment_rate = pl.read_csv(
-    os.path.join(data_dir, "hiv_treatment_rate.csv")
+    os.path.join(data_dir, "art-coverage-african-countries.csv")
 )
+
+hiv_treatment_rate = hiv_treatment_rate.rename(
+    {
+        "Year": "year",
+        "CountryName": "location",
+        "CoverageVal": "val",
+    }
+)
+
 # divide by 100 to make proportions
 hiv_treatment_rate = hiv_treatment_rate.with_columns(
     val=pl.col("val") / 100,
@@ -221,9 +230,31 @@ hiv_treatment_rate = hiv_treatment_rate.rename(
         "upper": "treatment_proportion_upper",
     }
 )
-# join to existing data on basis of year and sex
-data = data.join(hiv_treatment_rate, on=["year", "sex"], how="left")
-# since any missing values are pre 2023, impute hiv treatment rate as 0
+
+# make country names consistent
+hiv_treatment_rate = hiv_treatment_rate.with_columns(
+    location=pl.when(pl.col("location").str.contains(", "))
+    .then(pl.col("location").str.split(", ").list.reverse().list.join(" "))
+    .otherwise(pl.col("location"))
+)
+
+# join to existing data on basis of year and location
+data = data.join(hiv_treatment_rate, on=["year", "location"], how="left")
+
+# fill in any missing values with the average value for that year
+data = data.with_columns(
+    treatment_proportion=pl.col("treatment_proportion").fill_null(
+        pl.col("treatment_proportion").mean().over("year")
+    ),
+    treatment_proportion_lower=pl.col("treatment_proportion_lower").fill_null(
+        pl.col("treatment_proportion_lower").mean().over("year")
+    ),
+    treatment_proportion_upper=pl.col("treatment_proportion_upper").fill_null(
+        pl.col("treatment_proportion_upper").mean().over("year")
+    ),
+)
+
+# fill any remaining missing values with 0 because they are pre data
 data = data.with_columns(
     treatment_proportion=pl.col("treatment_proportion").fill_null(0),
     treatment_proportion_lower=pl.col("treatment_proportion_lower").fill_null(
