@@ -1,0 +1,1176 @@
+CountryCode,CountryName,Year,CoverageVal,lower,upper
+COD,"Congo, Democratic Republic of the",2007,3.0,3.0,4.0
+AGO,Angola,2006,2.0,2.0,2.0
+MOZ,Mozambique,2021,67.0,63.0,72.0
+NGA,Nigeria,2012,26.0,24.0,28.0
+LSO,Lesotho,2010,33.0,30.0,36.0
+ERI,Eritrea,2017,65.0,53.0,79.0
+SWZ,Eswatini,2016,77.0,72.0,83.0
+COG,Congo,2011,17.0,15.0,19.0
+ZAF,South Africa,2006,6.0,6.0,7.0
+CAF,Central African Republic,2014,21.0,18.0,24.0
+STP,Sao Tome and Principe,2013,,,
+SSD,South Sudan,2015,11.0,9.0,14.0
+MDG,Madagascar,2005,0.0,0.0,0.0
+GMB,Gambia,2002,0.0,0.0,0.0
+NER,Niger,2019,63.0,57.0,71.0
+AGO,Angola,2018,27.0,24.0,30.0
+NER,Niger,2016,44.0,40.0,50.0
+NAM,Namibia,2009,35.0,33.0,37.0
+GIN,Guinea,2020,48.0,41.0,56.0
+BWA,Botswana,2020,89.0,84.0,93.0
+MLI,Mali,2000,0.0,0.0,0.0
+GNQ,Equatorial Guinea,2012,,,
+SWZ,Eswatini,2009,22.0,21.0,23.0
+ZMB,Zambia,2016,66.0,63.0,70.0
+CIV,Côte d'Ivoire,2009,14.0,13.0,16.0
+BEN,Benin,2005,0.0,0.0,0.0
+LSO,Lesotho,2014,44.0,41.0,49.0
+MDG,Madagascar,2006,1.0,0.0,1.0
+GNQ,Equatorial Guinea,2023,,,
+SSD,South Sudan,2016,13.0,10.0,16.0
+NAM,Namibia,2020,83.0,76.0,92.0
+SEN,Senegal,2012,29.0,28.0,31.0
+MWI,Malawi,2016,67.0,64.0,71.0
+ERI,Eritrea,2009,20.0,15.0,24.0
+ERI,Eritrea,2007,10.0,8.0,12.0
+ZAF,South Africa,2024,81.0,74.0,88.0
+SSD,South Sudan,2012,3.0,2.0,3.0
+MDG,Madagascar,2018,7.0,6.0,10.0
+UGA,Uganda,2005,8.0,8.0,9.0
+BWA,Botswana,2011,54.0,51.0,56.0
+SEN,Senegal,2000,0.0,0.0,0.0
+COG,Congo,2006,4.0,3.0,4.0
+CPV,Cabo Verde,2007,21.0,18.0,24.0
+RWA,Rwanda,2021,87.0,80.0,98.0
+ETH,Ethiopia,2013,48.0,40.0,58.0
+BWA,Botswana,2006,25.0,24.0,26.0
+SWZ,Eswatini,2003,2.0,2.0,2.0
+GIN,Guinea,2003,1.0,1.0,1.0
+COD,"Congo, Democratic Republic of the",2000,0.0,0.0,0.0
+MWI,Malawi,2007,11.0,10.0,11.0
+GIN,Guinea,2022,62.0,52.0,72.0
+BEN,Benin,2008,19.0,17.0,22.0
+SEN,Senegal,2013,33.0,32.0,35.0
+GNB,Guinea-Bissau,2014,22.0,19.0,24.0
+BEN,Benin,2011,37.0,33.0,43.0
+COG,Congo,2017,22.0,18.0,26.0
+ZMB,Zambia,2018,74.0,70.0,79.0
+MWI,Malawi,2020,85.0,81.0,91.0
+GNQ,Equatorial Guinea,2013,,,
+COG,Congo,2023,30.0,22.0,38.0
+MOZ,Mozambique,2006,3.0,3.0,4.0
+ETH,Ethiopia,2017,69.0,57.0,83.0
+ZAF,South Africa,2000,0.0,0.0,0.0
+CPV,Cabo Verde,2019,71.0,62.0,84.0
+CMR,Cameroon,2004,3.0,2.0,3.0
+MDG,Madagascar,2017,5.0,4.0,7.0
+TCD,Chad,2021,51.0,42.0,61.0
+GNQ,Equatorial Guinea,2007,,,
+TGO,Togo,2015,44.0,37.0,51.0
+MRT,Mauritania,2012,21.0,18.0,24.0
+SLE,Sierra Leone,2003,0.0,0.0,0.0
+STP,Sao Tome and Principe,2022,,,
+DZA,Algeria,2012,28.0,26.0,29.0
+GIN,Guinea,2007,6.0,5.0,6.0
+RWA,Rwanda,2000,0.0,0.0,0.0
+MUS,Mauritius,2002,,,
+STP,Sao Tome and Principe,2024,,,
+NAM,Namibia,2005,8.0,7.0,9.0
+UGA,Uganda,2017,67.0,64.0,72.0
+CIV,Côte d'Ivoire,2023,74.0,65.0,87.0
+TZA,"Tanzania, United Republic of",2007,12.0,11.0,12.0
+AGO,Angola,2001,0.0,0.0,0.0
+TZA,"Tanzania, United Republic of",2009,17.0,16.0,18.0
+GAB,Gabon,2007,14.0,11.0,17.0
+ETH,Ethiopia,2010,33.0,28.0,40.0
+GAB,Gabon,2013,38.0,33.0,44.0
+SLE,Sierra Leone,2013,13.0,12.0,15.0
+MLI,Mali,2020,47.0,41.0,58.0
+BFA,Burkina Faso,2017,64.0,55.0,73.0
+MUS,Mauritius,2017,,,
+ZMB,Zambia,2010,37.0,35.0,40.0
+BDI,Burundi,2022,90.0,81.0,98.0
+ZWE,Zimbabwe,2017,76.0,73.0,86.0
+GMB,Gambia,2011,13.0,11.0,17.0
+TGO,Togo,2004,2.0,2.0,2.0
+RWA,Rwanda,2015,64.0,60.0,71.0
+GAB,Gabon,2002,1.0,1.0,1.0
+GNB,Guinea-Bissau,2018,42.0,36.0,47.0
+MDG,Madagascar,2021,15.0,11.0,19.0
+BEN,Benin,2020,71.0,61.0,83.0
+MOZ,Mozambique,2010,14.0,13.0,15.0
+LBR,Liberia,2004,0.0,0.0,0.0
+CAF,Central African Republic,2024,66.0,52.0,87.0
+GIN,Guinea,2009,15.0,13.0,17.0
+MDG,Madagascar,2001,0.0,0.0,0.0
+GNQ,Equatorial Guinea,2014,,,
+SEN,Senegal,2023,77.0,74.0,81.0
+COG,Congo,2004,1.0,0.0,1.0
+SWZ,Eswatini,2018,78.0,73.0,85.0
+BDI,Burundi,2017,69.0,61.0,80.0
+MUS,Mauritius,2010,,,
+GHA,Ghana,2007,4.0,4.0,5.0
+GMB,Gambia,2020,32.0,25.0,40.0
+BFA,Burkina Faso,2000,0.0,0.0,0.0
+LSO,Lesotho,2007,15.0,14.0,16.0
+MWI,Malawi,2011,34.0,33.0,36.0
+NGA,Nigeria,2018,47.0,44.0,51.0
+TZA,"Tanzania, United Republic of",2006,5.0,5.0,6.0
+NER,Niger,2015,38.0,34.0,43.0
+DZA,Algeria,2008,13.0,12.0,14.0
+MOZ,Mozambique,2000,0.0,0.0,0.0
+BFA,Burkina Faso,2009,24.0,21.0,28.0
+COD,"Congo, Democratic Republic of the",2015,21.0,18.0,25.0
+CAF,Central African Republic,2010,11.0,9.0,12.0
+DZA,Algeria,2001,7.0,7.0,8.0
+ZWE,Zimbabwe,2019,85.0,81.0,97.0
+CPV,Cabo Verde,2015,52.0,46.0,62.0
+MOZ,Mozambique,2003,0.0,0.0,0.0
+CAF,Central African Republic,2021,55.0,45.0,70.0
+ZAF,South Africa,2018,70.0,64.0,76.0
+NER,Niger,2024,66.0,59.0,75.0
+CPV,Cabo Verde,2016,53.0,46.0,62.0
+COD,"Congo, Democratic Republic of the",2016,27.0,24.0,32.0
+GIN,Guinea,2006,5.0,4.0,6.0
+MUS,Mauritius,2022,,,
+COG,Congo,2021,25.0,19.0,31.0
+KEN,Kenya,2016,74.0,66.0,85.0
+GNB,Guinea-Bissau,2003,0.0,0.0,0.0
+CAF,Central African Republic,2015,24.0,20.0,28.0
+BEN,Benin,2018,57.0,50.0,67.0
+BWA,Botswana,2019,86.0,81.0,90.0
+GHA,Ghana,2018,33.0,29.0,38.0
+LSO,Lesotho,2021,84.0,78.0,95.0
+SWZ,Eswatini,2015,67.0,63.0,71.0
+SEN,Senegal,2018,66.0,64.0,70.0
+MDG,Madagascar,2012,1.0,1.0,2.0
+NER,Niger,2014,33.0,29.0,37.0
+BDI,Burundi,2002,1.0,0.0,1.0
+BEN,Benin,2014,40.0,35.0,47.0
+CAF,Central African Republic,2002,0.0,0.0,0.0
+ETH,Ethiopia,2001,0.0,0.0,0.0
+GHA,Ghana,2017,32.0,28.0,36.0
+SSD,South Sudan,2007,0.0,0.0,0.0
+MRT,Mauritania,2004,1.0,1.0,1.0
+UGA,Uganda,2011,23.0,22.0,24.0
+ZMB,Zambia,2008,26.0,25.0,28.0
+GIN,Guinea,2011,21.0,18.0,24.0
+CPV,Cabo Verde,2010,32.0,28.0,37.0
+TCD,Chad,2003,0.0,0.0,0.0
+BDI,Burundi,2020,86.0,77.0,98.0
+UGA,Uganda,2019,74.0,71.0,81.0
+MUS,Mauritius,2019,,,
+NGA,Nigeria,2004,2.0,2.0,3.0
+CPV,Cabo Verde,2022,79.0,66.0,95.0
+BEN,Benin,2004,0.0,0.0,0.0
+LSO,Lesotho,2024,94.0,87.0,98.0
+NAM,Namibia,2003,0.0,0.0,0.0
+BDI,Burundi,2019,83.0,74.0,96.0
+TCD,Chad,2006,4.0,3.0,5.0
+MRT,Mauritania,2008,11.0,9.0,12.0
+MUS,Mauritius,2016,,,
+CAF,Central African Republic,2008,8.0,7.0,9.0
+MOZ,Mozambique,2005,2.0,1.0,2.0
+TCD,Chad,2016,34.0,28.0,40.0
+TCD,Chad,2022,54.0,45.0,64.0
+NGA,Nigeria,2017,46.0,43.0,51.0
+GAB,Gabon,2019,45.0,38.0,53.0
+ZAF,South Africa,2014,49.0,45.0,53.0
+GHA,Ghana,2020,37.0,32.0,43.0
+GNQ,Equatorial Guinea,2001,,,
+ZMB,Zambia,2001,0.0,0.0,0.0
+GHA,Ghana,2003,0.0,0.0,0.0
+NER,Niger,2020,66.0,59.0,74.0
+CMR,Cameroon,2009,13.0,12.0,14.0
+MLI,Mali,2009,18.0,16.0,22.0
+CIV,Côte d'Ivoire,2019,62.0,55.0,72.0
+NGA,Nigeria,2000,0.0,0.0,0.0
+LSO,Lesotho,2019,77.0,72.0,87.0
+COG,Congo,2009,13.0,11.0,15.0
+GNQ,Equatorial Guinea,2019,,,
+SYC,Seychelles,2018,,,
+SYC,Seychelles,2002,,,
+MWI,Malawi,2004,1.0,1.0,1.0
+UGA,Uganda,2021,78.0,74.0,85.0
+GHA,Ghana,2010,13.0,12.0,15.0
+CIV,Côte d'Ivoire,2006,5.0,4.0,5.0
+MRT,Mauritania,2018,45.0,39.0,55.0
+DZA,Algeria,2011,23.0,22.0,25.0
+GMB,Gambia,2016,23.0,19.0,29.0
+SLE,Sierra Leone,2004,0.0,0.0,0.0
+SWZ,Eswatini,2000,0.0,0.0,0.0
+GAB,Gabon,2012,33.0,28.0,39.0
+SSD,South Sudan,2006,0.0,0.0,0.0
+GHA,Ghana,2005,1.0,1.0,1.0
+DZA,Algeria,2023,71.0,63.0,80.0
+BEN,Benin,2015,36.0,32.0,43.0
+STP,Sao Tome and Principe,2012,,,
+TZA,"Tanzania, United Republic of",2011,21.0,20.0,22.0
+BFA,Burkina Faso,2014,47.0,40.0,54.0
+MLI,Mali,2012,25.0,22.0,30.0
+COM,Comoros,2005,0.0,0.0,0.0
+NER,Niger,2013,34.0,31.0,39.0
+MLI,Mali,2017,36.0,31.0,44.0
+CAF,Central African Republic,2004,0.0,0.0,0.0
+ETH,Ethiopia,2000,0.0,0.0,0.0
+LBR,Liberia,2024,86.0,71.0,98.0
+GIN,Guinea,2024,74.0,63.0,89.0
+BFA,Burkina Faso,2012,37.0,32.0,43.0
+SYC,Seychelles,2006,,,
+MDG,Madagascar,2008,1.0,1.0,1.0
+MRT,Mauritania,2009,14.0,12.0,17.0
+LBR,Liberia,2014,16.0,14.0,19.0
+COG,Congo,2024,34.0,24.0,44.0
+AGO,Angola,2000,0.0,0.0,0.0
+SYC,Seychelles,2009,,,
+CPV,Cabo Verde,2023,77.0,63.0,93.0
+BFA,Burkina Faso,2005,7.0,6.0,8.0
+ERI,Eritrea,2005,2.0,1.0,2.0
+SYC,Seychelles,2013,,,
+AGO,Angola,2016,22.0,20.0,25.0
+BWA,Botswana,2007,29.0,28.0,31.0
+UGA,Uganda,2022,80.0,76.0,88.0
+MUS,Mauritius,2006,,,
+CMR,Cameroon,2022,80.0,73.0,90.0
+AGO,Angola,2015,24.0,21.0,27.0
+GHA,Ghana,2012,22.0,20.0,26.0
+BEN,Benin,2000,0.0,0.0,0.0
+UGA,Uganda,2000,0.0,0.0,0.0
+GMB,Gambia,2003,0.0,0.0,0.0
+SYC,Seychelles,2014,,,
+ZMB,Zambia,2006,10.0,10.0,11.0
+MRT,Mauritania,2014,28.0,24.0,34.0
+SEN,Senegal,2024,79.0,76.0,84.0
+SLE,Sierra Leone,2001,0.0,0.0,0.0
+NGA,Nigeria,2015,38.0,36.0,42.0
+COM,Comoros,2018,43.0,27.0,92.0
+UGA,Uganda,2018,71.0,68.0,77.0
+NER,Niger,2007,6.0,5.0,6.0
+STP,Sao Tome and Principe,2008,,,
+ZWE,Zimbabwe,2000,2.0,2.0,3.0
+BWA,Botswana,2005,19.0,18.0,19.0
+KEN,Kenya,2023,86.0,77.0,98.0
+KEN,Kenya,2013,47.0,42.0,54.0
+GNQ,Equatorial Guinea,2017,,,
+DZA,Algeria,2005,10.0,9.0,11.0
+RWA,Rwanda,2010,37.0,35.0,40.0
+BEN,Benin,2017,53.0,47.0,63.0
+COM,Comoros,2011,18.0,10.0,34.0
+MRT,Mauritania,2011,19.0,16.0,22.0
+STP,Sao Tome and Principe,2010,,,
+ZMB,Zambia,2021,87.0,83.0,94.0
+MLI,Mali,2003,1.0,1.0,1.0
+NER,Niger,2001,0.0,0.0,0.0
+GHA,Ghana,2016,29.0,25.0,33.0
+BDI,Burundi,2000,0.0,0.0,0.0
+NAM,Namibia,2002,0.0,0.0,0.0
+MOZ,Mozambique,2019,60.0,56.0,64.0
+MLI,Mali,2008,15.0,13.0,18.0
+GAB,Gabon,2017,42.0,36.0,49.0
+ZAF,South Africa,2016,60.0,55.0,65.0
+TCD,Chad,2019,42.0,35.0,50.0
+ETH,Ethiopia,2015,60.0,50.0,72.0
+TZA,"Tanzania, United Republic of",2008,13.0,12.0,14.0
+NER,Niger,2008,7.0,6.0,8.0
+KEN,Kenya,2000,0.0,0.0,0.0
+DZA,Algeria,2024,68.0,60.0,78.0
+LBR,Liberia,2023,73.0,61.0,90.0
+SWZ,Eswatini,2014,52.0,49.0,55.0
+CPV,Cabo Verde,2014,53.0,47.0,62.0
+BDI,Burundi,2004,4.0,3.0,4.0
+GMB,Gambia,2007,2.0,2.0,3.0
+TCD,Chad,2000,0.0,0.0,0.0
+COM,Comoros,2020,57.0,34.0,98.0
+BWA,Botswana,2018,84.0,80.0,89.0
+MRT,Mauritania,2016,36.0,31.0,43.0
+TGO,Togo,2003,1.0,1.0,1.0
+GNB,Guinea-Bissau,2004,0.0,0.0,0.0
+MDG,Madagascar,2011,1.0,1.0,2.0
+LBR,Liberia,2009,7.0,6.0,8.0
+STP,Sao Tome and Principe,2023,,,
+GAB,Gabon,2016,41.0,36.0,48.0
+CIV,Côte d'Ivoire,2002,0.0,0.0,0.0
+CIV,Côte d'Ivoire,2024,78.0,68.0,92.0
+MOZ,Mozambique,2018,56.0,52.0,59.0
+ETH,Ethiopia,2023,85.0,71.0,98.0
+COM,Comoros,2006,0.0,0.0,0.0
+RWA,Rwanda,2012,47.0,44.0,52.0
+KEN,Kenya,2017,81.0,73.0,93.0
+GNB,Guinea-Bissau,2007,2.0,2.0,3.0
+MRT,Mauritania,2000,0.0,0.0,0.0
+ERI,Eritrea,2021,69.0,56.0,83.0
+ZWE,Zimbabwe,2005,3.0,3.0,4.0
+GNQ,Equatorial Guinea,2003,,,
+MRT,Mauritania,2001,0.0,0.0,0.0
+MUS,Mauritius,2003,,,
+CAF,Central African Republic,2013,13.0,11.0,15.0
+BFA,Burkina Faso,2016,58.0,50.0,67.0
+DZA,Algeria,2015,51.0,48.0,54.0
+CPV,Cabo Verde,2024,80.0,66.0,98.0
+MWI,Malawi,2005,3.0,3.0,3.0
+CPV,Cabo Verde,2011,35.0,31.0,41.0
+RWA,Rwanda,2007,19.0,18.0,21.0
+ERI,Eritrea,2023,71.0,58.0,85.0
+TZA,"Tanzania, United Republic of",2022,74.0,70.0,82.0
+LBR,Liberia,2010,10.0,9.0,11.0
+MOZ,Mozambique,2012,18.0,17.0,19.0
+TZA,"Tanzania, United Republic of",2014,40.0,38.0,44.0
+MWI,Malawi,2019,81.0,78.0,87.0
+LBR,Liberia,2019,41.0,35.0,48.0
+BDI,Burundi,2011,28.0,25.0,32.0
+GNB,Guinea-Bissau,2011,13.0,12.0,15.0
+GIN,Guinea,2018,34.0,29.0,39.0
+GAB,Gabon,2021,48.0,41.0,57.0
+SYC,Seychelles,2015,,,
+ETH,Ethiopia,2003,0.0,0.0,0.0
+NAM,Namibia,2007,25.0,24.0,27.0
+LBR,Liberia,2013,15.0,13.0,17.0
+BFA,Burkina Faso,2004,3.0,3.0,4.0
+COD,"Congo, Democratic Republic of the",2017,37.0,32.0,44.0
+RWA,Rwanda,2013,52.0,49.0,58.0
+TGO,Togo,2017,60.0,51.0,71.0
+STP,Sao Tome and Principe,2000,,,
+ZAF,South Africa,2012,40.0,36.0,43.0
+CIV,Côte d'Ivoire,2015,34.0,31.0,38.0
+CAF,Central African Republic,2009,9.0,8.0,11.0
+TGO,Togo,2009,15.0,13.0,17.0
+NGA,Nigeria,2010,18.0,16.0,19.0
+BEN,Benin,2023,81.0,69.0,95.0
+LSO,Lesotho,2004,1.0,1.0,1.0
+UGA,Uganda,2012,30.0,29.0,33.0
+LBR,Liberia,2022,67.0,57.0,82.0
+BFA,Burkina Faso,2021,71.0,61.0,82.0
+TCD,Chad,2020,47.0,39.0,55.0
+KEN,Kenya,2008,18.0,16.0,20.0
+MUS,Mauritius,2021,,,
+ZAF,South Africa,2017,66.0,61.0,71.0
+GNB,Guinea-Bissau,2005,0.0,0.0,0.0
+SLE,Sierra Leone,2010,9.0,8.0,11.0
+ZWE,Zimbabwe,2016,67.0,64.0,75.0
+NAM,Namibia,2010,41.0,38.0,44.0
+SSD,South Sudan,2017,17.0,14.0,21.0
+SWZ,Eswatini,2005,6.0,6.0,6.0
+SYC,Seychelles,2008,,,
+BFA,Burkina Faso,2020,66.0,57.0,76.0
+GNB,Guinea-Bissau,2020,51.0,44.0,58.0
+GAB,Gabon,2004,5.0,4.0,6.0
+BWA,Botswana,2010,49.0,46.0,51.0
+ZMB,Zambia,2003,2.0,2.0,2.0
+MRT,Mauritania,2013,26.0,22.0,30.0
+SLE,Sierra Leone,2002,0.0,0.0,0.0
+GAB,Gabon,2010,23.0,19.0,26.0
+ZWE,Zimbabwe,2012,41.0,39.0,46.0
+NER,Niger,2022,69.0,61.0,78.0
+BEN,Benin,2003,0.0,0.0,0.0
+ERI,Eritrea,2022,70.0,57.0,84.0
+SWZ,Eswatini,2024,94.0,87.0,98.0
+BWA,Botswana,2009,44.0,41.0,46.0
+SYC,Seychelles,2000,,,
+CIV,Côte d'Ivoire,2010,15.0,14.0,17.0
+GNQ,Equatorial Guinea,2005,,,
+COD,"Congo, Democratic Republic of the",2018,36.0,31.0,43.0
+ZMB,Zambia,2022,92.0,88.0,98.0
+NGA,Nigeria,2005,3.0,3.0,4.0
+SEN,Senegal,2002,0.0,0.0,0.0
+NGA,Nigeria,2003,1.0,1.0,1.0
+RWA,Rwanda,2022,89.0,83.0,98.0
+CIV,Côte d'Ivoire,2022,70.0,62.0,82.0
+GAB,Gabon,2008,17.0,14.0,20.0
+TCD,Chad,2015,31.0,26.0,37.0
+CMR,Cameroon,2017,46.0,42.0,50.0
+SYC,Seychelles,2016,,,
+SWZ,Eswatini,2008,17.0,16.0,18.0
+DZA,Algeria,2013,35.0,33.0,37.0
+GMB,Gambia,2006,2.0,1.0,2.0
+ZMB,Zambia,2015,65.0,62.0,69.0
+GMB,Gambia,2015,19.0,16.0,25.0
+ERI,Eritrea,2000,0.0,0.0,0.0
+UGA,Uganda,2009,16.0,15.0,17.0
+TCD,Chad,2024,65.0,54.0,79.0
+BDI,Burundi,2001,0.0,0.0,1.0
+SYC,Seychelles,2021,,,
+GIN,Guinea,2014,27.0,24.0,31.0
+UGA,Uganda,2024,85.0,80.0,94.0
+GNB,Guinea-Bissau,2009,8.0,7.0,9.0
+LSO,Lesotho,2001,0.0,0.0,0.0
+COM,Comoros,2013,23.0,13.0,46.0
+MDG,Madagascar,2009,1.0,1.0,1.0
+TZA,"Tanzania, United Republic of",2002,0.0,0.0,0.0
+SEN,Senegal,2011,31.0,30.0,33.0
+TGO,Togo,2014,37.0,32.0,44.0
+COD,"Congo, Democratic Republic of the",2001,0.0,0.0,0.0
+AGO,Angola,2009,7.0,6.0,8.0
+AGO,Angola,2004,0.0,0.0,0.0
+MOZ,Mozambique,2013,26.0,25.0,28.0
+TZA,"Tanzania, United Republic of",2024,87.0,82.0,98.0
+DZA,Algeria,2000,6.0,6.0,6.0
+STP,Sao Tome and Principe,2003,,,
+NGA,Nigeria,2007,7.0,7.0,8.0
+TCD,Chad,2018,40.0,33.0,48.0
+COD,"Congo, Democratic Republic of the",2024,71.0,59.0,87.0
+MLI,Mali,2004,3.0,3.0,4.0
+TGO,Togo,2012,30.0,25.0,35.0
+CAF,Central African Republic,2017,34.0,28.0,40.0
+MWI,Malawi,2015,59.0,57.0,63.0
+MRT,Mauritania,2006,5.0,4.0,6.0
+COG,Congo,2003,1.0,0.0,1.0
+COM,Comoros,2016,34.0,20.0,71.0
+SLE,Sierra Leone,2021,60.0,51.0,70.0
+ZMB,Zambia,2000,0.0,0.0,0.0
+COG,Congo,2015,20.0,17.0,23.0
+CIV,Côte d'Ivoire,2007,6.0,6.0,7.0
+MWI,Malawi,2022,88.0,84.0,95.0
+SEN,Senegal,2006,1.0,1.0,1.0
+NER,Niger,2023,69.0,61.0,78.0
+BEN,Benin,2022,85.0,74.0,98.0
+ZAF,South Africa,2004,2.0,2.0,2.0
+NER,Niger,2006,4.0,4.0,5.0
+CIV,Côte d'Ivoire,2013,25.0,23.0,28.0
+LBR,Liberia,2020,49.0,42.0,59.0
+NAM,Namibia,2012,52.0,49.0,57.0
+STP,Sao Tome and Principe,2017,,,
+MWI,Malawi,2010,27.0,26.0,29.0
+NGA,Nigeria,2020,59.0,55.0,64.0
+CIV,Côte d'Ivoire,2018,57.0,51.0,66.0
+COD,"Congo, Democratic Republic of the",2023,73.0,61.0,89.0
+COM,Comoros,2001,0.0,0.0,0.0
+RWA,Rwanda,2019,80.0,75.0,92.0
+LBR,Liberia,2012,12.0,11.0,14.0
+NER,Niger,2002,0.0,0.0,0.0
+COG,Congo,2019,23.0,19.0,28.0
+BWA,Botswana,2016,76.0,72.0,80.0
+TGO,Togo,2016,52.0,44.0,61.0
+ZMB,Zambia,2005,7.0,7.0,7.0
+ZWE,Zimbabwe,2006,4.0,4.0,5.0
+GMB,Gambia,2018,29.0,23.0,37.0
+NAM,Namibia,2014,54.0,51.0,59.0
+CAF,Central African Republic,2000,0.0,0.0,0.0
+ZWE,Zimbabwe,2022,93.0,89.0,98.0
+ZWE,Zimbabwe,2023,94.0,90.0,98.0
+MWI,Malawi,2013,48.0,47.0,51.0
+ETH,Ethiopia,2005,3.0,2.0,3.0
+KEN,Kenya,2019,78.0,70.0,89.0
+SLE,Sierra Leone,2006,1.0,1.0,2.0
+ERI,Eritrea,2004,0.0,0.0,0.0
+MWI,Malawi,2001,0.0,0.0,0.0
+GNQ,Equatorial Guinea,2022,,,
+COG,Congo,2007,5.0,5.0,6.0
+MUS,Mauritius,2008,,,
+GAB,Gabon,2011,28.0,24.0,33.0
+SSD,South Sudan,2014,7.0,5.0,9.0
+BFA,Burkina Faso,2010,29.0,25.0,34.0
+TCD,Chad,2004,0.0,0.0,0.0
+MRT,Mauritania,2021,59.0,51.0,71.0
+GNQ,Equatorial Guinea,2006,,,
+UGA,Uganda,2006,8.0,8.0,9.0
+BFA,Burkina Faso,2008,19.0,16.0,22.0
+MRT,Mauritania,2017,44.0,37.0,52.0
+RWA,Rwanda,2020,84.0,78.0,96.0
+LSO,Lesotho,2006,7.0,6.0,7.0
+GNB,Guinea-Bissau,2024,79.0,67.0,91.0
+NER,Niger,2004,0.0,0.0,0.0
+CMR,Cameroon,2001,0.0,0.0,0.0
+BDI,Burundi,2009,18.0,16.0,21.0
+BWA,Botswana,2023,94.0,89.0,98.0
+TGO,Togo,2023,87.0,72.0,98.0
+COD,"Congo, Democratic Republic of the",2014,18.0,15.0,21.0
+CIV,Côte d'Ivoire,2000,0.0,0.0,0.0
+LSO,Lesotho,2008,20.0,19.0,22.0
+GNB,Guinea-Bissau,2017,33.0,29.0,37.0
+BDI,Burundi,2010,23.0,21.0,27.0
+UGA,Uganda,2008,14.0,13.0,15.0
+BWA,Botswana,2003,6.0,5.0,6.0
+UGA,Uganda,2004,5.0,5.0,5.0
+GMB,Gambia,2004,0.0,0.0,0.0
+MUS,Mauritius,2009,,,
+SWZ,Eswatini,2001,1.0,1.0,1.0
+SLE,Sierra Leone,2024,86.0,72.0,98.0
+MRT,Mauritania,2015,33.0,28.0,39.0
+GHA,Ghana,2022,45.0,39.0,53.0
+TGO,Togo,2022,80.0,67.0,96.0
+SYC,Seychelles,2010,,,
+ZAF,South Africa,2007,10.0,9.0,11.0
+NER,Niger,2012,31.0,28.0,35.0
+CIV,Côte d'Ivoire,2017,52.0,46.0,59.0
+CIV,Côte d'Ivoire,2004,1.0,1.0,1.0
+MOZ,Mozambique,2011,16.0,15.0,18.0
+MWI,Malawi,2021,87.0,83.0,93.0
+UGA,Uganda,2001,1.0,1.0,1.0
+MDG,Madagascar,2023,22.0,17.0,28.0
+SLE,Sierra Leone,2022,70.0,59.0,82.0
+LBR,Liberia,2017,30.0,25.0,35.0
+TCD,Chad,2013,25.0,21.0,30.0
+GNQ,Equatorial Guinea,2004,,,
+AGO,Angola,2022,40.0,36.0,45.0
+MDG,Madagascar,2003,0.0,0.0,0.0
+SEN,Senegal,2021,75.0,72.0,79.0
+SLE,Sierra Leone,2020,48.0,41.0,55.0
+AGO,Angola,2011,10.0,9.0,12.0
+ZAF,South Africa,2010,25.0,23.0,27.0
+GHA,Ghana,2011,19.0,17.0,22.0
+MUS,Mauritius,2007,,,
+TCD,Chad,2009,13.0,11.0,16.0
+MLI,Mali,2013,25.0,22.0,30.0
+AGO,Angola,2008,5.0,5.0,6.0
+MUS,Mauritius,2024,,,
+COD,"Congo, Democratic Republic of the",2002,0.0,0.0,0.0
+GHA,Ghana,2024,47.0,40.0,56.0
+TZA,"Tanzania, United Republic of",2017,52.0,50.0,57.0
+GMB,Gambia,2009,5.0,4.0,6.0
+ZWE,Zimbabwe,2010,26.0,25.0,29.0
+COD,"Congo, Democratic Republic of the",2004,1.0,1.0,1.0
+BFA,Burkina Faso,2015,53.0,46.0,61.0
+CPV,Cabo Verde,2012,42.0,37.0,49.0
+BDI,Burundi,2005,6.0,5.0,7.0
+CPV,Cabo Verde,2018,68.0,59.0,81.0
+SEN,Senegal,2010,28.0,27.0,30.0
+STP,Sao Tome and Principe,2004,,,
+CMR,Cameroon,2015,30.0,27.0,32.0
+SLE,Sierra Leone,2000,0.0,0.0,0.0
+ETH,Ethiopia,2014,56.0,46.0,67.0
+MOZ,Mozambique,2008,10.0,9.0,10.0
+CAF,Central African Republic,2020,49.0,40.0,61.0
+ETH,Ethiopia,2007,13.0,11.0,16.0
+BEN,Benin,2019,63.0,55.0,74.0
+MLI,Mali,2023,62.0,53.0,77.0
+TZA,"Tanzania, United Republic of",2020,67.0,64.0,74.0
+COD,"Congo, Democratic Republic of the",2005,1.0,1.0,2.0
+BWA,Botswana,2008,36.0,35.0,38.0
+COM,Comoros,2012,21.0,13.0,42.0
+NGA,Nigeria,2008,12.0,11.0,13.0
+GAB,Gabon,2009,21.0,17.0,25.0
+MOZ,Mozambique,2001,0.0,0.0,0.0
+CMR,Cameroon,2008,10.0,9.0,11.0
+MUS,Mauritius,2001,,,
+MLI,Mali,2011,25.0,22.0,31.0
+CIV,Côte d'Ivoire,2021,69.0,61.0,80.0
+COD,"Congo, Democratic Republic of the",2012,11.0,10.0,13.0
+LBR,Liberia,2000,0.0,0.0,0.0
+COM,Comoros,2014,24.0,14.0,49.0
+ZMB,Zambia,2017,67.0,64.0,72.0
+CMR,Cameroon,2002,0.0,0.0,0.0
+BFA,Burkina Faso,2013,41.0,35.0,48.0
+CIV,Côte d'Ivoire,2016,42.0,37.0,47.0
+KEN,Kenya,2003,0.0,0.0,0.0
+GHA,Ghana,2013,24.0,21.0,28.0
+GHA,Ghana,2015,26.0,22.0,30.0
+KEN,Kenya,2005,4.0,3.0,4.0
+CAF,Central African Republic,2007,4.0,3.0,5.0
+MLI,Mali,2022,54.0,46.0,66.0
+COD,"Congo, Democratic Republic of the",2021,62.0,52.0,73.0
+SYC,Seychelles,2004,,,
+LSO,Lesotho,2015,51.0,48.0,57.0
+GIN,Guinea,2004,1.0,1.0,1.0
+MOZ,Mozambique,2024,82.0,76.0,89.0
+SYC,Seychelles,2011,,,
+STP,Sao Tome and Principe,2005,,,
+ERI,Eritrea,2024,72.0,58.0,86.0
+BWA,Botswana,2002,2.0,2.0,2.0
+SSD,South Sudan,2024,50.0,42.0,60.0
+CPV,Cabo Verde,2017,60.0,52.0,70.0
+CMR,Cameroon,2016,37.0,34.0,40.0
+AGO,Angola,2002,0.0,0.0,0.0
+UGA,Uganda,2014,49.0,47.0,53.0
+SLE,Sierra Leone,2008,3.0,3.0,4.0
+TGO,Togo,2010,22.0,19.0,27.0
+BWA,Botswana,2024,95.0,89.0,98.0
+LSO,Lesotho,2012,37.0,34.0,41.0
+MLI,Mali,2021,47.0,41.0,59.0
+GIN,Guinea,2016,30.0,27.0,34.0
+GNB,Guinea-Bissau,2000,0.0,0.0,0.0
+ZWE,Zimbabwe,2007,7.0,7.0,8.0
+STP,Sao Tome and Principe,2015,,,
+AGO,Angola,2010,9.0,8.0,10.0
+ZWE,Zimbabwe,2008,11.0,10.0,12.0
+GMB,Gambia,2010,9.0,7.0,11.0
+ETH,Ethiopia,2016,66.0,55.0,79.0
+MWI,Malawi,2008,17.0,16.0,18.0
+TGO,Togo,2021,81.0,68.0,96.0
+LSO,Lesotho,2022,87.0,80.0,98.0
+SLE,Sierra Leone,2007,2.0,2.0,2.0
+TZA,"Tanzania, United Republic of",2001,0.0,0.0,0.0
+NGA,Nigeria,2023,77.0,71.0,84.0
+NAM,Namibia,2000,0.0,0.0,0.0
+KEN,Kenya,2010,31.0,28.0,35.0
+BDI,Burundi,2012,31.0,28.0,36.0
+MRT,Mauritania,2022,62.0,53.0,74.0
+MUS,Mauritius,2014,,,
+LSO,Lesotho,2017,68.0,64.0,76.0
+GIN,Guinea,2013,24.0,21.0,28.0
+GNQ,Equatorial Guinea,2024,,,
+GIN,Guinea,2008,9.0,8.0,11.0
+NGA,Nigeria,2016,43.0,41.0,48.0
+ZWE,Zimbabwe,2014,55.0,52.0,61.0
+SSD,South Sudan,2003,0.0,0.0,0.0
+CAF,Central African Republic,2001,0.0,0.0,0.0
+BWA,Botswana,2013,65.0,61.0,68.0
+GMB,Gambia,2001,0.0,0.0,0.0
+CAF,Central African Republic,2011,11.0,9.0,12.0
+COG,Congo,2018,23.0,19.0,28.0
+BEN,Benin,2009,25.0,22.0,28.0
+MLI,Mali,2014,27.0,24.0,33.0
+MWI,Malawi,2000,0.0,0.0,0.0
+SEN,Senegal,2001,0.0,0.0,0.0
+MDG,Madagascar,2013,2.0,1.0,2.0
+TGO,Togo,2020,80.0,68.0,95.0
+SYC,Seychelles,2007,,,
+GMB,Gambia,2013,16.0,13.0,20.0
+BDI,Burundi,2014,41.0,37.0,47.0
+NGA,Nigeria,2009,16.0,15.0,17.0
+CMR,Cameroon,2013,23.0,21.0,25.0
+SWZ,Eswatini,2017,78.0,73.0,84.0
+COD,"Congo, Democratic Republic of the",2022,67.0,57.0,81.0
+MLI,Mali,2007,11.0,10.0,13.0
+ERI,Eritrea,2006,5.0,4.0,7.0
+CMR,Cameroon,2012,21.0,19.0,23.0
+GNB,Guinea-Bissau,2010,10.0,9.0,11.0
+DZA,Algeria,2017,64.0,60.0,68.0
+GIN,Guinea,2012,25.0,21.0,28.0
+NAM,Namibia,2023,92.0,84.0,98.0
+ZMB,Zambia,2004,4.0,4.0,4.0
+NAM,Namibia,2022,88.0,81.0,98.0
+CMR,Cameroon,2010,15.0,14.0,16.0
+SWZ,Eswatini,2004,3.0,3.0,3.0
+CAF,Central African Republic,2019,45.0,37.0,55.0
+ETH,Ethiopia,2011,40.0,33.0,48.0
+SYC,Seychelles,2012,,,
+SYC,Seychelles,2024,,,
+TZA,"Tanzania, United Republic of",2019,61.0,58.0,67.0
+BEN,Benin,2016,34.0,30.0,40.0
+COG,Congo,2013,20.0,17.0,22.0
+MUS,Mauritius,2004,,,
+BFA,Burkina Faso,2001,0.0,0.0,0.0
+CPV,Cabo Verde,2006,14.0,12.0,16.0
+SYC,Seychelles,2001,,,
+STP,Sao Tome and Principe,2018,,,
+SEN,Senegal,2019,71.0,69.0,76.0
+GNB,Guinea-Bissau,2019,47.0,41.0,54.0
+GIN,Guinea,2005,2.0,2.0,2.0
+BDI,Burundi,2003,1.0,1.0,1.0
+TCD,Chad,2017,37.0,31.0,44.0
+GAB,Gabon,2023,57.0,47.0,69.0
+MOZ,Mozambique,2015,41.0,39.0,44.0
+COG,Congo,2022,28.0,21.0,35.0
+TZA,"Tanzania, United Republic of",2004,1.0,1.0,1.0
+MWI,Malawi,2012,42.0,41.0,45.0
+GNB,Guinea-Bissau,2012,17.0,15.0,19.0
+BDI,Burundi,2024,93.0,84.0,98.0
+CPV,Cabo Verde,2003,0.0,0.0,0.0
+MRT,Mauritania,2020,54.0,47.0,65.0
+NER,Niger,2010,19.0,17.0,22.0
+KEN,Kenya,2001,0.0,0.0,0.0
+SSD,South Sudan,2022,38.0,32.0,46.0
+CPV,Cabo Verde,2001,0.0,0.0,0.0
+UGA,Uganda,2020,76.0,72.0,83.0
+COD,"Congo, Democratic Republic of the",2019,40.0,35.0,48.0
+MLI,Mali,2005,3.0,2.0,3.0
+GNQ,Equatorial Guinea,2016,,,
+COM,Comoros,2017,37.0,23.0,79.0
+COG,Congo,2002,0.0,0.0,0.0
+GMB,Gambia,2021,33.0,26.0,42.0
+NER,Niger,2017,53.0,48.0,60.0
+DZA,Algeria,2018,69.0,64.0,74.0
+COD,"Congo, Democratic Republic of the",2011,9.0,8.0,10.0
+NGA,Nigeria,2022,71.0,66.0,78.0
+SEN,Senegal,2003,0.0,0.0,0.0
+ERI,Eritrea,2002,0.0,0.0,0.0
+LBR,Liberia,2001,0.0,0.0,0.0
+ZAF,South Africa,2020,75.0,69.0,81.0
+GNB,Guinea-Bissau,2002,0.0,0.0,0.0
+MOZ,Mozambique,2023,77.0,72.0,84.0
+ZWE,Zimbabwe,2011,35.0,34.0,39.0
+MRT,Mauritania,2003,0.0,0.0,0.0
+DZA,Algeria,2010,21.0,20.0,22.0
+UGA,Uganda,2007,10.0,10.0,11.0
+KEN,Kenya,2012,43.0,39.0,49.0
+ETH,Ethiopia,2024,88.0,74.0,98.0
+UGA,Uganda,2013,40.0,39.0,43.0
+ETH,Ethiopia,2008,20.0,16.0,24.0
+ETH,Ethiopia,2018,71.0,60.0,86.0
+GAB,Gabon,2022,54.0,46.0,66.0
+SYC,Seychelles,2017,,,
+AGO,Angola,2014,22.0,19.0,24.0
+SWZ,Eswatini,2007,13.0,13.0,14.0
+ZAF,South Africa,2008,14.0,13.0,15.0
+GNB,Guinea-Bissau,2023,65.0,55.0,74.0
+COG,Congo,2008,10.0,9.0,12.0
+TGO,Togo,2008,10.0,8.0,11.0
+TGO,Togo,2007,7.0,6.0,8.0
+BFA,Burkina Faso,2019,72.0,62.0,83.0
+MRT,Mauritania,2010,17.0,15.0,20.0
+ZMB,Zambia,2019,80.0,76.0,85.0
+NAM,Namibia,2021,86.0,79.0,96.0
+SLE,Sierra Leone,2009,6.0,5.0,7.0
+BFA,Burkina Faso,2022,76.0,65.0,88.0
+GNB,Guinea-Bissau,2015,26.0,22.0,29.0
+ERI,Eritrea,2020,71.0,58.0,85.0
+SLE,Sierra Leone,2014,15.0,14.0,18.0
+COG,Congo,2000,0.0,0.0,0.0
+COM,Comoros,2000,0.0,0.0,0.0
+MDG,Madagascar,2007,1.0,1.0,1.0
+AGO,Angola,2024,48.0,42.0,53.0
+GMB,Gambia,2023,40.0,32.0,51.0
+GAB,Gabon,2020,45.0,39.0,54.0
+COG,Congo,2010,15.0,14.0,17.0
+GIN,Guinea,2019,43.0,37.0,49.0
+SLE,Sierra Leone,2005,1.0,0.0,1.0
+LBR,Liberia,2007,3.0,3.0,4.0
+GMB,Gambia,2022,38.0,30.0,47.0
+NER,Niger,2003,0.0,0.0,0.0
+MLI,Mali,2010,21.0,19.0,26.0
+ZAF,South Africa,2023,79.0,73.0,86.0
+BWA,Botswana,2000,0.0,0.0,0.0
+SSD,South Sudan,2023,45.0,38.0,55.0
+DZA,Algeria,2021,74.0,67.0,82.0
+LBR,Liberia,2006,2.0,2.0,2.0
+GHA,Ghana,2009,10.0,9.0,12.0
+UGA,Uganda,2002,1.0,1.0,1.0
+BEN,Benin,2024,87.0,76.0,98.0
+SWZ,Eswatini,2010,31.0,29.0,32.0
+RWA,Rwanda,2001,0.0,0.0,0.0
+SYC,Seychelles,2020,,,
+GNQ,Equatorial Guinea,2009,,,
+ETH,Ethiopia,2021,78.0,65.0,93.0
+CMR,Cameroon,2018,53.0,48.0,58.0
+SYC,Seychelles,2003,,,
+ZAF,South Africa,2022,78.0,72.0,85.0
+GMB,Gambia,2012,16.0,13.0,20.0
+SEN,Senegal,2005,0.0,0.0,1.0
+COM,Comoros,2002,0.0,0.0,0.0
+BWA,Botswana,2014,67.0,63.0,70.0
+AGO,Angola,2005,0.0,0.0,0.0
+GHA,Ghana,2021,40.0,35.0,47.0
+MDG,Madagascar,2019,10.0,8.0,13.0
+MLI,Mali,2001,0.0,0.0,0.0
+NAM,Namibia,2004,3.0,3.0,4.0
+MDG,Madagascar,2020,10.0,8.0,14.0
+ZAF,South Africa,2001,0.0,0.0,0.0
+ERI,Eritrea,2012,38.0,30.0,47.0
+STP,Sao Tome and Principe,2021,,,
+MDG,Madagascar,2004,0.0,0.0,0.0
+TZA,"Tanzania, United Republic of",2013,35.0,33.0,37.0
+TGO,Togo,2001,0.0,0.0,0.0
+ZMB,Zambia,2013,53.0,50.0,56.0
+CPV,Cabo Verde,2013,49.0,43.0,57.0
+TGO,Togo,2019,76.0,64.0,89.0
+RWA,Rwanda,2004,2.0,2.0,3.0
+SWZ,Eswatini,2011,34.0,32.0,36.0
+TGO,Togo,2006,6.0,5.0,7.0
+RWA,Rwanda,2017,74.0,70.0,84.0
+CMR,Cameroon,2011,18.0,17.0,19.0
+SEN,Senegal,2007,18.0,17.0,19.0
+LBR,Liberia,2015,18.0,15.0,21.0
+TZA,"Tanzania, United Republic of",2018,55.0,52.0,59.0
+UGA,Uganda,2016,59.0,57.0,64.0
+BEN,Benin,2013,35.0,31.0,41.0
+CAF,Central African Republic,2003,0.0,0.0,0.0
+SLE,Sierra Leone,2019,43.0,37.0,49.0
+SLE,Sierra Leone,2017,32.0,28.0,36.0
+AGO,Angola,2023,44.0,39.0,50.0
+TCD,Chad,2005,1.0,1.0,2.0
+GNQ,Equatorial Guinea,2002,,,
+COG,Congo,2016,21.0,18.0,25.0
+SEN,Senegal,2008,21.0,21.0,23.0
+MUS,Mauritius,2020,,,
+GIN,Guinea,2015,28.0,24.0,31.0
+MLI,Mali,2024,68.0,59.0,85.0
+NGA,Nigeria,2024,83.0,76.0,91.0
+RWA,Rwanda,2005,8.0,7.0,9.0
+MDG,Madagascar,2015,3.0,3.0,4.0
+CMR,Cameroon,2019,59.0,54.0,64.0
+MUS,Mauritius,2005,,,
+MOZ,Mozambique,2004,1.0,1.0,1.0
+SLE,Sierra Leone,2012,12.0,11.0,14.0
+GIN,Guinea,2021,54.0,46.0,62.0
+NER,Niger,2011,26.0,23.0,29.0
+SEN,Senegal,2004,0.0,0.0,0.0
+GNQ,Equatorial Guinea,2018,,,
+GHA,Ghana,2014,26.0,23.0,31.0
+GNB,Guinea-Bissau,2016,32.0,28.0,36.0
+COM,Comoros,2007,0.0,0.0,0.0
+GNB,Guinea-Bissau,2022,64.0,55.0,74.0
+KEN,Kenya,2024,87.0,78.0,98.0
+MRT,Mauritania,2002,0.0,0.0,0.0
+MUS,Mauritius,2011,,,
+MWI,Malawi,2006,6.0,6.0,7.0
+MLI,Mali,2019,39.0,34.0,48.0
+MRT,Mauritania,2005,2.0,2.0,3.0
+BWA,Botswana,2021,92.0,87.0,97.0
+MOZ,Mozambique,2009,11.0,11.0,12.0
+GIN,Guinea,2017,33.0,29.0,38.0
+UGA,Uganda,2010,20.0,19.0,21.0
+SWZ,Eswatini,2021,88.0,82.0,96.0
+MOZ,Mozambique,2007,7.0,6.0,7.0
+LBR,Liberia,2005,0.0,0.0,0.0
+ZAF,South Africa,2015,54.0,50.0,59.0
+COM,Comoros,2019,54.0,33.0,98.0
+STP,Sao Tome and Principe,2006,,,
+LSO,Lesotho,2005,3.0,3.0,4.0
+LSO,Lesotho,2013,40.0,38.0,45.0
+BFA,Burkina Faso,2002,0.0,0.0,0.0
+KEN,Kenya,2002,0.0,0.0,0.0
+GMB,Gambia,2008,4.0,3.0,5.0
+BEN,Benin,2006,0.0,0.0,0.0
+ZAF,South Africa,2009,19.0,17.0,21.0
+GNB,Guinea-Bissau,2001,0.0,0.0,0.0
+NAM,Namibia,2018,73.0,68.0,81.0
+COM,Comoros,2010,17.0,9.0,32.0
+CIV,Côte d'Ivoire,2003,0.0,0.0,1.0
+ZWE,Zimbabwe,2021,89.0,85.0,98.0
+CAF,Central African Republic,2016,29.0,24.0,34.0
+TZA,"Tanzania, United Republic of",2023,79.0,75.0,88.0
+CPV,Cabo Verde,2000,0.0,0.0,0.0
+LBR,Liberia,2018,36.0,31.0,43.0
+CIV,Côte d'Ivoire,2005,3.0,3.0,3.0
+BFA,Burkina Faso,2007,14.0,12.0,16.0
+ETH,Ethiopia,2019,75.0,63.0,90.0
+BFA,Burkina Faso,2018,62.0,54.0,72.0
+GHA,Ghana,2008,7.0,6.0,8.0
+GNB,Guinea-Bissau,2008,5.0,5.0,6.0
+NAM,Namibia,2017,69.0,64.0,76.0
+BFA,Burkina Faso,2023,79.0,68.0,92.0
+MOZ,Mozambique,2002,0.0,0.0,0.0
+TZA,"Tanzania, United Republic of",2012,31.0,30.0,34.0
+RWA,Rwanda,2003,0.0,0.0,0.0
+GAB,Gabon,2015,40.0,35.0,47.0
+SSD,South Sudan,2011,2.0,2.0,3.0
+SWZ,Eswatini,2019,84.0,79.0,92.0
+TGO,Togo,2002,0.0,0.0,0.0
+SLE,Sierra Leone,2011,12.0,11.0,14.0
+ZWE,Zimbabwe,2004,3.0,2.0,3.0
+RWA,Rwanda,2006,14.0,13.0,15.0
+BFA,Burkina Faso,2024,82.0,70.0,95.0
+COD,"Congo, Democratic Republic of the",2020,53.0,45.0,62.0
+BDI,Burundi,2006,8.0,7.0,9.0
+LBR,Liberia,2011,13.0,11.0,15.0
+NAM,Namibia,2001,0.0,0.0,0.0
+ETH,Ethiopia,2020,78.0,65.0,93.0
+TZA,"Tanzania, United Republic of",2015,43.0,41.0,46.0
+SSD,South Sudan,2001,0.0,0.0,0.0
+LSO,Lesotho,2003,0.0,0.0,0.0
+KEN,Kenya,2022,85.0,76.0,97.0
+SEN,Senegal,2016,53.0,51.0,56.0
+NGA,Nigeria,2006,7.0,6.0,7.0
+MLI,Mali,2002,0.0,0.0,0.0
+DZA,Algeria,2003,8.0,8.0,8.0
+LSO,Lesotho,2023,90.0,84.0,98.0
+COM,Comoros,2021,58.0,35.0,98.0
+COD,"Congo, Democratic Republic of the",2013,14.0,12.0,16.0
+GHA,Ghana,2004,1.0,1.0,1.0
+MLI,Mali,2006,7.0,6.0,8.0
+CMR,Cameroon,2023,85.0,77.0,96.0
+UGA,Uganda,2023,82.0,77.0,90.0
+MUS,Mauritius,2015,,,
+NER,Niger,2018,61.0,54.0,69.0
+ERI,Eritrea,2010,26.0,20.0,32.0
+KEN,Kenya,2015,65.0,58.0,74.0
+MDG,Madagascar,2000,0.0,0.0,0.0
+GAB,Gabon,2003,2.0,1.0,2.0
+GAB,Gabon,2014,40.0,34.0,46.0
+ZWE,Zimbabwe,2009,16.0,15.0,18.0
+CMR,Cameroon,2003,0.0,0.0,0.0
+ERI,Eritrea,2003,0.0,0.0,0.0
+COG,Congo,2005,3.0,3.0,4.0
+ZAF,South Africa,2021,77.0,71.0,83.0
+GHA,Ghana,2023,45.0,39.0,54.0
+STP,Sao Tome and Principe,2002,,,
+BWA,Botswana,2017,79.0,75.0,83.0
+SYC,Seychelles,2023,,,
+NGA,Nigeria,2014,35.0,33.0,38.0
+MDG,Madagascar,2016,4.0,3.0,5.0
+CPV,Cabo Verde,2002,0.0,0.0,0.0
+MDG,Madagascar,2002,0.0,0.0,0.0
+GMB,Gambia,2000,0.0,0.0,0.0
+CPV,Cabo Verde,2021,81.0,69.0,97.0
+COG,Congo,2012,17.0,15.0,20.0
+TCD,Chad,2002,0.0,0.0,0.0
+DZA,Algeria,2022,69.0,62.0,77.0
+GNQ,Equatorial Guinea,2015,,,
+STP,Sao Tome and Principe,2011,,,
+TCD,Chad,2010,16.0,13.0,19.0
+ZAF,South Africa,2011,33.0,30.0,35.0
+KEN,Kenya,2021,84.0,76.0,96.0
+SEN,Senegal,2015,46.0,44.0,49.0
+CAF,Central African Republic,2022,60.0,49.0,77.0
+ZMB,Zambia,2002,0.0,0.0,0.0
+SLE,Sierra Leone,2015,20.0,18.0,23.0
+MWI,Malawi,2003,0.0,0.0,0.0
+CIV,Côte d'Ivoire,2012,22.0,20.0,25.0
+DZA,Algeria,2019,72.0,66.0,78.0
+TCD,Chad,2007,7.0,6.0,8.0
+SSD,South Sudan,2002,0.0,0.0,0.0
+DZA,Algeria,2004,9.0,8.0,9.0
+CMR,Cameroon,2014,25.0,23.0,27.0
+RWA,Rwanda,2014,58.0,55.0,64.0
+NGA,Nigeria,2019,53.0,49.0,58.0
+SEN,Senegal,2014,40.0,39.0,43.0
+GMB,Gambia,2005,2.0,1.0,2.0
+ZMB,Zambia,2009,31.0,30.0,34.0
+NGA,Nigeria,2013,31.0,29.0,34.0
+NGA,Nigeria,2011,20.0,19.0,22.0
+TGO,Togo,2005,5.0,4.0,6.0
+GIN,Guinea,2000,0.0,0.0,0.0
+TZA,"Tanzania, United Republic of",2010,20.0,19.0,22.0
+CAF,Central African Republic,2018,37.0,31.0,45.0
+ZWE,Zimbabwe,2001,2.0,2.0,2.0
+BEN,Benin,2001,0.0,0.0,0.0
+RWA,Rwanda,2016,71.0,67.0,80.0
+BDI,Burundi,2008,15.0,13.0,17.0
+ERI,Eritrea,2013,45.0,35.0,54.0
+KEN,Kenya,2020,78.0,70.0,90.0
+COG,Congo,2020,24.0,19.0,29.0
+GNQ,Equatorial Guinea,2021,,,
+COD,"Congo, Democratic Republic of the",2009,6.0,5.0,7.0
+ETH,Ethiopia,2022,82.0,69.0,98.0
+UGA,Uganda,2003,2.0,2.0,2.0
+SSD,South Sudan,2000,0.0,0.0,0.0
+ZAF,South Africa,2002,1.0,1.0,1.0
+ETH,Ethiopia,2012,44.0,36.0,52.0
+ZMB,Zambia,2024,94.0,89.0,98.0
+SSD,South Sudan,2013,4.0,3.0,5.0
+SWZ,Eswatini,2002,1.0,1.0,1.0
+DZA,Algeria,2007,13.0,12.0,14.0
+CPV,Cabo Verde,2009,26.0,23.0,30.0
+BFA,Burkina Faso,2003,1.0,1.0,1.0
+BFA,Burkina Faso,2011,34.0,30.0,40.0
+LBR,Liberia,2021,57.0,48.0,69.0
+ZMB,Zambia,2023,92.0,87.0,98.0
+TGO,Togo,2013,34.0,29.0,40.0
+TZA,"Tanzania, United Republic of",2021,70.0,66.0,77.0
+CPV,Cabo Verde,2020,76.0,65.0,90.0
+GNQ,Equatorial Guinea,2011,,,
+GAB,Gabon,2000,0.0,0.0,0.0
+GNB,Guinea-Bissau,2021,57.0,49.0,66.0
+MRT,Mauritania,2023,70.0,60.0,84.0
+LSO,Lesotho,2020,81.0,75.0,91.0
+LSO,Lesotho,2009,27.0,25.0,30.0
+ZWE,Zimbabwe,2020,88.0,84.0,98.0
+TZA,"Tanzania, United Republic of",2000,0.0,0.0,0.0
+GNB,Guinea-Bissau,2006,1.0,1.0,1.0
+MDG,Madagascar,2024,29.0,22.0,38.0
+GIN,Guinea,2010,19.0,16.0,21.0
+COM,Comoros,2009,0.0,0.0,0.0
+GIN,Guinea,2002,0.0,0.0,1.0
+GNQ,Equatorial Guinea,2000,,,
+CPV,Cabo Verde,2008,26.0,23.0,30.0
+GNQ,Equatorial Guinea,2020,,,
+SSD,South Sudan,2020,29.0,25.0,35.0
+COM,Comoros,2008,0.0,0.0,0.0
+TCD,Chad,2012,22.0,18.0,27.0
+STP,Sao Tome and Principe,2016,,,
+BEN,Benin,2021,79.0,68.0,93.0
+TCD,Chad,2014,28.0,23.0,33.0
+AGO,Angola,2012,12.0,10.0,13.0
+MOZ,Mozambique,2016,48.0,46.0,52.0
+SSD,South Sudan,2004,0.0,0.0,0.0
+MOZ,Mozambique,2017,55.0,52.0,58.0
+DZA,Algeria,2006,13.0,12.0,14.0
+TZA,"Tanzania, United Republic of",2005,2.0,2.0,2.0
+GAB,Gabon,2018,42.0,37.0,50.0
+COD,"Congo, Democratic Republic of the",2008,4.0,3.0,5.0
+TGO,Togo,2018,66.0,56.0,77.0
+KEN,Kenya,2018,80.0,72.0,92.0
+ERI,Eritrea,2016,63.0,51.0,77.0
+DZA,Algeria,2020,72.0,66.0,79.0
+KEN,Kenya,2007,13.0,11.0,15.0
+MLI,Mali,2016,33.0,29.0,41.0
+COD,"Congo, Democratic Republic of the",2010,7.0,6.0,8.0
+AGO,Angola,2020,32.0,29.0,36.0
+AGO,Angola,2007,3.0,3.0,4.0
+SEN,Senegal,2022,76.0,73.0,80.0
+LSO,Lesotho,2018,71.0,66.0,79.0
+ZWE,Zimbabwe,2015,61.0,58.0,68.0
+STP,Sao Tome and Principe,2014,,,
+SYC,Seychelles,2019,,,
+SEN,Senegal,2020,74.0,71.0,78.0
+KEN,Kenya,2004,2.0,1.0,2.0
+GHA,Ghana,2001,0.0,0.0,0.0
+COG,Congo,2014,19.0,16.0,22.0
+SWZ,Eswatini,2006,10.0,9.0,10.0
+MUS,Mauritius,2000,,,
+GHA,Ghana,2002,0.0,0.0,0.0
+CPV,Cabo Verde,2004,1.0,1.0,1.0
+MDG,Madagascar,2010,1.0,1.0,1.0
+CIV,Côte d'Ivoire,2001,0.0,0.0,0.0
+BDI,Burundi,2013,36.0,32.0,41.0
+GIN,Guinea,2023,66.0,56.0,78.0
+ETH,Ethiopia,2002,0.0,0.0,0.0
+COM,Comoros,2003,0.0,0.0,0.0
+MRT,Mauritania,2024,76.0,65.0,91.0
+ZMB,Zambia,2007,19.0,18.0,20.0
+BWA,Botswana,2001,1.0,1.0,1.0
+CMR,Cameroon,2020,66.0,60.0,73.0
+SLE,Sierra Leone,2018,37.0,33.0,43.0
+ERI,Eritrea,2015,59.0,47.0,71.0
+COM,Comoros,2015,31.0,19.0,65.0
+RWA,Rwanda,2008,26.0,25.0,28.0
+STP,Sao Tome and Principe,2020,,,
+SWZ,Eswatini,2023,91.0,84.0,98.0
+ETH,Ethiopia,2006,7.0,6.0,8.0
+BEN,Benin,2002,0.0,0.0,0.0
+ZWE,Zimbabwe,2002,2.0,2.0,2.0
+RWA,Rwanda,2024,96.0,89.0,98.0
+CMR,Cameroon,2000,0.0,0.0,0.0
+BDI,Burundi,2018,75.0,67.0,87.0
+COM,Comoros,2022,62.0,36.0,98.0
+GMB,Gambia,2019,31.0,25.0,40.0
+TCD,Chad,2011,19.0,16.0,23.0
+CIV,Côte d'Ivoire,2011,19.0,17.0,21.0
+CMR,Cameroon,2006,5.0,5.0,5.0
+MWI,Malawi,2009,22.0,21.0,23.0
+RWA,Rwanda,2009,32.0,30.0,35.0
+AGO,Angola,2013,17.0,15.0,19.0
+DZA,Algeria,2016,59.0,56.0,63.0
+SWZ,Eswatini,2022,89.0,83.0,98.0
+ZWE,Zimbabwe,2024,95.0,90.0,98.0
+SSD,South Sudan,2005,0.0,0.0,0.0
+BEN,Benin,2010,30.0,26.0,35.0
+MLI,Mali,2015,30.0,27.0,37.0
+MWI,Malawi,2024,90.0,86.0,98.0
+ERI,Eritrea,2014,52.0,42.0,64.0
+SYC,Seychelles,2005,,,
+NER,Niger,2005,2.0,1.0,2.0
+COD,"Congo, Democratic Republic of the",2003,0.0,0.0,0.0
+MRT,Mauritania,2019,51.0,44.0,61.0
+BFA,Burkina Faso,2006,11.0,9.0,13.0
+DZA,Algeria,2014,43.0,41.0,45.0
+GNB,Guinea-Bissau,2013,18.0,16.0,20.0
+MUS,Mauritius,2012,,,
+TGO,Togo,2024,92.0,75.0,98.0
+ZWE,Zimbabwe,2003,2.0,2.0,2.0
+COD,"Congo, Democratic Republic of the",2006,3.0,2.0,3.0
+GNQ,Equatorial Guinea,2010,,,
+KEN,Kenya,2011,38.0,34.0,44.0
+BWA,Botswana,2015,72.0,68.0,76.0
+STP,Sao Tome and Principe,2001,,,
+SLE,Sierra Leone,2023,76.0,64.0,90.0
+BDI,Burundi,2016,61.0,55.0,71.0
+BWA,Botswana,2022,93.0,88.0,98.0
+TCD,Chad,2023,58.0,48.0,70.0
+ZMB,Zambia,2014,59.0,56.0,62.0
+STP,Sao Tome and Principe,2007,,,
+MOZ,Mozambique,2014,34.0,32.0,36.0
+LBR,Liberia,2008,4.0,4.0,5.0
+ZAF,South Africa,2003,1.0,1.0,1.0
+GHA,Ghana,2000,0.0,0.0,0.0
+MOZ,Mozambique,2020,61.0,58.0,66.0
+MWI,Malawi,2014,54.0,52.0,57.0
+LBR,Liberia,2016,20.0,17.0,23.0
+AGO,Angola,2017,24.0,22.0,28.0
+SEN,Senegal,2017,58.0,56.0,62.0
+CPV,Cabo Verde,2005,9.0,8.0,10.0
+MRT,Mauritania,2007,8.0,7.0,9.0
+ETH,Ethiopia,2004,1.0,1.0,1.0
+COM,Comoros,2004,0.0,0.0,0.0
+TZA,"Tanzania, United Republic of",2016,45.0,43.0,49.0
+MWI,Malawi,2018,80.0,77.0,85.0
+CMR,Cameroon,2005,4.0,4.0,5.0
+NAM,Namibia,2019,81.0,75.0,89.0
+NAM,Namibia,2015,61.0,57.0,67.0
+STP,Sao Tome and Principe,2009,,,
+TCD,Chad,2008,10.0,8.0,12.0
+BDI,Burundi,2023,91.0,82.0,98.0
+RWA,Rwanda,2002,0.0,0.0,0.0
+NGA,Nigeria,2001,0.0,0.0,0.0
+ERI,Eritrea,2019,68.0,55.0,82.0
+SSD,South Sudan,2008,0.0,0.0,0.0
+MWI,Malawi,2023,90.0,85.0,97.0
+CAF,Central African Republic,2012,13.0,11.0,15.0
+DZA,Algeria,2009,16.0,15.0,17.0
+BDI,Burundi,2015,49.0,43.0,56.0
+MWI,Malawi,2002,0.0,0.0,0.0
+CAF,Central African Republic,2006,2.0,2.0,2.0
+SSD,South Sudan,2018,22.0,18.0,26.0
+ZMB,Zambia,2020,87.0,83.0,94.0
+AGO,Angola,2019,28.0,25.0,31.0
+KEN,Kenya,2006,9.0,8.0,10.0
+MUS,Mauritius,2018,,,
+MLI,Mali,2018,40.0,35.0,49.0
+SSD,South Sudan,2010,1.0,1.0,2.0
+RWA,Rwanda,2018,77.0,72.0,88.0
+CIV,Côte d'Ivoire,2020,66.0,58.0,76.0
+GHA,Ghana,2006,2.0,2.0,3.0
+NAM,Namibia,2013,56.0,52.0,61.0
+TCD,Chad,2001,0.0,0.0,0.0
+TGO,Togo,2000,0.0,0.0,0.0
+SEN,Senegal,2009,25.0,24.0,27.0
+LBR,Liberia,2003,0.0,0.0,0.0
+MOZ,Mozambique,2022,72.0,68.0,78.0
+NAM,Namibia,2011,48.0,45.0,52.0
+ZMB,Zambia,2011,43.0,41.0,46.0
+GAB,Gabon,2006,12.0,9.0,15.0
+GAB,Gabon,2001,0.0,0.0,0.0
+DZA,Algeria,2002,8.0,7.0,8.0
+GMB,Gambia,2014,17.0,14.0,22.0
+ZAF,South Africa,2013,45.0,41.0,48.0
+CAF,Central African Republic,2023,63.0,50.0,81.0
+NGA,Nigeria,2021,65.0,60.0,71.0
+NAM,Namibia,2006,15.0,14.0,16.0
+MUS,Mauritius,2023,,,
+GNQ,Equatorial Guinea,2008,,,
+SWZ,Eswatini,2013,43.0,41.0,46.0
+TGO,Togo,2011,27.0,23.0,31.0
+ERI,Eritrea,2001,0.0,0.0,0.0
+AGO,Angola,2021,36.0,32.0,41.0
+ZWE,Zimbabwe,2013,48.0,46.0,54.0
+STP,Sao Tome and Principe,2019,,,
+LSO,Lesotho,2002,0.0,0.0,0.0
+NER,Niger,2021,68.0,61.0,77.0
+NER,Niger,2009,17.0,15.0,19.0
+BDI,Burundi,2007,11.0,10.0,13.0
+BWA,Botswana,2012,61.0,57.0,64.0
+CIV,Côte d'Ivoire,2008,10.0,9.0,11.0
+MUS,Mauritius,2013,,,
+BEN,Benin,2007,0.0,0.0,0.0
+SWZ,Eswatini,2012,38.0,36.0,41.0
+KEN,Kenya,2009,24.0,22.0,28.0
+LBR,Liberia,2002,0.0,0.0,0.0
+BDI,Burundi,2021,88.0,79.0,98.0
+ZAF,South Africa,2019,73.0,67.0,79.0
+CAF,Central African Republic,2005,1.0,1.0,1.0
+COM,Comoros,2024,84.0,49.0,98.0
+LSO,Lesotho,2011,34.0,31.0,37.0
+NER,Niger,2000,0.0,0.0,0.0
+SWZ,Eswatini,2020,90.0,84.0,98.0
+GIN,Guinea,2001,0.0,0.0,0.0
+UGA,Uganda,2015,53.0,51.0,57.0
+MDG,Madagascar,2014,2.0,2.0,3.0
+ETH,Ethiopia,2009,27.0,22.0,32.0
+NAM,Namibia,2008,32.0,30.0,34.0
+ZMB,Zambia,2012,47.0,45.0,50.0
+COG,Congo,2001,0.0,0.0,0.0
+RWA,Rwanda,2023,93.0,86.0,98.0
+GHA,Ghana,2019,34.0,29.0,39.0
+GMB,Gambia,2017,26.0,21.0,33.0
+TZA,"Tanzania, United Republic of",2003,0.0,0.0,0.0
+ZWE,Zimbabwe,2018,79.0,76.0,90.0
+RWA,Rwanda,2011,41.0,39.0,45.0
+MDG,Madagascar,2022,18.0,14.0,24.0
+NAM,Namibia,2024,95.0,87.0,98.0
+BEN,Benin,2012,40.0,35.0,46.0
+CIV,Côte d'Ivoire,2014,30.0,27.0,33.0
+SYC,Seychelles,2022,,,
+BWA,Botswana,2004,12.0,12.0,13.0
+NAM,Namibia,2016,61.0,57.0,67.0
+KEN,Kenya,2014,54.0,49.0,62.0
+GAB,Gabon,2005,11.0,8.0,13.0
+GAB,Gabon,2024,64.0,53.0,79.0
+MWI,Malawi,2017,74.0,71.0,78.0
+ZAF,South Africa,2005,4.0,3.0,4.0
+AGO,Angola,2003,0.0,0.0,0.0
+SSD,South Sudan,2021,31.0,27.0,38.0
+ERI,Eritrea,2018,67.0,55.0,81.0
+CMR,Cameroon,2024,88.0,80.0,98.0
+SSD,South Sudan,2019,24.0,21.0,29.0
+NGA,Nigeria,2002,1.0,1.0,1.0
+CMR,Cameroon,2007,8.0,7.0,9.0
+SLE,Sierra Leone,2016,25.0,22.0,29.0
+COM,Comoros,2023,68.0,40.0,98.0
+ERI,Eritrea,2008,15.0,11.0,18.0
+CMR,Cameroon,2021,73.0,67.0,82.0
+LSO,Lesotho,2000,0.0,0.0,0.0
+SSD,South Sudan,2009,1.0,1.0,2.0
+GMB,Gambia,2024,44.0,35.0,57.0
+LSO,Lesotho,2016,61.0,56.0,67.0
+ERI,Eritrea,2011,32.0,25.0,39.0
