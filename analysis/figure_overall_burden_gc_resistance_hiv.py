@@ -53,12 +53,15 @@ def plot_drug_resistance(estimated_resistance_rates, ax, fig):
         pl.mean("Ciprofloxacin"),
         pl.mean("Cefixime"),
         pl.mean("Azithromycin"),
+        pl.mean("Ceftriaxone"),
         pl.mean("Ciprofloxacin_lower"),
         pl.mean("Cefixime_lower"),
         pl.mean("Azithromycin_lower"),
+        pl.mean("Ceftriaxone_lower"),
         pl.mean("Ciprofloxacin_upper"),
         pl.mean("Cefixime_upper"),
         pl.mean("Azithromycin_upper"),
+        pl.mean("Ceftriaxone_upper"),
     )
 
     estimated_resistance_rates = estimated_resistance_rates.sort("year")
@@ -106,6 +109,22 @@ def plot_drug_resistance(estimated_resistance_rates, ax, fig):
         estimated_resistance_rates["Azithromycin_lower"] * 100,
         estimated_resistance_rates["Azithromycin_upper"] * 100,
         color="green",
+        alpha=0.3,
+    )
+
+    ax.plot(
+        estimated_resistance_rates["year"],
+        estimated_resistance_rates["Ceftriaxone"] * 100,
+        label="Ceftriaxone",
+        linewidth=3,
+        color="purple",
+    )
+
+    ax.fill_between(
+        estimated_resistance_rates["year"],
+        estimated_resistance_rates["Ceftriaxone_lower"] * 100,
+        estimated_resistance_rates["Ceftriaxone_upper"] * 100,
+        color="purple",
         alpha=0.3,
     )
 

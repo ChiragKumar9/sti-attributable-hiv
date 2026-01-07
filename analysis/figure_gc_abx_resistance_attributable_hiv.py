@@ -65,6 +65,9 @@ def plot_attributable_hiv_burden_drug_resistance(
         sum_preserve_null("Azithromycin_resistant_number"),
         sum_preserve_null("Azithromycin_resistant_number_lower"),
         sum_preserve_null("Azithromycin_resistant_number_upper"),
+        sum_preserve_null("Ceftriaxone_resistant_number"),
+        sum_preserve_null("Ceftriaxone_resistant_number_lower"),
+        sum_preserve_null("Ceftriaxone_resistant_number_upper"),
         pl.sum("hiv_incidence_number_attributable_to_gc"),
         pl.sum("hiv_incidence_number_attributable_to_gc_upper"),
         pl.sum("hiv_incidence_number_attributable_to_gc_lower"),
@@ -128,6 +131,24 @@ def plot_attributable_hiv_burden_drug_resistance(
         )
         .then(pl.col("hiv_incidence_number_attributable_to_gc_upper"))
         .otherwise(pl.col("Azithromycin_resistant_number_upper")),
+        ceft=pl.when(
+            pl.col("Ceftriaxone_resistant_number")
+            > pl.col("hiv_incidence_number_attributable_to_gc")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc"))
+        .otherwise(pl.col("Ceftriaxone_resistant_number")),
+        ceft_lower=pl.when(
+            pl.col("Ceftriaxone_resistant_number_lower")
+            > pl.col("hiv_incidence_number_attributable_to_gc_lower")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc_lower"))
+        .otherwise(pl.col("Ceftriaxone_resistant_number_lower")),
+        ceft_upper=pl.when(
+            pl.col("Ceftriaxone_resistant_number_upper")
+            > pl.col("hiv_incidence_number_attributable_to_gc_upper")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc_upper"))
+        .otherwise(pl.col("Ceftriaxone_resistant_number_upper")),
     )
     # make into incidence per 100,000
     hiv = hiv.with_columns(
@@ -148,6 +169,9 @@ def plot_attributable_hiv_burden_drug_resistance(
         azithro_upper=pl.col("azithro_upper")
         / pl.col("population_upper")
         * 100000,
+        ceft=pl.col("ceft") / pl.col("population") * 100000,
+        ceft_lower=pl.col("ceft_lower") / pl.col("population_lower") * 100000,
+        ceft_upper=pl.col("ceft_upper") / pl.col("population_upper") * 100000,
     )
 
     hiv = hiv.sort(by="year")
@@ -194,6 +218,22 @@ def plot_attributable_hiv_burden_drug_resistance(
         hiv["azithro_upper"],
         alpha=0.3,
         color="green",
+    )
+
+    ax.plot(
+        hiv["year"],
+        hiv["ceft"],
+        linewidth=3,
+        label="Ceftriaxone",
+        color="purple",
+    )
+
+    ax.fill_between(
+        hiv["year"],
+        hiv["ceft_lower"],
+        hiv["ceft_upper"],
+        alpha=0.3,
+        color="purple",
     )
 
     ax.set_xlabel("Year")

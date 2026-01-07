@@ -220,7 +220,7 @@ hiv_sti = hiv_sti.with_columns(
             pl.col(f"hiv_incidence_number_attributable_to_gc{estimate}")
             * pl.col(f"{abx}{estimate}")
         ).alias(f"{abx}_resistant_number{estimate}")
-        for abx in ["Ciprofloxacin", "Cefixime", "Azithromycin"]
+        for abx in ["Ciprofloxacin", "Cefixime", "Azithromycin", "Ceftriaxone"]
         for estimate in ["", "_lower", "_upper"]
     ]
 )
