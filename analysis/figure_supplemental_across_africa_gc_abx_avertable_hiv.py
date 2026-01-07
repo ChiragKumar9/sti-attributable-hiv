@@ -1,0 +1,218 @@
+import os
+
+import matplotlib.pyplot as plt
+import polars as pl
+from matplotlib import rc
+
+data_dir = "data"
+output_dir = "outputs"
+fig_dir = "figures"
+
+font = {"family": "Nimbus Roman", "size": 28}
+rc("font", **font)
+
+
+def setup_plot(nrows, ncols):
+    fig, ax = plt.subplots(nrows, ncols, figsize=(20, 15))
+    if nrows * ncols == 1:
+        ax.spines["top"].set_visible(False)
+        ax.spines["right"].set_visible(False)
+        ax.get_xaxis().tick_bottom()
+        ax.get_yaxis().tick_left()
+        ax.tick_params(axis="x", direction="out")
+        ax.tick_params(axis="y", direction="out")
+        # offset the spines
+        for spine in ax.spines.values():
+            spine.set_position(("outward", 5))
+        # put the grid behind
+        ax.set_axisbelow(True)
+        return fig, ax
+    for temp in ax.flatten():  # type: ignore
+        temp.spines["top"].set_visible(False)
+        temp.spines["right"].set_visible(False)
+        temp.get_xaxis().tick_bottom()
+        temp.get_yaxis().tick_left()
+        temp.tick_params(axis="x", direction="out")
+        temp.tick_params(axis="y", direction="out")
+        # offset the spines
+        for spine in temp.spines.values():
+            spine.set_position(("outward", 5))
+        # put the grid behind
+        temp.set_axisbelow(True)
+    return fig, ax
+
+
+def plot_averted_hiv(hiv, ax, scenario_name, year, fig, location):
+    hiv = (
+        hiv.group_by(["year"])
+        .agg(
+            pl.sum(f"hiv_averted_{scenario_name}"),
+            pl.sum(f"hiv_averted_{scenario_name}_lower"),
+            pl.sum(f"hiv_averted_{scenario_name}_upper"),
+            pl.sum(f"direct_hiv_averted_{scenario_name}"),
+            pl.sum(f"direct_hiv_averted_{scenario_name}_lower"),
+            pl.sum(f"direct_hiv_averted_{scenario_name}_upper"),
+            pl.sum("hiv_incidence_number"),
+            pl.sum("hiv_incidence_number_upper"),
+            pl.sum("hiv_incidence_number_lower"),
+        )
+        .with_columns(
+            direct=pl.col(f"direct_hiv_averted_{scenario_name}")
+            / pl.col("hiv_incidence_number")
+            * 100,
+            direct_lower=pl.col(f"direct_hiv_averted_{scenario_name}_lower")
+            / pl.col("hiv_incidence_number_lower")
+            * 100,
+            direct_upper=pl.col(f"direct_hiv_averted_{scenario_name}_upper")
+            / pl.col("hiv_incidence_number_upper")
+            * 100,
+            total=pl.col(f"hiv_averted_{scenario_name}")
+            / pl.col("hiv_incidence_number")
+            * 100,
+            total_lower=pl.col(f"hiv_averted_{scenario_name}_lower")
+            / pl.col("hiv_incidence_number_lower")
+            * 100,
+            total_upper=pl.col(f"hiv_averted_{scenario_name}_upper")
+            / pl.col("hiv_incidence_number_upper")
+            * 100,
+        )
+    )
+
+    hiv = hiv.filter(pl.col("year") >= year)
+
+    hiv = hiv.sort(by="year")
+
+    ax.plot(
+        hiv["year"], hiv["direct"], linewidth=3, label="Direct", color="grey"
+    )
+
+    ax.fill_between(
+        hiv["year"],
+        hiv["direct_lower"],
+        hiv["direct_upper"],
+        alpha=0.3,
+        color="grey",
+    )
+
+    ax.plot(
+        hiv["year"], hiv["total"], linewidth=3, label="Total", color="brown"
+    )
+
+    ax.fill_between(
+        hiv["year"],
+        hiv["total_lower"],
+        hiv["total_upper"],
+        alpha=0.3,
+        color="brown",
+    )
+
+    ax.set_xlabel("Year")
+    ax.set_ylabel(f"Avertable HIV incidence\n({location}) (%)")
+    ax.legend()
+    ax.set_ylim(0)
+
+
+if __name__ == "__main__":
+    fig, ax = setup_plot(2, 2)  # type: ignore
+
+    hiv = pl.read_csv(
+        os.path.join(output_dir, "hiv_averted.csv"),
+    )
+
+    ax[0, 0].text(  # type: ignore
+        -0.25,
+        1.08,
+        "a",
+        transform=ax[0, 0].transAxes,  # type: ignore
+        fontsize=24,
+        fontweight="bold",
+        va="top",
+        ha="right",
+    )
+    plot_averted_hiv(
+        hiv.filter(pl.col("region") == "Western"),
+        ax[0, 0],  # type: ignore
+        "2016_gc_change",
+        2016,
+        fig,
+        "Western Africa",
+    )
+
+    ax[0, 1].text(  # type: ignore
+        -0.25,
+        1.08,
+        "b",
+        transform=ax[0, 1].transAxes,  # type: ignore
+        fontsize=24,
+        fontweight="bold",
+        va="top",
+        ha="right",
+    )
+    plot_averted_hiv(
+        hiv.filter(pl.col("region") == "Eastern"),
+        ax[0, 1],  # type: ignore
+        "2016_gc_change",
+        2016,
+        fig,
+        "Eastern Africa",
+    )
+
+    ax[1, 0].text(  # type: ignore
+        -0.25,
+        1.08,
+        "c",
+        transform=ax[1, 0].transAxes,  # type: ignore
+        fontsize=24,
+        fontweight="bold",
+        va="top",
+        ha="right",
+    )
+    plot_averted_hiv(
+        hiv.filter(pl.col("region") == "Central"),
+        ax[1, 0],  # type: ignore
+        "2016_gc_change",
+        2016,
+        fig,
+        "Central Africa",
+    )
+
+    ax[1, 1].text(  # type: ignore
+        -0.25,
+        1.08,
+        "d",
+        transform=ax[1, 1].transAxes,  # type: ignore
+        fontsize=24,
+        fontweight="bold",
+        va="top",
+        ha="right",
+    )
+    plot_averted_hiv(
+        hiv.filter(pl.col("region") == "Southern"),
+        ax[1, 1],  # type: ignore
+        "2016_gc_change",
+        2016,
+        fig,
+        "Southern Africa",
+    )
+
+    fig.tight_layout()
+
+    # save
+    fig.savefig(
+        os.path.join(
+            fig_dir,
+            "figure_supplemental_across_africa_gc_abx_avertible_hiv.png",
+        ),
+        dpi=300,
+        bbox_inches="tight",
+    )
+    fig.savefig(
+        os.path.join(
+            fig_dir,
+            "figure_supplemental_across_africa_gc_abx_avertible_hiv.pdf",
+        ),
+        dpi=300,
+        bbox_inches="tight",
+    )
+
+    plt.show()
