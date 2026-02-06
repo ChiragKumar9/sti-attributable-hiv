@@ -274,7 +274,7 @@ def plot_rr_estimates(aggregated_rrs, ax, fig):
     )
 
     ax.legend(loc="upper right")
-    ax.set_xlabel("Study")
+    ax.set_xlabel("STI")
     ax.set_xticks(
         xs,
         aggregated_rrs["bacteria"].unique(maintain_order=True),
