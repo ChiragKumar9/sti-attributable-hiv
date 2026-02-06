@@ -18,7 +18,9 @@ hiv_sti = pl.read_csv(os.path.join(output_dir, "hiv_sti_with_gc_abx_r.csv"))
 rrs_causal = rrs_causal.with_columns(
     sex=pl.when(pl.col("sex") == "Heterosexual Women")
     .then(pl.lit("Female"))
-    .otherwise(pl.lit("Male"))
+    .when(pl.col("sex") == "Heterosexual Men")
+    .then(pl.lit("Male"))
+    .otherwise(pl.lit("MSM"))
 )
 # rename so we have the word causality in there
 rrs_causal = rrs_causal.rename(
@@ -54,7 +56,7 @@ rrs_associative = pl.read_csv(
 
 # relabel the sex column to match the GBD data
 rrs_associative = rrs_associative.with_columns(
-    sex=pl.when(pl.col("sex") == "Heterosexual Women")
+    merging_sex=pl.when(pl.col("sex") == "Heterosexual Women")
     .then(pl.lit("Female"))
     .otherwise(pl.lit("Male"))
 )
@@ -77,7 +79,12 @@ rrs_associative = rrs_associative.pivot(
 )
 
 # join
-hiv_sti = hiv_sti.join(rrs_associative, on=["sex"], how="inner")
+hiv_sti = hiv_sti.with_columns(
+    merging_sex=pl.when(pl.col("sex") == "MSM")
+    .then(pl.lit("Male"))
+    .otherwise(pl.col("sex"))
+)
+hiv_sti = hiv_sti.join(rrs_associative, on=["merging_sex"], how="inner")
 
 # calculate the prevalence of STIs in people without HIV
 # we have P(STI) and RR(STI|HIV) associative, so we can calculate P(STI|HIV)
