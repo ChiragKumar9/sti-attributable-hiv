@@ -5,3 +5,4 @@ upper_bound_sdg:
   chlamydia: 0.5
   syphilis: 0.5
   trichomoniasis: 0.5
+msm_fraction: 0.15
