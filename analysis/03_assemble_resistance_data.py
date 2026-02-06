@@ -736,11 +736,6 @@ resistance.write_csv(
 # read in our hiv sti data
 hiv_sti = pl.read_csv(os.path.join(output_dir, "hiv_sti.csv"))
 
-# map countries to regions
-hiv_sti = hiv_sti.with_columns(
-    region=pl.col("location").replace(countries_to_regions)
-)
-
 # merge first with the country-level data
 hiv_sti = hiv_sti.join(
     gasp_country,

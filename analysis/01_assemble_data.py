@@ -1,9 +1,64 @@
 import os
 
 import polars as pl
+import yaml
 
 data_dir = "data"
 output_dir = "outputs"
+
+# read parameters
+with open("params.yml", "r") as f:
+    params = yaml.safe_load(f)
+
+countries_to_regions = {
+    "Somalia": "Eastern",
+    "Central African Republic": "Central",
+    "Ghana": "Western",
+    "Mauritania": "Western",
+    "Mauritius": "Eastern",
+    "Equatorial Guinea": "Central",
+    "Benin": "Western",
+    "Kenya": "Eastern",
+    "Eritrea": "Eastern",
+    "Cameroon": "Western",
+    "Angola": "Central",
+    "Botswana": "Southern",
+    "Mozambique": "Eastern",
+    "Niger": "Western",
+    "Democratic Republic of the Congo": "Central",
+    "Mali": "Western",
+    "Gabon": "Central",
+    "Guinea": "Western",
+    "Namibia": "Southern",
+    "Djibouti": "Eastern",
+    "United Republic of Tanzania": "Eastern",
+    "South Africa": "Southern",
+    "Madagascar": "Eastern",
+    "Côte d'Ivoire": "Western",
+    "Gambia": "Western",
+    "Rwanda": "Eastern",
+    "Comoros": "Eastern",
+    "Zambia": "Eastern",
+    "Senegal": "Western",
+    "Sao Tome and Principe": "Western",
+    "Lesotho": "Southern",
+    "Ethiopia": "Eastern",
+    "Eswatini": "Southern",
+    "Burkina Faso": "Western",
+    "Cabo Verde": "Western",
+    "South Sudan": "Eastern",
+    "Congo": "Central",
+    "Liberia": "Western",
+    "Guinea-Bissau": "Western",
+    "Nigeria": "Western",
+    "Burundi": "Eastern",
+    "Togo": "Western",
+    "Uganda": "Eastern",
+    "Zimbabwe": "Southern",
+    "Malawi": "Eastern",
+    "Sierra Leone": "Western",
+    "Chad": "Western",
+}
 
 # read data
 incidence = pl.read_csv(os.path.join(data_dir, "ihme_incidence.csv"))
@@ -92,6 +147,46 @@ incidence_hiv = incidence_hiv.join(
     prevalence_hiv, on=["sex", "year", "location"], how="inner"
 )
 
+# let's take out part of the male population and make it msm
+msm_fraction = params["msm_fraction"]
+msm_incidence_hiv = (
+    incidence_hiv.filter(pl.col("sex") == "Male")
+    .with_columns(
+        # take all columns besides year, sex, location and multiply by msm fraction
+        **{
+            col: pl.col(col) * msm_fraction
+            for col in incidence_hiv.columns
+            if col not in ["year", "sex", "location"]
+        }
+    )
+    .with_columns(sex=pl.lit("MSM"), merging_sex=pl.lit("Male"))
+)
+
+# now we need to similarly adjust the incidence and prevalence for the remaining population
+non_msm_incidence_hiv = (
+    incidence_hiv.filter(pl.col("sex") == "Male")
+    .with_columns(
+        # take all columns besides year, sex, location and multiply by (1 - msm fraction)
+        **{
+            col: pl.col(col) * (1 - msm_fraction)
+            for col in incidence_hiv.columns
+            if col not in ["year", "sex", "location"]
+        }
+    )
+    .with_columns(
+        merging_sex=pl.lit("Male"),
+    )
+)
+
+female_incidence_hiv = incidence_hiv.filter(
+    pl.col("sex") == "Female"
+).with_columns(merging_sex=pl.lit("Female"))
+
+# join back together
+incidence_hiv = pl.concat(
+    [msm_incidence_hiv, non_msm_incidence_hiv, female_incidence_hiv]
+)
+
 # calculate the probability of a susceptible person acquiring HIV
 # we want to calculate the number of incident infections over the susceptible
 # population
@@ -146,7 +241,10 @@ prevalence_gc = (
 
 # join to incidence data
 data = incidence_hiv.join(
-    prevalence_gc, on=["sex", "year", "location"], how="inner"
+    prevalence_gc,
+    left_on=["merging_sex", "year", "location"],
+    right_on=["sex", "year", "location"],
+    how="inner",
 )
 
 # we also want to join up with the other sti data
@@ -176,7 +274,12 @@ prevalence_sti = prevalence_sti.rename(
 )
 
 # join with existing dataframe
-data = data.join(prevalence_sti, on=["sex", "year", "location"], how="inner")
+data = data.join(
+    prevalence_sti,
+    left_on=["merging_sex", "year", "location"],
+    right_on=["sex", "year", "location"],
+    how="inner",
+)
 
 # convert sti prevalence to be per effective population
 data = data.with_columns(
@@ -263,6 +366,11 @@ data = data.with_columns(
     treatment_proportion_upper=pl.col("treatment_proportion_upper").fill_null(
         0
     ),
+)
+
+# map countries to regions
+data = data.with_columns(
+    region=pl.col("location").replace(countries_to_regions)
 )
 
 # save the assembled data

@@ -132,6 +132,25 @@ def calculate_indirect_averted_cases(
             pl.col("hiv_prevalence_number_upper_Female")
             * (1 - pl.col("treatment_proportion_lower_Female"))
         ),
+        transmission_rate_MSM=pl.col("hiv_incidence_number_MSM").shift(-1)
+        / (
+            pl.col("hiv_prevalence_number_MSM")
+            * (1 - pl.col("treatment_proportion_MSM"))
+        ),
+        transmission_rate_lower_MSM=pl.col(
+            "hiv_incidence_number_lower_MSM"
+        ).shift(-1)
+        / (
+            pl.col("hiv_prevalence_number_lower_MSM")
+            * (1 - pl.col("treatment_proportion_upper_MSM"))
+        ),
+        transmission_rate_upper_MSM=pl.col(
+            "hiv_incidence_number_upper_MSM"
+        ).shift(-1)
+        / (
+            pl.col("hiv_prevalence_number_upper_MSM")
+            * (1 - pl.col("treatment_proportion_lower_MSM"))
+        ),
     )
 
     # now we need to calculate the additional infections averted in future years
@@ -258,6 +277,33 @@ def calculate_indirect_averted_cases(
             row["transmission_rate_upper_F_M"],
             row[f"paf_{sti}_hiv_upper_Female"],
             sti_hiv_transmission_increase_upper_female,
+        )
+        cumulative_male[idx + 1] += (
+            params["msm_fraction"]
+            * np.sum(cumulative_male)
+            * conditional_exposure.p_a_given_b(
+                row["transmission_rate_MSM"],
+                row[f"paf_{sti}_hiv_MSM"],
+                sti_hiv_transmission_increase_male,
+            )
+        )
+        cumulative_lower_male[idx + 1] += (
+            params["msm_fraction"]
+            * np.sum(cumulative_lower_male)
+            * conditional_exposure.p_a_given_b(
+                row["transmission_rate_lower_MSM"],
+                row[f"paf_{sti}_hiv_lower_MSM"],
+                sti_hiv_transmission_increase_lower_male,
+            )
+        )
+        cumulative_upper_male[idx + 1] += (
+            params["msm_fraction"]
+            * np.sum(cumulative_upper_male)
+            * conditional_exposure.p_a_given_b(
+                row["transmission_rate_upper_MSM"],
+                row[f"paf_{sti}_hiv_upper_MSM"],
+                sti_hiv_transmission_increase_upper_male,
+            )
         )
         cumulative_female[idx + 1] += np.sum(
             cumulative_male
