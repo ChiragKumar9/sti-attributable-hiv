@@ -144,18 +144,22 @@ for sex in hiv_sti["sex"].unique():
         # Pre-filter coinfection data for this bacteria
         bacteria_coinfections = coinfection_sex.filter(
             pl.col("STI 1 (for those infected with)") == sti_names[bacteria]
-        ).filter(pl.col("STI 2 (how many are coinfected w)").is_in(risk[:idx]))
+        ).filter(
+            pl.col("STI 2 (how many are coinfected w)").is_in(
+                [sti_names[b] for b in risk[:idx]]
+            )
+        )
 
         # Get all rates at once
-        coinfection_rate = bacteria_coinfections[
-            "Coinfection prevalence"
-        ].sum()
-        coinfection_rate_lower = bacteria_coinfections[
-            "Coinfection prevalence lower"
-        ].sum()
-        coinfection_rate_upper = bacteria_coinfections[
-            "Coinfection prevalence upper"
-        ].sum()
+        coinfection_rate = (
+            bacteria_coinfections["Coinfection prevalence"].sum() / 100
+        )
+        coinfection_rate_lower = (
+            bacteria_coinfections["Coinfection prevalence lower"].sum() / 100
+        )
+        coinfection_rate_upper = (
+            bacteria_coinfections["Coinfection prevalence upper"].sum() / 100
+        )
 
         # Apply updates in a single pass (without location loop)
         sex_mask = pl.col("sex") == sex
