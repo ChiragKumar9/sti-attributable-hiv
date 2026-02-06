@@ -77,7 +77,7 @@ prevalence = prevalence.group_by(
 # we want number incident hiv cases by country
 incidence_hiv = incidence.filter((pl.col("cause") == "HIV/AIDS"))
 
-# group by sex and year, summing over locations
+# group by sex and year and location, summing over age
 incidence_hiv = incidence_hiv.group_by(
     ["sex", "year", "measure", "metric", "location"]
 ).agg(
