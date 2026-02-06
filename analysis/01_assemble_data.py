@@ -147,46 +147,6 @@ incidence_hiv = incidence_hiv.join(
     prevalence_hiv, on=["sex", "year", "location"], how="inner"
 )
 
-# let's take out part of the male population and make it msm
-msm_fraction = params["msm_fraction"]
-msm_incidence_hiv = (
-    incidence_hiv.filter(pl.col("sex") == "Male")
-    .with_columns(
-        # take all columns besides year, sex, location and multiply by msm fraction
-        **{
-            col: pl.col(col) * msm_fraction
-            for col in incidence_hiv.columns
-            if col not in ["year", "sex", "location"]
-        }
-    )
-    .with_columns(sex=pl.lit("MSM"), merging_sex=pl.lit("Male"))
-)
-
-# now we need to similarly adjust the incidence and prevalence for the remaining population
-non_msm_incidence_hiv = (
-    incidence_hiv.filter(pl.col("sex") == "Male")
-    .with_columns(
-        # take all columns besides year, sex, location and multiply by (1 - msm fraction)
-        **{
-            col: pl.col(col) * (1 - msm_fraction)
-            for col in incidence_hiv.columns
-            if col not in ["year", "sex", "location"]
-        }
-    )
-    .with_columns(
-        merging_sex=pl.lit("Male"),
-    )
-)
-
-female_incidence_hiv = incidence_hiv.filter(
-    pl.col("sex") == "Female"
-).with_columns(merging_sex=pl.lit("Female"))
-
-# join back together
-incidence_hiv = pl.concat(
-    [msm_incidence_hiv, non_msm_incidence_hiv, female_incidence_hiv]
-)
-
 # calculate the probability of a susceptible person acquiring HIV
 # we want to calculate the number of incident infections over the susceptible
 # population
@@ -242,7 +202,7 @@ prevalence_gc = (
 # join to incidence data
 data = incidence_hiv.join(
     prevalence_gc,
-    left_on=["merging_sex", "year", "location"],
+    left_on=["sex", "year", "location"],
     right_on=["sex", "year", "location"],
     how="inner",
 )
@@ -276,7 +236,7 @@ prevalence_sti = prevalence_sti.rename(
 # join with existing dataframe
 data = data.join(
     prevalence_sti,
-    left_on=["merging_sex", "year", "location"],
+    left_on=["sex", "year", "location"],
     right_on=["sex", "year", "location"],
     how="inner",
 )
@@ -372,6 +332,48 @@ data = data.with_columns(
 data = data.with_columns(
     region=pl.col("location").replace(countries_to_regions)
 )
+
+# let's take out part of the male population and make it msm
+msm_fraction = params["msm_fraction"]
+msm_data = (
+    data.filter(pl.col("sex") == "Male")
+    .with_columns(
+        # take hiv incidence and prevalence numbers and scale them by the msm fraction
+        **{
+            col: pl.col(col) * msm_fraction
+            for col in [
+                "hiv_incidence_number",
+                "hiv_incidence_number_lower",
+                "hiv_incidence_number_upper",
+                "hiv_prevalence_number",
+                "hiv_prevalence_number_lower",
+                "hiv_prevalence_number_upper",
+            ]
+        }
+    )
+    .with_columns(sex=pl.lit("MSM"))
+)
+
+# now we need to similarly adjust the incidence and prevalence for the remaining population
+non_msm_data = data.filter(pl.col("sex") == "Male").with_columns(
+    # take all columns besides year, sex, location and multiply by (1 - msm fraction)
+    **{
+        col: pl.col(col) * (1 - msm_fraction)
+        for col in [
+            "hiv_incidence_number",
+            "hiv_incidence_number_lower",
+            "hiv_incidence_number_upper",
+            "hiv_prevalence_number",
+            "hiv_prevalence_number_lower",
+            "hiv_prevalence_number_upper",
+        ]
+    }
+)
+
+female_data = data.filter(pl.col("sex") == "Female")
+
+# join back together
+data = pl.concat([msm_data, non_msm_data, female_data])
 
 # save the assembled data
 data.write_csv(os.path.join(output_dir, "hiv_sti.csv"))
