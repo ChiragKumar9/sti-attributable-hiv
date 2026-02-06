@@ -6,6 +6,7 @@ import polars as pl
 from averted_burden import conditional_exposure
 
 output_dir = "outputs"
+data_dir = "data"
 
 # we want to assess the probability that an individual with gc acquired hiv
 # we need the RR of acquiring HIV given gonorrhea
@@ -41,6 +42,7 @@ bacterial_names = {
 rrs_causal = rrs_causal.with_columns(
     bacteria=pl.col("bacteria").replace(bacterial_names)
 )
+rrs_causal_prepivot = rrs_causal.__copy__()
 rrs_causal = rrs_causal.pivot(
     on="bacteria", values=["rr_causal", "rr_causal_lower", "rr_causal_upper"]
 )
@@ -85,6 +87,106 @@ hiv_sti = hiv_sti.with_columns(
     .otherwise(pl.col("sex"))
 )
 hiv_sti = hiv_sti.join(rrs_associative, on=["merging_sex"], how="inner")
+
+# calculate the effective sti prevalence accounting for coinfection
+coinfection = pl.read_csv(os.path.join(data_dir, "sti_coinfection_rates.csv"))
+coinfection = coinfection.filter(
+    pl.col("Population") == "women, 15–24, Southern/Eastern Africa"
+).with_columns(sex=pl.lit("Female"))
+# make a male data column by taking the values present in the dataframe and
+# multiplying them by 2/3
+male_coinfection = coinfection.with_columns(
+    (pl.col("Coinfection prevalence") * (2 / 3)).alias(
+        "Coinfection prevalence"
+    ),
+    (pl.col("Coinfection prevalence lower") * (2 / 3)).alias(
+        "Coinfection prevalence lower"
+    ),
+    (pl.col("Coinfection prevalence upper") * (2 / 3)).alias(
+        "Coinfection prevalence upper"
+    ),
+    sex=pl.lit("Male"),
+)
+
+# join
+coinfection = coinfection.vstack(male_coinfection)
+
+
+# what we're going to do is remove people from the less risky STIs since we
+# assume that the riskiest STI is what drives your risk
+STIs_ranked_by_risk = rrs_causal_prepivot.sort(
+    ["sex", "rr_causal"], descending=True
+)
+
+sti_names = {
+    "gc": "Gonorrhea",
+    "chlamydia": "Chlamydia",
+    "syphilis": "Syphilis",
+    "trichomoniasis": "Trichomoniasis",
+}
+
+# Pre-compute sex filters once
+coinfection_female = coinfection.filter(pl.col("sex") == "Female")
+coinfection_male = coinfection.filter(pl.col("sex") == "Male")
+
+for sex in hiv_sti["sex"].unique():
+    # Select appropriate coinfection dataframe
+    coinfection_sex = (
+        coinfection_female if sex == "Female" else coinfection_male
+    )
+
+    # Get risk list once per sex
+    risk = STIs_ranked_by_risk.filter(pl.col("sex") == sex)[
+        "bacteria"
+    ].to_list()
+
+    for idx, bacteria in enumerate(risk[1:], start=1):
+        # Pre-filter coinfection data for this bacteria
+        bacteria_coinfections = coinfection_sex.filter(
+            pl.col("STI 1 (for those infected with)") == sti_names[bacteria]
+        ).filter(pl.col("STI 2 (how many are coinfected w)").is_in(risk[:idx]))
+
+        # Get all rates at once
+        coinfection_rate = bacteria_coinfections[
+            "Coinfection prevalence"
+        ].sum()
+        coinfection_rate_lower = bacteria_coinfections[
+            "Coinfection prevalence lower"
+        ].sum()
+        coinfection_rate_upper = bacteria_coinfections[
+            "Coinfection prevalence upper"
+        ].sum()
+
+        # Apply updates in a single pass (without location loop)
+        sex_mask = pl.col("sex") == sex
+
+        hiv_sti = hiv_sti.with_columns(
+            [
+                # Main prevalence
+                pl.when(sex_mask)
+                .then(
+                    pl.col(f"{bacteria}_prevalence") * (1 - coinfection_rate)
+                )
+                .otherwise(pl.col(f"{bacteria}_prevalence"))
+                .alias(f"{bacteria}_prevalence"),
+                # Lower bound (note: uses upper coinfection rate)
+                pl.when(sex_mask)
+                .then(
+                    pl.col(f"{bacteria}_prevalence_lower")
+                    * (1 - coinfection_rate_upper)
+                )
+                .otherwise(pl.col(f"{bacteria}_prevalence_lower"))
+                .alias(f"{bacteria}_prevalence_lower"),
+                # Upper bound (note: uses lower coinfection rate)
+                pl.when(sex_mask)
+                .then(
+                    pl.col(f"{bacteria}_prevalence_upper")
+                    * (1 - coinfection_rate_lower)
+                )
+                .otherwise(pl.col(f"{bacteria}_prevalence_upper"))
+                .alias(f"{bacteria}_prevalence_upper"),
+            ]
+        )
 
 # calculate the prevalence of STIs in people without HIV
 # we have P(STI) and RR(STI|HIV) associative, so we can calculate P(STI|HIV)
