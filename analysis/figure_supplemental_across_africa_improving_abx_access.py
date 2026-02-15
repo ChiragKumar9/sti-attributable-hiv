@@ -43,34 +43,35 @@ def setup_plot(nrows, ncols):
     return fig, ax
 
 
-def plot_averted_hiv(
-    hiv, ax, scenario_name, year, fig, location, legend=False, forward=False
-):
+def plot_best_case(hiv, ax, year, label, fig, legend=False, forward=False):
     if forward:
         scalar = -1.0
+        # this may change based on how the future sims are set up?
+        stub = "upper_bound"
     else:
         scalar = 1.0
+        stub = "upper_bound"
 
     hiv = (
         hiv.group_by(["year"])
         .agg(
-            pl.sum(f"hiv_averted_{scenario_name}"),
-            pl.sum(f"hiv_averted_{scenario_name}_lower"),
-            pl.sum(f"hiv_averted_{scenario_name}_upper"),
-            pl.sum(f"direct_hiv_averted_{scenario_name}"),
-            pl.sum(f"direct_hiv_averted_{scenario_name}_lower"),
-            pl.sum(f"direct_hiv_averted_{scenario_name}_upper"),
+            pl.sum(f"hiv_averted_{stub}"),
+            pl.sum(f"hiv_averted_{stub}_lower"),
+            pl.sum(f"hiv_averted_{stub}_upper"),
+            pl.sum(f"direct_hiv_averted_{stub}"),
+            pl.sum(f"direct_hiv_averted_{stub}_lower"),
+            pl.sum(f"direct_hiv_averted_{stub}_upper"),
             pl.sum("hiv_incidence_number"),
             pl.sum("hiv_incidence_number_upper"),
             pl.sum("hiv_incidence_number_lower"),
         )
         .with_columns(
-            direct=pl.col(f"direct_hiv_averted_{scenario_name}"),
-            direct_lower=pl.col(f"direct_hiv_averted_{scenario_name}_lower"),
-            direct_upper=pl.col(f"direct_hiv_averted_{scenario_name}_upper"),
-            total=pl.col(f"hiv_averted_{scenario_name}"),
-            total_lower=pl.col(f"hiv_averted_{scenario_name}_lower"),
-            total_upper=pl.col(f"hiv_averted_{scenario_name}_upper"),
+            direct=pl.col(f"direct_hiv_averted_{stub}"),
+            direct_lower=pl.col(f"direct_hiv_averted_{stub}_lower"),
+            direct_upper=pl.col(f"direct_hiv_averted_{stub}_upper"),
+            total=pl.col(f"hiv_averted_{stub}"),
+            total_lower=pl.col(f"hiv_averted_{stub}_lower"),
+            total_upper=pl.col(f"hiv_averted_{stub}_upper"),
             reference=pl.col("hiv_incidence_number"),
             reference_lower=pl.col("hiv_incidence_number_lower"),
             reference_upper=pl.col("hiv_incidence_number_upper"),
@@ -78,49 +79,50 @@ def plot_averted_hiv(
     )
     if forward:
         hiv = hiv.with_columns(
-            direct=pl.col("reference") + pl.lit(scalar) * pl.col("direct"),
-            direct_lower=pl.col("reference_lower")
-            + pl.lit(scalar) * pl.col("direct_upper"),
-            direct_upper=pl.col("reference_upper")
-            + pl.lit(scalar) * pl.col("direct_lower"),
-            total=pl.col("reference") + pl.lit(scalar) * pl.col("total"),
-            total_lower=pl.col("reference_lower")
-            + pl.lit(scalar) * pl.col("total_upper"),
-            total_upper=pl.col("reference_upper")
-            + pl.lit(scalar) * pl.col("total_lower"),
+            direct=pl.col("reference") + (pl.lit(scalar) * pl.col("direct")),
+            direct_lower=pl.col("reference_upper")
+            + (pl.lit(scalar) * pl.col("direct_lower")),
+            direct_upper=pl.col("reference_lower")
+            + (pl.lit(scalar) * pl.col("direct_upper")),
+            total=pl.col("reference") + (pl.lit(scalar) * pl.col("total")),
+            total_lower=pl.col("reference_upper")
+            + (pl.lit(scalar) * pl.col("total_lower")),
+            total_upper=pl.col("reference_lower")
+            + (pl.lit(scalar) * pl.col("total_upper")),
         )
     else:
         hiv = hiv.with_columns(
-            direct=pl.col("reference") + pl.lit(scalar) * pl.col("direct"),
+            direct=pl.col("reference") + (pl.lit(scalar) * pl.col("direct")),
             direct_lower=pl.col("reference_lower")
-            + pl.lit(scalar) * pl.col("direct_lower"),
+            + (pl.lit(scalar) * pl.col("direct_lower")),
             direct_upper=pl.col("reference_upper")
-            + pl.lit(scalar) * pl.col("direct_upper"),
-            total=pl.col("reference") + pl.lit(scalar) * pl.col("total"),
+            + (pl.lit(scalar) * pl.col("direct_upper")),
+            total=pl.col("reference") + (pl.lit(scalar) * pl.col("total")),
             total_lower=pl.col("reference_lower")
-            + pl.lit(scalar) * pl.col("total_lower"),
+            + (pl.lit(scalar) * pl.col("total_lower")),
             total_upper=pl.col("reference_upper")
-            + pl.lit(scalar) * pl.col("total_upper"),
+            + (pl.lit(scalar) * pl.col("total_upper")),
         )
+
+    # if forward, we need to plot the blue sdg target
+    # to do this, we need to get the value in 2010
+    if forward:
+        reference_2010 = hiv.filter(pl.col("year") == 2010)["reference"][0]
 
     hiv = hiv.filter(pl.col("year") >= year)
 
     hiv = hiv.sort(by="year")
-
-    ax.plot(
-        hiv["year"],
-        hiv["reference"],
-        linewidth=3,
-        label="Current",
-        color="black",
-    )
-
-    ax.fill_between(
-        hiv["year"],
-        hiv["reference_lower"],
-        hiv["reference_upper"],
-        alpha=0.3,
-        color="black",
+    print(
+        hiv.filter(pl.col("year") == pl.max("year")).select(
+            [
+                "total",
+                "total_lower",
+                "total_upper",
+                "reference",
+                "reference_lower",
+                "reference_upper",
+            ]
+        )
     )
 
     ax.plot(
@@ -151,27 +153,50 @@ def plot_averted_hiv(
         color="brown",
     )
 
+    ax.plot(
+        hiv["year"],
+        hiv["reference"],
+        linewidth=3,
+        label="Current",
+        color="black",
+    )
+
+    ax.fill_between(
+        hiv["year"],
+        hiv["reference_lower"],
+        hiv["reference_upper"],
+        alpha=0.3,
+        color="black",
+    )
+
+    if forward:
+        ax.axhline(
+            0.1 * reference_2010,  # type: ignore
+            linestyle="--",
+            color="#009CDE",
+            label="SDG target",
+        )
+        ax.set_xticks([2025, 2030])
+    else:
+        ax.set_xticks([2005, 2010, 2015, 2020])
+
     ax.set_xlabel("Year")
-    ax.set_ylabel(f"HIV incidence in\n{location} (N)")
+    ax.set_ylabel(f"HIV incidence in\n{label} (N)")
     if legend:
         ax.legend()
+    ax.set_ylim(0)
     ax.yaxis.set_major_formatter(
         ticker.FuncFormatter(lambda x, _: f"{int(x):,}")
     )
-    ax.set_ylim(0)
-    # minor x axis ticks every year
-    ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
 
 
 if __name__ == "__main__":
-    for forward in [False, True]:
+    for forward in [True, False]:
         if forward:
-            # we will change this in the future
-            year = 2017
-            sim = "2016_gc_change"
+            # TODO: we will change this in the future
+            year = 2006
         else:
-            year = 2017
-            sim = "2016_gc_change"
+            year = 2006
 
         fig, ax = setup_plot(2, 2)  # type: ignore
 
@@ -189,13 +214,12 @@ if __name__ == "__main__":
             va="top",
             ha="right",
         )
-        plot_averted_hiv(
+        plot_best_case(
             hiv.filter(pl.col("region") == "Western"),
             ax[0, 0],  # type: ignore
-            sim,
             year,
-            fig,
             "Western Africa",
+            fig,
             legend=True,
             forward=forward,
         )
@@ -210,13 +234,12 @@ if __name__ == "__main__":
             va="top",
             ha="right",
         )
-        plot_averted_hiv(
+        plot_best_case(
             hiv.filter(pl.col("region") == "Eastern"),
             ax[0, 1],  # type: ignore
-            sim,
             year,
-            fig,
             "Eastern Africa",
+            fig,
             forward=forward,
         )
 
@@ -230,13 +253,12 @@ if __name__ == "__main__":
             va="top",
             ha="right",
         )
-        plot_averted_hiv(
+        plot_best_case(
             hiv.filter(pl.col("region") == "Central"),
             ax[1, 0],  # type: ignore
-            sim,
             year,
-            fig,
             "Central Africa",
+            fig,
             forward=forward,
         )
 
@@ -250,28 +272,27 @@ if __name__ == "__main__":
             va="top",
             ha="right",
         )
-        plot_averted_hiv(
+        plot_best_case(
             hiv.filter(pl.col("region") == "Southern"),
             ax[1, 1],  # type: ignore
-            sim,
             year,
-            fig,
             "Southern Africa",
+            fig,
             forward=forward,
         )
 
         fig.tight_layout()
 
+        # save
         if forward:
             stub = "future"
         else:
             stub = "historical"
 
-        # save
         fig.savefig(
             os.path.join(
                 fig_dir,
-                f"figure_supplemental_across_africa_appropriate_gc_abx_avertible_hiv_{stub}.png",
+                f"figure_supplemental_across_africa_hiv_averted_abx_access_{stub}.png",
             ),
             dpi=300,
             bbox_inches="tight",
@@ -279,7 +300,7 @@ if __name__ == "__main__":
         fig.savefig(
             os.path.join(
                 fig_dir,
-                f"figure_supplemental_across_africa_appropriate_gc_abx_avertible_hiv_{stub}.pdf",
+                f"figure_supplemental_across_africa_hiv_averted_abx_access_{stub}.pdf",
             ),
             dpi=300,
             bbox_inches="tight",

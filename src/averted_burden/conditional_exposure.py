@@ -1,4 +1,4 @@
-def p_a_given_b(p_a, p_b, rr_a_b):
+def p_a_given_b(p_a, p_b, rr_a_b, allow_invalid=False):
     # recall that the RR = P(A|B) / P(A|~B)
     # We also know that P(A) = P(A|B)P(B) + P(A|~B)P(~B)
     # We can substitute for P(A|~B) in terms of RR and P(A|B):
@@ -6,4 +6,34 @@ def p_a_given_b(p_a, p_b, rr_a_b):
     # P(A) = P(A|B) * [P(B) + (1 - P(B)) / RR]
     # Rearranging to solve for P(A|B):
     # P(A|B) = P(A) / [P(B) + (1 - P(B)) / RR]
-    return p_a / (p_b + (1 - p_b) / rr_a_b)
+    p_a_given_b = p_a / (p_b + (1 - p_b) / rr_a_b)
+    if not allow_invalid:
+        assert 0 <= p_a_given_b <= 1, (
+            f"Calculated P(A|B) = {p_a_given_b} is not a valid probability"
+        )
+    return p_a_given_b
+
+
+def p_a_given_not_b(p_a, p_b, rr_a_b):
+    """
+    Calculate P(A|~B) given P(A), P(B), and RR = P(A|B)/P(A|~B)
+
+    Parameters:
+    -----------
+    p_a : float
+        Overall probability of A
+    p_b : float
+        Probability of B
+    rr_a_b : float
+        Relative risk = P(A|B) / P(A|~B)
+
+    Returns:
+    --------
+    float
+        P(A|~B) - probability of A given NOT B
+    """
+    # First get P(A|B)
+    p = p_a_given_b(p_a, p_b, rr_a_b)
+    # Then use RR definition: RR = P(A|B) / P(A|~B)
+    # So: P(A|~B) = P(A|B) / RR
+    return p / rr_a_b
