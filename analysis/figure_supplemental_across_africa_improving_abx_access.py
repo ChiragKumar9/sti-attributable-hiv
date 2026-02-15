@@ -80,15 +80,15 @@ def plot_best_case(hiv, ax, year, label, fig, legend=False, forward=False):
     if forward:
         hiv = hiv.with_columns(
             direct=pl.col("reference") + (pl.lit(scalar) * pl.col("direct")),
-            direct_lower=pl.col("reference_upper")
-            + (pl.lit(scalar) * pl.col("direct_lower")),
-            direct_upper=pl.col("reference_lower")
+            direct_lower=pl.col("reference_lower")
             + (pl.lit(scalar) * pl.col("direct_upper")),
+            direct_upper=pl.col("reference_upper")
+            + (pl.lit(scalar) * pl.col("direct_lower")),
             total=pl.col("reference") + (pl.lit(scalar) * pl.col("total")),
-            total_lower=pl.col("reference_upper")
-            + (pl.lit(scalar) * pl.col("total_lower")),
-            total_upper=pl.col("reference_lower")
+            total_lower=pl.col("reference_lower")
             + (pl.lit(scalar) * pl.col("total_upper")),
+            total_upper=pl.col("reference_upper")
+            + (pl.lit(scalar) * pl.col("total_lower")),
         )
     else:
         hiv = hiv.with_columns(
