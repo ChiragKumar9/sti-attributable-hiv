@@ -1,8 +1,35 @@
-male_sti_treatment: 0.8
-female_sti_treatment: 0.2
-upper_bound_sdg:
-  gc: 0.5
-  chlamydia: 0.5
-  syphilis: 0.5
-  trichomoniasis: 0.5
+# fraction of cases that are assumed to be among msm
 msm_fraction: 0.15
+# fraction of cases that present with symptoms
+sti_symptoms:
+  gc:
+    male: 0.8
+    female: 0.2
+  chlamydia:
+    male: 0.4
+    female: 0.4
+  syphilis:
+    male: 0.4
+    female: 0.4
+  trichomoniasis:
+    # doesn't matter since no male hiv cases are attributable to trichomoniasis
+    male: 0.4
+    female: 0.4
+# fraction of symptomatic cases that are treated
+# we allow the numbers to vary both by STI and sex because presumably
+# some STIs lead to worse symptoms and thus higher treatment rates, and also
+# because there may be differences in care-seeking behavior by sex
+sti_treatment:
+  gc:
+    male: 0.8
+    female: 0.8
+  chlamydia:
+    male: 0.8
+    female: 0.8
+  syphilis:
+    male: 0.8
+    female: 0.8
+  trichomoniasis:
+    # doesn't matter
+    male: 0.8
+    female: 0.8
