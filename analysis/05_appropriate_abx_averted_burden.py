@@ -59,13 +59,9 @@ def calculate_indirect_averted_cases(
     # calculate how the prevalent infections generated new infections
     # first we need to calculate the adjusted prevalence accounting for incidence
     df = df.with_columns(
-        # we ADD this time because we want the full number of infections in the year
-        hiv_prevalence=pl.col("hiv_prevalence_number")
-        + 0.5 * pl.col("hiv_incidence_number"),
-        hiv_prevalence_lower=pl.col("hiv_prevalence_number_lower")
-        + 0.5 * pl.col("hiv_incidence_number_lower"),
-        hiv_prevalence_upper=pl.col("hiv_prevalence_number_upper")
-        + 0.5 * pl.col("hiv_incidence_number_upper"),
+        hiv_prevalence=pl.col("hiv_prevalence_year_end_number"),
+        hiv_prevalence_lower=pl.col("hiv_prevalence_year_end_number_lower"),
+        hiv_prevalence_upper=pl.col("hiv_prevalence_year_end_number_upper"),
     )
     # we want to make this df pivot wider by sex
     df = df.pivot(
@@ -80,9 +76,9 @@ def calculate_indirect_averted_cases(
             "hiv_incidence_number",
             "hiv_incidence_number_lower",
             "hiv_incidence_number_upper",
-            "hiv_prevalence_number",
-            "hiv_prevalence_number_lower",
-            "hiv_prevalence_number_upper",
+            "hiv_prevalence_year_end_number",
+            "hiv_prevalence_year_end_number_lower",
+            "hiv_prevalence_year_end_number_upper",
             "treatment_proportion",
             "treatment_proportion_lower",
             "treatment_proportion_upper",
@@ -92,63 +88,63 @@ def calculate_indirect_averted_cases(
     df = df.sort(by="year")
     # now assess how many incident infections each prevalent infection generated
     # in the next year
-    # assume heterosexual transmission
+
     df = df.with_columns(
         transmission_rate_M_F=pl.col("hiv_incidence_number_Female").shift(-1)
         / (
-            pl.col("hiv_prevalence_number_Male")
+            pl.col("hiv_prevalence_year_end_number_Male")
             * (1 - pl.col("treatment_proportion_Male"))
         ),
         transmission_rate_lower_M_F=pl.col(
             "hiv_incidence_number_lower_Female"
         ).shift(-1)
         / (
-            pl.col("hiv_prevalence_number_lower_Male")
+            pl.col("hiv_prevalence_year_end_number_lower_Male")
             * (1 - pl.col("treatment_proportion_upper_Male"))
         ),
         transmission_rate_upper_M_F=pl.col(
             "hiv_incidence_number_upper_Female"
         ).shift(-1)
         / (
-            pl.col("hiv_prevalence_number_upper_Male")
+            pl.col("hiv_prevalence_year_end_number_upper_Male")
             * (1 - pl.col("treatment_proportion_lower_Male"))
         ),
         transmission_rate_F_M=pl.col("hiv_incidence_number_Male").shift(-1)
         / (
-            pl.col("hiv_prevalence_number_Female")
+            pl.col("hiv_prevalence_year_end_number_Female")
             * (1 - pl.col("treatment_proportion_Female"))
         ),
         transmission_rate_lower_F_M=pl.col(
             "hiv_incidence_number_lower_Male"
         ).shift(-1)
         / (
-            pl.col("hiv_prevalence_number_lower_Female")
+            pl.col("hiv_prevalence_year_end_number_lower_Female")
             * (1 - pl.col("treatment_proportion_upper_Female"))
         ),
         transmission_rate_upper_F_M=pl.col(
             "hiv_incidence_number_upper_Male"
         ).shift(-1)
         / (
-            pl.col("hiv_prevalence_number_upper_Female")
+            pl.col("hiv_prevalence_year_end_number_upper_Female")
             * (1 - pl.col("treatment_proportion_lower_Female"))
         ),
         transmission_rate_MSM=pl.col("hiv_incidence_number_MSM").shift(-1)
         / (
-            pl.col("hiv_prevalence_number_MSM")
+            pl.col("hiv_prevalence_year_end_number_MSM")
             * (1 - pl.col("treatment_proportion_MSM"))
         ),
         transmission_rate_lower_MSM=pl.col(
             "hiv_incidence_number_lower_MSM"
         ).shift(-1)
         / (
-            pl.col("hiv_prevalence_number_lower_MSM")
+            pl.col("hiv_prevalence_year_end_number_lower_MSM")
             * (1 - pl.col("treatment_proportion_upper_MSM"))
         ),
         transmission_rate_upper_MSM=pl.col(
             "hiv_incidence_number_upper_MSM"
         ).shift(-1)
         / (
-            pl.col("hiv_prevalence_number_upper_MSM")
+            pl.col("hiv_prevalence_year_end_number_upper_MSM")
             * (1 - pl.col("treatment_proportion_lower_MSM"))
         ),
     )
@@ -160,12 +156,18 @@ def calculate_indirect_averted_cases(
     indirect_female = np.array([])
     indirect_lower_female = np.array([])
     indirect_upper_female = np.array([])
+    indirect_msm = np.array([])
+    indirect_lower_msm = np.array([])
+    indirect_upper_msm = np.array([])
     cumulative_male = np.zeros(df.height)
     cumulative_lower_male = np.zeros(df.height)
     cumulative_upper_male = np.zeros(df.height)
     cumulative_female = np.zeros(df.height)
     cumulative_lower_female = np.zeros(df.height)
     cumulative_upper_female = np.zeros(df.height)
+    cumulative_msm = np.zeros(df.height)
+    cumulative_lower_msm = np.zeros(df.height)
+    cumulative_upper_msm = np.zeros(df.height)
     # before propagating, clean up the data for hiv-to-aids progression
     # data from Survival rate of AIDS disease and mortality in HIV-infected patients: a meta-analysis
     # Poorolajal et al., 2016
@@ -229,18 +231,19 @@ def calculate_indirect_averted_cases(
         cumulative_female *= hiv_to_aids_temp
         cumulative_lower_female *= hiv_to_aids_lower_temp
         cumulative_upper_female *= hiv_to_aids_upper_temp
+        cumulative_msm *= hiv_to_aids_temp
+        cumulative_lower_msm *= hiv_to_aids_lower_temp
+        cumulative_upper_msm *= hiv_to_aids_upper_temp
 
         # of the directly averted cases, we only want to consider those not treated
-        transmitting_direct_male = (
-            row["direct_hiv_averted_Male"] + row["direct_hiv_averted_MSM"]
-        ) * (1 - row["treatment_proportion_Male"])
+        transmitting_direct_male = (row["direct_hiv_averted_Male"]) * (
+            1 - row["treatment_proportion_Male"]
+        )
         transmitting_direct_lower_male = (
             row["direct_hiv_averted_lower_Male"]
-            + row["direct_hiv_averted_lower_MSM"]
         ) * (1 - row["treatment_proportion_upper_Male"])
         transmitting_direct_upper_male = (
             row["direct_hiv_averted_upper_Male"]
-            + row["direct_hiv_averted_upper_MSM"]
         ) * (1 - row["treatment_proportion_lower_Male"])
         transmitting_direct_female = row["direct_hiv_averted_Female"] * (
             1 - row["treatment_proportion_Female"]
@@ -251,6 +254,15 @@ def calculate_indirect_averted_cases(
         transmitting_direct_upper_female = row[
             "direct_hiv_averted_upper_Female"
         ] * (1 - row["treatment_proportion_lower_Female"])
+        transmitting_direct_msm = row["direct_hiv_averted_MSM"] * (
+            1 - row["treatment_proportion_Male"]
+        )
+        transmitting_direct_lower_msm = row["direct_hiv_averted_lower_MSM"] * (
+            1 - row["treatment_proportion_upper_Male"]
+        )
+        transmitting_direct_upper_msm = row["direct_hiv_averted_upper_MSM"] * (
+            1 - row["treatment_proportion_lower_Male"]
+        )
 
         cumulative_male[idx] += transmitting_direct_male
         cumulative_lower_male[idx] += transmitting_direct_lower_male
@@ -258,6 +270,9 @@ def calculate_indirect_averted_cases(
         cumulative_female[idx] += transmitting_direct_female
         cumulative_lower_female[idx] += transmitting_direct_lower_female
         cumulative_upper_female[idx] += transmitting_direct_upper_female
+        cumulative_msm[idx] += transmitting_direct_msm
+        cumulative_lower_msm[idx] += transmitting_direct_lower_msm
+        cumulative_upper_msm[idx] += transmitting_direct_upper_msm
         # how many infections do these people generate
         cumulative_male[idx + 1] += np.sum(
             cumulative_female
@@ -265,6 +280,7 @@ def calculate_indirect_averted_cases(
             row["transmission_rate_F_M"],
             row[f"paf_{sti}_hiv_Female"],
             sti_hiv_transmission_increase_female,
+            allow_invalid=True,
         )
         cumulative_lower_male[idx + 1] += np.sum(
             cumulative_lower_female
@@ -272,6 +288,7 @@ def calculate_indirect_averted_cases(
             row["transmission_rate_lower_F_M"],
             row[f"paf_{sti}_hiv_lower_Female"],
             sti_hiv_transmission_increase_lower_female,
+            allow_invalid=True,
         )
         cumulative_upper_male[idx + 1] += np.sum(
             cumulative_upper_female
@@ -279,59 +296,57 @@ def calculate_indirect_averted_cases(
             row["transmission_rate_upper_F_M"],
             row[f"paf_{sti}_hiv_upper_Female"],
             sti_hiv_transmission_increase_upper_female,
+            allow_invalid=True,
         )
-        cumulative_male[idx + 1] += (
-            params["msm_fraction"]
-            * np.sum(cumulative_male)
-            * conditional_exposure.p_a_given_b(
-                row["transmission_rate_MSM"],
-                row[f"paf_{sti}_hiv_MSM"],
-                sti_hiv_transmission_increase_male,
-            )
+        cumulative_msm[idx + 1] += np.sum(
+            cumulative_msm
+        ) * conditional_exposure.p_a_given_b(
+            row["transmission_rate_MSM"],
+            row[f"paf_{sti}_hiv_MSM"],
+            sti_hiv_transmission_increase_male,
+            allow_invalid=True,
         )
-        cumulative_lower_male[idx + 1] += (
-            params["msm_fraction"]
-            * np.sum(cumulative_lower_male)
-            * conditional_exposure.p_a_given_b(
-                row["transmission_rate_lower_MSM"],
-                row[f"paf_{sti}_hiv_lower_MSM"],
-                sti_hiv_transmission_increase_lower_male,
-            )
+        cumulative_lower_msm[idx + 1] += np.sum(
+            cumulative_lower_msm
+        ) * conditional_exposure.p_a_given_b(
+            row["transmission_rate_lower_MSM"],
+            row[f"paf_{sti}_hiv_lower_MSM"],
+            sti_hiv_transmission_increase_lower_male,
+            allow_invalid=True,
         )
-        cumulative_upper_male[idx + 1] += (
-            params["msm_fraction"]
-            * np.sum(cumulative_upper_male)
-            * conditional_exposure.p_a_given_b(
-                row["transmission_rate_upper_MSM"],
-                row[f"paf_{sti}_hiv_upper_MSM"],
-                sti_hiv_transmission_increase_upper_male,
-            )
+        cumulative_upper_msm[idx + 1] += np.sum(
+            cumulative_upper_msm
+        ) * conditional_exposure.p_a_given_b(
+            row["transmission_rate_upper_MSM"],
+            row[f"paf_{sti}_hiv_upper_MSM"],
+            sti_hiv_transmission_increase_upper_male,
+            allow_invalid=True,
         )
-        cumulative_female[idx + 1] += (
-            (1 - params["msm_fraction"])
-            * np.sum(cumulative_male)
+        cumulative_female[idx + 1] += np.sum(
+            cumulative_male
             * conditional_exposure.p_a_given_b(
                 row["transmission_rate_M_F"],
                 row[f"paf_{sti}_hiv_Male"],
                 sti_hiv_transmission_increase_male,
+                allow_invalid=True,
             )
         )
-        cumulative_lower_female[idx + 1] += (
-            (1 - params["msm_fraction"])
-            * np.sum(cumulative_lower_male)
+        cumulative_lower_female[idx + 1] += np.sum(
+            cumulative_lower_male
             * conditional_exposure.p_a_given_b(
                 row["transmission_rate_lower_M_F"],
                 row[f"paf_{sti}_hiv_lower_Male"],
                 sti_hiv_transmission_increase_lower_male,
+                allow_invalid=True,
             )
         )
-        cumulative_upper_female[idx + 1] += (
-            (1 - params["msm_fraction"])
-            * np.sum(cumulative_upper_male)
+        cumulative_upper_female[idx + 1] += np.sum(
+            cumulative_upper_male
             * conditional_exposure.p_a_given_b(
                 row["transmission_rate_upper_M_F"],
                 row[f"paf_{sti}_hiv_upper_Male"],
                 sti_hiv_transmission_increase_upper_male,
+                allow_invalid=True,
             )
         )
         # we also want to store these values in the indirects array
@@ -351,17 +366,27 @@ def calculate_indirect_averted_cases(
         indirect_upper_female = np.append(
             indirect_upper_female, cumulative_upper_female[idx + 1]
         )
+        indirect_msm = np.append(indirect_msm, cumulative_msm[idx + 1])
+        indirect_lower_msm = np.append(
+            indirect_lower_msm, cumulative_lower_msm[idx + 1]
+        )
+        indirect_upper_msm = np.append(
+            indirect_upper_msm, cumulative_upper_msm[idx + 1]
+        )
 
     # assemble a dataframe to return
     indirects = pl.DataFrame(
         {
-            "year": df["year"][:-1],
+            "year": df["year"][1:],
             "indirect_hiv_averted_Male": indirect_male,
             "indirect_hiv_averted_lower_Male": indirect_lower_male,
             "indirect_hiv_averted_upper_Male": indirect_upper_male,
             "indirect_hiv_averted_Female": indirect_female,
             "indirect_hiv_averted_lower_Female": indirect_lower_female,
             "indirect_hiv_averted_upper_Female": indirect_upper_female,
+            "indirect_hiv_averted_MSM": indirect_msm,
+            "indirect_hiv_averted_lower_MSM": indirect_lower_msm,
+            "indirect_hiv_averted_upper_MSM": indirect_upper_msm,
         }
     )
     # pivot back to long format
@@ -369,7 +394,9 @@ def calculate_indirect_averted_cases(
         indirects.unpivot(index="year")
         .with_columns(
             sex=pl.col("variable").str.split("_").list.get(-1),
-            variable=pl.col("variable").str.replace(r"_(Male|Female)$", ""),
+            variable=pl.col("variable").str.replace(
+                r"_(Male|Female|MSM)$", ""
+            ),
         )
         .pivot(
             index=["year", "sex"],
@@ -383,37 +410,132 @@ def calculate_indirect_averted_cases(
 
 # run the analyses with different set ups of direct averted infections
 
-# calculate direct averted cases by the policy switch from cipro to azithro
-hiv = hiv.with_columns(
-    gc_treatment_rate=pl.when(pl.col("sex") == "Male")
-    .then(pl.lit(params["male_sti_treatment"]))
-    .otherwise(pl.lit(params["female_sti_treatment"]))
-)
+# calculate direct averted cases by the WHO treatment guideline switch from
+# cipro to azithro
+# What we need to do is calculate the direct HIV cases that there would have
+# been had there not been a policy change
+# What we observe is the HIV cases attributable to GC
+# We know that the cases we observe are either cases that did not seek
+# treatment, or if they did seek treatment, the treatment failed.
+# Observed HIV attributable to GC = (1-t) * HIV cases + t * (1 - e) * HIV cases
+# where t is the treatment seeking rate and e is the effectiveness of the treatment
+# This lets us write that the total burden of HIV attributable to GC is
+# observed / ((1-t) + t * (1-e))
+# we know t (params.yml -- there's a foundation for these numbers in terms of
+# fraction of people that have symptoms and then assuming some fraction of
+# people with symptoms get treated)
+
+sti_symptom_params = params["sti_symptoms"]
+sti_treatment_params = params["sti_treatment"]
+gc_symptom_params = sti_symptom_params["gc"]
+gc_treatment_params = sti_treatment_params["gc"]
 
 hiv = hiv.with_columns(
-    direct_hiv_averted_2016_gc_change=pl.col(
-        "hiv_incidence_number_attributable_to_gc"
-    )
-    * pl.col("gc_treatment_rate"),
-    direct_hiv_averted_2016_gc_change_lower=pl.col(
-        "hiv_incidence_number_attributable_to_gc_lower"
-    )
-    * pl.col("gc_treatment_rate"),
-    direct_hiv_averted_2016_gc_change_upper=pl.col(
-        "hiv_incidence_number_attributable_to_gc_upper"
-    )
-    * pl.col("gc_treatment_rate"),
+    gc_treatment_rate=pl.when(pl.col("sex") == "Female")
+    .then(pl.lit(gc_symptom_params["female"] * gc_treatment_params["female"]))
+    .otherwise(pl.lit(gc_symptom_params["male"] * gc_treatment_params["male"]))
 )
 
-# for our upper bound scenario, multiply by some assumed fraction of STI cases averted
+# e is a bit harder. We know the resistance rates, but we don't know the overlap
+# between the resistance rates
+# we can make an upper bound estimate by being the minimum of the resistances
+# this assumes that all people who are resistant to the abx with the least
+# resistance would have been resistant to all abxs that came before that
+hiv = hiv.with_columns(
+    gc_treatment_failure=pl.min_horizontal(
+        ["Azithromycin", "Cefixime", "Ceftriaxone"]
+    ),
+    gc_treatment_failure_lower=pl.min_horizontal(
+        ["Azithromycin_lower", "Cefixime_lower", "Ceftriaxone_lower"]
+    ),
+    gc_treatment_failure_upper=pl.min_horizontal(
+        ["Azithromycin_upper", "Cefixime_upper", "Ceftriaxone_upper"]
+    ),
+)
+# assert that there are no nulls post 2016
+assert (
+    hiv.filter(
+        (pl.col("year") >= 2016) & (pl.col("gc_treatment_failure").is_null())
+    ).height
+    == 0
+)
+
+# recall our formula -- this allows us to estimate the total number of HIV
+# cases that would have been attributable to GC had there not been the treatment
+# change
+# unobserved = observed / ((1-t) + t * (1-e))
+# what we are counting as the direct averted cases is then this unobserved number
+# minus the observed number
+
+hiv = hiv.with_columns(
+    direct_hiv_averted_2016_gc_change=(
+        pl.col("hiv_incidence_number_attributable_to_gc")
+        / (
+            (1 - pl.col("gc_treatment_rate"))
+            + pl.col("gc_treatment_rate") * pl.col("gc_treatment_failure")
+        )
+    )
+    - pl.col("hiv_incidence_number_attributable_to_gc"),
+    # lower bound -- we can debate about the right way to do uncertainty propagation
+    # but for now I assume that we would have a higher treatment failure rate
+    # meaning that the observed and unobserved cases would be closer
+    direct_hiv_averted_2016_gc_change_lower=(
+        pl.col("hiv_incidence_number_attributable_to_gc_lower")
+        / (
+            (1 - pl.col("gc_treatment_rate"))
+            + pl.col("gc_treatment_rate")
+            * pl.col("gc_treatment_failure_upper")
+        )
+    )
+    - pl.col("hiv_incidence_number_attributable_to_gc_lower"),
+    # upper bound
+    direct_hiv_averted_2016_gc_change_upper=(
+        pl.col("hiv_incidence_number_attributable_to_gc_upper")
+        / (
+            (1 - pl.col("gc_treatment_rate"))
+            + pl.col("gc_treatment_rate")
+            * pl.col("gc_treatment_failure_lower")
+        )
+    )
+    - pl.col("hiv_incidence_number_attributable_to_gc_upper"),
+)
+
+# for our abx access scenario, we use a similar formulation, but we now apply it
+# to all STIs and we assume that treatment failure for the other STIs is zero?
+# recall that the formula is unobserved = observed / (1 - t) if treatment failure is 0
+
+# for our access (upper bound) scenario, calculate averted number because of
+# treatment
 STIs = ["gc", "chlamydia", "syphilis", "trichomoniasis"]
 
-# multiply by the fraction averted
+# First compute all treatment rates
+for sti in STIs:
+    hiv = hiv.with_columns(
+        pl.when(pl.col("sex") == "Female")
+        .then(
+            pl.lit(
+                sti_symptom_params[sti]["female"]
+                * sti_treatment_params[sti]["female"]
+            )
+        )
+        .otherwise(
+            pl.lit(
+                sti_symptom_params[sti]["male"]
+                * sti_treatment_params[sti]["male"]
+            )
+        )
+        .alias(f"{sti}_treatment_rate")
+    )
+
+# Then calculate upper bound averted cases
 hiv = hiv.with_columns(
     [
         (
-            pl.col(f"hiv_incidence_number_attributable_to_{sti}{estimate}")
-            * pl.lit(params["upper_bound_sdg"][sti])
+            (
+                pl.col(f"hiv_incidence_number_attributable_to_{sti}{estimate}")
+                / (1 - pl.col(f"{sti}_treatment_rate"))
+            )
+            - (pl.col(f"hiv_incidence_number_attributable_to_{sti}{estimate}"))
         ).alias(
             f"hiv_incidence_number_attributable_to_{sti}_upper_bound{estimate}"
         )
@@ -432,9 +554,9 @@ for location in tqdm(hiv["location"].unique()):
                 "sex",
                 "region",
                 "location",
-                "hiv_prevalence_number",
-                "hiv_prevalence_number_lower",
-                "hiv_prevalence_number_upper",
+                "hiv_prevalence_year_end_number",
+                "hiv_prevalence_year_end_number_lower",
+                "hiv_prevalence_year_end_number_upper",
                 "hiv_incidence_number",
                 "hiv_incidence_number_lower",
                 "hiv_incidence_number_upper",
@@ -459,7 +581,7 @@ for location in tqdm(hiv["location"].unique()):
         ]
     )
 
-    upper_bound = loc_df.filter(pl.col("year") >= 2010)
+    upper_bound = loc_df.filter(pl.col("year") >= 2005)
     upper_bound = upper_bound.drop(
         [
             "direct_hiv_averted_2016_gc_change",
@@ -478,9 +600,9 @@ for location in tqdm(hiv["location"].unique()):
                     "sex",
                     "region",
                     "location",
-                    "hiv_prevalence_number",
-                    "hiv_prevalence_number_lower",
-                    "hiv_prevalence_number_upper",
+                    "hiv_prevalence_year_end_number",
+                    "hiv_prevalence_year_end_number_lower",
+                    "hiv_prevalence_year_end_number_upper",
                     "hiv_incidence_number",
                     "hiv_incidence_number_lower",
                     "hiv_incidence_number_upper",
@@ -564,9 +686,9 @@ for location in tqdm(hiv["location"].unique()):
             "sex",
             "location",
             "region",
-            "hiv_prevalence_number",
-            "hiv_prevalence_number_lower",
-            "hiv_prevalence_number_upper",
+            "hiv_prevalence_year_end_number",
+            "hiv_prevalence_year_end_number_lower",
+            "hiv_prevalence_year_end_number_upper",
             "hiv_incidence_number",
             "hiv_incidence_number_lower",
             "hiv_incidence_number_upper",

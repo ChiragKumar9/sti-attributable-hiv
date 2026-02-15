@@ -1,6 +1,7 @@
 import os
 
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 import numpy as np
 import polars as pl
 import yaml
@@ -59,15 +60,9 @@ def plot_hiv_burden_by_sex(hiv, ax, fig):
             pl.sum("population_lower"),
         )
         .with_columns(
-            hiv_incidence_rate=pl.col("hiv_incidence_number")
-            / pl.col("population")
-            * 100000,
-            hiv_incidence_rate_upper=pl.col("hiv_incidence_number_upper")
-            / pl.col("population_upper")
-            * 100000,
-            hiv_incidence_rate_lower=pl.col("hiv_incidence_number_lower")
-            / pl.col("population_lower")
-            * 100000,
+            hiv_incidence_rate=pl.col("hiv_incidence_number"),
+            hiv_incidence_rate_upper=pl.col("hiv_incidence_number_upper"),
+            hiv_incidence_rate_lower=pl.col("hiv_incidence_number_lower"),
         )
     )
 
@@ -106,10 +101,17 @@ def plot_hiv_burden_by_sex(hiv, ax, fig):
     )
 
     ax.set_xlabel("Year")
-    ax.set_ylabel("HIV incidence per 100,000\nin sub-Saharan Africa")
-    ax.legend()
+    ax.set_ylabel("HIV incidence in\nsub-Saharan Africa (N)")
+    ax.legend(loc=(0.5, 0.73))
     ax.set_xticks([1990, 2000, 2010, 2020])
-    ax.set_ylim(0)
+    ax.set_yticks([0, 500000, 1000000, 1500000])
+    ax.yaxis.set_major_formatter(
+        ticker.FuncFormatter(lambda x, pos: f"{int(x):,}")
+    )
+    # y axis minor ticks every 100,000
+    ax.yaxis.set_minor_locator(ticker.MultipleLocator(100000))
+    # x axis ticks every 2 years
+    ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))
 
 
 def plot_hiv_burden_by_region(hiv, ax, fig):
@@ -124,15 +126,9 @@ def plot_hiv_burden_by_region(hiv, ax, fig):
             pl.sum("population_lower"),
         )
         .with_columns(
-            hiv_incidence_rate=pl.col("hiv_incidence_number")
-            / pl.col("population")
-            * 100000,
-            hiv_incidence_rate_upper=pl.col("hiv_incidence_number_upper")
-            / pl.col("population_upper")
-            * 100000,
-            hiv_incidence_rate_lower=pl.col("hiv_incidence_number_lower")
-            / pl.col("population_lower")
-            * 100000,
+            hiv_incidence_rate=pl.col("hiv_incidence_number"),
+            hiv_incidence_rate_upper=pl.col("hiv_incidence_number_upper"),
+            hiv_incidence_rate_lower=pl.col("hiv_incidence_number_lower"),
         )
     )
 
@@ -175,7 +171,7 @@ def plot_hiv_burden_by_region(hiv, ax, fig):
         hiv.filter(pl.col("region") == "Central")["hiv_incidence_rate"],
         linewidth=3,
         label="Central",
-        color="royalblue",
+        color="teal",
     )
 
     ax.fill_between(
@@ -183,7 +179,7 @@ def plot_hiv_burden_by_region(hiv, ax, fig):
         hiv.filter(pl.col("region") == "Central")["hiv_incidence_rate_lower"],
         hiv.filter(pl.col("region") == "Central")["hiv_incidence_rate_upper"],
         alpha=0.3,
-        color="royalblue",
+        color="teal",
     )
 
     ax.plot(
@@ -191,7 +187,7 @@ def plot_hiv_burden_by_region(hiv, ax, fig):
         hiv.filter(pl.col("region") == "Southern")["hiv_incidence_rate"],
         linewidth=3,
         label="Southern",
-        color="teal",
+        color="maroon",
     )
 
     ax.fill_between(
@@ -199,17 +195,22 @@ def plot_hiv_burden_by_region(hiv, ax, fig):
         hiv.filter(pl.col("region") == "Southern")["hiv_incidence_rate_lower"],
         hiv.filter(pl.col("region") == "Southern")["hiv_incidence_rate_upper"],
         alpha=0.3,
-        color="teal",
+        color="maroon",
     )
 
     ax.set_xlabel("Year")
-    ax.set_ylabel("HIV incidence per 100,000")
-    ax.set_ylim(10)
-    ax.legend(loc=(0, 0))
+    ax.set_ylabel("HIV incidence (N)")
+    ax.legend(loc=(0.5, 0.68))
     ax.set_xticks([1990, 2000, 2010, 2020])
-    ax.set_yscale("log")
-    ax.set_yticks([100, 1000])
-    ax.set_yticklabels(["100", "1,000"])
+    ax.set_yticks([0, 250000, 500000, 750000, 1000000])
+    ax.yaxis.set_major_formatter(
+        ticker.FuncFormatter(lambda x, pos: f"{int(x):,}")
+    )
+    ax.set_ylim(0)
+    # minor y ticks every 50,000
+    ax.yaxis.set_minor_locator(ticker.MultipleLocator(50000))
+    # x axis ticks every 2 years
+    ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))
 
 
 def plot_rr_estimates(aggregated_rrs, ax, fig):
@@ -220,38 +221,36 @@ def plot_rr_estimates(aggregated_rrs, ax, fig):
     )
 
     female_data = aggregated_rrs.filter(pl.col("sex") == "Heterosexual Women")
-    male_data = aggregated_rrs.filter(pl.col("sex") != "Heterosexual Women")
-    # for the male data, we have some estimates for MSM and some for heterosexual men
-    msm_data = male_data.filter(pl.col("sex") == "MSM")
-    heterosexual_male_data = male_data.filter(
+    heterosexual_male_data = aggregated_rrs.filter(
         pl.col("sex") == "Heterosexual Men"
     )
-    # join the two
-    male_data = heterosexual_male_data.join(
-        msm_data, on=["bacteria"], how="left", suffix="_msm"
+    msm_data = aggregated_rrs.filter(pl.col("sex") == "MSM")
+    # we have to get all the RRs in the same order
+    female_data = female_data.sort("bacteria")
+    heterosexual_male_data = heterosexual_male_data.sort("bacteria")
+    msm_data = msm_data.sort("bacteria")
+    # for heterosexual male and msm, filter out trichomoniasis since the RRs
+    # are inferred/1.0
+    heterosexual_male_data = heterosexual_male_data.filter(
+        pl.col("bacteria") != "Trichomoniasis"
     )
-    # take the weighted average of the two estimates for each bacteria, using the msm_fraction parameter
-    male_data = male_data.with_columns(
-        val=pl.col("val") * (1 - params["msm_fraction"])
-        + pl.col("val_msm") * params["msm_fraction"],
-        lower=pl.col("lower") * (1 - params["msm_fraction"])
-        + pl.col("lower_msm") * params["msm_fraction"],
-        upper=pl.col("upper") * (1 - params["msm_fraction"])
-        + pl.col("upper_msm") * params["msm_fraction"],
-    )
+    msm_data = msm_data.filter(pl.col("bacteria") != "Trichomoniasis")
 
-    xs = np.arange(0, male_data.shape[0])
+    male_xs = np.arange(0, heterosexual_male_data.shape[0])
+    female_xs = np.arange(0, female_data.shape[0])
 
-    offset = 0.1
+    offset = 0.2
     ax.errorbar(
-        xs - offset,
-        male_data["val"],
+        male_xs - offset,
+        heterosexual_male_data["val"],
         yerr=[
-            male_data["val"].to_numpy() - male_data["lower"].to_numpy(),
-            male_data["upper"].to_numpy() - male_data["val"].to_numpy(),
+            heterosexual_male_data["val"].to_numpy()
+            - heterosexual_male_data["lower"].to_numpy(),
+            heterosexual_male_data["upper"].to_numpy()
+            - heterosexual_male_data["val"].to_numpy(),
         ],
         fmt="o",
-        label="Male",
+        label="Heterosexual male",
         color="midnightblue",
         elinewidth=1,
         capsize=10,
@@ -259,32 +258,50 @@ def plot_rr_estimates(aggregated_rrs, ax, fig):
     )
 
     ax.errorbar(
-        xs + offset,
+        female_xs,
         female_data["val"],
         yerr=[
             female_data["val"].to_numpy() - female_data["lower"].to_numpy(),
             female_data["upper"].to_numpy() - female_data["val"].to_numpy(),
         ],
         fmt="o",
-        label="Female",
+        label="Heterosexual female",
         color="magenta",
         elinewidth=1,
         capsize=10,
         capthick=2,
     )
 
-    ax.legend(loc="upper right")
+    ax.errorbar(
+        male_xs + offset,
+        msm_data["val"],
+        yerr=[
+            msm_data["val"].to_numpy() - msm_data["lower"].to_numpy(),
+            msm_data["upper"].to_numpy() - msm_data["val"].to_numpy(),
+        ],
+        fmt="o",
+        label="MSM",
+        color="slategrey",
+        elinewidth=1,
+        capsize=10,
+        capthick=2,
+    )
+
+    ax.set_ylim(0.1)
+    ax.legend(loc=(0.35, 0))
     ax.set_xlabel("STI")
     ax.set_xticks(
-        xs,
-        aggregated_rrs["bacteria"].unique(maintain_order=True),
+        female_xs,
+        female_data["bacteria"].unique(maintain_order=True),
         rotation=-45,
         ha="left",
     )
 
-    ax.set_yticks([1, 3, 5, 7, 9, 11])
+    ax.set_yscale("log")
+    ax.set_yticks([1, 10])
+    ax.set_yticklabels(["1", "10"])
     ax.axhline(1, color="grey", linestyle="--")
-
+    ax.set_xlabel("STI")
     ax.set_ylabel("Causal RR(HIV acquisition | STI infection)")
 
 
@@ -378,6 +395,8 @@ def plot_drug_resistance(estimated_resistance_rates, ax, fig):
     ax.legend()
     ax.set_xticks([2010, 2015, 2020])
     ax.set_ylim(0)
+    # y axis ticks every 10%
+    ax.yaxis.set_minor_locator(ticker.MultipleLocator(10))
 
 
 if __name__ == "__main__":
@@ -454,5 +473,3 @@ if __name__ == "__main__":
         dpi=300,
         bbox_inches="tight",
     )
-
-    plt.show()
