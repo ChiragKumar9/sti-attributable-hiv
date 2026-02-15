@@ -1,6 +1,7 @@
 import os
 
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 import polars as pl
 from matplotlib import rc
 
@@ -49,20 +50,11 @@ def plot_hiv_burden(hiv, ax, label, fig, legend=False):
             pl.sum("hiv_incidence_number"),
             pl.sum("hiv_incidence_number_upper"),
             pl.sum("hiv_incidence_number_lower"),
-            pl.sum("population"),
-            pl.sum("population_lower"),
-            pl.sum("population_upper"),
         )
         .with_columns(
-            hiv_incidence_rate=pl.col("hiv_incidence_number")
-            / pl.col("population")
-            * 100000,
-            hiv_incidence_rate_upper=pl.col("hiv_incidence_number_upper")
-            / pl.col("population_upper")
-            * 100000,
-            hiv_incidence_rate_lower=pl.col("hiv_incidence_number_lower")
-            / pl.col("population_lower")
-            * 100000,
+            hiv_incidence_rate=pl.col("hiv_incidence_number"),
+            hiv_incidence_rate_upper=pl.col("hiv_incidence_number_upper"),
+            hiv_incidence_rate_lower=pl.col("hiv_incidence_number_lower"),
         )
     )
 
@@ -101,10 +93,11 @@ def plot_hiv_burden(hiv, ax, label, fig, legend=False):
     )
 
     ax.set_xlabel("Year")
-    ax.set_ylabel(f"HIV incidence per 100,000\nin {label} Africa")
+    ax.set_ylabel(f"HIV incidence in {label} Africa (N)")
     if legend:
         ax.legend()
     ax.set_xticks([1990, 2000, 2010, 2020])
+    ax.xaxis.set_major_formatter(ticker.StrMethodFormatter("{x:.0f}"))
     ax.set_ylim(0)
 
 
@@ -193,5 +186,3 @@ if __name__ == "__main__":
         dpi=300,
         bbox_inches="tight",
     )
-
-    plt.show()
