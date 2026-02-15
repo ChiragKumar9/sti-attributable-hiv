@@ -1,6 +1,8 @@
 import os
 
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+import numpy as np
 import polars as pl
 from matplotlib import rc
 
@@ -13,7 +15,7 @@ rc("font", **font)
 
 
 def setup_plot(nrows, ncols):
-    fig, ax = plt.subplots(nrows, ncols, figsize=(20, 15))
+    fig, ax = plt.subplots(nrows, ncols, figsize=(20, 22.5))
     if nrows * ncols == 1:
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
@@ -42,7 +44,350 @@ def setup_plot(nrows, ncols):
     return fig, ax
 
 
-def plot_averted_hiv(hiv, ax, scenario_name, year, fig):
+def sum_preserve_null(column: str) -> pl.Expr:
+    """Custom aggregation function to sum while preserving nulls."""
+    return (
+        pl.when(pl.col(column).is_null().all())
+        .then(None)
+        .otherwise(pl.sum(column))
+        .alias(column)
+    )
+
+
+def plot_attributable_hiv_burden_drug_resistance(hiv, ax, fig):
+    hiv = hiv.group_by(["year"]).agg(
+        sum_preserve_null("Ciprofloxacin_resistant_number"),
+        sum_preserve_null("Ciprofloxacin_resistant_number_lower"),
+        sum_preserve_null("Ciprofloxacin_resistant_number_upper"),
+        sum_preserve_null("Cefixime_resistant_number"),
+        sum_preserve_null("Cefixime_resistant_number_lower"),
+        sum_preserve_null("Cefixime_resistant_number_upper"),
+        sum_preserve_null("Azithromycin_resistant_number"),
+        sum_preserve_null("Azithromycin_resistant_number_lower"),
+        sum_preserve_null("Azithromycin_resistant_number_upper"),
+        sum_preserve_null("Ceftriaxone_resistant_number"),
+        sum_preserve_null("Ceftriaxone_resistant_number_lower"),
+        sum_preserve_null("Ceftriaxone_resistant_number_upper"),
+        pl.sum("hiv_incidence_number_attributable_to_gc"),
+        pl.sum("hiv_incidence_number_attributable_to_gc_upper"),
+        pl.sum("hiv_incidence_number_attributable_to_gc_lower"),
+    )
+    # mask all values at the attributable incidence
+    hiv = hiv.with_columns(
+        cipro=pl.when(
+            pl.col("Ciprofloxacin_resistant_number")
+            > pl.col("hiv_incidence_number_attributable_to_gc")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc"))
+        .otherwise(pl.col("Ciprofloxacin_resistant_number")),
+        cipro_lower=pl.when(
+            pl.col("Ciprofloxacin_resistant_number_lower")
+            > pl.col("hiv_incidence_number_attributable_to_gc_lower")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc_lower"))
+        .otherwise(pl.col("Ciprofloxacin_resistant_number_lower")),
+        cipro_upper=pl.when(
+            pl.col("Ciprofloxacin_resistant_number_upper")
+            > pl.col("hiv_incidence_number_attributable_to_gc_upper")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc_upper"))
+        .otherwise(pl.col("Ciprofloxacin_resistant_number_upper")),
+        cef=pl.when(
+            pl.col("Cefixime_resistant_number")
+            > pl.col("hiv_incidence_number_attributable_to_gc")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc"))
+        .otherwise(pl.col("Cefixime_resistant_number")),
+        cef_lower=pl.when(
+            pl.col("Cefixime_resistant_number_lower")
+            > pl.col("hiv_incidence_number_attributable_to_gc_lower")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc_lower"))
+        .otherwise(pl.col("Cefixime_resistant_number_lower")),
+        cef_upper=pl.when(
+            pl.col("Cefixime_resistant_number_upper")
+            > pl.col("hiv_incidence_number_attributable_to_gc_upper")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc_upper"))
+        .otherwise(pl.col("Cefixime_resistant_number_upper")),
+        azithro=pl.when(
+            pl.col("Azithromycin_resistant_number")
+            > pl.col("hiv_incidence_number_attributable_to_gc")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc"))
+        .otherwise(pl.col("Azithromycin_resistant_number")),
+        azithro_lower=pl.when(
+            pl.col("Azithromycin_resistant_number_lower")
+            > pl.col("hiv_incidence_number_attributable_to_gc_lower")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc_lower"))
+        .otherwise(pl.col("Azithromycin_resistant_number_lower")),
+        azithro_upper=pl.when(
+            pl.col("Azithromycin_resistant_number_upper")
+            > pl.col("hiv_incidence_number_attributable_to_gc_upper")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc_upper"))
+        .otherwise(pl.col("Azithromycin_resistant_number_upper")),
+        ceft=pl.when(
+            pl.col("Ceftriaxone_resistant_number")
+            > pl.col("hiv_incidence_number_attributable_to_gc")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc"))
+        .otherwise(pl.col("Ceftriaxone_resistant_number")),
+        ceft_lower=pl.when(
+            pl.col("Ceftriaxone_resistant_number_lower")
+            > pl.col("hiv_incidence_number_attributable_to_gc_lower")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc_lower"))
+        .otherwise(pl.col("Ceftriaxone_resistant_number_lower")),
+        ceft_upper=pl.when(
+            pl.col("Ceftriaxone_resistant_number_upper")
+            > pl.col("hiv_incidence_number_attributable_to_gc_upper")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc_upper"))
+        .otherwise(pl.col("Ceftriaxone_resistant_number_upper")),
+    )
+
+    hiv = hiv.sort(by="year")
+
+    ax.plot(
+        hiv["year"],
+        hiv["cipro"],
+        linewidth=3,
+        label="Ciprofloxacin",
+        color="red",
+    )
+
+    ax.fill_between(
+        hiv["year"],
+        hiv["cipro_lower"],
+        hiv["cipro_upper"],
+        alpha=0.3,
+        color="red",
+    )
+
+    ax.plot(
+        hiv["year"], hiv["cef"], linewidth=3, label="Cefixime", color="blue"
+    )
+
+    ax.fill_between(
+        hiv["year"],
+        hiv["cef_lower"],
+        hiv["cef_upper"],
+        alpha=0.3,
+        color="blue",
+    )
+
+    ax.plot(
+        hiv["year"],
+        hiv["azithro"],
+        linewidth=3,
+        label="Azithromycin",
+        color="green",
+    )
+
+    ax.fill_between(
+        hiv["year"],
+        hiv["azithro_lower"],
+        hiv["azithro_upper"],
+        alpha=0.3,
+        color="green",
+    )
+
+    ax.plot(
+        hiv["year"],
+        hiv["ceft"],
+        linewidth=3,
+        label="Ceftriaxone",
+        color="purple",
+    )
+
+    ax.fill_between(
+        hiv["year"],
+        hiv["ceft_lower"],
+        hiv["ceft_upper"],
+        alpha=0.3,
+        color="purple",
+    )
+
+    ax.set_xlabel("Year")
+    ax.set_ylabel("HIV incidence (N)")
+    ax.set_yscale("log")
+    # put y ticks in normal notation
+    ax.set_yticks([1, 10, 100, 1000, 10000, 100000])
+    ax.set_yticklabels(["1", "10", "100", "1,000", "10,000", "100,000"])
+    ax.legend(loc=(0, 0))
+
+
+def plot_attributable_hiv_burden_drug_resistance_region(hiv, ax, fig):
+    # we want to enforce an ordering for the regions
+    regions = ["Western", "Eastern", "Central", "Southern"]
+    hiv = hiv.with_columns(region=pl.col("region").cast(pl.Enum(regions)))
+
+    # summing over sex
+    hiv = hiv.group_by(["year", "region"], maintain_order=True).agg(
+        sum_preserve_null("Ciprofloxacin_resistant_number"),
+        sum_preserve_null("Ciprofloxacin_resistant_number_lower"),
+        sum_preserve_null("Ciprofloxacin_resistant_number_upper"),
+        sum_preserve_null("Cefixime_resistant_number"),
+        sum_preserve_null("Cefixime_resistant_number_lower"),
+        sum_preserve_null("Cefixime_resistant_number_upper"),
+        sum_preserve_null("Azithromycin_resistant_number"),
+        sum_preserve_null("Azithromycin_resistant_number_lower"),
+        sum_preserve_null("Azithromycin_resistant_number_upper"),
+        sum_preserve_null("Ceftriaxone_resistant_number"),
+        sum_preserve_null("Ceftriaxone_resistant_number_lower"),
+        sum_preserve_null("Ceftriaxone_resistant_number_upper"),
+        pl.sum("hiv_incidence_number_attributable_to_gc"),
+        pl.sum("hiv_incidence_number_attributable_to_gc_upper"),
+        pl.sum("hiv_incidence_number_attributable_to_gc_lower"),
+    )
+    # sort by year
+    hiv = hiv.sort(by=["region", "year"])
+    # take the last value in each region -- the most recent year
+    hiv = hiv.group_by(["region"], maintain_order=True).agg(
+        pl.last("Ciprofloxacin_resistant_number"),
+        pl.last("Ciprofloxacin_resistant_number_lower"),
+        pl.last("Ciprofloxacin_resistant_number_upper"),
+        pl.last("Cefixime_resistant_number"),
+        pl.last("Cefixime_resistant_number_lower"),
+        pl.last("Cefixime_resistant_number_upper"),
+        pl.last("Azithromycin_resistant_number"),
+        pl.last("Azithromycin_resistant_number_lower"),
+        pl.last("Azithromycin_resistant_number_upper"),
+        pl.last("Ceftriaxone_resistant_number"),
+        pl.last("Ceftriaxone_resistant_number_lower"),
+        pl.last("Ceftriaxone_resistant_number_upper"),
+        pl.last("hiv_incidence_number_attributable_to_gc"),
+        pl.last("hiv_incidence_number_attributable_to_gc_upper"),
+        pl.last("hiv_incidence_number_attributable_to_gc_lower"),
+    )
+    # mask all values at the attributable incidence
+    hiv = hiv.with_columns(
+        cipro=pl.when(
+            pl.col("Ciprofloxacin_resistant_number")
+            > pl.col("hiv_incidence_number_attributable_to_gc")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc"))
+        .otherwise(pl.col("Ciprofloxacin_resistant_number")),
+        cipro_lower=pl.when(
+            pl.col("Ciprofloxacin_resistant_number_lower")
+            > pl.col("hiv_incidence_number_attributable_to_gc_lower")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc_lower"))
+        .otherwise(pl.col("Ciprofloxacin_resistant_number_lower")),
+        cipro_upper=pl.when(
+            pl.col("Ciprofloxacin_resistant_number_upper")
+            > pl.col("hiv_incidence_number_attributable_to_gc_upper")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc_upper"))
+        .otherwise(pl.col("Ciprofloxacin_resistant_number_upper")),
+        cef=pl.when(
+            pl.col("Cefixime_resistant_number")
+            > pl.col("hiv_incidence_number_attributable_to_gc")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc"))
+        .otherwise(pl.col("Cefixime_resistant_number")),
+        cef_lower=pl.when(
+            pl.col("Cefixime_resistant_number_lower")
+            > pl.col("hiv_incidence_number_attributable_to_gc_lower")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc_lower"))
+        .otherwise(pl.col("Cefixime_resistant_number_lower")),
+        cef_upper=pl.when(
+            pl.col("Cefixime_resistant_number_upper")
+            > pl.col("hiv_incidence_number_attributable_to_gc_upper")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc_upper"))
+        .otherwise(pl.col("Cefixime_resistant_number_upper")),
+        azithro=pl.when(
+            pl.col("Azithromycin_resistant_number")
+            > pl.col("hiv_incidence_number_attributable_to_gc")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc"))
+        .otherwise(pl.col("Azithromycin_resistant_number")),
+        azithro_lower=pl.when(
+            pl.col("Azithromycin_resistant_number_lower")
+            > pl.col("hiv_incidence_number_attributable_to_gc_lower")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc_lower"))
+        .otherwise(pl.col("Azithromycin_resistant_number_lower")),
+        azithro_upper=pl.when(
+            pl.col("Azithromycin_resistant_number_upper")
+            > pl.col("hiv_incidence_number_attributable_to_gc_upper")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc_upper"))
+        .otherwise(pl.col("Azithromycin_resistant_number_upper")),
+        ceft=pl.when(
+            pl.col("Ceftriaxone_resistant_number")
+            > pl.col("hiv_incidence_number_attributable_to_gc")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc"))
+        .otherwise(pl.col("Ceftriaxone_resistant_number")),
+        ceft_lower=pl.when(
+            pl.col("Ceftriaxone_resistant_number_lower")
+            > pl.col("hiv_incidence_number_attributable_to_gc_lower")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc_lower"))
+        .otherwise(pl.col("Ceftriaxone_resistant_number_lower")),
+        ceft_upper=pl.when(
+            pl.col("Ceftriaxone_resistant_number_upper")
+            > pl.col("hiv_incidence_number_attributable_to_gc_upper")
+        )
+        .then(pl.col("hiv_incidence_number_attributable_to_gc_upper"))
+        .otherwise(pl.col("Ceftriaxone_resistant_number_upper")),
+    )
+
+    drugs = ["cipro", "cef", "azithro", "ceft"]
+    sti_names = {
+        "cef": "Cefixime",
+        "cipro": "Ciprofloxacin",
+        "azithro": "Azithromycin",
+        "ceft": "Ceftriaxone",
+    }
+
+    colors = {
+        "cef": "blue",
+        "cipro": "red",
+        "azithro": "green",
+        "ceft": "purple",
+    }
+
+    x = np.arange(len(regions))
+
+    width = 0.2
+    for i, pathogen in enumerate(drugs):
+        offset = width * (i - 1.5)  # center the group of bars
+        ax.bar(
+            x + offset,
+            hiv[pathogen],
+            yerr=[
+                hiv[pathogen] - hiv[f"{pathogen}_lower"],
+                hiv[f"{pathogen}_upper"] - hiv[pathogen],
+            ],
+            capsize=5,
+            width=width,
+            label=sti_names[pathogen],
+            color=colors[pathogen],
+        )
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(regions, rotation=-45, ha="left")
+    ax.set_xlabel("Region")
+    ax.set_ylabel("HIV incidence (N)")
+    ax.set_yscale("log")
+    # put y ticks in normal notation
+    ax.set_yticks([0.01, 0.1, 1, 10, 100, 1000, 10000])
+    ax.set_yticklabels(["0.01", "0.1", "1", "10", "100", "1,000", "10,000"])
+    ax.legend(loc=(0, 0))
+
+
+def plot_averted_hiv(hiv, ax, scenario_name, year, fig, forward=False):
+    if forward:
+        scalar = -1.0
+    else:
+        scalar = 1.0
+
     hiv = (
         hiv.group_by(["year"])
         .agg(
@@ -57,33 +402,66 @@ def plot_averted_hiv(hiv, ax, scenario_name, year, fig):
             pl.sum("hiv_incidence_number_lower"),
         )
         .with_columns(
-            direct=pl.col(f"direct_hiv_averted_{scenario_name}")
-            / pl.col("hiv_incidence_number")
-            * 100,
-            direct_lower=pl.col(f"direct_hiv_averted_{scenario_name}_lower")
-            / pl.col("hiv_incidence_number_lower")
-            * 100,
-            direct_upper=pl.col(f"direct_hiv_averted_{scenario_name}_upper")
-            / pl.col("hiv_incidence_number_upper")
-            * 100,
-            total=pl.col(f"hiv_averted_{scenario_name}")
-            / pl.col("hiv_incidence_number")
-            * 100,
-            total_lower=pl.col(f"hiv_averted_{scenario_name}_lower")
-            / pl.col("hiv_incidence_number_lower")
-            * 100,
-            total_upper=pl.col(f"hiv_averted_{scenario_name}_upper")
-            / pl.col("hiv_incidence_number_upper")
-            * 100,
+            direct=pl.col(f"direct_hiv_averted_{scenario_name}"),
+            direct_lower=pl.col(f"direct_hiv_averted_{scenario_name}_lower"),
+            direct_upper=pl.col(f"direct_hiv_averted_{scenario_name}_upper"),
+            total=pl.col(f"hiv_averted_{scenario_name}"),
+            total_lower=pl.col(f"hiv_averted_{scenario_name}_lower"),
+            total_upper=pl.col(f"hiv_averted_{scenario_name}_upper"),
+            reference=pl.col("hiv_incidence_number"),
+            reference_lower=pl.col("hiv_incidence_number_lower"),
+            reference_upper=pl.col("hiv_incidence_number_upper"),
         )
     )
+    if forward:
+        hiv = hiv.with_columns(
+            direct=pl.col("reference") + (pl.col("direct") * pl.lit(scalar)),
+            direct_lower=pl.col("reference_lower")
+            + (pl.col("direct_upper") * pl.lit(scalar)),
+            direct_upper=pl.col("reference_upper")
+            + (pl.col("direct_lower") * pl.lit(scalar)),
+            total=pl.col("reference") + (pl.col("total") * pl.lit(scalar)),
+            total_lower=pl.col("reference_lower")
+            + (pl.col("total_upper") * pl.lit(scalar)),
+            total_upper=pl.col("reference_upper")
+            + (pl.col("total_lower") * pl.lit(scalar)),
+        )
+    else:
+        hiv = hiv.with_columns(
+            direct=pl.col("reference") + pl.col("direct"),
+            direct_lower=pl.col("reference_lower") + pl.col("direct_lower"),
+            direct_upper=pl.col("reference_upper") + pl.col("direct_upper"),
+            total=pl.col("reference") + pl.col("total"),
+            total_lower=pl.col("reference_lower") + pl.col("total_lower"),
+            total_upper=pl.col("reference_upper") + pl.col("total_upper"),
+        )
 
     hiv = hiv.filter(pl.col("year") >= year)
 
     hiv = hiv.sort(by="year")
 
     ax.plot(
-        hiv["year"], hiv["direct"], linewidth=3, label="Direct", color="grey"
+        hiv["year"],
+        hiv["reference"],
+        linewidth=3,
+        label="Current",
+        color="black",
+    )
+
+    ax.fill_between(
+        hiv["year"],
+        hiv["reference_lower"],
+        hiv["reference_upper"],
+        alpha=0.3,
+        color="black",
+    )
+
+    ax.plot(
+        hiv["year"],
+        hiv["direct"],
+        linewidth=3,
+        label="Direct",
+        color="goldenrod",
     )
 
     ax.fill_between(
@@ -91,7 +469,7 @@ def plot_averted_hiv(hiv, ax, scenario_name, year, fig):
         hiv["direct_lower"],
         hiv["direct_upper"],
         alpha=0.3,
-        color="grey",
+        color="goldenrod",
     )
 
     ax.plot(
@@ -107,17 +485,167 @@ def plot_averted_hiv(hiv, ax, scenario_name, year, fig):
     )
 
     ax.set_xlabel("Year")
-    ax.set_ylabel("Avertable HIV incidence (%)")
-    ax.legend()
-    ax.set_ylim(0)
+    ax.set_ylabel("HIV incidence (N)")
+    ax.legend(loc=(0, 0))
+    if forward:
+        pass
+    else:
+        ax.set_yticks([750000, 1000000, 1250000, 1500000, 1750000, 2000000])
+    ax.yaxis.set_major_formatter(
+        ticker.FuncFormatter(lambda x, pos: f"{int(x):,}")
+    )
+    # minor x axis ticks every year
+    ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
+
+
+def plot_averted_hiv_region(hiv, ax, scenario_name, year, fig, forward=False):
+    if forward:
+        scalar = -1.0
+    else:
+        scalar = 1.0
+
+    hiv = (
+        hiv.group_by(["year", "region"])
+        .agg(
+            pl.sum(f"hiv_averted_{scenario_name}"),
+            pl.sum(f"hiv_averted_{scenario_name}_lower"),
+            pl.sum(f"hiv_averted_{scenario_name}_upper"),
+            pl.sum("hiv_incidence_number"),
+            pl.sum("hiv_incidence_number_upper"),
+            pl.sum("hiv_incidence_number_lower"),
+        )
+        .with_columns(
+            total=pl.lit(scalar) * pl.col(f"hiv_averted_{scenario_name}"),
+            total_lower=pl.lit(scalar)
+            * pl.col(f"hiv_averted_{scenario_name}_lower"),
+            total_upper=pl.lit(scalar)
+            * pl.col(f"hiv_averted_{scenario_name}_upper"),
+        )
+    )
+
+    hiv = hiv.filter(pl.col("year") >= year)
+
+    hiv = hiv.sort(by="year")
+
+    ax.plot(
+        hiv.filter(pl.col("region") == "Western")["year"],
+        hiv.filter(pl.col("region") == "Western")["total"],
+        linewidth=3,
+        label="Western",
+        color="darkorange",
+    )
+
+    ax.fill_between(
+        hiv.filter(pl.col("region") == "Western")["year"],
+        hiv.filter(pl.col("region") == "Western")["total_lower"],
+        hiv.filter(pl.col("region") == "Western")["total_upper"],
+        alpha=0.3,
+        color="darkorange",
+    )
+
+    ax.plot(
+        hiv.filter(pl.col("region") == "Eastern")["year"],
+        hiv.filter(pl.col("region") == "Eastern")["total"],
+        linewidth=3,
+        label="Eastern",
+        color="olivedrab",
+    )
+
+    ax.fill_between(
+        hiv.filter(pl.col("region") == "Eastern")["year"],
+        hiv.filter(pl.col("region") == "Eastern")["total_lower"],
+        hiv.filter(pl.col("region") == "Eastern")["total_upper"],
+        alpha=0.3,
+        color="olivedrab",
+    )
+
+    ax.plot(
+        hiv.filter(pl.col("region") == "Central")["year"],
+        hiv.filter(pl.col("region") == "Central")["total"],
+        linewidth=3,
+        label="Central",
+        color="teal",
+    )
+
+    ax.fill_between(
+        hiv.filter(pl.col("region") == "Central")["year"],
+        hiv.filter(pl.col("region") == "Central")["total_lower"],
+        hiv.filter(pl.col("region") == "Central")["total_upper"],
+        alpha=0.3,
+        color="teal",
+    )
+
+    ax.plot(
+        hiv.filter(pl.col("region") == "Southern")["year"],
+        hiv.filter(pl.col("region") == "Southern")["total"],
+        linewidth=3,
+        label="Southern",
+        color="maroon",
+    )
+
+    ax.fill_between(
+        hiv.filter(pl.col("region") == "Southern")["year"],
+        hiv.filter(pl.col("region") == "Southern")["total_lower"],
+        hiv.filter(pl.col("region") == "Southern")["total_upper"],
+        alpha=0.3,
+        color="maroon",
+    )
+
+    ax.set_xlabel("Year")
+    ax.set_ylabel("Change in HIV incidence (N)")
+    ax.set_yscale("symlog")
+    ax.yaxis.set_major_formatter(
+        ticker.FuncFormatter(lambda x, pos: f"{int(x):,}")
+    )
+    ax.legend(loc=(0.6, 0))
+    # minor x axis ticks every year
+    ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
+    # minor y axis ticks at custom values
+    ax.yaxis.set_minor_locator(
+        ticker.FixedLocator(
+            scalar
+            * np.array(
+                [
+                    50,
+                    60,
+                    70,
+                    80,
+                    90,
+                    200,
+                    300,
+                    400,
+                    500,
+                    600,
+                    700,
+                    800,
+                    900,
+                    2000,
+                    3000,
+                    4000,
+                    5000,
+                    6000,
+                    7000,
+                    8000,
+                    9000,
+                    20000,
+                    30000,
+                    40000,
+                    50000,
+                    60000,
+                    70000,
+                    80000,
+                    90000,
+                    200000,
+                ]
+            )  # type: ignore
+        )
+    )
 
 
 if __name__ == "__main__":
-    fig, ax = setup_plot(2, 2)  # type: ignore
+    fig, ax = setup_plot(3, 2)  # type: ignore
 
-    hiv = pl.read_csv(
-        os.path.join(output_dir, "hiv_averted.csv"),
-    )
+    hiv = pl.read_csv(os.path.join(output_dir, "hiv_attributable_to_stis.csv"))
 
     ax[0, 0].text(  # type: ignore
         -0.25,
@@ -129,7 +657,12 @@ if __name__ == "__main__":
         va="top",
         ha="right",
     )
-    plot_averted_hiv(hiv, ax[0, 0], "2016_gc_change", 2016, fig)  # type: ignore
+
+    plot_attributable_hiv_burden_drug_resistance(
+        hiv,
+        ax[0, 0],  # type: ignore
+        fig,
+    )
 
     ax[0, 1].text(  # type: ignore
         -0.25,
@@ -140,6 +673,15 @@ if __name__ == "__main__":
         fontweight="bold",
         va="top",
         ha="right",
+    )
+    plot_attributable_hiv_burden_drug_resistance_region(
+        hiv,
+        ax[0, 1],  # type: ignore
+        fig,
+    )
+
+    hiv = pl.read_csv(
+        os.path.join(output_dir, "hiv_averted.csv"),
     )
 
     ax[1, 0].text(  # type: ignore
@@ -152,6 +694,7 @@ if __name__ == "__main__":
         va="top",
         ha="right",
     )
+    plot_averted_hiv(hiv, ax[1, 0], "2016_gc_change", 2017, fig)  # type: ignore
 
     ax[1, 1].text(  # type: ignore
         -0.25,
@@ -163,19 +706,56 @@ if __name__ == "__main__":
         va="top",
         ha="right",
     )
+    plot_averted_hiv_region(hiv, ax[1, 1], "2016_gc_change", 2017, fig)  # type: ignore
+
+    ax[2, 0].text(  # type: ignore
+        -0.25,
+        1.08,
+        "e",
+        transform=ax[2, 0].transAxes,  # type: ignore
+        fontsize=24,
+        fontweight="bold",
+        va="top",
+        ha="right",
+    )
+    plot_averted_hiv(
+        hiv,
+        ax[2, 0],  # type: ignore
+        "2016_gc_change",
+        2017,
+        fig,
+        forward=True,
+    )
+
+    ax[2, 1].text(  # type: ignore
+        -0.25,
+        1.08,
+        "f",
+        transform=ax[2, 1].transAxes,  # type: ignore
+        fontsize=24,
+        fontweight="bold",
+        va="top",
+        ha="right",
+    )
+    plot_averted_hiv_region(
+        hiv,
+        ax[2, 1],  # type: ignore
+        "2016_gc_change",
+        2017,
+        fig,
+        forward=True,
+    )
 
     fig.tight_layout()
 
     # save
     fig.savefig(
-        os.path.join(fig_dir, "figure_gc_abx_avertible_hiv.png"),
+        os.path.join(fig_dir, "figure_hiv_averted_appropriate_gc_abx.png"),
         dpi=300,
         bbox_inches="tight",
     )
     fig.savefig(
-        os.path.join(fig_dir, "figure_gc_abx_avertible_hiv.pdf"),
+        os.path.join(fig_dir, "figure_hiv_averted_appropriate_gc_abx.pdf"),
         dpi=300,
         bbox_inches="tight",
     )
-
-    plt.show()
