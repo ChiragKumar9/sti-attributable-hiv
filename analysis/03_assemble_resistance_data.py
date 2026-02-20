@@ -610,7 +610,7 @@ relative_rate_lower = (
         "lower"
     ].to_list()[0]
     / region_drug_resistance.filter(pl.col("region") == "Southern")[
-        "val"
+        "upper"
     ].to_list()[0]
 )
 relative_rate_upper = (
@@ -618,7 +618,7 @@ relative_rate_upper = (
         "upper"
     ].to_list()[0]
     / region_drug_resistance.filter(pl.col("region") == "Southern")[
-        "val"
+        "lower"
     ].to_list()[0]
 )
 
