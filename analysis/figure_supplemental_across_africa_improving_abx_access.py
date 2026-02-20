@@ -178,7 +178,7 @@ def plot_best_case(hiv, ax, year, label, fig, legend=False, forward=False):
         )
         ax.set_xticks([2025, 2030])
     else:
-        ax.set_xticks([2005, 2010, 2015, 2020])
+        ax.set_xticks([1990, 2000, 2010, 2020])
 
     ax.set_xlabel("Year")
     ax.set_ylabel(f"HIV incidence in\n{label} (N)")
@@ -194,9 +194,9 @@ if __name__ == "__main__":
     for forward in [True, False]:
         if forward:
             # TODO: we will change this in the future
-            year = 2006
+            year = 1991
         else:
-            year = 2006
+            year = 1991
 
         fig, ax = setup_plot(2, 2)  # type: ignore
 
