@@ -16,13 +16,13 @@ hiv_sti = pl.read_csv(os.path.join(output_dir, "hiv_sti_with_gc_abx_r.csv"))
 
 # Filter out rows with null values in critical columns
 hiv_sti = hiv_sti.filter(
-    pl.col("p_acquiring_hiv").is_not_null() &
-    pl.col("p_acquiring_hiv_lower").is_not_null() &
-    pl.col("p_acquiring_hiv_upper").is_not_null() &
-    pl.col("gc_prevalence").is_not_null() &
-    pl.col("chlamydia_prevalence").is_not_null() &
-    pl.col("syphilis_prevalence").is_not_null() &
-    pl.col("trichomoniasis_prevalence").is_not_null()
+    pl.col("p_acquiring_hiv").is_not_null()
+    & pl.col("p_acquiring_hiv_lower").is_not_null()
+    & pl.col("p_acquiring_hiv_upper").is_not_null()
+    & pl.col("gc_prevalence").is_not_null()
+    & pl.col("chlamydia_prevalence").is_not_null()
+    & pl.col("syphilis_prevalence").is_not_null()
+    & pl.col("trichomoniasis_prevalence").is_not_null()
 )
 
 # relabel the sex column to match the GBD data
