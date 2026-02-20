@@ -3,6 +3,7 @@ import os
 import matplotlib.pyplot as plt
 import polars as pl
 from matplotlib import rc
+from matplotlib.ticker import FuncFormatter
 
 data_dir = "data"
 output_dir = "outputs_unaids_sensitivity"
@@ -71,9 +72,6 @@ def plot_attributable_hiv_burden_drug_resistance(
         pl.sum("hiv_incidence_number_attributable_to_gc"),
         pl.sum("hiv_incidence_number_attributable_to_gc_upper"),
         pl.sum("hiv_incidence_number_attributable_to_gc_lower"),
-        pl.sum("population"),
-        pl.sum("population_upper"),
-        pl.sum("population_lower"),
     )
     # mask all values at the attributable incidence
     hiv = hiv.with_columns(
@@ -150,29 +148,6 @@ def plot_attributable_hiv_burden_drug_resistance(
         .then(pl.col("hiv_incidence_number_attributable_to_gc_upper"))
         .otherwise(pl.col("Ceftriaxone_resistant_number_upper")),
     )
-    # make into incidence per 100,000
-    hiv = hiv.with_columns(
-        cipro=pl.col("cipro") / pl.col("population") * 100000,
-        cipro_lower=pl.col("cipro_lower")
-        / pl.col("population_lower")
-        * 100000,
-        cipro_upper=pl.col("cipro_upper")
-        / pl.col("population_upper")
-        * 100000,
-        cef=pl.col("cef") / pl.col("population") * 100000,
-        cef_lower=pl.col("cef_lower") / pl.col("population_lower") * 100000,
-        cef_upper=pl.col("cef_upper") / pl.col("population_upper") * 100000,
-        azithro=pl.col("azithro") / pl.col("population") * 100000,
-        azithro_lower=pl.col("azithro_lower")
-        / pl.col("population_lower")
-        * 100000,
-        azithro_upper=pl.col("azithro_upper")
-        / pl.col("population_upper")
-        * 100000,
-        ceft=pl.col("ceft") / pl.col("population") * 100000,
-        ceft_lower=pl.col("ceft_lower") / pl.col("population_lower") * 100000,
-        ceft_upper=pl.col("ceft_upper") / pl.col("population_upper") * 100000,
-    )
 
     hiv = hiv.sort(by="year")
 
@@ -237,10 +212,14 @@ def plot_attributable_hiv_burden_drug_resistance(
     )
 
     ax.set_xlabel("Year")
-    ax.set_ylabel(f"HIV incidence per 100,000\nin {label}")
+    ax.set_ylabel(f"HIV incidence\nin {label} (N)")
     if legend:
         ax.legend()
-    ax.set_ylim(0)
+    ax.set_yscale("log")
+    # make sure y axis ticks are not in scientific notation
+    ax.get_yaxis().set_major_formatter(
+        FuncFormatter(lambda y, _: "{:g}".format(y))
+    )
 
 
 if __name__ == "__main__":
@@ -340,5 +319,3 @@ if __name__ == "__main__":
         dpi=300,
         bbox_inches="tight",
     )
-
-    plt.show()

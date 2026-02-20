@@ -1,20 +1,21 @@
 import os
 
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 import numpy as np
 import polars as pl
 from matplotlib import rc
 
 data_dir = "data"
-output_dir = "outputs_unaids_sensitivity"
-fig_dir = "figures-sensitivity"
+output_dir = "outputs"
+fig_dir = "figures"
 
-font = {"family": "serif", "size": 28}
+font = {"family": "Nimbus Roman", "size": 28}
 rc("font", **font)
 
 
 def setup_plot(nrows, ncols):
-    fig, ax = plt.subplots(nrows, ncols, figsize=(30, 10))
+    fig, ax = plt.subplots(nrows, ncols, figsize=(20, 15))
     if nrows * ncols == 1:
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
@@ -41,6 +42,263 @@ def setup_plot(nrows, ncols):
         # put the grid behind
         temp.set_axisbelow(True)
     return fig, ax
+
+
+def plot_hiv_burden_by_sex(hiv, ax, fig):
+    hiv = (
+        hiv.group_by(["year", "sex"])
+        .agg(
+            pl.sum("hiv_incidence_number"),
+            pl.sum("hiv_incidence_number_upper"),
+            pl.sum("hiv_incidence_number_lower"),
+            pl.sum("population"),
+            pl.sum("population_upper"),
+            pl.sum("population_lower"),
+        )
+        .with_columns(
+            hiv_incidence_rate=pl.col("hiv_incidence_number"),
+            hiv_incidence_rate_upper=pl.col("hiv_incidence_number_upper"),
+            hiv_incidence_rate_lower=pl.col("hiv_incidence_number_lower"),
+        )
+    )
+
+    hiv = hiv.sort(by="year")
+
+    ax.plot(
+        hiv.filter(pl.col("sex") == "Male")["year"],
+        hiv.filter(pl.col("sex") == "Male")["hiv_incidence_rate"],
+        linewidth=3,
+        label="Male",
+        color="midnightblue",
+    )
+
+    ax.fill_between(
+        hiv.filter(pl.col("sex") == "Male")["year"],
+        hiv.filter(pl.col("sex") == "Male")["hiv_incidence_rate_lower"],
+        hiv.filter(pl.col("sex") == "Male")["hiv_incidence_rate_upper"],
+        alpha=0.3,
+        color="midnightblue",
+    )
+
+    ax.plot(
+        hiv.filter(pl.col("sex") == "Female")["year"],
+        hiv.filter(pl.col("sex") == "Female")["hiv_incidence_rate"],
+        linewidth=3,
+        label="Female",
+        color="magenta",
+    )
+
+    ax.fill_between(
+        hiv.filter(pl.col("sex") == "Female")["year"],
+        hiv.filter(pl.col("sex") == "Female")["hiv_incidence_rate_lower"],
+        hiv.filter(pl.col("sex") == "Female")["hiv_incidence_rate_upper"],
+        alpha=0.3,
+        color="magenta",
+    )
+
+    ax.set_xlabel("Year")
+    ax.set_ylabel("HIV incidence in\nsub-Saharan Africa (N)")
+    ax.legend(loc=(0.5, 0.73))
+    ax.set_xticks([1990, 2000, 2010, 2020])
+    ax.set_yticks([0, 500000, 1000000, 1500000])
+    ax.yaxis.set_major_formatter(
+        ticker.FuncFormatter(lambda x, pos: f"{int(x):,}")
+    )
+    # y axis minor ticks every 100,000
+    ax.yaxis.set_minor_locator(ticker.MultipleLocator(100000))
+    # x axis ticks every 2 years
+    ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))
+
+
+def plot_hiv_burden_by_region(hiv, ax, fig):
+    hiv = (
+        hiv.group_by(["year", "region"])
+        .agg(
+            pl.sum("hiv_incidence_number"),
+            pl.sum("hiv_incidence_number_upper"),
+            pl.sum("hiv_incidence_number_lower"),
+            pl.sum("population"),
+            pl.sum("population_upper"),
+            pl.sum("population_lower"),
+        )
+        .with_columns(
+            hiv_incidence_rate=pl.col("hiv_incidence_number"),
+            hiv_incidence_rate_upper=pl.col("hiv_incidence_number_upper"),
+            hiv_incidence_rate_lower=pl.col("hiv_incidence_number_lower"),
+        )
+    )
+
+    hiv = hiv.sort(by="year")
+
+    ax.plot(
+        hiv.filter(pl.col("region") == "Western")["year"],
+        hiv.filter(pl.col("region") == "Western")["hiv_incidence_rate"],
+        linewidth=3,
+        label="Western",
+        color="darkorange",
+    )
+
+    ax.fill_between(
+        hiv.filter(pl.col("region") == "Western")["year"],
+        hiv.filter(pl.col("region") == "Western")["hiv_incidence_rate_lower"],
+        hiv.filter(pl.col("region") == "Western")["hiv_incidence_rate_upper"],
+        alpha=0.3,
+        color="darkorange",
+    )
+
+    ax.plot(
+        hiv.filter(pl.col("region") == "Eastern")["year"],
+        hiv.filter(pl.col("region") == "Eastern")["hiv_incidence_rate"],
+        linewidth=3,
+        label="Eastern",
+        color="olivedrab",
+    )
+
+    ax.fill_between(
+        hiv.filter(pl.col("region") == "Eastern")["year"],
+        hiv.filter(pl.col("region") == "Eastern")["hiv_incidence_rate_lower"],
+        hiv.filter(pl.col("region") == "Eastern")["hiv_incidence_rate_upper"],
+        alpha=0.3,
+        color="olivedrab",
+    )
+
+    ax.plot(
+        hiv.filter(pl.col("region") == "Central")["year"],
+        hiv.filter(pl.col("region") == "Central")["hiv_incidence_rate"],
+        linewidth=3,
+        label="Central",
+        color="teal",
+    )
+
+    ax.fill_between(
+        hiv.filter(pl.col("region") == "Central")["year"],
+        hiv.filter(pl.col("region") == "Central")["hiv_incidence_rate_lower"],
+        hiv.filter(pl.col("region") == "Central")["hiv_incidence_rate_upper"],
+        alpha=0.3,
+        color="teal",
+    )
+
+    ax.plot(
+        hiv.filter(pl.col("region") == "Southern")["year"],
+        hiv.filter(pl.col("region") == "Southern")["hiv_incidence_rate"],
+        linewidth=3,
+        label="Southern",
+        color="maroon",
+    )
+
+    ax.fill_between(
+        hiv.filter(pl.col("region") == "Southern")["year"],
+        hiv.filter(pl.col("region") == "Southern")["hiv_incidence_rate_lower"],
+        hiv.filter(pl.col("region") == "Southern")["hiv_incidence_rate_upper"],
+        alpha=0.3,
+        color="maroon",
+    )
+
+    ax.set_xlabel("Year")
+    ax.set_ylabel("HIV incidence (N)")
+    ax.legend(loc=(0.5, 0.68))
+    ax.set_xticks([1990, 2000, 2010, 2020])
+    ax.set_yticks([0, 250000, 500000, 750000, 1000000])
+    ax.yaxis.set_major_formatter(
+        ticker.FuncFormatter(lambda x, pos: f"{int(x):,}")
+    )
+    ax.set_ylim(0)
+    # minor y ticks every 50,000
+    ax.yaxis.set_minor_locator(ticker.MultipleLocator(50000))
+    # x axis ticks every 2 years
+    ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))
+
+
+def plot_rr_estimates(aggregated_rrs, ax, fig):
+    # error bars showing the RR estimates from each study by sex
+    # combine the two dataframes into one
+    aggregated_rrs = aggregated_rrs.rename(
+        {"rr_mu": "val", "rr_lower": "lower", "rr_upper": "upper"}
+    )
+
+    female_data = aggregated_rrs.filter(pl.col("sex") == "Heterosexual Women")
+    heterosexual_male_data = aggregated_rrs.filter(
+        pl.col("sex") == "Heterosexual Men"
+    )
+    msm_data = aggregated_rrs.filter(pl.col("sex") == "MSM")
+    # we have to get all the RRs in the same order
+    female_data = female_data.sort("bacteria")
+    heterosexual_male_data = heterosexual_male_data.sort("bacteria")
+    msm_data = msm_data.sort("bacteria")
+    # for heterosexual male and msm, filter out trichomoniasis since the RRs
+    # are inferred/1.0
+    heterosexual_male_data = heterosexual_male_data.filter(
+        pl.col("bacteria") != "Trichomoniasis"
+    )
+    msm_data = msm_data.filter(pl.col("bacteria") != "Trichomoniasis")
+
+    male_xs = np.arange(0, heterosexual_male_data.shape[0])
+    female_xs = np.arange(0, female_data.shape[0])
+
+    offset = 0.2
+    ax.errorbar(
+        male_xs - offset,
+        heterosexual_male_data["val"],
+        yerr=[
+            heterosexual_male_data["val"].to_numpy()
+            - heterosexual_male_data["lower"].to_numpy(),
+            heterosexual_male_data["upper"].to_numpy()
+            - heterosexual_male_data["val"].to_numpy(),
+        ],
+        fmt="o",
+        label="Heterosexual male",
+        color="midnightblue",
+        elinewidth=1,
+        capsize=10,
+        capthick=2,
+    )
+
+    ax.errorbar(
+        female_xs,
+        female_data["val"],
+        yerr=[
+            female_data["val"].to_numpy() - female_data["lower"].to_numpy(),
+            female_data["upper"].to_numpy() - female_data["val"].to_numpy(),
+        ],
+        fmt="o",
+        label="Heterosexual female",
+        color="magenta",
+        elinewidth=1,
+        capsize=10,
+        capthick=2,
+    )
+
+    ax.errorbar(
+        male_xs + offset,
+        msm_data["val"],
+        yerr=[
+            msm_data["val"].to_numpy() - msm_data["lower"].to_numpy(),
+            msm_data["upper"].to_numpy() - msm_data["val"].to_numpy(),
+        ],
+        fmt="o",
+        label="MSM",
+        color="slategrey",
+        elinewidth=1,
+        capsize=10,
+        capthick=2,
+    )
+
+    ax.set_ylim(0.1)
+    ax.legend(loc=(0.35, 0))
+    ax.set_xlabel("STI")
+    ax.set_xticks(
+        female_xs,
+        female_data["bacteria"].unique(maintain_order=True),
+        rotation=-45,
+        ha="left",
+    )
+
+    ax.set_yscale("log")
+    ax.set_yticks([1, 10])
+    ax.set_yticklabels(["1", "10"])
+    ax.axhline(1, color="grey", linestyle="--")
+    ax.set_xlabel("STI")
+    ax.set_ylabel("Causal RR(HIV acquisition | STI infection)")
 
 
 def plot_drug_resistance(estimated_resistance_rates, ax, fig):
@@ -131,182 +389,72 @@ def plot_drug_resistance(estimated_resistance_rates, ax, fig):
     ax.set_xlabel("Year")
     ax.set_ylabel("Gonorrhea resistance (%)")
     ax.legend()
-    ax.set_xticks([2010, 2015])
+    ax.set_xticks([2010, 2015, 2020])
     ax.set_ylim(0)
-
-
-def plot_rr_estimates(rrs, aggregated_rrs, ax, fig):
-    # error bars showing the RR estimates from each study by sex
-    # combine the two dataframes into one
-    aggregated_rrs = aggregated_rrs.rename(
-        {"rr_mu": "val", "rr_lower": "lower", "rr_upper": "upper"}
-    ).with_columns(paper=pl.lit("Aggregated"))
-
-    rrs = pl.concat([rrs, aggregated_rrs], how="diagonal_relaxed")
-
-    male_data = rrs.filter(pl.col("sex") == "Heterosexual Men")
-    female_data = rrs.filter(pl.col("sex") == "Heterosexual Women")
-
-    xs = np.arange(0, male_data.shape[0])
-
-    offset = 0.1
-    ax.errorbar(
-        xs - offset,
-        male_data["val"],
-        yerr=[
-            male_data["val"].to_numpy() - male_data["lower"].to_numpy(),
-            male_data["upper"].to_numpy() - male_data["val"].to_numpy(),
-        ],
-        fmt="o",
-        label="Male",
-        color="midnightblue",
-        elinewidth=1,
-        capsize=3,
-    )
-
-    ax.errorbar(
-        xs + offset,
-        female_data["val"],
-        yerr=[
-            female_data["val"].to_numpy() - female_data["lower"].to_numpy(),
-            female_data["upper"].to_numpy() - female_data["val"].to_numpy(),
-        ],
-        fmt="o",
-        label="Female",
-        color="magenta",
-        elinewidth=1,
-        capsize=3,
-    )
-
-    ax.legend(loc="upper left")
-    ax.set_xlabel("Study")
-    ax.set_xticks(
-        xs, rrs["paper"].unique(maintain_order=True), rotation=-45, ha="left"
-    )
-
-    ax.set_yticks([1, 2, 3, 4, 5, 6, 7])
-    ax.set_ylim(1)
-
-    ax.set_ylabel("RR(HIV | Gonorrhea)")
-
-
-def plot_hiv_burden(hiv, ax, fig):
-    hiv = (
-        hiv.group_by(["year", "sex"])
-        .agg(
-            pl.sum("hiv_incidence_number"),
-            pl.sum("hiv_incidence_number_upper"),
-            pl.sum("hiv_incidence_number_lower"),
-            pl.sum("population"),
-            pl.sum("population_upper"),
-            pl.sum("population_lower"),
-        )
-        .with_columns(
-            hiv_incidence_rate=pl.col("hiv_incidence_number")
-            / pl.col("population")
-            * 100000,
-            hiv_incidence_rate_upper=pl.col("hiv_incidence_number_upper")
-            / pl.col("population_upper")
-            * 100000,
-            hiv_incidence_rate_lower=pl.col("hiv_incidence_number_lower")
-            / pl.col("population_lower")
-            * 100000,
-        )
-    )
-
-    hiv = hiv.sort(by="year")
-
-    ax.plot(
-        hiv.filter(pl.col("sex") == "Male")["year"],
-        hiv.filter(pl.col("sex") == "Male")["hiv_incidence_rate"],
-        linewidth=3,
-        label="Male",
-        color="midnightblue",
-    )
-
-    ax.fill_between(
-        hiv.filter(pl.col("sex") == "Male")["year"],
-        hiv.filter(pl.col("sex") == "Male")["hiv_incidence_rate_lower"],
-        hiv.filter(pl.col("sex") == "Male")["hiv_incidence_rate_upper"],
-        alpha=0.3,
-        color="midnightblue",
-    )
-
-    ax.plot(
-        hiv.filter(pl.col("sex") == "Female")["year"],
-        hiv.filter(pl.col("sex") == "Female")["hiv_incidence_rate"],
-        linewidth=3,
-        label="Female",
-        color="magenta",
-    )
-
-    ax.fill_between(
-        hiv.filter(pl.col("sex") == "Female")["year"],
-        hiv.filter(pl.col("sex") == "Female")["hiv_incidence_rate_lower"],
-        hiv.filter(pl.col("sex") == "Female")["hiv_incidence_rate_upper"],
-        alpha=0.3,
-        color="magenta",
-    )
-
-    ax.set_xlabel("Year")
-    ax.set_ylabel("HIV incidence per 100,000\nin sub-Saharan Africa")
-    ax.legend()
-    ax.set_xticks([1990, 2000, 2010, 2020])
-    ax.set_ylim(0)
+    # y axis ticks every 10%
+    ax.yaxis.set_minor_locator(ticker.MultipleLocator(10))
 
 
 if __name__ == "__main__":
+    fig, ax = setup_plot(2, 2)  # type: ignore
+
+    hiv = pl.read_csv(os.path.join(output_dir, "hiv_sti.csv"))
+    ax[0, 0].text(  # type: ignore
+        -0.25,
+        1.08,
+        "a",
+        transform=ax[0, 0].transAxes,  # type: ignore
+        fontsize=24,
+        fontweight="bold",
+        va="top",
+        ha="right",
+    )
+    plot_hiv_burden_by_sex(hiv, ax[0, 0], fig)  # type: ignore
+
+    ax[0, 1].text(  # type: ignore
+        -0.25,
+        1.08,
+        "b",
+        transform=ax[0, 1].transAxes,  # type: ignore
+        fontsize=24,
+        fontweight="bold",
+        va="top",
+        ha="right",
+    )
+    plot_hiv_burden_by_region(hiv, ax[0, 1], fig)  # type: ignore
+
+    # estimates of the RRs
+    aggregated_rrs = pl.read_csv(
+        os.path.join(output_dir, "meta_estimated_RRs_causal_STI_given_HIV.csv")
+    )
+    ax[1, 0].text(  # type: ignore
+        -0.25,
+        1.08,
+        "c",
+        transform=ax[1, 0].transAxes,  # type: ignore
+        fontsize=24,
+        fontweight="bold",
+        va="top",
+        ha="right",
+    )
+    plot_rr_estimates(aggregated_rrs, ax[1, 0], fig)  # type: ignore
+
     estimated_resistance_rates = pl.read_csv(
         os.path.join(output_dir, "estimated_resistance_rates.csv")
     )
 
-    fig, ax = setup_plot(1, 3)  # type: ignore
-
     # estimated drug resistance rates
-    ax[0].text(  # type: ignore
+    ax[1, 1].text(  # type: ignore
         -0.25,
         1.08,
-        "a",
-        transform=ax[0].transAxes,  # type: ignore
+        "d",
+        transform=ax[1, 1].transAxes,  # type: ignore
         fontsize=24,
         fontweight="bold",
         va="top",
         ha="right",
     )
-    plot_drug_resistance(estimated_resistance_rates, ax[0], fig)  # type: ignore
-
-    # estimates of the RRs
-    rrs = pl.read_csv(os.path.join(data_dir, "RRs_causal_STI_given_HIV.csv"))
-    aggregated_rrs = pl.read_csv(
-        os.path.join(output_dir, "meta_estimated_RRs_causal_STI_given_HIV.csv")
-    )
-    # filter both to only gonorrhea
-    rrs = rrs.filter(pl.col("bacteria") == "Gonorrhea")
-    aggregated_rrs = aggregated_rrs.filter(pl.col("bacteria") == "Gonorrhea")
-    ax[1].text(  # type: ignore
-        -0.25,
-        1.08,
-        "b",
-        transform=ax[1].transAxes,  # type: ignore
-        fontsize=24,
-        fontweight="bold",
-        va="top",
-        ha="right",
-    )
-    plot_rr_estimates(rrs, aggregated_rrs, ax[1], fig)  # type: ignore
-
-    hiv = pl.read_csv(os.path.join(output_dir, "hiv_sti.csv"))
-    ax[2].text(  # type: ignore
-        -0.25,
-        1.08,
-        "c",
-        transform=ax[2].transAxes,  # type: ignore
-        fontsize=24,
-        fontweight="bold",
-        va="top",
-        ha="right",
-    )
-    plot_hiv_burden(hiv, ax[2], fig)  # type: ignore
+    plot_drug_resistance(estimated_resistance_rates, ax[1, 1], fig)  # type: ignore
 
     fig.tight_layout()
 
@@ -321,5 +469,3 @@ if __name__ == "__main__":
         dpi=300,
         bbox_inches="tight",
     )
-
-    plt.show()

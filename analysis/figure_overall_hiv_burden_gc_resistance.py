@@ -4,15 +4,11 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import numpy as np
 import polars as pl
-import yaml
 from matplotlib import rc
 
 data_dir = "data"
 output_dir = "outputs"
 fig_dir = "figures"
-
-with open("params.yml") as f:
-    params = yaml.safe_load(f)
 
 font = {"family": "Nimbus Roman", "size": 28}
 rc("font", **font)
