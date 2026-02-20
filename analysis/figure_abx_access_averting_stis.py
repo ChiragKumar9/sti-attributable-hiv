@@ -127,7 +127,11 @@ def plot_best_case(hiv, ax, year, fig, forward=False):
     )
 
     ax.plot(
-        hiv["year"], hiv["direct"], linewidth=3, label="Direct", color="grey"
+        hiv["year"],
+        hiv["direct"],
+        linewidth=3,
+        label="Direct",
+        color="goldenrod",
     )
 
     ax.fill_between(
@@ -135,7 +139,7 @@ def plot_best_case(hiv, ax, year, fig, forward=False):
         hiv["direct_lower"],
         hiv["direct_upper"],
         alpha=0.3,
-        color="grey",
+        color="goldenrod",
     )
 
     ax.plot(

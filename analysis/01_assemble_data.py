@@ -77,15 +77,6 @@ prevalence = prevalence.group_by(
 # we want number incident hiv cases by country
 incidence_hiv = incidence.filter((pl.col("cause") == "HIV/AIDS"))
 
-# group by sex and year and location, summing over age
-incidence_hiv = incidence_hiv.group_by(
-    ["sex", "year", "measure", "metric", "location"]
-).agg(
-    pl.sum("val"),
-    pl.sum("lower"),
-    pl.sum("upper"),
-)
-
 incidence_hiv = incidence_hiv.rename(
     {
         "val": "hiv_incidence_number",
@@ -156,16 +147,6 @@ incidence_hiv = incidence_hiv.join(
 # so we have to subtract out half of the incidence
 # note that gbd themselves say that incidence is wrt to mid year population size
 incidence_hiv = incidence_hiv.with_columns(
-    hiv_prevalence_year_start_number=pl.col("hiv_prevalence_number")
-    - 0.5 * pl.col("hiv_incidence_number"),
-    hiv_prevalence_year_start_number_lower=pl.col(
-        "hiv_prevalence_number_lower"
-    )
-    - 0.5 * pl.col("hiv_incidence_number_lower"),
-    hiv_prevalence_year_start_number_upper=pl.col(
-        "hiv_prevalence_number_upper"
-    )
-    - 0.5 * pl.col("hiv_incidence_number_upper"),
     hiv_prevalence_year_end_number=pl.col("hiv_prevalence_number")
     + 0.5 * pl.col("hiv_incidence_number"),
     hiv_prevalence_year_end_number_lower=pl.col("hiv_prevalence_number_lower")
@@ -176,17 +157,11 @@ incidence_hiv = incidence_hiv.with_columns(
 
 incidence_hiv = incidence_hiv.with_columns(
     p_acquiring_hiv=pl.col("hiv_incidence_number")
-    / (pl.col("population") - pl.col("hiv_prevalence_year_start_number")),
+    / (pl.col("population") - pl.col("hiv_prevalence_number")),
     p_acquiring_hiv_lower=pl.col("hiv_incidence_number_lower")
-    / (
-        pl.col("population_lower")
-        - pl.col("hiv_prevalence_year_start_number_lower")
-    ),
+    / (pl.col("population_lower") - pl.col("hiv_prevalence_number_lower")),
     p_acquiring_hiv_upper=pl.col("hiv_incidence_number_upper")
-    / (
-        pl.col("population_upper")
-        - pl.col("hiv_prevalence_year_start_number_upper")
-    ),
+    / (pl.col("population_upper") - pl.col("hiv_prevalence_number_upper")),
 )
 
 # we need prevalence of gc
@@ -365,9 +340,6 @@ msm_data = (
                 "hiv_prevalence_number",
                 "hiv_prevalence_number_lower",
                 "hiv_prevalence_number_upper",
-                "hiv_prevalence_year_start_number",
-                "hiv_prevalence_year_start_number_lower",
-                "hiv_prevalence_year_start_number_upper",
                 "hiv_prevalence_year_end_number",
                 "hiv_prevalence_year_end_number_lower",
                 "hiv_prevalence_year_end_number_upper",
@@ -392,9 +364,6 @@ non_msm_data = data.filter(pl.col("sex") == "Male").with_columns(
             "hiv_prevalence_number",
             "hiv_prevalence_number_lower",
             "hiv_prevalence_number_upper",
-            "hiv_prevalence_year_start_number",
-            "hiv_prevalence_year_start_number_lower",
-            "hiv_prevalence_year_start_number_upper",
             "hiv_prevalence_year_end_number",
             "hiv_prevalence_year_end_number_lower",
             "hiv_prevalence_year_end_number_upper",
