@@ -149,6 +149,16 @@ def calculate_indirect_averted_cases(
         ),
     )
 
+    # when the treatment rate is 0, we can get inf values for the transmission rate, so replace these with 0s
+    # but in reality we know the (effective) transmission rate is 0
+    df = df.with_columns(
+        [
+            pl.col(col).fill_nan(0).replace([float("inf"), float("-inf")], 0)
+            for col in df.columns
+            if col.startswith("transmission_rate")
+        ]
+    )
+
     # now we need to calculate the additional infections averted in future years
     indirect_male = np.array([])
     indirect_lower_male = np.array([])
@@ -594,8 +604,7 @@ for location in tqdm(hiv["location"].unique()):
         ]
     )
 
-    upper_bound = loc_df.filter(pl.col("year") >= 2010)
-    upper_bound = upper_bound.drop(
+    upper_bound = loc_df.drop(
         [
             "direct_hiv_averted_2016_gc_change",
             "direct_hiv_averted_2016_gc_change_lower",

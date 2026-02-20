@@ -170,7 +170,7 @@ def plot_best_case(hiv, ax, year, fig, forward=False, reference=None):
     if forward:
         loc = (0.65, 0.65)
     else:
-        loc = (0, 0)
+        loc = (0.6, 0.75)
     ax.legend(loc=loc)
     ax.set_ylim(0)
     ax.yaxis.set_major_formatter(
@@ -186,14 +186,14 @@ def plot_best_case(hiv, ax, year, fig, forward=False, reference=None):
         )
         ax.set_xticks([2025, 2030])
     else:
-        ax.set_xticks([2005, 2010, 2015, 2020])
+        ax.set_xticks([1990, 2000, 2010, 2020])
     # minor x ticks every year
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
     # need consistent y axis ticks
     if forward:
         ax.set_yticks([0, 500000, 1000000, 1500000, 2000000])
     else:
-        ax.set_yticks([0, 500000, 1000000, 1500000, 2000000, 2500000, 3000000])
+        ax.set_yticks([0, 1000000, 2000000, 3000000, 4000000, 5000000])
     # minor y ticks every 250000
     ax.yaxis.set_minor_locator(ticker.MultipleLocator(250000))
 
@@ -488,7 +488,9 @@ if __name__ == "__main__":
         os.path.join(output_dir, "hiv_averted.csv"),
     )
 
-    year_past = 2011
+    first_year_upper_bound = 1991
+
+    year_forward = 2020
 
     ax[0, 0].text(  # type: ignore
         -0.25,
@@ -503,7 +505,7 @@ if __name__ == "__main__":
     plot_best_case(
         hiv,
         ax[0, 0],  # type: ignore
-        year_past,
+        first_year_upper_bound,
         fig,
     )
 
@@ -520,7 +522,7 @@ if __name__ == "__main__":
     plot_averted_sex(
         hiv,
         ax[0, 1],  # type: ignore
-        year_past,
+        first_year_upper_bound,
         fig,
     )
 
@@ -537,7 +539,7 @@ if __name__ == "__main__":
     plot_averted_region(
         hiv,
         ax[0, 2],  # type: ignore
-        year_past,
+        first_year_upper_bound,
         fig,
     )
 
@@ -557,7 +559,7 @@ if __name__ == "__main__":
     plot_best_case(
         hiv,
         ax[1, 0],  # type: ignore
-        2020,
+        year_forward,
         fig,
         forward=True,
         reference=hiv_overall.filter(pl.col("year") == 2010)[
@@ -578,7 +580,7 @@ if __name__ == "__main__":
     plot_averted_sex(
         hiv,
         ax[1, 1],  # type: ignore
-        2020,
+        year_forward,
         fig,
         forward=True,
     )
@@ -596,7 +598,7 @@ if __name__ == "__main__":
     plot_averted_region(
         hiv,
         ax[1, 2],  # type: ignore
-        2020,
+        year_forward,
         fig,
         forward=True,
     )
