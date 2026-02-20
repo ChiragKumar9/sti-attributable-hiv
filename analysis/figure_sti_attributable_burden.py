@@ -698,6 +698,14 @@ def plot_attributable_hiv_burden_region_pathogen(hiv, ax, fig):
     # sex on x axis, and each pathogen gets their own color, and the y axis is the percentage of HIV incidence attributable to STIs
     # with error bars for the uncertainty intervals
     hiv = hiv.filter(pl.col("year") == pl.max("year"))
+
+    # enforce ordering of regions
+    # we want to get the region rows in a particular order
+    # Western, Eastern, Central, Southern
+    regions = ["Western", "Eastern", "Central", "Southern"]
+    hiv = hiv.with_columns(pl.col("region").cast(pl.Enum(regions)))
+    hiv = hiv.sort("region")
+
     hiv = hiv.group_by(["region"], maintain_order=True).agg(
         gc=pl.sum("hiv_incidence_number_attributable_to_gc")
         / pl.sum("hiv_incidence_number")

@@ -44,7 +44,7 @@ def setup_plot(nrows, ncols):
     return fig, ax
 
 
-def plot_best_case(hiv, ax, year, fig, forward=False):
+def plot_best_case(hiv, ax, year, fig, forward=False, reference=None):
     if forward:
         scalar = -1.0
         # this may change based on how the future sims are set up?
@@ -105,11 +105,6 @@ def plot_best_case(hiv, ax, year, fig, forward=False):
             + (pl.lit(scalar) * pl.col("total_upper")),
         )
 
-    # if forward, we need to plot the blue sdg target
-    # to do this, we need to get the value in 2010
-    if forward:
-        reference_2010 = hiv.filter(pl.col("year") == 2010)["reference"][0]
-
     hiv = hiv.filter(pl.col("year") >= year)
 
     hiv = hiv.sort(by="year")
@@ -127,7 +122,11 @@ def plot_best_case(hiv, ax, year, fig, forward=False):
     )
 
     ax.plot(
-        hiv["year"], hiv["direct"], linewidth=3, label="Direct", color="grey"
+        hiv["year"],
+        hiv["direct"],
+        linewidth=3,
+        label="Direct",
+        color="goldenrod",
     )
 
     ax.fill_between(
@@ -135,7 +134,7 @@ def plot_best_case(hiv, ax, year, fig, forward=False):
         hiv["direct_lower"],
         hiv["direct_upper"],
         alpha=0.3,
-        color="grey",
+        color="goldenrod",
     )
 
     ax.plot(
@@ -178,9 +177,9 @@ def plot_best_case(hiv, ax, year, fig, forward=False):
         ticker.FuncFormatter(lambda x, p: format(int(x), ","))
     )
 
-    if forward:
+    if reference is not None:
         ax.axhline(
-            0.1 * reference_2010,  # type: ignore
+            0.1 * reference,  # type: ignore
             linestyle="--",
             color="#009CDE",
             label="SDG target",
@@ -489,6 +488,8 @@ if __name__ == "__main__":
         os.path.join(output_dir, "hiv_averted.csv"),
     )
 
+    year_past = 2011
+
     ax[0, 0].text(  # type: ignore
         -0.25,
         1.08,
@@ -502,7 +503,7 @@ if __name__ == "__main__":
     plot_best_case(
         hiv,
         ax[0, 0],  # type: ignore
-        2006,
+        year_past,
         fig,
     )
 
@@ -519,7 +520,7 @@ if __name__ == "__main__":
     plot_averted_sex(
         hiv,
         ax[0, 1],  # type: ignore
-        2006,
+        year_past,
         fig,
     )
 
@@ -536,7 +537,7 @@ if __name__ == "__main__":
     plot_averted_region(
         hiv,
         ax[0, 2],  # type: ignore
-        2006,
+        year_past,
         fig,
     )
 
@@ -550,12 +551,18 @@ if __name__ == "__main__":
         va="top",
         ha="right",
     )
+
+    hiv_overall = pl.read_csv(os.path.join(output_dir, "hiv_sti.csv"))
+
     plot_best_case(
         hiv,
         ax[1, 0],  # type: ignore
         2020,
         fig,
         forward=True,
+        reference=hiv_overall.filter(pl.col("year") == 2010)[
+            "hiv_incidence_number"
+        ].sum(),
     )
 
     ax[1, 1].text(  # type: ignore

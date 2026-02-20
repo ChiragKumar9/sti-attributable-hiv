@@ -77,15 +77,6 @@ prevalence = prevalence.group_by(
 # we want number incident hiv cases by country
 incidence_hiv = incidence.filter((pl.col("cause") == "HIV/AIDS"))
 
-# group by sex and year and location, summing over age
-incidence_hiv = incidence_hiv.group_by(
-    ["sex", "year", "measure", "metric", "location"]
-).agg(
-    pl.sum("val"),
-    pl.sum("lower"),
-    pl.sum("upper"),
-)
-
 incidence_hiv = incidence_hiv.rename(
     {
         "val": "hiv_incidence_number",
@@ -156,16 +147,6 @@ incidence_hiv = incidence_hiv.join(
 # so we have to subtract out half of the incidence
 # note that gbd themselves say that incidence is wrt to mid year population size
 incidence_hiv = incidence_hiv.with_columns(
-    hiv_prevalence_year_start_number=pl.col("hiv_prevalence_number")
-    - 0.5 * pl.col("hiv_incidence_number"),
-    hiv_prevalence_year_start_number_lower=pl.col(
-        "hiv_prevalence_number_lower"
-    )
-    - 0.5 * pl.col("hiv_incidence_number_lower"),
-    hiv_prevalence_year_start_number_upper=pl.col(
-        "hiv_prevalence_number_upper"
-    )
-    - 0.5 * pl.col("hiv_incidence_number_upper"),
     hiv_prevalence_year_end_number=pl.col("hiv_prevalence_number")
     + 0.5 * pl.col("hiv_incidence_number"),
     hiv_prevalence_year_end_number_lower=pl.col("hiv_prevalence_number_lower")
@@ -176,17 +157,11 @@ incidence_hiv = incidence_hiv.with_columns(
 
 incidence_hiv = incidence_hiv.with_columns(
     p_acquiring_hiv=pl.col("hiv_incidence_number")
-    / (pl.col("population") - pl.col("hiv_prevalence_year_start_number")),
+    / (pl.col("population") - pl.col("hiv_prevalence_number")),
     p_acquiring_hiv_lower=pl.col("hiv_incidence_number_lower")
-    / (
-        pl.col("population_lower")
-        - pl.col("hiv_prevalence_year_start_number_lower")
-    ),
+    / (pl.col("population_lower") - pl.col("hiv_prevalence_number_lower")),
     p_acquiring_hiv_upper=pl.col("hiv_incidence_number_upper")
-    / (
-        pl.col("population_upper")
-        - pl.col("hiv_prevalence_year_start_number_upper")
-    ),
+    / (pl.col("population_upper") - pl.col("hiv_prevalence_number_upper")),
 )
 
 # we need prevalence of gc
@@ -298,6 +273,16 @@ hiv_treatment_rate = hiv_treatment_rate.rename(
     }
 )
 
+# map sex values to be consistent with HIV data
+hiv_treatment_rate = hiv_treatment_rate.with_columns(
+    pl.col("sex").replace(
+        {
+            "male": "Male",
+            "female": "Female",
+        }
+    )
+)
+
 # divide by 100 to make proportions
 hiv_treatment_rate = hiv_treatment_rate.with_columns(
     val=pl.col("val") / 100,
@@ -319,58 +304,75 @@ hiv_treatment_rate = hiv_treatment_rate.with_columns(
     .otherwise(pl.col("location"))
 )
 # join to existing data on basis of year and location and sex
-data = data.join(hiv_treatment_rate, on=["year", "location", "sex"], how="left")
+data = data.join(
+    hiv_treatment_rate, on=["year", "location", "sex"], how="left"
+)
 
 # assumption check that this makes sense, could alternatively fill in with average across all countries in this year
 # fill in missing djibuti value for 2003 with average halfway between 2002 and 2004 value
 djibouti_2003_fill = (
-    data.filter((pl.col("location") == "Djibouti") & pl.col("year").is_in([2002, 2004]))
+    data.filter(
+        (pl.col("location") == "Djibouti") & pl.col("year").is_in([2002, 2004])
+    )
     .group_by("sex")
     .agg(
-        pl.col("treatment_proportion").mean().alias("treatment_proportion_fill"),
-        pl.col("treatment_proportion_lower").mean().alias("treatment_proportion_lower_fill"),
-        pl.col("treatment_proportion_upper").mean().alias("treatment_proportion_upper_fill"),
+        pl.col("treatment_proportion")
+        .mean()
+        .alias("treatment_proportion_fill"),
+        pl.col("treatment_proportion_lower")
+        .mean()
+        .alias("treatment_proportion_lower_fill"),
+        pl.col("treatment_proportion_upper")
+        .mean()
+        .alias("treatment_proportion_upper_fill"),
     )
-    .with_columns(pl.lit("Djibouti").alias("location"), pl.lit(2003).alias("year"))
+    .with_columns(
+        pl.lit("Djibouti").alias("location"), pl.lit(2003).alias("year")
+    )
 )
 data = (
     data.join(djibouti_2003_fill, on=["location", "year", "sex"], how="left")
     .with_columns(
-        treatment_proportion=pl.coalesce(["treatment_proportion", "treatment_proportion_fill"]),
-        treatment_proportion_lower=pl.coalesce(["treatment_proportion_lower", "treatment_proportion_lower_fill"]),
-        treatment_proportion_upper=pl.coalesce(["treatment_proportion_upper", "treatment_proportion_upper_fill"]),
+        treatment_proportion=pl.coalesce(
+            ["treatment_proportion", "treatment_proportion_fill"]
+        ),
+        treatment_proportion_lower=pl.coalesce(
+            ["treatment_proportion_lower", "treatment_proportion_lower_fill"]
+        ),
+        treatment_proportion_upper=pl.coalesce(
+            ["treatment_proportion_upper", "treatment_proportion_upper_fill"]
+        ),
     )
-    .drop(["treatment_proportion_fill", "treatment_proportion_lower_fill", "treatment_proportion_upper_fill"])
+    .drop(
+        [
+            "treatment_proportion_fill",
+            "treatment_proportion_lower_fill",
+            "treatment_proportion_upper_fill",
+        ]
+    )
+)
+
+# map countries to regions
+data = data.with_columns(
+    region=pl.col("location").replace(countries_to_regions)
 )
 
 # fill in any missing values with the average value for that year
 # note - missing countries: Mauritius, Equatorial Guinea, Sao Tome and Principe
 data = data.with_columns(
     treatment_proportion=pl.col("treatment_proportion").fill_null(
-        pl.col("treatment_proportion").mean().over("year")
+        pl.col("treatment_proportion").mean().over(["year", "sex", "region"])
     ),
     treatment_proportion_lower=pl.col("treatment_proportion_lower").fill_null(
-        pl.col("treatment_proportion_lower").mean().over("year")
+        pl.col("treatment_proportion_lower")
+        .mean()
+        .over(["year", "sex", "region"])
     ),
     treatment_proportion_upper=pl.col("treatment_proportion_upper").fill_null(
-        pl.col("treatment_proportion_upper").mean().over("year")
+        pl.col("treatment_proportion_upper")
+        .mean()
+        .over(["year", "sex", "region"])
     ),
-)
-
-# fill any remaining missing values with 0 because they are pre data
-data = data.with_columns(
-    treatment_proportion=pl.col("treatment_proportion").fill_null(0),
-    treatment_proportion_lower=pl.col("treatment_proportion_lower").fill_null(
-        0
-    ),
-    treatment_proportion_upper=pl.col("treatment_proportion_upper").fill_null(
-        0
-    ),
-)
-
-# map countries to regions
-data = data.with_columns(
-    region=pl.col("location").replace(countries_to_regions)
 )
 
 # let's take out part of the male population and make it msm
@@ -388,9 +390,6 @@ msm_data = (
                 "hiv_prevalence_number",
                 "hiv_prevalence_number_lower",
                 "hiv_prevalence_number_upper",
-                "hiv_prevalence_year_start_number",
-                "hiv_prevalence_year_start_number_lower",
-                "hiv_prevalence_year_start_number_upper",
                 "hiv_prevalence_year_end_number",
                 "hiv_prevalence_year_end_number_lower",
                 "hiv_prevalence_year_end_number_upper",
@@ -415,9 +414,6 @@ non_msm_data = data.filter(pl.col("sex") == "Male").with_columns(
             "hiv_prevalence_number",
             "hiv_prevalence_number_lower",
             "hiv_prevalence_number_upper",
-            "hiv_prevalence_year_start_number",
-            "hiv_prevalence_year_start_number_lower",
-            "hiv_prevalence_year_start_number_upper",
             "hiv_prevalence_year_end_number",
             "hiv_prevalence_year_end_number_lower",
             "hiv_prevalence_year_end_number_upper",
