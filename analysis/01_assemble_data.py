@@ -285,13 +285,15 @@ data = data.with_columns(
 
 # finally, we need hiv treatment rates over time
 hiv_treatment_rate = pl.read_csv(
-    os.path.join(data_dir, "art-coverage-african-countries.csv")
+    os.path.join(data_dir, "art_coverage_treatment_unaids_final.csv")
 )
 
 hiv_treatment_rate = hiv_treatment_rate.rename(
     {
         "Year": "year",
         "CountryName": "location",
+        "CountryCode": "country_code",
+        "Sex": "sex",
         "CoverageVal": "val",
     }
 )
@@ -310,18 +312,39 @@ hiv_treatment_rate = hiv_treatment_rate.rename(
         "upper": "treatment_proportion_upper",
     }
 )
-
 # make country names consistent
 hiv_treatment_rate = hiv_treatment_rate.with_columns(
     location=pl.when(pl.col("location").str.contains(", "))
     .then(pl.col("location").str.split(", ").list.reverse().list.join(" "))
     .otherwise(pl.col("location"))
 )
+# join to existing data on basis of year and location and sex
+data = data.join(hiv_treatment_rate, on=["year", "location", "sex"], how="left")
 
-# join to existing data on basis of year and location
-data = data.join(hiv_treatment_rate, on=["year", "location"], how="left")
+# assumption check that this makes sense, could alternatively fill in with average across all countries in this year
+# fill in missing djibuti value for 2003 with average halfway between 2002 and 2004 value
+djibouti_2003_fill = (
+    data.filter((pl.col("location") == "Djibouti") & pl.col("year").is_in([2002, 2004]))
+    .group_by("sex")
+    .agg(
+        pl.col("treatment_proportion").mean().alias("treatment_proportion_fill"),
+        pl.col("treatment_proportion_lower").mean().alias("treatment_proportion_lower_fill"),
+        pl.col("treatment_proportion_upper").mean().alias("treatment_proportion_upper_fill"),
+    )
+    .with_columns(pl.lit("Djibouti").alias("location"), pl.lit(2003).alias("year"))
+)
+data = (
+    data.join(djibouti_2003_fill, on=["location", "year", "sex"], how="left")
+    .with_columns(
+        treatment_proportion=pl.coalesce(["treatment_proportion", "treatment_proportion_fill"]),
+        treatment_proportion_lower=pl.coalesce(["treatment_proportion_lower", "treatment_proportion_lower_fill"]),
+        treatment_proportion_upper=pl.coalesce(["treatment_proportion_upper", "treatment_proportion_upper_fill"]),
+    )
+    .drop(["treatment_proportion_fill", "treatment_proportion_lower_fill", "treatment_proportion_upper_fill"])
+)
 
 # fill in any missing values with the average value for that year
+# note - missing countries: Mauritius, Equatorial Guinea, Sao Tome and Principe
 data = data.with_columns(
     treatment_proportion=pl.col("treatment_proportion").fill_null(
         pl.col("treatment_proportion").mean().over("year")
