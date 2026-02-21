@@ -15,7 +15,7 @@ rc("font", **font)
 
 
 def setup_plot(nrows, ncols):
-    fig, ax = plt.subplots(nrows, ncols, figsize=(30, 15))
+    fig, ax = plt.subplots(nrows, ncols, figsize=(40, 15))
     if nrows * ncols == 1:
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
@@ -198,6 +198,179 @@ def plot_best_case(hiv, ax, year, fig, forward=False, reference=None):
     ax.yaxis.set_minor_locator(ticker.MultipleLocator(250000))
 
 
+def plot_averted_sti(hiv, ax, year, fig, forward=False):
+    if forward:
+        scalar = -1.0
+        stub = "upper_bound"
+    else:
+        scalar = 1.0
+        stub = "upper_bound"
+
+    hiv = (
+        hiv.group_by(["year"])
+        .agg(
+            pl.sum(f"hiv_averted_gc_{stub}"),
+            pl.sum(f"hiv_averted_gc_{stub}_lower"),
+            pl.sum(f"hiv_averted_gc_{stub}_upper"),
+            pl.sum(f"hiv_averted_chlamydia_{stub}"),
+            pl.sum(f"hiv_averted_chlamydia_{stub}_lower"),
+            pl.sum(f"hiv_averted_chlamydia_{stub}_upper"),
+            pl.sum(f"hiv_averted_syphilis_{stub}"),
+            pl.sum(f"hiv_averted_syphilis_{stub}_lower"),
+            pl.sum(f"hiv_averted_syphilis_{stub}_upper"),
+            pl.sum(f"hiv_averted_trichomoniasis_{stub}"),
+            pl.sum(f"hiv_averted_trichomoniasis_{stub}_lower"),
+            pl.sum(f"hiv_averted_trichomoniasis_{stub}_upper"),
+        )
+        .with_columns(
+            gc=pl.col(f"hiv_averted_gc_{stub}") * pl.lit(scalar),
+            gc_lower=pl.col(f"hiv_averted_gc_{stub}_lower") * pl.lit(scalar),
+            gc_upper=pl.col(f"hiv_averted_gc_{stub}_upper") * pl.lit(scalar),
+            chlamydia=pl.col(f"hiv_averted_chlamydia_{stub}") * pl.lit(scalar),
+            chlamydia_lower=pl.col(f"hiv_averted_chlamydia_{stub}_lower")
+            * pl.lit(scalar),
+            chlamydia_upper=pl.col(f"hiv_averted_chlamydia_{stub}_upper")
+            * pl.lit(scalar),
+            syphilis=pl.col(f"hiv_averted_syphilis_{stub}") * pl.lit(scalar),
+            syphilis_lower=pl.col(f"hiv_averted_syphilis_{stub}_lower")
+            * pl.lit(scalar),
+            syphilis_upper=pl.col(f"hiv_averted_syphilis_{stub}_upper")
+            * pl.lit(scalar),
+            trichomoniasis=pl.col(f"hiv_averted_trichomoniasis_{stub}")
+            * pl.lit(scalar),
+            trichomoniasis_lower=pl.col(
+                f"hiv_averted_trichomoniasis_{stub}_lower"
+            )
+            * pl.lit(scalar),
+            trichomoniasis_upper=pl.col(
+                f"hiv_averted_trichomoniasis_{stub}_upper"
+            )
+            * pl.lit(scalar),
+        )
+    )
+
+    hiv = hiv.filter(pl.col("year") >= year)
+
+    hiv = hiv.sort(by="year")
+
+    ax.plot(
+        hiv["year"],
+        hiv["chlamydia"],
+        linewidth=3,
+        label="Chlamydia",
+        color="forestgreen",
+    )
+
+    ax.fill_between(
+        hiv["year"],
+        hiv["chlamydia_lower"],
+        hiv["chlamydia_upper"],
+        alpha=0.3,
+        color="forestgreen",
+    )
+
+    ax.plot(
+        hiv["year"],
+        hiv["gc"],
+        linewidth=3,
+        label="Gonorrhea",
+        color="firebrick",
+    )
+
+    ax.fill_between(
+        hiv["year"],
+        hiv["gc_lower"],
+        hiv["gc_upper"],
+        alpha=0.3,
+        color="firebrick",
+    )
+
+    ax.plot(
+        hiv["year"],
+        hiv["syphilis"],
+        linewidth=3,
+        label="Syphilis",
+        color="purple",
+    )
+
+    ax.fill_between(
+        hiv["year"],
+        hiv["syphilis_lower"],
+        hiv["syphilis_upper"],
+        alpha=0.3,
+        color="purple",
+    )
+
+    ax.plot(
+        hiv["year"],
+        hiv["trichomoniasis"],
+        linewidth=3,
+        label="Trichomoniasis",
+        color="gold",
+    )
+
+    ax.fill_between(
+        hiv["year"],
+        hiv["trichomoniasis_lower"],
+        hiv["trichomoniasis_upper"],
+        alpha=0.3,
+        color="gold",
+    )
+
+    ax.set_xlabel("Year")
+    ax.set_ylabel("Change in HIV incidence (N)")
+    if forward:
+        loc = (0.4, 0.7)
+    else:
+        loc = (0, 0)
+    ax.legend(loc=loc)
+    ax.set_yscale("symlog")
+    # make the numbers appear in non scientific notation
+    ax.yaxis.set_major_formatter(
+        ticker.FuncFormatter(lambda x, p: format(int(x), ","))
+    )
+    if forward:
+        ax.set_xticks([2025, 2030])
+    else:
+        ax.set_xticks([1990, 2000, 2010, 2020])
+    # minor x ticks every year
+    ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
+    # set custom y axis minor ticks
+    ax.yaxis.set_minor_locator(
+        ticker.FixedLocator(
+            scalar
+            * np.array(
+                [
+                    2000,
+                    3000,
+                    4000,
+                    5000,
+                    6000,
+                    7000,
+                    8000,
+                    9000,
+                    20000,
+                    30000,
+                    40000,
+                    50000,
+                    60000,
+                    70000,
+                    80000,
+                    90000,
+                    200000,
+                    300000,
+                    400000,
+                    500000,
+                    600000,
+                    700000,
+                    800000,
+                    900000,
+                ]
+            )  # type: ignore
+        )
+    )
+
+
 def plot_averted_sex(hiv, ax, year, fig, forward=False):
     if forward:
         scalar = -1.0
@@ -212,9 +385,6 @@ def plot_averted_sex(hiv, ax, year, fig, forward=False):
             pl.sum(f"hiv_averted_{stub}"),
             pl.sum(f"hiv_averted_{stub}_lower"),
             pl.sum(f"hiv_averted_{stub}_upper"),
-            pl.sum("hiv_incidence_number"),
-            pl.sum("hiv_incidence_number_lower"),
-            pl.sum("hiv_incidence_number_upper"),
         )
         .with_columns(
             total=pl.col(f"hiv_averted_{stub}") * pl.lit(scalar),
@@ -290,7 +460,7 @@ def plot_averted_sex(hiv, ax, year, fig, forward=False):
     if forward:
         ax.set_xticks([2025, 2030])
     else:
-        ax.set_xticks([2005, 2010, 2015, 2020])
+        ax.set_xticks([1990, 2000, 2010, 2020])
     # minor x ticks every year
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
     # set custom y axis minor ticks
@@ -434,7 +604,7 @@ def plot_averted_region(hiv, ax, year, fig, forward=False):
     if forward:
         ax.set_xticks([2025, 2030])
     else:
-        ax.set_xticks([2005, 2010, 2015, 2020])
+        ax.set_xticks([1990, 2000, 2010, 2020])
     # minor x ticks every year
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
     # set custom y axis minor ticks
@@ -482,7 +652,7 @@ def plot_averted_region(hiv, ax, year, fig, forward=False):
 
 
 if __name__ == "__main__":
-    fig, ax = setup_plot(2, 3)  # type: ignore
+    fig, ax = setup_plot(2, 4)  # type: ignore
 
     hiv = pl.read_csv(
         os.path.join(output_dir, "hiv_averted.csv"),
@@ -519,7 +689,7 @@ if __name__ == "__main__":
         va="top",
         ha="right",
     )
-    plot_averted_sex(
+    plot_averted_sti(
         hiv,
         ax[0, 1],  # type: ignore
         first_year_upper_bound,
@@ -536,9 +706,26 @@ if __name__ == "__main__":
         va="top",
         ha="right",
     )
-    plot_averted_region(
+    plot_averted_sex(
         hiv,
         ax[0, 2],  # type: ignore
+        first_year_upper_bound,
+        fig,
+    )
+
+    ax[0, 3].text(  # type: ignore
+        -0.25,
+        1.08,
+        "d",
+        transform=ax[0, 3].transAxes,  # type: ignore
+        fontsize=24,
+        fontweight="bold",
+        va="top",
+        ha="right",
+    )
+    plot_averted_region(
+        hiv,
+        ax[0, 3],  # type: ignore
         first_year_upper_bound,
         fig,
     )
@@ -546,7 +733,7 @@ if __name__ == "__main__":
     ax[1, 0].text(  # type: ignore
         -0.25,
         1.08,
-        "d",
+        "e",
         transform=ax[1, 0].transAxes,  # type: ignore
         fontsize=24,
         fontweight="bold",
@@ -570,14 +757,14 @@ if __name__ == "__main__":
     ax[1, 1].text(  # type: ignore
         -0.25,
         1.08,
-        "e",
+        "f",
         transform=ax[1, 1].transAxes,  # type: ignore
         fontsize=24,
         fontweight="bold",
         va="top",
         ha="right",
     )
-    plot_averted_sex(
+    plot_averted_sti(
         hiv,
         ax[1, 1],  # type: ignore
         year_forward,
@@ -588,8 +775,26 @@ if __name__ == "__main__":
     ax[1, 2].text(  # type: ignore
         -0.25,
         1.08,
-        "f",
+        "g",
         transform=ax[1, 2].transAxes,  # type: ignore
+        fontsize=24,
+        fontweight="bold",
+        va="top",
+        ha="right",
+    )
+    plot_averted_sex(
+        hiv,
+        ax[1, 2],  # type: ignore
+        year_forward,
+        fig,
+        forward=True,
+    )
+
+    ax[1, 3].text(  # type: ignore
+        -0.25,
+        1.08,
+        "h",
+        transform=ax[1, 3].transAxes,  # type: ignore
         fontsize=24,
         fontweight="bold",
         va="top",
@@ -597,7 +802,7 @@ if __name__ == "__main__":
     )
     plot_averted_region(
         hiv,
-        ax[1, 2],  # type: ignore
+        ax[1, 3],  # type: ignore
         year_forward,
         fig,
         forward=True,
