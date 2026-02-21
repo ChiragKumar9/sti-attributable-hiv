@@ -486,11 +486,16 @@ def plot_averted_hiv(hiv, ax, scenario_name, year, fig, forward=False):
 
     ax.set_xlabel("Year")
     ax.set_ylabel("HIV incidence (N)")
-    ax.legend(loc=(0, 0))
     if forward:
-        pass
+        ax.legend(loc=(0, 0))
+        ax.set_yticks([0, 500000, 1000000, 1500000])
+        # minor y ticks every 250,000
+        ax.yaxis.set_minor_locator(ticker.MultipleLocator(250000))
     else:
-        ax.set_yticks([750000, 1000000, 1250000, 1500000, 1750000, 2000000])
+        ax.legend(loc=(0, 0))
+        ax.set_yticks([0, 500000, 1000000, 1500000, 2000000, 2500000])
+        # minor y ticks every 250,000
+        ax.yaxis.set_minor_locator(ticker.MultipleLocator(250000))
     ax.yaxis.set_major_formatter(
         ticker.FuncFormatter(lambda x, pos: f"{int(x):,}")
     )
@@ -597,49 +602,56 @@ def plot_averted_hiv_region(hiv, ax, scenario_name, year, fig, forward=False):
     ax.yaxis.set_major_formatter(
         ticker.FuncFormatter(lambda x, pos: f"{int(x):,}")
     )
-    ax.legend(loc=(0.6, 0))
-    # minor x axis ticks every year
-    ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
-    # minor y axis ticks at custom values
-    ax.yaxis.set_minor_locator(
-        ticker.FixedLocator(
-            scalar
-            * np.array(
-                [
-                    50,
-                    60,
-                    70,
-                    80,
-                    90,
-                    200,
-                    300,
-                    400,
-                    500,
-                    600,
-                    700,
-                    800,
-                    900,
-                    2000,
-                    3000,
-                    4000,
-                    5000,
-                    6000,
-                    7000,
-                    8000,
-                    9000,
-                    20000,
-                    30000,
-                    40000,
-                    50000,
-                    60000,
-                    70000,
-                    80000,
-                    90000,
-                    200000,
-                ]
-            )  # type: ignore
+    if forward:
+        ax.legend(loc=(0.6, 0.6))
+    else:
+        ax.set_ylim(7)
+        ax.legend(loc=(0.6, 0))
+        # minor x axis ticks every year
+        ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
+        # minor y axis ticks at custom values
+        ax.yaxis.set_minor_locator(
+            ticker.FixedLocator(
+                scalar
+                * np.array(
+                    [
+                        20,
+                        30,
+                        40,
+                        50,
+                        60,
+                        70,
+                        80,
+                        90,
+                        200,
+                        300,
+                        400,
+                        500,
+                        600,
+                        700,
+                        800,
+                        900,
+                        2000,
+                        3000,
+                        4000,
+                        5000,
+                        6000,
+                        7000,
+                        8000,
+                        9000,
+                        20000,
+                        30000,
+                        40000,
+                        50000,
+                        60000,
+                        70000,
+                        80000,
+                        90000,
+                        200000,
+                    ]
+                )  # type: ignore
+            )
         )
-    )
 
 
 if __name__ == "__main__":

@@ -177,8 +177,12 @@ def plot_best_case(hiv, ax, year, label, fig, legend=False, forward=False):
             label="SDG target",
         )
         ax.set_xticks([2025, 2030])
+        # minor tick every 1 year
+        ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
     else:
         ax.set_xticks([1990, 2000, 2010, 2020])
+        # minor ticks every two years
+        ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))
 
     ax.set_xlabel("Year")
     ax.set_ylabel(f"HIV incidence in\n{label} (N)")
