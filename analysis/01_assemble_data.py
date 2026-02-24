@@ -60,6 +60,31 @@ countries_to_regions = {
     "Chad": "Western",
 }
 
+# country name to iso3 code mapping, with manual overrides for problematic IHME names
+country_codes_df = pl.read_csv(os.path.join(data_dir, "country_codes.csv"))
+_code_lookup = {row["name"]: row["alpha-3"] for row in country_codes_df.to_dicts()}
+_manual_iso3 = {
+    "United Republic of Tanzania": "TZA",
+    "Democratic Republic of the Congo": "COD",
+    "Côte d'Ivoire": "CIV",
+    "Cote d'Ivoire": "CIV",
+    "Congo": "COG",
+    "Sao Tome and Principe": "STP",
+    "Cabo Verde": "CPV",
+    "Eswatini": "SWZ",
+    "South Sudan": "SSD",
+    "Gambia": "GMB",
+    "Guinea-Bissau": "GNB",
+}
+_code_lookup.update(_manual_iso3)
+ihme_name_to_iso3 = _code_lookup
+
+# convert country names in countries_to_regions to iso3 codes
+countries_to_regions = {
+    ihme_name_to_iso3[country]: region
+    for country, region in countries_to_regions.items()
+}
+
 # read data
 incidence = pl.read_csv(os.path.join(data_dir, "ihme_incidence.csv"))
 prevalence = pl.read_csv(os.path.join(data_dir, "ihme_prevalence.csv"))
@@ -199,10 +224,10 @@ data = incidence_hiv.join(
 # we also want to join up with the other sti data
 prevalence_sti = pl.read_csv(os.path.join(data_dir, "ihme_sti_prevalence.csv"))
 prevalence_sti = prevalence_sti.filter(pl.col("metric") == "Number")
+prevalence_sti = prevalence_sti.drop(["measure", "metric", "age"])
 prevalence_sti = prevalence_sti.group_by(
     ["location", "sex", "cause", "year"]
 ).sum()
-prevalence_sti = prevalence_sti.drop(["measure", "metric", "age"])
 # pivot wider so we have columns for each sti
 prevalence_sti = prevalence_sti.pivot(
     on="cause", values=["val", "upper", "lower"]
@@ -258,6 +283,14 @@ data = data.with_columns(
     / pl.col("population_upper"),
 )
 
+# add a column for country codes to ihme data before joining with treatment data
+data = data.with_columns(
+    country_code=pl.col("location").replace(ihme_name_to_iso3)
+)
+missing_codes = data.filter(pl.col("country_code") == pl.col("location")).select("location").unique()
+assert len(missing_codes) == 0, f"No ISO3 code found for the following GBD countries: {missing_codes['location'].to_list()}"
+data = data.select(["country_code"] + [c for c in data.columns if c != "country_code"]) # move country code to be first col
+
 # finally, we need hiv treatment rates over time
 hiv_treatment_rate = pl.read_csv(
     os.path.join(data_dir, "art_coverage_treatment_unaids_final.csv")
@@ -297,22 +330,16 @@ hiv_treatment_rate = hiv_treatment_rate.rename(
         "upper": "treatment_proportion_upper",
     }
 )
-# make country names consistent
-hiv_treatment_rate = hiv_treatment_rate.with_columns(
-    location=pl.when(pl.col("location").str.contains(", "))
-    .then(pl.col("location").str.split(", ").list.reverse().list.join(" "))
-    .otherwise(pl.col("location"))
-)
-# join to existing data on basis of year and location and sex
+# join to existing data on basis of year and country_code and sex
 data = data.join(
-    hiv_treatment_rate, on=["year", "location", "sex"], how="left"
+    hiv_treatment_rate, on=["year", "country_code", "sex"], how="left"
 )
 
 # assumption check that this makes sense, could alternatively fill in with average across all countries in this year
 # fill in missing djibuti value for 2003 with average halfway between 2002 and 2004 value
 djibouti_2003_fill = (
     data.filter(
-        (pl.col("location") == "Djibouti") & pl.col("year").is_in([2002, 2004])
+        (pl.col("country_code") == "DJI") & pl.col("year").is_in([2002, 2004])
     )
     .group_by("sex")
     .agg(
@@ -327,11 +354,11 @@ djibouti_2003_fill = (
         .alias("treatment_proportion_upper_fill"),
     )
     .with_columns(
-        pl.lit("Djibouti").alias("location"), pl.lit(2003).alias("year")
+        pl.lit("DJI").alias("country_code"), pl.lit(2003).alias("year")
     )
 )
 data = (
-    data.join(djibouti_2003_fill, on=["location", "year", "sex"], how="left")
+    data.join(djibouti_2003_fill, on=["country_code", "year", "sex"], how="left")
     .with_columns(
         treatment_proportion=pl.coalesce(
             ["treatment_proportion", "treatment_proportion_fill"]
@@ -354,7 +381,7 @@ data = (
 
 # map countries to regions
 data = data.with_columns(
-    region=pl.col("location").replace(countries_to_regions)
+    region=pl.col("country_code").replace(countries_to_regions)
 )
 
 # fill in any missing values with the average value for that year
