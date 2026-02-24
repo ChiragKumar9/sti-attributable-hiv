@@ -85,6 +85,63 @@ countries_to_regions = {
     for country, region in countries_to_regions.items()
 }
 
+def read_unaids_wide(filepath, sex_label, value_col_name):
+    """reads wide format UNAIDs data and returns long format with cleaned numeric values, and a column for country codes"""
+    df = pl.read_csv(filepath, infer_schema_length=0) 
+    df = df.rename({col: col.strip() for col in df.columns}) # remove white space in colnames
+
+    # differentiate year, lower bound, and upper bound columns
+    year_cols = [c for c in df.columns if c.isdigit()]
+    lower_cols = [c for c in df.columns if c.endswith("_lower") and c.split("_")[0].isdigit()]
+    upper_cols = [c for c in df.columns if c.endswith("_upper") and c.split("_")[0].isdigit()]
+
+    # pivot main values from wide to long, on country and year
+    val_long = df.select(["Country"] + year_cols)
+    val_long = val_long.unpivot(index="Country", variable_name="year", value_name="val_raw")
+    val_long = val_long.with_columns(pl.col("year").cast(pl.Int64)) 
+
+    # same for lower bounds
+    lower_long = df.select(["Country"] + lower_cols)
+    lower_long = lower_long.unpivot(index="Country", variable_name="yr", value_name="lower_raw")
+    lower_long = lower_long.with_columns(
+        pl.col("yr").str.replace("_lower", "").cast(pl.Int64).alias("year")
+    )
+    lower_long = lower_long.drop("yr")
+
+    # same for upper bounds
+    upper_long = df.select(["Country"] + upper_cols)
+    upper_long = upper_long.unpivot(index="Country", variable_name="yr", value_name="upper_raw")
+    upper_long = upper_long.with_columns(
+        pl.col("yr").str.replace("_upper", "").cast(pl.Int64).alias("year")
+    )
+    upper_long = upper_long.drop("yr")
+
+    long = val_long.join(lower_long, on=["Country", "year"]).join(upper_long, on=["Country", "year"])
+
+    # raw data has "..." for missing data
+    # "<100" or "<200" reported, assumed to be 0
+    def clean_col(col_name):
+        return (
+            pl.when(pl.col(col_name).is_null() | (pl.col(col_name).str.strip_chars() == "..."))
+            .then(None)
+            .when(pl.col(col_name).str.contains("<")) # assumption - that values <100 or <200 are 0
+            .then(pl.lit(0.0))
+            .otherwise(pl.col(col_name).str.replace_all(" ", "").cast(pl.Float64, strict=False))
+            )
+
+    long = long.with_columns(
+        clean_col("val_raw").alias(value_col_name),
+        clean_col("lower_raw").alias(f"{value_col_name}_lower"),
+        clean_col("upper_raw").alias(f"{value_col_name}_upper"),
+        pl.lit(sex_label).alias("sex"),
+        pl.col("Country").replace(ihme_name_to_iso3).alias("country_code"),
+    )
+
+    # note - some non SSA countries don't map to iso3 codes, but this doesn't matter for us
+    long = long.drop(["val_raw", "lower_raw", "upper_raw", "Country"])
+    return long
+
+
 # read data
 incidence = pl.read_csv(os.path.join(data_dir, "ihme_incidence.csv"))
 prevalence = pl.read_csv(os.path.join(data_dir, "ihme_prevalence.csv"))
@@ -331,8 +388,9 @@ hiv_treatment_rate = hiv_treatment_rate.rename(
     }
 )
 # join to existing data on basis of year and country_code and sex
+# drop location from treatment data since we already have it from IHME
 data = data.join(
-    hiv_treatment_rate, on=["year", "country_code", "sex"], how="left"
+    hiv_treatment_rate.drop("location"), on=["year", "country_code", "sex"], how="left"
 )
 
 # assumption check that this makes sense, could alternatively fill in with average across all countries in this year
@@ -383,7 +441,6 @@ data = (
 data = data.with_columns(
     region=pl.col("country_code").replace(countries_to_regions)
 )
-
 # fill in any missing values with the average value for that year
 # note - missing countries: Mauritius, Equatorial Guinea, Sao Tome and Principe
 data = data.with_columns(
@@ -400,6 +457,40 @@ data = data.with_columns(
         .mean()
         .over(["year", "sex", "region"])
     ),
+)
+
+# read and join UNAIDS incidence numbers, prevalence numbers, and incidence rate per uninfected
+unaids_inc_num = pl.concat([
+    read_unaids_wide(os.path.join(data_dir, "UNAIDS-raw-data-HIV/inc_num_adult_female.csv"), "Female", "unaids_incidence_number"),
+    read_unaids_wide(os.path.join(data_dir, "UNAIDS-raw-data-HIV/inc_num_adult_male.csv"), "Male", "unaids_incidence_number"),
+])
+unaids_prev_num = pl.concat([
+    read_unaids_wide(os.path.join(data_dir, "UNAIDS-raw-data-HIV/prev_num_adult_female.csv"), "Female", "unaids_prevalence_number"),
+    read_unaids_wide(os.path.join(data_dir, "UNAIDS-raw-data-HIV/prev_num_adult_male.csv"), "Male", "unaids_prevalence_number"),
+])
+unaids_inc_rate = pl.concat([
+    read_unaids_wide(os.path.join(data_dir, "UNAIDS-raw-data-HIV/inc_rateUnin_adult_female.csv"), "Female", "unaids_incidence_rate_uninfected"),
+    read_unaids_wide(os.path.join(data_dir, "UNAIDS-raw-data-HIV/inc_rateUnin_adult_male.csv"), "Male", "unaids_incidence_rate_uninfected"),
+])
+
+unaids_data = (
+    unaids_inc_num
+    .join(unaids_prev_num, on=["country_code", "sex", "year"], how="full", coalesce=True)
+    .join(unaids_inc_rate, on=["country_code", "sex", "year"], how="full", coalesce=True)
+)
+
+data = data.join(unaids_data, on=["country_code", "sex", "year"], how="left")
+# note - countries missing UNAIDS data:  Mauritius, Equatorial Guinea, Sao Tome and Principe 
+
+# add a column that mnually calcultes p_acquiring_hiv using UNAIDS numbers, to check agains the hiv inc rate they report
+# note - we should get un pop data to use here instead
+data = data.with_columns(
+    unaids_p_acquiring_hiv=pl.col("unaids_incidence_number")
+    / (pl.col("population") - pl.col("unaids_prevalence_number")),
+    unaids_p_acquiring_hiv_lower=pl.col("unaids_incidence_number_lower")
+    / (pl.col("population_lower") - pl.col("unaids_prevalence_number_lower")),
+    unaids_p_acquiring_hiv_upper=pl.col("unaids_incidence_number_upper")
+    / (pl.col("population_upper") - pl.col("unaids_prevalence_number_upper")),
 )
 
 # let's take out part of the male population and make it msm
@@ -420,6 +511,12 @@ msm_data = (
                 "hiv_prevalence_year_end_number",
                 "hiv_prevalence_year_end_number_lower",
                 "hiv_prevalence_year_end_number_upper",
+                "unaids_incidence_number",
+                "unaids_incidence_number_lower",
+                "unaids_incidence_number_upper",
+                "unaids_prevalence_number",
+                "unaids_prevalence_number_lower",
+                "unaids_prevalence_number_upper",
                 "population",
                 "population_lower",
                 "population_upper",
@@ -444,6 +541,12 @@ non_msm_data = data.filter(pl.col("sex") == "Male").with_columns(
             "hiv_prevalence_year_end_number",
             "hiv_prevalence_year_end_number_lower",
             "hiv_prevalence_year_end_number_upper",
+            "unaids_incidence_number",
+            "unaids_incidence_number_lower",
+            "unaids_incidence_number_upper",
+            "unaids_prevalence_number",
+            "unaids_prevalence_number_lower",
+            "unaids_prevalence_number_upper",
             "population",
             "population_lower",
             "population_upper",
@@ -455,6 +558,6 @@ female_data = data.filter(pl.col("sex") == "Female")
 
 # join back together
 data = pl.concat([msm_data, non_msm_data, female_data])
-
+data = data.drop("cause") # cause column is all hiv, remenant from merge
 # save the assembled data
 data.write_csv(os.path.join(output_dir, "hiv_sti.csv"))
