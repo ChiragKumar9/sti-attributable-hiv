@@ -573,8 +573,10 @@ dhs_treatment_seeking = dhs_treatment_seeking.with_columns(
     .when(pl.col("sex") == "female").then(pl.lit("Female"))
     .otherwise(pl.lit("Error: unexpected sex value"))
 )
-
 data = data.join(dhs_treatment_seeking, on=["region", "sex"], how="left")
+
+assert data["symptom_treat_seek_rate"].null_count() == 0, \
+    "Missing DHS treatment seeking rate for some rows"
 
 # let's take out part of the male population and make it msm
 msm_fraction = params["msm_fraction"]
