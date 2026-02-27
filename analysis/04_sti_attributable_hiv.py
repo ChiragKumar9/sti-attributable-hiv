@@ -15,6 +15,9 @@ rrs_causal = pl.read_csv(
 )
 hiv_sti = pl.read_csv(os.path.join(output_dir, "hiv_sti_with_gc_abx_r.csv"))
 
+#use this code when subsetting to countries in both HIV datasets, comment out when not
+hiv_sti = hiv_sti.filter(pl.col("cols_unaids_analysis"))
+
 # relabel the sex column to match the GBD data
 rrs_causal = rrs_causal.with_columns(
     sex=pl.when(pl.col("sex") == "Heterosexual Women")
@@ -407,6 +410,11 @@ for sex in hiv_sti["sex"].unique():
 # we have to do this for each of our STIs
 
 STIs = ["gc", "chlamydia", "syphilis", "trichomoniasis"]
+
+# ============================================================
+# GBD analysis
+# ============================================================
+
 hiv_sti = hiv_sti.with_columns(
     [
         pl.struct(
@@ -651,13 +659,272 @@ hiv_sti = hiv_sti.with_columns(
 
 # now multiply GC attributable cases by resistance rates to get the number of
 # cases resistant to a particular drug
-
 hiv_sti = hiv_sti.with_columns(
     [
         (
             pl.col(f"hiv_incidence_number_attributable_to_gc{estimate}")
             * pl.col(f"{abx}{estimate}")
         ).alias(f"{abx}_resistant_number{estimate}")
+        for abx in ["Ciprofloxacin", "Cefixime", "Azithromycin", "Ceftriaxone"]
+        for estimate in ["", "_lower", "_upper"]
+    ]
+)
+# ============================================================
+# UNAIDS analysis
+# uses unaids_prevalence_number, unaids_incidence_rate_uninfected,
+# and unaids_incidence_number in place of the GBD equivalents
+# ============================================================
+
+hiv_sti = hiv_sti.with_columns(
+    [
+        pl.struct(
+            [
+                f"{sti}_prevalence{estimate}",
+                f"unaids_prevalence_number{estimate}",
+                f"population{estimate}",
+                f"rr_associative{estimate}_{sti}",
+            ]
+        )
+        .map_elements(
+            lambda x, s=sti, e=estimate: conditional_exposure.p_a_given_b(
+                x[f"{s}_prevalence{e}"],
+                x[f"unaids_prevalence_number{e}"] / x[f"population{e}"],
+                x[f"rr_associative{e}_{s}"],
+            ),
+            return_dtype=pl.Float64,
+        )
+        .alias(f"unaids_p_{sti}_given_hiv{estimate}")
+        for sti in STIs
+        for estimate in ["", "_lower", "_upper"]
+    ]
+)
+
+# now calculate P(STI and HIV)
+hiv_sti = hiv_sti.with_columns(
+    [
+        (
+            pl.col(f"unaids_p_{sti}_given_hiv{estimate}")
+            * (
+                pl.col(f"unaids_prevalence_number{estimate}")
+                / pl.col(f"population{estimate}")
+            )
+        ).alias(f"unaids_p_{sti}_and_hiv{estimate}")
+        for sti in STIs
+        for estimate in ["", "_lower", "_upper"]
+    ]
+)
+
+# now calculate STI prevalence in people without HIV
+hiv_sti = hiv_sti.with_columns(
+    [
+        (
+            pl.col(f"{sti}_prevalence{estimate}")
+            - pl.col(f"unaids_p_{sti}_and_hiv{estimate}")
+        ).alias(f"unaids_{sti}_prevalence_no_hiv{estimate}")
+        for sti in STIs
+        for estimate in ["", "_lower", "_upper"]
+    ]
+)
+
+# check that we don't have any negative prevalences
+assert np.all(
+    hiv_sti.select(
+        [
+            f"unaids_{sti}_prevalence_no_hiv{estimate}"
+            for sti in STIs
+            for estimate in ["", "_lower", "_upper"]
+        ]
+    )
+    .min()
+    .to_numpy()
+    >= 0
+)
+# the multiplicative nature of this model means that for some highly uncertain
+# places, we may see main <= lower <= upper or something like that
+# print out places like this
+for sti in STIs:
+    print(
+        hiv_sti.select(
+            [
+                "year",
+                "sex",
+                "location",
+                f"unaids_{sti}_prevalence_no_hiv_lower",
+                f"unaids_{sti}_prevalence_no_hiv",
+                f"unaids_{sti}_prevalence_no_hiv_upper",
+            ]
+        )
+        .with_columns(
+            in_bounds=(
+                pl.col(f"unaids_{sti}_prevalence_no_hiv_lower")
+                <= pl.col(f"unaids_{sti}_prevalence_no_hiv")
+            ).and_(
+                pl.col(f"unaids_{sti}_prevalence_no_hiv")
+                <= pl.col(f"unaids_{sti}_prevalence_no_hiv_upper")
+            )
+        )
+        .filter(~pl.col("in_bounds"))
+    )
+# we notice that these are all places where quantification of population size
+# is really tough
+# so we apply a post-hoc correction where we reorder the values
+for sti in STIs:
+    hiv_sti = hiv_sti.with_columns(
+        [
+        # Calculate the minimum, median, and maximum of the three values
+            pl.min_horizontal(
+                [
+                    f"unaids_{sti}_prevalence_no_hiv_lower",
+                    f"unaids_{sti}_prevalence_no_hiv",
+                    f"unaids_{sti}_prevalence_no_hiv_upper",
+                ]
+            ).alias(f"unaids_{sti}_prevalence_no_hiv_lower"),
+            pl.max_horizontal(
+                [
+                    f"unaids_{sti}_prevalence_no_hiv_lower",
+                    f"unaids_{sti}_prevalence_no_hiv",
+                    f"unaids_{sti}_prevalence_no_hiv_upper",
+                ]
+            ).alias(f"unaids_{sti}_prevalence_no_hiv_upper"),
+            pl.concat_list(
+                [
+                    f"unaids_{sti}_prevalence_no_hiv_lower",
+                    f"unaids_{sti}_prevalence_no_hiv",
+                    f"unaids_{sti}_prevalence_no_hiv_upper",
+                ]
+            )
+            .list.sort()
+            .list.get(1)
+            .alias(f"unaids_{sti}_prevalence_no_hiv"),
+        ]
+    )
+
+# use RR definition and law of total probability to calculate
+# P(acquired HIV (attributable to STI) | has STI)
+# The causal part is baked into using the causal RRs
+hiv_sti = hiv_sti.with_columns(
+    [
+        pl.struct(
+            [
+                f"unaids_incidence_rate_uninfected{estimate}",
+                f"unaids_{sti}_prevalence_no_hiv{estimate}",
+                f"rr_causal{estimate}_{sti}",
+            ]
+        )
+        .map_elements(
+            lambda x, s=sti, e=estimate: conditional_exposure.p_a_given_b(
+                x[f"unaids_incidence_rate_uninfected{e}"],
+                x[f"unaids_{s}_prevalence_no_hiv{e}"],
+                x[f"rr_causal{e}_{s}"],
+                allow_invalid=True,  # needed to skip assertion before cap when bound estimates exceed 1
+            ),
+            return_dtype=pl.Float64,
+        )
+        .alias(f"unaids_p_acquiring_hiv_given_{sti}{estimate}")
+        for sti in STIs
+        for estimate in ["", "_lower", "_upper"]
+    ]
+)
+
+# we want to calculate the probability of acquiring hiv because of STI,
+# not conditioned on having the STI
+
+# in order to calculate the attributable probability of HIV, we need to
+# subtract out the people who would have acquired HIV anyways -- not because
+# of the STI
+hiv_sti = hiv_sti.with_columns(
+    [
+        pl.struct(
+            [
+                f"unaids_incidence_rate_uninfected{estimate}",
+                f"unaids_{sti}_prevalence_no_hiv{estimate}",
+                f"rr_causal{estimate}_{sti}",
+            ]
+        )
+        .map_elements(
+            lambda x, s=sti, e=estimate: conditional_exposure.p_a_given_not_b(
+                x[f"unaids_incidence_rate_uninfected{e}"],
+                x[f"unaids_{s}_prevalence_no_hiv{e}"],
+                x[f"rr_causal{e}_{s}"],
+            ),
+            return_dtype=pl.Float64,
+        )
+        .alias(f"unaids_p_acquiring_hiv_given_no_{sti}{estimate}")
+        for sti in STIs
+        for estimate in ["", "_lower", "_upper"]
+    ]
+)
+
+
+hiv_sti = hiv_sti.with_columns(
+    [
+        (
+            (
+                pl.col(f"unaids_p_acquiring_hiv_given_{sti}{estimate}")
+                - pl.col(f"unaids_p_acquiring_hiv_given_no_{sti}{estimate}")
+            )
+            * pl.col(f"unaids_{sti}_prevalence_no_hiv{estimate}")
+        ).alias(f"unaids_p_hiv_attributable_{sti}{estimate}")
+        for sti in STIs
+        for estimate in ["", "_lower", "_upper"]
+    ]
+)
+
+# make sure no unaids_p_hiv_attributable go below 0
+for sti in STIs:
+    hiv_sti = hiv_sti.with_columns(
+        pl.when(pl.col(f"unaids_p_hiv_attributable_{sti}{estimate}") < 0)
+        .then(pl.lit(0))
+        .otherwise(pl.col(f"unaids_p_hiv_attributable_{sti}{estimate}"))
+        .alias(f"unaids_p_hiv_attributable_{sti}{estimate}")
+        for estimate in ["", "_lower", "_upper"]
+    )
+
+# assert that unaids_p_hiv_attributable for males for trichomoniasis is 0
+assert np.all(
+    hiv_sti.filter(pl.col("sex") != "Female")
+    .select(
+        [
+            f"unaids_p_hiv_attributable_trichomoniasis{estimate}"
+            for estimate in ["", "_lower", "_upper"]
+        ]
+    )
+    .to_numpy()
+    == 0
+)
+
+# now we want to calculate how much of hiv is attributable to the STI
+hiv_sti = hiv_sti.with_columns(
+    [
+        (
+            pl.col(f"unaids_p_hiv_attributable_{sti}{estimate}")
+            / pl.col(f"unaids_incidence_rate_uninfected{estimate}")
+        ).alias(f"unaids_paf_{sti}_hiv{estimate}")
+        for sti in STIs
+        for estimate in ["", "_lower", "_upper"]
+    ]
+)
+
+# multiply the pafs by the unaids incidence number to get attributable infections
+hiv_sti = hiv_sti.with_columns(
+    [
+        (
+            pl.col(f"unaids_incidence_number{estimate}")
+            * pl.col(f"unaids_paf_{sti}_hiv{estimate}")
+        ).alias(f"unaids_hiv_incidence_number_attributable_to_{sti}{estimate}")
+        for sti in STIs
+        for estimate in ["", "_lower", "_upper"]
+    ]
+)
+
+# now multiply GC attributable cases by resistance rates to get the number of
+# cases resistant to a particular drug
+hiv_sti = hiv_sti.with_columns(
+    [
+        (
+            pl.col(f"unaids_hiv_incidence_number_attributable_to_gc{estimate}")
+            * pl.col(f"{abx}{estimate}")
+        ).alias(f"unaids_{abx}_resistant_number{estimate}")
         for abx in ["Ciprofloxacin", "Cefixime", "Azithromycin", "Ceftriaxone"]
         for estimate in ["", "_lower", "_upper"]
     ]
