@@ -1,7 +1,8 @@
-STI 1 (for those infected with),STI 2 (how many are coinfected w),Coinfection prevalence
-Gonorrhea,Chlamydia,53.85
-Trichomoniasis,Chlamydia,50.00
-Chlamydia,Gonorrhea,13.21
-Trichomoniasis,Gonorrhea,0.00
-Chlamydia,Trichomoniasis,1.89
-Gonorrhea,Trichomoniasis,0.00
+STI 1 (for those infected with),STI 2 (how many are coinfected w),Coinfection prevalence,Overall prevalence of STI 2
+Gonorrhea,Chlamydia,53.85,13.7
+Trichomoniasis,Chlamydia,50.00,13.7
+Chlamydia,Gonorrhea,13.21,3.4
+Trichomoniasis,Gonorrhea,0.00,3.4
+Chlamydia,Trichomoniasis,1.89,0.5
+Gonorrhea,Trichomoniasis,0.00,0.5
+
