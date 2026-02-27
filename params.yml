@@ -18,18 +18,18 @@ sti_symptoms:
 # fraction of symptomatic cases that are treated
 # we allow the numbers to vary both by STI and sex because presumably
 # some STIs lead to worse symptoms and thus higher treatment rates, and also
-# because there may be differences in care-seeking behavior by sex
-sti_treatment:
-  gc:
-    male: 0.71
-    female: 0.661
-  chlamydia:
-    male: 0.71
-    female: 0.661
-  syphilis:
-    male: 0.71
-    female: 0.661
-  trichomoniasis:
-    # doesn't matter
-    male: 0.71
-    female: 0.661
+# # because there may be differences in care-seeking behavior by sex
+# sti_treatment:
+#   gc:
+#     male: 0.71
+#     female: 0.661
+#   chlamydia:
+#     male: 0.71
+#     female: 0.661
+#   syphilis:
+#     male: 0.71
+#     female: 0.661
+#   trichomoniasis:
+#     # doesn't matter
+#     male: 0.71
+#     female: 0.661
