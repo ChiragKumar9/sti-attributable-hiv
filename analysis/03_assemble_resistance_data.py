@@ -286,11 +286,12 @@ gasp = gasp.with_columns(
 
 years_of_data = gasp["year"].sort().unique().to_list()
 
+
 # we want to make a dataframe for values across the region
 gasp_region = (
-    gasp.group_by(["region", "year"])
+    gasp.drop("Country")
+    .group_by(["region", "year"])
     .sum()
-    .drop("Country")
     .select(
         [
             "region",
