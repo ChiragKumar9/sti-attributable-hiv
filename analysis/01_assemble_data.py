@@ -548,6 +548,34 @@ data = data.with_columns(
     + 0.5 * pl.col("unaids_incidence_number_upper"),
 )
 
+# Add in DHS treatment seeking rate for someone with STI symptoms, by region and by sex
+dhs_treatment_seeking = pl.read_csv(os.path.join(data_dir, "dhs_treatment_seeking_symptom.csv"))
+
+# map country name to iso3; 3 DHS names differ from IHME names
+_dhs_name_to_iso3 = dict(ihme_name_to_iso3)  
+_dhs_name_to_iso3["Tanzania"] = "TZA"
+_dhs_name_to_iso3["DRC"] = "COD"
+_dhs_name_to_iso3["Sao Tome"] = "STP"
+
+dhs_treatment_seeking = dhs_treatment_seeking.with_columns(
+    iso3=pl.col("country").replace(_dhs_name_to_iso3)
+).with_columns(
+    region=pl.col("iso3").replace(countries_to_regions)
+)
+# calculate mean from numbers of respodnents in each country, summed by regiuon
+dhs_treatment_seeking = dhs_treatment_seeking.group_by("region", "sex").agg(
+    symptom_treat_seek_rate=pl.sum("n_sought_treatment") / pl.sum("n_sti_respondents"),
+).select(["region", "sex", "symptom_treat_seek_rate"])
+
+# clean sex names to match
+dhs_treatment_seeking = dhs_treatment_seeking.with_columns(
+    sex=pl.when(pl.col("sex") == "male").then(pl.lit("Male"))
+    .when(pl.col("sex") == "female").then(pl.lit("Female"))
+    .otherwise(pl.lit("Error: unexpected sex value"))
+)
+
+data = data.join(dhs_treatment_seeking, on=["region", "sex"], how="left")
+
 # let's take out part of the male population and make it msm
 msm_fraction = params["msm_fraction"]
 msm_data = (
