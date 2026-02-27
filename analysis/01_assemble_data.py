@@ -130,6 +130,12 @@ def read_unaids_wide(filepath, sex_label, value_col_name):
             .then(pl.lit(50.0))
             .when(pl.col(col_name).str.contains("<200")) 
             .then(pl.lit(150.0))
+            .when(pl.col(col_name).str.contains("<500")) 
+            .then(pl.lit(350.0))
+            .when(pl.col(col_name).str.contains("<0.01"))
+            .then(pl.lit(0.005))
+            .when(pl.col(col_name).str.contains("<0.1"))
+            .then(pl.lit(0.05))
             .otherwise(pl.col(col_name).str.replace_all(" ", "").cast(pl.Float64, strict=False))
             )
 
@@ -144,7 +150,6 @@ def read_unaids_wide(filepath, sex_label, value_col_name):
     # note - some non SSA countries don't map to iso3 codes, but this doesn't matter for us
     long = long.drop(["val_raw", "lower_raw", "upper_raw", "Country"])
     return long
-
 
 # read data
 incidence = pl.read_csv(os.path.join(data_dir, "ihme_incidence.csv"))
@@ -492,29 +497,6 @@ data = data.with_columns(
     unaids_incidence_rate_uninfected_upper=pl.col("unaids_incidence_rate_uninfected_upper") / 1000,
 )
 
-# impute missing lower and upper bounds by mirroring the the other bound distance from the point estimate. no rows are missing both bounds
-# lower = point - (upper - point) = 2 * point - upper, clamped to 0
-# upper = point + (point - lower) = 2 * point - lower
-unaids_bound_cols = [
-    ("unaids_incidence_number", "unaids_incidence_number_lower", "unaids_incidence_number_upper"),
-    ("unaids_prevalence_number", "unaids_prevalence_number_lower", "unaids_prevalence_number_upper"),
-    ("unaids_incidence_rate_uninfected", "unaids_incidence_rate_uninfected_lower", "unaids_incidence_rate_uninfected_upper"),
-]
-data = data.with_columns([
-    pl.when(pl.col(lower).is_null() & pl.col(point).is_not_null() & pl.col(upper).is_not_null())
-    .then(pl.max_horizontal([pl.lit(0.0), 2 * pl.col(point) - pl.col(upper)]))
-    .otherwise(pl.col(lower))
-    .alias(lower)
-    for point, lower, upper in unaids_bound_cols
-])
-data = data.with_columns([
-    pl.when(pl.col(upper).is_null() & pl.col(point).is_not_null() & pl.col(lower).is_not_null())
-    .then(2 * pl.col(point) - pl.col(lower))
-    .otherwise(pl.col(upper))
-    .alias(upper)
-    for point, lower, upper in unaids_bound_cols
-])
-
 # add a column that mnually calcultes p_acquiring_hiv using UNAIDS numbers, to check agains the hiv inc rate they report
 # note - we should get un pop data to use here instead
 data = data.with_columns(
@@ -652,3 +634,84 @@ data = pl.concat([msm_data, non_msm_data, female_data])
 data = data.drop("cause") # cause column is all hiv, remenant from merge
 # save the assembled data
 data.write_csv(os.path.join(output_dir, "hiv_sti.csv"))
+
+
+# Format UNAIDS future HIV projections for figure 
+
+unaids_proj = pl.read_csv(os.path.join(data_dir, "unaids_future_hiv_projections_all_years.csv"))
+unaids_proj = unaids_proj.filter(pl.col("metric") == "new_infections")
+
+# For 2020-2024 use the "98-98-99 treatment, 2024 prevention" column;
+# for 2025-2030 use the "Historical trend" column.
+unaids_proj = unaids_proj.with_columns(
+    pl.when(pl.col("year") <= 2024)
+    .then(pl.col("98-98-99 treatment, 2024 prevention"))
+    .otherwise(pl.col("Historical trend"))
+    .alias("value")
+)
+
+# Map country name -> iso3 code, then iso3 -> region.
+# countries_to_regions is keyed by iso3 at this point in the script.
+unaids_proj = unaids_proj.with_columns(
+    country_code=pl.col("country").replace(ihme_name_to_iso3),
+)
+unaids_proj = unaids_proj.with_columns(
+    region=pl.col("country_code").replace(countries_to_regions),
+)
+
+# Keep only SSA countries 
+unaids_proj = unaids_proj.filter(
+    pl.col("region").is_in(["Western", "Eastern", "Central", "Southern"])
+)
+
+unaids_proj = unaids_proj.select(["country", "country_code", "region", "year", "value"])
+
+unaids_proj.write_csv(os.path.join(output_dir, "unaids_future_hiv_projections_formatted.csv"))
+
+# Sex-split projections: apply historical sex fractions to projected totals
+# Compute SSA-wide female/male fractions from UNAIDS historical data by year.
+# In 'data', the MSM split has already been applied, so we recombine
+# Male + MSM to recover total male UNAIDS incidence before computing fractions.
+sex_fractions = (
+    data
+    .group_by("year")
+    .agg(
+        female_inc=pl.col("unaids_incidence_number").filter(pl.col("sex") == "Female").sum(),
+        male_inc=pl.col("unaids_incidence_number").filter(pl.col("sex").is_in(["Male", "MSM"])).sum(),
+    )
+    .with_columns(
+        female_fraction=pl.col("female_inc") / (pl.col("female_inc") + pl.col("male_inc")),
+        male_fraction=pl.col("male_inc") / (pl.col("female_inc") + pl.col("male_inc")),
+    )
+    .select(["year", "female_fraction", "male_fraction"])
+)
+
+# For each projected year Y, look up the sex ratio from a historical year using
+# a progressive decay assumption: the year of the sex ratio is
+#   2023 - (Y - 2024)  i.e.  2024 -> 2023, 2025 -> 2022, 2026 -> 2021, ...
+# For historical years already in the data (Y <= 2023), use Y's own ratio.
+last_hist_year = 2023
+unaids_proj_sex = unaids_proj.with_columns(
+    sex_ratio_year=pl.when(pl.col("year") <= last_hist_year)
+        .then(pl.col("year"))
+        .otherwise(pl.lit(2 * last_hist_year + 1) - pl.col("year"))
+        .cast(pl.Int64)
+)
+
+unaids_proj_sex = unaids_proj_sex.join(
+    sex_fractions, left_on="sex_ratio_year", right_on="year", how="left"
+)
+
+# Build long-format sex-split projections
+unaids_proj_by_sex = pl.concat([
+    unaids_proj_sex.with_columns(
+        sex=pl.lit("Female"),
+        value=pl.col("value") * pl.col("female_fraction"),
+    ).select(["country", "country_code", "region", "year", "sex", "value"]),
+    unaids_proj_sex.with_columns(
+        sex=pl.lit("Male"),
+        value=pl.col("value") * pl.col("male_fraction"),
+    ).select(["country", "country_code", "region", "year", "sex", "value"]),
+])
+
+unaids_proj_by_sex.write_csv(os.path.join(output_dir, "unaids_future_hiv_projections_by_sex.csv"))
