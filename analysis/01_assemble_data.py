@@ -119,13 +119,17 @@ def read_unaids_wide(filepath, sex_label, value_col_name):
     long = val_long.join(lower_long, on=["Country", "year"]).join(upper_long, on=["Country", "year"])
 
     # raw data has "..." for missing data
-    # "<100" or "<200" reported, assumed to be 0
+    # assumed values when < reported
+    # if <100 --> make 50 
+    # if <200 --> make 150
     def clean_col(col_name):
         return (
             pl.when(pl.col(col_name).is_null() | (pl.col(col_name).str.strip_chars() == "..."))
             .then(None)
-            .when(pl.col(col_name).str.contains("<")) # assumption - that values <100 or <200 are 0
-            .then(pl.lit(0.0))
+            .when(pl.col(col_name).str.contains("<100"))
+            .then(pl.lit(50.0))
+            .when(pl.col(col_name).str.contains("<200")) 
+            .then(pl.lit(150.0))
             .otherwise(pl.col(col_name).str.replace_all(" ", "").cast(pl.Float64, strict=False))
             )
 
@@ -480,7 +484,36 @@ unaids_data = (
 )
 
 data = data.join(unaids_data, on=["country_code", "sex", "year"], how="left")
-# note - countries missing UNAIDS data:  Mauritius, Equatorial Guinea, Sao Tome and Principe 
+
+# divide incidence rate by 1000 since original data is per 1000 uninfected population
+data = data.with_columns(
+    unaids_incidence_rate_uninfected=pl.col("unaids_incidence_rate_uninfected") / 1000,
+    unaids_incidence_rate_uninfected_lower=pl.col("unaids_incidence_rate_uninfected_lower") / 1000,
+    unaids_incidence_rate_uninfected_upper=pl.col("unaids_incidence_rate_uninfected_upper") / 1000,
+)
+
+# impute missing lower and upper bounds by mirroring the the other bound distance from the point estimate. no rows are missing both bounds
+# lower = point - (upper - point) = 2 * point - upper, clamped to 0
+# upper = point + (point - lower) = 2 * point - lower
+unaids_bound_cols = [
+    ("unaids_incidence_number", "unaids_incidence_number_lower", "unaids_incidence_number_upper"),
+    ("unaids_prevalence_number", "unaids_prevalence_number_lower", "unaids_prevalence_number_upper"),
+    ("unaids_incidence_rate_uninfected", "unaids_incidence_rate_uninfected_lower", "unaids_incidence_rate_uninfected_upper"),
+]
+data = data.with_columns([
+    pl.when(pl.col(lower).is_null() & pl.col(point).is_not_null() & pl.col(upper).is_not_null())
+    .then(pl.max_horizontal([pl.lit(0.0), 2 * pl.col(point) - pl.col(upper)]))
+    .otherwise(pl.col(lower))
+    .alias(lower)
+    for point, lower, upper in unaids_bound_cols
+])
+data = data.with_columns([
+    pl.when(pl.col(upper).is_null() & pl.col(point).is_not_null() & pl.col(lower).is_not_null())
+    .then(2 * pl.col(point) - pl.col(lower))
+    .otherwise(pl.col(upper))
+    .alias(upper)
+    for point, lower, upper in unaids_bound_cols
+])
 
 # add a column that mnually calcultes p_acquiring_hiv using UNAIDS numbers, to check agains the hiv inc rate they report
 # note - we should get un pop data to use here instead
@@ -491,6 +524,28 @@ data = data.with_columns(
     / (pl.col("population_lower") - pl.col("unaids_prevalence_number_lower")),
     unaids_p_acquiring_hiv_upper=pl.col("unaids_incidence_number_upper")
     / (pl.col("population_upper") - pl.col("unaids_prevalence_number_upper")),
+)
+
+# add a column that is a true or false for whether this row will be used in the UNAIDS analysis
+# false for the following countries: Liberia, Equatorial Guinea, São Tomé and Príncipe, Mauritius, Mauritania, Somalia, Eritrea, comoros, cabo verde, djibuti
+countries_to_exclude = ["LBR", "GNQ", "STP", "MUS", "MRT", "SOM", 
+                        "ERI", "COM", "CPV", "DJI", "GNB", "GMB",
+                         "MDG", "BEN", "ETH", "NER", "BDI", "GAB"]
+
+data = data.with_columns(
+    cols_unaids_analysis=pl.when(pl.col("country_code").is_in(countries_to_exclude))
+        .then(pl.lit(False))
+        .otherwise(pl.lit(True))
+)
+
+# compute unaids year-end prevalence to use later
+data = data.with_columns(
+    unaids_prevalence_year_end_number=pl.col("unaids_prevalence_number")
+    + 0.5 * pl.col("unaids_incidence_number"),
+    unaids_prevalence_year_end_number_lower=pl.col("unaids_prevalence_number_lower")
+    + 0.5 * pl.col("unaids_incidence_number_lower"),
+    unaids_prevalence_year_end_number_upper=pl.col("unaids_prevalence_number_upper")
+    + 0.5 * pl.col("unaids_incidence_number_upper"),
 )
 
 # let's take out part of the male population and make it msm
@@ -517,6 +572,9 @@ msm_data = (
                 "unaids_prevalence_number",
                 "unaids_prevalence_number_lower",
                 "unaids_prevalence_number_upper",
+                "unaids_prevalence_year_end_number",
+                "unaids_prevalence_year_end_number_lower",
+                "unaids_prevalence_year_end_number_upper",
                 "population",
                 "population_lower",
                 "population_upper",
@@ -547,6 +605,9 @@ non_msm_data = data.filter(pl.col("sex") == "Male").with_columns(
             "unaids_prevalence_number",
             "unaids_prevalence_number_lower",
             "unaids_prevalence_number_upper",
+            "unaids_prevalence_year_end_number",
+            "unaids_prevalence_year_end_number_lower",
+            "unaids_prevalence_year_end_number_upper",
             "population",
             "population_lower",
             "population_upper",
