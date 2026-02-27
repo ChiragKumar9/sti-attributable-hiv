@@ -11,7 +11,8 @@ def p_a_given_b(p_a, p_b, rr_a_b, allow_invalid=False):
         assert 0 <= p_a_given_b <= 1, (
             f"Calculated P(A|B) = {p_a_given_b} is not a valid probability"
         )
-    return p_a_given_b
+    # cap at 1 for cases where input bounds give p greater than 1
+    return min(p_a_given_b, 1.0)
 
 
 def p_a_given_not_b(p_a, p_b, rr_a_b):
@@ -32,8 +33,8 @@ def p_a_given_not_b(p_a, p_b, rr_a_b):
     float
         P(A|~B) - probability of A given NOT B
     """
-    # First get P(A|B)
-    p = p_a_given_b(p_a, p_b, rr_a_b)
+    # First get P(A|B), allowing > 1 so the cap in p_a_given_b applies cleanly
+    p = p_a_given_b(p_a, p_b, rr_a_b, allow_invalid=True)
     # Then use RR definition: RR = P(A|B) / P(A|~B)
     # So: P(A|~B) = P(A|B) / RR
     return p / rr_a_b
