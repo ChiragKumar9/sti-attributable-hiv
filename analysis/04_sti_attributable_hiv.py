@@ -13,6 +13,7 @@ data_dir = "data"
 rrs_causal = pl.read_csv(
     os.path.join(output_dir, "meta_estimated_RRs_causal_STI_given_HIV.csv")
 )
+
 hiv_sti = pl.read_csv(os.path.join(output_dir, "hiv_sti_with_gc_abx_r.csv"))
 
 #use this code when subsetting to countries in both HIV datasets, comment out when not
@@ -322,6 +323,69 @@ sti_names = {
 coinfection_female = coinfection.filter(pl.col("sex") == "Female")
 coinfection_male = coinfection.filter(pl.col("sex") == "Male")
 
+# Calculation location-specific coinfection columns
+# Instead of using absolute coinfection rates from the study directly, we compute
+# a relative risk (RR = P(STI2|STI1)_study / P(STI2)_study) and then multiply by the
+# local STI2 prevalence for each row. This makes coinfection rates vary by country/year.
+# For females: separate RRs for South Africa vs Southern/Eastern Africa.
+# For male syphillis data we still just use the values we impute
+# TODO: add bounds for men
+_female_coin_sea = female_coinfection.filter(
+    pl.col("Population") == "women, 15–24, Southern/Eastern Africa"
+)
+_female_coin_sa = female_coinfection.filter(
+    pl.col("Population") == "women, 15–24, South Africa"
+)
+# Male original rows only (exclude syphilis rows with Overall prevalence of STI 2)
+_male_coin_orig = (
+    coinfection
+    .filter(pl.col("sex") == "Male")
+    .filter(pl.col("location_South_Africa"))
+    .filter(pl.col("Overall prevalence of STI 2").is_not_null())
+)
+
+def _get_rr(coin_df, sti1_disp, sti2_disp, coin_col="Coinfection prevalence"):
+    # Return RR = coinfection_rate / study_prev
+    rows = coin_df.filter(
+        (pl.col("STI 1 (for those infected with)") == sti1_disp)
+        & (pl.col("STI 2 (how many are coinfected w)") == sti2_disp)
+    )
+    if rows.height == 0 or rows["Overall prevalence of STI 2"][0] is None:
+        return None
+    study_prev = rows["Overall prevalence of STI 2"][0] / 100.0
+    coin_rate = rows[coin_col][0] / 100.0
+    return coin_rate / study_prev if study_prev > 0 else 0.0
+
+for sti1 in ["gc", "chlamydia", "syphilis", "trichomoniasis"]:
+    for sti2 in ["gc", "chlamydia", "syphilis", "trichomoniasis"]:
+        if sti1 == sti2:
+            continue
+        s1, s2 = sti_names[sti1], sti_names[sti2]
+
+        rr_f_sea    = _get_rr(_female_coin_sea, s1, s2) or 0.0
+        rr_f_sea_lo = _get_rr(_female_coin_sea, s1, s2, "Coinfection prevalence lower") or 0.0
+        rr_f_sea_hi = _get_rr(_female_coin_sea, s1, s2, "Coinfection prevalence upper") or 0.0
+        rr_f_sa     = _get_rr(_female_coin_sa, s1, s2) or 0.0
+        rr_f_sa_lo  = _get_rr(_female_coin_sa, s1, s2, "Coinfection prevalence lower") or 0.0
+        rr_f_sa_hi  = _get_rr(_female_coin_sa, s1, s2, "Coinfection prevalence upper") or 0.0
+        rr_m = _get_rr(_male_coin_orig, s1, s2)
+        if rr_m is None:
+            rr_m = rr_f_sea  # for male syphilis pairs
+
+        for estimate, f_sea, f_sa, m in [
+            ("",       rr_f_sea,    rr_f_sa,    rr_m),
+            ("_lower", rr_f_sea_lo, rr_f_sa_lo, rr_m),  # TODO add bounds -  males: point estimate for all bounds since don't have bounds yet
+            ("_upper", rr_f_sea_hi, rr_f_sa_hi, rr_m),
+        ]:
+            hiv_sti = hiv_sti.with_columns(
+                pl.when((pl.col("sex") == "Female") & (pl.col("location") != "South Africa"))
+                .then((f_sea * pl.col(f"{sti2}_prevalence{estimate}")).clip(upper_bound=1.0))
+                .when((pl.col("sex") == "Female") & (pl.col("location") == "South Africa"))
+                .then((f_sa * pl.col(f"{sti2}_prevalence{estimate}")).clip(upper_bound=1.0))
+                .otherwise((m * pl.col(f"{sti2}_prevalence{estimate}")).clip(upper_bound=1.0))
+                .alias(f"{sti2}_given_{sti1}_coin{estimate}")
+            )
+
 for sex in hiv_sti["sex"].unique():
     # Select appropriate coinfection dataframe
     # because sex in hiv_sti can be MSM, and for MSM we want to use
@@ -336,42 +400,9 @@ for sex in hiv_sti["sex"].unique():
     ].to_list()
 
     for idx, bacteria in enumerate(risk[1:], start=1):
-        # Pre-filter coinfection data for this bacteria
-        bacteria_coinfections = coinfection_sex.filter(
-            pl.col("STI 1 (for those infected with)") == sti_names[bacteria]
-        ).filter(
-            pl.col("STI 2 (how many are coinfected w)").is_in(
-                [sti_names[b] for b in risk[:idx]]
-            )
-        )
+        higher_risk = risk[:idx]
 
         for location in hiv_sti["location"].unique():
-            if location == "South Africa":
-                bacteria_coinfections_location = bacteria_coinfections.filter(
-                    pl.col("location_South_Africa")
-                )
-            else:
-                bacteria_coinfections_location = bacteria_coinfections.filter(
-                    ~pl.col("location_South_Africa")
-                )
-
-            coinfection_rate = (
-                bacteria_coinfections_location["Coinfection prevalence"].sum()
-                / 100
-            )
-            coinfection_rate_lower = (
-                bacteria_coinfections_location[
-                    "Coinfection prevalence lower"
-                ].sum()
-                / 100
-            )
-            coinfection_rate_upper = (
-                bacteria_coinfections_location[
-                    "Coinfection prevalence upper"
-                ].sum()
-                / 100
-            )
-
             # Apply updates in a single pass
             mask = (pl.col("sex") == sex) & (pl.col("location") == location)
 
@@ -381,7 +412,7 @@ for sex in hiv_sti["sex"].unique():
                     pl.when(mask)
                     .then(
                         pl.col(f"{bacteria}_prevalence")
-                        * (1 - coinfection_rate)
+                        * (1 - pl.sum_horizontal([pl.col(f"{sti2}_given_{bacteria}_coin") for sti2 in higher_risk]).clip(upper_bound=1.0))
                     )
                     .otherwise(pl.col(f"{bacteria}_prevalence"))
                     .alias(f"{bacteria}_prevalence"),
@@ -389,14 +420,14 @@ for sex in hiv_sti["sex"].unique():
                     pl.when(mask)
                     .then(
                         pl.col(f"{bacteria}_prevalence_lower")
-                        * (1 - coinfection_rate_lower)
+                        * (1 - pl.sum_horizontal([pl.col(f"{sti2}_given_{bacteria}_coin_lower") for sti2 in higher_risk]).clip(upper_bound=1.0))
                     )
                     .otherwise(pl.col(f"{bacteria}_prevalence_lower"))
                     .alias(f"{bacteria}_prevalence_lower"),
                     pl.when(mask)
                     .then(
                         pl.col(f"{bacteria}_prevalence_upper")
-                        * (1 - coinfection_rate_upper)
+                        * (1 - pl.sum_horizontal([pl.col(f"{sti2}_given_{bacteria}_coin_upper") for sti2 in higher_risk]).clip(upper_bound=1.0))
                     )
                     .otherwise(pl.col(f"{bacteria}_prevalence_upper"))
                     .alias(f"{bacteria}_prevalence_upper"),
