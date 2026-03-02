@@ -847,7 +847,6 @@ hiv_sti = hiv_sti.with_columns(
                 x[f"unaids_incidence_rate_uninfected{e}"],
                 x[f"unaids_{s}_prevalence_no_hiv{e}"],
                 x[f"rr_causal{e}_{s}"],
-                allow_invalid=True,  # needed to skip assertion before cap when bound estimates exceed 1
             ),
             return_dtype=pl.Float64,
         )

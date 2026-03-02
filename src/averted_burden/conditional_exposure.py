@@ -7,13 +7,10 @@ def p_a_given_b(p_a, p_b, rr_a_b, allow_invalid=False):
     # Rearranging to solve for P(A|B):
     # P(A|B) = P(A) / [P(B) + (1 - P(B)) / RR]
     p_a_given_b = p_a / (p_b + (1 - p_b) / rr_a_b)
-    if not allow_invalid:
-        assert 0 <= p_a_given_b <= 1, (
-            f"Calculated P(A|B) = {p_a_given_b} is not a valid probability"
-        )
-    # cap at 1 for cases where input bounds give p greater than 1
-    return min(p_a_given_b, 1.0)
-
+    if allow_invalid:
+        return p_a_given_b
+    else:
+        return min(p_a_given_b, 1.0)
 
 def p_a_given_not_b(p_a, p_b, rr_a_b):
     """
