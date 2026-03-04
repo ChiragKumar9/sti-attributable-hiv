@@ -766,7 +766,7 @@ def plot_attributable_hiv_burden_sex_pathogen(hiv, ax, fig):
             )
 
     ax.set_xticks(x)
-    ax.set_xticklabels(sexes, rotation=-45, ha="left")
+    ax.set_xticklabels(sexes, rotation=-45, ha="center")
     ax.set_xlabel("Group")
     ax.set_ylabel("Attributable HIV incidence (%)")
     ax.legend()
@@ -876,7 +876,7 @@ def plot_attributable_hiv_burden_region_pathogen(hiv, ax, fig):
         )
 
     ax.set_xticks(x)
-    ax.set_xticklabels(regions, rotation=-45, ha="left")
+    ax.set_xticklabels(regions, rotation=-45, ha="center")
     ax.set_xlabel("Region")
     ax.set_ylabel("Attributable HIV incidence (%)")
     ax.legend(loc=(0.01, 0.72))
@@ -903,7 +903,7 @@ def compute_country_order(hiv):
     )
 
 
-def plot_sensitivity_country_bar(hiv, ax, fig, country_order, year=None):
+def plot_sensitivity_country_bar(hiv, ax, fig, year=None, top_n=10):
     # Bar chart of GBD vs UNAIDS total STI attributable HIV cases by country
     # only includes countries in GBD and UNAIDS analysis (cols_unaids_analysis = True)
     # can be for a specific year or all years, and can include all or subset of countries
@@ -915,24 +915,61 @@ def plot_sensitivity_country_bar(hiv, ax, fig, country_order, year=None):
             + pl.col("hiv_incidence_number_attributable_to_chlamydia")
             + pl.col("hiv_incidence_number_attributable_to_trichomoniasis")
         ),
+        total_gbd_upper=(
+            pl.col("hiv_incidence_number_attributable_to_gc_upper")
+            + pl.col("hiv_incidence_number_attributable_to_syphilis_upper")
+            + pl.col("hiv_incidence_number_attributable_to_chlamydia_upper")
+            + pl.col("hiv_incidence_number_attributable_to_trichomoniasis_upper")
+        ),
+        total_gbd_lower=(
+            pl.col("hiv_incidence_number_attributable_to_gc_lower")
+            + pl.col("hiv_incidence_number_attributable_to_syphilis_lower")
+            + pl.col("hiv_incidence_number_attributable_to_chlamydia_lower")
+            + pl.col("hiv_incidence_number_attributable_to_trichomoniasis_lower")
+        ),
         total_unaids=(
             pl.col("unaids_hiv_incidence_number_attributable_to_gc")
             + pl.col("unaids_hiv_incidence_number_attributable_to_syphilis")
             + pl.col("unaids_hiv_incidence_number_attributable_to_chlamydia")
             + pl.col("unaids_hiv_incidence_number_attributable_to_trichomoniasis")
         ),
-    ) 
+        total_unaids_upper=(
+            pl.col("unaids_hiv_incidence_number_attributable_to_gc_upper")
+            + pl.col("unaids_hiv_incidence_number_attributable_to_syphilis_upper")
+            + pl.col("unaids_hiv_incidence_number_attributable_to_chlamydia_upper")
+            + pl.col("unaids_hiv_incidence_number_attributable_to_trichomoniasis_upper")
+        ),
+        total_unaids_lower=(
+            pl.col("unaids_hiv_incidence_number_attributable_to_gc_lower")
+            + pl.col("unaids_hiv_incidence_number_attributable_to_syphilis_lower")
+            + pl.col("unaids_hiv_incidence_number_attributable_to_chlamydia_lower")
+            + pl.col("unaids_hiv_incidence_number_attributable_to_trichomoniasis_lower")
+        ),
+    )
     if year is not None:
         hiv = hiv.filter(pl.col("year") == year)
+
+    # Compute country order from this panel's data (descending GBD total, all sexes combined)
+    country_totals = (
+        hiv.group_by("location")
+        .agg(pl.sum("total_gbd").alias("total"))
+        .sort("total", descending=True)
+    )
+    plot_countries = country_totals["location"].head(top_n).to_list()
 
     # sum over years and pathogens to get total attributable cases by country and sex and source
     hiv_agg = (
         hiv.group_by(["location", "sex"])
-        .agg(pl.sum("total_gbd"), pl.sum("total_unaids"))
+        .agg(
+            pl.sum("total_gbd"),
+            pl.sum("total_gbd_upper"),
+            pl.sum("total_gbd_lower"),
+            pl.sum("total_unaids"),
+            pl.sum("total_unaids_upper"),
+            pl.sum("total_unaids_lower"),
+        )
     )
-    
-    # filter to just the top 15 countries by GBD burden
-    plot_countries = country_order[:15]
+
     hiv_agg = hiv_agg.filter(pl.col("location").is_in(plot_countries))
 
     x = np.arange(len(plot_countries)) # make positions for x axis countries
@@ -957,46 +994,55 @@ def plot_sensitivity_country_bar(hiv, ax, fig, country_order, year=None):
     # Order: Female, Male, MSM — within each pair: GBD left, UNAIDS right
     sexes = ["Female", "Male", "MSM"]
     style = {
-        ("GBD", "Female"):    dict(facecolor="#135313", edgecolor="#0A2E0A", hatch=""),
-        ("GBD", "Male"):      dict(facecolor="#30A130", edgecolor="#30A130", hatch=""),
-        ("GBD", "MSM"):       dict(facecolor="#A7F19C", edgecolor="#000000", hatch="\\\\"),
-        ("UNAIDS", "Female"): dict(facecolor="#0726C4", edgecolor="#06245A", hatch=""),
-        ("UNAIDS", "Male"):   dict(facecolor="#579BE8", edgecolor="#579BE8", hatch=""),
-        ("UNAIDS", "MSM"):    dict(facecolor="#AFE5F4", edgecolor="#000000", hatch="\\\\"),
+        ("GBD", "Female"):    dict(facecolor="#4E844F", edgecolor="#388E3C"),
+        ("GBD", "Male"):      dict(facecolor="#15C306", edgecolor="#30A130"),
+        ("GBD", "MSM"):       dict(facecolor="#A7F19C", edgecolor="#000000"),
+        ("UNAIDS", "Female"): dict(facecolor="#3A78AB", edgecolor="#3355CC"),
+        ("UNAIDS", "Male"):   dict(facecolor="#2452FA", edgecolor="#579BE8"),
+        ("UNAIDS", "MSM"):    dict(facecolor="#AFE5F4", edgecolor="#000000"),
     }
 
     # make bars for each sex-data source combo, looping over sexes and then sources
-    for sex_i, sex in enumerate(sexes): 
+    for sex_i, sex in enumerate(sexes):
         sex_center = sex_centers[sex_i]
-        for src, col in [("GBD", "total_gbd"), ("UNAIDS", "total_unaids")]:
+        for src, col, col_upper, col_lower in [
+            ("GBD", "total_gbd", "total_gbd_upper", "total_gbd_lower"),
+            ("UNAIDS", "total_unaids", "total_unaids_upper", "total_unaids_lower"),
+        ]:
             vals = []
+            lowers = []
+            uppers = []
             for loc in plot_countries:
                 row = hiv_agg.filter(
                     (pl.col("location") == loc) & (pl.col("sex") == sex)
                 )
                 vals.append(row[col][0])
+                lowers.append(row[col_lower][0])
+                uppers.append(row[col_upper][0])
 
             s = style[(src, sex)]
+            yerr_low = [v - l for v, l in zip(vals, lowers)]
+            yerr_high = [u - v for v, u in zip(vals, uppers)]
             ax.bar(
                 x + sex_center + src_offset[src],
                 vals,
+                yerr=[yerr_low, yerr_high],
+                capsize=5,
                 width=bw,
                 facecolor=s["facecolor"],
                 edgecolor=s["edgecolor"],
-                hatch=s["hatch"],
                 label=f"{src} – {sex}",
                 linewidth=0.5,
             )
 
-    n_shown = len(plot_countries) # number of countries shown, for title
     if year is None:
         ax.set_title(
-            f"Total STI-attributable HIV incidence, all years (top {n_shown} countries by burden)",
+            "All study years (1990–2023)",
             fontsize=22,
         )
     else:
         ax.set_title(
-            f"STI-attributable HIV incidence, {year} (top {n_shown} countries by burden)",
+            f"{year}",
             fontsize=22,
         )
     ax.set_yscale("log")
@@ -1006,7 +1052,7 @@ def plot_sensitivity_country_bar(hiv, ax, fig, country_order, year=None):
     }
     display_countries = [rename.get(c, c) for c in plot_countries]
     ax.set_xticks(x)
-    ax.set_xticklabels(display_countries, rotation=45, ha="left")
+    ax.set_xticklabels(display_countries, rotation=-45, ha="center")
     ax.set_ylabel("Attributable HIV incidence (N)")
     handles, labels = ax.get_legend_handles_labels()
     label_to_handle = dict(zip(labels, handles))
@@ -1017,7 +1063,7 @@ def plot_sensitivity_country_bar(hiv, ax, fig, country_order, year=None):
     ax.legend(
         [label_to_handle[l] for l in desired_labels],
         desired_labels,
-        loc="upper right", fontsize=14, ncol=2,
+        loc="upper right", ncol=2,
     )
     ax.yaxis.set_major_formatter(               # format log scale with commas and 0s written out
         ticker.FuncFormatter(lambda val, pos: f"{int(val):,}" if val >= 1 else "")
@@ -1084,9 +1130,6 @@ if __name__ == "__main__":
 
     hiv = pl.read_csv(os.path.join(output_dir, "hiv_attributable_to_stis.csv"))
 
-    # Compute country ordering once (descending GBD total, UNAIDS countries only)
-    country_order = compute_country_order(hiv)
-
     ax_full_1.text(
         -0.08,
         1.08,
@@ -1100,7 +1143,7 @@ if __name__ == "__main__":
 
     # Total attributable HIV cases 1990–2023 by country, GBD vs UNAIDS
     plot_sensitivity_country_bar(
-        hiv, ax_full_1, fig, country_order, year=None
+        hiv, ax_full_1, fig, year=None
     )
 
     ax_full_2.text(
@@ -1115,9 +1158,9 @@ if __name__ == "__main__":
     )
 
     # Attributable HIV cases in latest year (2023) by country, GBD vs UNAIDS
-    latest_year = hiv["year"].max()
+    latest_year = 2023
     plot_sensitivity_country_bar(
-        hiv, ax_full_2, fig, country_order, year=latest_year
+        hiv, ax_full_2, fig, year=latest_year
     )
 
     # by source
