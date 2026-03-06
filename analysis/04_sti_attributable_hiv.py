@@ -117,6 +117,8 @@ female_coinfection = female_coinfection.filter(
 male_coinfection = pl.read_csv(
     os.path.join(data_dir, "male_sti_coinfection_rates.csv")
 )
+#TODO - add confidence  intervals for male coinfection data using Beta distribution, constructed from counts
+# we read in counts of coinfection
 
 # the male data is missing anything for syphilis
 # what we do is find the ratio of syphilis-other sti to the average rate of
@@ -959,5 +961,8 @@ hiv_sti = hiv_sti.with_columns(
         for estimate in ["", "_lower", "_upper"]
     ]
 )
+
+# stop data at 2023 when data ends (UNAIDS later data is projected, gbd has none)
+hiv_sti = hiv_sti.filter(pl.col("year") <= 2023)
 
 hiv_sti.write_csv(os.path.join(output_dir, "hiv_attributable_to_stis.csv"))
