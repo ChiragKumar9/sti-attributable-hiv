@@ -44,7 +44,7 @@ def setup_plot(nrows, ncols):
     return fig, ax
 
 
-def plot_hiv_burden_by_sex(hiv, hiv_proj_sex, ax, fig):
+def plot_hiv_burden_by_sex(hiv, ax, fig):
     # Aggregate UNAIDS incidence; combine Male + MSM into a single Male total
     hiv_agg = (
         hiv.group_by(["year", "sex"])
@@ -76,31 +76,10 @@ def plot_hiv_burden_by_sex(hiv, hiv_proj_sex, ax, fig):
                     female_hist["incidence_lower"], female_hist["incidence_upper"],
                     alpha=0.3, color="magenta")
 
-    # Projected lines from 2025; Male in proj already encodes total male
-    # (non-MSM + MSM) because male_fraction was derived from Male + MSM.
-    proj = (
-        hiv_proj_sex
-        .filter(pl.col("year") >= 2025)
-        .group_by(["year", "sex"])
-        .agg(pl.sum("value").alias("incidence"))
-        .sort("year")
-    )
-    ax.plot(proj.filter(pl.col("sex") == "Male")["year"],
-            proj.filter(pl.col("sex") == "Male")["incidence"],
-            linewidth=3, linestyle="--", color="midnightblue")
-    ax.plot(proj.filter(pl.col("sex") == "Female")["year"],
-            proj.filter(pl.col("sex") == "Female")["incidence"],
-            linewidth=3, linestyle="--", color="magenta")
-
-    # Vertical line marking the start of future projections
-    ax.axvline(2025, color="grey", linestyle=":", linewidth=1.5)
-    ax.text(2025.3, ax.get_ylim()[1] * 0.95, "Projected",
-            color="grey", fontsize=16, va="top")
-
     ax.set_xlabel("Year")
     ax.set_ylabel("HIV incidence in\nsub-Saharan Africa (N)")
     ax.legend(loc=(0.5, 0.73))
-    ax.set_xticks([1990, 2000, 2010, 2020, 2030])
+    ax.set_xticks([1990, 2000, 2010, 2020])
     ax.set_yticks([0, 500000, 1000000, 1500000])
     ax.yaxis.set_major_formatter(
         ticker.FuncFormatter(lambda x, pos: f"{int(x):,}")
@@ -111,7 +90,7 @@ def plot_hiv_burden_by_sex(hiv, hiv_proj_sex, ax, fig):
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))
 
 
-def plot_hiv_burden_by_region(hiv, hiv_proj, ax, fig):
+def plot_hiv_burden_by_region(hiv, ax, fig):
     hiv = (
         hiv.group_by(["year", "region"])
         .agg(
@@ -127,16 +106,6 @@ def plot_hiv_burden_by_region(hiv, hiv_proj, ax, fig):
     )
     hiv = hiv.sort(by="year")
 
-    # Aggregate projected data by region and year; start from 2025 (the first
-    # true future-projection year)
-    proj = (
-        hiv_proj
-        .filter(pl.col("year") >= 2025)
-        .group_by(["year", "region"])
-        .agg(pl.sum("value").alias("incidence"))
-        .sort("year")
-    )
-
     region_colors = {
         "Western": "darkorange",
         "Eastern": "olivedrab",
@@ -151,19 +120,10 @@ def plot_hiv_burden_by_region(hiv, hiv_proj, ax, fig):
         ax.fill_between(hist["year"], hist["incidence_lower"],
                         hist["incidence_upper"], alpha=0.3, color=color)
 
-        proj_r = proj.filter(pl.col("region") == region)
-        ax.plot(proj_r["year"], proj_r["incidence"], linewidth=3,
-                linestyle="--", color=color)
-
-    # Vertical dashed line marking the start of future projections
-    ax.axvline(2025, color="grey", linestyle=":", linewidth=1.5)
-    ax.text(2025.3, ax.get_ylim()[1] * 0.95, "Projected",
-            color="grey", fontsize=16, va="top")
-
     ax.set_xlabel("Year")
     ax.set_ylabel("HIV incidence (N)")
     ax.legend(loc=(0.5, 0.68))
-    ax.set_xticks([1990, 2000, 2010, 2020, 2030])
+    ax.set_xticks([1990, 2000, 2010, 2020])
     ax.set_yticks([0, 250000, 500000, 750000, 1000000])
     ax.yaxis.set_major_formatter(
         ticker.FuncFormatter(lambda x, pos: f"{int(x):,}")
@@ -365,8 +325,6 @@ if __name__ == "__main__":
     fig, ax = setup_plot(2, 2)  # type: ignore
 
     hiv = pl.read_csv(os.path.join(output_dir, "hiv_sti.csv"))
-    hiv_proj = pl.read_csv(os.path.join(output_dir, "unaids_future_hiv_projections_formatted.csv"))
-    hiv_proj_sex = pl.read_csv(os.path.join(output_dir, "unaids_future_hiv_projections_by_sex.csv"))
 
     ax[0, 0].text(  # type: ignore
         -0.25,
@@ -378,7 +336,7 @@ if __name__ == "__main__":
         va="top",
         ha="right",
     )
-    plot_hiv_burden_by_sex(hiv, hiv_proj_sex, ax[0, 0], fig)  # type: ignore
+    plot_hiv_burden_by_sex(hiv, ax[0, 0], fig)  # type: ignore
 
     ax[0, 1].text(  # type: ignore
         -0.25,
@@ -390,7 +348,7 @@ if __name__ == "__main__":
         va="top",
         ha="right",
     )
-    plot_hiv_burden_by_region(hiv, hiv_proj, ax[0, 1], fig)  # type: ignore
+    plot_hiv_burden_by_region(hiv, ax[0, 1], fig)  # type: ignore
 
     # estimates of the RRs
     aggregated_rrs = pl.read_csv(
