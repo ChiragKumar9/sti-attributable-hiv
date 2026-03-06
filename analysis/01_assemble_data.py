@@ -202,6 +202,14 @@ incidence_hiv = incidence_hiv.join(
     how="inner",
 )
 
+# join UN population data (15+, Median variant, Male/Female by country-year)
+un_pop = (
+    pl.read_csv(os.path.join(data_dir, "un_pop_data.csv"))
+    .rename({"Location": "location", "Sex": "sex", "Time": "year", "Value": "un_pop"})
+    .select(["location", "sex", "year", "un_pop"])
+)
+incidence_hiv = incidence_hiv.join(un_pop, on=["location", "sex", "year"], how="left")
+
 # to get the true rate of acquiring HIV, we need the prevalence of HIV
 prevalence_hiv = pl.read_csv(os.path.join(data_dir, "ihme_hiv_prevalence.csv"))
 prevalence_hiv = prevalence_hiv.filter(pl.col("cause") == "HIV/AIDS")
@@ -498,14 +506,14 @@ data = data.with_columns(
 )
 
 # add a column that mnually calcultes p_acquiring_hiv using UNAIDS numbers, to check agains the hiv inc rate they report
-# note - we should get un pop data to use here instead
+# use un pop data to use here - no bounds should be added
 data = data.with_columns(
     unaids_p_acquiring_hiv=pl.col("unaids_incidence_number")
-    / (pl.col("population") - pl.col("unaids_prevalence_number")),
+    / (pl.col("un_pop") - pl.col("unaids_prevalence_number")),
     unaids_p_acquiring_hiv_lower=pl.col("unaids_incidence_number_lower")
-    / (pl.col("population_lower") - pl.col("unaids_prevalence_number_lower")),
+    / (pl.col("un_pop") - pl.col("unaids_prevalence_number_lower")),
     unaids_p_acquiring_hiv_upper=pl.col("unaids_incidence_number_upper")
-    / (pl.col("population_upper") - pl.col("unaids_prevalence_number_upper")),
+    / (pl.col("un_pop") - pl.col("unaids_prevalence_number_upper")),
 )
 
 # add a column that is a true or false for whether this row will be used in the UNAIDS analysis
@@ -591,6 +599,7 @@ msm_data = (
                 "population",
                 "population_lower",
                 "population_upper",
+                "un_pop",
             ]
         }
     )
@@ -624,6 +633,7 @@ non_msm_data = data.filter(pl.col("sex") == "Male").with_columns(
             "population",
             "population_lower",
             "population_upper",
+            "un_pop",
         ]
     }
 )

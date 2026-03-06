@@ -714,14 +714,14 @@ hiv_sti = hiv_sti.with_columns(
             [
                 f"{sti}_prevalence{estimate}",
                 f"unaids_prevalence_number{estimate}",
-                f"population{estimate}",
+                "un_pop",  # no bounds for UN pop; use same value for all estimates
                 f"rr_associative{estimate}_{sti}",
             ]
         )
         .map_elements(
             lambda x, s=sti, e=estimate: conditional_exposure.p_a_given_b(
                 x[f"{s}_prevalence{e}"],
-                x[f"unaids_prevalence_number{e}"] / x[f"population{e}"],
+                x[f"unaids_prevalence_number{e}"] / x["un_pop"],
                 x[f"rr_associative{e}_{s}"],
             ),
             return_dtype=pl.Float64,
@@ -739,7 +739,7 @@ hiv_sti = hiv_sti.with_columns(
             pl.col(f"unaids_p_{sti}_given_hiv{estimate}")
             * (
                 pl.col(f"unaids_prevalence_number{estimate}")
-                / pl.col(f"population{estimate}")
+                / pl.col("un_pop")  # no bounds for UN pop; use same value for all estimates
             )
         ).alias(f"unaids_p_{sti}_and_hiv{estimate}")
         for sti in STIs
