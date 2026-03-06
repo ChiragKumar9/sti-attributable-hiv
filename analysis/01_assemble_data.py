@@ -509,10 +509,11 @@ data = data.with_columns(
 )
 
 # add a column that is a true or false for whether this row will be used in the UNAIDS analysis
-# false for the following countries: Liberia, Equatorial Guinea, São Tomé and Príncipe, Mauritius, Mauritania, Somalia, Eritrea, comoros, cabo verde, djibuti
-countries_to_exclude = ["LBR", "GNQ", "STP", "MUS", "MRT", "SOM", 
-                        "ERI", "COM", "CPV", "DJI", "GNB", "GMB",
-                         "MDG", "BEN", "ETH", "NER", "BDI", "GAB"]
+# false for the following countries: Liberia, Equatorial Guinea, São Tomé and Príncipe, Mauritius, Somalia
+countries_to_exclude = ["LBR", "GNQ", "STP", "MUS", "SOM"]
+# countries_to_exclude = ["LBR", "GNQ", "STP", "MUS", "MRT", "SOM", 
+#                         "ERI", "COM", "CPV", "DJI", "GNB", "GMB",
+#                          "MDG", "BEN", "ETH", "NER", "BDI", "GAB"]
 
 data = data.with_columns(
     cols_unaids_analysis=pl.when(pl.col("country_code").is_in(countries_to_exclude))
