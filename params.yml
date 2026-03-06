@@ -14,7 +14,7 @@ sti_symptoms:
   trichomoniasis:
     # doesn't matter since no male hiv cases are attributable to trichomoniasis
     male: 0.5
-    female: 0.5
+    female: 0.15
 # fraction of symptomatic cases that are treated
 # we allow the numbers to vary both by STI and sex because presumably
 # some STIs lead to worse symptoms and thus higher treatment rates, and also
