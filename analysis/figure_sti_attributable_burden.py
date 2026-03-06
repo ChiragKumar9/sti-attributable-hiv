@@ -976,7 +976,7 @@ def plot_sensitivity_country_bar(hiv, ax, fig, year=None, top_n=10):
 
     # Bar formatting: paired by sex, GBD then UNAIDS
     # bw: individual bar width; inner_gap: within a sex pair; outer_gap: between sex groups
-    bw = 0.11
+    bw = 0.13
     inner_gap = 0.01
     outer_gap = 0.05
     sex_group_width = 2 * bw + inner_gap
@@ -1035,16 +1035,6 @@ def plot_sensitivity_country_bar(hiv, ax, fig, year=None, top_n=10):
                 linewidth=0.5,
             )
 
-    if year is None:
-        ax.set_title(
-            "All study years (1990–2023)",
-            fontsize=22,
-        )
-    else:
-        ax.set_title(
-            f"{year}",
-            fontsize=22,
-        )
     ax.set_yscale("log")
     rename = {
         "United Republic of Tanzania": "Tanzania",
@@ -1052,7 +1042,8 @@ def plot_sensitivity_country_bar(hiv, ax, fig, year=None, top_n=10):
     }
     display_countries = [rename.get(c, c) for c in plot_countries]
     ax.set_xticks(x)
-    ax.set_xticklabels(display_countries, rotation=-45, ha="center")
+    ax.set_xticklabels(display_countries, rotation=-30, ha="center")
+    ax.set_xlim(left=x[0] - total_span / 2 - 0.3)
     ax.set_ylabel("Attributable HIV incidence (N)")
     handles, labels = ax.get_legend_handles_labels()
     label_to_handle = dict(zip(labels, handles))
@@ -1072,7 +1063,7 @@ def plot_sensitivity_country_bar(hiv, ax, fig, year=None, top_n=10):
 
 def plot_attributable_hiv_burden_age_pathogen(hiv, ax, fig):
     ax.set_xlabel("Age")
-    ax.set_ylabel("Attributable HIV incidence (%)")
+    ax.set_ylabel("Total attributable HIV incidence (%)")
     ax.legend()
 
 
@@ -1145,6 +1136,7 @@ if __name__ == "__main__":
     plot_sensitivity_country_bar(
         hiv, ax_full_1, fig, year=None
     )
+    ax_full_1.set_ylabel("Total attributable HIV incidence 1990-2023 (N)")
 
     ax_full_2.text(
         -0.08,
@@ -1162,6 +1154,8 @@ if __name__ == "__main__":
     plot_sensitivity_country_bar(
         hiv, ax_full_2, fig, year=latest_year
     )
+    ax_full_2.set_ylabel("Attributable HIV incidence 2023 (N)")
+    ax_full_2.get_legend().remove()
 
     # by source
     ax[0, 0].text(  # type: ignore
