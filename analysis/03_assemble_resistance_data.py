@@ -118,7 +118,7 @@ gasp = gasp.with_columns(
 )
 
 # group by country and year
-gasp = gasp.drop("Source") # drop source from gasp before summing
+gasp = gasp.drop("Source")  # drop source from gasp before summing
 gasp = gasp.group_by(["Country", "year"]).sum()
 
 # we know that any cases num_tested is 0, that really means no data
