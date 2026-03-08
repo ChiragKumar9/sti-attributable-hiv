@@ -321,6 +321,11 @@ def plot_drug_resistance(estimated_resistance_rates, ax, fig):
     ax.yaxis.set_minor_locator(ticker.MultipleLocator(10))
 
 
+# to read in future data when we need it for HIV: 
+#   hiv_proj = pl.read_csv(os.path.join(output_dir, "unaids_future_hiv_projections_formatted.csv"))
+#   hiv_proj_sex = pl.read_csv(os.path.join(output_dir, "unaids_future_hiv_projections_by_sex.csv"))
+
+
 if __name__ == "__main__":
     fig, ax = setup_plot(2, 2)  # type: ignore
 
