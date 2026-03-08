@@ -449,9 +449,9 @@ def calculate_indirect_averted_cases(
 # people with symptoms get treated)
 
 sti_symptom_params = params["sti_symptoms"]
-#sti_treatment_params = params["sti_treatment"]
+# sti_treatment_params = params["sti_treatment"]
 gc_symptom_params = sti_symptom_params["gc"]
-#gc_treatment_params = sti_treatment_params["gc"]
+# gc_treatment_params = sti_treatment_params["gc"]
 hiv = hiv.with_columns(
     gc_treatment_rate=pl.when(pl.col("sex") == "Female")
     .then(gc_symptom_params["female"] * pl.col("symptom_treat_seek_rate"))
@@ -539,8 +539,7 @@ for sti in STIs:
             * pl.col("symptom_treat_seek_rate")
         )
         .otherwise(
-            sti_symptom_params[sti]["male"]
-            * pl.col("symptom_treat_seek_rate")
+            sti_symptom_params[sti]["male"] * pl.col("symptom_treat_seek_rate")
         )
         .alias(f"{sti}_treatment_rate")
     )

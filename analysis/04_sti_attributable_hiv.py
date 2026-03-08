@@ -16,7 +16,7 @@ rrs_causal = pl.read_csv(
 
 hiv_sti = pl.read_csv(os.path.join(output_dir, "hiv_sti_with_gc_abx_r.csv"))
 
-#use this code when subsetting to countries in both HIV datasets, comment out when not
+# use this code when subsetting to countries in both HIV datasets, comment out when not
 hiv_sti = hiv_sti.filter(pl.col("cols_unaids_analysis"))
 
 # relabel the sex column to match the GBD data
@@ -117,7 +117,7 @@ female_coinfection = female_coinfection.filter(
 male_coinfection = pl.read_csv(
     os.path.join(data_dir, "male_sti_coinfection_rates.csv")
 )
-#TODO - add confidence  intervals for male coinfection data using Beta distribution, constructed from counts
+# TODO - add confidence  intervals for male coinfection data using Beta distribution, constructed from counts
 # we read in counts of coinfection
 
 # the male data is missing anything for syphilis
@@ -340,11 +340,11 @@ _female_coin_sa = female_coinfection.filter(
 )
 # Male original rows only (exclude syphilis rows with Overall prevalence of STI 2)
 _male_coin_orig = (
-    coinfection
-    .filter(pl.col("sex") == "Male")
+    coinfection.filter(pl.col("sex") == "Male")
     .filter(pl.col("location_South_Africa"))
     .filter(pl.col("Overall prevalence of STI 2").is_not_null())
 )
+
 
 def _get_rr(coin_df, sti1_disp, sti2_disp, coin_col="Coinfection prevalence"):
     # Return RR = coinfection_rate / study_prev
@@ -358,33 +358,69 @@ def _get_rr(coin_df, sti1_disp, sti2_disp, coin_col="Coinfection prevalence"):
     coin_rate = rows[coin_col][0] / 100.0
     return coin_rate / study_prev if study_prev > 0 else 0.0
 
+
 for sti1 in ["gc", "chlamydia", "syphilis", "trichomoniasis"]:
     for sti2 in ["gc", "chlamydia", "syphilis", "trichomoniasis"]:
         if sti1 == sti2:
             continue
         s1, s2 = sti_names[sti1], sti_names[sti2]
 
-        rr_f_sea    = _get_rr(_female_coin_sea, s1, s2) or 0.0
-        rr_f_sea_lo = _get_rr(_female_coin_sea, s1, s2, "Coinfection prevalence lower") or 0.0
-        rr_f_sea_hi = _get_rr(_female_coin_sea, s1, s2, "Coinfection prevalence upper") or 0.0
-        rr_f_sa     = _get_rr(_female_coin_sa, s1, s2) or 0.0
-        rr_f_sa_lo  = _get_rr(_female_coin_sa, s1, s2, "Coinfection prevalence lower") or 0.0
-        rr_f_sa_hi  = _get_rr(_female_coin_sa, s1, s2, "Coinfection prevalence upper") or 0.0
+        rr_f_sea = _get_rr(_female_coin_sea, s1, s2) or 0.0
+        rr_f_sea_lo = (
+            _get_rr(_female_coin_sea, s1, s2, "Coinfection prevalence lower")
+            or 0.0
+        )
+        rr_f_sea_hi = (
+            _get_rr(_female_coin_sea, s1, s2, "Coinfection prevalence upper")
+            or 0.0
+        )
+        rr_f_sa = _get_rr(_female_coin_sa, s1, s2) or 0.0
+        rr_f_sa_lo = (
+            _get_rr(_female_coin_sa, s1, s2, "Coinfection prevalence lower")
+            or 0.0
+        )
+        rr_f_sa_hi = (
+            _get_rr(_female_coin_sa, s1, s2, "Coinfection prevalence upper")
+            or 0.0
+        )
         rr_m = _get_rr(_male_coin_orig, s1, s2)
         if rr_m is None:
             rr_m = rr_f_sea  # for male syphilis pairs
 
         for estimate, f_sea, f_sa, m in [
-            ("",       rr_f_sea,    rr_f_sa,    rr_m),
-            ("_lower", rr_f_sea_lo, rr_f_sa_lo, rr_m),  # TODO add bounds -  males: point estimate for all bounds since don't have bounds yet
+            ("", rr_f_sea, rr_f_sa, rr_m),
+            (
+                "_lower",
+                rr_f_sea_lo,
+                rr_f_sa_lo,
+                rr_m,
+            ),  # TODO add bounds -  males: point estimate for all bounds since don't have bounds yet
             ("_upper", rr_f_sea_hi, rr_f_sa_hi, rr_m),
         ]:
             hiv_sti = hiv_sti.with_columns(
-                pl.when((pl.col("sex") == "Female") & (pl.col("location") != "South Africa"))
-                .then((f_sea * pl.col(f"{sti2}_prevalence{estimate}")).clip(upper_bound=1.0))
-                .when((pl.col("sex") == "Female") & (pl.col("location") == "South Africa"))
-                .then((f_sa * pl.col(f"{sti2}_prevalence{estimate}")).clip(upper_bound=1.0))
-                .otherwise((m * pl.col(f"{sti2}_prevalence{estimate}")).clip(upper_bound=1.0))
+                pl.when(
+                    (pl.col("sex") == "Female")
+                    & (pl.col("location") != "South Africa")
+                )
+                .then(
+                    (f_sea * pl.col(f"{sti2}_prevalence{estimate}")).clip(
+                        upper_bound=1.0
+                    )
+                )
+                .when(
+                    (pl.col("sex") == "Female")
+                    & (pl.col("location") == "South Africa")
+                )
+                .then(
+                    (f_sa * pl.col(f"{sti2}_prevalence{estimate}")).clip(
+                        upper_bound=1.0
+                    )
+                )
+                .otherwise(
+                    (m * pl.col(f"{sti2}_prevalence{estimate}")).clip(
+                        upper_bound=1.0
+                    )
+                )
                 .alias(f"{sti2}_given_{sti1}_coin{estimate}")
             )
 
@@ -414,7 +450,15 @@ for sex in hiv_sti["sex"].unique():
                     pl.when(mask)
                     .then(
                         pl.col(f"{bacteria}_prevalence")
-                        * (1 - pl.sum_horizontal([pl.col(f"{sti2}_given_{bacteria}_coin") for sti2 in higher_risk]).clip(upper_bound=1.0))
+                        * (
+                            1
+                            - pl.sum_horizontal(
+                                [
+                                    pl.col(f"{sti2}_given_{bacteria}_coin")
+                                    for sti2 in higher_risk
+                                ]
+                            ).clip(upper_bound=1.0)
+                        )
                     )
                     .otherwise(pl.col(f"{bacteria}_prevalence"))
                     .alias(f"{bacteria}_prevalence"),
@@ -422,14 +466,34 @@ for sex in hiv_sti["sex"].unique():
                     pl.when(mask)
                     .then(
                         pl.col(f"{bacteria}_prevalence_lower")
-                        * (1 - pl.sum_horizontal([pl.col(f"{sti2}_given_{bacteria}_coin_lower") for sti2 in higher_risk]).clip(upper_bound=1.0))
+                        * (
+                            1
+                            - pl.sum_horizontal(
+                                [
+                                    pl.col(
+                                        f"{sti2}_given_{bacteria}_coin_lower"
+                                    )
+                                    for sti2 in higher_risk
+                                ]
+                            ).clip(upper_bound=1.0)
+                        )
                     )
                     .otherwise(pl.col(f"{bacteria}_prevalence_lower"))
                     .alias(f"{bacteria}_prevalence_lower"),
                     pl.when(mask)
                     .then(
                         pl.col(f"{bacteria}_prevalence_upper")
-                        * (1 - pl.sum_horizontal([pl.col(f"{sti2}_given_{bacteria}_coin_upper") for sti2 in higher_risk]).clip(upper_bound=1.0))
+                        * (
+                            1
+                            - pl.sum_horizontal(
+                                [
+                                    pl.col(
+                                        f"{sti2}_given_{bacteria}_coin_upper"
+                                    )
+                                    for sti2 in higher_risk
+                                ]
+                            ).clip(upper_bound=1.0)
+                        )
                     )
                     .otherwise(pl.col(f"{bacteria}_prevalence_upper"))
                     .alias(f"{bacteria}_prevalence_upper"),
@@ -739,7 +803,9 @@ hiv_sti = hiv_sti.with_columns(
             pl.col(f"unaids_p_{sti}_given_hiv{estimate}")
             * (
                 pl.col(f"unaids_prevalence_number{estimate}")
-                / pl.col("un_pop")  # no bounds for UN pop; use same value for all estimates
+                / pl.col(
+                    "un_pop"
+                )  # no bounds for UN pop; use same value for all estimates
             )
         ).alias(f"unaids_p_{sti}_and_hiv{estimate}")
         for sti in STIs
@@ -804,7 +870,7 @@ for sti in STIs:
 for sti in STIs:
     hiv_sti = hiv_sti.with_columns(
         [
-        # Calculate the minimum, median, and maximum of the three values
+            # Calculate the minimum, median, and maximum of the three values
             pl.min_horizontal(
                 [
                     f"unaids_{sti}_prevalence_no_hiv_lower",

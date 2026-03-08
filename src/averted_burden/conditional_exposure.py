@@ -12,6 +12,7 @@ def p_a_given_b(p_a, p_b, rr_a_b, allow_invalid=False):
     else:
         return min(p_a_given_b, 1.0)
 
+
 def p_a_given_not_b(p_a, p_b, rr_a_b):
     """
     Calculate P(A|~B) given P(A), P(B), and RR = P(A|B)/P(A|~B)
