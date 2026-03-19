@@ -233,49 +233,67 @@ def plot_attributable_hiv_burden_sti(hiv, ax, fig):
     hiv = (
         hiv.group_by(["year"])
         .agg(
-            pl.sum("hiv_incidence_number_attributable_to_gc"),
-            pl.sum("hiv_incidence_number_attributable_to_gc_upper"),
-            pl.sum("hiv_incidence_number_attributable_to_gc_lower"),
-            pl.sum("hiv_incidence_number_attributable_to_syphilis"),
-            pl.sum("hiv_incidence_number_attributable_to_syphilis_upper"),
-            pl.sum("hiv_incidence_number_attributable_to_syphilis_lower"),
-            pl.sum("hiv_incidence_number_attributable_to_trichomoniasis"),
+            pl.sum("unaids_hiv_incidence_number_attributable_to_gc"),
+            pl.sum("unaids_hiv_incidence_number_attributable_to_gc_upper"),
+            pl.sum("unaids_hiv_incidence_number_attributable_to_gc_lower"),
+            pl.sum("unaids_hiv_incidence_number_attributable_to_syphilis"),
             pl.sum(
-                "hiv_incidence_number_attributable_to_trichomoniasis_upper"
+                "unaids_hiv_incidence_number_attributable_to_syphilis_upper"
             ),
             pl.sum(
-                "hiv_incidence_number_attributable_to_trichomoniasis_lower"
+                "unaids_hiv_incidence_number_attributable_to_syphilis_lower"
             ),
-            pl.sum("hiv_incidence_number_attributable_to_chlamydia"),
-            pl.sum("hiv_incidence_number_attributable_to_chlamydia_upper"),
-            pl.sum("hiv_incidence_number_attributable_to_chlamydia_lower"),
+            pl.sum(
+                "unaids_hiv_incidence_number_attributable_to_trichomoniasis"
+            ),
+            pl.sum(
+                "unaids_hiv_incidence_number_attributable_to_trichomoniasis_upper"
+            ),
+            pl.sum(
+                "unaids_hiv_incidence_number_attributable_to_trichomoniasis_lower"
+            ),
+            pl.sum("unaids_hiv_incidence_number_attributable_to_chlamydia"),
+            pl.sum(
+                "unaids_hiv_incidence_number_attributable_to_chlamydia_upper"
+            ),
+            pl.sum(
+                "unaids_hiv_incidence_number_attributable_to_chlamydia_lower"
+            ),
         )
         .with_columns(
-            gc=pl.col("hiv_incidence_number_attributable_to_gc"),
-            gc_upper=pl.col("hiv_incidence_number_attributable_to_gc_upper"),
-            gc_lower=pl.col("hiv_incidence_number_attributable_to_gc_lower"),
-            syphilis=pl.col("hiv_incidence_number_attributable_to_syphilis"),
+            gc=pl.col("unaids_hiv_incidence_number_attributable_to_gc"),
+            gc_upper=pl.col(
+                "unaids_hiv_incidence_number_attributable_to_gc_upper"
+            ),
+            gc_lower=pl.col(
+                "unaids_hiv_incidence_number_attributable_to_gc_lower"
+            ),
+            syphilis=pl.col(
+                "unaids_hiv_incidence_number_attributable_to_syphilis"
+            ),
             syphilis_upper=pl.col(
-                "hiv_incidence_number_attributable_to_syphilis_upper"
+                "unaids_hiv_incidence_number_attributable_to_syphilis_upper"
             ),
             syphilis_lower=pl.col(
-                "hiv_incidence_number_attributable_to_syphilis_lower"
+                "unaids_hiv_incidence_number_attributable_to_syphilis_lower"
             ),
             trichomoniasis=pl.col(
-                "hiv_incidence_number_attributable_to_trichomoniasis"
+                "unaids_hiv_incidence_number_attributable_to_trichomoniasis"
             ),
             trichomoniasis_upper=pl.col(
-                "hiv_incidence_number_attributable_to_trichomoniasis_upper"
+                "unaids_hiv_incidence_number_attributable_to_trichomoniasis_upper"
             ),
             trichomoniasis_lower=pl.col(
-                "hiv_incidence_number_attributable_to_trichomoniasis_lower"
+                "unaids_hiv_incidence_number_attributable_to_trichomoniasis_lower"
             ),
-            chlamydia=pl.col("hiv_incidence_number_attributable_to_chlamydia"),
+            chlamydia=pl.col(
+                "unaids_hiv_incidence_number_attributable_to_chlamydia"
+            ),
             chlamydia_upper=pl.col(
-                "hiv_incidence_number_attributable_to_chlamydia_upper"
+                "unaids_hiv_incidence_number_attributable_to_chlamydia_upper"
             ),
             chlamydia_lower=pl.col(
-                "hiv_incidence_number_attributable_to_chlamydia_lower"
+                "unaids_hiv_incidence_number_attributable_to_chlamydia_lower"
             ),
         )
     )
@@ -361,48 +379,60 @@ def plot_attributable_hiv_burden_sti(hiv, ax, fig):
 
 def plot_attributable_hiv_burden_sex(hiv, ax, fig, number):
     hiv = hiv.group_by(["year", "sex"]).agg(
-        pl.sum("hiv_incidence_number_attributable_to_gc"),
-        pl.sum("hiv_incidence_number_attributable_to_gc_upper"),
-        pl.sum("hiv_incidence_number_attributable_to_gc_lower"),
-        pl.sum("hiv_incidence_number_attributable_to_syphilis"),
-        pl.sum("hiv_incidence_number_attributable_to_syphilis_upper"),
-        pl.sum("hiv_incidence_number_attributable_to_syphilis_lower"),
-        pl.sum("hiv_incidence_number_attributable_to_trichomoniasis"),
-        pl.sum("hiv_incidence_number_attributable_to_trichomoniasis_upper"),
-        pl.sum("hiv_incidence_number_attributable_to_trichomoniasis_lower"),
-        pl.sum("hiv_incidence_number_attributable_to_chlamydia"),
-        pl.sum("hiv_incidence_number_attributable_to_chlamydia_upper"),
-        pl.sum("hiv_incidence_number_attributable_to_chlamydia_lower"),
-        pl.sum("population"),
-        pl.sum("population_lower"),
-        pl.sum("population_upper"),
+        pl.sum("unaids_hiv_incidence_number_attributable_to_gc"),
+        pl.sum("unaids_hiv_incidence_number_attributable_to_gc_upper"),
+        pl.sum("unaids_hiv_incidence_number_attributable_to_gc_lower"),
+        pl.sum("unaids_hiv_incidence_number_attributable_to_syphilis"),
+        pl.sum("unaids_hiv_incidence_number_attributable_to_syphilis_upper"),
+        pl.sum("unaids_hiv_incidence_number_attributable_to_syphilis_lower"),
+        pl.sum("unaids_hiv_incidence_number_attributable_to_trichomoniasis"),
+        pl.sum(
+            "unaids_hiv_incidence_number_attributable_to_trichomoniasis_upper"
+        ),
+        pl.sum(
+            "unaids_hiv_incidence_number_attributable_to_trichomoniasis_lower"
+        ),
+        pl.sum("unaids_hiv_incidence_number_attributable_to_chlamydia"),
+        pl.sum("unaids_hiv_incidence_number_attributable_to_chlamydia_upper"),
+        pl.sum("unaids_hiv_incidence_number_attributable_to_chlamydia_lower"),
+        pl.sum("un_pop"),
     )
     if number:
         hiv = hiv.with_columns(
             hiv_incidence_rate=(
-                pl.col("hiv_incidence_number_attributable_to_gc")
-                + pl.col("hiv_incidence_number_attributable_to_syphilis")
-                + pl.col("hiv_incidence_number_attributable_to_trichomoniasis")
-                + pl.col("hiv_incidence_number_attributable_to_chlamydia")
-            ),
-            hiv_incidence_rate_upper=(
-                pl.col("hiv_incidence_number_attributable_to_gc_upper")
-                + pl.col("hiv_incidence_number_attributable_to_syphilis_upper")
+                pl.col("unaids_hiv_incidence_number_attributable_to_gc")
                 + pl.col(
-                    "hiv_incidence_number_attributable_to_trichomoniasis_upper"
+                    "unaids_hiv_incidence_number_attributable_to_syphilis"
                 )
                 + pl.col(
-                    "hiv_incidence_number_attributable_to_chlamydia_upper"
+                    "unaids_hiv_incidence_number_attributable_to_trichomoniasis"
+                )
+                + pl.col(
+                    "unaids_hiv_incidence_number_attributable_to_chlamydia"
+                )
+            ),
+            hiv_incidence_rate_upper=(
+                pl.col("unaids_hiv_incidence_number_attributable_to_gc_upper")
+                + pl.col(
+                    "unaids_hiv_incidence_number_attributable_to_syphilis_upper"
+                )
+                + pl.col(
+                    "unaids_hiv_incidence_number_attributable_to_trichomoniasis_upper"
+                )
+                + pl.col(
+                    "unaids_hiv_incidence_number_attributable_to_chlamydia_upper"
                 )
             ),
             hiv_incidence_rate_lower=(
-                pl.col("hiv_incidence_number_attributable_to_gc_lower")
-                + pl.col("hiv_incidence_number_attributable_to_syphilis_lower")
+                pl.col("unaids_hiv_incidence_number_attributable_to_gc_lower")
                 + pl.col(
-                    "hiv_incidence_number_attributable_to_trichomoniasis_lower"
+                    "unaids_hiv_incidence_number_attributable_to_syphilis_lower"
                 )
                 + pl.col(
-                    "hiv_incidence_number_attributable_to_chlamydia_lower"
+                    "unaids_hiv_incidence_number_attributable_to_trichomoniasis_lower"
+                )
+                + pl.col(
+                    "unaids_hiv_incidence_number_attributable_to_chlamydia_lower"
                 )
             ),
         )
@@ -410,36 +440,46 @@ def plot_attributable_hiv_burden_sex(hiv, ax, fig, number):
         hiv = hiv.with_columns(
             hiv_incidence_rate=100000
             * (
-                pl.col("hiv_incidence_number_attributable_to_gc")
-                + pl.col("hiv_incidence_number_attributable_to_syphilis")
-                + pl.col("hiv_incidence_number_attributable_to_trichomoniasis")
-                + pl.col("hiv_incidence_number_attributable_to_chlamydia")
+                pl.col("unaids_hiv_incidence_number_attributable_to_gc")
+                + pl.col(
+                    "unaids_hiv_incidence_number_attributable_to_syphilis"
+                )
+                + pl.col(
+                    "unaids_hiv_incidence_number_attributable_to_trichomoniasis"
+                )
+                + pl.col(
+                    "unaids_hiv_incidence_number_attributable_to_chlamydia"
+                )
             )
-            / pl.col("population"),
+            / pl.col("un_pop"),
             hiv_incidence_rate_upper=100000
             * (
-                pl.col("hiv_incidence_number_attributable_to_gc_upper")
-                + pl.col("hiv_incidence_number_attributable_to_syphilis_upper")
+                pl.col("unaids_hiv_incidence_number_attributable_to_gc_upper")
                 + pl.col(
-                    "hiv_incidence_number_attributable_to_trichomoniasis_upper"
+                    "unaids_hiv_incidence_number_attributable_to_syphilis_upper"
                 )
                 + pl.col(
-                    "hiv_incidence_number_attributable_to_chlamydia_upper"
+                    "unaids_hiv_incidence_number_attributable_to_trichomoniasis_upper"
+                )
+                + pl.col(
+                    "unaids_hiv_incidence_number_attributable_to_chlamydia_upper"
                 )
             )
-            / pl.col("population_upper"),
+            / pl.col("un_pop"),
             hiv_incidence_rate_lower=100000
             * (
-                pl.col("hiv_incidence_number_attributable_to_gc_lower")
-                + pl.col("hiv_incidence_number_attributable_to_syphilis_lower")
+                pl.col("unaids_hiv_incidence_number_attributable_to_gc_lower")
                 + pl.col(
-                    "hiv_incidence_number_attributable_to_trichomoniasis_lower"
+                    "unaids_hiv_incidence_number_attributable_to_syphilis_lower"
                 )
                 + pl.col(
-                    "hiv_incidence_number_attributable_to_chlamydia_lower"
+                    "unaids_hiv_incidence_number_attributable_to_trichomoniasis_lower"
+                )
+                + pl.col(
+                    "unaids_hiv_incidence_number_attributable_to_chlamydia_lower"
                 )
             )
-            / pl.col("population_lower"),
+            / pl.col("un_pop"),
         )
 
     hiv = hiv.sort(by="year")
@@ -519,48 +559,68 @@ def plot_attributable_hiv_burden_region(hiv, ax, fig):
     hiv = (
         hiv.group_by(["year", "region"])
         .agg(
-            pl.sum("hiv_incidence_number_attributable_to_gc"),
-            pl.sum("hiv_incidence_number_attributable_to_gc_upper"),
-            pl.sum("hiv_incidence_number_attributable_to_gc_lower"),
-            pl.sum("hiv_incidence_number_attributable_to_syphilis"),
-            pl.sum("hiv_incidence_number_attributable_to_syphilis_upper"),
-            pl.sum("hiv_incidence_number_attributable_to_syphilis_lower"),
-            pl.sum("hiv_incidence_number_attributable_to_trichomoniasis"),
+            pl.sum("unaids_hiv_incidence_number_attributable_to_gc"),
+            pl.sum("unaids_hiv_incidence_number_attributable_to_gc_upper"),
+            pl.sum("unaids_hiv_incidence_number_attributable_to_gc_lower"),
+            pl.sum("unaids_hiv_incidence_number_attributable_to_syphilis"),
             pl.sum(
-                "hiv_incidence_number_attributable_to_trichomoniasis_upper"
+                "unaids_hiv_incidence_number_attributable_to_syphilis_upper"
             ),
             pl.sum(
-                "hiv_incidence_number_attributable_to_trichomoniasis_lower"
+                "unaids_hiv_incidence_number_attributable_to_syphilis_lower"
             ),
-            pl.sum("hiv_incidence_number_attributable_to_chlamydia"),
-            pl.sum("hiv_incidence_number_attributable_to_chlamydia_upper"),
-            pl.sum("hiv_incidence_number_attributable_to_chlamydia_lower"),
+            pl.sum(
+                "unaids_hiv_incidence_number_attributable_to_trichomoniasis"
+            ),
+            pl.sum(
+                "unaids_hiv_incidence_number_attributable_to_trichomoniasis_upper"
+            ),
+            pl.sum(
+                "unaids_hiv_incidence_number_attributable_to_trichomoniasis_lower"
+            ),
+            pl.sum("unaids_hiv_incidence_number_attributable_to_chlamydia"),
+            pl.sum(
+                "unaids_hiv_incidence_number_attributable_to_chlamydia_upper"
+            ),
+            pl.sum(
+                "unaids_hiv_incidence_number_attributable_to_chlamydia_lower"
+            ),
         )
         .with_columns(
             hiv_incidence_rate=(
-                pl.col("hiv_incidence_number_attributable_to_gc")
-                + pl.col("hiv_incidence_number_attributable_to_syphilis")
-                + pl.col("hiv_incidence_number_attributable_to_trichomoniasis")
-                + pl.col("hiv_incidence_number_attributable_to_chlamydia")
-            ),
-            hiv_incidence_rate_upper=(
-                pl.col("hiv_incidence_number_attributable_to_gc_upper")
-                + pl.col("hiv_incidence_number_attributable_to_syphilis_upper")
+                pl.col("unaids_hiv_incidence_number_attributable_to_gc")
                 + pl.col(
-                    "hiv_incidence_number_attributable_to_trichomoniasis_upper"
+                    "unaids_hiv_incidence_number_attributable_to_syphilis"
                 )
                 + pl.col(
-                    "hiv_incidence_number_attributable_to_chlamydia_upper"
+                    "unaids_hiv_incidence_number_attributable_to_trichomoniasis"
+                )
+                + pl.col(
+                    "unaids_hiv_incidence_number_attributable_to_chlamydia"
+                )
+            ),
+            hiv_incidence_rate_upper=(
+                pl.col("unaids_hiv_incidence_number_attributable_to_gc_upper")
+                + pl.col(
+                    "unaids_hiv_incidence_number_attributable_to_syphilis_upper"
+                )
+                + pl.col(
+                    "unaids_hiv_incidence_number_attributable_to_trichomoniasis_upper"
+                )
+                + pl.col(
+                    "unaids_hiv_incidence_number_attributable_to_chlamydia_upper"
                 )
             ),
             hiv_incidence_rate_lower=(
-                pl.col("hiv_incidence_number_attributable_to_gc_lower")
-                + pl.col("hiv_incidence_number_attributable_to_syphilis_lower")
+                pl.col("unaids_hiv_incidence_number_attributable_to_gc_lower")
                 + pl.col(
-                    "hiv_incidence_number_attributable_to_trichomoniasis_lower"
+                    "unaids_hiv_incidence_number_attributable_to_syphilis_lower"
                 )
                 + pl.col(
-                    "hiv_incidence_number_attributable_to_chlamydia_lower"
+                    "unaids_hiv_incidence_number_attributable_to_trichomoniasis_lower"
+                )
+                + pl.col(
+                    "unaids_hiv_incidence_number_attributable_to_chlamydia_lower"
                 )
             ),
         )
@@ -650,68 +710,75 @@ def plot_attributable_hiv_burden_sex_pathogen(hiv, ax, fig):
     # bar for visualization purposes
     hiv = hiv.with_columns(
         pl.when(
-            (pl.col("hiv_incidence_number_attributable_to_chlamydia") == 0)
+            (
+                pl.col("unaids_hiv_incidence_number_attributable_to_chlamydia")
+                == 0
+            )
             & (pl.col("sex") == "Male")
         )
         .then(pl.lit(10))
-        .otherwise(pl.col("hiv_incidence_number_attributable_to_chlamydia"))
-        .alias("hiv_incidence_number_attributable_to_chlamydia")
+        .otherwise(
+            pl.col("unaids_hiv_incidence_number_attributable_to_chlamydia")
+        )
+        .alias("unaids_hiv_incidence_number_attributable_to_chlamydia")
     )
 
     # bar graph of attributable burden in 2023 by sex and pathogen
     # sex on x axis, and each pathogen gets their own color, and the y axis is the percentage of HIV incidence attributable to STIs
     # with error bars for the uncertainty intervals
-    hiv = hiv.filter(pl.col("year") == pl.max("year"))
+    hiv = hiv.filter(pl.col("year") == 2023)
     hiv = hiv.group_by(["sex"], maintain_order=True).agg(
-        gc=pl.sum("hiv_incidence_number_attributable_to_gc")
-        / pl.sum("hiv_incidence_number")
+        gc=pl.sum("unaids_hiv_incidence_number_attributable_to_gc")
+        / pl.sum("unaids_incidence_number")
         * 100,
-        gc_upper=pl.sum("hiv_incidence_number_attributable_to_gc_upper")
-        / pl.sum("hiv_incidence_number_upper")
+        gc_upper=pl.sum("unaids_hiv_incidence_number_attributable_to_gc_upper")
+        / pl.sum("unaids_incidence_number_upper")
         * 100,
-        gc_lower=pl.sum("hiv_incidence_number_attributable_to_gc_lower")
-        / pl.sum("hiv_incidence_number_lower")
+        gc_lower=pl.sum("unaids_hiv_incidence_number_attributable_to_gc_lower")
+        / pl.sum("unaids_incidence_number_lower")
         * 100,
-        syphilis=pl.sum("hiv_incidence_number_attributable_to_syphilis")
-        / pl.sum("hiv_incidence_number")
+        syphilis=pl.sum("unaids_hiv_incidence_number_attributable_to_syphilis")
+        / pl.sum("unaids_incidence_number")
         * 100,
         syphilis_upper=pl.sum(
-            "hiv_incidence_number_attributable_to_syphilis_upper"
+            "unaids_hiv_incidence_number_attributable_to_syphilis_upper"
         )
-        / pl.sum("hiv_incidence_number_upper")
+        / pl.sum("unaids_incidence_number_upper")
         * 100,
         syphilis_lower=pl.sum(
-            "hiv_incidence_number_attributable_to_syphilis_lower"
+            "unaids_hiv_incidence_number_attributable_to_syphilis_lower"
         )
-        / pl.sum("hiv_incidence_number_lower")
+        / pl.sum("unaids_incidence_number_lower")
         * 100,
         trichomoniasis=pl.sum(
-            "hiv_incidence_number_attributable_to_trichomoniasis"
+            "unaids_hiv_incidence_number_attributable_to_trichomoniasis"
         )
-        / pl.sum("hiv_incidence_number")
+        / pl.sum("unaids_incidence_number")
         * 100,
         trichomoniasis_upper=pl.sum(
-            "hiv_incidence_number_attributable_to_trichomoniasis_upper"
+            "unaids_hiv_incidence_number_attributable_to_trichomoniasis_upper"
         )
-        / pl.sum("hiv_incidence_number_upper")
+        / pl.sum("unaids_incidence_number_upper")
         * 100,
         trichomoniasis_lower=pl.sum(
-            "hiv_incidence_number_attributable_to_trichomoniasis_lower"
+            "unaids_hiv_incidence_number_attributable_to_trichomoniasis_lower"
         )
-        / pl.sum("hiv_incidence_number_lower")
+        / pl.sum("unaids_incidence_number_lower")
         * 100,
-        chlamydia=pl.sum("hiv_incidence_number_attributable_to_chlamydia")
-        / pl.sum("hiv_incidence_number")
+        chlamydia=pl.sum(
+            "unaids_hiv_incidence_number_attributable_to_chlamydia"
+        )
+        / pl.sum("unaids_incidence_number")
         * 100,
         chlamydia_upper=pl.sum(
-            "hiv_incidence_number_attributable_to_chlamydia_upper"
+            "unaids_hiv_incidence_number_attributable_to_chlamydia_upper"
         )
-        / pl.sum("hiv_incidence_number_upper")
+        / pl.sum("unaids_incidence_number_upper")
         * 100,
         chlamydia_lower=pl.sum(
-            "hiv_incidence_number_attributable_to_chlamydia_lower"
+            "unaids_hiv_incidence_number_attributable_to_chlamydia_lower"
         )
-        / pl.sum("hiv_incidence_number_lower")
+        / pl.sum("unaids_incidence_number_lower")
         * 100,
     )
 
@@ -789,7 +856,7 @@ def plot_attributable_hiv_burden_sex_pathogen(hiv, ax, fig):
     ax.set_xticks(x)
     ax.set_xticklabels(sexes, rotation=-45, ha="center")
     ax.set_xlabel("Group")
-    ax.set_ylabel("Attributable HIV incidence (%)")
+    ax.set_ylabel("Attributable HIV incidence, 2023 (%)")
     ax.legend()
     # minor y ticks every 1%
     ax.yaxis.set_minor_locator(ticker.MultipleLocator(1))
@@ -799,7 +866,7 @@ def plot_attributable_hiv_burden_region_pathogen(hiv, ax, fig):
     # bar graph of attributable burden in 2023 by sex and pathogen
     # sex on x axis, and each pathogen gets their own color, and the y axis is the percentage of HIV incidence attributable to STIs
     # with error bars for the uncertainty intervals
-    hiv = hiv.filter(pl.col("year") == pl.max("year"))
+    hiv = hiv.filter(pl.col("year") == 2023)
 
     # enforce ordering of regions
     # we want to get the region rows in a particular order
@@ -809,55 +876,57 @@ def plot_attributable_hiv_burden_region_pathogen(hiv, ax, fig):
     hiv = hiv.sort("region")
 
     hiv = hiv.group_by(["region"], maintain_order=True).agg(
-        gc=pl.sum("hiv_incidence_number_attributable_to_gc")
-        / pl.sum("hiv_incidence_number")
+        gc=pl.sum("unaids_hiv_incidence_number_attributable_to_gc")
+        / pl.sum("unaids_incidence_number")
         * 100,
-        gc_upper=pl.sum("hiv_incidence_number_attributable_to_gc_upper")
-        / pl.sum("hiv_incidence_number_upper")
+        gc_upper=pl.sum("unaids_hiv_incidence_number_attributable_to_gc_upper")
+        / pl.sum("unaids_incidence_number_upper")
         * 100,
-        gc_lower=pl.sum("hiv_incidence_number_attributable_to_gc_lower")
-        / pl.sum("hiv_incidence_number_lower")
+        gc_lower=pl.sum("unaids_hiv_incidence_number_attributable_to_gc_lower")
+        / pl.sum("unaids_incidence_number_lower")
         * 100,
-        syphilis=pl.sum("hiv_incidence_number_attributable_to_syphilis")
-        / pl.sum("hiv_incidence_number")
+        syphilis=pl.sum("unaids_hiv_incidence_number_attributable_to_syphilis")
+        / pl.sum("unaids_incidence_number")
         * 100,
         syphilis_upper=pl.sum(
-            "hiv_incidence_number_attributable_to_syphilis_upper"
+            "unaids_hiv_incidence_number_attributable_to_syphilis_upper"
         )
-        / pl.sum("hiv_incidence_number_upper")
+        / pl.sum("unaids_incidence_number_upper")
         * 100,
         syphilis_lower=pl.sum(
-            "hiv_incidence_number_attributable_to_syphilis_lower"
+            "unaids_hiv_incidence_number_attributable_to_syphilis_lower"
         )
-        / pl.sum("hiv_incidence_number_lower")
+        / pl.sum("unaids_incidence_number_lower")
         * 100,
         trichomoniasis=pl.sum(
-            "hiv_incidence_number_attributable_to_trichomoniasis"
+            "unaids_hiv_incidence_number_attributable_to_trichomoniasis"
         )
-        / pl.sum("hiv_incidence_number")
+        / pl.sum("unaids_incidence_number")
         * 100,
         trichomoniasis_upper=pl.sum(
-            "hiv_incidence_number_attributable_to_trichomoniasis_upper"
+            "unaids_hiv_incidence_number_attributable_to_trichomoniasis_upper"
         )
-        / pl.sum("hiv_incidence_number_upper")
+        / pl.sum("unaids_incidence_number_upper")
         * 100,
         trichomoniasis_lower=pl.sum(
-            "hiv_incidence_number_attributable_to_trichomoniasis_lower"
+            "unaids_hiv_incidence_number_attributable_to_trichomoniasis_lower"
         )
-        / pl.sum("hiv_incidence_number_lower")
+        / pl.sum("unaids_incidence_number_lower")
         * 100,
-        chlamydia=pl.sum("hiv_incidence_number_attributable_to_chlamydia")
-        / pl.sum("hiv_incidence_number")
+        chlamydia=pl.sum(
+            "unaids_hiv_incidence_number_attributable_to_chlamydia"
+        )
+        / pl.sum("unaids_incidence_number")
         * 100,
         chlamydia_upper=pl.sum(
-            "hiv_incidence_number_attributable_to_chlamydia_upper"
+            "unaids_hiv_incidence_number_attributable_to_chlamydia_upper"
         )
-        / pl.sum("hiv_incidence_number_upper")
+        / pl.sum("unaids_incidence_number_upper")
         * 100,
         chlamydia_lower=pl.sum(
-            "hiv_incidence_number_attributable_to_chlamydia_lower"
+            "unaids_hiv_incidence_number_attributable_to_chlamydia_lower"
         )
-        / pl.sum("hiv_incidence_number_lower")
+        / pl.sum("unaids_incidence_number_lower")
         * 100,
     )
 
@@ -899,7 +968,7 @@ def plot_attributable_hiv_burden_region_pathogen(hiv, ax, fig):
     ax.set_xticks(x)
     ax.set_xticklabels(regions, rotation=-45, ha="center")
     ax.set_xlabel("Region")
-    ax.set_ylabel("Attributable HIV incidence (%)")
+    ax.set_ylabel("Attributable HIV incidence, 2023 (%)")
     ax.legend(loc=(0.01, 0.72))
     # add minor y ticks every 1%
     ax.yaxis.set_minor_locator(ticker.MultipleLocator(1))
@@ -924,7 +993,9 @@ def compute_country_order(hiv):
     )
 
 
-def plot_sensitivity_country_bar(hiv, ax, fig, year=None, top_n=10):
+def plot_sensitivity_country_bar(
+    hiv, ax, fig, year=None, top_n=10, legend=False
+):
     # Bar chart of GBD vs UNAIDS total STI attributable HIV cases by country
     # only includes countries in GBD and UNAIDS analysis (cols_unaids_analysis = True)
     # can be for a specific year or all years, and can include all or subset of countries
@@ -1091,9 +1162,8 @@ def plot_sensitivity_country_bar(hiv, ax, fig, year=None, top_n=10):
     }
     display_countries = [rename.get(c, c) for c in plot_countries]
     ax.set_xticks(x)
-    ax.set_xticklabels(display_countries, rotation=-30, ha="center")
+    ax.set_xticklabels(display_countries, ha="center")
     ax.set_xlim(left=x[0] - total_span / 2 - 0.3)
-    ax.set_ylabel("Attributable HIV incidence (N)")
     handles, labels = ax.get_legend_handles_labels()
     label_to_handle = dict(zip(labels, handles))
     desired_labels = [
@@ -1104,12 +1174,13 @@ def plot_sensitivity_country_bar(hiv, ax, fig, year=None, top_n=10):
         "UNAIDS – Male",
         "UNAIDS – MSM",
     ]
-    ax.legend(
-        [label_to_handle[label] for label in desired_labels],
-        desired_labels,
-        loc="upper right",
-        ncol=2,
-    )
+    if legend:
+        ax.legend(
+            [label_to_handle[label] for label in desired_labels],
+            desired_labels,
+            loc="upper right",
+            ncol=2,
+        )
     ax.yaxis.set_major_formatter(  # format log scale with commas and 0s written out
         ticker.FuncFormatter(
             lambda val, pos: f"{int(val):,}" if val >= 1 else ""
@@ -1119,7 +1190,7 @@ def plot_sensitivity_country_bar(hiv, ax, fig, year=None, top_n=10):
 
 def plot_attributable_hiv_burden_age_pathogen(hiv, ax, fig):
     ax.set_xlabel("Age")
-    ax.set_ylabel("Total attributable HIV incidence (%)")
+    ax.set_ylabel("Attributable HIV incidence, 2023 (%)")
     ax.legend()
 
 
@@ -1189,8 +1260,10 @@ if __name__ == "__main__":
     )
 
     # Total attributable HIV cases 1990–2023 by country, GBD vs UNAIDS
-    plot_sensitivity_country_bar(hiv, ax_full_1, fig, year=None)
-    ax_full_1.set_ylabel("Total attributable HIV incidence 1990-2023 (N)")
+    plot_sensitivity_country_bar(hiv, ax_full_1, fig, year=None, legend=True)
+    ax_full_1.set_ylabel(
+        "Cumulative attributable HIV incidence, 1990-2023 (N)"
+    )
 
     ax_full_2.text(
         -0.08,
@@ -1206,8 +1279,8 @@ if __name__ == "__main__":
     # Attributable HIV cases in latest year (2023) by country, GBD vs UNAIDS
     latest_year = 2023
     plot_sensitivity_country_bar(hiv, ax_full_2, fig, year=latest_year)
-    ax_full_2.set_ylabel("Attributable HIV incidence 2023 (N)")
-    ax_full_2.get_legend().remove()
+    ax_full_2.set_ylabel("Attributable HIV incidence, 2023 (N)")
+    # ax_full_2.get_legend().remove()
 
     # by source
     ax[0, 0].text(  # type: ignore

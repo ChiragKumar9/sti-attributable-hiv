@@ -102,7 +102,7 @@ def plot_hiv_burden_by_sex(hiv, ax, fig):
     ax.set_ylabel("HIV incidence in\nsub-Saharan Africa (N)")
     ax.legend(loc=(0.5, 0.73))
     ax.set_xticks([1990, 2000, 2010, 2020])
-    ax.set_yticks([0, 500000, 1000000, 1500000])
+    ax.set_yticks([0, 500000, 1000000])
     ax.yaxis.set_major_formatter(
         ticker.FuncFormatter(lambda x, pos: f"{int(x):,}")
     )
@@ -353,11 +353,6 @@ def plot_drug_resistance(estimated_resistance_rates, ax, fig):
     ax.set_ylim(0)
     # y axis ticks every 10%
     ax.yaxis.set_minor_locator(ticker.MultipleLocator(10))
-
-
-# to read in future data when we need it for HIV: 
-#   hiv_proj = pl.read_csv(os.path.join(output_dir, "unaids_future_hiv_projections_formatted.csv"))
-#   hiv_proj_sex = pl.read_csv(os.path.join(output_dir, "unaids_future_hiv_projections_by_sex.csv"))
 
 
 if __name__ == "__main__":

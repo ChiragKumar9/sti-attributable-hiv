@@ -623,7 +623,8 @@ data = data.with_columns(
 
 # add a column that is a true or false for whether this row will be used in the UNAIDS analysis
 # false for the following countries: Liberia, Equatorial Guinea, São Tomé and Príncipe, Somalia
-countries_to_exclude = ["LBR", "GNQ", "STP", "SOM"]
+# Cabo Verde, Cote dIvoire
+countries_to_exclude = ["LBR", "GNQ", "STP", "SOM", "CPV", "CIV"]
 
 data = data.with_columns(
     cols_unaids_analysis=pl.when(
@@ -661,14 +662,17 @@ _dhs_name_to_iso3["Sao Tome"] = "STP"
 dhs_treatment_seeking = dhs_treatment_seeking.with_columns(
     iso3=pl.col("country").replace(_dhs_name_to_iso3)
 ).with_columns(region=pl.col("iso3").replace(countries_to_regions))
-# calculate mean from numbers of respodnents in each country, summed by regiuon
+
+# filter out nulls
+dhs_treatment_seeking = dhs_treatment_seeking.filter(
+    pl.col("pct_sought_treatment_weighted").is_not_null()
+)
+
+# calculate mean from numbers of respondents in each country, summed by regions
 dhs_treatment_seeking = (
-    dhs_treatment_seeking.group_by("region", "sex")
-    .agg(
-        symptom_treat_seek_rate=pl.sum("n_sought_treatment")
-        / pl.sum("n_sti_respondents"),
-    )
-    .select(["region", "sex", "symptom_treat_seek_rate"])
+    dhs_treatment_seeking.group_by("region", "sex", "year")
+    .agg(frac_sought_treatment=pl.mean("pct_sought_treatment_weighted") / 100)
+    .select(["region", "sex", "year", "frac_sought_treatment"])
 )
 
 # clean sex names to match
@@ -679,11 +683,40 @@ dhs_treatment_seeking = dhs_treatment_seeking.with_columns(
     .then(pl.lit("Female"))
     .otherwise(pl.lit("Error: unexpected sex value"))
 )
-data = data.join(dhs_treatment_seeking, on=["region", "sex"], how="left")
 
-assert data["symptom_treat_seek_rate"].null_count() == 0, (
-    "Missing DHS treatment seeking rate for some rows"
+# assert that there are no instances of unexpected sex
+assert (
+    dhs_treatment_seeking.filter(
+        pl.col("sex") == "Error: unexpected sex value"
+    ).height
+    == 0
+), "There are unexpected sex values in the DHS treatment seeking data"
+
+data = data.join(
+    dhs_treatment_seeking, on=["region", "sex", "year"], how="left"
 )
+
+# interpolate missing treatment seeking rates by first interpolating between succesive
+# years within each country, then filling any remaining missing values with the average
+# for that year
+data = data.sort("sex", "region", "year")
+
+data = data.with_columns(
+    pl.col("frac_sought_treatment")
+    .interpolate(method="linear")
+    .over(["sex", "region"])
+)
+
+data = data.with_columns(
+    pl.col("frac_sought_treatment").fill_null(
+        pl.col("frac_sought_treatment").mean().over(["sex", "year"])
+    )
+)
+
+assert (
+    data.filter(pl.col("year") >= 2000)["frac_sought_treatment"].null_count()
+    == 0
+), "Missing DHS treatment seeking rate for some rows"
 
 # let's take out part of the male population and make it msm
 msm_fraction = params["msm_fraction"]
@@ -767,13 +800,11 @@ unaids_proj = pl.read_csv(
 )
 unaids_proj = unaids_proj.filter(pl.col("metric") == "new_infections")
 
-# For 2020-2024 use the "98-98-99 treatment, 2024 prevention" column
-# for 2025-2030 use the "Historical trend" column
+# Use the 98-98-99 treatment scenario for everything
 unaids_proj = unaids_proj.with_columns(
-    pl.when(pl.col("year") <= 2024)
-    .then(pl.col("98-98-99 treatment, 2024 prevention"))
-    .otherwise(pl.col("Historical trend"))
-    .alias("value")
+    value=pl.when(pl.col("year") <= 2024)
+    .then(pl.col("95-95-95 treatment, 2024 level of prevention"))
+    .otherwise(pl.col("95-95-95 treatment, 2024 level of prevention"))
 )
 
 # Map country name to iso3 code then iso3 to region
@@ -855,3 +886,283 @@ unaids_proj_by_sex = pl.concat(
 unaids_proj_by_sex.write_csv(
     os.path.join(output_dir, "unaids_future_hiv_projections_by_sex.csv")
 )
+
+# we want to make an overall dataframe with all the historical data and the
+# projections together for our counterfactual analyses
+
+# we want to drop any countries from the projection dataset for which we don't
+# have historical data
+unaids_proj_by_sex = unaids_proj_by_sex.filter(
+    pl.col("country_code").is_in(
+        data.filter(pl.col("cols_unaids_analysis"))["country_code"].unique()
+    )
+)
+
+# let's create an MSM projection using the same method as before for the
+# projections
+
+unads_proj_msm = unaids_proj_by_sex.filter(
+    pl.col("sex") == "Male"
+).with_columns(
+    sex=pl.lit("MSM"),
+    value=pl.col("value") * msm_fraction,
+)
+unaids_proj_male = unaids_proj_by_sex.filter(
+    pl.col("sex") == "Male"
+).with_columns(value=pl.col("value") * (1 - msm_fraction))
+unaids_proj_combined = pl.concat(
+    [
+        unaids_proj_by_sex.filter(pl.col("sex") == "Female"),
+        unaids_proj_male,
+        unads_proj_msm,
+    ]
+)
+
+# rename country to location so that the merge is nicer
+unaids_proj_combined = unaids_proj_combined.rename({"country": "location"})
+# add in the regions
+unaids_proj_combined = unaids_proj_combined.with_columns(
+    region=pl.col("country_code").replace(countries_to_regions)
+)
+
+# now combine with historical data
+data = pl.concat([data, unaids_proj_combined], how="diagonal_relaxed")
+
+# we need to forward fill variables
+# we have three strategies for oding this -- last value carried forward, linear
+# interpolation, or people propagation for incidence numbers
+
+data = data.sort(["country_code", "sex", "year"])
+
+# for STI prevalences, let's do linear interpolation over the last 5 years of data
+sti_cols = [
+    "gc_prevalence",
+    "gc_prevalence_lower",
+    "gc_prevalence_upper",
+    "chlamydia_prevalence",
+    "chlamydia_prevalence_lower",
+    "chlamydia_prevalence_upper",
+    "syphilis_prevalence",
+    "syphilis_prevalence_lower",
+    "syphilis_prevalence_upper",
+    "trichomoniasis_prevalence",
+    "trichomoniasis_prevalence_lower",
+    "trichomoniasis_prevalence_upper",
+]
+
+# we're actually going to do the same method for population because we don't have
+# future population projections
+
+pop_cols = [
+    "un_pop",
+]
+
+# Fit linear trend using only data from 2019 onwards, then extrapolate
+recent_cutoff = 2014
+
+for col in [*sti_cols, *pop_cols]:
+    data = (
+        data.with_columns(
+            # Mark recent non-null values for fitting
+            _year_fit=pl.when(
+                (pl.col("year") >= recent_cutoff) & pl.col(col).is_not_null()
+            )
+            .then(pl.col("year"))
+            .otherwise(None),
+            _val_fit=pl.when(
+                (pl.col("year") >= recent_cutoff) & pl.col(col).is_not_null()
+            )
+            .then(pl.col(col))
+            .otherwise(None),
+        )
+        .with_columns(
+            # Calculate means for fitting
+            _year_mean=pl.col("_year_fit")
+            .mean()
+            .over(["country_code", "sex"]),
+            _val_mean=pl.col("_val_fit").mean().over(["country_code", "sex"]),
+        )
+        .with_columns(
+            # Calculate slope
+            _slope=(
+                (
+                    (pl.col("_year_fit") - pl.col("_year_mean"))
+                    * (pl.col("_val_fit") - pl.col("_val_mean"))
+                )
+                .sum()
+                .over(["country_code", "sex"])
+                / ((pl.col("_year_fit") - pl.col("_year_mean")).pow(2))
+                .sum()
+                .over(["country_code", "sex"])
+            )
+        )
+        .with_columns(
+            # Calculate intercept and apply linear model
+            _intercept=pl.col("_val_mean")
+            - pl.col("_slope") * pl.col("_year_mean"),
+        )
+        .with_columns(
+            # Fill nulls with linear extrapolation
+            **{
+                col: pl.coalesce(
+                    [
+                        pl.col(col),
+                        pl.col("_slope") * pl.col("year")
+                        + pl.col("_intercept"),
+                    ]
+                )
+            }
+        )
+        .drop(
+            [
+                "_year_fit",
+                "_val_fit",
+                "_year_mean",
+                "_val_mean",
+                "_slope",
+                "_intercept",
+            ]
+        )
+    )
+
+# for treatment proportions and frac sought treatment, let's do last value carried
+# forward
+treatment_cols = [
+    "treatment_proportion",
+    "treatment_proportion_lower",
+    "treatment_proportion_upper",
+]
+
+data = data.with_columns(
+    **{
+        col: pl.col(col)
+        .fill_null(strategy="forward")
+        .over(["country_code", "sex"])
+        for col in treatment_cols
+    }
+)
+
+# frac sought treatment is null filled with 100%
+data = data.with_columns(
+    frac_sought_treatment=pl.col("frac_sought_treatment").fill_null(1)
+)
+
+# this leaves prevalence numbers
+# note that the incidence values are those that are labeled "value" in the
+# projections
+
+data = data.with_columns(
+    unaids_incidence_number=pl.when(pl.col("value").is_not_null())
+    .then(pl.col("value"))
+    .otherwise(pl.col("unaids_incidence_number")),
+    # the projections don't have any bounds annoyingly
+    unaids_incidence_number_lower=pl.when(pl.col("value").is_not_null())
+    .then(pl.col("value"))
+    .otherwise(pl.col("unaids_incidence_number_lower")),
+    unaids_incidence_number_upper=pl.when(pl.col("value").is_not_null())
+    .then(pl.col("value"))
+    .otherwise(pl.col("unaids_incidence_number_upper")),
+)
+
+# now we need to calculate unaids prevalence and unaids prevalence year end
+# prevalence = prevalence + incidence - deaths
+# assume that without treatment, hiv is 100% fatal within 10 years
+# but we are only extrapolating over a few years, so we assume that the number of
+# deaths is negligable
+
+# so prevalence = prevalence in the last year + incidence
+# so we forward fill prevalence, and then we add the cumulative sum of incidence
+data = data.with_columns(
+    unaids_prevalence_number=pl.col("unaids_prevalence_number")
+    .fill_null(strategy="forward")
+    .over(["country_code", "sex"]),
+    unaids_prevalence_number_lower=pl.col("unaids_prevalence_number_lower")
+    .fill_null(strategy="forward")
+    .over(["country_code", "sex"]),
+    unaids_prevalence_number_upper=pl.col("unaids_prevalence_number_upper")
+    .fill_null(strategy="forward")
+    .over(["country_code", "sex"]),
+    cumulative_incidence=pl.col("value")
+    .fill_null(0)
+    .cum_sum()
+    .over(["country_code", "sex"]),
+).with_columns(
+    unaids_prevalence_number=pl.col("unaids_prevalence_number")
+    + pl.col("cumulative_incidence"),
+    unaids_prevalence_number_lower=pl.col("unaids_prevalence_number_lower")
+    + pl.col("cumulative_incidence"),
+    unaids_prevalence_number_upper=pl.col("unaids_prevalence_number_upper")
+    + pl.col("cumulative_incidence"),
+)
+
+# calculate year end prevalence
+data = data.with_columns(
+    unaids_prevalence_year_end_number=pl.col("unaids_prevalence_number")
+    + 0.5 * pl.col("value").fill_null(0),
+    unaids_prevalence_year_end_number_lower=pl.col(
+        "unaids_prevalence_number_lower"
+    )
+    + 0.5 * pl.col("value").fill_null(0),
+    unaids_prevalence_year_end_number_upper=pl.col(
+        "unaids_prevalence_number_upper"
+    )
+    + 0.5 * pl.col("value").fill_null(0),
+)
+
+# calculate p_acquiring_hiv when value is not null
+data = data.with_columns(
+    unaids_p_acquiring_hiv=pl.when(pl.col("value").is_not_null())
+    .then(
+        pl.col("value")
+        / (pl.col("un_pop") - pl.col("unaids_prevalence_number"))
+    )
+    .otherwise(pl.col("unaids_p_acquiring_hiv")),
+    unaids_p_acquiring_hiv_lower=pl.when(pl.col("value").is_not_null())
+    .then(
+        pl.col("value")
+        / (pl.col("un_pop") - pl.col("unaids_prevalence_number_lower"))
+    )
+    .otherwise(pl.col("unaids_p_acquiring_hiv_lower")),
+    unaids_p_acquiring_hiv_upper=pl.when(pl.col("value").is_not_null())
+    .then(
+        pl.col("value")
+        / (pl.col("un_pop") - pl.col("unaids_prevalence_number_upper"))
+    )
+    .otherwise(pl.col("unaids_p_acquiring_hiv_upper")),
+)
+
+# we don't care about these values for the gbd dataset since we don't do
+# projections for those quantities
+# but we need to fill in something for them so that we don't
+# have nulls
+# let's just forward fill them
+gbd_columns = [
+    "hiv_incidence_number",
+    "hiv_incidence_number_lower",
+    "hiv_incidence_number_upper",
+    "hiv_prevalence_number",
+    "hiv_prevalence_number_lower",
+    "hiv_prevalence_number_upper",
+    "hiv_prevalence_year_end_number",
+    "hiv_prevalence_year_end_number_lower",
+    "hiv_prevalence_year_end_number_upper",
+    "population",
+    "population_lower",
+    "population_upper",
+    "p_acquiring_hiv",
+    "p_acquiring_hiv_lower",
+    "p_acquiring_hiv_upper",
+]
+
+# forward fill gbd columns
+data = data.with_columns(
+    **{
+        col: pl.col(col)
+        .fill_null(strategy="forward")
+        .over(["country_code", "sex"])
+        for col in gbd_columns
+    }
+)
+
+# export csv
+data.write_csv(os.path.join(output_dir, "hiv_sti_with_projections.csv"))

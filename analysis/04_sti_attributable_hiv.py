@@ -8,16 +8,18 @@ from averted_burden import conditional_exposure
 output_dir = "outputs"
 data_dir = "data"
 
-# we want to assess the probability that an individual with gc acquired hiv
-# we need the RR of acquiring HIV given gonorrhea
+# we want to assess the probability that an individual with an STI acquired hiv
+# we need the RR of acquiring HIV given STI
 rrs_causal = pl.read_csv(
     os.path.join(output_dir, "meta_estimated_RRs_causal_STI_given_HIV.csv")
 )
 
 hiv_sti = pl.read_csv(os.path.join(output_dir, "hiv_sti_with_gc_abx_r.csv"))
 
-# use this code when subsetting to countries in both HIV datasets, comment out when not
-hiv_sti = hiv_sti.filter(pl.col("cols_unaids_analysis"))
+hiv_sti = hiv_sti.filter(
+    (pl.col("cols_unaids_analysis")) | (pl.col("year") > 2023)
+)
+hiv_sti = hiv_sti.filter(pl.col("unaids_incidence_number").is_not_null())
 
 # relabel the sex column to match the GBD data
 rrs_causal = rrs_causal.with_columns(
@@ -563,6 +565,19 @@ hiv_sti = hiv_sti.with_columns(
     ]
 )
 
+# it is possible to get negative prevalences because we don't do clever
+# extrapolations with the gbd data, so clip any negative sti prevalences no hiv
+# at 0
+hiv_sti = hiv_sti.with_columns(
+    [
+        pl.col(f"{sti}_prevalence_no_hiv{estimate}")
+        .clip(lower_bound=0)
+        .alias(f"{sti}_prevalence_no_hiv{estimate}")
+        for sti in STIs
+        for estimate in ["", "_lower", "_upper"]
+    ]
+)
+
 # check that we don't have any negative prevalences
 assert np.all(
     hiv_sti.select(
@@ -760,7 +775,7 @@ hiv_sti = hiv_sti.with_columns(
     [
         (
             pl.col(f"hiv_incidence_number_attributable_to_gc{estimate}")
-            * pl.col(f"{abx}{estimate}")
+            * pl.col(f"{abx}{estimate}").cast(pl.Float64)
         ).alias(f"{abx}_resistant_number{estimate}")
         for abx in ["Ciprofloxacin", "Cefixime", "Azithromycin", "Ceftriaxone"]
         for estimate in ["", "_lower", "_upper"]
@@ -825,19 +840,18 @@ hiv_sti = hiv_sti.with_columns(
     ]
 )
 
-# check that we don't have any negative prevalences
-assert np.all(
-    hiv_sti.select(
-        [
-            f"unaids_{sti}_prevalence_no_hiv{estimate}"
-            for sti in STIs
-            for estimate in ["", "_lower", "_upper"]
-        ]
-    )
-    .min()
-    .to_numpy()
-    >= 0
+# because we do naive linear extrapolation, it's possible that some of these
+# prevalences are below 0 -- clip them
+hiv_sti = hiv_sti.with_columns(
+    [
+        pl.col(f"unaids_{sti}_prevalence_no_hiv{estimate}")
+        .clip(lower_bound=0)
+        .alias(f"unaids_{sti}_prevalence_no_hiv{estimate}")
+        for sti in STIs
+        for estimate in ["", "_lower", "_upper"]
+    ]
 )
+
 # the multiplicative nature of this model means that for some highly uncertain
 # places, we may see main <= lower <= upper or something like that
 # print out places like this
@@ -905,14 +919,14 @@ hiv_sti = hiv_sti.with_columns(
     [
         pl.struct(
             [
-                f"unaids_incidence_rate_uninfected{estimate}",
+                f"unaids_p_acquiring_hiv{estimate}",
                 f"unaids_{sti}_prevalence_no_hiv{estimate}",
                 f"rr_causal{estimate}_{sti}",
             ]
         )
         .map_elements(
             lambda x, s=sti, e=estimate: conditional_exposure.p_a_given_b(
-                x[f"unaids_incidence_rate_uninfected{e}"],
+                x[f"unaids_p_acquiring_hiv{e}"],
                 x[f"unaids_{s}_prevalence_no_hiv{e}"],
                 x[f"rr_causal{e}_{s}"],
             ),
@@ -934,14 +948,14 @@ hiv_sti = hiv_sti.with_columns(
     [
         pl.struct(
             [
-                f"unaids_incidence_rate_uninfected{estimate}",
+                f"unaids_p_acquiring_hiv{estimate}",
                 f"unaids_{sti}_prevalence_no_hiv{estimate}",
                 f"rr_causal{estimate}_{sti}",
             ]
         )
         .map_elements(
             lambda x, s=sti, e=estimate: conditional_exposure.p_a_given_not_b(
-                x[f"unaids_incidence_rate_uninfected{e}"],
+                x[f"unaids_p_acquiring_hiv{e}"],
                 x[f"unaids_{s}_prevalence_no_hiv{e}"],
                 x[f"rr_causal{e}_{s}"],
             ),
@@ -996,7 +1010,7 @@ hiv_sti = hiv_sti.with_columns(
     [
         (
             pl.col(f"unaids_p_hiv_attributable_{sti}{estimate}")
-            / pl.col(f"unaids_incidence_rate_uninfected{estimate}")
+            / pl.col(f"unaids_p_acquiring_hiv{estimate}")
         ).alias(f"unaids_paf_{sti}_hiv{estimate}")
         for sti in STIs
         for estimate in ["", "_lower", "_upper"]
@@ -1021,14 +1035,11 @@ hiv_sti = hiv_sti.with_columns(
     [
         (
             pl.col(f"unaids_hiv_incidence_number_attributable_to_gc{estimate}")
-            * pl.col(f"{abx}{estimate}")
+            * pl.col(f"{abx}{estimate}").cast(pl.Float64)
         ).alias(f"unaids_{abx}_resistant_number{estimate}")
         for abx in ["Ciprofloxacin", "Cefixime", "Azithromycin", "Ceftriaxone"]
         for estimate in ["", "_lower", "_upper"]
     ]
 )
-
-# stop data at 2023 when data ends (UNAIDS later data is projected, gbd has none)
-hiv_sti = hiv_sti.filter(pl.col("year") <= 2023)
 
 hiv_sti.write_csv(os.path.join(output_dir, "hiv_attributable_to_stis.csv"))

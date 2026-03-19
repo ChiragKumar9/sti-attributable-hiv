@@ -50,7 +50,7 @@ def ax_formatting(ax, forward):
         # minor x ticks every year
         ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
     else:
-        ax.set_xticks([1990, 2000, 2010, 2020])
+        ax.set_xticks([2000, 2010, 2020])
         # minor x ticks every two years
         ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))
         # set custom y axis minor ticks
@@ -101,10 +101,12 @@ def plot_best_case(hiv, ax, year, fig, forward=False, reference=None):
     if forward:
         scalar = -1.0
         # this may change based on how the future sims are set up?
-        stub = "upper_bound"
+        stub = "upper_bound_future"
+        hiv = hiv.filter(pl.col("year") >= 2025)
     else:
         scalar = 1.0
         stub = "upper_bound"
+        hiv = hiv.filter(pl.col("year") <= 2024)
 
     hiv = (
         hiv.group_by(["year"])
@@ -112,23 +114,23 @@ def plot_best_case(hiv, ax, year, fig, forward=False, reference=None):
             pl.sum(f"hiv_averted_{stub}"),
             pl.sum(f"hiv_averted_{stub}_lower"),
             pl.sum(f"hiv_averted_{stub}_upper"),
-            pl.sum(f"direct_hiv_averted_{stub}"),
-            pl.sum(f"direct_hiv_averted_{stub}_lower"),
-            pl.sum(f"direct_hiv_averted_{stub}_upper"),
-            pl.sum("hiv_incidence_number"),
-            pl.sum("hiv_incidence_number_upper"),
-            pl.sum("hiv_incidence_number_lower"),
+            pl.sum("direct_hiv_averted_upper_bound"),
+            pl.sum("direct_hiv_averted_upper_bound_lower"),
+            pl.sum("direct_hiv_averted_upper_bound_upper"),
+            pl.sum("unaids_incidence_number"),
+            pl.sum("unaids_incidence_number_upper"),
+            pl.sum("unaids_incidence_number_lower"),
         )
         .with_columns(
-            direct=pl.col(f"direct_hiv_averted_{stub}"),
-            direct_lower=pl.col(f"direct_hiv_averted_{stub}_lower"),
-            direct_upper=pl.col(f"direct_hiv_averted_{stub}_upper"),
+            direct=pl.col("direct_hiv_averted_upper_bound"),
+            direct_lower=pl.col("direct_hiv_averted_upper_bound_lower"),
+            direct_upper=pl.col("direct_hiv_averted_upper_bound_upper"),
             total=pl.col(f"hiv_averted_{stub}"),
             total_lower=pl.col(f"hiv_averted_{stub}_lower"),
             total_upper=pl.col(f"hiv_averted_{stub}_upper"),
-            reference=pl.col("hiv_incidence_number"),
-            reference_lower=pl.col("hiv_incidence_number_lower"),
-            reference_upper=pl.col("hiv_incidence_number_upper"),
+            reference=pl.col("unaids_incidence_number"),
+            reference_lower=pl.col("unaids_incidence_number_lower"),
+            reference_upper=pl.col("unaids_incidence_number_upper"),
         )
     )
     if forward:
@@ -162,7 +164,7 @@ def plot_best_case(hiv, ax, year, fig, forward=False, reference=None):
 
     hiv = hiv.sort(by="year")
     print(
-        hiv.filter(pl.col("year") == pl.max("year")).select(
+        hiv.filter(pl.col("year") == 2023).select(
             [
                 "total",
                 "total_lower",
@@ -172,6 +174,22 @@ def plot_best_case(hiv, ax, year, fig, forward=False, reference=None):
                 "reference_upper",
             ]
         )
+    )
+
+    print(hiv["total"].sum() - hiv["reference"].sum())
+    print(hiv["total_lower"].sum() - hiv["reference_lower"].sum())
+    print(hiv["total_upper"].sum() - hiv["reference_upper"].sum())
+
+    print(
+        (hiv["total"].sum() - hiv["reference"].sum()) / hiv["reference"].sum()
+    )
+    print(
+        (hiv["total_lower"].sum() - hiv["reference_lower"].sum())
+        / hiv["reference_lower"].sum()
+    )
+    print(
+        (hiv["total_upper"].sum() - hiv["reference_upper"].sum())
+        / hiv["reference_upper"].sum()
     )
 
     ax.plot(
@@ -206,7 +224,7 @@ def plot_best_case(hiv, ax, year, fig, forward=False, reference=None):
         hiv["year"],
         hiv["reference"],
         linewidth=3,
-        label="Current",
+        label="Current" if not forward else "Projected",
         color="black",
     )
 
@@ -221,9 +239,9 @@ def plot_best_case(hiv, ax, year, fig, forward=False, reference=None):
     ax.set_xlabel("Year")
     ax.set_ylabel("HIV incidence (N)")
     if forward:
-        loc = (0.65, 0.65)
+        loc = (0.55, 0.75)
     else:
-        loc = (0.6, 0.75)
+        loc = None
     ax.legend(loc=loc)
     ax.set_ylim(0)
     ax.yaxis.set_major_formatter(
@@ -241,14 +259,14 @@ def plot_best_case(hiv, ax, year, fig, forward=False, reference=None):
         # minor x ticks every year
         ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
     else:
-        ax.set_xticks([1990, 2000, 2010, 2020])
+        ax.set_xticks([2000, 2010, 2020])
         # minor x ticks every two years
         ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))
     # need consistent y axis ticks
     if forward:
-        ax.set_yticks([0, 500000, 1000000, 1500000, 2000000])
+        ax.set_yticks([0, 100000, 200000, 300000, 400000, 500000, 600000])
     else:
-        ax.set_yticks([0, 1000000, 2000000, 3000000, 4000000, 5000000])
+        ax.set_yticks([0, 1000000, 2000000, 3000000])
     # minor y ticks every 250000
     ax.yaxis.set_minor_locator(ticker.MultipleLocator(250000))
 
@@ -256,10 +274,12 @@ def plot_best_case(hiv, ax, year, fig, forward=False, reference=None):
 def plot_averted_sti(hiv, ax, year, fig, forward=False):
     if forward:
         scalar = -1.0
-        stub = "upper_bound"
+        stub = "upper_bound_future"
+        hiv = hiv.filter(pl.col("year") >= 2024)
     else:
         scalar = 1.0
         stub = "upper_bound"
+        hiv = hiv.filter(pl.col("year") <= 2023)
 
     hiv = (
         hiv.group_by(["year"])
@@ -390,10 +410,12 @@ def plot_averted_sti(hiv, ax, year, fig, forward=False):
 def plot_averted_sex(hiv, ax, year, fig, forward=False):
     if forward:
         scalar = -1.0
-        stub = "upper_bound"
+        stub = "upper_bound_future"
+        hiv = hiv.filter(pl.col("year") >= 2024)
     else:
         scalar = 1.0
         stub = "upper_bound"
+        hiv = hiv.filter(pl.col("year") <= 2023)
 
     hiv = (
         hiv.group_by(["year", "sex"])
@@ -401,6 +423,9 @@ def plot_averted_sex(hiv, ax, year, fig, forward=False):
             pl.sum(f"hiv_averted_{stub}"),
             pl.sum(f"hiv_averted_{stub}_lower"),
             pl.sum(f"hiv_averted_{stub}_upper"),
+            pl.sum("unaids_incidence_number"),
+            pl.sum("unaids_incidence_number_lower"),
+            pl.sum("unaids_incidence_number_upper"),
         )
         .with_columns(
             total=pl.col(f"hiv_averted_{stub}") * pl.lit(scalar),
@@ -410,6 +435,79 @@ def plot_averted_sex(hiv, ax, year, fig, forward=False):
     )
 
     hiv = hiv.filter(pl.col("year") >= year)
+
+    # sum the values by sex
+    print("Male:")
+    print(hiv.filter(pl.col("sex") == "Male")["total"].sum())
+    print(hiv.filter(pl.col("sex") == "Male")["total_upper"].sum())
+    print(hiv.filter(pl.col("sex") == "Male")["total_lower"].sum())
+
+    print("Female:")
+    print(hiv.filter(pl.col("sex") == "Female")["total"].sum())
+    print(hiv.filter(pl.col("sex") == "Female")["total_upper"].sum())
+    print(hiv.filter(pl.col("sex") == "Female")["total_lower"].sum())
+
+    print("MSM:")
+    print(hiv.filter(pl.col("sex") == "MSM")["total"].sum())
+    print(hiv.filter(pl.col("sex") == "MSM")["total_upper"].sum())
+    print(hiv.filter(pl.col("sex") == "MSM")["total_lower"].sum())
+
+    # print these values as percentages
+    print("Male:")
+    print(
+        hiv.filter(pl.col("sex") == "Male")["total"].sum()
+        / hiv.filter(pl.col("sex") == "Male")["unaids_incidence_number"].sum()
+    )
+    print(
+        hiv.filter(pl.col("sex") == "Male")["total_upper"].sum()
+        / hiv.filter(pl.col("sex") == "Male")[
+            "unaids_incidence_number_upper"
+        ].sum()
+    )
+    print(
+        hiv.filter(pl.col("sex") == "Male")["total_lower"].sum()
+        / hiv.filter(pl.col("sex") == "Male")[
+            "unaids_incidence_number_lower"
+        ].sum()
+    )
+
+    print("Female:")
+    print(
+        hiv.filter(pl.col("sex") == "Female")["total"].sum()
+        / hiv.filter(pl.col("sex") == "Female")[
+            "unaids_incidence_number"
+        ].sum()
+    )
+    print(
+        hiv.filter(pl.col("sex") == "Female")["total_upper"].sum()
+        / hiv.filter(pl.col("sex") == "Female")[
+            "unaids_incidence_number_upper"
+        ].sum()
+    )
+    print(
+        hiv.filter(pl.col("sex") == "Female")["total_lower"].sum()
+        / hiv.filter(pl.col("sex") == "Female")[
+            "unaids_incidence_number_lower"
+        ].sum()
+    )
+
+    print("MSM:")
+    print(
+        hiv.filter(pl.col("sex") == "MSM")["total"].sum()
+        / hiv.filter(pl.col("sex") == "MSM")["unaids_incidence_number"].sum()
+    )
+    print(
+        hiv.filter(pl.col("sex") == "MSM")["total_upper"].sum()
+        / hiv.filter(pl.col("sex") == "MSM")[
+            "unaids_incidence_number_upper"
+        ].sum()
+    )
+    print(
+        hiv.filter(pl.col("sex") == "MSM")["total_lower"].sum()
+        / hiv.filter(pl.col("sex") == "MSM")[
+            "unaids_incidence_number_lower"
+        ].sum()
+    )
 
     hiv = hiv.sort(by="year")
 
@@ -479,10 +577,12 @@ def plot_averted_sex(hiv, ax, year, fig, forward=False):
 def plot_averted_region(hiv, ax, year, fig, forward=False):
     if forward:
         scalar = -1.0
-        stub = "upper_bound"
+        stub = "upper_bound_future"
+        hiv = hiv.filter(pl.col("year") >= 2024)
     else:
         scalar = 1.0
         stub = "upper_bound"
+        hiv = hiv.filter(pl.col("year") <= 2023)
 
     hiv = (
         hiv.group_by(["year", "region"])
@@ -490,6 +590,9 @@ def plot_averted_region(hiv, ax, year, fig, forward=False):
             pl.sum(f"hiv_averted_{stub}"),
             pl.sum(f"hiv_averted_{stub}_lower"),
             pl.sum(f"hiv_averted_{stub}_upper"),
+            pl.sum("unaids_incidence_number"),
+            pl.sum("unaids_incidence_number_lower"),
+            pl.sum("unaids_incidence_number_upper"),
         )
         .with_columns(
             total=pl.col(f"hiv_averted_{stub}") * pl.lit(scalar),
@@ -499,6 +602,28 @@ def plot_averted_region(hiv, ax, year, fig, forward=False):
     )
 
     hiv = hiv.filter(pl.col("year") >= year)
+
+    # print averted percentages by region
+    for region in ["Western", "Eastern", "Central", "Southern"]:
+        print(region)
+        print(
+            hiv.filter(pl.col("region") == region)["total"].sum()
+            / hiv.filter(pl.col("region") == region)[
+                "unaids_incidence_number"
+            ].sum()
+        )
+        print(
+            hiv.filter(pl.col("region") == region)["total_lower"].sum()
+            / hiv.filter(pl.col("region") == region)[
+                "unaids_incidence_number_lower"
+            ].sum()
+        )
+        print(
+            hiv.filter(pl.col("region") == region)["total_upper"].sum()
+            / hiv.filter(pl.col("region") == region)[
+                "unaids_incidence_number_upper"
+            ].sum()
+        )
 
     hiv = hiv.sort(by="year")
 
@@ -588,7 +713,7 @@ if __name__ == "__main__":
         os.path.join(output_dir, "hiv_averted.csv"),
     )
 
-    first_year_upper_bound = 1991
+    first_year_upper_bound = 2001
 
     year_forward = 2020
 
@@ -680,7 +805,7 @@ if __name__ == "__main__":
         fig,
         forward=True,
         reference=hiv_overall.filter(pl.col("year") == 2010)[
-            "hiv_incidence_number"
+            "unaids_incidence_number"
         ].sum(),
     )
 
