@@ -693,13 +693,13 @@ dhs_treatment_seeking = dhs_treatment_seeking.with_columns(
 
 # filter out nulls
 dhs_treatment_seeking = dhs_treatment_seeking.filter(
-    pl.col("pct_sought_treatment_weighted").is_not_null()
+    pl.col("pct_sought_treatment_wtd").is_not_null()
 )
 
 # calculate mean from numbers of respondents in each country, summed by regions
 dhs_treatment_seeking = (
     dhs_treatment_seeking.group_by("region", "sex", "year")
-    .agg(frac_sought_treatment=pl.mean("pct_sought_treatment_weighted") / 100)
+    .agg(frac_sought_treatment=pl.mean("pct_sought_treatment_wtd") / 100)
     .select(["region", "sex", "year", "frac_sought_treatment"])
 )
 
@@ -820,6 +820,107 @@ female_data = data.filter(pl.col("sex") == "Female")
 # join back together
 data = pl.concat([msm_data, non_msm_data, female_data])
 data = data.drop("cause")  # cause column is all hiv, remenant from merge
+
+# Adjust GC and chlamydia prevalence for MSM vs non-MSM males using published MSM prevalence estimates.
+# PR = MSM_prev / all_male_prev (from source data / GBD data)
+# where f is the 15% MSM fraction: 
+# all_male_prev = f * MSM_prev + (1-f) * non_MSM_prev
+# Solving for each group:
+#   non_MSM_prev = all_male_prev / (1 - f + f * PR)
+#   MSM_prev     = PR * all_male_prev / (1 - f + f * PR)
+# Use lower/upper bounds on PR
+
+def _msm(pr, f, all_male_prev):
+    return (all_male_prev * pr) / (1 - f + f * pr)
+
+def _non_msm(pr, f, all_male_prev):
+    return all_male_prev / (1 - f + f * pr)
+
+msm_sti_prev = pl.read_csv(os.path.join(data_dir, "MSM_STI_prev.csv"))
+msm_sti_prev = msm_sti_prev.rename({col: col.strip() for col in msm_sti_prev.columns})
+msm_sti_prev = msm_sti_prev.with_columns(
+    pl.col("Pathogen").str.strip_chars(),
+    pl.col("Population").str.strip_chars(),
+)
+
+# calculate the PR values - swap upper and lower bounds for non MSM since higher PR means lower non MSM prev
+gc_msm_row = msm_sti_prev.filter(
+    (pl.col("Pathogen") == "GC") & (pl.col("Population") == "MSM, 15-49")
+)
+gc_all_row = msm_sti_prev.filter(
+    (pl.col("Pathogen") == "GC") & (pl.col("Population") == "All men, 15-49")
+)
+pr_gc = gc_msm_row["Value"].item() / gc_all_row["Value"].item()
+pr_gc_lower = gc_msm_row["Lower"].item() / gc_all_row["Upper"].item()
+pr_gc_upper = gc_msm_row["Upper"].item() / gc_all_row["Lower"].item()
+
+chlamydia_msm_row = msm_sti_prev.filter(
+    (pl.col("Pathogen") == "Chlamydia") & (pl.col("Population") == "MSM, 15-49")
+)
+chlamydia_all_row = msm_sti_prev.filter(
+    (pl.col("Pathogen") == "Chlamydia") & (pl.col("Population") == "All men, 15-49")
+)
+pr_chlamydia = chlamydia_msm_row["Value"].item() / chlamydia_all_row["Value"].item()
+pr_chlamydia_lower = chlamydia_msm_row["Lower"].item() / chlamydia_all_row["Upper"].item()
+pr_chlamydia_upper = chlamydia_msm_row["Upper"].item() / chlamydia_all_row["Lower"].item()
+
+# GC
+data = data.with_columns(
+    pl.when(pl.col("sex") == "MSM")
+    .then(_msm(pr_gc, msm_fraction, pl.col("gc_prevalence")))
+    .when(pl.col("sex") == "Male")
+    .then(_non_msm(pr_gc, msm_fraction, pl.col("gc_prevalence")))
+    .otherwise(pl.col("gc_prevalence"))
+    .alias("gc_prevalence")
+)
+
+data = data.with_columns(
+    pl.when(pl.col("sex") == "MSM")
+    .then(_msm(pr_gc_lower, msm_fraction, pl.col("gc_prevalence_lower")))
+    .when(pl.col("sex") == "Male")
+    .then(_non_msm(pr_gc_upper, msm_fraction, pl.col("gc_prevalence_lower")))
+    .otherwise(pl.col("gc_prevalence_lower"))
+    .alias("gc_prevalence_lower")
+)
+
+data = data.with_columns(
+    pl.when(pl.col("sex") == "MSM")
+    .then(_msm(pr_gc_upper, msm_fraction, pl.col("gc_prevalence_upper")))
+    .when(pl.col("sex") == "Male")
+    .then(_non_msm(pr_gc_lower, msm_fraction, pl.col("gc_prevalence_upper")))
+    .otherwise(pl.col("gc_prevalence_upper"))
+    .alias("gc_prevalence_upper")
+)
+
+
+# Chlamydia
+data = data.with_columns(
+    pl.when(pl.col("sex") == "MSM")
+    .then(_msm(pr_chlamydia, msm_fraction, pl.col("chlamydia_prevalence")))
+    .when(pl.col("sex") == "Male")
+    .then(_non_msm(pr_chlamydia, msm_fraction, pl.col("chlamydia_prevalence")))
+    .otherwise(pl.col("chlamydia_prevalence"))
+    .alias("chlamydia_prevalence")
+)
+
+data = data.with_columns(
+    pl.when(pl.col("sex") == "MSM")
+    .then(_msm(pr_chlamydia_lower, msm_fraction, pl.col("chlamydia_prevalence_lower")))
+    .when(pl.col("sex") == "Male")
+    .then(_non_msm(pr_chlamydia_upper, msm_fraction, pl.col("chlamydia_prevalence_lower")))
+    .otherwise(pl.col("chlamydia_prevalence_lower"))
+    .alias("chlamydia_prevalence_lower")
+)
+
+data = data.with_columns(
+    pl.when(pl.col("sex") == "MSM")
+    .then(_msm(pr_chlamydia_upper, msm_fraction, pl.col("chlamydia_prevalence_upper")))
+    .when(pl.col("sex") == "Male")
+    .then(_non_msm(pr_chlamydia_lower, msm_fraction, pl.col("chlamydia_prevalence_upper")))
+    .otherwise(pl.col("chlamydia_prevalence_upper"))
+    .alias("chlamydia_prevalence_upper")
+)
+
 # save the assembled data
 data.write_csv(os.path.join(output_dir, "hiv_sti.csv"))
 
@@ -937,7 +1038,7 @@ un_pop_for_proj = pl.concat(
 )
 unaids_proj_by_sex = unaids_proj_by_sex.join(
     un_pop_for_proj, on=["country", "sex", "year"], how="left"
-).rename({"value": "unaids_incidence_number"})
+).rename({"value": "unaids_inc_num_proj"})
 
 unaids_proj_by_sex.write_csv(
     os.path.join(output_dir, "unaids_future_hiv_projections_by_sex.csv")
@@ -950,7 +1051,7 @@ unaids_proj_by_sex.write_csv(
 # have historical data
 unaids_proj_by_sex = unaids_proj_by_sex.filter(
     pl.col("country_code").is_in(
-        data.filter(pl.col("cols_unaids_analysis"))["country_code"].unique()
+        data.filter(pl.col("cols_unaids_analysis"))["country_code"].unique().to_list()
     )
 )
 
@@ -961,11 +1062,13 @@ unads_proj_msm = unaids_proj_by_sex.filter(
     pl.col("sex") == "Male"
 ).with_columns(
     sex=pl.lit("MSM"),
-    value=pl.col("value") * msm_fraction,
+    unaids_inc_num_proj=pl.col("unaids_inc_num_proj") * msm_fraction,
 )
 unaids_proj_male = unaids_proj_by_sex.filter(
     pl.col("sex") == "Male"
-).with_columns(value=pl.col("value") * (1 - msm_fraction))
+).with_columns(
+    unaids_inc_num_proj=pl.col("unaids_inc_num_proj") * (1 - msm_fraction)
+)
 unaids_proj_combined = pl.concat(
     [
         unaids_proj_by_sex.filter(pl.col("sex") == "Female"),
@@ -1103,20 +1206,17 @@ data = data.with_columns(
     frac_sought_treatment=pl.col("frac_sought_treatment").fill_null(1)
 )
 
-# this leaves prevalence numbers
-# note that the incidence values are those that are labeled "value" in the
-# projections
-
+# note that the incidence values for projections are in unaids_inc_num_proj
+# projections don't have bounds, so use point estimate for lower/upper
 data = data.with_columns(
-    unaids_incidence_number=pl.when(pl.col("value").is_not_null())
-    .then(pl.col("value"))
+    unaids_incidence_number=pl.when(pl.col("unaids_inc_num_proj").is_not_null())
+    .then(pl.col("unaids_inc_num_proj"))
     .otherwise(pl.col("unaids_incidence_number")),
-    # the projections don't have any bounds annoyingly
-    unaids_incidence_number_lower=pl.when(pl.col("value").is_not_null())
-    .then(pl.col("value"))
+    unaids_incidence_number_lower=pl.when(pl.col("unaids_inc_num_proj").is_not_null())
+    .then(pl.col("unaids_inc_num_proj"))
     .otherwise(pl.col("unaids_incidence_number_lower")),
-    unaids_incidence_number_upper=pl.when(pl.col("value").is_not_null())
-    .then(pl.col("value"))
+    unaids_incidence_number_upper=pl.when(pl.col("unaids_inc_num_proj").is_not_null())
+    .then(pl.col("unaids_inc_num_proj"))
     .otherwise(pl.col("unaids_incidence_number_upper")),
 )
 
@@ -1138,7 +1238,7 @@ data = data.with_columns(
     unaids_prevalence_number_upper=pl.col("unaids_prevalence_number_upper")
     .fill_null(strategy="forward")
     .over(["country_code", "sex"]),
-    cumulative_incidence=pl.col("value")
+    cumulative_incidence=pl.col("unaids_inc_num_proj")
     .fill_null(0)
     .cum_sum()
     .over(["country_code", "sex"]),
@@ -1154,34 +1254,34 @@ data = data.with_columns(
 # calculate year end prevalence
 data = data.with_columns(
     unaids_prevalence_year_end_number=pl.col("unaids_prevalence_number")
-    + 0.5 * pl.col("value").fill_null(0),
+    + 0.5 * pl.col("unaids_inc_num_proj").fill_null(0),
     unaids_prevalence_year_end_number_lower=pl.col(
         "unaids_prevalence_number_lower"
     )
-    + 0.5 * pl.col("value").fill_null(0),
+    + 0.5 * pl.col("unaids_inc_num_proj").fill_null(0),
     unaids_prevalence_year_end_number_upper=pl.col(
         "unaids_prevalence_number_upper"
     )
-    + 0.5 * pl.col("value").fill_null(0),
+    + 0.5 * pl.col("unaids_inc_num_proj").fill_null(0),
 )
 
-# calculate p_acquiring_hiv when value is not null
+# calculate p_acquiring_hiv for projection years only
 data = data.with_columns(
-    unaids_p_acquiring_hiv=pl.when(pl.col("value").is_not_null())
+    unaids_p_acquiring_hiv=pl.when(pl.col("unaids_inc_num_proj").is_not_null())
     .then(
-        pl.col("value")
+        pl.col("unaids_inc_num_proj")
         / (pl.col("un_pop") - pl.col("unaids_prevalence_number"))
     )
     .otherwise(pl.col("unaids_p_acquiring_hiv")),
-    unaids_p_acquiring_hiv_lower=pl.when(pl.col("value").is_not_null())
+    unaids_p_acquiring_hiv_lower=pl.when(pl.col("unaids_inc_num_proj").is_not_null())
     .then(
-        pl.col("value")
+        pl.col("unaids_inc_num_proj")
         / (pl.col("un_pop") - pl.col("unaids_prevalence_number_lower"))
     )
     .otherwise(pl.col("unaids_p_acquiring_hiv_lower")),
-    unaids_p_acquiring_hiv_upper=pl.when(pl.col("value").is_not_null())
+    unaids_p_acquiring_hiv_upper=pl.when(pl.col("unaids_inc_num_proj").is_not_null())
     .then(
-        pl.col("value")
+        pl.col("unaids_inc_num_proj")
         / (pl.col("un_pop") - pl.col("unaids_prevalence_number_upper"))
     )
     .otherwise(pl.col("unaids_p_acquiring_hiv_upper")),

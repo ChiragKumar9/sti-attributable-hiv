@@ -148,6 +148,9 @@ def plot_attributable_hiv_burden_drug_resistance(hiv, ax, fig):
         .otherwise(pl.col("Ceftriaxone_resistant_number_upper")),
     )
 
+    # filter to years with resistance data
+    hiv = hiv.filter(pl.col("year") <= 2023)
+
     hiv = hiv.sort(by="year")
 
     ax.plot(
@@ -242,9 +245,11 @@ def plot_attributable_hiv_burden_drug_resistance_region(hiv, ax, fig):
         pl.sum("hiv_incidence_number_attributable_to_gc_upper"),
         pl.sum("hiv_incidence_number_attributable_to_gc_lower"),
     )
+    # filter to years with resistance data 
+    hiv = hiv.filter(pl.col("year") <= 2023)
     # sort by year
     hiv = hiv.sort(by=["region", "year"])
-    # take the last value in each region -- the most recent year
+    # take the last value in each region -- the most recent year with data
     hiv = hiv.group_by(["region"], maintain_order=True).agg(
         pl.last("Ciprofloxacin_resistant_number"),
         pl.last("Ciprofloxacin_resistant_number_lower"),
