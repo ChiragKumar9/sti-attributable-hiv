@@ -1,0 +1,3319 @@
+measure,location,countryCode,sex,age,year,val
+population,Afghanistan,AFG,female,15+,2024,12175534
+population,Afghanistan,AFG,female,15+,2025,12578522
+population,Afghanistan,AFG,female,15+,2026,12991376
+population,Afghanistan,AFG,female,15+,2027,13414131
+population,Afghanistan,AFG,female,15+,2028,13842490
+population,Afghanistan,AFG,female,15+,2029,14295160
+population,Afghanistan,AFG,female,15+,2030,14776797
+population,Afghanistan,AFG,male,15+,2024,12181512
+population,Afghanistan,AFG,male,15+,2025,12605131
+population,Afghanistan,AFG,male,15+,2026,13038362
+population,Afghanistan,AFG,male,15+,2027,13481104
+population,Afghanistan,AFG,male,15+,2028,13928816
+population,Afghanistan,AFG,male,15+,2029,14401478
+population,Afghanistan,AFG,male,15+,2030,14904177
+population,Albania,ALB,female,15+,2024,1186436
+population,Albania,ALB,female,15+,2025,1181272
+population,Albania,ALB,female,15+,2026,1176359
+population,Albania,ALB,female,15+,2027,1172320
+population,Albania,ALB,female,15+,2028,1169036
+population,Albania,ALB,female,15+,2029,1165967
+population,Albania,ALB,female,15+,2030,1162464
+population,Albania,ALB,male,15+,2024,1135173
+population,Albania,ALB,male,15+,2025,1129994
+population,Albania,ALB,male,15+,2026,1125348
+population,Albania,ALB,male,15+,2027,1121920
+population,Albania,ALB,male,15+,2028,1119324
+population,Albania,ALB,male,15+,2029,1117018
+population,Albania,ALB,male,15+,2030,1114290
+population,Algeria,DZA,female,15+,2024,15987151
+population,Algeria,DZA,female,15+,2025,16296550
+population,Algeria,DZA,female,15+,2026,16617579
+population,Algeria,DZA,female,15+,2027,16954282
+population,Algeria,DZA,female,15+,2028,17304772
+population,Algeria,DZA,female,15+,2029,17665392
+population,Algeria,DZA,female,15+,2030,18034490
+population,Algeria,DZA,male,15+,2024,16628843
+population,Algeria,DZA,male,15+,2025,16943508
+population,Algeria,DZA,male,15+,2026,17269184
+population,Algeria,DZA,male,15+,2027,17610240
+population,Algeria,DZA,male,15+,2028,17964956
+population,Algeria,DZA,male,15+,2029,18329360
+population,Algeria,DZA,male,15+,2030,18701460
+population,American Samoa,ASM,female,15+,2024,16893
+population,American Samoa,ASM,female,15+,2025,16806
+population,American Samoa,ASM,female,15+,2026,16728
+population,American Samoa,ASM,female,15+,2027,16666
+population,American Samoa,ASM,female,15+,2028,16628
+population,American Samoa,ASM,female,15+,2029,16592
+population,American Samoa,ASM,female,15+,2030,16566
+population,American Samoa,ASM,male,15+,2024,17242
+population,American Samoa,ASM,male,15+,2025,17095
+population,American Samoa,ASM,male,15+,2026,16958
+population,American Samoa,ASM,male,15+,2027,16840
+population,American Samoa,ASM,male,15+,2028,16744
+population,American Samoa,ASM,male,15+,2029,16651
+population,American Samoa,ASM,male,15+,2030,16562
+population,Andorra,AND,female,15+,2024,35302
+population,Andorra,AND,female,15+,2025,35858
+population,Andorra,AND,female,15+,2026,36353
+population,Andorra,AND,female,15+,2027,36775
+population,Andorra,AND,female,15+,2028,37086
+population,Andorra,AND,female,15+,2029,37339
+population,Andorra,AND,female,15+,2030,37571
+population,Andorra,AND,male,15+,2024,36896
+population,Andorra,AND,male,15+,2025,37414
+population,Andorra,AND,male,15+,2026,37884
+population,Andorra,AND,male,15+,2027,38274
+population,Andorra,AND,male,15+,2028,38546
+population,Andorra,AND,male,15+,2029,38752
+population,Andorra,AND,male,15+,2030,38936
+population,Angola,AGO,female,15+,2024,10782976
+population,Angola,AGO,female,15+,2025,11159253
+population,Angola,AGO,female,15+,2026,11548797
+population,Angola,AGO,female,15+,2027,11952252
+population,Angola,AGO,female,15+,2028,12370092
+population,Angola,AGO,female,15+,2029,12799832
+population,Angola,AGO,female,15+,2030,13240032
+population,Angola,AGO,male,15+,2024,10300134
+population,Angola,AGO,male,15+,2025,10664720
+population,Angola,AGO,male,15+,2026,11042365
+population,Angola,AGO,male,15+,2027,11433650
+population,Angola,AGO,male,15+,2028,11839272
+population,Angola,AGO,male,15+,2029,12256808
+population,Angola,AGO,male,15+,2030,12684839
+population,Anguilla,AIA,female,15+,2024,6331
+population,Anguilla,AIA,female,15+,2025,6442
+population,Anguilla,AIA,female,15+,2026,6523
+population,Anguilla,AIA,female,15+,2027,6585
+population,Anguilla,AIA,female,15+,2028,6636
+population,Anguilla,AIA,female,15+,2029,6671
+population,Anguilla,AIA,female,15+,2030,6694
+population,Anguilla,AIA,male,15+,2024,5881
+population,Anguilla,AIA,male,15+,2025,5980
+population,Anguilla,AIA,male,15+,2026,6051
+population,Anguilla,AIA,male,15+,2027,6100
+population,Anguilla,AIA,male,15+,2028,6136
+population,Anguilla,AIA,male,15+,2029,6157
+population,Anguilla,AIA,male,15+,2030,6176
+population,Antigua and Barbuda,ATG,female,15+,2024,40916
+population,Antigua and Barbuda,ATG,female,15+,2025,41252
+population,Antigua and Barbuda,ATG,female,15+,2026,41540
+population,Antigua and Barbuda,ATG,female,15+,2027,41796
+population,Antigua and Barbuda,ATG,female,15+,2028,42014
+population,Antigua and Barbuda,ATG,female,15+,2029,42200
+population,Antigua and Barbuda,ATG,female,15+,2030,42376
+population,Antigua and Barbuda,ATG,male,15+,2024,36164
+population,Antigua and Barbuda,ATG,male,15+,2025,36498
+population,Antigua and Barbuda,ATG,male,15+,2026,36787
+population,Antigua and Barbuda,ATG,male,15+,2027,37044
+population,Antigua and Barbuda,ATG,male,15+,2028,37256
+population,Antigua and Barbuda,ATG,male,15+,2029,37444
+population,Antigua and Barbuda,ATG,male,15+,2030,37624
+population,Argentina,ARG,female,15+,2024,18209888
+population,Argentina,ARG,female,15+,2025,18396370
+population,Argentina,ARG,female,15+,2026,18584215
+population,Argentina,ARG,female,15+,2027,18765658
+population,Argentina,ARG,female,15+,2028,18944209
+population,Argentina,ARG,female,15+,2029,19130340
+population,Argentina,ARG,female,15+,2030,19318314
+population,Argentina,ARG,male,15+,2024,17614100
+population,Argentina,ARG,male,15+,2025,17819014
+population,Argentina,ARG,male,15+,2026,18025062
+population,Argentina,ARG,male,15+,2027,18223876
+population,Argentina,ARG,male,15+,2028,18418827
+population,Argentina,ARG,male,15+,2029,18620921
+population,Argentina,ARG,male,15+,2030,18824107
+population,Armenia,ARM,female,15+,2024,1317912
+population,Armenia,ARM,female,15+,2025,1312580
+population,Armenia,ARM,female,15+,2026,1307688
+population,Armenia,ARM,female,15+,2027,1303522
+population,Armenia,ARM,female,15+,2028,1299862
+population,Armenia,ARM,female,15+,2029,1296196
+population,Armenia,ARM,female,15+,2030,1292425
+population,Armenia,ARM,male,15+,2024,1083848
+population,Armenia,ARM,male,15+,2025,1079202
+population,Armenia,ARM,male,15+,2026,1075284
+population,Armenia,ARM,male,15+,2027,1072277
+population,Armenia,ARM,male,15+,2028,1069840
+population,Armenia,ARM,male,15+,2029,1067412
+population,Armenia,ARM,male,15+,2030,1064886
+population,Aruba,ABW,female,15+,2024,48092
+population,Aruba,ABW,female,15+,2025,48307
+population,Aruba,ABW,female,15+,2026,48492
+population,Aruba,ABW,female,15+,2027,48656
+population,Aruba,ABW,female,15+,2028,48807
+population,Aruba,ABW,female,15+,2029,48929
+population,Aruba,ABW,female,15+,2030,49013
+population,Aruba,ABW,male,15+,2024,41770
+population,Aruba,ABW,male,15+,2025,41976
+population,Aruba,ABW,male,15+,2026,42160
+population,Aruba,ABW,male,15+,2027,42332
+population,Aruba,ABW,male,15+,2028,42484
+population,Aruba,ABW,male,15+,2029,42606
+population,Aruba,ABW,male,15+,2030,42696
+population,Australia,AUS,female,15+,2024,11141258
+population,Australia,AUS,female,15+,2025,11269710
+population,Australia,AUS,female,15+,2026,11395508
+population,Australia,AUS,female,15+,2027,11519604
+population,Australia,AUS,female,15+,2028,11643208
+population,Australia,AUS,female,15+,2029,11763762
+population,Australia,AUS,female,15+,2030,11881872
+population,Australia,AUS,male,15+,2024,10805818
+population,Australia,AUS,male,15+,2025,10935414
+population,Australia,AUS,male,15+,2026,11061697
+population,Australia,AUS,male,15+,2027,11186103
+population,Australia,AUS,male,15+,2028,11309915
+population,Australia,AUS,male,15+,2029,11430365
+population,Australia,AUS,male,15+,2030,11548058
+population,Austria,AUT,female,15+,2024,3999751
+population,Austria,AUT,female,15+,2025,3998803
+population,Austria,AUT,female,15+,2026,3998709
+population,Austria,AUT,female,15+,2027,3999070
+population,Austria,AUT,female,15+,2028,4000236
+population,Austria,AUT,female,15+,2029,4001755
+population,Austria,AUT,female,15+,2030,4003185
+population,Austria,AUT,male,15+,2024,3823352
+population,Austria,AUT,male,15+,2025,3825450
+population,Austria,AUT,male,15+,2026,3828611
+population,Austria,AUT,male,15+,2027,3832312
+population,Austria,AUT,male,15+,2028,3836602
+population,Austria,AUT,male,15+,2029,3841240
+population,Austria,AUT,male,15+,2030,3845936
+population,Azerbaijan,AZE,female,15+,2024,4201806
+population,Azerbaijan,AZE,female,15+,2025,4254896
+population,Azerbaijan,AZE,female,15+,2026,4306846
+population,Azerbaijan,AZE,female,15+,2027,4357122
+population,Azerbaijan,AZE,female,15+,2028,4407030
+population,Azerbaijan,AZE,female,15+,2029,4455701
+population,Azerbaijan,AZE,female,15+,2030,4502274
+population,Azerbaijan,AZE,male,15+,2024,3880195
+population,Azerbaijan,AZE,male,15+,2025,3938452
+population,Azerbaijan,AZE,male,15+,2026,3995539
+population,Azerbaijan,AZE,male,15+,2027,4050576
+population,Azerbaijan,AZE,male,15+,2028,4104690
+population,Azerbaijan,AZE,male,15+,2029,4157210
+population,Azerbaijan,AZE,male,15+,2030,4207228
+population,Bahamas,BHS,female,15+,2024,174170
+population,Bahamas,BHS,female,15+,2025,175790
+population,Bahamas,BHS,female,15+,2026,177230
+population,Bahamas,BHS,female,15+,2027,178606
+population,Bahamas,BHS,female,15+,2028,179946
+population,Bahamas,BHS,female,15+,2029,181230
+population,Bahamas,BHS,female,15+,2030,182382
+population,Bahamas,BHS,male,15+,2024,155232
+population,Bahamas,BHS,male,15+,2025,156516
+population,Bahamas,BHS,male,15+,2026,157633
+population,Bahamas,BHS,male,15+,2027,158695
+population,Bahamas,BHS,male,15+,2028,159735
+population,Bahamas,BHS,male,15+,2029,160736
+population,Bahamas,BHS,male,15+,2030,161616
+population,Bahrain,BHR,female,15+,2024,462505
+population,Bahrain,BHR,female,15+,2025,475075
+population,Bahrain,BHR,female,15+,2026,486778
+population,Bahrain,BHR,female,15+,2027,497460
+population,Bahrain,BHR,female,15+,2028,507186
+population,Bahrain,BHR,female,15+,2029,516199
+population,Bahrain,BHR,female,15+,2030,524669
+population,Bahrain,BHR,male,15+,2024,843756
+population,Bahrain,BHR,male,15+,2025,865548
+population,Bahrain,BHR,male,15+,2026,884489
+population,Bahrain,BHR,male,15+,2027,900198
+population,Bahrain,BHR,male,15+,2028,912948
+population,Bahrain,BHR,male,15+,2029,923604
+population,Bahrain,BHR,male,15+,2030,932816
+population,Bangladesh,BGD,female,15+,2024,64719876
+population,Bangladesh,BGD,female,15+,2025,65784690
+population,Bangladesh,BGD,female,15+,2026,66828994
+population,Bangladesh,BGD,female,15+,2027,67850938
+population,Bangladesh,BGD,female,15+,2028,68855064
+population,Bangladesh,BGD,female,15+,2029,69845442
+population,Bangladesh,BGD,female,15+,2030,70826128
+population,Bangladesh,BGD,male,15+,2024,60264238
+population,Bangladesh,BGD,male,15+,2025,61332260
+population,Bangladesh,BGD,male,15+,2026,62395390
+population,Bangladesh,BGD,male,15+,2027,63433876
+population,Bangladesh,BGD,male,15+,2028,64441919
+population,Bangladesh,BGD,male,15+,2029,65421284
+population,Bangladesh,BGD,male,15+,2030,66378424
+population,Barbados,BRB,female,15+,2024,123098
+population,Barbados,BRB,female,15+,2025,123388
+population,Barbados,BRB,female,15+,2026,123602
+population,Barbados,BRB,female,15+,2027,123767
+population,Barbados,BRB,female,15+,2028,123893
+population,Barbados,BRB,female,15+,2029,123972
+population,Barbados,BRB,female,15+,2030,123998
+population,Barbados,BRB,male,15+,2024,110669
+population,Barbados,BRB,male,15+,2025,111010
+population,Barbados,BRB,male,15+,2026,111262
+population,Barbados,BRB,male,15+,2027,111467
+population,Barbados,BRB,male,15+,2028,111626
+population,Barbados,BRB,male,15+,2029,111736
+population,Barbados,BRB,male,15+,2030,111797
+population,Belarus,BLR,female,15+,2024,4119801
+population,Belarus,BLR,female,15+,2025,4111649
+population,Belarus,BLR,female,15+,2026,4103656
+population,Belarus,BLR,female,15+,2027,4097808
+population,Belarus,BLR,female,15+,2028,4094073
+population,Belarus,BLR,female,15+,2029,4090500
+population,Belarus,BLR,female,15+,2030,4086886
+population,Belarus,BLR,male,15+,2024,3460905
+population,Belarus,BLR,male,15+,2025,3456340
+population,Belarus,BLR,male,15+,2026,3451928
+population,Belarus,BLR,male,15+,2027,3449903
+population,Belarus,BLR,male,15+,2028,3450310
+population,Belarus,BLR,male,15+,2029,3451216
+population,Belarus,BLR,male,15+,2030,3452342
+population,Belgium,BEL,female,15+,2024,5032474
+population,Belgium,BEL,female,15+,2025,5055183
+population,Belgium,BEL,female,15+,2026,5076478
+population,Belgium,BEL,female,15+,2027,5096429
+population,Belgium,BEL,female,15+,2028,5115116
+population,Belgium,BEL,female,15+,2029,5132588
+population,Belgium,BEL,female,15+,2030,5148686
+population,Belgium,BEL,male,15+,2024,4828542
+population,Belgium,BEL,male,15+,2025,4856867
+population,Belgium,BEL,male,15+,2026,4883389
+population,Belgium,BEL,male,15+,2027,4908204
+population,Belgium,BEL,male,15+,2028,4931599
+population,Belgium,BEL,male,15+,2029,4953888
+population,Belgium,BEL,male,15+,2030,4974450
+population,Belize,BLZ,female,15+,2024,152513
+population,Belize,BLZ,female,15+,2025,155372
+population,Belize,BLZ,female,15+,2026,158088
+population,Belize,BLZ,female,15+,2027,160838
+population,Belize,BLZ,female,15+,2028,163610
+population,Belize,BLZ,female,15+,2029,166422
+population,Belize,BLZ,female,15+,2030,169240
+population,Belize,BLZ,male,15+,2024,153708
+population,Belize,BLZ,male,15+,2025,156450
+population,Belize,BLZ,male,15+,2026,159054
+population,Belize,BLZ,male,15+,2027,161690
+population,Belize,BLZ,male,15+,2028,164344
+population,Belize,BLZ,male,15+,2029,167042
+population,Belize,BLZ,male,15+,2030,169755
+population,Benin,BEN,female,15+,2024,4246232
+population,Benin,BEN,female,15+,2025,4369451
+population,Benin,BEN,female,15+,2026,4496920
+population,Benin,BEN,female,15+,2027,4628864
+population,Benin,BEN,female,15+,2028,4765084
+population,Benin,BEN,female,15+,2029,4905392
+population,Benin,BEN,female,15+,2030,5048561
+population,Benin,BEN,male,15+,2024,4206870
+population,Benin,BEN,male,15+,2025,4332631
+population,Benin,BEN,male,15+,2026,4462467
+population,Benin,BEN,male,15+,2027,4596687
+population,Benin,BEN,male,15+,2028,4735079
+population,Benin,BEN,male,15+,2029,4877372
+population,Benin,BEN,male,15+,2030,5022294
+population,Bermuda,BMU,female,15+,2024,28718
+population,Bermuda,BMU,female,15+,2025,28776
+population,Bermuda,BMU,female,15+,2026,28819
+population,Bermuda,BMU,female,15+,2027,28850
+population,Bermuda,BMU,female,15+,2028,28874
+population,Bermuda,BMU,female,15+,2029,28884
+population,Bermuda,BMU,female,15+,2030,28874
+population,Bermuda,BMU,male,15+,2024,27124
+population,Bermuda,BMU,male,15+,2025,27159
+population,Bermuda,BMU,male,15+,2026,27170
+population,Bermuda,BMU,male,15+,2027,27154
+population,Bermuda,BMU,male,15+,2028,27123
+population,Bermuda,BMU,male,15+,2029,27083
+population,Bermuda,BMU,male,15+,2030,27042
+population,Bhutan,BTN,female,15+,2024,288760
+population,Bhutan,BTN,female,15+,2025,292912
+population,Bhutan,BTN,female,15+,2026,297210
+population,Bhutan,BTN,female,15+,2027,301375
+population,Bhutan,BTN,female,15+,2028,305330
+population,Bhutan,BTN,female,15+,2029,309032
+population,Bhutan,BTN,female,15+,2030,312388
+population,Bhutan,BTN,male,15+,2024,337262
+population,Bhutan,BTN,male,15+,2025,341556
+population,Bhutan,BTN,male,15+,2026,346070
+population,Bhutan,BTN,male,15+,2027,350352
+population,Bhutan,BTN,male,15+,2028,354304
+population,Bhutan,BTN,male,15+,2029,357943
+population,Bhutan,BTN,male,15+,2030,361236
+population,Bolivia (Plurinational State of),BOL,female,15+,2024,4377391
+population,Bolivia (Plurinational State of),BOL,female,15+,2025,4459502
+population,Bolivia (Plurinational State of),BOL,female,15+,2026,4541372
+population,Bolivia (Plurinational State of),BOL,female,15+,2027,4622936
+population,Bolivia (Plurinational State of),BOL,female,15+,2028,4704062
+population,Bolivia (Plurinational State of),BOL,female,15+,2029,4784612
+population,Bolivia (Plurinational State of),BOL,female,15+,2030,4864548
+population,Bolivia (Plurinational State of),BOL,male,15+,2024,4338424
+population,Bolivia (Plurinational State of),BOL,male,15+,2025,4418206
+population,Bolivia (Plurinational State of),BOL,male,15+,2026,4497548
+population,Bolivia (Plurinational State of),BOL,male,15+,2027,4576361
+population,Bolivia (Plurinational State of),BOL,male,15+,2028,4654496
+population,Bolivia (Plurinational State of),BOL,male,15+,2029,4731825
+population,Bolivia (Plurinational State of),BOL,male,15+,2030,4808314
+population,"Bonaire, Sint Eustatius and Saba",BES,female,15+,2024,12519
+population,"Bonaire, Sint Eustatius and Saba",BES,female,15+,2025,12834
+population,"Bonaire, Sint Eustatius and Saba",BES,female,15+,2026,13117
+population,"Bonaire, Sint Eustatius and Saba",BES,female,15+,2027,13370
+population,"Bonaire, Sint Eustatius and Saba",BES,female,15+,2028,13596
+population,"Bonaire, Sint Eustatius and Saba",BES,female,15+,2029,13785
+population,"Bonaire, Sint Eustatius and Saba",BES,female,15+,2030,13946
+population,"Bonaire, Sint Eustatius and Saba",BES,male,15+,2024,13316
+population,"Bonaire, Sint Eustatius and Saba",BES,male,15+,2025,13598
+population,"Bonaire, Sint Eustatius and Saba",BES,male,15+,2026,13844
+population,"Bonaire, Sint Eustatius and Saba",BES,male,15+,2027,14060
+population,"Bonaire, Sint Eustatius and Saba",BES,male,15+,2028,14240
+population,"Bonaire, Sint Eustatius and Saba",BES,male,15+,2029,14376
+population,"Bonaire, Sint Eustatius and Saba",BES,male,15+,2030,14488
+population,Bosnia and Herzegovina,BIH,female,15+,2024,1459339
+population,Bosnia and Herzegovina,BIH,female,15+,2025,1449962
+population,Bosnia and Herzegovina,BIH,female,15+,2026,1439063
+population,Bosnia and Herzegovina,BIH,female,15+,2027,1427510
+population,Bosnia and Herzegovina,BIH,female,15+,2028,1416097
+population,Bosnia and Herzegovina,BIH,female,15+,2029,1404750
+population,Bosnia and Herzegovina,BIH,female,15+,2030,1393441
+population,Bosnia and Herzegovina,BIH,male,15+,2024,1292364
+population,Bosnia and Herzegovina,BIH,male,15+,2025,1286676
+population,Bosnia and Herzegovina,BIH,male,15+,2026,1279466
+population,Bosnia and Herzegovina,BIH,male,15+,2027,1271570
+population,Bosnia and Herzegovina,BIH,male,15+,2028,1263798
+population,Bosnia and Herzegovina,BIH,male,15+,2029,1256028
+population,Bosnia and Herzegovina,BIH,male,15+,2030,1248238
+population,Botswana,BWA,female,15+,2024,862534
+population,Botswana,BWA,female,15+,2025,879360
+population,Botswana,BWA,female,15+,2026,896438
+population,Botswana,BWA,female,15+,2027,913669
+population,Botswana,BWA,female,15+,2028,930930
+population,Botswana,BWA,female,15+,2029,948334
+population,Botswana,BWA,female,15+,2030,966232
+population,Botswana,BWA,male,15+,2024,848572
+population,Botswana,BWA,male,15+,2025,863994
+population,Botswana,BWA,male,15+,2026,879758
+population,Botswana,BWA,male,15+,2027,895710
+population,Botswana,BWA,male,15+,2028,911666
+population,Botswana,BWA,male,15+,2029,927706
+population,Botswana,BWA,male,15+,2030,944202
+population,Brazil,BRA,female,15+,2024,87280218
+population,Brazil,BRA,female,15+,2025,87945276
+population,Brazil,BRA,female,15+,2026,88589667
+population,Brazil,BRA,female,15+,2027,89215748
+population,Brazil,BRA,female,15+,2028,89824870
+population,Brazil,BRA,female,15+,2029,90424790
+population,Brazil,BRA,female,15+,2030,91016714
+population,Brazil,BRA,male,15+,2024,83028540
+population,Brazil,BRA,male,15+,2025,83609994
+population,Brazil,BRA,male,15+,2026,84171244
+population,Brazil,BRA,male,15+,2027,84714950
+population,Brazil,BRA,male,15+,2028,85242740
+population,Brazil,BRA,male,15+,2029,85763084
+population,Brazil,BRA,male,15+,2030,86278080
+population,British Virgin Islands,VGB,female,15+,2024,17962
+population,British Virgin Islands,VGB,female,15+,2025,18168
+population,British Virgin Islands,VGB,female,15+,2026,18332
+population,British Virgin Islands,VGB,female,15+,2027,18478
+population,British Virgin Islands,VGB,female,15+,2028,18618
+population,British Virgin Islands,VGB,female,15+,2029,18758
+population,British Virgin Islands,VGB,female,15+,2030,18888
+population,British Virgin Islands,VGB,male,15+,2024,15788
+population,British Virgin Islands,VGB,male,15+,2025,15968
+population,British Virgin Islands,VGB,male,15+,2026,16102
+population,British Virgin Islands,VGB,male,15+,2027,16212
+population,British Virgin Islands,VGB,male,15+,2028,16312
+population,British Virgin Islands,VGB,male,15+,2029,16416
+population,British Virgin Islands,VGB,male,15+,2030,16520
+population,Brunei Darussalam,BRN,female,15+,2024,170694
+population,Brunei Darussalam,BRN,female,15+,2025,172650
+population,Brunei Darussalam,BRN,female,15+,2026,174635
+population,Brunei Darussalam,BRN,female,15+,2027,176692
+population,Brunei Darussalam,BRN,female,15+,2028,178778
+population,Brunei Darussalam,BRN,female,15+,2029,180852
+population,Brunei Darussalam,BRN,female,15+,2030,182904
+population,Brunei Darussalam,BRN,male,15+,2024,195665
+population,Brunei Darussalam,BRN,male,15+,2025,197495
+population,Brunei Darussalam,BRN,male,15+,2026,199338
+population,Brunei Darussalam,BRN,male,15+,2027,201312
+population,Brunei Darussalam,BRN,male,15+,2028,203316
+population,Brunei Darussalam,BRN,male,15+,2029,205259
+population,Brunei Darussalam,BRN,male,15+,2030,207182
+population,Bulgaria,BGR,female,15+,2024,3012087
+population,Bulgaria,BGR,female,15+,2025,2995786
+population,Bulgaria,BGR,female,15+,2026,2977061
+population,Bulgaria,BGR,female,15+,2027,2956968
+population,Bulgaria,BGR,female,15+,2028,2935693
+population,Bulgaria,BGR,female,15+,2029,2914184
+population,Bulgaria,BGR,female,15+,2030,2892350
+population,Bulgaria,BGR,male,15+,2024,2767462
+population,Bulgaria,BGR,male,15+,2025,2751896
+population,Bulgaria,BGR,male,15+,2026,2734689
+population,Bulgaria,BGR,male,15+,2027,2716568
+population,Bulgaria,BGR,male,15+,2028,2697186
+population,Bulgaria,BGR,male,15+,2029,2677746
+population,Bulgaria,BGR,male,15+,2030,2658650
+population,Burkina Faso,BFA,female,15+,2024,6972240
+population,Burkina Faso,BFA,female,15+,2025,7199096
+population,Burkina Faso,BFA,female,15+,2026,7431998
+population,Burkina Faso,BFA,female,15+,2027,7670584
+population,Burkina Faso,BFA,female,15+,2028,7914239
+population,Burkina Faso,BFA,female,15+,2029,8161412
+population,Burkina Faso,BFA,female,15+,2030,8411286
+population,Burkina Faso,BFA,male,15+,2024,6732672
+population,Burkina Faso,BFA,male,15+,2025,6963996
+population,Burkina Faso,BFA,male,15+,2026,7201315
+population,Burkina Faso,BFA,male,15+,2027,7444288
+population,Burkina Faso,BFA,male,15+,2028,7692220
+population,Burkina Faso,BFA,male,15+,2029,7943469
+population,Burkina Faso,BFA,male,15+,2030,8197103
+population,Burundi,BDI,female,15+,2024,3947842
+population,Burundi,BDI,female,15+,2025,4095558
+population,Burundi,BDI,female,15+,2026,4247895
+population,Burundi,BDI,female,15+,2027,4405133
+population,Burundi,BDI,female,15+,2028,4570673
+population,Burundi,BDI,female,15+,2029,4738190
+population,Burundi,BDI,female,15+,2030,4902289
+population,Burundi,BDI,male,15+,2024,3820738
+population,Burundi,BDI,male,15+,2025,3965542
+population,Burundi,BDI,male,15+,2026,4114824
+population,Burundi,BDI,male,15+,2027,4268902
+population,Burundi,BDI,male,15+,2028,4431186
+population,Burundi,BDI,male,15+,2029,4595328
+population,Burundi,BDI,male,15+,2030,4755920
+population,Cabo Verde,CPV,female,15+,2024,192693
+population,Cabo Verde,CPV,female,15+,2025,195738
+population,Cabo Verde,CPV,female,15+,2026,198774
+population,Cabo Verde,CPV,female,15+,2027,201792
+population,Cabo Verde,CPV,female,15+,2028,204790
+population,Cabo Verde,CPV,female,15+,2029,207766
+population,Cabo Verde,CPV,female,15+,2030,210770
+population,Cabo Verde,CPV,male,15+,2024,198092
+population,Cabo Verde,CPV,male,15+,2025,201365
+population,Cabo Verde,CPV,male,15+,2026,204623
+population,Cabo Verde,CPV,male,15+,2027,207840
+population,Cabo Verde,CPV,male,15+,2028,210978
+population,Cabo Verde,CPV,male,15+,2029,214028
+population,Cabo Verde,CPV,male,15+,2030,217058
+population,Cambodia,KHM,female,15+,2024,6423803
+population,Cambodia,KHM,female,15+,2025,6521647
+population,Cambodia,KHM,female,15+,2026,6617258
+population,Cambodia,KHM,female,15+,2027,6711808
+population,Cambodia,KHM,female,15+,2028,6807494
+population,Cambodia,KHM,female,15+,2029,6904078
+population,Cambodia,KHM,female,15+,2030,7001501
+population,Cambodia,KHM,male,15+,2024,5959844
+population,Cambodia,KHM,male,15+,2025,6061662
+population,Cambodia,KHM,male,15+,2026,6160613
+population,Cambodia,KHM,male,15+,2027,6258142
+population,Cambodia,KHM,male,15+,2028,6356870
+population,Cambodia,KHM,male,15+,2029,6456772
+population,Cambodia,KHM,male,15+,2030,6557920
+population,Cameroon,CMR,female,15+,2024,8621102
+population,Cameroon,CMR,female,15+,2025,8895108
+population,Cameroon,CMR,female,15+,2026,9173375
+population,Cameroon,CMR,female,15+,2027,9456112
+population,Cameroon,CMR,female,15+,2028,9743808
+population,Cameroon,CMR,female,15+,2029,10036444
+population,Cameroon,CMR,female,15+,2030,10338756
+population,Cameroon,CMR,male,15+,2024,8433114
+population,Cameroon,CMR,male,15+,2025,8698624
+population,Cameroon,CMR,male,15+,2026,8968488
+population,Cameroon,CMR,male,15+,2027,9242966
+population,Cameroon,CMR,male,15+,2028,9522585
+population,Cameroon,CMR,male,15+,2029,9807164
+population,Cameroon,CMR,male,15+,2030,10101423
+population,Canada,CAN,female,15+,2024,17075292
+population,Canada,CAN,female,15+,2025,17268036
+population,Canada,CAN,female,15+,2026,17441267
+population,Canada,CAN,female,15+,2027,17603020
+population,Canada,CAN,female,15+,2028,17759602
+population,Canada,CAN,female,15+,2029,17910150
+population,Canada,CAN,female,15+,2030,18055058
+population,Canada,CAN,male,15+,2024,16661532
+population,Canada,CAN,male,15+,2025,16847580
+population,Canada,CAN,male,15+,2026,17015352
+population,Canada,CAN,male,15+,2027,17172748
+population,Canada,CAN,male,15+,2028,17325768
+population,Canada,CAN,male,15+,2029,17473114
+population,Canada,CAN,male,15+,2030,17615205
+population,Cayman Islands,CYM,female,15+,2024,31118
+population,Cayman Islands,CYM,female,15+,2025,31752
+population,Cayman Islands,CYM,female,15+,2026,32374
+population,Cayman Islands,CYM,female,15+,2027,32986
+population,Cayman Islands,CYM,female,15+,2028,33588
+population,Cayman Islands,CYM,female,15+,2029,34179
+population,Cayman Islands,CYM,female,15+,2030,34764
+population,Cayman Islands,CYM,male,15+,2024,31286
+population,Cayman Islands,CYM,male,15+,2025,31914
+population,Cayman Islands,CYM,male,15+,2026,32528
+population,Cayman Islands,CYM,male,15+,2027,33127
+population,Cayman Islands,CYM,male,15+,2028,33712
+population,Cayman Islands,CYM,male,15+,2029,34277
+population,Cayman Islands,CYM,male,15+,2030,34830
+population,Central African Republic,CAF,female,15+,2024,1477754
+population,Central African Republic,CAF,female,15+,2025,1532513
+population,Central African Republic,CAF,female,15+,2026,1592196
+population,Central African Republic,CAF,female,15+,2027,1652206
+population,Central African Republic,CAF,female,15+,2028,1711973
+population,Central African Republic,CAF,female,15+,2029,1770523
+population,Central African Republic,CAF,female,15+,2030,1827247
+population,Central African Republic,CAF,male,15+,2024,1240718
+population,Central African Republic,CAF,male,15+,2025,1296758
+population,Central African Republic,CAF,male,15+,2026,1358428
+population,Central African Republic,CAF,male,15+,2027,1420612
+population,Central African Republic,CAF,male,15+,2028,1482656
+population,Central African Republic,CAF,male,15+,2029,1543540
+population,Central African Republic,CAF,male,15+,2030,1602710
+population,Chad,TCD,female,15+,2024,5505561
+population,Chad,TCD,female,15+,2025,5706905
+population,Chad,TCD,female,15+,2026,5851227
+population,Chad,TCD,female,15+,2027,6025050
+population,Chad,TCD,female,15+,2028,6226724
+population,Chad,TCD,female,15+,2029,6434549
+population,Chad,TCD,female,15+,2030,6647404
+population,Chad,TCD,male,15+,2024,5442846
+population,Chad,TCD,male,15+,2025,5643157
+population,Chad,TCD,male,15+,2026,5788229
+population,Chad,TCD,male,15+,2027,5961990
+population,Chad,TCD,male,15+,2028,6162788
+population,Chad,TCD,male,15+,2029,6369505
+population,Chad,TCD,male,15+,2030,6581016
+population,Chile,CHL,female,15+,2024,8296371
+population,Chile,CHL,female,15+,2025,8376820
+population,Chile,CHL,female,15+,2026,8454068
+population,Chile,CHL,female,15+,2027,8528958
+population,Chile,CHL,female,15+,2028,8601760
+population,Chile,CHL,female,15+,2029,8672540
+population,Chile,CHL,female,15+,2030,8741024
+population,Chile,CHL,male,15+,2024,8115076
+population,Chile,CHL,male,15+,2025,8196879
+population,Chile,CHL,male,15+,2026,8275616
+population,Chile,CHL,male,15+,2027,8352000
+population,Chile,CHL,male,15+,2028,8426205
+population,Chile,CHL,male,15+,2029,8498526
+population,Chile,CHL,male,15+,2030,8568534
+population,China,CHN,female,15+,2024,590282328
+population,China,CHN,female,15+,2025,593219536
+population,China,CHN,female,15+,2026,596142860
+population,China,CHN,female,15+,2027,599365030
+population,China,CHN,female,15+,2028,602588044
+population,China,CHN,female,15+,2029,605589926
+population,China,CHN,female,15+,2030,608305092
+population,China,CHN,male,15+,2024,601836663
+population,China,CHN,male,15+,2025,604694513
+population,China,CHN,male,15+,2026,607607351
+population,China,CHN,male,15+,2027,610920195
+population,China,CHN,male,15+,2028,614251744
+population,China,CHN,male,15+,2029,617338612
+population,China,CHN,male,15+,2030,620107658
+population,"China, Hong Kong SAR",HKG,female,15+,2024,3692380
+population,"China, Hong Kong SAR",HKG,female,15+,2025,3693478
+population,"China, Hong Kong SAR",HKG,female,15+,2026,3698800
+population,"China, Hong Kong SAR",HKG,female,15+,2027,3703244
+population,"China, Hong Kong SAR",HKG,female,15+,2028,3703650
+population,"China, Hong Kong SAR",HKG,female,15+,2029,3699202
+population,"China, Hong Kong SAR",HKG,female,15+,2030,3696304
+population,"China, Hong Kong SAR",HKG,male,15+,2024,2943384
+population,"China, Hong Kong SAR",HKG,male,15+,2025,2939962
+population,"China, Hong Kong SAR",HKG,male,15+,2026,2940588
+population,"China, Hong Kong SAR",HKG,male,15+,2027,2940448
+population,"China, Hong Kong SAR",HKG,male,15+,2028,2935794
+population,"China, Hong Kong SAR",HKG,male,15+,2029,2926268
+population,"China, Hong Kong SAR",HKG,male,15+,2030,2917874
+population,"China, Macao SAR",MAC,female,15+,2024,339814
+population,"China, Macao SAR",MAC,female,15+,2025,341554
+population,"China, Macao SAR",MAC,female,15+,2026,343292
+population,"China, Macao SAR",MAC,female,15+,2027,345318
+population,"China, Macao SAR",MAC,female,15+,2028,347274
+population,"China, Macao SAR",MAC,female,15+,2029,349806
+population,"China, Macao SAR",MAC,female,15+,2030,352557
+population,"China, Macao SAR",MAC,male,15+,2024,280258
+population,"China, Macao SAR",MAC,male,15+,2025,281473
+population,"China, Macao SAR",MAC,male,15+,2026,282758
+population,"China, Macao SAR",MAC,male,15+,2027,284426
+population,"China, Macao SAR",MAC,male,15+,2028,286230
+population,"China, Macao SAR",MAC,male,15+,2029,288436
+population,"China, Macao SAR",MAC,male,15+,2030,290680
+population,"China, Taiwan Province of China",TWN,female,15+,2024,10413978
+population,"China, Taiwan Province of China",TWN,female,15+,2025,10400828
+population,"China, Taiwan Province of China",TWN,female,15+,2026,10389124
+population,"China, Taiwan Province of China",TWN,female,15+,2027,10393368
+population,"China, Taiwan Province of China",TWN,female,15+,2028,10395953
+population,"China, Taiwan Province of China",TWN,female,15+,2029,10392426
+population,"China, Taiwan Province of China",TWN,female,15+,2030,10394390
+population,"China, Taiwan Province of China",TWN,male,15+,2024,10083654
+population,"China, Taiwan Province of China",TWN,male,15+,2025,10053411
+population,"China, Taiwan Province of China",TWN,male,15+,2026,10025996
+population,"China, Taiwan Province of China",TWN,male,15+,2027,10016430
+population,"China, Taiwan Province of China",TWN,male,15+,2028,10006366
+population,"China, Taiwan Province of China",TWN,male,15+,2029,9990766
+population,"China, Taiwan Province of China",TWN,male,15+,2030,9982610
+population,Colombia,COL,female,15+,2024,21541028
+population,Colombia,COL,female,15+,2025,21835955
+population,Colombia,COL,female,15+,2026,22112790
+population,Colombia,COL,female,15+,2027,22377332
+population,Colombia,COL,female,15+,2028,22632488
+population,Colombia,COL,female,15+,2029,22876974
+population,Colombia,COL,female,15+,2030,23110022
+population,Colombia,COL,male,15+,2024,20624152
+population,Colombia,COL,male,15+,2025,20908335
+population,Colombia,COL,male,15+,2026,21174111
+population,Colombia,COL,male,15+,2027,21427474
+population,Colombia,COL,male,15+,2028,21671558
+population,Colombia,COL,male,15+,2029,21905194
+population,Colombia,COL,male,15+,2030,22127494
+population,Comoros,COM,female,15+,2024,272196
+population,Comoros,COM,female,15+,2025,278425
+population,Comoros,COM,female,15+,2026,284806
+population,Comoros,COM,female,15+,2027,291326
+population,Comoros,COM,female,15+,2028,297990
+population,Comoros,COM,female,15+,2029,304788
+population,Comoros,COM,female,15+,2030,311693
+population,Comoros,COM,male,15+,2024,272728
+population,Comoros,COM,male,15+,2025,278918
+population,Comoros,COM,male,15+,2026,285246
+population,Comoros,COM,male,15+,2027,291696
+population,Comoros,COM,male,15+,2028,298274
+population,Comoros,COM,male,15+,2029,304967
+population,Comoros,COM,male,15+,2030,311736
+population,Congo,COG,female,15+,2024,1897627
+population,Congo,COG,female,15+,2025,1959560
+population,Congo,COG,female,15+,2026,2024026
+population,Congo,COG,female,15+,2027,2089686
+population,Congo,COG,female,15+,2028,2155668
+population,Congo,COG,female,15+,2029,2221151
+population,Congo,COG,female,15+,2030,2286316
+population,Congo,COG,male,15+,2024,1873918
+population,Congo,COG,male,15+,2025,1934796
+population,Congo,COG,male,15+,2026,1998240
+population,Congo,COG,male,15+,2027,2062886
+population,Congo,COG,male,15+,2028,2127838
+population,Congo,COG,male,15+,2029,2192252
+population,Congo,COG,male,15+,2030,2256306
+population,Cook Islands,COK,female,15+,2024,5406
+population,Cook Islands,COK,female,15+,2025,5294
+population,Cook Islands,COK,female,15+,2026,5192
+population,Cook Islands,COK,female,15+,2027,5108
+population,Cook Islands,COK,female,15+,2028,5036
+population,Cook Islands,COK,female,15+,2029,4972
+population,Cook Islands,COK,female,15+,2030,4922
+population,Cook Islands,COK,male,15+,2024,4982
+population,Cook Islands,COK,male,15+,2025,4856
+population,Cook Islands,COK,male,15+,2026,4748
+population,Cook Islands,COK,male,15+,2027,4655
+population,Cook Islands,COK,male,15+,2028,4578
+population,Cook Islands,COK,male,15+,2029,4513
+population,Cook Islands,COK,male,15+,2030,4456
+population,Costa Rica,CRI,female,15+,2024,2123270
+population,Costa Rica,CRI,female,15+,2025,2145610
+population,Costa Rica,CRI,female,15+,2026,2167152
+population,Costa Rica,CRI,female,15+,2027,2188794
+population,Costa Rica,CRI,female,15+,2028,2209338
+population,Costa Rica,CRI,female,15+,2029,2229152
+population,Costa Rica,CRI,female,15+,2030,2248852
+population,Costa Rica,CRI,male,15+,2024,2042254
+population,Costa Rica,CRI,male,15+,2025,2063908
+population,Costa Rica,CRI,male,15+,2026,2084805
+population,Costa Rica,CRI,male,15+,2027,2105846
+population,Costa Rica,CRI,male,15+,2028,2125814
+population,Costa Rica,CRI,male,15+,2029,2145124
+population,Costa Rica,CRI,male,15+,2030,2164404
+population,Croatia,HRV,female,15+,2024,1744155
+population,Croatia,HRV,female,15+,2025,1735498
+population,Croatia,HRV,female,15+,2026,1726666
+population,Croatia,HRV,female,15+,2027,1717790
+population,Croatia,HRV,female,15+,2028,1708874
+population,Croatia,HRV,female,15+,2029,1699560
+population,Croatia,HRV,female,15+,2030,1689622
+population,Croatia,HRV,male,15+,2024,1591600
+population,Croatia,HRV,male,15+,2025,1585370
+population,Croatia,HRV,male,15+,2026,1579192
+population,Croatia,HRV,male,15+,2027,1573068
+population,Croatia,HRV,male,15+,2028,1566952
+population,Croatia,HRV,male,15+,2029,1560352
+population,Croatia,HRV,male,15+,2030,1553004
+population,Cuba,CUB,female,15+,2024,4750732
+population,Cuba,CUB,female,15+,2025,4749326
+population,Cuba,CUB,female,15+,2026,4748463
+population,Cuba,CUB,female,15+,2027,4746127
+population,Cuba,CUB,female,15+,2028,4741495
+population,Cuba,CUB,female,15+,2029,4735208
+population,Cuba,CUB,female,15+,2030,4727744
+population,Cuba,CUB,male,15+,2024,4549808
+population,Cuba,CUB,male,15+,2025,4544698
+population,Cuba,CUB,male,15+,2026,4540520
+population,Cuba,CUB,male,15+,2027,4535891
+population,Cuba,CUB,male,15+,2028,4530044
+population,Cuba,CUB,male,15+,2029,4522941
+population,Cuba,CUB,male,15+,2030,4515098
+population,Curaçao,CUW,female,15+,2024,83638
+population,Curaçao,CUW,female,15+,2025,83875
+population,Curaçao,CUW,female,15+,2026,84124
+population,Curaçao,CUW,female,15+,2027,84400
+population,Curaçao,CUW,female,15+,2028,84666
+population,Curaçao,CUW,female,15+,2029,84866
+population,Curaçao,CUW,female,15+,2030,84992
+population,Curaçao,CUW,male,15+,2024,74155
+population,Curaçao,CUW,male,15+,2025,74524
+population,Curaçao,CUW,male,15+,2026,74930
+population,Curaçao,CUW,male,15+,2027,75388
+population,Curaçao,CUW,male,15+,2028,75864
+population,Curaçao,CUW,male,15+,2029,76288
+population,Curaçao,CUW,male,15+,2030,76656
+population,Cyprus,CYP,female,15+,2024,568158
+population,Cyprus,CYP,female,15+,2025,573356
+population,Cyprus,CYP,female,15+,2026,578472
+population,Cyprus,CYP,female,15+,2027,583656
+population,Cyprus,CYP,female,15+,2028,588718
+population,Cyprus,CYP,female,15+,2029,593486
+population,Cyprus,CYP,female,15+,2030,598254
+population,Cyprus,CYP,male,15+,2024,571818
+population,Cyprus,CYP,male,15+,2025,576968
+population,Cyprus,CYP,male,15+,2026,582050
+population,Cyprus,CYP,male,15+,2027,587218
+population,Cyprus,CYP,male,15+,2028,592284
+population,Cyprus,CYP,male,15+,2029,597075
+population,Cyprus,CYP,male,15+,2030,601896
+population,Czechia,CZE,female,15+,2024,4635358
+population,Czechia,CZE,female,15+,2025,4596836
+population,Czechia,CZE,female,15+,2026,4574149
+population,Czechia,CZE,female,15+,2027,4573234
+population,Czechia,CZE,female,15+,2028,4570902
+population,Czechia,CZE,female,15+,2029,4567691
+population,Czechia,CZE,female,15+,2030,4564472
+population,Czechia,CZE,male,15+,2024,4447468
+population,Czechia,CZE,male,15+,2025,4411927
+population,Czechia,CZE,male,15+,2026,4392818
+population,Czechia,CZE,male,15+,2027,4395572
+population,Czechia,CZE,male,15+,2028,4397206
+population,Czechia,CZE,male,15+,2029,4398493
+population,Czechia,CZE,male,15+,2030,4400318
+population,Côte d'Ivoire,CIV,female,15+,2024,9232212
+population,Côte d'Ivoire,CIV,female,15+,2025,9530309
+population,Côte d'Ivoire,CIV,female,15+,2026,9831967
+population,Côte d'Ivoire,CIV,female,15+,2027,10131930
+population,Côte d'Ivoire,CIV,female,15+,2028,10439910
+population,Côte d'Ivoire,CIV,female,15+,2029,10777536
+population,Côte d'Ivoire,CIV,female,15+,2030,11134898
+population,Côte d'Ivoire,CIV,male,15+,2024,9650064
+population,Côte d'Ivoire,CIV,male,15+,2025,9947651
+population,Côte d'Ivoire,CIV,male,15+,2026,10249288
+population,Côte d'Ivoire,CIV,male,15+,2027,10549708
+population,Côte d'Ivoire,CIV,male,15+,2028,10853589
+population,Côte d'Ivoire,CIV,male,15+,2029,11177831
+population,Côte d'Ivoire,CIV,male,15+,2030,11516491
+population,Dem. People's Republic of Korea,PRK,female,15+,2024,10946030
+population,Dem. People's Republic of Korea,PRK,female,15+,2025,10968820
+population,Dem. People's Republic of Korea,PRK,female,15+,2026,10990715
+population,Dem. People's Republic of Korea,PRK,female,15+,2027,11012772
+population,Dem. People's Republic of Korea,PRK,female,15+,2028,11035368
+population,Dem. People's Republic of Korea,PRK,female,15+,2029,11058684
+population,Dem. People's Republic of Korea,PRK,female,15+,2030,11082647
+population,Dem. People's Republic of Korea,PRK,male,15+,2024,10532034
+population,Dem. People's Republic of Korea,PRK,male,15+,2025,10572779
+population,Dem. People's Republic of Korea,PRK,male,15+,2026,10611127
+population,Dem. People's Republic of Korea,PRK,male,15+,2027,10648144
+population,Dem. People's Republic of Korea,PRK,male,15+,2028,10684322
+population,Dem. People's Republic of Korea,PRK,male,15+,2029,10719792
+population,Dem. People's Republic of Korea,PRK,male,15+,2030,10754389
+population,Democratic Republic of the Congo,COD,female,15+,2024,29966732
+population,Democratic Republic of the Congo,COD,female,15+,2025,30991716
+population,Democratic Republic of the Congo,COD,female,15+,2026,32057910
+population,Democratic Republic of the Congo,COD,female,15+,2027,33168346
+population,Democratic Republic of the Congo,COD,female,15+,2028,34319822
+population,Democratic Republic of the Congo,COD,female,15+,2029,35511102
+population,Democratic Republic of the Congo,COD,female,15+,2030,36741996
+population,Democratic Republic of the Congo,COD,male,15+,2024,29006422
+population,Democratic Republic of the Congo,COD,male,15+,2025,29994472
+population,Democratic Republic of the Congo,COD,male,15+,2026,31022764
+population,Democratic Republic of the Congo,COD,male,15+,2027,32094484
+population,Democratic Republic of the Congo,COD,male,15+,2028,33206798
+population,Democratic Republic of the Congo,COD,male,15+,2029,34358540
+population,Democratic Republic of the Congo,COD,male,15+,2030,35549378
+population,Denmark,DNK,female,15+,2024,2549638
+population,Denmark,DNK,female,15+,2025,2563970
+population,Denmark,DNK,female,15+,2026,2575611
+population,Denmark,DNK,female,15+,2027,2584352
+population,Denmark,DNK,female,15+,2028,2591122
+population,Denmark,DNK,female,15+,2029,2596482
+population,Denmark,DNK,female,15+,2030,2601238
+population,Denmark,DNK,male,15+,2024,2489537
+population,Denmark,DNK,male,15+,2025,2504428
+population,Denmark,DNK,male,15+,2026,2516248
+population,Denmark,DNK,male,15+,2027,2525362
+population,Denmark,DNK,male,15+,2028,2532726
+population,Denmark,DNK,male,15+,2029,2538669
+population,Denmark,DNK,male,15+,2030,2544222
+population,Djibouti,DJI,female,15+,2024,420948
+population,Djibouti,DJI,female,15+,2025,428756
+population,Djibouti,DJI,female,15+,2026,436505
+population,Djibouti,DJI,female,15+,2027,444235
+population,Djibouti,DJI,female,15+,2028,451897
+population,Djibouti,DJI,female,15+,2029,459692
+population,Djibouti,DJI,female,15+,2030,467366
+population,Djibouti,DJI,male,15+,2024,406856
+population,Djibouti,DJI,male,15+,2025,414270
+population,Djibouti,DJI,male,15+,2026,421614
+population,Djibouti,DJI,male,15+,2027,428936
+population,Djibouti,DJI,male,15+,2028,436186
+population,Djibouti,DJI,male,15+,2029,443572
+population,Djibouti,DJI,male,15+,2030,450832
+population,Dominica,DMA,female,15+,2024,27208
+population,Dominica,DMA,female,15+,2025,27214
+population,Dominica,DMA,female,15+,2026,27191
+population,Dominica,DMA,female,15+,2027,27178
+population,Dominica,DMA,female,15+,2028,27177
+population,Dominica,DMA,female,15+,2029,27184
+population,Dominica,DMA,female,15+,2030,27200
+population,Dominica,DMA,male,15+,2024,27164
+population,Dominica,DMA,male,15+,2025,27056
+population,Dominica,DMA,male,15+,2026,26938
+population,Dominica,DMA,male,15+,2027,26834
+population,Dominica,DMA,male,15+,2028,26732
+population,Dominica,DMA,male,15+,2029,26633
+population,Dominica,DMA,male,15+,2030,26536
+population,Dominican Republic,DOM,female,15+,2024,4257013
+population,Dominican Republic,DOM,female,15+,2025,4314234
+population,Dominican Republic,DOM,female,15+,2026,4370816
+population,Dominican Republic,DOM,female,15+,2027,4426716
+population,Dominican Republic,DOM,female,15+,2028,4481757
+population,Dominican Republic,DOM,female,15+,2029,4535604
+population,Dominican Republic,DOM,female,15+,2030,4588324
+population,Dominican Republic,DOM,male,15+,2024,4133254
+population,Dominican Republic,DOM,male,15+,2025,4187990
+population,Dominican Republic,DOM,male,15+,2026,4241942
+population,Dominican Republic,DOM,male,15+,2027,4295040
+population,Dominican Republic,DOM,male,15+,2028,4347063
+population,Dominican Republic,DOM,male,15+,2029,4397716
+population,Dominican Republic,DOM,male,15+,2030,4447116
+population,Ecuador,ECU,female,15+,2024,6923314
+population,Ecuador,ECU,female,15+,2025,7033279
+population,Ecuador,ECU,female,15+,2026,7143980
+population,Ecuador,ECU,female,15+,2027,7254456
+population,Ecuador,ECU,female,15+,2028,7359980
+population,Ecuador,ECU,female,15+,2029,7460110
+population,Ecuador,ECU,female,15+,2030,7557017
+population,Ecuador,ECU,male,15+,2024,6776978
+population,Ecuador,ECU,male,15+,2025,6885520
+population,Ecuador,ECU,male,15+,2026,6994713
+population,Ecuador,ECU,male,15+,2027,7103558
+population,Ecuador,ECU,male,15+,2028,7207158
+population,Ecuador,ECU,male,15+,2029,7305126
+population,Ecuador,ECU,male,15+,2030,7399786
+population,Egypt,EGY,female,15+,2024,39500918
+population,Egypt,EGY,female,15+,2025,40376615
+population,Egypt,EGY,female,15+,2026,41245740
+population,Egypt,EGY,female,15+,2027,42155234
+population,Egypt,EGY,female,15+,2028,43118156
+population,Egypt,EGY,female,15+,2029,44111321
+population,Egypt,EGY,female,15+,2030,45116387
+population,Egypt,EGY,male,15+,2024,39751326
+population,Egypt,EGY,male,15+,2025,40637496
+population,Egypt,EGY,male,15+,2026,41507812
+population,Egypt,EGY,male,15+,2027,42417200
+population,Egypt,EGY,male,15+,2028,43379608
+population,Egypt,EGY,male,15+,2029,44371514
+population,Egypt,EGY,male,15+,2030,45373700
+population,El Salvador,SLV,female,15+,2024,2562664
+population,El Salvador,SLV,female,15+,2025,2586120
+population,El Salvador,SLV,female,15+,2026,2609272
+population,El Salvador,SLV,female,15+,2027,2632347
+population,El Salvador,SLV,female,15+,2028,2655080
+population,El Salvador,SLV,female,15+,2029,2677422
+population,El Salvador,SLV,female,15+,2030,2698775
+population,El Salvador,SLV,male,15+,2024,2203268
+population,El Salvador,SLV,male,15+,2025,2227201
+population,El Salvador,SLV,male,15+,2026,2250825
+population,El Salvador,SLV,male,15+,2027,2274356
+population,El Salvador,SLV,male,15+,2028,2297484
+population,El Salvador,SLV,male,15+,2029,2320135
+population,El Salvador,SLV,male,15+,2030,2341696
+population,Equatorial Guinea,GNQ,female,15+,2024,545029
+population,Equatorial Guinea,GNQ,female,15+,2025,561088
+population,Equatorial Guinea,GNQ,female,15+,2026,577619
+population,Equatorial Guinea,GNQ,female,15+,2027,594577
+population,Equatorial Guinea,GNQ,female,15+,2028,611862
+population,Equatorial Guinea,GNQ,female,15+,2029,629322
+population,Equatorial Guinea,GNQ,female,15+,2030,647049
+population,Equatorial Guinea,GNQ,male,15+,2024,641854
+population,Equatorial Guinea,GNQ,male,15+,2025,658446
+population,Equatorial Guinea,GNQ,male,15+,2026,675485
+population,Equatorial Guinea,GNQ,male,15+,2027,692954
+population,Equatorial Guinea,GNQ,male,15+,2028,710739
+population,Equatorial Guinea,GNQ,male,15+,2029,728668
+population,Equatorial Guinea,GNQ,male,15+,2030,746860
+population,Eritrea,ERI,female,15+,2024,1122761
+population,Eritrea,ERI,female,15+,2025,1154599
+population,Eritrea,ERI,female,15+,2026,1187324
+population,Eritrea,ERI,female,15+,2027,1219985
+population,Eritrea,ERI,female,15+,2028,1252434
+population,Eritrea,ERI,female,15+,2029,1284242
+population,Eritrea,ERI,female,15+,2030,1315773
+population,Eritrea,ERI,male,15+,2024,1064468
+population,Eritrea,ERI,male,15+,2025,1096512
+population,Eritrea,ERI,male,15+,2026,1129486
+population,Eritrea,ERI,male,15+,2027,1162413
+population,Eritrea,ERI,male,15+,2028,1195124
+population,Eritrea,ERI,male,15+,2029,1227168
+population,Eritrea,ERI,male,15+,2030,1258918
+population,Estonia,EST,female,15+,2024,610256
+population,Estonia,EST,female,15+,2025,604874
+population,Estonia,EST,female,15+,2026,600651
+population,Estonia,EST,female,15+,2027,598682
+population,Estonia,EST,female,15+,2028,596636
+population,Estonia,EST,female,15+,2029,594614
+population,Estonia,EST,female,15+,2030,592675
+population,Estonia,EST,male,15+,2024,537532
+population,Estonia,EST,male,15+,2025,534312
+population,Estonia,EST,male,15+,2026,532246
+population,Estonia,EST,male,15+,2027,532129
+population,Estonia,EST,male,15+,2028,531812
+population,Estonia,EST,male,15+,2029,531469
+population,Estonia,EST,male,15+,2030,531286
+population,Eswatini,SWZ,female,15+,2024,426554
+population,Eswatini,SWZ,female,15+,2025,433236
+population,Eswatini,SWZ,female,15+,2026,440223
+population,Eswatini,SWZ,female,15+,2027,447379
+population,Eswatini,SWZ,female,15+,2028,454461
+population,Eswatini,SWZ,female,15+,2029,461377
+population,Eswatini,SWZ,female,15+,2030,468292
+population,Eswatini,SWZ,male,15+,2024,401758
+population,Eswatini,SWZ,male,15+,2025,408452
+population,Eswatini,SWZ,male,15+,2026,415452
+population,Eswatini,SWZ,male,15+,2027,422468
+population,Eswatini,SWZ,male,15+,2028,429284
+population,Eswatini,SWZ,male,15+,2029,435984
+population,Eswatini,SWZ,male,15+,2030,442809
+population,Ethiopia,ETH,female,15+,2024,40596769
+population,Ethiopia,ETH,female,15+,2025,41835810
+population,Ethiopia,ETH,female,15+,2026,43080268
+population,Ethiopia,ETH,female,15+,2027,44328006
+population,Ethiopia,ETH,female,15+,2028,45569664
+population,Ethiopia,ETH,female,15+,2029,46825694
+population,Ethiopia,ETH,female,15+,2030,48118849
+population,Ethiopia,ETH,male,15+,2024,39880564
+population,Ethiopia,ETH,male,15+,2025,41100550
+population,Ethiopia,ETH,male,15+,2026,42325924
+population,Ethiopia,ETH,male,15+,2027,43554152
+population,Ethiopia,ETH,male,15+,2028,44776076
+population,Ethiopia,ETH,male,15+,2029,46012004
+population,Ethiopia,ETH,male,15+,2030,47284073
+population,Falkland Islands (Malvinas),FLK,female,15+,2024,1474
+population,Falkland Islands (Malvinas),FLK,female,15+,2025,1480
+population,Falkland Islands (Malvinas),FLK,female,15+,2026,1486
+population,Falkland Islands (Malvinas),FLK,female,15+,2027,1488
+population,Falkland Islands (Malvinas),FLK,female,15+,2028,1487
+population,Falkland Islands (Malvinas),FLK,female,15+,2029,1489
+population,Falkland Islands (Malvinas),FLK,female,15+,2030,1491
+population,Falkland Islands (Malvinas),FLK,male,15+,2024,1431
+population,Falkland Islands (Malvinas),FLK,male,15+,2025,1431
+population,Falkland Islands (Malvinas),FLK,male,15+,2026,1430
+population,Falkland Islands (Malvinas),FLK,male,15+,2027,1432
+population,Falkland Islands (Malvinas),FLK,male,15+,2028,1434
+population,Falkland Islands (Malvinas),FLK,male,15+,2029,1427
+population,Falkland Islands (Malvinas),FLK,male,15+,2030,1424
+population,Faroe Islands,FRO,female,15+,2024,21377
+population,Faroe Islands,FRO,female,15+,2025,21654
+population,Faroe Islands,FRO,female,15+,2026,21903
+population,Faroe Islands,FRO,female,15+,2027,22124
+population,Faroe Islands,FRO,female,15+,2028,22324
+population,Faroe Islands,FRO,female,15+,2029,22522
+population,Faroe Islands,FRO,female,15+,2030,22724
+population,Faroe Islands,FRO,male,15+,2024,22962
+population,Faroe Islands,FRO,male,15+,2025,23220
+population,Faroe Islands,FRO,male,15+,2026,23436
+population,Faroe Islands,FRO,male,15+,2027,23634
+population,Faroe Islands,FRO,male,15+,2028,23819
+population,Faroe Islands,FRO,male,15+,2029,23992
+population,Faroe Islands,FRO,male,15+,2030,24150
+population,Fiji,FJI,female,15+,2024,344268
+population,Fiji,FJI,female,15+,2025,347400
+population,Fiji,FJI,female,15+,2026,350406
+population,Fiji,FJI,female,15+,2027,353406
+population,Fiji,FJI,female,15+,2028,356518
+population,Fiji,FJI,female,15+,2029,359673
+population,Fiji,FJI,female,15+,2030,362824
+population,Fiji,FJI,male,15+,2024,332878
+population,Fiji,FJI,male,15+,2025,335402
+population,Fiji,FJI,male,15+,2026,337842
+population,Fiji,FJI,male,15+,2027,340324
+population,Fiji,FJI,male,15+,2028,342976
+population,Fiji,FJI,male,15+,2029,345734
+population,Fiji,FJI,male,15+,2030,348548
+population,Finland,FIN,female,15+,2024,2439262
+population,Finland,FIN,female,15+,2025,2449134
+population,Finland,FIN,female,15+,2026,2455895
+population,Finland,FIN,female,15+,2027,2460765
+population,Finland,FIN,female,15+,2028,2464473
+population,Finland,FIN,female,15+,2029,2467266
+population,Finland,FIN,female,15+,2030,2469030
+population,Finland,FIN,male,15+,2024,2356057
+population,Finland,FIN,male,15+,2025,2368366
+population,Finland,FIN,male,15+,2026,2377505
+population,Finland,FIN,male,15+,2027,2384572
+population,Finland,FIN,male,15+,2028,2390728
+population,Finland,FIN,male,15+,2029,2395966
+population,Finland,FIN,male,15+,2030,2400085
+population,France,FRA,female,15+,2024,28923212
+population,France,FRA,female,15+,2025,29055482
+population,France,FRA,female,15+,2026,29181866
+population,France,FRA,female,15+,2027,29298671
+population,France,FRA,female,15+,2028,29410030
+population,France,FRA,female,15+,2029,29517490
+population,France,FRA,female,15+,2030,29612701
+population,France,FRA,male,15+,2024,26641403
+population,France,FRA,male,15+,2025,26781314
+population,France,FRA,male,15+,2026,26914204
+population,France,FRA,male,15+,2027,27036433
+population,France,FRA,male,15+,2028,27150411
+population,France,FRA,male,15+,2029,27253783
+population,France,FRA,male,15+,2030,27341794
+population,French Guiana,GUF,female,15+,2024,112076
+population,French Guiana,GUF,female,15+,2025,114118
+population,French Guiana,GUF,female,15+,2026,116228
+population,French Guiana,GUF,female,15+,2027,118524
+population,French Guiana,GUF,female,15+,2028,120920
+population,French Guiana,GUF,female,15+,2029,123198
+population,French Guiana,GUF,female,15+,2030,125565
+population,French Guiana,GUF,male,15+,2024,100512
+population,French Guiana,GUF,male,15+,2025,102392
+population,French Guiana,GUF,male,15+,2026,104280
+population,French Guiana,GUF,male,15+,2027,106302
+population,French Guiana,GUF,male,15+,2028,108371
+population,French Guiana,GUF,male,15+,2029,110442
+population,French Guiana,GUF,male,15+,2030,112662
+population,French Polynesia,PYF,female,15+,2024,113259
+population,French Polynesia,PYF,female,15+,2025,114494
+population,French Polynesia,PYF,female,15+,2026,115673
+population,French Polynesia,PYF,female,15+,2027,116790
+population,French Polynesia,PYF,female,15+,2028,117858
+population,French Polynesia,PYF,female,15+,2029,118892
+population,French Polynesia,PYF,female,15+,2030,119882
+population,French Polynesia,PYF,male,15+,2024,114718
+population,French Polynesia,PYF,male,15+,2025,115849
+population,French Polynesia,PYF,male,15+,2026,116882
+population,French Polynesia,PYF,male,15+,2027,117873
+population,French Polynesia,PYF,male,15+,2028,118864
+population,French Polynesia,PYF,male,15+,2029,119775
+population,French Polynesia,PYF,male,15+,2030,120595
+population,Gabon,GAB,female,15+,2024,789703
+population,Gabon,GAB,female,15+,2025,810796
+population,Gabon,GAB,female,15+,2026,832794
+population,Gabon,GAB,female,15+,2027,855478
+population,Gabon,GAB,female,15+,2028,878600
+population,Gabon,GAB,female,15+,2029,902061
+population,Gabon,GAB,female,15+,2030,925947
+population,Gabon,GAB,male,15+,2024,822924
+population,Gabon,GAB,male,15+,2025,842509
+population,Gabon,GAB,male,15+,2026,862986
+population,Gabon,GAB,male,15+,2027,884142
+population,Gabon,GAB,male,15+,2028,905722
+population,Gabon,GAB,male,15+,2029,927611
+population,Gabon,GAB,male,15+,2030,949907
+population,Gambia,GMB,female,15+,2024,835913
+population,Gambia,GMB,female,15+,2025,861992
+population,Gambia,GMB,female,15+,2026,888961
+population,Gambia,GMB,female,15+,2027,916874
+population,Gambia,GMB,female,15+,2028,945460
+population,Gambia,GMB,female,15+,2029,974107
+population,Gambia,GMB,female,15+,2030,1002469
+population,Gambia,GMB,male,15+,2024,813235
+population,Gambia,GMB,male,15+,2025,839073
+population,Gambia,GMB,male,15+,2026,865825
+population,Gambia,GMB,male,15+,2027,893542
+population,Gambia,GMB,male,15+,2028,921948
+population,Gambia,GMB,male,15+,2029,950417
+population,Gambia,GMB,male,15+,2030,978580
+population,Georgia,GEO,female,15+,2024,1649333
+population,Georgia,GEO,female,15+,2025,1654317
+population,Georgia,GEO,female,15+,2026,1658816
+population,Georgia,GEO,female,15+,2027,1662788
+population,Georgia,GEO,female,15+,2028,1667287
+population,Georgia,GEO,female,15+,2029,1673046
+population,Georgia,GEO,female,15+,2030,1679404
+population,Georgia,GEO,male,15+,2024,1366388
+population,Georgia,GEO,male,15+,2025,1372440
+population,Georgia,GEO,male,15+,2026,1378370
+population,Georgia,GEO,male,15+,2027,1384366
+population,Georgia,GEO,male,15+,2028,1391413
+population,Georgia,GEO,male,15+,2029,1399960
+population,Georgia,GEO,male,15+,2030,1409187
+population,Germany,DEU,female,15+,2024,37076358
+population,Germany,DEU,female,15+,2025,36875691
+population,Germany,DEU,female,15+,2026,36694960
+population,Germany,DEU,female,15+,2027,36605099
+population,Germany,DEU,female,15+,2028,36517886
+population,Germany,DEU,female,15+,2029,36437527
+population,Germany,DEU,female,15+,2030,36369806
+population,Germany,DEU,male,15+,2024,35714532
+population,Germany,DEU,male,15+,2025,35524802
+population,Germany,DEU,male,15+,2026,35357149
+population,Germany,DEU,male,15+,2027,35286873
+population,Germany,DEU,male,15+,2028,35221052
+population,Germany,DEU,male,15+,2029,35162906
+population,Germany,DEU,male,15+,2030,35119220
+population,Ghana,GHA,female,15+,2024,11143847
+population,Ghana,GHA,female,15+,2025,11420756
+population,Ghana,GHA,female,15+,2026,11704418
+population,Ghana,GHA,female,15+,2027,11994042
+population,Ghana,GHA,female,15+,2028,12288752
+population,Ghana,GHA,female,15+,2029,12584750
+population,Ghana,GHA,female,15+,2030,12881903
+population,Ghana,GHA,male,15+,2024,10952310
+population,Ghana,GHA,male,15+,2025,11220358
+population,Ghana,GHA,male,15+,2026,11494899
+population,Ghana,GHA,male,15+,2027,11774953
+population,Ghana,GHA,male,15+,2028,12059537
+population,Ghana,GHA,male,15+,2029,12344734
+population,Ghana,GHA,male,15+,2030,12630634
+population,Gibraltar,GIB,female,15+,2024,16390
+population,Gibraltar,GIB,female,15+,2025,16742
+population,Gibraltar,GIB,female,15+,2026,17056
+population,Gibraltar,GIB,female,15+,2027,17334
+population,Gibraltar,GIB,female,15+,2028,17612
+population,Gibraltar,GIB,female,15+,2029,17878
+population,Gibraltar,GIB,female,15+,2030,18126
+population,Gibraltar,GIB,male,15+,2024,15998
+population,Gibraltar,GIB,male,15+,2025,16328
+population,Gibraltar,GIB,male,15+,2026,16630
+population,Gibraltar,GIB,male,15+,2027,16918
+population,Gibraltar,GIB,male,15+,2028,17192
+population,Gibraltar,GIB,male,15+,2029,17451
+population,Gibraltar,GIB,male,15+,2030,17691
+population,Greece,GRC,female,15+,2024,4535754
+population,Greece,GRC,female,15+,2025,4503544
+population,Greece,GRC,female,15+,2026,4495882
+population,Greece,GRC,female,15+,2027,4485708
+population,Greece,GRC,female,15+,2028,4473306
+population,Greece,GRC,female,15+,2029,4459532
+population,Greece,GRC,female,15+,2030,4445657
+population,Greece,GRC,male,15+,2024,4183801
+population,Greece,GRC,male,15+,2025,4158014
+population,Greece,GRC,male,15+,2026,4157542
+population,Greece,GRC,male,15+,2027,4155033
+population,Greece,GRC,male,15+,2028,4150357
+population,Greece,GRC,male,15+,2029,4144378
+population,Greece,GRC,male,15+,2030,4138506
+population,Greenland,GRL,female,15+,2024,20830
+population,Greenland,GRL,female,15+,2025,20846
+population,Greenland,GRL,female,15+,2026,20869
+population,Greenland,GRL,female,15+,2027,20894
+population,Greenland,GRL,female,15+,2028,20925
+population,Greenland,GRL,female,15+,2029,20959
+population,Greenland,GRL,female,15+,2030,20994
+population,Greenland,GRL,male,15+,2024,23394
+population,Greenland,GRL,male,15+,2025,23337
+population,Greenland,GRL,male,15+,2026,23276
+population,Greenland,GRL,male,15+,2027,23218
+population,Greenland,GRL,male,15+,2028,23165
+population,Greenland,GRL,male,15+,2029,23108
+population,Greenland,GRL,male,15+,2030,23054
+population,Grenada,GRD,female,15+,2024,47282
+population,Grenada,GRD,female,15+,2025,47605
+population,Grenada,GRD,female,15+,2026,47918
+population,Grenada,GRD,female,15+,2027,48223
+population,Grenada,GRD,female,15+,2028,48519
+population,Grenada,GRD,female,15+,2029,48790
+population,Grenada,GRD,female,15+,2030,49025
+population,Grenada,GRD,male,15+,2024,47139
+population,Grenada,GRD,male,15+,2025,47398
+population,Grenada,GRD,male,15+,2026,47652
+population,Grenada,GRD,male,15+,2027,47901
+population,Grenada,GRD,male,15+,2028,48136
+population,Grenada,GRD,male,15+,2029,48341
+population,Grenada,GRD,male,15+,2030,48512
+population,Guadeloupe,GLP,female,15+,2024,175332
+population,Guadeloupe,GLP,female,15+,2025,175196
+population,Guadeloupe,GLP,female,15+,2026,175048
+population,Guadeloupe,GLP,female,15+,2027,174892
+population,Guadeloupe,GLP,female,15+,2028,174632
+population,Guadeloupe,GLP,female,15+,2029,174355
+population,Guadeloupe,GLP,female,15+,2030,173972
+population,Guadeloupe,GLP,male,15+,2024,138663
+population,Guadeloupe,GLP,male,15+,2025,138528
+population,Guadeloupe,GLP,male,15+,2026,138361
+population,Guadeloupe,GLP,male,15+,2027,138174
+population,Guadeloupe,GLP,male,15+,2028,137900
+population,Guadeloupe,GLP,male,15+,2029,137472
+population,Guadeloupe,GLP,male,15+,2030,136944
+population,Guam,GUM,female,15+,2024,61693
+population,Guam,GUM,female,15+,2025,62316
+population,Guam,GUM,female,15+,2026,62976
+population,Guam,GUM,female,15+,2027,63666
+population,Guam,GUM,female,15+,2028,64378
+population,Guam,GUM,female,15+,2029,65108
+population,Guam,GUM,female,15+,2030,65841
+population,Guam,GUM,male,15+,2024,62490
+population,Guam,GUM,male,15+,2025,62966
+population,Guam,GUM,male,15+,2026,63490
+population,Guam,GUM,male,15+,2027,64058
+population,Guam,GUM,male,15+,2028,64658
+population,Guam,GUM,male,15+,2029,65280
+population,Guam,GUM,male,15+,2030,65918
+population,Guatemala,GTM,female,15+,2024,6414655
+population,Guatemala,GTM,female,15+,2025,6563938
+population,Guatemala,GTM,female,15+,2026,6714032
+population,Guatemala,GTM,female,15+,2027,6865173
+population,Guatemala,GTM,female,15+,2028,7016390
+population,Guatemala,GTM,female,15+,2029,7167700
+population,Guatemala,GTM,female,15+,2030,7319908
+population,Guatemala,GTM,male,15+,2024,6179504
+population,Guatemala,GTM,male,15+,2025,6325848
+population,Guatemala,GTM,male,15+,2026,6472929
+population,Guatemala,GTM,male,15+,2027,6620986
+population,Guatemala,GTM,male,15+,2028,6769026
+population,Guatemala,GTM,male,15+,2029,6917220
+population,Guatemala,GTM,male,15+,2030,7066431
+population,Guernsey,GGY,female,15+,2024,28146
+population,Guernsey,GGY,female,15+,2025,28295
+population,Guernsey,GGY,female,15+,2026,28424
+population,Guernsey,GGY,female,15+,2027,28548
+population,Guernsey,GGY,female,15+,2028,28660
+population,Guernsey,GGY,female,15+,2029,28734
+population,Guernsey,GGY,female,15+,2030,28797
+population,Guernsey,GGY,male,15+,2024,27150
+population,Guernsey,GGY,male,15+,2025,27286
+population,Guernsey,GGY,male,15+,2026,27402
+population,Guernsey,GGY,male,15+,2027,27516
+population,Guernsey,GGY,male,15+,2028,27610
+population,Guernsey,GGY,male,15+,2029,27682
+population,Guernsey,GGY,male,15+,2030,27733
+population,Guinea,GIN,female,15+,2024,4479657
+population,Guinea,GIN,female,15+,2025,4605038
+population,Guinea,GIN,female,15+,2026,4731293
+population,Guinea,GIN,female,15+,2027,4858661
+population,Guinea,GIN,female,15+,2028,4987876
+population,Guinea,GIN,female,15+,2029,5118837
+population,Guinea,GIN,female,15+,2030,5252620
+population,Guinea,GIN,male,15+,2024,4240250
+population,Guinea,GIN,male,15+,2025,4371996
+population,Guinea,GIN,male,15+,2026,4504478
+population,Guinea,GIN,male,15+,2027,4638014
+population,Guinea,GIN,male,15+,2028,4773378
+population,Guinea,GIN,male,15+,2029,4910370
+population,Guinea,GIN,male,15+,2030,5050182
+population,Guinea-Bissau,GNB,female,15+,2024,691821
+population,Guinea-Bissau,GNB,female,15+,2025,711666
+population,Guinea-Bissau,GNB,female,15+,2026,731940
+population,Guinea-Bissau,GNB,female,15+,2027,752590
+population,Guinea-Bissau,GNB,female,15+,2028,773365
+population,Guinea-Bissau,GNB,female,15+,2029,793928
+population,Guinea-Bissau,GNB,female,15+,2030,814409
+population,Guinea-Bissau,GNB,male,15+,2024,655716
+population,Guinea-Bissau,GNB,male,15+,2025,675719
+population,Guinea-Bissau,GNB,male,15+,2026,696192
+population,Guinea-Bissau,GNB,male,15+,2027,717072
+population,Guinea-Bissau,GNB,male,15+,2028,738093
+population,Guinea-Bissau,GNB,male,15+,2029,758910
+population,Guinea-Bissau,GNB,male,15+,2030,779650
+population,Guyana,GUY,female,15+,2024,307130
+population,Guyana,GUY,female,15+,2025,310028
+population,Guyana,GUY,female,15+,2026,313031
+population,Guyana,GUY,female,15+,2027,316239
+population,Guyana,GUY,female,15+,2028,319589
+population,Guyana,GUY,female,15+,2029,322984
+population,Guyana,GUY,female,15+,2030,326515
+population,Guyana,GUY,male,15+,2024,281608
+population,Guyana,GUY,male,15+,2025,284080
+population,Guyana,GUY,male,15+,2026,286658
+population,Guyana,GUY,male,15+,2027,289437
+population,Guyana,GUY,male,15+,2028,292372
+population,Guyana,GUY,male,15+,2029,295372
+population,Guyana,GUY,male,15+,2030,298510
+population,Haiti,HTI,female,15+,2024,4126120
+population,Haiti,HTI,female,15+,2025,4199459
+population,Haiti,HTI,female,15+,2026,4273238
+population,Haiti,HTI,female,15+,2027,4346898
+population,Haiti,HTI,female,15+,2028,4419398
+population,Haiti,HTI,female,15+,2029,4491187
+population,Haiti,HTI,female,15+,2030,4562895
+population,Haiti,HTI,male,15+,2024,3974736
+population,Haiti,HTI,male,15+,2025,4041100
+population,Haiti,HTI,male,15+,2026,4107895
+population,Haiti,HTI,male,15+,2027,4174457
+population,Haiti,HTI,male,15+,2028,4239792
+population,Haiti,HTI,male,15+,2029,4304350
+population,Haiti,HTI,male,15+,2030,4368762
+population,Holy See,VAT,female,15+,2024,244
+population,Holy See,VAT,female,15+,2025,248
+population,Holy See,VAT,female,15+,2026,249
+population,Holy See,VAT,female,15+,2027,248
+population,Holy See,VAT,female,15+,2028,250
+population,Holy See,VAT,female,15+,2029,250
+population,Holy See,VAT,female,15+,2030,246
+population,Holy See,VAT,male,15+,2024,221
+population,Holy See,VAT,male,15+,2025,221
+population,Holy See,VAT,male,15+,2026,221
+population,Holy See,VAT,male,15+,2027,224
+population,Holy See,VAT,male,15+,2028,224
+population,Holy See,VAT,male,15+,2029,222
+population,Holy See,VAT,male,15+,2030,222
+population,Honduras,HND,female,15+,2024,3757300
+population,Honduras,HND,female,15+,2025,3839778
+population,Honduras,HND,female,15+,2026,3921604
+population,Honduras,HND,female,15+,2027,4003072
+population,Honduras,HND,female,15+,2028,4084186
+population,Honduras,HND,female,15+,2029,4164928
+population,Honduras,HND,female,15+,2030,4245608
+population,Honduras,HND,male,15+,2024,3753442
+population,Honduras,HND,male,15+,2025,3835410
+population,Honduras,HND,male,15+,2026,3916632
+population,Honduras,HND,male,15+,2027,3997380
+population,Honduras,HND,male,15+,2028,4077628
+population,Honduras,HND,male,15+,2029,4157374
+population,Honduras,HND,male,15+,2030,4236957
+population,Hungary,HUN,female,15+,2024,4352402
+population,Hungary,HUN,female,15+,2025,4331927
+population,Hungary,HUN,female,15+,2026,4308617
+population,Hungary,HUN,female,15+,2027,4290805
+population,Hungary,HUN,female,15+,2028,4273387
+population,Hungary,HUN,female,15+,2029,4256435
+population,Hungary,HUN,female,15+,2030,4239830
+population,Hungary,HUN,male,15+,2024,3930236
+population,Hungary,HUN,male,15+,2025,3917890
+population,Hungary,HUN,male,15+,2026,3902738
+population,Hungary,HUN,male,15+,2027,3894203
+population,Hungary,HUN,male,15+,2028,3886200
+population,Hungary,HUN,male,15+,2029,3878376
+population,Hungary,HUN,male,15+,2030,3870983
+population,Iceland,ISL,female,15+,2024,158002
+population,Iceland,ISL,female,15+,2025,160331
+population,Iceland,ISL,female,15+,2026,162262
+population,Iceland,ISL,female,15+,2027,163922
+population,Iceland,ISL,female,15+,2028,165474
+population,Iceland,ISL,female,15+,2029,166862
+population,Iceland,ISL,female,15+,2030,168044
+population,Iceland,ISL,male,15+,2024,165512
+population,Iceland,ISL,male,15+,2025,168167
+population,Iceland,ISL,male,15+,2026,170410
+population,Iceland,ISL,male,15+,2027,172364
+population,Iceland,ISL,male,15+,2028,174116
+population,Iceland,ISL,male,15+,2029,175702
+population,Iceland,ISL,male,15+,2030,177170
+population,India,IND,female,15+,2024,531475059
+population,India,IND,female,15+,2025,539273034
+population,India,IND,female,15+,2026,546943328
+population,India,IND,female,15+,2027,554488638
+population,India,IND,female,15+,2028,561846122
+population,India,IND,female,15+,2029,568844419
+population,India,IND,female,15+,2030,575595600
+population,India,IND,male,15+,2024,562183715
+population,India,IND,male,15+,2025,570406321
+population,India,IND,male,15+,2026,578466492
+population,India,IND,male,15+,2027,586345890
+population,India,IND,male,15+,2028,593973804
+population,India,IND,male,15+,2029,601179063
+population,India,IND,male,15+,2030,608089350
+population,Indonesia,IDN,female,15+,2024,107135600
+population,Indonesia,IDN,female,15+,2025,108474016
+population,Indonesia,IDN,female,15+,2026,109838392
+population,Indonesia,IDN,female,15+,2027,111218098
+population,Indonesia,IDN,female,15+,2028,112551817
+population,Indonesia,IDN,female,15+,2029,113815564
+population,Indonesia,IDN,female,15+,2030,115021504
+population,Indonesia,IDN,male,15+,2024,106620545
+population,Indonesia,IDN,male,15+,2025,107967676
+population,Indonesia,IDN,male,15+,2026,109339402
+population,Indonesia,IDN,male,15+,2027,110723657
+population,Indonesia,IDN,male,15+,2028,112054582
+population,Indonesia,IDN,male,15+,2029,113306186
+population,Indonesia,IDN,male,15+,2030,114491613
+population,Iran (Islamic Republic of),IRN,female,15+,2024,35046574
+population,Iran (Islamic Republic of),IRN,female,15+,2025,35574189
+population,Iran (Islamic Republic of),IRN,female,15+,2026,36083077
+population,Iran (Islamic Republic of),IRN,female,15+,2027,36583071
+population,Iran (Islamic Republic of),IRN,female,15+,2028,37083643
+population,Iran (Islamic Republic of),IRN,female,15+,2029,37590494
+population,Iran (Islamic Republic of),IRN,female,15+,2030,38103218
+population,Iran (Islamic Republic of),IRN,male,15+,2024,35972840
+population,Iran (Islamic Republic of),IRN,male,15+,2025,36491514
+population,Iran (Islamic Republic of),IRN,male,15+,2026,36990098
+population,Iran (Islamic Republic of),IRN,male,15+,2027,37479541
+population,Iran (Islamic Republic of),IRN,male,15+,2028,37970409
+population,Iran (Islamic Republic of),IRN,male,15+,2029,38469011
+population,Iran (Islamic Republic of),IRN,male,15+,2030,38973790
+population,Iraq,IRQ,female,15+,2024,14720698
+population,Iraq,IRQ,female,15+,2025,15149666
+population,Iraq,IRQ,female,15+,2026,15605268
+population,Iraq,IRQ,female,15+,2027,16074844
+population,Iraq,IRQ,female,15+,2028,16544068
+population,Iraq,IRQ,female,15+,2029,17012634
+population,Iraq,IRQ,female,15+,2030,17472376
+population,Iraq,IRQ,male,15+,2024,14478526
+population,Iraq,IRQ,male,15+,2025,14930935
+population,Iraq,IRQ,male,15+,2026,15410748
+population,Iraq,IRQ,male,15+,2027,15905110
+population,Iraq,IRQ,male,15+,2028,16398947
+population,Iraq,IRQ,male,15+,2029,16891511
+population,Iraq,IRQ,male,15+,2030,17374028
+population,Ireland,IRL,female,15+,2024,2177482
+population,Ireland,IRL,female,15+,2025,2211426
+population,Ireland,IRL,female,15+,2026,2243689
+population,Ireland,IRL,female,15+,2027,2273944
+population,Ireland,IRL,female,15+,2028,2302103
+population,Ireland,IRL,female,15+,2029,2327896
+population,Ireland,IRL,female,15+,2030,2351302
+population,Ireland,IRL,male,15+,2024,2102441
+population,Ireland,IRL,male,15+,2025,2136074
+population,Ireland,IRL,male,15+,2026,2167905
+population,Ireland,IRL,male,15+,2027,2197806
+population,Ireland,IRL,male,15+,2028,2225748
+population,Ireland,IRL,male,15+,2029,2251400
+population,Ireland,IRL,male,15+,2030,2274523
+population,Isle of Man,IMN,female,15+,2024,36623
+population,Isle of Man,IMN,female,15+,2025,36758
+population,Isle of Man,IMN,female,15+,2026,36876
+population,Isle of Man,IMN,female,15+,2027,36963
+population,Isle of Man,IMN,female,15+,2028,37017
+population,Isle of Man,IMN,female,15+,2029,37036
+population,Isle of Man,IMN,female,15+,2030,37033
+population,Isle of Man,IMN,male,15+,2024,35567
+population,Isle of Man,IMN,male,15+,2025,35663
+population,Isle of Man,IMN,male,15+,2026,35741
+population,Isle of Man,IMN,male,15+,2027,35803
+population,Isle of Man,IMN,male,15+,2028,35852
+population,Isle of Man,IMN,male,15+,2029,35875
+population,Isle of Man,IMN,male,15+,2030,35870
+population,Israel,ISR,female,15+,2024,3460375
+population,Israel,ISR,female,15+,2025,3517950
+population,Israel,ISR,female,15+,2026,3576601
+population,Israel,ISR,female,15+,2027,3636381
+population,Israel,ISR,female,15+,2028,3696894
+population,Israel,ISR,female,15+,2029,3757728
+population,Israel,ISR,female,15+,2030,3820090
+population,Israel,ISR,male,15+,2024,3353733
+population,Israel,ISR,male,15+,2025,3413990
+population,Israel,ISR,male,15+,2026,3475258
+population,Israel,ISR,male,15+,2027,3537402
+population,Israel,ISR,male,15+,2028,3600710
+population,Israel,ISR,male,15+,2029,3665031
+population,Israel,ISR,male,15+,2030,3731064
+population,Italy,ITA,female,15+,2024,26909876
+population,Italy,ITA,female,15+,2025,26869084
+population,Italy,ITA,female,15+,2026,26814271
+population,Italy,ITA,female,15+,2027,26748095
+population,Italy,ITA,female,15+,2028,26673426
+population,Italy,ITA,female,15+,2029,26591954
+population,Italy,ITA,female,15+,2030,26502545
+population,Italy,ITA,male,15+,2024,25375756
+population,Italy,ITA,male,15+,2025,25382399
+population,Italy,ITA,male,15+,2026,25373782
+population,Italy,ITA,male,15+,2027,25351918
+population,Italy,ITA,male,15+,2028,25319712
+population,Italy,ITA,male,15+,2029,25279236
+population,Italy,ITA,male,15+,2030,25228877
+population,Jamaica,JAM,female,15+,2024,1174432
+population,Jamaica,JAM,female,15+,2025,1179808
+population,Jamaica,JAM,female,15+,2026,1184030
+population,Jamaica,JAM,female,15+,2027,1187234
+population,Jamaica,JAM,female,15+,2028,1189686
+population,Jamaica,JAM,female,15+,2029,1191474
+population,Jamaica,JAM,female,15+,2030,1192605
+population,Jamaica,JAM,male,15+,2024,1133750
+population,Jamaica,JAM,male,15+,2025,1138510
+population,Jamaica,JAM,male,15+,2026,1142100
+population,Jamaica,JAM,male,15+,2027,1144667
+population,Jamaica,JAM,male,15+,2028,1146470
+population,Jamaica,JAM,male,15+,2029,1147591
+population,Jamaica,JAM,male,15+,2030,1148056
+population,Japan,JPN,female,15+,2024,56493282
+population,Japan,JPN,female,15+,2025,56341942
+population,Japan,JPN,female,15+,2026,56173592
+population,Japan,JPN,female,15+,2027,55989940
+population,Japan,JPN,female,15+,2028,55794153
+population,Japan,JPN,female,15+,2029,55582654
+population,Japan,JPN,female,15+,2030,55357904
+population,Japan,JPN,male,15+,2024,53107236
+population,Japan,JPN,male,15+,2025,52926678
+population,Japan,JPN,male,15+,2026,52729463
+population,Japan,JPN,male,15+,2027,52515642
+population,Japan,JPN,male,15+,2028,52289236
+population,Japan,JPN,male,15+,2029,52048612
+population,Japan,JPN,male,15+,2030,51797294
+population,Jersey,JEY,female,15+,2024,45303
+population,Jersey,JEY,female,15+,2025,45470
+population,Jersey,JEY,female,15+,2026,45649
+population,Jersey,JEY,female,15+,2027,45842
+population,Jersey,JEY,female,15+,2028,46018
+population,Jersey,JEY,female,15+,2029,46156
+population,Jersey,JEY,female,15+,2030,46288
+population,Jersey,JEY,male,15+,2024,43646
+population,Jersey,JEY,male,15+,2025,43772
+population,Jersey,JEY,male,15+,2026,43910
+population,Jersey,JEY,male,15+,2027,44052
+population,Jersey,JEY,male,15+,2028,44190
+population,Jersey,JEY,male,15+,2029,44298
+population,Jersey,JEY,male,15+,2030,44398
+population,Jordan,JOR,female,15+,2024,3858662
+population,Jordan,JOR,female,15+,2025,3882275
+population,Jordan,JOR,female,15+,2026,3944760
+population,Jordan,JOR,female,15+,2027,4065284
+population,Jordan,JOR,female,15+,2028,4177775
+population,Jordan,JOR,female,15+,2029,4288252
+population,Jordan,JOR,female,15+,2030,4392964
+population,Jordan,JOR,male,15+,2024,4151127
+population,Jordan,JOR,male,15+,2025,4159600
+population,Jordan,JOR,male,15+,2026,4211978
+population,Jordan,JOR,male,15+,2027,4330567
+population,Jordan,JOR,male,15+,2028,4441943
+population,Jordan,JOR,male,15+,2029,4551137
+population,Jordan,JOR,male,15+,2030,4653930
+population,Kazakhstan,KAZ,female,15+,2024,7603606
+population,Kazakhstan,KAZ,female,15+,2025,7717215
+population,Kazakhstan,KAZ,female,15+,2026,7832867
+population,Kazakhstan,KAZ,female,15+,2027,7950058
+population,Kazakhstan,KAZ,female,15+,2028,8070293
+population,Kazakhstan,KAZ,female,15+,2029,8192629
+population,Kazakhstan,KAZ,female,15+,2030,8315364
+population,Kazakhstan,KAZ,male,15+,2024,6940252
+population,Kazakhstan,KAZ,male,15+,2025,7053212
+population,Kazakhstan,KAZ,male,15+,2026,7167616
+population,Kazakhstan,KAZ,male,15+,2027,7282726
+population,Kazakhstan,KAZ,male,15+,2028,7399966
+population,Kazakhstan,KAZ,male,15+,2029,7518662
+population,Kazakhstan,KAZ,male,15+,2030,7637360
+population,Kenya,KEN,female,15+,2024,18054670
+population,Kenya,KEN,female,15+,2025,18578824
+population,Kenya,KEN,female,15+,2026,19096854
+population,Kenya,KEN,female,15+,2027,19603749
+population,Kenya,KEN,female,15+,2028,20097824
+population,Kenya,KEN,female,15+,2029,20581914
+population,Kenya,KEN,female,15+,2030,21062104
+population,Kenya,KEN,male,15+,2024,17590603
+population,Kenya,KEN,male,15+,2025,18093656
+population,Kenya,KEN,male,15+,2026,18590540
+population,Kenya,KEN,male,15+,2027,19075622
+population,Kenya,KEN,male,15+,2028,19546771
+population,Kenya,KEN,male,15+,2029,20006697
+population,Kenya,KEN,male,15+,2030,20461492
+population,Kiribati,KIR,female,15+,2024,46253
+population,Kiribati,KIR,female,15+,2025,47144
+population,Kiribati,KIR,female,15+,2026,48076
+population,Kiribati,KIR,female,15+,2027,49023
+population,Kiribati,KIR,female,15+,2028,49951
+population,Kiribati,KIR,female,15+,2029,50850
+population,Kiribati,KIR,female,15+,2030,51738
+population,Kiribati,KIR,male,15+,2024,41596
+population,Kiribati,KIR,male,15+,2025,42442
+population,Kiribati,KIR,male,15+,2026,43352
+population,Kiribati,KIR,male,15+,2027,44297
+population,Kiribati,KIR,male,15+,2028,45234
+population,Kiribati,KIR,male,15+,2029,46158
+population,Kiribati,KIR,male,15+,2030,47078
+population,Kosovo (under UNSC res. 1244),XKX,female,15+,2024,689153
+population,Kosovo (under UNSC res. 1244),XKX,female,15+,2025,691015
+population,Kosovo (under UNSC res. 1244),XKX,female,15+,2026,693824
+population,Kosovo (under UNSC res. 1244),XKX,female,15+,2027,696922
+population,Kosovo (under UNSC res. 1244),XKX,female,15+,2028,700555
+population,Kosovo (under UNSC res. 1244),XKX,female,15+,2029,704128
+population,Kosovo (under UNSC res. 1244),XKX,female,15+,2030,707017
+population,Kosovo (under UNSC res. 1244),XKX,male,15+,2024,646703
+population,Kosovo (under UNSC res. 1244),XKX,male,15+,2025,648512
+population,Kosovo (under UNSC res. 1244),XKX,male,15+,2026,651704
+population,Kosovo (under UNSC res. 1244),XKX,male,15+,2027,655798
+population,Kosovo (under UNSC res. 1244),XKX,male,15+,2028,660665
+population,Kosovo (under UNSC res. 1244),XKX,male,15+,2029,665566
+population,Kosovo (under UNSC res. 1244),XKX,male,15+,2030,669618
+population,Kuwait,KWT,female,15+,2024,1479435
+population,Kuwait,KWT,female,15+,2025,1514550
+population,Kuwait,KWT,female,15+,2026,1545542
+population,Kuwait,KWT,female,15+,2027,1573301
+population,Kuwait,KWT,female,15+,2028,1598216
+population,Kuwait,KWT,female,15+,2029,1621182
+population,Kuwait,KWT,female,15+,2030,1642814
+population,Kuwait,KWT,male,15+,2024,2556064
+population,Kuwait,KWT,male,15+,2025,2608188
+population,Kuwait,KWT,male,15+,2026,2651190
+population,Kuwait,KWT,male,15+,2027,2687153
+population,Kuwait,KWT,male,15+,2028,2717200
+population,Kuwait,KWT,male,15+,2029,2743298
+population,Kuwait,KWT,male,15+,2030,2766726
+population,Kyrgyzstan,KGZ,female,15+,2024,2502962
+population,Kyrgyzstan,KGZ,female,15+,2025,2556652
+population,Kyrgyzstan,KGZ,female,15+,2026,2610985
+population,Kyrgyzstan,KGZ,female,15+,2027,2664758
+population,Kyrgyzstan,KGZ,female,15+,2028,2718974
+population,Kyrgyzstan,KGZ,female,15+,2029,2774172
+population,Kyrgyzstan,KGZ,female,15+,2030,2831039
+population,Kyrgyzstan,KGZ,male,15+,2024,2358980
+population,Kyrgyzstan,KGZ,male,15+,2025,2410667
+population,Kyrgyzstan,KGZ,male,15+,2026,2462931
+population,Kyrgyzstan,KGZ,male,15+,2027,2514389
+population,Kyrgyzstan,KGZ,male,15+,2028,2565976
+population,Kyrgyzstan,KGZ,male,15+,2029,2618564
+population,Kyrgyzstan,KGZ,male,15+,2030,2673050
+population,Lao People's Democratic Republic,LAO,female,15+,2024,2715858
+population,Lao People's Democratic Republic,LAO,female,15+,2025,2766620
+population,Lao People's Democratic Republic,LAO,female,15+,2026,2816878
+population,Lao People's Democratic Republic,LAO,female,15+,2027,2866923
+population,Lao People's Democratic Republic,LAO,female,15+,2028,2916982
+population,Lao People's Democratic Republic,LAO,female,15+,2029,2967216
+population,Lao People's Democratic Republic,LAO,female,15+,2030,3018506
+population,Lao People's Democratic Republic,LAO,male,15+,2024,2707600
+population,Lao People's Democratic Republic,LAO,male,15+,2025,2757135
+population,Lao People's Democratic Republic,LAO,male,15+,2026,2806180
+population,Lao People's Democratic Republic,LAO,male,15+,2027,2855030
+population,Lao People's Democratic Republic,LAO,male,15+,2028,2903934
+population,Lao People's Democratic Republic,LAO,male,15+,2029,2952988
+population,Lao People's Democratic Republic,LAO,male,15+,2030,3003027
+population,Latvia,LVA,female,15+,2024,864720
+population,Latvia,LVA,female,15+,2025,857499
+population,Latvia,LVA,female,15+,2026,850186
+population,Latvia,LVA,female,15+,2027,844624
+population,Latvia,LVA,female,15+,2028,839680
+population,Latvia,LVA,female,15+,2029,835296
+population,Latvia,LVA,female,15+,2030,831124
+population,Latvia,LVA,male,15+,2024,718634
+population,Latvia,LVA,male,15+,2025,714556
+population,Latvia,LVA,male,15+,2026,710468
+population,Latvia,LVA,male,15+,2027,707970
+population,Latvia,LVA,male,15+,2028,706014
+population,Latvia,LVA,male,15+,2029,704633
+population,Latvia,LVA,male,15+,2030,703707
+population,Lebanon,LBN,female,15+,2024,2241736
+population,Lebanon,LBN,female,15+,2025,2274262
+population,Lebanon,LBN,female,15+,2026,2309559
+population,Lebanon,LBN,female,15+,2027,2345882
+population,Lebanon,LBN,female,15+,2028,2382356
+population,Lebanon,LBN,female,15+,2029,2418478
+population,Lebanon,LBN,female,15+,2030,2453188
+population,Lebanon,LBN,male,15+,2024,2043851
+population,Lebanon,LBN,male,15+,2025,2078428
+population,Lebanon,LBN,male,15+,2026,2115634
+population,Lebanon,LBN,male,15+,2027,2153730
+population,Lebanon,LBN,male,15+,2028,2191890
+population,Lebanon,LBN,male,15+,2029,2229680
+population,Lebanon,LBN,male,15+,2030,2266100
+population,Lesotho,LSO,female,15+,2024,797441
+population,Lesotho,LSO,female,15+,2025,810708
+population,Lesotho,LSO,female,15+,2026,824748
+population,Lesotho,LSO,female,15+,2027,839552
+population,Lesotho,LSO,female,15+,2028,854651
+population,Lesotho,LSO,female,15+,2029,869926
+population,Lesotho,LSO,female,15+,2030,885110
+population,Lesotho,LSO,male,15+,2024,733120
+population,Lesotho,LSO,male,15+,2025,746674
+population,Lesotho,LSO,male,15+,2026,761008
+population,Lesotho,LSO,male,15+,2027,776106
+population,Lesotho,LSO,male,15+,2028,791476
+population,Lesotho,LSO,male,15+,2029,807014
+population,Lesotho,LSO,male,15+,2030,822485
+population,Liberia,LBR,female,15+,2024,1715444
+population,Liberia,LBR,female,15+,2025,1763667
+population,Liberia,LBR,female,15+,2026,1813676
+population,Liberia,LBR,female,15+,2027,1868716
+population,Liberia,LBR,female,15+,2028,1923745
+population,Liberia,LBR,female,15+,2029,1975432
+population,Liberia,LBR,female,15+,2030,2024502
+population,Liberia,LBR,male,15+,2024,1678650
+population,Liberia,LBR,male,15+,2025,1727763
+population,Liberia,LBR,male,15+,2026,1778698
+population,Liberia,LBR,male,15+,2027,1834828
+population,Liberia,LBR,male,15+,2028,1890930
+population,Liberia,LBR,male,15+,2029,1943528
+population,Liberia,LBR,male,15+,2030,1993391
+population,Libya,LBY,female,15+,2024,2643414
+population,Libya,LBY,female,15+,2025,2692495
+population,Libya,LBY,female,15+,2026,2746621
+population,Libya,LBY,female,15+,2027,2802417
+population,Libya,LBY,female,15+,2028,2857342
+population,Libya,LBY,female,15+,2029,2912180
+population,Libya,LBY,female,15+,2030,2966460
+population,Libya,LBY,male,15+,2024,2714292
+population,Libya,LBY,male,15+,2025,2763646
+population,Libya,LBY,male,15+,2026,2816620
+population,Libya,LBY,male,15+,2027,2871242
+population,Libya,LBY,male,15+,2028,2925238
+population,Libya,LBY,male,15+,2029,2978771
+population,Libya,LBY,male,15+,2030,3031616
+population,Liechtenstein,LIE,female,15+,2024,17370
+population,Liechtenstein,LIE,female,15+,2025,17480
+population,Liechtenstein,LIE,female,15+,2026,17588
+population,Liechtenstein,LIE,female,15+,2027,17696
+population,Liechtenstein,LIE,female,15+,2028,17790
+population,Liechtenstein,LIE,female,15+,2029,17868
+population,Liechtenstein,LIE,female,15+,2030,17930
+population,Liechtenstein,LIE,male,15+,2024,16814
+population,Liechtenstein,LIE,male,15+,2025,16939
+population,Liechtenstein,LIE,male,15+,2026,17042
+population,Liechtenstein,LIE,male,15+,2027,17147
+population,Liechtenstein,LIE,male,15+,2028,17244
+population,Liechtenstein,LIE,male,15+,2029,17346
+population,Liechtenstein,LIE,male,15+,2030,17442
+population,Lithuania,LTU,female,15+,2024,1304795
+population,Lithuania,LTU,female,15+,2025,1293763
+population,Lithuania,LTU,female,15+,2026,1281090
+population,Lithuania,LTU,female,15+,2027,1272484
+population,Lithuania,LTU,female,15+,2028,1264163
+population,Lithuania,LTU,female,15+,2029,1256265
+population,Lithuania,LTU,female,15+,2030,1249170
+population,Lithuania,LTU,male,15+,2024,1133854
+population,Lithuania,LTU,male,15+,2025,1125863
+population,Lithuania,LTU,male,15+,2026,1116432
+population,Lithuania,LTU,male,15+,2027,1110876
+population,Lithuania,LTU,male,15+,2028,1105334
+population,Lithuania,LTU,male,15+,2029,1100235
+population,Lithuania,LTU,male,15+,2030,1096078
+population,Luxembourg,LUX,female,15+,2024,282355
+population,Luxembourg,LUX,female,15+,2025,285453
+population,Luxembourg,LUX,female,15+,2026,288402
+population,Luxembourg,LUX,female,15+,2027,291294
+population,Luxembourg,LUX,female,15+,2028,294320
+population,Luxembourg,LUX,female,15+,2029,297298
+population,Luxembourg,LUX,female,15+,2030,300094
+population,Luxembourg,LUX,male,15+,2024,284494
+population,Luxembourg,LUX,male,15+,2025,287857
+population,Luxembourg,LUX,male,15+,2026,291085
+population,Luxembourg,LUX,male,15+,2027,294264
+population,Luxembourg,LUX,male,15+,2028,297446
+population,Luxembourg,LUX,male,15+,2029,300611
+population,Luxembourg,LUX,male,15+,2030,303642
+population,Madagascar,MDG,female,15+,2024,9740849
+population,Madagascar,MDG,female,15+,2025,10029010
+population,Madagascar,MDG,female,15+,2026,10317518
+population,Madagascar,MDG,female,15+,2027,10605707
+population,Madagascar,MDG,female,15+,2028,10896313
+population,Madagascar,MDG,female,15+,2029,11190058
+population,Madagascar,MDG,female,15+,2030,11486559
+population,Madagascar,MDG,male,15+,2024,9675670
+population,Madagascar,MDG,male,15+,2025,9963214
+population,Madagascar,MDG,male,15+,2026,10251336
+population,Madagascar,MDG,male,15+,2027,10539146
+population,Madagascar,MDG,male,15+,2028,10829382
+population,Madagascar,MDG,male,15+,2029,11122741
+population,Madagascar,MDG,male,15+,2030,11418774
+population,Malawi,MWI,female,15+,2024,6681184
+population,Malawi,MWI,female,15+,2025,6917360
+population,Malawi,MWI,female,15+,2026,7155755
+population,Malawi,MWI,female,15+,2027,7396970
+population,Malawi,MWI,female,15+,2028,7639426
+population,Malawi,MWI,female,15+,2029,7883363
+population,Malawi,MWI,female,15+,2030,8126328
+population,Malawi,MWI,male,15+,2024,6159198
+population,Malawi,MWI,male,15+,2025,6384214
+population,Malawi,MWI,male,15+,2026,6611720
+population,Malawi,MWI,male,15+,2027,6842170
+population,Malawi,MWI,male,15+,2028,7073916
+population,Malawi,MWI,male,15+,2029,7307434
+population,Malawi,MWI,male,15+,2030,7540292
+population,Malaysia,MYS,female,15+,2024,13191260
+population,Malaysia,MYS,female,15+,2025,13444112
+population,Malaysia,MYS,female,15+,2026,13691038
+population,Malaysia,MYS,female,15+,2027,13937205
+population,Malaysia,MYS,female,15+,2028,14186362
+population,Malaysia,MYS,female,15+,2029,14434086
+population,Malaysia,MYS,female,15+,2030,14684386
+population,Malaysia,MYS,male,15+,2024,14619679
+population,Malaysia,MYS,male,15+,2025,14867150
+population,Malaysia,MYS,male,15+,2026,15108218
+population,Malaysia,MYS,male,15+,2027,15348922
+population,Malaysia,MYS,male,15+,2028,15593184
+population,Malaysia,MYS,male,15+,2029,15832761
+population,Malaysia,MYS,male,15+,2030,16071280
+population,Maldives,MDV,female,15+,2024,152525
+population,Maldives,MDV,female,15+,2025,155311
+population,Maldives,MDV,female,15+,2026,158206
+population,Maldives,MDV,female,15+,2027,161158
+population,Maldives,MDV,female,15+,2028,164128
+population,Maldives,MDV,female,15+,2029,167044
+population,Maldives,MDV,female,15+,2030,169905
+population,Maldives,MDV,male,15+,2024,271868
+population,Maldives,MDV,male,15+,2025,273533
+population,Maldives,MDV,male,15+,2026,275374
+population,Maldives,MDV,male,15+,2027,277336
+population,Maldives,MDV,male,15+,2028,279356
+population,Maldives,MDV,male,15+,2029,281299
+population,Maldives,MDV,male,15+,2030,283150
+population,Mali,MLI,female,15+,2024,6542382
+population,Mali,MLI,female,15+,2025,6779458
+population,Mali,MLI,female,15+,2026,7024136
+population,Mali,MLI,female,15+,2027,7275996
+population,Mali,MLI,female,15+,2028,7533637
+population,Mali,MLI,female,15+,2029,7795942
+population,Mali,MLI,female,15+,2030,8064600
+population,Mali,MLI,male,15+,2024,6641230
+population,Mali,MLI,male,15+,2025,6879840
+population,Mali,MLI,male,15+,2026,7125817
+population,Mali,MLI,male,15+,2027,7378637
+population,Mali,MLI,male,15+,2028,7636770
+population,Mali,MLI,male,15+,2029,7899066
+population,Mali,MLI,male,15+,2030,8167202
+population,Malta,MLT,female,15+,2024,225656
+population,Malta,MLT,female,15+,2025,228320
+population,Malta,MLT,female,15+,2026,230063
+population,Malta,MLT,female,15+,2027,231122
+population,Malta,MLT,female,15+,2028,232018
+population,Malta,MLT,female,15+,2029,232774
+population,Malta,MLT,female,15+,2030,233518
+population,Malta,MLT,male,15+,2024,243637
+population,Malta,MLT,male,15+,2025,246732
+population,Malta,MLT,male,15+,2026,248852
+population,Malta,MLT,male,15+,2027,250314
+population,Malta,MLT,male,15+,2028,251686
+population,Malta,MLT,male,15+,2029,252965
+population,Malta,MLT,male,15+,2030,254196
+population,Marshall Islands,MHL,female,15+,2024,12034
+population,Marshall Islands,MHL,female,15+,2025,11741
+population,Marshall Islands,MHL,female,15+,2026,11478
+population,Marshall Islands,MHL,female,15+,2027,11256
+population,Marshall Islands,MHL,female,15+,2028,11053
+population,Marshall Islands,MHL,female,15+,2029,10858
+population,Marshall Islands,MHL,female,15+,2030,10678
+population,Marshall Islands,MHL,male,15+,2024,12569
+population,Marshall Islands,MHL,male,15+,2025,12244
+population,Marshall Islands,MHL,male,15+,2026,11933
+population,Marshall Islands,MHL,male,15+,2027,11640
+population,Marshall Islands,MHL,male,15+,2028,11370
+population,Marshall Islands,MHL,male,15+,2029,11115
+population,Marshall Islands,MHL,male,15+,2030,10876
+population,Martinique,MTQ,female,15+,2024,161954
+population,Martinique,MTQ,female,15+,2025,161174
+population,Martinique,MTQ,female,15+,2026,160376
+population,Martinique,MTQ,female,15+,2027,159567
+population,Martinique,MTQ,female,15+,2028,158760
+population,Martinique,MTQ,female,15+,2029,157970
+population,Martinique,MTQ,female,15+,2030,157184
+population,Martinique,MTQ,male,15+,2024,130076
+population,Martinique,MTQ,male,15+,2025,129259
+population,Martinique,MTQ,male,15+,2026,128326
+population,Martinique,MTQ,male,15+,2027,127390
+population,Martinique,MTQ,male,15+,2028,126544
+population,Martinique,MTQ,male,15+,2029,125754
+population,Martinique,MTQ,male,15+,2030,124956
+population,Mauritania,MRT,female,15+,2024,1543552
+population,Mauritania,MRT,female,15+,2025,1594011
+population,Mauritania,MRT,female,15+,2026,1645404
+population,Mauritania,MRT,female,15+,2027,1697962
+population,Mauritania,MRT,female,15+,2028,1751257
+population,Mauritania,MRT,female,15+,2029,1805362
+population,Mauritania,MRT,female,15+,2030,1860645
+population,Mauritania,MRT,male,15+,2024,1417932
+population,Mauritania,MRT,male,15+,2025,1468286
+population,Mauritania,MRT,male,15+,2026,1519914
+population,Mauritania,MRT,male,15+,2027,1573102
+population,Mauritania,MRT,male,15+,2028,1626696
+population,Mauritania,MRT,male,15+,2029,1680609
+population,Mauritania,MRT,male,15+,2030,1735723
+population,Mauritius,MUS,female,15+,2024,541412
+population,Mauritius,MUS,female,15+,2025,542828
+population,Mauritius,MUS,female,15+,2026,543794
+population,Mauritius,MUS,female,15+,2027,544396
+population,Mauritius,MUS,female,15+,2028,544689
+population,Mauritius,MUS,female,15+,2029,544714
+population,Mauritius,MUS,female,15+,2030,544546
+population,Mauritius,MUS,male,15+,2024,541486
+population,Mauritius,MUS,male,15+,2025,541080
+population,Mauritius,MUS,male,15+,2026,540264
+population,Mauritius,MUS,male,15+,2027,539155
+population,Mauritius,MUS,male,15+,2028,537834
+population,Mauritius,MUS,male,15+,2029,536334
+population,Mauritius,MUS,male,15+,2030,534698
+population,Mayotte,MYT,female,15+,2024,99898
+population,Mayotte,MYT,female,15+,2025,103876
+population,Mayotte,MYT,female,15+,2026,107911
+population,Mayotte,MYT,female,15+,2027,111876
+population,Mayotte,MYT,female,15+,2028,115936
+population,Mayotte,MYT,female,15+,2029,120176
+population,Mayotte,MYT,female,15+,2030,124503
+population,Mayotte,MYT,male,15+,2024,85842
+population,Mayotte,MYT,male,15+,2025,89515
+population,Mayotte,MYT,male,15+,2026,93266
+population,Mayotte,MYT,male,15+,2027,97005
+population,Mayotte,MYT,male,15+,2028,100812
+population,Mayotte,MYT,male,15+,2029,104713
+population,Mayotte,MYT,male,15+,2030,108718
+population,Mexico,MEX,female,15+,2024,51646112
+population,Mexico,MEX,female,15+,2025,52349835
+population,Mexico,MEX,female,15+,2026,53047006
+population,Mexico,MEX,female,15+,2027,53737568
+population,Mexico,MEX,female,15+,2028,54419431
+population,Mexico,MEX,female,15+,2029,55080520
+population,Mexico,MEX,female,15+,2030,55706785
+population,Mexico,MEX,male,15+,2024,47141526
+population,Mexico,MEX,male,15+,2025,47809657
+population,Mexico,MEX,male,15+,2026,48472032
+population,Mexico,MEX,male,15+,2027,49128764
+population,Mexico,MEX,male,15+,2028,49777804
+population,Mexico,MEX,male,15+,2029,50406748
+population,Mexico,MEX,male,15+,2030,51000985
+population,Micronesia (Fed. States of),FSM,female,15+,2024,39478
+population,Micronesia (Fed. States of),FSM,female,15+,2025,39888
+population,Micronesia (Fed. States of),FSM,female,15+,2026,40271
+population,Micronesia (Fed. States of),FSM,female,15+,2027,40642
+population,Micronesia (Fed. States of),FSM,female,15+,2028,41009
+population,Micronesia (Fed. States of),FSM,female,15+,2029,41367
+population,Micronesia (Fed. States of),FSM,female,15+,2030,41714
+population,Micronesia (Fed. States of),FSM,male,15+,2024,37644
+population,Micronesia (Fed. States of),FSM,male,15+,2025,37992
+population,Micronesia (Fed. States of),FSM,male,15+,2026,38332
+population,Micronesia (Fed. States of),FSM,male,15+,2027,38662
+population,Micronesia (Fed. States of),FSM,male,15+,2028,38995
+population,Micronesia (Fed. States of),FSM,male,15+,2029,39315
+population,Micronesia (Fed. States of),FSM,male,15+,2030,39630
+population,Monaco,MCO,female,15+,2024,17165
+population,Monaco,MCO,female,15+,2025,16989
+population,Monaco,MCO,female,15+,2026,16830
+population,Monaco,MCO,female,15+,2027,16688
+population,Monaco,MCO,female,15+,2028,16558
+population,Monaco,MCO,female,15+,2029,16445
+population,Monaco,MCO,female,15+,2030,16348
+population,Monaco,MCO,male,15+,2024,16262
+population,Monaco,MCO,male,15+,2025,16072
+population,Monaco,MCO,male,15+,2026,15903
+population,Monaco,MCO,male,15+,2027,15756
+population,Monaco,MCO,male,15+,2028,15620
+population,Monaco,MCO,male,15+,2029,15497
+population,Monaco,MCO,male,15+,2030,15388
+population,Mongolia,MNG,female,15+,2024,1199113
+population,Mongolia,MNG,female,15+,2025,1224948
+population,Mongolia,MNG,female,15+,2026,1251268
+population,Mongolia,MNG,female,15+,2027,1278255
+population,Mongolia,MNG,female,15+,2028,1308069
+population,Mongolia,MNG,female,15+,2029,1339424
+population,Mongolia,MNG,female,15+,2030,1370877
+population,Mongolia,MNG,male,15+,2024,1157536
+population,Mongolia,MNG,male,15+,2025,1182147
+population,Mongolia,MNG,male,15+,2026,1207404
+population,Mongolia,MNG,male,15+,2027,1233418
+population,Mongolia,MNG,male,15+,2028,1262448
+population,Mongolia,MNG,male,15+,2029,1293259
+population,Mongolia,MNG,male,15+,2030,1324184
+population,Montenegro,MNE,female,15+,2024,275436
+population,Montenegro,MNE,female,15+,2025,273698
+population,Montenegro,MNE,female,15+,2026,271523
+population,Montenegro,MNE,female,15+,2027,270549
+population,Montenegro,MNE,female,15+,2028,269630
+population,Montenegro,MNE,female,15+,2029,268691
+population,Montenegro,MNE,female,15+,2030,267698
+population,Montenegro,MNE,male,15+,2024,247306
+population,Montenegro,MNE,male,15+,2025,245896
+population,Montenegro,MNE,male,15+,2026,244150
+population,Montenegro,MNE,male,15+,2027,243592
+population,Montenegro,MNE,male,15+,2028,243104
+population,Montenegro,MNE,male,15+,2029,242610
+population,Montenegro,MNE,male,15+,2030,242076
+population,Montserrat,MSR,female,15+,2024,1824
+population,Montserrat,MSR,female,15+,2025,1831
+population,Montserrat,MSR,female,15+,2026,1827
+population,Montserrat,MSR,female,15+,2027,1821
+population,Montserrat,MSR,female,15+,2028,1816
+population,Montserrat,MSR,female,15+,2029,1810
+population,Montserrat,MSR,female,15+,2030,1804
+population,Montserrat,MSR,male,15+,2024,1848
+population,Montserrat,MSR,male,15+,2025,1840
+population,Montserrat,MSR,male,15+,2026,1830
+population,Montserrat,MSR,male,15+,2027,1818
+population,Montserrat,MSR,male,15+,2028,1804
+population,Montserrat,MSR,male,15+,2029,1786
+population,Montserrat,MSR,male,15+,2030,1770
+population,Morocco,MAR,female,15+,2024,14119362
+population,Morocco,MAR,female,15+,2025,14335148
+population,Morocco,MAR,female,15+,2026,14547040
+population,Morocco,MAR,female,15+,2027,14752542
+population,Morocco,MAR,female,15+,2028,14949002
+population,Morocco,MAR,female,15+,2029,15135674
+population,Morocco,MAR,female,15+,2030,15315563
+population,Morocco,MAR,male,15+,2024,14200498
+population,Morocco,MAR,male,15+,2025,14411271
+population,Morocco,MAR,male,15+,2026,14618665
+population,Morocco,MAR,male,15+,2027,14819684
+population,Morocco,MAR,male,15+,2028,15011417
+population,Morocco,MAR,male,15+,2029,15192890
+population,Morocco,MAR,male,15+,2030,15367250
+population,Mozambique,MOZ,female,15+,2024,10160446
+population,Mozambique,MOZ,female,15+,2025,10496242
+population,Mozambique,MOZ,female,15+,2026,10838563
+population,Mozambique,MOZ,female,15+,2027,11191466
+population,Mozambique,MOZ,female,15+,2028,11552573
+population,Mozambique,MOZ,female,15+,2029,11919839
+population,Mozambique,MOZ,female,15+,2030,12293139
+population,Mozambique,MOZ,male,15+,2024,9067426
+population,Mozambique,MOZ,male,15+,2025,9397436
+population,Mozambique,MOZ,male,15+,2026,9734651
+population,Mozambique,MOZ,male,15+,2027,10083518
+population,Mozambique,MOZ,male,15+,2028,10440853
+population,Mozambique,MOZ,male,15+,2029,10804658
+population,Mozambique,MOZ,male,15+,2030,11174707
+population,Myanmar,MMR,female,15+,2024,20925827
+population,Myanmar,MMR,female,15+,2025,21129180
+population,Myanmar,MMR,female,15+,2026,21326343
+population,Myanmar,MMR,female,15+,2027,21517396
+population,Myanmar,MMR,female,15+,2028,21703542
+population,Myanmar,MMR,female,15+,2029,21885548
+population,Myanmar,MMR,female,15+,2030,22065789
+population,Myanmar,MMR,male,15+,2024,20330453
+population,Myanmar,MMR,male,15+,2025,20514180
+population,Myanmar,MMR,male,15+,2026,20691395
+population,Myanmar,MMR,male,15+,2027,20862275
+population,Myanmar,MMR,male,15+,2028,21028374
+population,Myanmar,MMR,male,15+,2029,21190578
+population,Myanmar,MMR,male,15+,2030,21351420
+population,Namibia,NAM,female,15+,2024,987814
+population,Namibia,NAM,female,15+,2025,1013782
+population,Namibia,NAM,female,15+,2026,1040045
+population,Namibia,NAM,female,15+,2027,1065961
+population,Namibia,NAM,female,15+,2028,1092502
+population,Namibia,NAM,female,15+,2029,1120052
+population,Namibia,NAM,female,15+,2030,1149138
+population,Namibia,NAM,male,15+,2024,921783
+population,Namibia,NAM,male,15+,2025,945498
+population,Namibia,NAM,male,15+,2026,969322
+population,Namibia,NAM,male,15+,2027,992649
+population,Namibia,NAM,male,15+,2028,1016732
+population,Namibia,NAM,male,15+,2029,1041994
+population,Namibia,NAM,male,15+,2030,1068514
+population,Nauru,NRU,female,15+,2024,3673
+population,Nauru,NRU,female,15+,2025,3735
+population,Nauru,NRU,female,15+,2026,3800
+population,Nauru,NRU,female,15+,2027,3875
+population,Nauru,NRU,female,15+,2028,3954
+population,Nauru,NRU,female,15+,2029,4030
+population,Nauru,NRU,female,15+,2030,4110
+population,Nauru,NRU,male,15+,2024,3760
+population,Nauru,NRU,male,15+,2025,3822
+population,Nauru,NRU,male,15+,2026,3890
+population,Nauru,NRU,male,15+,2027,3964
+population,Nauru,NRU,male,15+,2028,4036
+population,Nauru,NRU,male,15+,2029,4110
+population,Nauru,NRU,male,15+,2030,4186
+population,Nepal,NPL,female,15+,2024,11362079
+population,Nepal,NPL,female,15+,2025,11445730
+population,Nepal,NPL,female,15+,2026,11538608
+population,Nepal,NPL,female,15+,2027,11653849
+population,Nepal,NPL,female,15+,2028,11802727
+population,Nepal,NPL,female,15+,2029,11968261
+population,Nepal,NPL,female,15+,2030,12131235
+population,Nepal,NPL,male,15+,2024,9859427
+population,Nepal,NPL,male,15+,2025,9863921
+population,Nepal,NPL,male,15+,2026,9893016
+population,Nepal,NPL,male,15+,2027,9968017
+population,Nepal,NPL,male,15+,2028,10107454
+population,Nepal,NPL,male,15+,2029,10280328
+population,Nepal,NPL,male,15+,2030,10451440
+population,Netherlands,NLD,female,15+,2024,7836252
+population,Netherlands,NLD,female,15+,2025,7893514
+population,Netherlands,NLD,female,15+,2026,7942138
+population,Netherlands,NLD,female,15+,2027,7982960
+population,Netherlands,NLD,female,15+,2028,8018176
+population,Netherlands,NLD,female,15+,2029,8050106
+population,Netherlands,NLD,female,15+,2030,8078356
+population,Netherlands,NLD,male,15+,2024,7653503
+population,Netherlands,NLD,male,15+,2025,7713380
+population,Netherlands,NLD,male,15+,2026,7764486
+population,Netherlands,NLD,male,15+,2027,7807864
+population,Netherlands,NLD,male,15+,2028,7845480
+population,Netherlands,NLD,male,15+,2029,7879401
+population,Netherlands,NLD,male,15+,2030,7909437
+population,New Caledonia,NCL,female,15+,2024,117665
+population,New Caledonia,NCL,female,15+,2025,119074
+population,New Caledonia,NCL,female,15+,2026,120444
+population,New Caledonia,NCL,female,15+,2027,121765
+population,New Caledonia,NCL,female,15+,2028,123116
+population,New Caledonia,NCL,female,15+,2029,124484
+population,New Caledonia,NCL,female,15+,2030,125780
+population,New Caledonia,NCL,male,15+,2024,112624
+population,New Caledonia,NCL,male,15+,2025,113974
+population,New Caledonia,NCL,male,15+,2026,115266
+population,New Caledonia,NCL,male,15+,2027,116567
+population,New Caledonia,NCL,male,15+,2028,117864
+population,New Caledonia,NCL,male,15+,2029,119106
+population,New Caledonia,NCL,male,15+,2030,120272
+population,New Zealand,NZL,female,15+,2024,2163442
+population,New Zealand,NZL,female,15+,2025,2184422
+population,New Zealand,NZL,female,15+,2026,2204573
+population,New Zealand,NZL,female,15+,2027,2223697
+population,New Zealand,NZL,female,15+,2028,2241444
+population,New Zealand,NZL,female,15+,2029,2257700
+population,New Zealand,NZL,female,15+,2030,2272782
+population,New Zealand,NZL,male,15+,2024,2105805
+population,New Zealand,NZL,male,15+,2025,2128566
+population,New Zealand,NZL,male,15+,2026,2150350
+population,New Zealand,NZL,male,15+,2027,2171087
+population,New Zealand,NZL,male,15+,2028,2190664
+population,New Zealand,NZL,male,15+,2029,2209148
+population,New Zealand,NZL,male,15+,2030,2226700
+population,Nicaragua,NIC,female,15+,2024,2534660
+population,Nicaragua,NIC,female,15+,2025,2582818
+population,Nicaragua,NIC,female,15+,2026,2630680
+population,Nicaragua,NIC,female,15+,2027,2678154
+population,Nicaragua,NIC,female,15+,2028,2725200
+population,Nicaragua,NIC,female,15+,2029,2771686
+population,Nicaragua,NIC,female,15+,2030,2817565
+population,Nicaragua,NIC,male,15+,2024,2392476
+population,Nicaragua,NIC,male,15+,2025,2440675
+population,Nicaragua,NIC,male,15+,2026,2488538
+population,Nicaragua,NIC,male,15+,2027,2535971
+population,Nicaragua,NIC,male,15+,2028,2582918
+population,Nicaragua,NIC,male,15+,2029,2629267
+population,Nicaragua,NIC,male,15+,2030,2674988
+population,Niger,NER,female,15+,2024,7112011
+population,Niger,NER,female,15+,2025,7395800
+population,Niger,NER,female,15+,2026,7687484
+population,Niger,NER,female,15+,2027,7987070
+population,Niger,NER,female,15+,2028,8295265
+population,Niger,NER,female,15+,2029,8611861
+population,Niger,NER,female,15+,2030,8936142
+population,Niger,NER,male,15+,2024,7323022
+population,Niger,NER,male,15+,2025,7616632
+population,Niger,NER,male,15+,2026,7918052
+population,Niger,NER,male,15+,2027,8227123
+population,Niger,NER,male,15+,2028,8544614
+population,Niger,NER,male,15+,2029,8870338
+population,Niger,NER,male,15+,2030,9203538
+population,Nigeria,NGA,female,15+,2024,67977641
+population,Nigeria,NGA,female,15+,2025,69925978
+population,Nigeria,NGA,female,15+,2026,71928186
+population,Nigeria,NGA,female,15+,2027,73971348
+population,Nigeria,NGA,female,15+,2028,76041718
+population,Nigeria,NGA,female,15+,2029,78138619
+population,Nigeria,NGA,female,15+,2030,80246660
+population,Nigeria,NGA,male,15+,2024,69271035
+population,Nigeria,NGA,male,15+,2025,71356204
+population,Nigeria,NGA,male,15+,2026,73493340
+population,Nigeria,NGA,male,15+,2027,75669328
+population,Nigeria,NGA,male,15+,2028,77868837
+population,Nigeria,NGA,male,15+,2029,80093962
+population,Nigeria,NGA,male,15+,2030,82331619
+population,Niue,NIU,female,15+,2024,732
+population,Niue,NIU,female,15+,2025,745
+population,Niue,NIU,female,15+,2026,754
+population,Niue,NIU,female,15+,2027,760
+population,Niue,NIU,female,15+,2028,763
+population,Niue,NIU,female,15+,2029,764
+population,Niue,NIU,female,15+,2030,763
+population,Niue,NIU,male,15+,2024,670
+population,Niue,NIU,male,15+,2025,670
+population,Niue,NIU,male,15+,2026,672
+population,Niue,NIU,male,15+,2027,675
+population,Niue,NIU,male,15+,2028,678
+population,Niue,NIU,male,15+,2029,680
+population,Niue,NIU,male,15+,2030,681
+population,North Macedonia,MKD,female,15+,2024,786550
+population,North Macedonia,MKD,female,15+,2025,785132
+population,North Macedonia,MKD,female,15+,2026,783427
+population,North Macedonia,MKD,female,15+,2027,781605
+population,North Macedonia,MKD,female,15+,2028,780018
+population,North Macedonia,MKD,female,15+,2029,778514
+population,North Macedonia,MKD,female,15+,2030,776671
+population,North Macedonia,MKD,male,15+,2024,729778
+population,North Macedonia,MKD,male,15+,2025,728843
+population,North Macedonia,MKD,male,15+,2026,727606
+population,North Macedonia,MKD,male,15+,2027,726382
+population,North Macedonia,MKD,male,15+,2028,725376
+population,North Macedonia,MKD,male,15+,2029,724414
+population,North Macedonia,MKD,male,15+,2030,723176
+population,Northern Mariana Islands,MNP,female,15+,2024,16310
+population,Northern Mariana Islands,MNP,female,15+,2025,16176
+population,Northern Mariana Islands,MNP,female,15+,2026,16086
+population,Northern Mariana Islands,MNP,female,15+,2027,16067
+population,Northern Mariana Islands,MNP,female,15+,2028,16099
+population,Northern Mariana Islands,MNP,female,15+,2029,16138
+population,Northern Mariana Islands,MNP,female,15+,2030,16190
+population,Northern Mariana Islands,MNP,male,15+,2024,18226
+population,Northern Mariana Islands,MNP,male,15+,2025,18122
+population,Northern Mariana Islands,MNP,male,15+,2026,18057
+population,Northern Mariana Islands,MNP,male,15+,2027,18052
+population,Northern Mariana Islands,MNP,male,15+,2028,18088
+population,Northern Mariana Islands,MNP,male,15+,2029,18130
+population,Northern Mariana Islands,MNP,male,15+,2030,18176
+population,Norway,NOR,female,15+,2024,2326908
+population,Norway,NOR,female,15+,2025,2352944
+population,Norway,NOR,female,15+,2026,2371748
+population,Norway,NOR,female,15+,2027,2386344
+population,Norway,NOR,female,15+,2028,2400274
+population,Norway,NOR,female,15+,2029,2413272
+population,Norway,NOR,female,15+,2030,2425665
+population,Norway,NOR,male,15+,2024,2346961
+population,Norway,NOR,male,15+,2025,2374714
+population,Norway,NOR,male,15+,2026,2395081
+population,Norway,NOR,male,15+,2027,2411114
+population,Norway,NOR,male,15+,2028,2425981
+population,Norway,NOR,male,15+,2029,2439772
+population,Norway,NOR,male,15+,2030,2453086
+population,Oman,OMN,female,15+,2024,1355430
+population,Oman,OMN,female,15+,2025,1410420
+population,Oman,OMN,female,15+,2026,1459208
+population,Oman,OMN,female,15+,2027,1503144
+population,Oman,OMN,female,15+,2028,1544424
+population,Oman,OMN,female,15+,2029,1584850
+population,Oman,OMN,female,15+,2030,1624796
+population,Oman,OMN,male,15+,2024,2620784
+population,Oman,OMN,male,15+,2025,2747944
+population,Oman,OMN,male,15+,2026,2848432
+population,Oman,OMN,male,15+,2027,2925918
+population,Oman,OMN,male,15+,2028,2985462
+population,Oman,OMN,male,15+,2029,3034946
+population,Oman,OMN,male,15+,2030,3079169
+population,Pakistan,PAK,female,15+,2024,78774366
+population,Pakistan,PAK,female,15+,2025,80657306
+population,Pakistan,PAK,female,15+,2026,82615588
+population,Pakistan,PAK,female,15+,2027,84620634
+population,Pakistan,PAK,female,15+,2028,86661976
+population,Pakistan,PAK,female,15+,2029,88708172
+population,Pakistan,PAK,female,15+,2030,90753108
+population,Pakistan,PAK,male,15+,2024,80316882
+population,Pakistan,PAK,male,15+,2025,82060214
+population,Pakistan,PAK,male,15+,2026,83885404
+population,Pakistan,PAK,male,15+,2027,85763838
+population,Pakistan,PAK,male,15+,2028,87685090
+population,Pakistan,PAK,male,15+,2029,89611673
+population,Pakistan,PAK,male,15+,2030,91537767
+population,Palau,PLW,female,15+,2024,6626
+population,Palau,PLW,female,15+,2025,6650
+population,Palau,PLW,female,15+,2026,6672
+population,Palau,PLW,female,15+,2027,6690
+population,Palau,PLW,female,15+,2028,6700
+population,Palau,PLW,female,15+,2029,6706
+population,Palau,PLW,female,15+,2030,6710
+population,Palau,PLW,male,15+,2024,7842
+population,Palau,PLW,male,15+,2025,7845
+population,Palau,PLW,male,15+,2026,7840
+population,Palau,PLW,male,15+,2027,7836
+population,Palau,PLW,male,15+,2028,7830
+population,Palau,PLW,male,15+,2029,7820
+population,Palau,PLW,male,15+,2030,7804
+population,Panama,PAN,female,15+,2024,1709836
+population,Panama,PAN,female,15+,2025,1739448
+population,Panama,PAN,female,15+,2026,1769083
+population,Panama,PAN,female,15+,2027,1798718
+population,Panama,PAN,female,15+,2028,1828078
+population,Panama,PAN,female,15+,2029,1857116
+population,Panama,PAN,female,15+,2030,1885808
+population,Panama,PAN,male,15+,2024,1681592
+population,Panama,PAN,male,15+,2025,1710604
+population,Panama,PAN,male,15+,2026,1739690
+population,Panama,PAN,male,15+,2027,1768850
+population,Panama,PAN,male,15+,2028,1797826
+population,Panama,PAN,male,15+,2029,1826570
+population,Panama,PAN,male,15+,2030,1855064
+population,Papua New Guinea,PNG,female,15+,2024,3433230
+population,Papua New Guinea,PNG,female,15+,2025,3514380
+population,Papua New Guinea,PNG,female,15+,2026,3596586
+population,Papua New Guinea,PNG,female,15+,2027,3679193
+population,Papua New Guinea,PNG,female,15+,2028,3762026
+population,Papua New Guinea,PNG,female,15+,2029,3845216
+population,Papua New Guinea,PNG,female,15+,2030,3928757
+population,Papua New Guinea,PNG,male,15+,2024,3602310
+population,Papua New Guinea,PNG,male,15+,2025,3681036
+population,Papua New Guinea,PNG,male,15+,2026,3760451
+population,Papua New Guinea,PNG,male,15+,2027,3839856
+population,Papua New Guinea,PNG,male,15+,2028,3919068
+population,Papua New Guinea,PNG,male,15+,2029,3998232
+population,Papua New Guinea,PNG,male,15+,2030,4077361
+population,Paraguay,PRY,female,15+,2024,2486962
+population,Paraguay,PRY,female,15+,2025,2525392
+population,Paraguay,PRY,female,15+,2026,2563936
+population,Paraguay,PRY,female,15+,2027,2603145
+population,Paraguay,PRY,female,15+,2028,2643056
+population,Paraguay,PRY,female,15+,2029,2683802
+population,Paraguay,PRY,female,15+,2030,2725433
+population,Paraguay,PRY,male,15+,2024,2461290
+population,Paraguay,PRY,male,15+,2025,2497991
+population,Paraguay,PRY,male,15+,2026,2534778
+population,Paraguay,PRY,male,15+,2027,2572246
+population,Paraguay,PRY,male,15+,2028,2610420
+population,Paraguay,PRY,male,15+,2029,2649452
+population,Paraguay,PRY,male,15+,2030,2689417
+population,Peru,PER,female,15+,2024,13172922
+population,Peru,PER,female,15+,2025,13374545
+population,Peru,PER,female,15+,2026,13570098
+population,Peru,PER,female,15+,2027,13759572
+population,Peru,PER,female,15+,2028,13941488
+population,Peru,PER,female,15+,2029,14117335
+population,Peru,PER,female,15+,2030,14287593
+population,Peru,PER,male,15+,2024,12842768
+population,Peru,PER,male,15+,2025,13037163
+population,Peru,PER,male,15+,2026,13225902
+population,Peru,PER,male,15+,2027,13408660
+population,Peru,PER,male,15+,2028,13583983
+population,Peru,PER,male,15+,2029,13753568
+population,Peru,PER,male,15+,2030,13917824
+population,Philippines,PHL,female,15+,2024,42251210
+population,Philippines,PHL,female,15+,2025,43035852
+population,Philippines,PHL,female,15+,2026,43824354
+population,Philippines,PHL,female,15+,2027,44610637
+population,Philippines,PHL,female,15+,2028,45380068
+population,Philippines,PHL,female,15+,2029,46118436
+population,Philippines,PHL,female,15+,2030,46832528
+population,Philippines,PHL,male,15+,2024,41309067
+population,Philippines,PHL,male,15+,2025,42056458
+population,Philippines,PHL,male,15+,2026,42806904
+population,Philippines,PHL,male,15+,2027,43553437
+population,Philippines,PHL,male,15+,2028,44281684
+population,Philippines,PHL,male,15+,2029,44976007
+population,Philippines,PHL,male,15+,2030,45642164
+population,Poland,POL,female,15+,2024,17091639
+population,Poland,POL,female,15+,2025,16988211
+population,Poland,POL,female,15+,2026,16923624
+population,Poland,POL,female,15+,2027,16915196
+population,Poland,POL,female,15+,2028,16901231
+population,Poland,POL,female,15+,2029,16881934
+population,Poland,POL,female,15+,2030,16858378
+population,Poland,POL,male,15+,2024,15741532
+population,Poland,POL,male,15+,2025,15637376
+population,Poland,POL,male,15+,2026,15573550
+population,Poland,POL,male,15+,2027,15567761
+population,Poland,POL,male,15+,2028,15556490
+population,Poland,POL,male,15+,2029,15540060
+population,Poland,POL,male,15+,2030,15519824
+population,Portugal,PRT,female,15+,2024,4807866
+population,Portugal,PRT,female,15+,2025,4807204
+population,Portugal,PRT,female,15+,2026,4805094
+population,Portugal,PRT,female,15+,2027,4799556
+population,Portugal,PRT,female,15+,2028,4789924
+population,Portugal,PRT,female,15+,2029,4778096
+population,Portugal,PRT,female,15+,2030,4767354
+population,Portugal,PRT,male,15+,2024,4282841
+population,Portugal,PRT,male,15+,2025,4280870
+population,Portugal,PRT,male,15+,2026,4278193
+population,Portugal,PRT,male,15+,2027,4273169
+population,Portugal,PRT,male,15+,2028,4263836
+population,Portugal,PRT,male,15+,2029,4252336
+population,Portugal,PRT,male,15+,2030,4242092
+population,Puerto Rico,PRI,female,15+,2024,1532206
+population,Puerto Rico,PRI,female,15+,2025,1536214
+population,Puerto Rico,PRI,female,15+,2026,1537176
+population,Puerto Rico,PRI,female,15+,2027,1535726
+population,Puerto Rico,PRI,female,15+,2028,1532226
+population,Puerto Rico,PRI,female,15+,2029,1527231
+population,Puerto Rico,PRI,female,15+,2030,1520523
+population,Puerto Rico,PRI,male,15+,2024,1332972
+population,Puerto Rico,PRI,male,15+,2025,1335440
+population,Puerto Rico,PRI,male,15+,2026,1335042
+population,Puerto Rico,PRI,male,15+,2027,1332624
+population,Puerto Rico,PRI,male,15+,2028,1328400
+population,Puerto Rico,PRI,male,15+,2029,1322860
+population,Puerto Rico,PRI,male,15+,2030,1315903
+population,Qatar,QAT,female,15+,2024,651240
+population,Qatar,QAT,female,15+,2025,671221
+population,Qatar,QAT,female,15+,2026,688789
+population,Qatar,QAT,female,15+,2027,703802
+population,Qatar,QAT,female,15+,2028,717126
+population,Qatar,QAT,female,15+,2029,729570
+population,Qatar,QAT,female,15+,2030,741248
+population,Qatar,QAT,male,15+,2024,1937764
+population,Qatar,QAT,male,15+,2025,1977275
+population,Qatar,QAT,male,15+,2026,2008870
+population,Qatar,QAT,male,15+,2027,2032532
+population,Qatar,QAT,male,15+,2028,2051112
+population,Qatar,QAT,male,15+,2029,2067252
+population,Qatar,QAT,male,15+,2030,2081491
+population,Republic of Korea,KOR,female,15+,2024,23242491
+population,Republic of Korea,KOR,female,15+,2025,23323330
+population,Republic of Korea,KOR,female,15+,2026,23403562
+population,Republic of Korea,KOR,female,15+,2027,23480192
+population,Republic of Korea,KOR,female,15+,2028,23541801
+population,Republic of Korea,KOR,female,15+,2029,23587687
+population,Republic of Korea,KOR,female,15+,2030,23624892
+population,Republic of Korea,KOR,male,15+,2024,23009518
+population,Republic of Korea,KOR,male,15+,2025,23071354
+population,Republic of Korea,KOR,male,15+,2026,23130944
+population,Republic of Korea,KOR,male,15+,2027,23184656
+population,Republic of Korea,KOR,male,15+,2028,23220618
+population,Republic of Korea,KOR,male,15+,2029,23238364
+population,Republic of Korea,KOR,male,15+,2030,23245967
+population,Republic of Moldova,MDA,female,15+,2024,1345822
+population,Republic of Moldova,MDA,female,15+,2025,1333882
+population,Republic of Moldova,MDA,female,15+,2026,1323869
+population,Republic of Moldova,MDA,female,15+,2027,1316758
+population,Republic of Moldova,MDA,female,15+,2028,1310450
+population,Republic of Moldova,MDA,female,15+,2029,1305040
+population,Republic of Moldova,MDA,female,15+,2030,1299922
+population,Republic of Moldova,MDA,male,15+,2024,1088559
+population,Republic of Moldova,MDA,male,15+,2025,1076954
+population,Republic of Moldova,MDA,male,15+,2026,1067806
+population,Republic of Moldova,MDA,male,15+,2027,1062184
+population,Republic of Moldova,MDA,male,15+,2028,1057936
+population,Republic of Moldova,MDA,male,15+,2029,1054910
+population,Republic of Moldova,MDA,male,15+,2030,1052368
+population,Romania,ROU,female,15+,2024,8345898
+population,Romania,ROU,female,15+,2025,8315028
+population,Romania,ROU,female,15+,2026,8279496
+population,Romania,ROU,female,15+,2027,8241400
+population,Romania,ROU,female,15+,2028,8203111
+population,Romania,ROU,female,15+,2029,8164326
+population,Romania,ROU,female,15+,2030,8126464
+population,Romania,ROU,male,15+,2024,7680824
+population,Romania,ROU,male,15+,2025,7652328
+population,Romania,ROU,male,15+,2026,7618832
+population,Romania,ROU,male,15+,2027,7582859
+population,Romania,ROU,male,15+,2028,7546514
+population,Romania,ROU,male,15+,2029,7509722
+population,Romania,ROU,male,15+,2030,7474168
+population,Russian Federation,RUS,female,15+,2024,65443908
+population,Russian Federation,RUS,female,15+,2025,65296556
+population,Russian Federation,RUS,female,15+,2026,65270272
+population,Russian Federation,RUS,female,15+,2027,65406360
+population,Russian Federation,RUS,female,15+,2028,65560328
+population,Russian Federation,RUS,female,15+,2029,65715105
+population,Russian Federation,RUS,female,15+,2030,65871398
+population,Russian Federation,RUS,male,15+,2024,54353948
+population,Russian Federation,RUS,male,15+,2025,54181703
+population,Russian Federation,RUS,male,15+,2026,54133286
+population,Russian Federation,RUS,male,15+,2027,54250764
+population,Russian Federation,RUS,male,15+,2028,54392155
+population,Russian Federation,RUS,male,15+,2029,54540248
+population,Russian Federation,RUS,male,15+,2030,54697449
+population,Rwanda,RWA,female,15+,2024,4653204
+population,Rwanda,RWA,female,15+,2025,4776384
+population,Rwanda,RWA,female,15+,2026,4901742
+population,Rwanda,RWA,female,15+,2027,5029271
+population,Rwanda,RWA,female,15+,2028,5157605
+population,Rwanda,RWA,female,15+,2029,5282615
+population,Rwanda,RWA,female,15+,2030,5410160
+population,Rwanda,RWA,male,15+,2024,4276996
+population,Rwanda,RWA,male,15+,2025,4399468
+population,Rwanda,RWA,male,15+,2026,4524079
+population,Rwanda,RWA,male,15+,2027,4650783
+population,Rwanda,RWA,male,15+,2028,4778206
+population,Rwanda,RWA,male,15+,2029,4902330
+population,Rwanda,RWA,male,15+,2030,5029020
+population,Réunion,REU,female,15+,2024,370716
+population,Réunion,REU,female,15+,2025,374004
+population,Réunion,REU,female,15+,2026,377212
+population,Réunion,REU,female,15+,2027,380552
+population,Réunion,REU,female,15+,2028,383736
+population,Réunion,REU,female,15+,2029,386696
+population,Réunion,REU,female,15+,2030,389511
+population,Réunion,REU,male,15+,2024,324750
+population,Réunion,REU,male,15+,2025,327606
+population,Réunion,REU,male,15+,2026,330452
+population,Réunion,REU,male,15+,2027,333224
+population,Réunion,REU,male,15+,2028,335873
+population,Réunion,REU,male,15+,2029,338460
+population,Réunion,REU,male,15+,2030,340998
+population,Saint Barthélemy,BLM,female,15+,2024,4914
+population,Saint Barthélemy,BLM,female,15+,2025,5026
+population,Saint Barthélemy,BLM,female,15+,2026,5128
+population,Saint Barthélemy,BLM,female,15+,2027,5226
+population,Saint Barthélemy,BLM,female,15+,2028,5324
+population,Saint Barthélemy,BLM,female,15+,2029,5416
+population,Saint Barthélemy,BLM,female,15+,2030,5498
+population,Saint Barthélemy,BLM,male,15+,2024,4194
+population,Saint Barthélemy,BLM,male,15+,2025,4306
+population,Saint Barthélemy,BLM,male,15+,2026,4407
+population,Saint Barthélemy,BLM,male,15+,2027,4502
+population,Saint Barthélemy,BLM,male,15+,2028,4596
+population,Saint Barthélemy,BLM,male,15+,2029,4685
+population,Saint Barthélemy,BLM,male,15+,2030,4764
+population,Saint Helena,SHN,female,15+,2024,2284
+population,Saint Helena,SHN,female,15+,2025,2280
+population,Saint Helena,SHN,female,15+,2026,2272
+population,Saint Helena,SHN,female,15+,2027,2266
+population,Saint Helena,SHN,female,15+,2028,2262
+population,Saint Helena,SHN,female,15+,2029,2256
+population,Saint Helena,SHN,female,15+,2030,2250
+population,Saint Helena,SHN,male,15+,2024,2238
+population,Saint Helena,SHN,male,15+,2025,2220
+population,Saint Helena,SHN,male,15+,2026,2198
+population,Saint Helena,SHN,male,15+,2027,2164
+population,Saint Helena,SHN,male,15+,2028,2130
+population,Saint Helena,SHN,male,15+,2029,2100
+population,Saint Helena,SHN,male,15+,2030,2075
+population,Saint Kitts and Nevis,KNA,female,15+,2024,20152
+population,Saint Kitts and Nevis,KNA,female,15+,2025,20192
+population,Saint Kitts and Nevis,KNA,female,15+,2026,20247
+population,Saint Kitts and Nevis,KNA,female,15+,2027,20364
+population,Saint Kitts and Nevis,KNA,female,15+,2028,20476
+population,Saint Kitts and Nevis,KNA,female,15+,2029,20578
+population,Saint Kitts and Nevis,KNA,female,15+,2030,20678
+population,Saint Kitts and Nevis,KNA,male,15+,2024,18170
+population,Saint Kitts and Nevis,KNA,male,15+,2025,18126
+population,Saint Kitts and Nevis,KNA,male,15+,2026,18100
+population,Saint Kitts and Nevis,KNA,male,15+,2027,18137
+population,Saint Kitts and Nevis,KNA,male,15+,2028,18164
+population,Saint Kitts and Nevis,KNA,male,15+,2029,18189
+population,Saint Kitts and Nevis,KNA,male,15+,2030,18216
+population,Saint Lucia,LCA,female,15+,2024,75458
+population,Saint Lucia,LCA,female,15+,2025,75964
+population,Saint Lucia,LCA,female,15+,2026,76351
+population,Saint Lucia,LCA,female,15+,2027,76673
+population,Saint Lucia,LCA,female,15+,2028,76994
+population,Saint Lucia,LCA,female,15+,2029,77310
+population,Saint Lucia,LCA,female,15+,2030,77612
+population,Saint Lucia,LCA,male,15+,2024,72764
+population,Saint Lucia,LCA,male,15+,2025,73118
+population,Saint Lucia,LCA,male,15+,2026,73332
+population,Saint Lucia,LCA,male,15+,2027,73480
+population,Saint Lucia,LCA,male,15+,2028,73624
+population,Saint Lucia,LCA,male,15+,2029,73765
+population,Saint Lucia,LCA,male,15+,2030,73896
+population,Saint Martin (French part),MAF,female,15+,2024,11214
+population,Saint Martin (French part),MAF,female,15+,2025,10794
+population,Saint Martin (French part),MAF,female,15+,2026,10444
+population,Saint Martin (French part),MAF,female,15+,2027,10162
+population,Saint Martin (French part),MAF,female,15+,2028,9938
+population,Saint Martin (French part),MAF,female,15+,2029,9765
+population,Saint Martin (French part),MAF,female,15+,2030,9634
+population,Saint Martin (French part),MAF,male,15+,2024,9340
+population,Saint Martin (French part),MAF,male,15+,2025,8895
+population,Saint Martin (French part),MAF,male,15+,2026,8520
+population,Saint Martin (French part),MAF,male,15+,2027,8211
+population,Saint Martin (French part),MAF,male,15+,2028,7972
+population,Saint Martin (French part),MAF,male,15+,2029,7786
+population,Saint Martin (French part),MAF,male,15+,2030,7640
+population,Saint Pierre and Miquelon,SPM,female,15+,2024,2466
+population,Saint Pierre and Miquelon,SPM,female,15+,2025,2463
+population,Saint Pierre and Miquelon,SPM,female,15+,2026,2460
+population,Saint Pierre and Miquelon,SPM,female,15+,2027,2458
+population,Saint Pierre and Miquelon,SPM,female,15+,2028,2454
+population,Saint Pierre and Miquelon,SPM,female,15+,2029,2449
+population,Saint Pierre and Miquelon,SPM,female,15+,2030,2440
+population,Saint Pierre and Miquelon,SPM,male,15+,2024,2392
+population,Saint Pierre and Miquelon,SPM,male,15+,2025,2386
+population,Saint Pierre and Miquelon,SPM,male,15+,2026,2375
+population,Saint Pierre and Miquelon,SPM,male,15+,2027,2364
+population,Saint Pierre and Miquelon,SPM,male,15+,2028,2354
+population,Saint Pierre and Miquelon,SPM,male,15+,2029,2337
+population,Saint Pierre and Miquelon,SPM,male,15+,2030,2317
+population,Saint Vincent and the Grenadines,VCT,female,15+,2024,38835
+population,Saint Vincent and the Grenadines,VCT,female,15+,2025,38834
+population,Saint Vincent and the Grenadines,VCT,female,15+,2026,38842
+population,Saint Vincent and the Grenadines,VCT,female,15+,2027,38868
+population,Saint Vincent and the Grenadines,VCT,female,15+,2028,38928
+population,Saint Vincent and the Grenadines,VCT,female,15+,2029,39006
+population,Saint Vincent and the Grenadines,VCT,female,15+,2030,39090
+population,Saint Vincent and the Grenadines,VCT,male,15+,2024,40358
+population,Saint Vincent and the Grenadines,VCT,male,15+,2025,40234
+population,Saint Vincent and the Grenadines,VCT,male,15+,2026,40110
+population,Saint Vincent and the Grenadines,VCT,male,15+,2027,40002
+population,Saint Vincent and the Grenadines,VCT,male,15+,2028,39916
+population,Saint Vincent and the Grenadines,VCT,male,15+,2029,39850
+population,Saint Vincent and the Grenadines,VCT,male,15+,2030,39797
+population,Samoa,WSM,female,15+,2024,67583
+population,Samoa,WSM,female,15+,2025,68414
+population,Samoa,WSM,female,15+,2026,69332
+population,Samoa,WSM,female,15+,2027,70370
+population,Samoa,WSM,female,15+,2028,71464
+population,Samoa,WSM,female,15+,2029,72544
+population,Samoa,WSM,female,15+,2030,73618
+population,Samoa,WSM,male,15+,2024,66577
+population,Samoa,WSM,male,15+,2025,67422
+population,Samoa,WSM,male,15+,2026,68396
+population,Samoa,WSM,male,15+,2027,69464
+population,Samoa,WSM,male,15+,2028,70555
+population,Samoa,WSM,male,15+,2029,71646
+population,Samoa,WSM,male,15+,2030,72772
+population,San Marino,SMR,female,15+,2024,15043
+population,San Marino,SMR,female,15+,2025,15098
+population,San Marino,SMR,female,15+,2026,15182
+population,San Marino,SMR,female,15+,2027,15254
+population,San Marino,SMR,female,15+,2028,15316
+population,San Marino,SMR,female,15+,2029,15378
+population,San Marino,SMR,female,15+,2030,15430
+population,San Marino,SMR,male,15+,2024,14422
+population,San Marino,SMR,male,15+,2025,14496
+population,San Marino,SMR,male,15+,2026,14582
+population,San Marino,SMR,male,15+,2027,14652
+population,San Marino,SMR,male,15+,2028,14729
+population,San Marino,SMR,male,15+,2029,14799
+population,San Marino,SMR,male,15+,2030,14842
+population,Sao Tome and Principe,STP,female,15+,2024,74204
+population,Sao Tome and Principe,STP,female,15+,2025,76235
+population,Sao Tome and Principe,STP,female,15+,2026,78172
+population,Sao Tome and Principe,STP,female,15+,2027,80234
+population,Sao Tome and Principe,STP,female,15+,2028,82456
+population,Sao Tome and Principe,STP,female,15+,2029,84645
+population,Sao Tome and Principe,STP,female,15+,2030,86778
+population,Sao Tome and Principe,STP,male,15+,2024,72233
+population,Sao Tome and Principe,STP,male,15+,2025,74031
+population,Sao Tome and Principe,STP,male,15+,2026,75770
+population,Sao Tome and Principe,STP,male,15+,2027,77636
+population,Sao Tome and Principe,STP,male,15+,2028,79632
+population,Sao Tome and Principe,STP,male,15+,2029,81602
+population,Sao Tome and Principe,STP,male,15+,2030,83516
+population,Saudi Arabia,SAU,female,15+,2024,9439182
+population,Saudi Arabia,SAU,female,15+,2025,9674562
+population,Saudi Arabia,SAU,female,15+,2026,9911288
+population,Saudi Arabia,SAU,female,15+,2027,10149181
+population,Saudi Arabia,SAU,female,15+,2028,10387404
+population,Saudi Arabia,SAU,female,15+,2029,10623085
+population,Saudi Arabia,SAU,female,15+,2030,10852554
+population,Saudi Arabia,SAU,male,15+,2024,16434128
+population,Saudi Arabia,SAU,male,15+,2025,16726826
+population,Saudi Arabia,SAU,male,15+,2026,17013880
+population,Saudi Arabia,SAU,male,15+,2027,17295450
+population,Saudi Arabia,SAU,male,15+,2028,17570768
+population,Saudi Arabia,SAU,male,15+,2029,17832936
+population,Saudi Arabia,SAU,male,15+,2030,18071964
+population,Senegal,SEN,female,15+,2024,5695504
+population,Senegal,SEN,female,15+,2025,5869193
+population,Senegal,SEN,female,15+,2026,6044357
+population,Senegal,SEN,female,15+,2027,6220694
+population,Senegal,SEN,female,15+,2028,6397240
+population,Senegal,SEN,female,15+,2029,6572928
+population,Senegal,SEN,female,15+,2030,6748118
+population,Senegal,SEN,male,15+,2024,5741985
+population,Senegal,SEN,male,15+,2025,5917318
+population,Senegal,SEN,male,15+,2026,6094568
+population,Senegal,SEN,male,15+,2027,6273764
+population,Senegal,SEN,male,15+,2028,6454120
+population,Senegal,SEN,male,15+,2029,6634465
+population,Senegal,SEN,male,15+,2030,6814899
+population,Serbia,SRB,female,15+,2024,3063228
+population,Serbia,SRB,female,15+,2025,3047341
+population,Serbia,SRB,female,15+,2026,3031086
+population,Serbia,SRB,female,15+,2027,3015568
+population,Serbia,SRB,female,15+,2028,2999654
+population,Serbia,SRB,female,15+,2029,2983618
+population,Serbia,SRB,female,15+,2030,2967338
+population,Serbia,SRB,male,15+,2024,2708966
+population,Serbia,SRB,male,15+,2025,2687982
+population,Serbia,SRB,male,15+,2026,2667560
+population,Serbia,SRB,male,15+,2027,2648658
+population,Serbia,SRB,male,15+,2028,2630066
+population,Serbia,SRB,male,15+,2029,2612058
+population,Serbia,SRB,male,15+,2030,2594591
+population,Seychelles,SYC,female,15+,2024,45754
+population,Seychelles,SYC,female,15+,2025,46861
+population,Seychelles,SYC,female,15+,2026,47900
+population,Seychelles,SYC,female,15+,2027,48835
+population,Seychelles,SYC,female,15+,2028,49633
+population,Seychelles,SYC,female,15+,2029,50254
+population,Seychelles,SYC,female,15+,2030,50661
+population,Seychelles,SYC,male,15+,2024,58644
+population,Seychelles,SYC,male,15+,2025,59672
+population,Seychelles,SYC,male,15+,2026,60618
+population,Seychelles,SYC,male,15+,2027,61452
+population,Seychelles,SYC,male,15+,2028,62137
+population,Seychelles,SYC,male,15+,2029,62618
+population,Seychelles,SYC,male,15+,2030,62854
+population,Sierra Leone,SLE,female,15+,2024,2698418
+population,Sierra Leone,SLE,female,15+,2025,2772897
+population,Sierra Leone,SLE,female,15+,2026,2848208
+population,Sierra Leone,SLE,female,15+,2027,2924693
+population,Sierra Leone,SLE,female,15+,2028,2999982
+population,Sierra Leone,SLE,female,15+,2029,3074283
+population,Sierra Leone,SLE,female,15+,2030,3149306
+population,Sierra Leone,SLE,male,15+,2024,2651967
+population,Sierra Leone,SLE,male,15+,2025,2726181
+population,Sierra Leone,SLE,male,15+,2026,2801131
+population,Sierra Leone,SLE,male,15+,2027,2877169
+population,Sierra Leone,SLE,male,15+,2028,2951891
+population,Sierra Leone,SLE,male,15+,2029,3025527
+population,Sierra Leone,SLE,male,15+,2030,3099844
+population,Singapore,SGP,female,15+,2024,2486192
+population,Singapore,SGP,female,15+,2025,2503204
+population,Singapore,SGP,female,15+,2026,2517322
+population,Singapore,SGP,female,15+,2027,2530725
+population,Singapore,SGP,female,15+,2028,2544180
+population,Singapore,SGP,female,15+,2029,2556296
+population,Singapore,SGP,female,15+,2030,2567357
+population,Singapore,SGP,male,15+,2024,2664614
+population,Singapore,SGP,male,15+,2025,2681304
+population,Singapore,SGP,male,15+,2026,2694564
+population,Singapore,SGP,male,15+,2027,2706953
+population,Singapore,SGP,male,15+,2028,2719334
+population,Singapore,SGP,male,15+,2029,2730170
+population,Singapore,SGP,male,15+,2030,2739839
+population,Sint Maarten (Dutch part),SXM,female,15+,2024,19226
+population,Sint Maarten (Dutch part),SXM,female,15+,2025,19562
+population,Sint Maarten (Dutch part),SXM,female,15+,2026,19875
+population,Sint Maarten (Dutch part),SXM,female,15+,2027,20169
+population,Sint Maarten (Dutch part),SXM,female,15+,2028,20447
+population,Sint Maarten (Dutch part),SXM,female,15+,2029,20702
+population,Sint Maarten (Dutch part),SXM,female,15+,2030,20932
+population,Sint Maarten (Dutch part),SXM,male,15+,2024,17563
+population,Sint Maarten (Dutch part),SXM,male,15+,2025,17858
+population,Sint Maarten (Dutch part),SXM,male,15+,2026,18126
+population,Sint Maarten (Dutch part),SXM,male,15+,2027,18379
+population,Sint Maarten (Dutch part),SXM,male,15+,2028,18614
+population,Sint Maarten (Dutch part),SXM,male,15+,2029,18822
+population,Sint Maarten (Dutch part),SXM,male,15+,2030,19012
+population,Slovakia,SVK,female,15+,2024,2395168
+population,Slovakia,SVK,female,15+,2025,2386990
+population,Slovakia,SVK,female,15+,2026,2383031
+population,Slovakia,SVK,female,15+,2027,2384165
+population,Slovakia,SVK,female,15+,2028,2383552
+population,Slovakia,SVK,female,15+,2029,2382564
+population,Slovakia,SVK,female,15+,2030,2381238
+population,Slovakia,SVK,male,15+,2024,2243660
+population,Slovakia,SVK,male,15+,2025,2235448
+population,Slovakia,SVK,male,15+,2026,2231326
+population,Slovakia,SVK,male,15+,2027,2232994
+population,Slovakia,SVK,male,15+,2028,2232992
+population,Slovakia,SVK,male,15+,2029,2232365
+population,Slovakia,SVK,male,15+,2030,2231749
+population,Slovenia,SVN,female,15+,2024,902482
+population,Slovenia,SVN,female,15+,2025,903338
+population,Slovenia,SVN,female,15+,2026,904023
+population,Slovenia,SVN,female,15+,2027,904448
+population,Slovenia,SVN,female,15+,2028,904474
+population,Slovenia,SVN,female,15+,2029,904104
+population,Slovenia,SVN,female,15+,2030,903497
+population,Slovenia,SVN,male,15+,2024,904450
+population,Slovenia,SVN,male,15+,2025,907134
+population,Slovenia,SVN,male,15+,2026,909526
+population,Slovenia,SVN,male,15+,2027,911660
+population,Slovenia,SVN,male,15+,2028,913310
+population,Slovenia,SVN,male,15+,2029,914517
+population,Slovenia,SVN,male,15+,2030,915544
+population,Solomon Islands,SLB,female,15+,2024,253755
+population,Solomon Islands,SLB,female,15+,2025,261443
+population,Solomon Islands,SLB,female,15+,2026,269412
+population,Solomon Islands,SLB,female,15+,2027,277606
+population,Solomon Islands,SLB,female,15+,2028,285962
+population,Solomon Islands,SLB,female,15+,2029,294412
+population,Solomon Islands,SLB,female,15+,2030,302896
+population,Solomon Islands,SLB,male,15+,2024,262582
+population,Solomon Islands,SLB,male,15+,2025,270614
+population,Solomon Islands,SLB,male,15+,2026,278892
+population,Solomon Islands,SLB,male,15+,2027,287372
+population,Solomon Islands,SLB,male,15+,2028,296005
+population,Solomon Islands,SLB,male,15+,2029,304712
+population,Solomon Islands,SLB,male,15+,2030,313440
+population,Somalia,SOM,female,15+,2024,5122406
+population,Somalia,SOM,female,15+,2025,5300969
+population,Somalia,SOM,female,15+,2026,5480867
+population,Somalia,SOM,female,15+,2027,5675234
+population,Somalia,SOM,female,15+,2028,5880154
+population,Somalia,SOM,female,15+,2029,6091682
+population,Somalia,SOM,female,15+,2030,6315974
+population,Somalia,SOM,male,15+,2024,5029768
+population,Somalia,SOM,male,15+,2025,5203726
+population,Somalia,SOM,male,15+,2026,5377885
+population,Somalia,SOM,male,15+,2027,5565842
+population,Somalia,SOM,male,15+,2028,5764586
+population,Somalia,SOM,male,15+,2029,5970310
+population,Somalia,SOM,male,15+,2030,6188906
+population,South Africa,ZAF,female,15+,2024,24610094
+population,South Africa,ZAF,female,15+,2025,24959730
+population,South Africa,ZAF,female,15+,2026,25293884
+population,South Africa,ZAF,female,15+,2027,25618826
+population,South Africa,ZAF,female,15+,2028,25939250
+population,South Africa,ZAF,female,15+,2029,26250152
+population,South Africa,ZAF,female,15+,2030,26548350
+population,South Africa,ZAF,male,15+,2024,22829626
+population,South Africa,ZAF,male,15+,2025,23132387
+population,South Africa,ZAF,male,15+,2026,23417646
+population,South Africa,ZAF,male,15+,2027,23692141
+population,South Africa,ZAF,male,15+,2028,23960745
+population,South Africa,ZAF,male,15+,2029,24218406
+population,South Africa,ZAF,male,15+,2030,24462397
+population,South Sudan,SSD,female,15+,2024,3770982
+population,South Sudan,SSD,female,15+,2025,3904808
+population,South Sudan,SSD,female,15+,2026,4039378
+population,South Sudan,SSD,female,15+,2027,4174213
+population,South Sudan,SSD,female,15+,2028,4303541
+population,South Sudan,SSD,female,15+,2029,4424282
+population,South Sudan,SSD,female,15+,2030,4533632
+population,South Sudan,SSD,male,15+,2024,3524354
+population,South Sudan,SSD,male,15+,2025,3653908
+population,South Sudan,SSD,male,15+,2026,3784228
+population,South Sudan,SSD,male,15+,2027,3914836
+population,South Sudan,SSD,male,15+,2028,4039897
+population,South Sudan,SSD,male,15+,2029,4155902
+population,South Sudan,SSD,male,15+,2030,4259604
+population,Spain,ESP,female,15+,2024,21383200
+population,Spain,ESP,female,15+,2025,21447300
+population,Spain,ESP,female,15+,2026,21501172
+population,Spain,ESP,female,15+,2027,21547169
+population,Spain,ESP,female,15+,2028,21583870
+population,Spain,ESP,female,15+,2029,21613006
+population,Spain,ESP,female,15+,2030,21637824
+population,Spain,ESP,male,15+,2024,20336450
+population,Spain,ESP,male,15+,2025,20399362
+population,Spain,ESP,male,15+,2026,20450260
+population,Spain,ESP,male,15+,2027,20492268
+population,Spain,ESP,male,15+,2028,20522573
+population,Spain,ESP,male,15+,2029,20543883
+population,Spain,ESP,male,15+,2030,20559618
+population,Sri Lanka,LKA,female,15+,2024,9429900
+population,Sri Lanka,LKA,female,15+,2025,9521961
+population,Sri Lanka,LKA,female,15+,2026,9609368
+population,Sri Lanka,LKA,female,15+,2027,9693181
+population,Sri Lanka,LKA,female,15+,2028,9774585
+population,Sri Lanka,LKA,female,15+,2029,9851682
+population,Sri Lanka,LKA,female,15+,2030,9922945
+population,Sri Lanka,LKA,male,15+,2024,8583882
+population,Sri Lanka,LKA,male,15+,2025,8666525
+population,Sri Lanka,LKA,male,15+,2026,8745396
+population,Sri Lanka,LKA,male,15+,2027,8822644
+population,Sri Lanka,LKA,male,15+,2028,8899380
+population,Sri Lanka,LKA,male,15+,2029,8972564
+population,Sri Lanka,LKA,male,15+,2030,9040712
+population,State of Palestine,PSE,female,15+,2024,1741990
+population,State of Palestine,PSE,female,15+,2025,1786700
+population,State of Palestine,PSE,female,15+,2026,1835660
+population,State of Palestine,PSE,female,15+,2027,1886314
+population,State of Palestine,PSE,female,15+,2028,1937044
+population,State of Palestine,PSE,female,15+,2029,1988827
+population,State of Palestine,PSE,female,15+,2030,2042556
+population,State of Palestine,PSE,male,15+,2024,1662596
+population,State of Palestine,PSE,male,15+,2025,1701734
+population,State of Palestine,PSE,male,15+,2026,1748722
+population,State of Palestine,PSE,male,15+,2027,1799112
+population,State of Palestine,PSE,male,15+,2028,1849971
+population,State of Palestine,PSE,male,15+,2029,1902325
+population,State of Palestine,PSE,male,15+,2030,1957098
+population,Sudan,SDN,female,15+,2024,15363724
+population,Sudan,SDN,female,15+,2025,15805788
+population,Sudan,SDN,female,15+,2026,16408459
+population,Sudan,SDN,female,15+,2027,16933918
+population,Sudan,SDN,female,15+,2028,17390282
+population,Sudan,SDN,female,15+,2029,17854296
+population,Sudan,SDN,female,15+,2030,18335991
+population,Sudan,SDN,male,15+,2024,14667861
+population,Sudan,SDN,male,15+,2025,15081286
+population,Sudan,SDN,male,15+,2026,15657908
+population,Sudan,SDN,male,15+,2027,16154916
+population,Sudan,SDN,male,15+,2028,16581035
+population,Sudan,SDN,male,15+,2029,17014938
+population,Sudan,SDN,male,15+,2030,17466833
+population,Suriname,SUR,female,15+,2024,237594
+population,Suriname,SUR,female,15+,2025,240705
+population,Suriname,SUR,female,15+,2026,243796
+population,Suriname,SUR,female,15+,2027,246871
+population,Suriname,SUR,female,15+,2028,249942
+population,Suriname,SUR,female,15+,2029,252933
+population,Suriname,SUR,female,15+,2030,255838
+population,Suriname,SUR,male,15+,2024,234174
+population,Suriname,SUR,male,15+,2025,237024
+population,Suriname,SUR,male,15+,2026,239853
+population,Suriname,SUR,male,15+,2027,242665
+population,Suriname,SUR,male,15+,2028,245468
+population,Suriname,SUR,male,15+,2029,248188
+population,Suriname,SUR,male,15+,2030,250822
+population,Sweden,SWE,female,15+,2024,4389618
+population,Sweden,SWE,female,15+,2025,4423092
+population,Sweden,SWE,female,15+,2026,4454587
+population,Sweden,SWE,female,15+,2027,4483996
+population,Sweden,SWE,female,15+,2028,4512442
+population,Sweden,SWE,female,15+,2029,4539678
+population,Sweden,SWE,female,15+,2030,4565551
+population,Sweden,SWE,male,15+,2024,4415700
+population,Sweden,SWE,male,15+,2025,4453192
+population,Sweden,SWE,male,15+,2026,4488473
+population,Sweden,SWE,male,15+,2027,4521289
+population,Sweden,SWE,male,15+,2028,4553192
+population,Sweden,SWE,male,15+,2029,4583910
+population,Sweden,SWE,male,15+,2030,4613486
+population,Switzerland,CHE,female,15+,2024,3840449
+population,Switzerland,CHE,female,15+,2025,3861494
+population,Switzerland,CHE,female,15+,2026,3881194
+population,Switzerland,CHE,female,15+,2027,3899496
+population,Switzerland,CHE,female,15+,2028,3917108
+population,Switzerland,CHE,female,15+,2029,3934094
+population,Switzerland,CHE,female,15+,2030,3950864
+population,Switzerland,CHE,male,15+,2024,3747624
+population,Switzerland,CHE,male,15+,2025,3771254
+population,Switzerland,CHE,male,15+,2026,3793319
+population,Switzerland,CHE,male,15+,2027,3814316
+population,Switzerland,CHE,male,15+,2028,3834428
+population,Switzerland,CHE,male,15+,2029,3853518
+population,Switzerland,CHE,male,15+,2030,3872422
+population,Syrian Arab Republic,SYR,female,15+,2024,8818687
+population,Syrian Arab Republic,SYR,female,15+,2025,9237922
+population,Syrian Arab Republic,SYR,female,15+,2026,9607113
+population,Syrian Arab Republic,SYR,female,15+,2027,9938022
+population,Syrian Arab Republic,SYR,female,15+,2028,10232848
+population,Syrian Arab Republic,SYR,female,15+,2029,10486285
+population,Syrian Arab Republic,SYR,female,15+,2030,10697170
+population,Syrian Arab Republic,SYR,male,15+,2024,8658648
+population,Syrian Arab Republic,SYR,male,15+,2025,9095867
+population,Syrian Arab Republic,SYR,male,15+,2026,9478627
+population,Syrian Arab Republic,SYR,male,15+,2027,9819834
+population,Syrian Arab Republic,SYR,male,15+,2028,10122102
+population,Syrian Arab Republic,SYR,male,15+,2029,10379788
+population,Syrian Arab Republic,SYR,male,15+,2030,10591584
+population,Tajikistan,TJK,female,15+,2024,3488500
+population,Tajikistan,TJK,female,15+,2025,3573942
+population,Tajikistan,TJK,female,15+,2026,3661876
+population,Tajikistan,TJK,female,15+,2027,3749832
+population,Tajikistan,TJK,female,15+,2028,3842679
+population,Tajikistan,TJK,female,15+,2029,3942894
+population,Tajikistan,TJK,female,15+,2030,4048218
+population,Tajikistan,TJK,male,15+,2024,3262008
+population,Tajikistan,TJK,male,15+,2025,3343904
+population,Tajikistan,TJK,male,15+,2026,3427494
+population,Tajikistan,TJK,male,15+,2027,3510333
+population,Tajikistan,TJK,male,15+,2028,3597362
+population,Tajikistan,TJK,male,15+,2029,3691955
+population,Tajikistan,TJK,male,15+,2030,3792534
+population,Thailand,THA,female,15+,2024,31643640
+population,Thailand,THA,female,15+,2025,31775076
+population,Thailand,THA,female,15+,2026,31900252
+population,Thailand,THA,female,15+,2027,32019242
+population,Thailand,THA,female,15+,2028,32126212
+population,Thailand,THA,female,15+,2029,32216736
+population,Thailand,THA,female,15+,2030,32290471
+population,Thailand,THA,male,15+,2024,29453710
+population,Thailand,THA,male,15+,2025,29521366
+population,Thailand,THA,male,15+,2026,29585315
+population,Thailand,THA,male,15+,2027,29645584
+population,Thailand,THA,male,15+,2028,29696266
+population,Thailand,THA,male,15+,2029,29732721
+population,Thailand,THA,male,15+,2030,29754819
+population,Timor-Leste,TLS,female,15+,2024,462974
+population,Timor-Leste,TLS,female,15+,2025,472784
+population,Timor-Leste,TLS,female,15+,2026,482582
+population,Timor-Leste,TLS,female,15+,2027,492714
+population,Timor-Leste,TLS,female,15+,2028,503418
+population,Timor-Leste,TLS,female,15+,2029,514754
+population,Timor-Leste,TLS,female,15+,2030,526642
+population,Timor-Leste,TLS,male,15+,2024,466231
+population,Timor-Leste,TLS,male,15+,2025,475991
+population,Timor-Leste,TLS,male,15+,2026,485820
+population,Timor-Leste,TLS,male,15+,2027,496068
+population,Timor-Leste,TLS,male,15+,2028,506933
+population,Timor-Leste,TLS,male,15+,2029,518422
+population,Timor-Leste,TLS,male,15+,2030,530416
+population,Togo,TGO,female,15+,2024,2863526
+population,Togo,TGO,female,15+,2025,2942439
+population,Togo,TGO,female,15+,2026,3023025
+population,Togo,TGO,female,15+,2027,3103800
+population,Togo,TGO,female,15+,2028,3184205
+population,Togo,TGO,female,15+,2029,3265400
+population,Togo,TGO,female,15+,2030,3348699
+population,Togo,TGO,male,15+,2024,2890736
+population,Togo,TGO,male,15+,2025,2972942
+population,Togo,TGO,male,15+,2026,3056777
+population,Togo,TGO,male,15+,2027,3140768
+population,Togo,TGO,male,15+,2028,3224338
+population,Togo,TGO,male,15+,2029,3308647
+population,Togo,TGO,male,15+,2030,3395013
+population,Tokelau,TKL,female,15+,2024,948
+population,Tokelau,TKL,female,15+,2025,990
+population,Tokelau,TKL,female,15+,2026,1021
+population,Tokelau,TKL,female,15+,2027,1045
+population,Tokelau,TKL,female,15+,2028,1074
+population,Tokelau,TKL,female,15+,2029,1104
+population,Tokelau,TKL,female,15+,2030,1128
+population,Tokelau,TKL,male,15+,2024,905
+population,Tokelau,TKL,male,15+,2025,948
+population,Tokelau,TKL,male,15+,2026,983
+population,Tokelau,TKL,male,15+,2027,1012
+population,Tokelau,TKL,male,15+,2028,1038
+population,Tokelau,TKL,male,15+,2029,1061
+population,Tokelau,TKL,male,15+,2030,1080
+population,Tonga,TON,female,15+,2024,37150
+population,Tonga,TON,female,15+,2025,37227
+population,Tonga,TON,female,15+,2026,37342
+population,Tonga,TON,female,15+,2027,37504
+population,Tonga,TON,female,15+,2028,37708
+population,Tonga,TON,female,15+,2029,37924
+population,Tonga,TON,female,15+,2030,38148
+population,Tonga,TON,male,15+,2024,30144
+population,Tonga,TON,male,15+,2025,30288
+population,Tonga,TON,male,15+,2026,30446
+population,Tonga,TON,male,15+,2027,30580
+population,Tonga,TON,male,15+,2028,30742
+population,Tonga,TON,male,15+,2029,30958
+population,Tonga,TON,male,15+,2030,31206
+population,Trinidad and Tobago,TTO,female,15+,2024,630933
+population,Trinidad and Tobago,TTO,female,15+,2025,634840
+population,Trinidad and Tobago,TTO,female,15+,2026,638306
+population,Trinidad and Tobago,TTO,female,15+,2027,641364
+population,Trinidad and Tobago,TTO,female,15+,2028,644042
+population,Trinidad and Tobago,TTO,female,15+,2029,646353
+population,Trinidad and Tobago,TTO,female,15+,2030,648335
+population,Trinidad and Tobago,TTO,male,15+,2024,609062
+population,Trinidad and Tobago,TTO,male,15+,2025,611980
+population,Trinidad and Tobago,TTO,male,15+,2026,614478
+population,Trinidad and Tobago,TTO,male,15+,2027,616586
+population,Trinidad and Tobago,TTO,male,15+,2028,618327
+population,Trinidad and Tobago,TTO,male,15+,2029,619726
+population,Trinidad and Tobago,TTO,male,15+,2030,620820
+population,Tunisia,TUN,female,15+,2024,4775580
+population,Tunisia,TUN,female,15+,2025,4832819
+population,Tunisia,TUN,female,15+,2026,4891294
+population,Tunisia,TUN,female,15+,2027,4950281
+population,Tunisia,TUN,female,15+,2028,5012586
+population,Tunisia,TUN,female,15+,2029,5075842
+population,Tunisia,TUN,female,15+,2030,5136590
+population,Tunisia,TUN,male,15+,2024,4550240
+population,Tunisia,TUN,male,15+,2025,4606323
+population,Tunisia,TUN,male,15+,2026,4663710
+population,Tunisia,TUN,male,15+,2027,4721460
+population,Tunisia,TUN,male,15+,2028,4782520
+population,Tunisia,TUN,male,15+,2029,4843891
+population,Tunisia,TUN,male,15+,2030,4902014
+population,Turkmenistan,TKM,female,15+,2024,2661484
+population,Turkmenistan,TKM,female,15+,2025,2714481
+population,Turkmenistan,TKM,female,15+,2026,2770484
+population,Turkmenistan,TKM,female,15+,2027,2828603
+population,Turkmenistan,TKM,female,15+,2028,2887799
+population,Turkmenistan,TKM,female,15+,2029,2946954
+population,Turkmenistan,TKM,female,15+,2030,3005029
+population,Turkmenistan,TKM,male,15+,2024,2471733
+population,Turkmenistan,TKM,male,15+,2025,2525874
+population,Turkmenistan,TKM,male,15+,2026,2582523
+population,Turkmenistan,TKM,male,15+,2027,2641082
+population,Turkmenistan,TKM,male,15+,2028,2700802
+population,Turkmenistan,TKM,male,15+,2029,2760708
+population,Turkmenistan,TKM,male,15+,2030,2819742
+population,Turks and Caicos Islands,TCA,female,15+,2024,19440
+population,Turks and Caicos Islands,TCA,female,15+,2025,19636
+population,Turks and Caicos Islands,TCA,female,15+,2026,19794
+population,Turks and Caicos Islands,TCA,female,15+,2027,19940
+population,Turks and Caicos Islands,TCA,female,15+,2028,20096
+population,Turks and Caicos Islands,TCA,female,15+,2029,20248
+population,Turks and Caicos Islands,TCA,female,15+,2030,20400
+population,Turks and Caicos Islands,TCA,male,15+,2024,19616
+population,Turks and Caicos Islands,TCA,male,15+,2025,19734
+population,Turks and Caicos Islands,TCA,male,15+,2026,19814
+population,Turks and Caicos Islands,TCA,male,15+,2027,19889
+population,Turks and Caicos Islands,TCA,male,15+,2028,19990
+population,Turks and Caicos Islands,TCA,male,15+,2029,20092
+population,Turks and Caicos Islands,TCA,male,15+,2030,20197
+population,Tuvalu,TUV,female,15+,2024,3206
+population,Tuvalu,TUV,female,15+,2025,3148
+population,Tuvalu,TUV,female,15+,2026,3103
+population,Tuvalu,TUV,female,15+,2027,3076
+population,Tuvalu,TUV,female,15+,2028,3064
+population,Tuvalu,TUV,female,15+,2029,3062
+population,Tuvalu,TUV,female,15+,2030,3066
+population,Tuvalu,TUV,male,15+,2024,3262
+population,Tuvalu,TUV,male,15+,2025,3209
+population,Tuvalu,TUV,male,15+,2026,3174
+population,Tuvalu,TUV,male,15+,2027,3152
+population,Tuvalu,TUV,male,15+,2028,3142
+population,Tuvalu,TUV,male,15+,2029,3146
+population,Tuvalu,TUV,male,15+,2030,3156
+population,Türkiye,TUR,female,15+,2024,34609922
+population,Türkiye,TUR,female,15+,2025,34899328
+population,Türkiye,TUR,female,15+,2026,35210422
+population,Türkiye,TUR,female,15+,2027,35542248
+population,Türkiye,TUR,female,15+,2028,35883231
+population,Türkiye,TUR,female,15+,2029,36222979
+population,Türkiye,TUR,female,15+,2030,36559090
+population,Türkiye,TUR,male,15+,2024,34101708
+population,Türkiye,TUR,male,15+,2025,34352076
+population,Türkiye,TUR,male,15+,2026,34624716
+population,Türkiye,TUR,male,15+,2027,34920462
+population,Türkiye,TUR,male,15+,2028,35226871
+population,Türkiye,TUR,male,15+,2029,35533362
+population,Türkiye,TUR,male,15+,2030,35837370
+population,Uganda,UGA,female,15+,2024,14408341
+population,Uganda,UGA,female,15+,2025,14907852
+population,Uganda,UGA,female,15+,2026,15417625
+population,Uganda,UGA,female,15+,2027,15935598
+population,Uganda,UGA,female,15+,2028,16460160
+population,Uganda,UGA,female,15+,2029,16990210
+population,Uganda,UGA,female,15+,2030,17526790
+population,Uganda,UGA,male,15+,2024,13828672
+population,Uganda,UGA,male,15+,2025,14324416
+population,Uganda,UGA,male,15+,2026,14830978
+population,Uganda,UGA,male,15+,2027,15346083
+population,Uganda,UGA,male,15+,2028,15868199
+population,Uganda,UGA,male,15+,2029,16396530
+population,Uganda,UGA,male,15+,2030,16932073
+population,Ukraine,UKR,female,15+,2024,17709886
+population,Ukraine,UKR,female,15+,2025,18240733
+population,Ukraine,UKR,female,15+,2026,18538357
+population,Ukraine,UKR,female,15+,2027,18496690
+population,Ukraine,UKR,female,15+,2028,18454960
+population,Ukraine,UKR,female,15+,2029,18402562
+population,Ukraine,UKR,female,15+,2030,18335962
+population,Ukraine,UKR,male,15+,2024,14892106
+population,Ukraine,UKR,male,15+,2025,15401520
+population,Ukraine,UKR,male,15+,2026,15694767
+population,Ukraine,UKR,male,15+,2027,15676530
+population,Ukraine,UKR,male,15+,2028,15658767
+population,Ukraine,UKR,male,15+,2029,15630235
+population,Ukraine,UKR,male,15+,2030,15587764
+population,United Arab Emirates,ARE,female,15+,2024,3101109
+population,United Arab Emirates,ARE,female,15+,2025,3206172
+population,United Arab Emirates,ARE,female,15+,2026,3285183
+population,United Arab Emirates,ARE,female,15+,2027,3350934
+population,United Arab Emirates,ARE,female,15+,2028,3409420
+population,United Arab Emirates,ARE,female,15+,2029,3461931
+population,United Arab Emirates,ARE,female,15+,2030,3509660
+population,United Arab Emirates,ARE,male,15+,2024,6149442
+population,United Arab Emirates,ARE,male,15+,2025,6327032
+population,United Arab Emirates,ARE,male,15+,2026,6447389
+population,United Arab Emirates,ARE,male,15+,2027,6537294
+population,United Arab Emirates,ARE,male,15+,2028,6611005
+population,United Arab Emirates,ARE,male,15+,2029,6674158
+population,United Arab Emirates,ARE,male,15+,2030,6730652
+population,United Kingdom,GBR,female,15+,2024,29304819
+population,United Kingdom,GBR,female,15+,2025,29545415
+population,United Kingdom,GBR,female,15+,2026,29781018
+population,United Kingdom,GBR,female,15+,2027,30017140
+population,United Kingdom,GBR,female,15+,2028,30246319
+population,United Kingdom,GBR,female,15+,2029,30457344
+population,United Kingdom,GBR,female,15+,2030,30657535
+population,United Kingdom,GBR,male,15+,2024,27951942
+population,United Kingdom,GBR,male,15+,2025,28206691
+population,United Kingdom,GBR,male,15+,2026,28457226
+population,United Kingdom,GBR,male,15+,2027,28709240
+population,United Kingdom,GBR,male,15+,2028,28954988
+population,United Kingdom,GBR,male,15+,2029,29183672
+population,United Kingdom,GBR,male,15+,2030,29402950
+population,United Republic of Tanzania,TZA,female,15+,2024,20140900
+population,United Republic of Tanzania,TZA,female,15+,2025,20787309
+population,United Republic of Tanzania,TZA,female,15+,2026,21445306
+population,United Republic of Tanzania,TZA,female,15+,2027,22116022
+population,United Republic of Tanzania,TZA,female,15+,2028,22812526
+population,United Republic of Tanzania,TZA,female,15+,2029,23539832
+population,United Republic of Tanzania,TZA,female,15+,2030,24286954
+population,United Republic of Tanzania,TZA,male,15+,2024,19256435
+population,United Republic of Tanzania,TZA,male,15+,2025,19889090
+population,United Republic of Tanzania,TZA,male,15+,2026,20534071
+population,United Republic of Tanzania,TZA,male,15+,2027,21192602
+population,United Republic of Tanzania,TZA,male,15+,2028,21877908
+population,United Republic of Tanzania,TZA,male,15+,2029,22594829
+population,United Republic of Tanzania,TZA,male,15+,2030,23332353
+population,United States Virgin Islands,VIR,female,15+,2024,37768
+population,United States Virgin Islands,VIR,female,15+,2025,37584
+population,United States Virgin Islands,VIR,female,15+,2026,37386
+population,United States Virgin Islands,VIR,female,15+,2027,37176
+population,United States Virgin Islands,VIR,female,15+,2028,36962
+population,United States Virgin Islands,VIR,female,15+,2029,36752
+population,United States Virgin Islands,VIR,female,15+,2030,36543
+population,United States Virgin Islands,VIR,male,15+,2024,33130
+population,United States Virgin Islands,VIR,male,15+,2025,32706
+population,United States Virgin Islands,VIR,male,15+,2026,32301
+population,United States Virgin Islands,VIR,male,15+,2027,31918
+population,United States Virgin Islands,VIR,male,15+,2028,31566
+population,United States Virgin Islands,VIR,male,15+,2029,31240
+population,United States Virgin Islands,VIR,male,15+,2030,30934
+population,United States of America,USA,female,15+,2024,142724622
+population,United States of America,USA,female,15+,2025,143852216
+population,United States of America,USA,female,15+,2026,144891618
+population,United States of America,USA,female,15+,2027,145876554
+population,United States of America,USA,female,15+,2028,146832424
+population,United States of America,USA,female,15+,2029,147764983
+population,United States of America,USA,female,15+,2030,148669018
+population,United States of America,USA,male,15+,2024,142858258
+population,United States of America,USA,male,15+,2025,144042758
+population,United States of America,USA,male,15+,2026,145139151
+population,United States of America,USA,male,15+,2027,146179688
+population,United States of America,USA,male,15+,2028,147190929
+population,United States of America,USA,male,15+,2029,148181046
+population,United States of America,USA,male,15+,2030,149145416
+population,Uruguay,URY,female,15+,2024,1442136
+population,Uruguay,URY,female,15+,2025,1447566
+population,Uruguay,URY,female,15+,2026,1452799
+population,Uruguay,URY,female,15+,2027,1458008
+population,Uruguay,URY,female,15+,2028,1463491
+population,Uruguay,URY,female,15+,2029,1469026
+population,Uruguay,URY,female,15+,2030,1474564
+population,Uruguay,URY,male,15+,2024,1324944
+population,Uruguay,URY,male,15+,2025,1331362
+population,Uruguay,URY,male,15+,2026,1337612
+population,Uruguay,URY,male,15+,2027,1343930
+population,Uruguay,URY,male,15+,2028,1350610
+population,Uruguay,URY,male,15+,2029,1357435
+population,Uruguay,URY,male,15+,2030,1364361
+population,Uzbekistan,UZB,female,15+,2024,12568700
+population,Uzbekistan,UZB,female,15+,2025,12773694
+population,Uzbekistan,UZB,female,15+,2026,12974230
+population,Uzbekistan,UZB,female,15+,2027,13174551
+population,Uzbekistan,UZB,female,15+,2028,13384763
+population,Uzbekistan,UZB,female,15+,2029,13612276
+population,Uzbekistan,UZB,female,15+,2030,13851346
+population,Uzbekistan,UZB,male,15+,2024,12483375
+population,Uzbekistan,UZB,male,15+,2025,12685542
+population,Uzbekistan,UZB,male,15+,2026,12882666
+population,Uzbekistan,UZB,male,15+,2027,13079214
+population,Uzbekistan,UZB,male,15+,2028,13285968
+population,Uzbekistan,UZB,male,15+,2029,13510898
+population,Uzbekistan,UZB,male,15+,2030,13747973
+population,Vanuatu,VUT,female,15+,2024,101448
+population,Vanuatu,VUT,female,15+,2025,104369
+population,Vanuatu,VUT,female,15+,2026,107380
+population,Vanuatu,VUT,female,15+,2027,110472
+population,Vanuatu,VUT,female,15+,2028,113648
+population,Vanuatu,VUT,female,15+,2029,116902
+population,Vanuatu,VUT,female,15+,2030,120206
+population,Vanuatu,VUT,male,15+,2024,100746
+population,Vanuatu,VUT,male,15+,2025,103564
+population,Vanuatu,VUT,male,15+,2026,106479
+population,Vanuatu,VUT,male,15+,2027,109482
+population,Vanuatu,VUT,male,15+,2028,112579
+population,Vanuatu,VUT,male,15+,2029,115761
+population,Vanuatu,VUT,male,15+,2030,118998
+population,Venezuela (Bolivarian Republic of),VEN,female,15+,2024,10842339
+population,Venezuela (Bolivarian Republic of),VEN,female,15+,2025,10975846
+population,Venezuela (Bolivarian Republic of),VEN,female,15+,2026,11109482
+population,Venezuela (Bolivarian Republic of),VEN,female,15+,2027,11243688
+population,Venezuela (Bolivarian Republic of),VEN,female,15+,2028,11372688
+population,Venezuela (Bolivarian Republic of),VEN,female,15+,2029,11495146
+population,Venezuela (Bolivarian Republic of),VEN,female,15+,2030,11612656
+population,Venezuela (Bolivarian Republic of),VEN,male,15+,2024,10312120
+population,Venezuela (Bolivarian Republic of),VEN,male,15+,2025,10435782
+population,Venezuela (Bolivarian Republic of),VEN,male,15+,2026,10559636
+population,Venezuela (Bolivarian Republic of),VEN,male,15+,2027,10683990
+population,Venezuela (Bolivarian Republic of),VEN,male,15+,2028,10802917
+population,Venezuela (Bolivarian Republic of),VEN,male,15+,2029,10915144
+population,Venezuela (Bolivarian Republic of),VEN,male,15+,2030,11022322
+population,Viet Nam,VNM,female,15+,2024,40179390
+population,Viet Nam,VNM,female,15+,2025,40624819
+population,Viet Nam,VNM,female,15+,2026,41084490
+population,Viet Nam,VNM,female,15+,2027,41655186
+population,Viet Nam,VNM,female,15+,2028,42247490
+population,Viet Nam,VNM,female,15+,2029,42771324
+population,Viet Nam,VNM,female,15+,2030,43271449
+population,Viet Nam,VNM,male,15+,2024,37354912
+population,Viet Nam,VNM,male,15+,2025,37752331
+population,Viet Nam,VNM,male,15+,2026,38167091
+population,Viet Nam,VNM,male,15+,2027,38696640
+population,Viet Nam,VNM,male,15+,2028,39247806
+population,Viet Nam,VNM,male,15+,2029,39729596
+population,Viet Nam,VNM,male,15+,2030,40189469
+population,Wallis and Futuna Islands,WLF,female,15+,2024,4792
+population,Wallis and Futuna Islands,WLF,female,15+,2025,4816
+population,Wallis and Futuna Islands,WLF,female,15+,2026,4844
+population,Wallis and Futuna Islands,WLF,female,15+,2027,4870
+population,Wallis and Futuna Islands,WLF,female,15+,2028,4893
+population,Wallis and Futuna Islands,WLF,female,15+,2029,4906
+population,Wallis and Futuna Islands,WLF,female,15+,2030,4920
+population,Wallis and Futuna Islands,WLF,male,15+,2024,4184
+population,Wallis and Futuna Islands,WLF,male,15+,2025,4209
+population,Wallis and Futuna Islands,WLF,male,15+,2026,4232
+population,Wallis and Futuna Islands,WLF,male,15+,2027,4255
+population,Wallis and Futuna Islands,WLF,male,15+,2028,4276
+population,Wallis and Futuna Islands,WLF,male,15+,2029,4290
+population,Wallis and Futuna Islands,WLF,male,15+,2030,4309
+population,Western Sahara,ESH,female,15+,2024,198128
+population,Western Sahara,ESH,female,15+,2025,202722
+population,Western Sahara,ESH,female,15+,2026,207238
+population,Western Sahara,ESH,female,15+,2027,211704
+population,Western Sahara,ESH,female,15+,2028,216160
+population,Western Sahara,ESH,female,15+,2029,220583
+population,Western Sahara,ESH,female,15+,2030,225012
+population,Western Sahara,ESH,male,15+,2024,255704
+population,Western Sahara,ESH,male,15+,2025,260262
+population,Western Sahara,ESH,male,15+,2026,264717
+population,Western Sahara,ESH,male,15+,2027,269098
+population,Western Sahara,ESH,male,15+,2028,273442
+population,Western Sahara,ESH,male,15+,2029,277740
+population,Western Sahara,ESH,male,15+,2030,282032
+population,Yemen,YEM,female,15+,2024,11883380
+population,Yemen,YEM,female,15+,2025,12250693
+population,Yemen,YEM,female,15+,2026,12617023
+population,Yemen,YEM,female,15+,2027,12991511
+population,Yemen,YEM,female,15+,2028,13382564
+population,Yemen,YEM,female,15+,2029,13789840
+population,Yemen,YEM,female,15+,2030,14212990
+population,Yemen,YEM,male,15+,2024,12008567
+population,Yemen,YEM,male,15+,2025,12387372
+population,Yemen,YEM,male,15+,2026,12764227
+population,Yemen,YEM,male,15+,2027,13148689
+population,Yemen,YEM,male,15+,2028,13549648
+population,Yemen,YEM,male,15+,2029,13966958
+population,Yemen,YEM,male,15+,2030,14400332
+population,Zambia,ZMB,female,15+,2024,6345421
+population,Zambia,ZMB,female,15+,2025,6575836
+population,Zambia,ZMB,female,15+,2026,6810386
+population,Zambia,ZMB,female,15+,2027,7048139
+population,Zambia,ZMB,female,15+,2028,7288014
+population,Zambia,ZMB,female,15+,2029,7529266
+population,Zambia,ZMB,female,15+,2030,7772089
+population,Zambia,ZMB,male,15+,2024,6132920
+population,Zambia,ZMB,male,15+,2025,6359700
+population,Zambia,ZMB,male,15+,2026,6590386
+population,Zambia,ZMB,male,15+,2027,6824024
+population,Zambia,ZMB,male,15+,2028,7059564
+population,Zambia,ZMB,male,15+,2029,7296280
+population,Zambia,ZMB,male,15+,2030,7534254
+population,Zimbabwe,ZWE,female,15+,2024,5328614
+population,Zimbabwe,ZWE,female,15+,2025,5472282
+population,Zimbabwe,ZWE,female,15+,2026,5623885
+population,Zimbabwe,ZWE,female,15+,2027,5780126
+population,Zimbabwe,ZWE,female,15+,2028,5936793
+population,Zimbabwe,ZWE,female,15+,2029,6089767
+population,Zimbabwe,ZWE,female,15+,2030,6236084
+population,Zimbabwe,ZWE,male,15+,2024,4506664
+population,Zimbabwe,ZWE,male,15+,2025,4650124
+population,Zimbabwe,ZWE,male,15+,2026,4801887
+population,Zimbabwe,ZWE,male,15+,2027,4958361
+population,Zimbabwe,ZWE,male,15+,2028,5115336
+population,Zimbabwe,ZWE,male,15+,2029,5268848
+population,Zimbabwe,ZWE,male,15+,2030,5415894
