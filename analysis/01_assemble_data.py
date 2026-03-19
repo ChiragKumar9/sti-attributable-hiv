@@ -596,6 +596,33 @@ unaids_data = unaids_inc_num.join(
 
 data = data.join(unaids_data, on=["country_code", "sex", "year"], how="left")
 
+#  Manually interpolate Somalia UNAIDS HIV incidence numbers (2023 by sex not published)
+
+# 2022 values given: For each sex: val = <200 --> 150, lower = <100 --> 50, upper = <200 --> 150
+# 2023 values: Combined both sexes: 282.17 (from unaids future projections)
+# assume that 2022 sex ratio (1:1 based on the precision of data we have) carries through to 2023, giving us 141.085 for each
+# round to 150 to be consistent with the level of precision of the 2022 data, and to avoid implying false precision from a modelled input
+# carry through bounds from 2022 for consistency as well 
+
+# Also carry forward the 2022 incidence rate (pre-/1000 value: 0.05, i.e. <0.1 per 1000 uninfected).
+# Justification: both 2022 and 2023 Somalia rates are censored at <0.1 per 1000. Any true year-on-year
+# change in incidence rate at this level would be masked by the <0.1 coding assumption
+values = {
+    "unaids_incidence_number": 150.0,
+    "unaids_incidence_number_lower": 50.0,
+    "unaids_incidence_number_upper": 150.0,
+    "unaids_incidence_rate_uninfected": 0.05,        # <0.1 per 1000; divided by 1000 below → 0.00005
+    "unaids_incidence_rate_uninfected_lower": 0.05,
+    "unaids_incidence_rate_uninfected_upper": 0.05,
+}
+for col, val in values.items():
+    data = data.with_columns(
+        pl.when((pl.col("country_code") == "SOM") & (pl.col("year") == 2023))
+        .then(pl.lit(val))
+        .otherwise(pl.col(col))
+        .alias(col)
+    )
+
 # divide incidence rate by 1000 since original data is per 1000 uninfected population
 data = data.with_columns(
     unaids_incidence_rate_uninfected=pl.col("unaids_incidence_rate_uninfected")
@@ -622,10 +649,11 @@ data = data.with_columns(
 )
 
 # add a column that is a true or false for whether this row will be used in the UNAIDS analysis
-# false for the following countries: Liberia, Equatorial Guinea, São Tomé and Príncipe, Somalia
+# false for the following countries: Liberia, Equatorial Guinea, São Tomé and Príncipe
 # Cabo Verde, Cote dIvoire
-countries_to_exclude = ["LBR", "GNQ", "STP", "SOM", "CPV", "CIV"]
+countries_to_exclude = ["LBR", "GNQ", "STP", "CPV", "CIV"]
 
+#TODO - why are we excluding Cote dIvoire
 data = data.with_columns(
     cols_unaids_analysis=pl.when(
         pl.col("country_code").is_in(countries_to_exclude)
@@ -650,14 +678,14 @@ data = data.with_columns(
 
 # Add in DHS treatment seeking rate for someone with STI symptoms, by region and by sex
 dhs_treatment_seeking = pl.read_csv(
-    os.path.join(data_dir, "dhs_treatment_seeking_symptom.csv")
+    os.path.join(data_dir, "dhs_treatment_seeking_symptoms_hivNeg.csv")
 )
-
 # map country name to iso3; 3 DHS names differ from IHME names
 _dhs_name_to_iso3 = dict(ihme_name_to_iso3)
 _dhs_name_to_iso3["Tanzania"] = "TZA"
 _dhs_name_to_iso3["DRC"] = "COD"
 _dhs_name_to_iso3["Sao Tome"] = "STP"
+_dhs_name_to_iso3["Cote d'Ivoire"] = "CIV"
 
 dhs_treatment_seeking = dhs_treatment_seeking.with_columns(
     iso3=pl.col("country").replace(_dhs_name_to_iso3)
@@ -866,22 +894,35 @@ unaids_proj_sex = unaids_proj_sex.join(
     sex_fractions, left_on="sex_ratio_year", right_on="year", how="left"
 )
 
-unaids_proj_by_sex = pl.concat(
-    [
-        unaids_proj_sex.with_columns(
-            sex=pl.lit("Female"),
-            value=pl.col("value") * pl.col("female_fraction"),
-        ).select(
-            ["country", "country_code", "region", "year", "sex", "value"]
-        ),
-        unaids_proj_sex.with_columns(
-            sex=pl.lit("Male"),
-            value=pl.col("value") * pl.col("male_fraction"),
-        ).select(
-            ["country", "country_code", "region", "year", "sex", "value"]
-        ),
-    ]
-)
+unaids_proj_by_sex = pl.concat([
+    unaids_proj_sex.with_columns(
+        sex=pl.lit("Female"),
+        value=pl.col("value") * pl.col("female_fraction"),
+    ).select(["country", "country_code", "region", "year", "sex", "value"]),
+    unaids_proj_sex.with_columns(
+        sex=pl.lit("Male"),
+        value=pl.col("value") * pl.col("male_fraction"),
+    ).select(["country", "country_code", "region", "year", "sex", "value"]),
+])
+
+# add UN population into future projections file covers all years in the projections file (historical and future)
+un_pop_for_proj = pl.concat([
+    # historical (1990-2023)
+    pl.read_csv(os.path.join(data_dir, "un_pop_data.csv"))
+    .rename({"Location": "country", "Sex": "sex", "Time": "year", "Value": "un_pop"})
+    .select(["country", "sex", "year", "un_pop"]),
+    # future projections (2024-2030)
+    pl.read_csv(os.path.join(data_dir, "UN_pop_projections.csv"))
+    .with_columns(
+        sex=pl.col("sex").replace({"female": "Female", "male": "Male"}),
+        val=pl.col("val").cast(pl.Float64),
+    )
+    .rename({"location": "country", "val": "un_pop"})
+    .select(["country", "sex", "year", "un_pop"]),
+])
+unaids_proj_by_sex = unaids_proj_by_sex.join(
+    un_pop_for_proj, on=["country", "sex", "year"], how="left"
+).rename({"value": "unaids_incidence_number"})
 
 unaids_proj_by_sex.write_csv(
     os.path.join(output_dir, "unaids_future_hiv_projections_by_sex.csv")
