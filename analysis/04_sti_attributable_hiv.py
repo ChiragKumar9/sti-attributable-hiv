@@ -121,7 +121,7 @@ male_coinfection = pl.read_csv(
     os.path.join(data_dir, "male_sti_coinfection_rates.csv")
 )
 
-# Add Beta distribution bounds to male coinfection data 
+# Add Beta distribution bounds to male coinfection data
 # Prior is beta(1, 1), lower is 2.5 percentile and upper is 97.5 percentile
 prior_coinfected = 1
 prior_not_coinfected = 1
@@ -132,14 +132,21 @@ male_coinfection = male_coinfection.with_columns(
 
 male_coinfection = male_coinfection.with_columns(
     n_coinfected_posterior=pl.col("n coinfected") + pl.lit(prior_coinfected),
-    n_not_coinfected_posterior=pl.col("n_not_coinfected") + pl.lit(prior_not_coinfected),
+    n_not_coinfected_posterior=pl.col("n_not_coinfected")
+    + pl.lit(prior_not_coinfected),
 )
 
 male_coinfection = male_coinfection.with_columns(
     pl.struct(["n_coinfected_posterior", "n_not_coinfected_posterior"])
     .map_elements(
-        lambda x: stats.beta.ppf(0.025, x["n_coinfected_posterior"], x["n_not_coinfected_posterior"]) * 100
-        if (x["n_coinfected_posterior"] is not None and x["n_not_coinfected_posterior"] is not None)
+        lambda x: stats.beta.ppf(
+            0.025, x["n_coinfected_posterior"], x["n_not_coinfected_posterior"]
+        )
+        * 100
+        if (
+            x["n_coinfected_posterior"] is not None
+            and x["n_not_coinfected_posterior"] is not None
+        )
         else None,
         return_dtype=pl.Float64,
     )
@@ -149,8 +156,14 @@ male_coinfection = male_coinfection.with_columns(
 male_coinfection = male_coinfection.with_columns(
     pl.struct(["n_coinfected_posterior", "n_not_coinfected_posterior"])
     .map_elements(
-        lambda x: stats.beta.ppf(0.975, x["n_coinfected_posterior"], x["n_not_coinfected_posterior"]) * 100 # multiply by 100 bc coinfection prev is stored as a percentage
-        if (x["n_coinfected_posterior"] is not None and x["n_not_coinfected_posterior"] is not None)
+        lambda x: stats.beta.ppf(
+            0.975, x["n_coinfected_posterior"], x["n_not_coinfected_posterior"]
+        )
+        * 100  # multiply by 100 bc coinfection prev is stored as a percentage
+        if (
+            x["n_coinfected_posterior"] is not None
+            and x["n_not_coinfected_posterior"] is not None
+        )
         else None,
         return_dtype=pl.Float64,
     )
@@ -158,7 +171,11 @@ male_coinfection = male_coinfection.with_columns(
 )
 
 male_coinfection = male_coinfection.drop(
-    ["n_not_coinfected", "n_coinfected_posterior", "n_not_coinfected_posterior"]
+    [
+        "n_not_coinfected",
+        "n_coinfected_posterior",
+        "n_not_coinfected_posterior",
+    ]
 )
 
 # the male data is missing anything for syphilis
@@ -424,16 +441,20 @@ for sti1 in ["gc", "chlamydia", "syphilis", "trichomoniasis"]:
             _get_rr(_female_coin_sa, s1, s2, "Coinfection prevalence upper")
             or 0.0
         )
-        rr_m    = _get_rr(_male_coin_orig, s1, s2)
-        rr_m_lo = _get_rr(_male_coin_orig, s1, s2, "Coinfection prevalence lower")
-        rr_m_hi = _get_rr(_male_coin_orig, s1, s2, "Coinfection prevalence upper")
+        rr_m = _get_rr(_male_coin_orig, s1, s2)
+        rr_m_lo = _get_rr(
+            _male_coin_orig, s1, s2, "Coinfection prevalence lower"
+        )
+        rr_m_hi = _get_rr(
+            _male_coin_orig, s1, s2, "Coinfection prevalence upper"
+        )
         if rr_m is None:
-            rr_m    = rr_f_sea     # for male syphilis pairs, fall back to female SEA
+            rr_m = rr_f_sea  # for male syphilis pairs, fall back to female SEA
             rr_m_lo = rr_f_sea_lo
             rr_m_hi = rr_f_sea_hi
 
         for estimate, f_sea, f_sa, m in [
-            ("",       rr_f_sea,    rr_f_sa,    rr_m),
+            ("", rr_f_sea, rr_f_sa, rr_m),
             ("_lower", rr_f_sea_lo, rr_f_sa_lo, rr_m_lo),
             ("_upper", rr_f_sea_hi, rr_f_sa_hi, rr_m_hi),
         ]:
