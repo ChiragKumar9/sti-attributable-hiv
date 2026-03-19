@@ -245,7 +245,7 @@ def plot_attributable_hiv_burden_drug_resistance_region(hiv, ax, fig):
         pl.sum("hiv_incidence_number_attributable_to_gc_upper"),
         pl.sum("hiv_incidence_number_attributable_to_gc_lower"),
     )
-    # filter to years with resistance data 
+    # filter to years with resistance data
     hiv = hiv.filter(pl.col("year") <= 2023)
     # sort by year
     hiv = hiv.sort(by=["region", "year"])
