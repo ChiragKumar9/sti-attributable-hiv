@@ -737,7 +737,7 @@ resistance.write_csv(
 )
 
 # read in our hiv sti data
-hiv_sti = pl.read_csv(os.path.join(output_dir, "hiv_sti.csv"))
+hiv_sti = pl.read_csv(os.path.join(output_dir, "hiv_sti_with_projections.csv"))
 
 # merge first with the country-level data
 hiv_sti = hiv_sti.join(
