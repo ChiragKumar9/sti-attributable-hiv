@@ -1199,8 +1199,8 @@ def plot_sensitivity_country_bar(
 def plot_attributable_hiv_burden_age_pathogen(hiv, ax, sex, fig):
     # we need the age groups in a particular order
 
-    regions = ["15-24", "25-49", "50+"]
-    hiv = hiv.with_columns(pl.col("age_group").cast(pl.Enum(regions)))
+    age_groups = ["15-24", "25-49", "50+"]
+    hiv = hiv.with_columns(pl.col("age_group").cast(pl.Enum(age_groups)))
     hiv = hiv.sort("age_group")
 
     hiv = hiv.group_by(["age_group"], maintain_order=True).agg(

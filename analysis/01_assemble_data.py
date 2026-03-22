@@ -378,19 +378,17 @@ data = data.with_columns(
 
 data = data.with_columns(
     treatment_proportion=pl.col("treatment_proportion").fill_null(
-        pl.col("treatment_proportion")
-        .mean()
-        .over(["year", "sex", "region", "age_group"])
+        pl.col("treatment_proportion").mean().over(["year", "sex", "region"])
     ),
     treatment_proportion_lower=pl.col("treatment_proportion_lower").fill_null(
         pl.col("treatment_proportion_lower")
         .mean()
-        .over(["year", "sex", "region", "age_group"])
+        .over(["year", "sex", "region"])
     ),
     treatment_proportion_upper=pl.col("treatment_proportion_upper").fill_null(
         pl.col("treatment_proportion_upper")
         .mean()
-        .over(["year", "sex", "region", "age_group"])
+        .over(["year", "sex", "region"])
     ),
 )
 
