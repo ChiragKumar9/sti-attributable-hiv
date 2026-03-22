@@ -15,3 +15,6 @@ sti_symptoms:
     # doesn't matter since no male hiv cases are attributable to trichomoniasis
     male: 0.5
     female: 0.15
+# not all art coverage is effective
+# see https://www.thelancet.com/journals/laninf/article/PIIS1473309909703287/abstract
+art_efficacy: 0.78
