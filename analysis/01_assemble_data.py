@@ -735,14 +735,41 @@ dhs_country = dhs_treatment_seeking.select(
     }
 )
 
-# Calculate regional averages
-dhs_regional = dhs_treatment_seeking.group_by("region", "sex", "year").agg(
-    frac_sought_treatment_region=pl.mean("frac_sought_treatment")
+# Calculate regional averages and interpolate
+dhs_regional = (
+    dhs_treatment_seeking.group_by("region", "sex", "year")
+    .agg(frac_sought_treatment_region=pl.mean("frac_sought_treatment"))
+    .sort("region", "sex", "year")
+    .with_columns(
+        frac_sought_treatment_region=pl.col("frac_sought_treatment_region")
+        .interpolate(method="linear")
+        .over(["region", "sex"])
+    )
 )
 
 # Calculate Africa-wide averages
 dhs_africa = dhs_treatment_seeking.group_by("sex", "year").agg(
     frac_sought_treatment_africa=pl.mean("frac_sought_treatment")
+)
+
+# Create a complete grid of sex and years to ensure all years are present
+sex_values = dhs_africa.select("sex").unique()
+year_min = dhs_africa.select(pl.col("year").min()).item()
+year_max = dhs_africa.select(pl.col("year").max()).item()
+
+complete_grid = sex_values.join(
+    pl.DataFrame({"year": range(year_min, year_max + 1)}), how="cross"
+)
+
+# Join with complete grid to add missing year rows
+dhs_africa = (
+    complete_grid.join(dhs_africa, on=["sex", "year"], how="left")
+    .sort("sex", "year")
+    .with_columns(
+        frac_sought_treatment_africa=pl.col("frac_sought_treatment_africa")
+        .interpolate(method="linear")
+        .over(["sex"])
+    )
 )
 
 # Join all three levels to main data
@@ -764,27 +791,13 @@ data = data.with_columns(
     .over(["country_code", "sex"])
 )
 
-# Interpolate regional data within each region-sex group
-data = data.with_columns(
-    frac_sought_treatment_region_interp=pl.col("frac_sought_treatment_region")
-    .interpolate(method="linear")
-    .over(["region", "sex"])
-)
-
-# Interpolate Africa data within each sex group
-data = data.with_columns(
-    frac_sought_treatment_africa_interp=pl.col("frac_sought_treatment_africa")
-    .interpolate(method="linear")
-    .over(["sex"])
-)
-
 # Apply fallback hierarchy: country -> region -> africa
 data = data.with_columns(
     frac_sought_treatment=pl.coalesce(
         [
             pl.col("frac_sought_treatment_country_interp"),
-            pl.col("frac_sought_treatment_region_interp"),
-            pl.col("frac_sought_treatment_africa_interp"),
+            pl.col("frac_sought_treatment_region"),
+            pl.col("frac_sought_treatment_africa"),
         ]
     )
 ).drop(
@@ -792,9 +805,7 @@ data = data.with_columns(
         "frac_sought_treatment_country",
         "frac_sought_treatment_country_interp",
         "frac_sought_treatment_region",
-        "frac_sought_treatment_region_interp",
         "frac_sought_treatment_africa",
-        "frac_sought_treatment_africa_interp",
     ]
 )
 
