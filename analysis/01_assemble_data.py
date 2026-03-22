@@ -690,6 +690,7 @@ data = data.with_columns(
 dhs_treatment_seeking = pl.read_csv(
     os.path.join(data_dir, "dhs_treatment_seeking_symptoms_hivNeg.csv")
 )
+
 # map country name to iso3; 3 DHS names differ from IHME names
 _dhs_name_to_iso3 = dict(ihme_name_to_iso3)
 _dhs_name_to_iso3["Tanzania"] = "TZA"
@@ -706,20 +707,14 @@ dhs_treatment_seeking = dhs_treatment_seeking.filter(
     pl.col("pct_sought_treatment_wtd").is_not_null()
 )
 
-# calculate mean from numbers of respondents in each country, summed by regions
-dhs_treatment_seeking = (
-    dhs_treatment_seeking.group_by("region", "sex", "year")
-    .agg(frac_sought_treatment=pl.mean("pct_sought_treatment_wtd") / 100)
-    .select(["region", "sex", "year", "frac_sought_treatment"])
-)
-
-# clean sex names to match
+# Convert to fraction and clean sex names
 dhs_treatment_seeking = dhs_treatment_seeking.with_columns(
+    frac_sought_treatment=pl.col("pct_sought_treatment_wtd") / 100,
     sex=pl.when(pl.col("sex") == "male")
     .then(pl.lit("Male"))
     .when(pl.col("sex") == "female")
     .then(pl.lit("Female"))
-    .otherwise(pl.lit("Error: unexpected sex value"))
+    .otherwise(pl.lit("Error: unexpected sex value")),
 )
 
 # assert that there are no instances of unexpected sex
@@ -730,25 +725,77 @@ assert (
     == 0
 ), "There are unexpected sex values in the DHS treatment seeking data"
 
-data = data.join(
-    dhs_treatment_seeking, on=["region", "sex", "year"], how="left"
+# Keep country-level data (before aggregating to regions)
+dhs_country = dhs_treatment_seeking.select(
+    ["iso3", "sex", "year", "frac_sought_treatment"]
+).rename(
+    {
+        "iso3": "country_code",
+        "frac_sought_treatment": "frac_sought_treatment_country",
+    }
 )
 
-# interpolate missing treatment seeking rates by first interpolating between succesive
-# years within each country, then filling any remaining missing values with the average
-# for that year
-data = data.sort("sex", "region", "year")
-
-data = data.with_columns(
-    pl.col("frac_sought_treatment")
-    .interpolate(method="linear")
-    .over(["sex", "region"])
+# Calculate regional averages
+dhs_regional = dhs_treatment_seeking.group_by("region", "sex", "year").agg(
+    frac_sought_treatment_region=pl.mean("frac_sought_treatment")
 )
 
+# Calculate Africa-wide averages
+dhs_africa = dhs_treatment_seeking.group_by("sex", "year").agg(
+    frac_sought_treatment_africa=pl.mean("frac_sought_treatment")
+)
+
+# Join all three levels to main data
+data = (
+    data.join(dhs_country, on=["country_code", "sex", "year"], how="left")
+    .join(dhs_regional, on=["region", "sex", "year"], how="left")
+    .join(dhs_africa, on=["sex", "year"], how="left")
+)
+
+# Sort for interpolation
+data = data.sort("country_code", "sex", "year")
+
+# Interpolate country-level data within each country-sex group
 data = data.with_columns(
-    pl.col("frac_sought_treatment").fill_null(
-        pl.col("frac_sought_treatment").mean().over(["sex", "year"])
+    frac_sought_treatment_country_interp=pl.col(
+        "frac_sought_treatment_country"
     )
+    .interpolate(method="linear")
+    .over(["country_code", "sex"])
+)
+
+# Interpolate regional data within each region-sex group
+data = data.with_columns(
+    frac_sought_treatment_region_interp=pl.col("frac_sought_treatment_region")
+    .interpolate(method="linear")
+    .over(["region", "sex"])
+)
+
+# Interpolate Africa data within each sex group
+data = data.with_columns(
+    frac_sought_treatment_africa_interp=pl.col("frac_sought_treatment_africa")
+    .interpolate(method="linear")
+    .over(["sex"])
+)
+
+# Apply fallback hierarchy: country -> region -> africa
+data = data.with_columns(
+    frac_sought_treatment=pl.coalesce(
+        [
+            pl.col("frac_sought_treatment_country_interp"),
+            pl.col("frac_sought_treatment_region_interp"),
+            pl.col("frac_sought_treatment_africa_interp"),
+        ]
+    )
+).drop(
+    [
+        "frac_sought_treatment_country",
+        "frac_sought_treatment_country_interp",
+        "frac_sought_treatment_region",
+        "frac_sought_treatment_region_interp",
+        "frac_sought_treatment_africa",
+        "frac_sought_treatment_africa_interp",
+    ]
 )
 
 assert (
