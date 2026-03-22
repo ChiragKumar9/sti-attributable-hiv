@@ -102,14 +102,14 @@ def calculate_indirect_averted_cases(
         ).shift(-1)
         / (
             pl.col("unaids_prevalence_year_end_number_lower_Male")
-            * (1 - pl.col("treatment_proportion_upper_Male"))
+            * (1 - pl.col("treatment_proportion_lower_Male"))
         ),
         transmission_rate_upper_M_F=pl.col(
             "unaids_incidence_number_upper_Female"
         ).shift(-1)
         / (
             pl.col("unaids_prevalence_year_end_number_upper_Male")
-            * (1 - pl.col("treatment_proportion_lower_Male"))
+            * (1 - pl.col("treatment_proportion_upper_Male"))
         ),
         transmission_rate_F_M=pl.col("unaids_incidence_number_Male").shift(-1)
         / (
@@ -121,14 +121,14 @@ def calculate_indirect_averted_cases(
         ).shift(-1)
         / (
             pl.col("unaids_prevalence_year_end_number_lower_Female")
-            * (1 - pl.col("treatment_proportion_upper_Female"))
+            * (1 - pl.col("treatment_proportion_lower_Female"))
         ),
         transmission_rate_upper_F_M=pl.col(
             "unaids_incidence_number_upper_Male"
         ).shift(-1)
         / (
             pl.col("unaids_prevalence_year_end_number_upper_Female")
-            * (1 - pl.col("treatment_proportion_lower_Female"))
+            * (1 - pl.col("treatment_proportion_upper_Female"))
         ),
         transmission_rate_MSM=pl.col("unaids_incidence_number_MSM").shift(-1)
         / (
@@ -140,14 +140,14 @@ def calculate_indirect_averted_cases(
         ).shift(-1)
         / (
             pl.col("unaids_prevalence_year_end_number_lower_MSM")
-            * (1 - pl.col("treatment_proportion_upper_MSM"))
+            * (1 - pl.col("treatment_proportion_lower_MSM"))
         ),
         transmission_rate_upper_MSM=pl.col(
             "unaids_incidence_number_upper_MSM"
         ).shift(-1)
         / (
             pl.col("unaids_prevalence_year_end_number_upper_MSM")
-            * (1 - pl.col("treatment_proportion_lower_MSM"))
+            * (1 - pl.col("treatment_proportion_upper_MSM"))
         ),
     )
 
