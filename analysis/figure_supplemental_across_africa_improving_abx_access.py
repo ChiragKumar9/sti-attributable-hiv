@@ -44,13 +44,22 @@ def setup_plot(nrows, ncols):
 
 
 def plot_best_case(hiv, ax, year, label, fig, legend=False, forward=False):
+    # if forward, we need to plot the blue sdg target
+    # to do this, we need to get the value in 2010
+    if forward:
+        reference_2010 = hiv.filter(pl.col("year") == 2010)[
+            "unaids_hiv_incidence_number"
+        ][0]
+
     if forward:
         scalar = -1.0
         # this may change based on how the future sims are set up?
-        stub = "upper_bound"
+        stub = "upper_bound_future"
+        hiv = hiv.filter(pl.col("year") >= 2023)
     else:
         scalar = 1.0
         stub = "upper_bound"
+        hiv = hiv.filter(pl.col("year") <= 2023)
 
     hiv = (
         hiv.group_by(["year"])
@@ -58,17 +67,17 @@ def plot_best_case(hiv, ax, year, label, fig, legend=False, forward=False):
             pl.sum(f"hiv_averted_{stub}"),
             pl.sum(f"hiv_averted_{stub}_lower"),
             pl.sum(f"hiv_averted_{stub}_upper"),
-            pl.sum(f"direct_hiv_averted_{stub}"),
-            pl.sum(f"direct_hiv_averted_{stub}_lower"),
-            pl.sum(f"direct_hiv_averted_{stub}_upper"),
-            pl.sum("hiv_incidence_number"),
+            pl.sum("direct_hiv_averted_upper_bound"),
+            pl.sum("direct_hiv_averted_upper_bound_lower"),
+            pl.sum("direct_hiv_averted_upper_bound_upper"),
+            pl.sum("unaids_hiv_incidence_number"),
             pl.sum("hiv_incidence_number_upper"),
             pl.sum("hiv_incidence_number_lower"),
         )
         .with_columns(
-            direct=pl.col(f"direct_hiv_averted_{stub}"),
-            direct_lower=pl.col(f"direct_hiv_averted_{stub}_lower"),
-            direct_upper=pl.col(f"direct_hiv_averted_{stub}_upper"),
+            direct=pl.col("direct_hiv_averted_upper_bound"),
+            direct_lower=pl.col("direct_hiv_averted_upper_bound_lower"),
+            direct_upper=pl.col("direct_hiv_averted_upper_bound_upper"),
             total=pl.col(f"hiv_averted_{stub}"),
             total_lower=pl.col(f"hiv_averted_{stub}_lower"),
             total_upper=pl.col(f"hiv_averted_{stub}_upper"),
@@ -104,16 +113,11 @@ def plot_best_case(hiv, ax, year, label, fig, legend=False, forward=False):
             + (pl.lit(scalar) * pl.col("total_upper")),
         )
 
-    # if forward, we need to plot the blue sdg target
-    # to do this, we need to get the value in 2010
-    if forward:
-        reference_2010 = hiv.filter(pl.col("year") == 2010)["reference"][0]
-
     hiv = hiv.filter(pl.col("year") >= year)
 
     hiv = hiv.sort(by="year")
     print(
-        hiv.filter(pl.col("year") == pl.max("year")).select(
+        hiv.filter(pl.col("year") == 2023).select(
             [
                 "total",
                 "total_lower",
@@ -177,8 +181,12 @@ def plot_best_case(hiv, ax, year, label, fig, legend=False, forward=False):
             label="SDG target",
         )
         ax.set_xticks([2025, 2030])
+        # minor tick every 1 year
+        ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
     else:
-        ax.set_xticks([2005, 2010, 2015, 2020])
+        ax.set_xticks([1990, 2000, 2010, 2020])
+        # minor ticks every two years
+        ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))
 
     ax.set_xlabel("Year")
     ax.set_ylabel(f"HIV incidence in\n{label} (N)")
@@ -194,9 +202,9 @@ if __name__ == "__main__":
     for forward in [True, False]:
         if forward:
             # TODO: we will change this in the future
-            year = 2006
+            year = 1991
         else:
-            year = 2006
+            year = 1991
 
         fig, ax = setup_plot(2, 2)  # type: ignore
 

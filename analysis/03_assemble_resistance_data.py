@@ -118,7 +118,9 @@ gasp = gasp.with_columns(
 )
 
 # group by country and year
-gasp = gasp.group_by(["Country", "year"]).sum().drop("Source")
+gasp = gasp.drop("Source")  # drop source from gasp before summing
+gasp = gasp.group_by(["Country", "year"]).sum()
+
 # we know that any cases num_tested is 0, that really means no data
 gasp = gasp.with_columns(
     Azithromycin_num_tested=pl.when(pl.col("Azithromycin_num_tested") == 0)
@@ -284,11 +286,12 @@ gasp = gasp.with_columns(
 
 years_of_data = gasp["year"].sort().unique().to_list()
 
+
 # we want to make a dataframe for values across the region
 gasp_region = (
-    gasp.group_by(["region", "year"])
+    gasp.drop("Country")
+    .group_by(["region", "year"])
     .sum()
-    .drop("Country")
     .select(
         [
             "region",
@@ -734,7 +737,7 @@ resistance.write_csv(
 )
 
 # read in our hiv sti data
-hiv_sti = pl.read_csv(os.path.join(output_dir, "hiv_sti.csv"))
+hiv_sti = pl.read_csv(os.path.join(output_dir, "hiv_sti_with_projections.csv"))
 
 # merge first with the country-level data
 hiv_sti = hiv_sti.join(

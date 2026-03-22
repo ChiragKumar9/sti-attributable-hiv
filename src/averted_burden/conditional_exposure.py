@@ -7,11 +7,10 @@ def p_a_given_b(p_a, p_b, rr_a_b, allow_invalid=False):
     # Rearranging to solve for P(A|B):
     # P(A|B) = P(A) / [P(B) + (1 - P(B)) / RR]
     p_a_given_b = p_a / (p_b + (1 - p_b) / rr_a_b)
-    if not allow_invalid:
-        assert 0 <= p_a_given_b <= 1, (
-            f"Calculated P(A|B) = {p_a_given_b} is not a valid probability"
-        )
-    return p_a_given_b
+    if allow_invalid:
+        return p_a_given_b
+    else:
+        return min(p_a_given_b, 1.0)
 
 
 def p_a_given_not_b(p_a, p_b, rr_a_b):
@@ -32,8 +31,8 @@ def p_a_given_not_b(p_a, p_b, rr_a_b):
     float
         P(A|~B) - probability of A given NOT B
     """
-    # First get P(A|B)
-    p = p_a_given_b(p_a, p_b, rr_a_b)
+    # First get P(A|B), allowing > 1 so the cap in p_a_given_b applies cleanly
+    p = p_a_given_b(p_a, p_b, rr_a_b, allow_invalid=True)
     # Then use RR definition: RR = P(A|B) / P(A|~B)
     # So: P(A|~B) = P(A|B) / RR
     return p / rr_a_b

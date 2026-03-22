@@ -4,15 +4,11 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import numpy as np
 import polars as pl
-import yaml
 from matplotlib import rc
 
 data_dir = "data"
 output_dir = "outputs"
 fig_dir = "figures"
-
-with open("params.yml") as f:
-    params = yaml.safe_load(f)
 
 font = {"family": "Nimbus Roman", "size": 28}
 rc("font", **font)
@@ -49,53 +45,55 @@ def setup_plot(nrows, ncols):
 
 
 def plot_hiv_burden_by_sex(hiv, ax, fig):
-    hiv = (
+    # Aggregate UNAIDS incidence; combine Male + MSM into a single Male total
+    hiv_agg = (
         hiv.group_by(["year", "sex"])
         .agg(
-            pl.sum("hiv_incidence_number"),
-            pl.sum("hiv_incidence_number_upper"),
-            pl.sum("hiv_incidence_number_lower"),
-            pl.sum("population"),
-            pl.sum("population_upper"),
-            pl.sum("population_lower"),
+            pl.sum("unaids_incidence_number").alias("incidence"),
+            pl.sum("unaids_incidence_number_upper").alias("incidence_upper"),
+            pl.sum("unaids_incidence_number_lower").alias("incidence_lower"),
         )
-        .with_columns(
-            hiv_incidence_rate=pl.col("hiv_incidence_number"),
-            hiv_incidence_rate_upper=pl.col("hiv_incidence_number_upper"),
-            hiv_incidence_rate_lower=pl.col("hiv_incidence_number_lower"),
-        )
+        .sort("year")
     )
 
-    hiv = hiv.sort(by="year")
+    male_hist = (
+        hiv_agg.filter(pl.col("sex").is_in(["Male", "MSM"]))
+        .group_by("year")
+        .agg(
+            pl.sum("incidence"),
+            pl.sum("incidence_upper"),
+            pl.sum("incidence_lower"),
+        )
+        .sort("year")
+    )
+    female_hist = hiv_agg.filter(pl.col("sex") == "Female").sort("year")
 
     ax.plot(
-        hiv.filter(pl.col("sex") == "Male")["year"],
-        hiv.filter(pl.col("sex") == "Male")["hiv_incidence_rate"],
+        male_hist["year"],
+        male_hist["incidence"],
         linewidth=3,
         label="Male",
         color="midnightblue",
     )
-
     ax.fill_between(
-        hiv.filter(pl.col("sex") == "Male")["year"],
-        hiv.filter(pl.col("sex") == "Male")["hiv_incidence_rate_lower"],
-        hiv.filter(pl.col("sex") == "Male")["hiv_incidence_rate_upper"],
+        male_hist["year"],
+        male_hist["incidence_lower"],
+        male_hist["incidence_upper"],
         alpha=0.3,
         color="midnightblue",
     )
 
     ax.plot(
-        hiv.filter(pl.col("sex") == "Female")["year"],
-        hiv.filter(pl.col("sex") == "Female")["hiv_incidence_rate"],
+        female_hist["year"],
+        female_hist["incidence"],
         linewidth=3,
         label="Female",
         color="magenta",
     )
-
     ax.fill_between(
-        hiv.filter(pl.col("sex") == "Female")["year"],
-        hiv.filter(pl.col("sex") == "Female")["hiv_incidence_rate_lower"],
-        hiv.filter(pl.col("sex") == "Female")["hiv_incidence_rate_upper"],
+        female_hist["year"],
+        female_hist["incidence_lower"],
+        female_hist["incidence_upper"],
         alpha=0.3,
         color="magenta",
     )
@@ -104,7 +102,7 @@ def plot_hiv_burden_by_sex(hiv, ax, fig):
     ax.set_ylabel("HIV incidence in\nsub-Saharan Africa (N)")
     ax.legend(loc=(0.5, 0.73))
     ax.set_xticks([1990, 2000, 2010, 2020])
-    ax.set_yticks([0, 500000, 1000000, 1500000])
+    ax.set_yticks([0, 500000, 1000000])
     ax.yaxis.set_major_formatter(
         ticker.FuncFormatter(lambda x, pos: f"{int(x):,}")
     )
@@ -118,85 +116,43 @@ def plot_hiv_burden_by_region(hiv, ax, fig):
     hiv = (
         hiv.group_by(["year", "region"])
         .agg(
-            pl.sum("hiv_incidence_number"),
-            pl.sum("hiv_incidence_number_upper"),
-            pl.sum("hiv_incidence_number_lower"),
-            pl.sum("population"),
-            pl.sum("population_upper"),
-            pl.sum("population_lower"),
+            pl.sum("unaids_incidence_number"),
+            pl.sum("unaids_incidence_number_upper"),
+            pl.sum("unaids_incidence_number_lower"),
         )
-        .with_columns(
-            hiv_incidence_rate=pl.col("hiv_incidence_number"),
-            hiv_incidence_rate_upper=pl.col("hiv_incidence_number_upper"),
-            hiv_incidence_rate_lower=pl.col("hiv_incidence_number_lower"),
+        .rename(
+            {
+                "unaids_incidence_number": "incidence",
+                "unaids_incidence_number_upper": "incidence_upper",
+                "unaids_incidence_number_lower": "incidence_lower",
+            }
         )
     )
-
     hiv = hiv.sort(by="year")
 
-    ax.plot(
-        hiv.filter(pl.col("region") == "Western")["year"],
-        hiv.filter(pl.col("region") == "Western")["hiv_incidence_rate"],
-        linewidth=3,
-        label="Western",
-        color="darkorange",
-    )
+    region_colors = {
+        "Western": "darkorange",
+        "Eastern": "olivedrab",
+        "Central": "teal",
+        "Southern": "maroon",
+    }
 
-    ax.fill_between(
-        hiv.filter(pl.col("region") == "Western")["year"],
-        hiv.filter(pl.col("region") == "Western")["hiv_incidence_rate_lower"],
-        hiv.filter(pl.col("region") == "Western")["hiv_incidence_rate_upper"],
-        alpha=0.3,
-        color="darkorange",
-    )
-
-    ax.plot(
-        hiv.filter(pl.col("region") == "Eastern")["year"],
-        hiv.filter(pl.col("region") == "Eastern")["hiv_incidence_rate"],
-        linewidth=3,
-        label="Eastern",
-        color="olivedrab",
-    )
-
-    ax.fill_between(
-        hiv.filter(pl.col("region") == "Eastern")["year"],
-        hiv.filter(pl.col("region") == "Eastern")["hiv_incidence_rate_lower"],
-        hiv.filter(pl.col("region") == "Eastern")["hiv_incidence_rate_upper"],
-        alpha=0.3,
-        color="olivedrab",
-    )
-
-    ax.plot(
-        hiv.filter(pl.col("region") == "Central")["year"],
-        hiv.filter(pl.col("region") == "Central")["hiv_incidence_rate"],
-        linewidth=3,
-        label="Central",
-        color="teal",
-    )
-
-    ax.fill_between(
-        hiv.filter(pl.col("region") == "Central")["year"],
-        hiv.filter(pl.col("region") == "Central")["hiv_incidence_rate_lower"],
-        hiv.filter(pl.col("region") == "Central")["hiv_incidence_rate_upper"],
-        alpha=0.3,
-        color="teal",
-    )
-
-    ax.plot(
-        hiv.filter(pl.col("region") == "Southern")["year"],
-        hiv.filter(pl.col("region") == "Southern")["hiv_incidence_rate"],
-        linewidth=3,
-        label="Southern",
-        color="maroon",
-    )
-
-    ax.fill_between(
-        hiv.filter(pl.col("region") == "Southern")["year"],
-        hiv.filter(pl.col("region") == "Southern")["hiv_incidence_rate_lower"],
-        hiv.filter(pl.col("region") == "Southern")["hiv_incidence_rate_upper"],
-        alpha=0.3,
-        color="maroon",
-    )
+    for region, color in region_colors.items():
+        hist = hiv.filter(pl.col("region") == region)
+        ax.plot(
+            hist["year"],
+            hist["incidence"],
+            linewidth=3,
+            label=region,
+            color=color,
+        )
+        ax.fill_between(
+            hist["year"],
+            hist["incidence_lower"],
+            hist["incidence_upper"],
+            alpha=0.3,
+            color=color,
+        )
 
     ax.set_xlabel("Year")
     ax.set_ylabel("HIV incidence (N)")
@@ -403,6 +359,7 @@ if __name__ == "__main__":
     fig, ax = setup_plot(2, 2)  # type: ignore
 
     hiv = pl.read_csv(os.path.join(output_dir, "hiv_sti.csv"))
+
     ax[0, 0].text(  # type: ignore
         -0.25,
         1.08,

@@ -1,0 +1,3291 @@
+CountryCode,CountryName,Year,Sex,CoverageVal,lower,upper
+AGO,Angola,1990,female,0.0,0.0,0.0
+AGO,Angola,1991,female,0.0,0.0,0.0
+AGO,Angola,1992,female,0.0,0.0,0.0
+AGO,Angola,1993,female,0.0,0.0,0.0
+AGO,Angola,1994,female,0.0,0.0,0.0
+AGO,Angola,1995,female,0.0,0.0,0.0
+AGO,Angola,1996,female,0.0,0.0,0.0
+AGO,Angola,1997,female,0.0,0.0,0.0
+AGO,Angola,1998,female,0.0,0.0,0.0
+AGO,Angola,1999,female,0.0,0.0,0.0
+AGO,Angola,2000,female,0.0,0.0,0.0
+AGO,Angola,2001,female,0.0,0.0,0.0
+AGO,Angola,2002,female,0.0,0.0,0.0
+AGO,Angola,2003,female,0.0,0.0,0.0
+AGO,Angola,2004,female,0.14772,0.11547,0.18784
+AGO,Angola,2005,female,0.30508,0.23884,0.37887
+AGO,Angola,2006,female,1.99901,1.57076,2.48072
+AGO,Angola,2007,female,3.32603,2.60655,4.12782
+AGO,Angola,2008,female,5.14734,4.02113,6.33183
+AGO,Angola,2009,female,6.91122,5.39744,8.44143
+AGO,Angola,2010,female,8.73558,6.83674,10.63971
+AGO,Angola,2011,female,9.98398,7.82726,12.14818
+AGO,Angola,2012,female,11.49196,9.02461,13.99991
+AGO,Angola,2013,female,19.27894,15.23737,23.51649
+AGO,Angola,2014,female,24.73804,19.62043,30.06474
+AGO,Angola,2015,female,25.97402,20.58372,31.55942
+AGO,Angola,2016,female,23.51033,18.62771,28.48351
+AGO,Angola,2017,female,24.97958,19.72693,30.12396
+AGO,Angola,2018,female,27.44698,21.66895,33.10844
+AGO,Angola,2019,female,29.81071,23.53241,35.90458
+AGO,Angola,2020,female,35.39522,27.94344,42.55697
+AGO,Angola,2021,female,39.61707,31.33232,47.60835
+AGO,Angola,2022,female,43.28268,34.23883,51.82096
+AGO,Angola,2023,female,46.94256,37.26002,56.13456
+AGO,Angola,2024,female,50.12944,39.94219,59.98749
+AGO,Angola,1990,male,0.0,0.0,0.0
+AGO,Angola,1991,male,0.0,0.0,0.0
+AGO,Angola,1992,male,0.0,0.0,0.0
+AGO,Angola,1993,male,0.0,0.0,0.0
+AGO,Angola,1994,male,0.0,0.0,0.0
+AGO,Angola,1995,male,0.0,0.0,0.0
+AGO,Angola,1996,male,0.0,0.0,0.0
+AGO,Angola,1997,male,0.0,0.0,0.0
+AGO,Angola,1998,male,0.0,0.0,0.0
+AGO,Angola,1999,male,0.0,0.0,0.0
+AGO,Angola,2000,male,0.0,0.0,0.0
+AGO,Angola,2001,male,0.0,0.0,0.0
+AGO,Angola,2002,male,0.0,0.0,0.0
+AGO,Angola,2003,male,0.0,0.0,0.0
+AGO,Angola,2004,male,0.20181,0.15866,0.25439
+AGO,Angola,2005,male,0.45274,0.35929,0.56635
+AGO,Angola,2006,male,3.02999,2.40036,3.76755
+AGO,Angola,2007,male,4.78242,3.81827,5.88593
+AGO,Angola,2008,male,7.75006,6.20599,9.49318
+AGO,Angola,2009,male,10.23061,8.22405,12.52357
+AGO,Angola,2010,male,12.99367,10.37396,15.8391
+AGO,Angola,2011,male,14.94104,11.89772,18.17214
+AGO,Angola,2012,male,16.47689,13.13405,20.03034
+AGO,Angola,2013,male,19.1015,15.12629,23.17167
+AGO,Angola,2014,male,22.40651,17.70503,27.15585
+AGO,Angola,2015,male,26.17107,20.72731,31.7415
+AGO,Angola,2016,male,28.15348,22.33876,34.06077
+AGO,Angola,2017,male,32.13979,25.73233,38.67448
+AGO,Angola,2018,male,34.2871,27.50756,41.21937
+AGO,Angola,2019,male,30.68409,24.71443,36.97542
+AGO,Angola,2020,male,34.00575,27.51582,41.05109
+AGO,Angola,2021,male,38.83921,31.5779,46.74506
+AGO,Angola,2022,male,43.21472,35.08535,51.96351
+AGO,Angola,2023,male,47.64835,38.75912,57.11686
+AGO,Angola,2024,male,51.82133,42.18517,61.9749
+BEN,Benin,1990,female,0.0,0.0,0.0
+BEN,Benin,1991,female,0.0,0.0,0.0
+BEN,Benin,1992,female,0.0,0.0,0.0
+BEN,Benin,1993,female,0.0,0.0,0.0
+BEN,Benin,1994,female,0.0,0.0,0.0
+BEN,Benin,1995,female,0.0,0.0,0.0
+BEN,Benin,1996,female,0.0,0.0,0.0
+BEN,Benin,1997,female,0.0,0.0,0.0
+BEN,Benin,1998,female,0.0,0.0,0.0
+BEN,Benin,1999,female,0.0,0.0,0.0
+BEN,Benin,2000,female,0.0,0.0,0.0
+BEN,Benin,2001,female,0.0,0.0,0.0
+BEN,Benin,2002,female,0.0,0.0,0.0
+BEN,Benin,2003,female,0.0,0.0,0.0
+BEN,Benin,2004,female,0.0,0.0,0.0
+BEN,Benin,2005,female,0.0,0.0,0.0
+BEN,Benin,2006,female,0.0,0.0,0.0
+BEN,Benin,2007,female,0.0,0.0,0.0
+BEN,Benin,2008,female,24.28166,19.42611,29.7249
+BEN,Benin,2009,female,31.29224,25.17099,38.45707
+BEN,Benin,2010,female,37.78144,30.39972,46.51871
+BEN,Benin,2011,female,46.80491,37.5688,57.7148
+BEN,Benin,2012,female,49.58602,39.90954,61.34
+BEN,Benin,2013,female,43.55702,35.06522,53.95963
+BEN,Benin,2014,female,49.5242,39.79921,61.15642
+BEN,Benin,2015,female,37.65725,30.36879,46.40387
+BEN,Benin,2016,female,29.21249,23.74527,35.93248
+BEN,Benin,2017,female,64.31676,52.30096,78.95003
+BEN,Benin,2018,female,70.54735,57.42394,87.19011
+BEN,Benin,2019,female,72.67114,59.53972,90.22324
+BEN,Benin,2020,female,84.52045,69.6605,100.0
+BEN,Benin,2021,female,94.45984,77.4176,100.0
+BEN,Benin,2022,female,100.0,83.96014,100.0
+BEN,Benin,2023,female,91.64247,74.46879,100.0
+BEN,Benin,2024,female,97.65655,78.85438,100.0
+BEN,Benin,1990,male,0.0,0.0,0.0
+BEN,Benin,1991,male,0.0,0.0,0.0
+BEN,Benin,1992,male,0.0,0.0,0.0
+BEN,Benin,1993,male,0.0,0.0,0.0
+BEN,Benin,1994,male,0.0,0.0,0.0
+BEN,Benin,1995,male,0.0,0.0,0.0
+BEN,Benin,1996,male,0.0,0.0,0.0
+BEN,Benin,1997,male,0.0,0.0,0.0
+BEN,Benin,1998,male,0.0,0.0,0.0
+BEN,Benin,1999,male,0.0,0.0,0.0
+BEN,Benin,2000,male,0.0,0.0,0.0
+BEN,Benin,2001,male,0.0,0.0,0.0
+BEN,Benin,2002,male,0.0,0.0,0.0
+BEN,Benin,2003,male,0.0,0.0,0.0
+BEN,Benin,2004,male,0.0,0.0,0.0
+BEN,Benin,2005,male,0.0,0.0,0.0
+BEN,Benin,2006,male,0.0,0.0,0.0
+BEN,Benin,2007,male,0.0,0.0,0.0
+BEN,Benin,2008,male,15.72352,12.7456,19.33279
+BEN,Benin,2009,male,20.365,16.49469,25.08575
+BEN,Benin,2010,male,24.75077,20.02901,30.44149
+BEN,Benin,2011,male,30.86975,24.99574,38.18254
+BEN,Benin,2012,male,32.92667,26.68902,40.79853
+BEN,Benin,2013,male,29.25285,23.80561,36.12004
+BEN,Benin,2014,male,33.82778,27.57786,41.6048
+BEN,Benin,2015,male,39.28212,32.05812,48.38572
+BEN,Benin,2016,male,44.45812,36.55858,54.73962
+BEN,Benin,2017,male,44.47453,36.57438,54.75138
+BEN,Benin,2018,male,42.23794,35.02826,51.98371
+BEN,Benin,2019,male,55.43662,45.93064,68.50338
+BEN,Benin,2020,male,56.95524,47.12151,70.77335
+BEN,Benin,2021,male,61.16509,50.76752,75.87155
+BEN,Benin,2022,male,65.44183,54.07502,80.84001
+BEN,Benin,2023,male,69.79379,57.39714,85.94361
+BEN,Benin,2024,male,77.98311,63.85167,95.45995
+BWA,Botswana,1990,female,0.0,0.0,0.0
+BWA,Botswana,1991,female,0.0,0.0,0.0
+BWA,Botswana,1992,female,0.0,0.0,0.0
+BWA,Botswana,1993,female,0.0,0.0,0.0
+BWA,Botswana,1994,female,0.0,0.0,0.0
+BWA,Botswana,1995,female,0.0,0.0,0.0
+BWA,Botswana,1996,female,0.0,0.0,0.0
+BWA,Botswana,1997,female,0.0197,0.01611,0.02304
+BWA,Botswana,1998,female,0.07419,0.06075,0.08675
+BWA,Botswana,1999,female,0.17686,0.14503,0.20651
+BWA,Botswana,2000,female,0.34542,0.28501,0.40387
+BWA,Botswana,2001,female,0.68073,0.55812,0.79479
+BWA,Botswana,2002,female,2.08625,1.71801,2.43251
+BWA,Botswana,2003,female,5.36353,4.43516,6.2478
+BWA,Botswana,2004,female,11.64196,9.63384,13.56032
+BWA,Botswana,2005,female,17.61354,14.60218,20.49102
+BWA,Botswana,2006,female,23.6183,19.6419,27.40336
+BWA,Botswana,2007,female,27.82014,23.19357,32.34529
+BWA,Botswana,2008,female,35.00364,29.19615,40.53403
+BWA,Botswana,2009,female,45.87134,38.33181,53.12622
+BWA,Botswana,2010,female,51.24153,42.8758,59.41346
+BWA,Botswana,2011,female,54.97944,46.06608,63.68305
+BWA,Botswana,2012,female,64.57788,54.12386,74.74876
+BWA,Botswana,2013,female,67.14254,56.33847,77.66702
+BWA,Botswana,2014,female,69.90182,58.70028,80.74727
+BWA,Botswana,2015,female,76.07046,64.03037,87.79997
+BWA,Botswana,2016,female,80.90053,68.25007,93.52871
+BWA,Botswana,2017,female,83.70005,70.6915,96.91279
+BWA,Botswana,2018,female,90.47747,76.42722,100.0
+BWA,Botswana,2019,female,91.08044,77.00138,100.0
+BWA,Botswana,2020,female,93.08211,78.85974,100.0
+BWA,Botswana,2021,female,95.75761,81.15651,100.0
+BWA,Botswana,2022,female,96.76232,82.29666,100.0
+BWA,Botswana,2023,female,97.60842,83.07151,100.0
+BWA,Botswana,2024,female,97.99593,83.51291,100.0
+BWA,Botswana,1990,male,0.0,0.0,0.0
+BWA,Botswana,1991,male,0.0,0.0,0.0
+BWA,Botswana,1992,male,0.0,0.0,0.0
+BWA,Botswana,1993,male,0.0,0.0,0.0
+BWA,Botswana,1994,male,0.0,0.0,0.0
+BWA,Botswana,1995,male,0.0,0.0,0.0
+BWA,Botswana,1996,male,0.0,0.0,0.0
+BWA,Botswana,1997,male,0.02727,0.0223,0.03208
+BWA,Botswana,1998,male,0.10033,0.08228,0.11782
+BWA,Botswana,1999,male,0.2373,0.19367,0.27827
+BWA,Botswana,2000,male,0.4525,0.36967,0.52926
+BWA,Botswana,2001,male,0.87783,0.7189,1.02497
+BWA,Botswana,2002,male,2.65191,2.18648,3.10156
+BWA,Botswana,2003,male,6.7153,5.53909,7.85045
+BWA,Botswana,2004,male,14.3687,11.86667,16.70653
+BWA,Botswana,2005,male,21.46946,17.73762,25.0183
+BWA,Botswana,2006,male,28.42951,23.52965,33.11561
+BWA,Botswana,2007,male,33.08333,27.48182,38.5982
+BWA,Botswana,2008,male,40.60869,33.70669,47.34006
+BWA,Botswana,2009,male,42.51132,35.23299,49.54538
+BWA,Botswana,2010,male,47.5414,39.45945,55.41192
+BWA,Botswana,2011,male,52.82111,43.95708,61.61109
+BWA,Botswana,2012,male,56.03717,46.79639,65.74157
+BWA,Botswana,2013,male,62.7733,52.62977,73.87131
+BWA,Botswana,2014,male,62.67897,52.66343,73.8947
+BWA,Botswana,2015,male,67.04856,56.35975,78.69036
+BWA,Botswana,2016,male,70.36564,59.37065,82.55591
+BWA,Botswana,2017,male,73.33817,61.9605,86.00717
+BWA,Botswana,2018,male,76.45455,64.93927,89.8252
+BWA,Botswana,2019,male,79.42889,67.63969,93.63173
+BWA,Botswana,2020,male,82.57784,70.08495,97.28799
+BWA,Botswana,2021,male,86.58274,73.3183,100.0
+BWA,Botswana,2022,male,87.97907,74.44727,100.0
+BWA,Botswana,2023,male,89.44855,75.55164,100.0
+BWA,Botswana,2024,male,91.56295,78.08504,100.0
+BFA,Burkina Faso,1990,female,0.0,0.0,0.0
+BFA,Burkina Faso,1991,female,0.0,0.0,0.0
+BFA,Burkina Faso,1992,female,0.0,0.0,0.0
+BFA,Burkina Faso,1993,female,0.0,0.0,0.0
+BFA,Burkina Faso,1994,female,0.0,0.0,0.0
+BFA,Burkina Faso,1995,female,0.0,0.0,0.0
+BFA,Burkina Faso,1996,female,0.0,0.0,0.0
+BFA,Burkina Faso,1997,female,0.0,0.0,0.0
+BFA,Burkina Faso,1998,female,0.0,0.0,0.0
+BFA,Burkina Faso,1999,female,0.0,0.0,0.0
+BFA,Burkina Faso,2000,female,0.0,0.0,0.0
+BFA,Burkina Faso,2001,female,0.0,0.0,0.0
+BFA,Burkina Faso,2002,female,0.0,0.0,0.0
+BFA,Burkina Faso,2003,female,1.57793,1.24986,1.94694
+BFA,Burkina Faso,2004,female,4.20773,3.32326,5.20285
+BFA,Burkina Faso,2005,female,8.67727,6.8443,10.74672
+BFA,Burkina Faso,2006,female,14.18913,11.31799,17.601
+BFA,Burkina Faso,2007,female,17.47838,14.04233,21.66833
+BFA,Burkina Faso,2008,female,24.00964,19.35755,29.83866
+BFA,Burkina Faso,2009,female,30.61646,24.6369,37.81197
+BFA,Burkina Faso,2010,female,36.86691,29.77015,45.43854
+BFA,Burkina Faso,2011,female,50.21777,40.60144,61.61159
+BFA,Burkina Faso,2012,female,53.24152,43.20047,65.23488
+BFA,Burkina Faso,2013,female,58.40436,47.6556,71.63951
+BFA,Burkina Faso,2014,female,64.88444,53.10572,79.77049
+BFA,Burkina Faso,2015,female,71.96915,59.30353,88.80348
+BFA,Burkina Faso,2016,female,79.33469,65.50028,100.0
+BFA,Burkina Faso,2017,female,85.13672,70.26472,100.0
+BFA,Burkina Faso,2018,female,82.77936,68.1787,100.0
+BFA,Burkina Faso,2019,female,93.53963,77.01803,100.0
+BFA,Burkina Faso,2020,female,84.04656,69.34556,100.0
+BFA,Burkina Faso,2021,female,89.28124,73.91881,100.0
+BFA,Burkina Faso,2022,female,93.28503,77.59508,100.0
+BFA,Burkina Faso,2023,female,94.61464,78.45867,100.0
+BFA,Burkina Faso,2024,female,100.0,81.30085,100.0
+BFA,Burkina Faso,1990,male,0.0,0.0,0.0
+BFA,Burkina Faso,1991,male,0.0,0.0,0.0
+BFA,Burkina Faso,1992,male,0.0,0.0,0.0
+BFA,Burkina Faso,1993,male,0.0,0.0,0.0
+BFA,Burkina Faso,1994,male,0.0,0.0,0.0
+BFA,Burkina Faso,1995,male,0.0,0.0,0.0
+BFA,Burkina Faso,1996,male,0.0,0.0,0.0
+BFA,Burkina Faso,1997,male,0.0,0.0,0.0
+BFA,Burkina Faso,1998,male,0.0,0.0,0.0
+BFA,Burkina Faso,1999,male,0.0,0.0,0.0
+BFA,Burkina Faso,2000,male,0.0,0.0,0.0
+BFA,Burkina Faso,2001,male,0.0,0.0,0.0
+BFA,Burkina Faso,2002,male,0.0,0.0,0.0
+BFA,Burkina Faso,2003,male,1.42445,1.09562,1.77767
+BFA,Burkina Faso,2004,male,3.77287,2.9174,4.71747
+BFA,Burkina Faso,2005,male,7.75333,6.01776,9.68584
+BFA,Burkina Faso,2006,male,12.68314,9.89838,15.83234
+BFA,Burkina Faso,2007,male,15.68646,12.31991,19.57366
+BFA,Burkina Faso,2008,male,21.67095,17.17379,26.97836
+BFA,Burkina Faso,2009,male,27.05383,21.62107,33.59562
+BFA,Burkina Faso,2010,male,32.89851,26.43581,40.7066
+BFA,Burkina Faso,2011,male,27.81319,22.54392,34.55594
+BFA,Burkina Faso,2012,male,30.46285,24.72651,37.59433
+BFA,Burkina Faso,2013,male,33.17549,27.03405,40.80642
+BFA,Burkina Faso,2014,male,36.2383,29.63518,44.35317
+BFA,Burkina Faso,2015,male,42.51663,34.68849,51.90009
+BFA,Burkina Faso,2016,male,45.54447,37.08778,55.49354
+BFA,Burkina Faso,2017,male,49.53179,40.38729,60.31267
+BFA,Burkina Faso,2018,male,47.57886,38.67117,57.59062
+BFA,Burkina Faso,2019,male,56.22854,45.82197,67.79802
+BFA,Burkina Faso,2020,male,51.63412,42.4585,61.9947
+BFA,Burkina Faso,2021,male,56.70549,46.85424,67.52378
+BFA,Burkina Faso,2022,male,60.59841,50.63673,71.88678
+BFA,Burkina Faso,2023,male,66.00398,54.53394,77.82239
+BFA,Burkina Faso,2024,male,67.70567,56.34286,80.00257
+BDI,Burundi,1990,female,0.0,0.0,0.0
+BDI,Burundi,1991,female,0.0,0.0,0.0
+BDI,Burundi,1992,female,0.0,0.0,0.0
+BDI,Burundi,1993,female,0.0,0.0,0.0
+BDI,Burundi,1994,female,0.0,0.0,0.0
+BDI,Burundi,1995,female,0.0,0.0,0.0
+BDI,Burundi,1996,female,0.0,0.0,0.0
+BDI,Burundi,1997,female,0.0,0.0,0.0
+BDI,Burundi,1998,female,0.0,0.0,0.0
+BDI,Burundi,1999,female,0.0,0.0,0.0
+BDI,Burundi,2000,female,0.0,0.0,0.0
+BDI,Burundi,2001,female,0.52733,0.41818,0.64674
+BDI,Burundi,2002,female,0.61444,0.48934,0.74963
+BDI,Burundi,2003,female,1.29369,1.03181,1.57479
+BDI,Burundi,2004,female,3.8925,3.11652,4.78605
+BDI,Burundi,2005,female,6.66119,5.36547,8.10671
+BDI,Burundi,2006,female,8.62374,6.96134,10.54834
+BDI,Burundi,2007,female,12.0065,9.72353,14.80194
+BDI,Burundi,2008,female,15.8179,12.7144,19.48056
+BDI,Burundi,2009,female,19.21516,15.58047,23.72197
+BDI,Burundi,2010,female,25.73177,20.90057,31.70017
+BDI,Burundi,2011,female,30.49951,24.74715,37.69295
+BDI,Burundi,2012,female,37.58678,30.49328,46.40266
+BDI,Burundi,2013,female,42.44658,34.45289,52.21229
+BDI,Burundi,2014,female,47.91312,38.763,58.57952
+BDI,Burundi,2015,female,56.19912,45.68051,68.52584
+BDI,Burundi,2016,female,70.73949,57.61139,85.95891
+BDI,Burundi,2017,female,78.38008,63.63237,95.30652
+BDI,Burundi,2018,female,83.23745,66.96874,100.0
+BDI,Burundi,2019,female,90.27089,72.56012,100.0
+BDI,Burundi,2020,female,92.5085,74.41503,100.0
+BDI,Burundi,2021,female,95.27396,76.81055,100.0
+BDI,Burundi,2022,female,96.44741,78.02343,100.0
+BDI,Burundi,2023,female,95.7323,77.6221,100.0
+BDI,Burundi,2024,female,100.0,79.63778,100.0
+BDI,Burundi,1990,male,0.0,0.0,0.0
+BDI,Burundi,1991,male,0.0,0.0,0.0
+BDI,Burundi,1992,male,0.0,0.0,0.0
+BDI,Burundi,1993,male,0.0,0.0,0.0
+BDI,Burundi,1994,male,0.0,0.0,0.0
+BDI,Burundi,1995,male,0.0,0.0,0.0
+BDI,Burundi,1996,male,0.0,0.0,0.0
+BDI,Burundi,1997,male,0.0,0.0,0.0
+BDI,Burundi,1998,male,0.0,0.0,0.0
+BDI,Burundi,1999,male,0.0,0.0,0.0
+BDI,Burundi,2000,male,0.0,0.0,0.0
+BDI,Burundi,2001,male,0.54809,0.43079,0.67226
+BDI,Burundi,2002,male,0.63184,0.4963,0.77453
+BDI,Burundi,2003,male,1.31219,1.02119,1.60619
+BDI,Burundi,2004,male,3.90854,3.03893,4.76183
+BDI,Burundi,2005,male,6.61631,5.1474,8.10917
+BDI,Burundi,2006,male,8.49719,6.66066,10.43894
+BDI,Burundi,2007,male,11.77562,9.36221,14.4877
+BDI,Burundi,2008,male,15.48075,12.40015,19.03368
+BDI,Burundi,2009,male,18.76822,14.94193,23.03769
+BDI,Burundi,2010,male,24.56484,19.63371,30.16064
+BDI,Burundi,2011,male,29.20205,23.45771,35.80121
+BDI,Burundi,2012,male,27.03163,21.74315,33.0034
+BDI,Burundi,2013,male,31.31404,25.16496,38.24108
+BDI,Burundi,2014,male,35.57622,28.50506,43.32419
+BDI,Burundi,2015,male,43.57583,34.99934,53.03358
+BDI,Burundi,2016,male,54.69435,43.85257,66.35331
+BDI,Burundi,2017,male,61.48389,49.30659,73.98245
+BDI,Burundi,2018,male,69.64152,55.74518,83.17726
+BDI,Burundi,2019,male,77.58488,62.42185,92.07028
+BDI,Burundi,2020,male,80.05423,64.58139,94.53168
+BDI,Burundi,2021,male,82.52353,66.78192,97.01569
+BDI,Burundi,2022,male,84.26137,68.58927,100.0
+BDI,Burundi,2023,male,89.95371,73.69034,100.0
+BDI,Burundi,2024,male,90.3934,74.36638,100.0
+CPV,Cabo Verde,1990,female,0.0,0.0,0.0
+CPV,Cabo Verde,1991,female,0.0,0.0,0.0
+CPV,Cabo Verde,1992,female,0.0,0.0,0.0
+CPV,Cabo Verde,1993,female,0.0,0.0,0.0
+CPV,Cabo Verde,1994,female,0.0,0.0,0.0
+CPV,Cabo Verde,1995,female,0.0,0.0,0.0
+CPV,Cabo Verde,1996,female,0.0,0.0,0.0
+CPV,Cabo Verde,1997,female,0.0,0.0,0.0
+CPV,Cabo Verde,1998,female,0.0,0.0,0.0
+CPV,Cabo Verde,1999,female,0.0,0.0,0.0
+CPV,Cabo Verde,2000,female,0.0,0.0,0.0
+CPV,Cabo Verde,2001,female,0.0,0.0,0.0
+CPV,Cabo Verde,2002,female,0.0,0.0,0.0
+CPV,Cabo Verde,2003,female,0.0,0.0,0.0
+CPV,Cabo Verde,2004,female,0.35446,0.28158,0.43377
+CPV,Cabo Verde,2005,female,9.28808,7.39357,11.30791
+CPV,Cabo Verde,2006,female,14.83863,11.83544,18.05575
+CPV,Cabo Verde,2007,female,21.26441,16.89971,25.81646
+CPV,Cabo Verde,2008,female,26.67865,21.1555,32.34086
+CPV,Cabo Verde,2009,female,26.63499,21.02892,32.18011
+CPV,Cabo Verde,2010,female,30.5291,24.05582,36.8256
+CPV,Cabo Verde,2011,female,37.81662,29.77672,45.3313
+CPV,Cabo Verde,2012,female,43.61746,34.52297,52.43608
+CPV,Cabo Verde,2013,female,51.06827,40.51516,61.35675
+CPV,Cabo Verde,2014,female,59.1457,46.89576,71.10442
+CPV,Cabo Verde,2015,female,60.37872,47.92786,72.46125
+CPV,Cabo Verde,2016,female,62.81498,49.81345,75.59812
+CPV,Cabo Verde,2017,female,75.39588,59.88317,91.11883
+CPV,Cabo Verde,2018,female,85.09106,67.57125,100.0
+CPV,Cabo Verde,2019,female,88.9032,70.33437,100.0
+CPV,Cabo Verde,2020,female,94.81786,74.83223,100.0
+CPV,Cabo Verde,2021,female,100.0,80.05275,100.0
+CPV,Cabo Verde,2022,female,100.0,77.21015,100.0
+CPV,Cabo Verde,2023,female,94.44203,72.91621,100.0
+CPV,Cabo Verde,2024,female,100.0,75.65924,100.0
+CPV,Cabo Verde,1990,male,0.0,0.0,0.0
+CPV,Cabo Verde,1991,male,0.0,0.0,0.0
+CPV,Cabo Verde,1992,male,0.0,0.0,0.0
+CPV,Cabo Verde,1993,male,0.0,0.0,0.0
+CPV,Cabo Verde,1994,male,0.0,0.0,0.0
+CPV,Cabo Verde,1995,male,0.0,0.0,0.0
+CPV,Cabo Verde,1996,male,0.0,0.0,0.0
+CPV,Cabo Verde,1997,male,0.0,0.0,0.0
+CPV,Cabo Verde,1998,male,0.0,0.0,0.0
+CPV,Cabo Verde,1999,male,0.0,0.0,0.0
+CPV,Cabo Verde,2000,male,0.0,0.0,0.0
+CPV,Cabo Verde,2001,male,0.0,0.0,0.0
+CPV,Cabo Verde,2002,male,0.0,0.0,0.0
+CPV,Cabo Verde,2003,male,0.0,0.0,0.0
+CPV,Cabo Verde,2004,male,0.49526,0.39113,0.60734
+CPV,Cabo Verde,2005,male,9.59029,7.59705,11.66199
+CPV,Cabo Verde,2006,male,15.1623,12.03337,18.29937
+CPV,Cabo Verde,2007,male,21.68198,17.2252,26.27889
+CPV,Cabo Verde,2008,male,27.07517,21.56997,32.89312
+CPV,Cabo Verde,2009,male,26.18272,20.9418,31.86578
+CPV,Cabo Verde,2010,male,33.17182,26.51184,40.47862
+CPV,Cabo Verde,2011,male,32.93282,26.21666,40.18299
+CPV,Cabo Verde,2012,male,39.34622,31.07517,48.01114
+CPV,Cabo Verde,2013,male,46.03717,36.1563,56.60376
+CPV,Cabo Verde,2014,male,44.99237,35.27995,54.9533
+CPV,Cabo Verde,2015,male,43.76523,34.24876,53.50492
+CPV,Cabo Verde,2016,male,42.7473,33.00907,52.48486
+CPV,Cabo Verde,2017,male,44.48981,34.12314,54.17731
+CPV,Cabo Verde,2018,male,52.75368,40.38453,63.85985
+CPV,Cabo Verde,2019,male,55.57706,42.54474,67.16743
+CPV,Cabo Verde,2020,male,58.65418,45.04076,71.53729
+CPV,Cabo Verde,2021,male,63.65707,48.72204,78.28932
+CPV,Cabo Verde,2022,male,60.8504,46.49555,75.83283
+CPV,Cabo Verde,2023,male,61.2658,46.82014,77.13953
+CPV,Cabo Verde,2024,male,63.84509,48.59025,80.54687
+CMR,Cameroon,1990,female,0.0,0.0,0.0
+CMR,Cameroon,1991,female,0.0,0.0,0.0
+CMR,Cameroon,1992,female,0.0,0.0,0.0
+CMR,Cameroon,1993,female,0.0,0.0,0.0
+CMR,Cameroon,1994,female,0.0,0.0,0.0
+CMR,Cameroon,1995,female,0.0,0.0,0.0
+CMR,Cameroon,1996,female,0.0,0.0,0.0
+CMR,Cameroon,1997,female,0.0,0.0,0.0
+CMR,Cameroon,1998,female,0.0,0.0,0.0
+CMR,Cameroon,1999,female,0.0,0.0,0.0
+CMR,Cameroon,2000,female,0.0,0.0,0.0
+CMR,Cameroon,2001,female,0.0,0.0,0.0
+CMR,Cameroon,2002,female,0.0173,0.01403,0.02079
+CMR,Cameroon,2003,female,0.1785,0.1454,0.21369
+CMR,Cameroon,2004,female,2.39682,1.94219,2.84768
+CMR,Cameroon,2005,female,4.13286,3.33082,4.90385
+CMR,Cameroon,2006,female,4.89557,3.96935,5.80174
+CMR,Cameroon,2007,female,7.95574,6.44948,9.35255
+CMR,Cameroon,2008,female,10.34704,8.35672,12.04861
+CMR,Cameroon,2009,female,12.98364,10.53264,15.06078
+CMR,Cameroon,2010,female,15.43827,12.54429,17.9184
+CMR,Cameroon,2011,female,18.23804,14.82837,21.24702
+CMR,Cameroon,2012,female,25.61088,20.82643,29.94991
+CMR,Cameroon,2013,female,27.67932,22.56734,31.94312
+CMR,Cameroon,2014,female,30.78943,25.0928,35.44553
+CMR,Cameroon,2015,female,35.64816,28.95341,40.83753
+CMR,Cameroon,2016,female,43.56408,35.37685,50.047
+CMR,Cameroon,2017,female,54.15615,43.98097,62.29626
+CMR,Cameroon,2018,female,61.37001,49.93841,70.51664
+CMR,Cameroon,2019,female,67.44922,54.94216,77.50239
+CMR,Cameroon,2020,female,74.72476,61.01228,86.17042
+CMR,Cameroon,2021,female,81.64774,66.74566,94.53754
+CMR,Cameroon,2022,female,88.47262,71.96655,100.0
+CMR,Cameroon,2023,female,93.01701,75.53634,100.0
+CMR,Cameroon,2024,female,94.97042,77.03914,100.0
+CMR,Cameroon,1990,male,0.0,0.0,0.0
+CMR,Cameroon,1991,male,0.0,0.0,0.0
+CMR,Cameroon,1992,male,0.0,0.0,0.0
+CMR,Cameroon,1993,male,0.0,0.0,0.0
+CMR,Cameroon,1994,male,0.0,0.0,0.0
+CMR,Cameroon,1995,male,0.0,0.0,0.0
+CMR,Cameroon,1996,male,0.0,0.0,0.0
+CMR,Cameroon,1997,male,0.0,0.0,0.0
+CMR,Cameroon,1998,male,0.0,0.0,0.0
+CMR,Cameroon,1999,male,0.0,0.0,0.0
+CMR,Cameroon,2000,male,0.0,0.0,0.0
+CMR,Cameroon,2001,male,0.0,0.0,0.0
+CMR,Cameroon,2002,male,0.01994,0.01613,0.02421
+CMR,Cameroon,2003,male,0.20285,0.16647,0.2455
+CMR,Cameroon,2004,male,2.69033,2.22461,3.21046
+CMR,Cameroon,2005,male,4.5892,3.80542,5.43229
+CMR,Cameroon,2006,male,5.39888,4.44282,6.35257
+CMR,Cameroon,2007,male,8.7379,7.14597,10.26148
+CMR,Cameroon,2008,male,11.32193,9.17678,13.23852
+CMR,Cameroon,2009,male,14.16723,11.4435,16.52803
+CMR,Cameroon,2010,male,16.07099,12.9304,18.7562
+CMR,Cameroon,2011,male,19.06009,15.32574,22.3199
+CMR,Cameroon,2012,male,16.27185,13.08436,18.93545
+CMR,Cameroon,2013,male,17.27652,13.94513,20.06807
+CMR,Cameroon,2014,male,18.75996,15.18843,21.85774
+CMR,Cameroon,2015,male,22.323,18.12947,26.02368
+CMR,Cameroon,2016,male,27.77804,22.61531,32.39914
+CMR,Cameroon,2017,male,34.84572,28.19936,40.71623
+CMR,Cameroon,2018,male,41.12121,33.05511,48.11781
+CMR,Cameroon,2019,male,47.30187,38.12306,55.36503
+CMR,Cameroon,2020,male,54.38523,44.01562,63.39126
+CMR,Cameroon,2021,male,62.37685,50.69521,72.45565
+CMR,Cameroon,2022,male,70.31851,57.27458,81.61609
+CMR,Cameroon,2023,male,75.74626,62.0948,88.37958
+CMR,Cameroon,2024,male,79.32817,65.26844,93.06042
+CAF,Central African Republic,1990,female,0.0,0.0,0.0
+CAF,Central African Republic,1991,female,0.0,0.0,0.0
+CAF,Central African Republic,1992,female,0.0,0.0,0.0
+CAF,Central African Republic,1993,female,0.0,0.0,0.0
+CAF,Central African Republic,1994,female,0.0,0.0,0.0
+CAF,Central African Republic,1995,female,0.0,0.0,0.0
+CAF,Central African Republic,1996,female,0.0,0.0,0.0
+CAF,Central African Republic,1997,female,0.0,0.0,0.0
+CAF,Central African Republic,1998,female,0.0,0.0,0.0
+CAF,Central African Republic,1999,female,0.0,0.0,0.0
+CAF,Central African Republic,2000,female,0.0,0.0,0.0
+CAF,Central African Republic,2001,female,0.01592,0.01217,0.02052
+CAF,Central African Republic,2002,female,0.06348,0.04941,0.08217
+CAF,Central African Republic,2003,female,0.11397,0.08964,0.14582
+CAF,Central African Republic,2004,female,0.16797,0.13358,0.21171
+CAF,Central African Republic,2005,female,0.87131,0.68857,1.09458
+CAF,Central African Republic,2006,female,1.84364,1.46265,2.31538
+CAF,Central African Republic,2007,female,4.01888,3.17555,5.0409
+CAF,Central African Republic,2008,female,8.05889,6.39278,9.99884
+CAF,Central African Republic,2009,female,9.13605,7.24322,11.22793
+CAF,Central African Republic,2010,female,10.9041,8.68337,13.30248
+CAF,Central African Republic,2011,female,10.73652,8.58786,13.15054
+CAF,Central African Republic,2012,female,13.02169,10.44463,16.02316
+CAF,Central African Republic,2013,female,12.3483,9.90453,15.33685
+CAF,Central African Republic,2014,female,20.49148,16.45223,25.5149
+CAF,Central African Republic,2015,female,23.97162,19.23083,29.70166
+CAF,Central African Republic,2016,female,35.317,28.55938,43.94696
+CAF,Central African Republic,2017,female,40.2315,31.9954,50.28467
+CAF,Central African Republic,2018,female,43.47887,34.13528,54.67557
+CAF,Central African Republic,2019,female,52.01933,41.15292,66.07698
+CAF,Central African Republic,2020,female,54.76115,43.17138,69.98229
+CAF,Central African Republic,2021,female,61.77134,48.09616,79.61832
+CAF,Central African Republic,2022,female,66.7922,50.99042,86.84424
+CAF,Central African Republic,2023,female,70.92333,52.9241,92.76333
+CAF,Central African Republic,2024,female,73.43583,53.65561,96.78982
+CAF,Central African Republic,1990,male,0.0,0.0,0.0
+CAF,Central African Republic,1991,male,0.0,0.0,0.0
+CAF,Central African Republic,1992,male,0.0,0.0,0.0
+CAF,Central African Republic,1993,male,0.0,0.0,0.0
+CAF,Central African Republic,1994,male,0.0,0.0,0.0
+CAF,Central African Republic,1995,male,0.0,0.0,0.0
+CAF,Central African Republic,1996,male,0.0,0.0,0.0
+CAF,Central African Republic,1997,male,0.0,0.0,0.0
+CAF,Central African Republic,1998,male,0.0,0.0,0.0
+CAF,Central African Republic,1999,male,0.0,0.0,0.0
+CAF,Central African Republic,2000,male,0.0,0.0,0.0
+CAF,Central African Republic,2001,male,0.0251,0.01933,0.03249
+CAF,Central African Republic,2002,male,0.09716,0.07499,0.12528
+CAF,Central African Republic,2003,male,0.17018,0.1317,0.21777
+CAF,Central African Republic,2004,male,0.24469,0.19137,0.31181
+CAF,Central African Republic,2005,male,1.2379,0.97483,1.56783
+CAF,Central African Republic,2006,male,2.56532,2.01801,3.21754
+CAF,Central African Republic,2007,male,5.46823,4.30728,6.84288
+CAF,Central African Republic,2008,male,10.72543,8.48674,13.31702
+CAF,Central African Republic,2009,male,11.90482,9.42705,14.79093
+CAF,Central African Republic,2010,male,13.48823,10.69074,16.61455
+CAF,Central African Republic,2011,male,13.15474,10.512,16.21709
+CAF,Central African Republic,2012,male,15.83544,12.69948,19.57585
+CAF,Central African Republic,2013,male,18.27773,14.74735,22.5724
+CAF,Central African Republic,2014,male,26.0044,21.07552,32.15712
+CAF,Central African Republic,2015,male,30.23828,24.59965,37.66391
+CAF,Central African Republic,2016,male,23.64681,19.21054,29.62141
+CAF,Central African Republic,2017,male,29.33735,23.81625,37.12269
+CAF,Central African Republic,2018,male,32.76912,26.26142,41.78418
+CAF,Central African Republic,2019,male,38.50556,30.71086,49.77542
+CAF,Central African Republic,2020,male,43.78141,34.52119,57.11724
+CAF,Central African Republic,2021,male,49.1053,38.4874,64.37375
+CAF,Central African Republic,2022,male,53.98577,42.18831,70.9394
+CAF,Central African Republic,2023,male,56.53109,43.28773,74.37793
+CAF,Central African Republic,2024,male,61.09264,45.84754,80.72519
+TCD,Chad,1990,female,0.0,0.0,0.0
+TCD,Chad,1991,female,0.0,0.0,0.0
+TCD,Chad,1992,female,0.0,0.0,0.0
+TCD,Chad,1993,female,0.0,0.0,0.0
+TCD,Chad,1994,female,0.0,0.0,0.0
+TCD,Chad,1995,female,0.0,0.0,0.0
+TCD,Chad,1996,female,0.0,0.0,0.0
+TCD,Chad,1997,female,0.0,0.0,0.0
+TCD,Chad,1998,female,0.0,0.0,0.0
+TCD,Chad,1999,female,0.0,0.0,0.0
+TCD,Chad,2000,female,0.0,0.0,0.0
+TCD,Chad,2001,female,0.02355,0.01759,0.03144
+TCD,Chad,2002,female,0.08406,0.06271,0.11156
+TCD,Chad,2003,female,0.24044,0.17955,0.31791
+TCD,Chad,2004,female,0.42976,0.32068,0.56487
+TCD,Chad,2005,female,1.54565,1.15168,2.03868
+TCD,Chad,2006,female,5.79331,4.33203,7.5337
+TCD,Chad,2007,female,10.01782,7.49174,12.86822
+TCD,Chad,2008,female,14.06571,10.61635,17.90772
+TCD,Chad,2009,female,18.07746,13.67052,22.82014
+TCD,Chad,2010,female,21.93239,16.74827,27.6233
+TCD,Chad,2011,female,25.64475,19.66665,32.18649
+TCD,Chad,2012,female,29.34915,22.48848,36.7883
+TCD,Chad,2013,female,32.79701,25.03951,41.05626
+TCD,Chad,2014,female,36.40215,28.06147,45.51462
+TCD,Chad,2015,female,40.27432,31.22878,49.8204
+TCD,Chad,2016,female,43.77595,34.11811,54.14916
+TCD,Chad,2017,female,47.39744,37.36541,58.52234
+TCD,Chad,2018,female,47.29764,37.56849,58.23787
+TCD,Chad,2019,female,49.65542,39.41976,61.03565
+TCD,Chad,2020,female,54.87538,44.11558,67.22373
+TCD,Chad,2021,female,59.12487,47.73953,72.15545
+TCD,Chad,2022,female,61.79991,49.43459,75.22012
+TCD,Chad,2023,female,65.50784,52.32212,80.32338
+TCD,Chad,2024,female,71.94695,57.6032,88.2452
+TCD,Chad,1990,male,0.0,0.0,0.0
+TCD,Chad,1991,male,0.0,0.0,0.0
+TCD,Chad,1992,male,0.0,0.0,0.0
+TCD,Chad,1993,male,0.0,0.0,0.0
+TCD,Chad,1994,male,0.0,0.0,0.0
+TCD,Chad,1995,male,0.0,0.0,0.0
+TCD,Chad,1996,male,0.0,0.0,0.0
+TCD,Chad,1997,male,0.0,0.0,0.0
+TCD,Chad,1998,male,0.0,0.0,0.0
+TCD,Chad,1999,male,0.0,0.0,0.0
+TCD,Chad,2000,male,0.0,0.0,0.0
+TCD,Chad,2001,male,0.02556,0.01897,0.03419
+TCD,Chad,2002,male,0.09008,0.06782,0.119
+TCD,Chad,2003,male,0.25473,0.19172,0.33679
+TCD,Chad,2004,male,0.45103,0.33913,0.59819
+TCD,Chad,2005,male,1.61026,1.20332,2.10515
+TCD,Chad,2006,male,3.82355,2.86125,5.03408
+TCD,Chad,2007,male,6.0749,4.56122,7.94608
+TCD,Chad,2008,male,8.29211,6.24485,10.8413
+TCD,Chad,2009,male,10.57535,7.99244,13.73961
+TCD,Chad,2010,male,12.85422,9.76495,16.66333
+TCD,Chad,2011,male,15.13467,11.57754,19.40795
+TCD,Chad,2012,male,17.50282,13.45897,22.29048
+TCD,Chad,2013,male,19.81129,15.30898,25.05478
+TCD,Chad,2014,male,22.31815,17.38411,28.28167
+TCD,Chad,2015,male,25.10309,19.50261,31.70943
+TCD,Chad,2016,male,27.75716,21.36738,34.77378
+TCD,Chad,2017,male,30.60222,23.76736,38.12177
+TCD,Chad,2018,male,39.47788,30.82143,49.25867
+TCD,Chad,2019,male,41.93562,32.54986,52.18676
+TCD,Chad,2020,male,46.22824,36.26427,57.43446
+TCD,Chad,2021,male,50.80572,40.14442,62.91118
+TCD,Chad,2022,male,53.61771,42.70833,66.30373
+TCD,Chad,2023,male,57.26344,45.7441,70.99305
+TCD,Chad,2024,male,66.67002,52.95487,82.83407
+COM,Comoros,1990,female,0.0,0.0,0.0
+COM,Comoros,1991,female,0.0,0.0,0.0
+COM,Comoros,1992,female,0.0,0.0,0.0
+COM,Comoros,1993,female,0.0,0.0,0.0
+COM,Comoros,1994,female,0.0,0.0,0.0
+COM,Comoros,1995,female,0.0,0.0,0.0
+COM,Comoros,1996,female,0.0,0.0,0.0
+COM,Comoros,1997,female,0.0,0.0,0.0
+COM,Comoros,1998,female,0.0,0.0,0.0
+COM,Comoros,1999,female,0.0,0.0,0.0
+COM,Comoros,2000,female,0.0,0.0,0.0
+COM,Comoros,2001,female,0.0,0.0,0.0
+COM,Comoros,2002,female,0.0,0.0,0.0
+COM,Comoros,2003,female,0.0,0.0,0.0
+COM,Comoros,2004,female,0.0,0.0,0.0
+COM,Comoros,2005,female,0.0,0.0,0.0
+COM,Comoros,2006,female,0.0,0.0,0.0
+COM,Comoros,2007,female,0.0,0.0,0.0
+COM,Comoros,2008,female,0.0,0.0,0.0
+COM,Comoros,2009,female,0.0,0.0,0.0
+COM,Comoros,2010,female,26.62973,13.02974,46.05429
+COM,Comoros,2011,female,27.39642,13.35103,46.46636
+COM,Comoros,2012,female,32.3233,15.71806,53.72452
+COM,Comoros,2013,female,32.50316,15.37872,53.46345
+COM,Comoros,2014,female,35.02629,16.51588,57.32006
+COM,Comoros,2015,female,39.3702,18.61306,64.64981
+COM,Comoros,2016,female,52.54674,24.93196,86.81197
+COM,Comoros,2017,female,53.96822,25.95976,91.2883
+COM,Comoros,2018,female,56.43393,27.3743,96.33462
+COM,Comoros,2019,female,68.40235,32.96733,100.0
+COM,Comoros,2020,female,70.20336,33.65281,100.0
+COM,Comoros,2021,female,65.83965,31.30995,100.0
+COM,Comoros,2022,female,73.29798,34.34356,100.0
+COM,Comoros,2023,female,67.98868,31.47049,100.0
+COM,Comoros,2024,female,73.50967,34.46221,100.0
+COM,Comoros,1990,male,0.0,0.0,0.0
+COM,Comoros,1991,male,0.0,0.0,0.0
+COM,Comoros,1992,male,0.0,0.0,0.0
+COM,Comoros,1993,male,0.0,0.0,0.0
+COM,Comoros,1994,male,0.0,0.0,0.0
+COM,Comoros,1995,male,0.0,0.0,0.0
+COM,Comoros,1996,male,0.0,0.0,0.0
+COM,Comoros,1997,male,0.0,0.0,0.0
+COM,Comoros,1998,male,0.0,0.0,0.0
+COM,Comoros,1999,male,0.0,0.0,0.0
+COM,Comoros,2000,male,0.0,0.0,0.0
+COM,Comoros,2001,male,0.0,0.0,0.0
+COM,Comoros,2002,male,0.0,0.0,0.0
+COM,Comoros,2003,male,0.0,0.0,0.0
+COM,Comoros,2004,male,0.0,0.0,0.0
+COM,Comoros,2005,male,0.0,0.0,0.0
+COM,Comoros,2006,male,0.0,0.0,0.0
+COM,Comoros,2007,male,0.0,0.0,0.0
+COM,Comoros,2008,male,0.0,0.0,0.0
+COM,Comoros,2009,male,0.0,0.0,0.0
+COM,Comoros,2010,male,13.06247,6.47429,23.08913
+COM,Comoros,2011,male,14.53974,7.00333,24.98673
+COM,Comoros,2012,male,17.86331,8.47014,30.38311
+COM,Comoros,2013,male,20.6505,9.66909,34.81268
+COM,Comoros,2014,male,21.61851,9.94072,36.18477
+COM,Comoros,2015,male,32.87947,15.04954,55.23062
+COM,Comoros,2016,male,24.9962,11.15309,42.21937
+COM,Comoros,2017,male,30.95539,13.70665,51.77296
+COM,Comoros,2018,male,39.30408,17.35283,66.07596
+COM,Comoros,2019,male,46.95702,20.77245,78.94752
+COM,Comoros,2020,male,49.72187,21.92017,83.45254
+COM,Comoros,2021,male,57.815,25.47636,97.20139
+COM,Comoros,2022,male,57.11202,25.07658,96.64663
+COM,Comoros,2023,male,73.59396,32.19584,100.0
+COM,Comoros,2024,male,100.0,43.61471,100.0
+COG,Congo,1990,female,0.0,0.0,0.0
+COG,Congo,1991,female,0.0,0.0,0.0
+COG,Congo,1992,female,0.0,0.0,0.0
+COG,Congo,1993,female,0.0,0.0,0.0
+COG,Congo,1994,female,0.0,0.0,0.0
+COG,Congo,1995,female,0.0,0.0,0.0
+COG,Congo,1996,female,0.0,0.0,0.0
+COG,Congo,1997,female,0.0,0.0,0.0
+COG,Congo,1998,female,0.0,0.0,0.0
+COG,Congo,1999,female,0.0,0.0,0.0
+COG,Congo,2000,female,0.0,0.0,0.0
+COG,Congo,2001,female,0.0,0.0,0.0
+COG,Congo,2002,female,0.10279,0.08109,0.12433
+COG,Congo,2003,female,0.24765,0.198,0.29962
+COG,Congo,2004,female,0.18871,0.15306,0.22928
+COG,Congo,2005,female,2.56133,2.08085,3.12771
+COG,Congo,2006,female,2.89111,2.35308,3.57735
+COG,Congo,2007,female,4.38259,3.60721,5.46631
+COG,Congo,2008,female,9.31783,7.63756,11.54921
+COG,Congo,2009,female,11.53053,9.40637,14.18891
+COG,Congo,2010,female,13.66121,11.17863,16.81978
+COG,Congo,2011,female,19.30528,15.74093,23.95503
+COG,Congo,2012,female,18.47826,14.96401,22.99168
+COG,Congo,2013,female,21.04421,17.02091,26.41119
+COG,Congo,2014,female,20.13522,16.19412,25.52668
+COG,Congo,2015,female,21.48254,17.26106,27.67666
+COG,Congo,2016,female,22.65172,17.99811,29.4279
+COG,Congo,2017,female,23.64442,18.73904,31.01537
+COG,Congo,2018,female,24.50039,19.20486,32.33552
+COG,Congo,2019,female,25.05123,19.35598,33.37579
+COG,Congo,2020,female,25.3126,18.96997,34.09414
+COG,Congo,2021,female,24.50996,18.14295,33.58218
+COG,Congo,2022,female,28.39746,20.67489,39.64149
+COG,Congo,2023,female,30.38803,21.77848,43.19884
+COG,Congo,2024,female,33.13154,23.24878,47.82937
+COG,Congo,1990,male,0.0,0.0,0.0
+COG,Congo,1991,male,0.0,0.0,0.0
+COG,Congo,1992,male,0.0,0.0,0.0
+COG,Congo,1993,male,0.0,0.0,0.0
+COG,Congo,1994,male,0.0,0.0,0.0
+COG,Congo,1995,male,0.0,0.0,0.0
+COG,Congo,1996,male,0.0,0.0,0.0
+COG,Congo,1997,male,0.0,0.0,0.0
+COG,Congo,1998,male,0.0,0.0,0.0
+COG,Congo,1999,male,0.0,0.0,0.0
+COG,Congo,2000,male,0.0,0.0,0.0
+COG,Congo,2001,male,0.0,0.0,0.0
+COG,Congo,2002,male,0.186,0.14465,0.23524
+COG,Congo,2003,male,0.44251,0.34908,0.56071
+COG,Congo,2004,male,0.33356,0.26403,0.42055
+COG,Congo,2005,male,4.47464,3.57561,5.6907
+COG,Congo,2006,male,4.98627,4.0247,6.38408
+COG,Congo,2007,male,7.46987,6.02873,9.54421
+COG,Congo,2008,male,15.01838,12.07167,19.2183
+COG,Congo,2009,male,18.41328,14.8259,23.5039
+COG,Congo,2010,male,21.60249,17.43984,27.36368
+COG,Congo,2011,male,15.96042,12.78836,20.12939
+COG,Congo,2012,male,17.85482,14.3236,22.65315
+COG,Congo,2013,male,19.9044,15.91787,25.10865
+COG,Congo,2014,male,19.29873,15.51606,24.56446
+COG,Congo,2015,male,20.21134,16.17085,25.99022
+COG,Congo,2016,male,21.06093,16.84619,27.49178
+COG,Congo,2017,male,21.84343,17.24763,28.87323
+COG,Congo,2018,male,22.58179,17.63659,29.98335
+COG,Congo,2019,male,23.12734,17.90092,31.13548
+COG,Congo,2020,male,24.37539,18.47748,33.14348
+COG,Congo,2021,male,29.99395,22.27412,40.86848
+COG,Congo,2022,male,31.00594,22.60409,42.42001
+COG,Congo,2023,male,33.8776,24.28297,46.32207
+COG,Congo,2024,male,40.40439,28.57119,56.56941
+CIV,Côte d'Ivoire,1990,female,0.0,0.0,0.0
+CIV,Côte d'Ivoire,1991,female,0.0,0.0,0.0
+CIV,Côte d'Ivoire,1992,female,0.0,0.0,0.0
+CIV,Côte d'Ivoire,1993,female,0.0,0.0,0.0
+CIV,Côte d'Ivoire,1994,female,0.0,0.0,0.0
+CIV,Côte d'Ivoire,1995,female,0.0,0.0,0.0
+CIV,Côte d'Ivoire,1996,female,0.0,0.0,0.0
+CIV,Côte d'Ivoire,1997,female,0.0,0.0,0.0
+CIV,Côte d'Ivoire,1998,female,0.0,0.0,0.0
+CIV,Côte d'Ivoire,1999,female,0.0,0.0,0.0
+CIV,Côte d'Ivoire,2000,female,0.0,0.0,0.0
+CIV,Côte d'Ivoire,2001,female,0.24909,0.19881,0.3014
+CIV,Côte d'Ivoire,2002,female,0.44268,0.35434,0.53942
+CIV,Côte d'Ivoire,2003,female,0.48599,0.39072,0.59396
+CIV,Côte d'Ivoire,2004,female,1.0534,0.85033,1.28845
+CIV,Côte d'Ivoire,2005,female,3.70778,2.998,4.53172
+CIV,Côte d'Ivoire,2006,female,6.02532,4.9075,7.38029
+CIV,Côte d'Ivoire,2007,female,7.95667,6.48934,9.74101
+CIV,Côte d'Ivoire,2008,female,12.19882,10.00784,14.97155
+CIV,Côte d'Ivoire,2009,female,17.24189,14.16708,21.13857
+CIV,Côte d'Ivoire,2010,female,18.74265,15.40794,22.87839
+CIV,Côte d'Ivoire,2011,female,23.04168,18.97998,27.92519
+CIV,Côte d'Ivoire,2012,female,26.10667,21.54309,31.55486
+CIV,Côte d'Ivoire,2013,female,29.46198,24.42103,35.49587
+CIV,Côte d'Ivoire,2014,female,35.22819,29.1687,42.45941
+CIV,Côte d'Ivoire,2015,female,40.17825,33.35176,48.60073
+CIV,Côte d'Ivoire,2016,female,49.44959,40.92369,59.57737
+CIV,Côte d'Ivoire,2017,female,59.82475,49.31517,71.70958
+CIV,Côte d'Ivoire,2018,female,65.56885,53.82797,78.3615
+CIV,Côte d'Ivoire,2019,female,69.2447,56.63102,82.7266
+CIV,Côte d'Ivoire,2020,female,73.4072,59.89486,88.04808
+CIV,Côte d'Ivoire,2021,female,75.97963,61.79286,91.00803
+CIV,Côte d'Ivoire,2022,female,77.19585,62.51225,92.92893
+CIV,Côte d'Ivoire,2023,female,80.57078,65.20778,97.7512
+CIV,Côte d'Ivoire,2024,female,84.25812,68.081,100.0
+CIV,Côte d'Ivoire,1990,male,0.0,0.0,0.0
+CIV,Côte d'Ivoire,1991,male,0.0,0.0,0.0
+CIV,Côte d'Ivoire,1992,male,0.0,0.0,0.0
+CIV,Côte d'Ivoire,1993,male,0.0,0.0,0.0
+CIV,Côte d'Ivoire,1994,male,0.0,0.0,0.0
+CIV,Côte d'Ivoire,1995,male,0.0,0.0,0.0
+CIV,Côte d'Ivoire,1996,male,0.0,0.0,0.0
+CIV,Côte d'Ivoire,1997,male,0.0,0.0,0.0
+CIV,Côte d'Ivoire,1998,male,0.0,0.0,0.0
+CIV,Côte d'Ivoire,1999,male,0.0,0.0,0.0
+CIV,Côte d'Ivoire,2000,male,0.0,0.0,0.0
+CIV,Côte d'Ivoire,2001,male,0.16234,0.12649,0.19643
+CIV,Côte d'Ivoire,2002,male,0.29236,0.23137,0.35751
+CIV,Côte d'Ivoire,2003,male,0.32454,0.25943,0.39906
+CIV,Côte d'Ivoire,2004,male,0.71094,0.5753,0.86816
+CIV,Côte d'Ivoire,2005,male,2.53182,2.04979,3.08143
+CIV,Côte d'Ivoire,2006,male,4.16359,3.3491,5.02924
+CIV,Côte d'Ivoire,2007,male,5.56526,4.466,6.73316
+CIV,Côte d'Ivoire,2008,male,8.4955,6.84276,10.28635
+CIV,Côte d'Ivoire,2009,male,11.98123,9.71885,14.52052
+CIV,Côte d'Ivoire,2010,male,13.02414,10.63757,15.90162
+CIV,Côte d'Ivoire,2011,male,16.04048,13.0811,19.44032
+CIV,Côte d'Ivoire,2012,male,18.24033,14.78964,22.07983
+CIV,Côte d'Ivoire,2013,male,20.68827,16.65983,24.99315
+CIV,Côte d'Ivoire,2014,male,23.56216,18.94926,28.51187
+CIV,Côte d'Ivoire,2015,male,26.95804,21.68256,32.69975
+CIV,Côte d'Ivoire,2016,male,31.66548,25.50567,38.42866
+CIV,Côte d'Ivoire,2017,male,37.74919,30.50345,45.8965
+CIV,Côte d'Ivoire,2018,male,45.26817,36.84205,55.01566
+CIV,Côte d'Ivoire,2019,male,52.49636,42.96768,63.58796
+CIV,Côte d'Ivoire,2020,male,55.11214,45.17001,66.23435
+CIV,Côte d'Ivoire,2021,male,57.84744,47.48463,68.86059
+CIV,Côte d'Ivoire,2022,male,59.67176,49.06615,71.01276
+CIV,Côte d'Ivoire,2023,male,64.36276,53.07025,76.92823
+CIV,Côte d'Ivoire,2024,male,68.58474,56.64722,82.36763
+COD,Democratic Republic of the Congo,1990,female,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,1991,female,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,1992,female,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,1993,female,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,1994,female,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,1995,female,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,1996,female,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,1997,female,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,1998,female,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,1999,female,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,2000,female,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,2001,female,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,2002,female,0.02992,0.02301,0.03898
+COD,Democratic Republic of the Congo,2003,female,0.12784,0.09821,0.16642
+COD,Democratic Republic of the Congo,2004,female,0.77275,0.59538,1.01204
+COD,Democratic Republic of the Congo,2005,female,1.5577,1.19622,2.03543
+COD,Democratic Republic of the Congo,2006,female,3.06833,2.36335,4.01545
+COD,Democratic Republic of the Congo,2007,female,3.85446,2.96293,4.99978
+COD,Democratic Republic of the Congo,2008,female,4.31795,3.31618,5.55748
+COD,Democratic Republic of the Congo,2009,female,6.29762,4.83546,8.09969
+COD,Democratic Republic of the Congo,2010,female,8.09843,6.20463,10.27865
+COD,Democratic Republic of the Congo,2011,female,10.18688,7.82047,12.79603
+COD,Democratic Republic of the Congo,2012,female,13.46856,10.35561,16.69085
+COD,Democratic Republic of the Congo,2013,female,17.25958,13.34749,21.26337
+COD,Democratic Republic of the Congo,2014,female,21.6847,16.94679,26.63553
+COD,Democratic Republic of the Congo,2015,female,26.01065,20.47606,32.10729
+COD,Democratic Republic of the Congo,2016,female,30.74938,24.43162,37.88109
+COD,Democratic Republic of the Congo,2017,female,43.88899,34.92799,54.08667
+COD,Democratic Republic of the Congo,2018,female,41.47968,32.86262,50.68692
+COD,Democratic Republic of the Congo,2019,female,44.51414,34.88328,54.3873
+COD,Democratic Republic of the Congo,2020,female,57.34991,44.69216,70.24863
+COD,Democratic Republic of the Congo,2021,female,66.1707,51.44289,81.31725
+COD,Democratic Republic of the Congo,2022,female,71.33134,55.2406,87.99855
+COD,Democratic Republic of the Congo,2023,female,78.90123,60.19761,97.40302
+COD,Democratic Republic of the Congo,2024,female,77.50832,58.02387,96.93544
+COD,Democratic Republic of the Congo,1990,male,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,1991,male,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,1992,male,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,1993,male,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,1994,male,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,1995,male,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,1996,male,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,1997,male,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,1998,male,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,1999,male,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,2000,male,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,2001,male,0.0,0.0,0.0
+COD,Democratic Republic of the Congo,2002,male,0.03325,0.02489,0.04316
+COD,Democratic Republic of the Congo,2003,male,0.1409,0.10607,0.1818
+COD,Democratic Republic of the Congo,2004,male,0.72466,0.54505,0.93179
+COD,Democratic Republic of the Congo,2005,male,1.46443,1.11077,1.88379
+COD,Democratic Republic of the Congo,2006,male,2.8931,2.19783,3.69412
+COD,Democratic Republic of the Congo,2007,male,3.64228,2.78965,4.64684
+COD,Democratic Republic of the Congo,2008,male,4.11957,3.18361,5.25036
+COD,Democratic Republic of the Congo,2009,male,6.04878,4.68649,7.62997
+COD,Democratic Republic of the Congo,2010,male,7.68448,5.95222,9.64587
+COD,Democratic Republic of the Congo,2011,male,7.63647,5.94091,9.63293
+COD,Democratic Republic of the Congo,2012,male,9.92813,7.72785,12.51887
+COD,Democratic Republic of the Congo,2013,male,11.05946,8.60516,13.7855
+COD,Democratic Republic of the Congo,2014,male,13.69933,10.70191,16.97839
+COD,Democratic Republic of the Congo,2015,male,16.58379,12.83837,20.48478
+COD,Democratic Republic of the Congo,2016,male,25.00859,19.31412,30.78614
+COD,Democratic Republic of the Congo,2017,male,31.42342,24.51581,38.37841
+COD,Democratic Republic of the Congo,2018,male,32.48399,25.23657,39.61203
+COD,Democratic Republic of the Congo,2019,male,38.7529,30.07688,47.35123
+COD,Democratic Republic of the Congo,2020,male,51.85859,40.11678,63.60494
+COD,Democratic Republic of the Congo,2021,male,63.39422,48.52343,77.84363
+COD,Democratic Republic of the Congo,2022,male,70.92448,53.61288,87.32441
+COD,Democratic Republic of the Congo,2023,male,78.62942,58.95478,97.76233
+COD,Democratic Republic of the Congo,2024,male,74.61639,55.17416,93.47034
+DJI,Djibouti,1990,female,0.0,0.0,0.0
+DJI,Djibouti,1991,female,0.0,0.0,0.0
+DJI,Djibouti,1992,female,0.0,0.0,0.0
+DJI,Djibouti,1993,female,0.0,0.0,0.0
+DJI,Djibouti,1994,female,0.0,0.0,0.0
+DJI,Djibouti,1995,female,0.0,0.0,0.0
+DJI,Djibouti,1996,female,0.0,0.0,0.0
+DJI,Djibouti,1997,female,0.0,0.0,0.0
+DJI,Djibouti,1998,female,0.0,0.0,0.0
+DJI,Djibouti,1999,female,0.0,0.0,0.0
+DJI,Djibouti,2000,female,0.0,0.0,0.0
+DJI,Djibouti,2001,female,0.0,0.0,0.0
+DJI,Djibouti,2002,female,0.0,0.0,0.0
+DJI,Djibouti,2003,female,,,
+DJI,Djibouti,2004,female,0.97591,0.71456,1.27479
+DJI,Djibouti,2005,female,2.03927,1.49505,2.70515
+DJI,Djibouti,2006,female,3.55548,2.6102,4.78282
+DJI,Djibouti,2007,female,4.88846,3.56463,6.59436
+DJI,Djibouti,2008,female,6.18682,4.54643,8.48159
+DJI,Djibouti,2009,female,7.16524,5.28822,9.93458
+DJI,Djibouti,2010,female,7.63423,5.63865,10.59755
+DJI,Djibouti,2011,female,8.52695,6.28692,11.94475
+DJI,Djibouti,2012,female,11.01673,8.08967,15.31959
+DJI,Djibouti,2013,female,12.30988,9.02448,17.15416
+DJI,Djibouti,2014,female,15.89714,11.62986,22.1201
+DJI,Djibouti,2015,female,18.39288,13.43999,25.52671
+DJI,Djibouti,2016,female,22.14376,16.16405,30.64457
+DJI,Djibouti,2017,female,28.14953,20.50524,38.78137
+DJI,Djibouti,2018,female,31.54084,22.92242,42.93944
+DJI,Djibouti,2019,female,20.54087,14.7519,28.04458
+DJI,Djibouti,2020,female,22.79944,16.35576,31.36897
+DJI,Djibouti,2021,female,21.4956,15.48738,29.86825
+DJI,Djibouti,2022,female,24.13711,17.22821,33.39681
+DJI,Djibouti,2023,female,28.21174,19.92878,38.74806
+DJI,Djibouti,2024,female,23.12668,16.15619,31.8482
+DJI,Djibouti,1990,male,0.0,0.0,0.0
+DJI,Djibouti,1991,male,0.0,0.0,0.0
+DJI,Djibouti,1992,male,0.0,0.0,0.0
+DJI,Djibouti,1993,male,0.0,0.0,0.0
+DJI,Djibouti,1994,male,0.0,0.0,0.0
+DJI,Djibouti,1995,male,0.0,0.0,0.0
+DJI,Djibouti,1996,male,0.0,0.0,0.0
+DJI,Djibouti,1997,male,0.0,0.0,0.0
+DJI,Djibouti,1998,male,0.0,0.0,0.0
+DJI,Djibouti,1999,male,0.0,0.0,0.0
+DJI,Djibouti,2000,male,0.0,0.0,0.0
+DJI,Djibouti,2001,male,0.0,0.0,0.0
+DJI,Djibouti,2002,male,0.0,0.0,0.0
+DJI,Djibouti,2003,male,,,
+DJI,Djibouti,2004,male,0.66802,0.48114,0.88718
+DJI,Djibouti,2005,male,1.39487,1.00452,1.88578
+DJI,Djibouti,2006,male,2.44797,1.77343,3.33554
+DJI,Djibouti,2007,male,3.41926,2.51607,4.69874
+DJI,Djibouti,2008,male,4.37479,3.20825,6.01215
+DJI,Djibouti,2009,male,5.12421,3.74054,7.16958
+DJI,Djibouti,2010,male,5.50767,4.00771,7.78781
+DJI,Djibouti,2011,male,6.22582,4.50518,8.73235
+DJI,Djibouti,2012,male,8.12802,5.86924,11.33084
+DJI,Djibouti,2013,male,9.15582,6.59148,12.87115
+DJI,Djibouti,2014,male,10.16394,7.30888,14.47642
+DJI,Djibouti,2015,male,14.62025,10.36009,20.94474
+DJI,Djibouti,2016,male,17.76738,12.55991,25.50646
+DJI,Djibouti,2017,male,18.01298,12.54553,26.14589
+DJI,Djibouti,2018,male,20.78399,14.58664,30.24566
+DJI,Djibouti,2019,male,18.79126,13.23498,27.37176
+DJI,Djibouti,2020,male,20.86158,14.70666,30.36347
+DJI,Djibouti,2021,male,19.09488,13.37148,27.59208
+DJI,Djibouti,2022,male,22.53479,15.70818,32.37519
+DJI,Djibouti,2023,male,25.39304,17.76734,36.31452
+DJI,Djibouti,2024,male,28.01888,19.79263,39.75543
+GNQ,Equatorial Guinea,1990,female,,,
+GNQ,Equatorial Guinea,1991,female,,,
+GNQ,Equatorial Guinea,1992,female,,,
+GNQ,Equatorial Guinea,1993,female,,,
+GNQ,Equatorial Guinea,1994,female,,,
+GNQ,Equatorial Guinea,1995,female,,,
+GNQ,Equatorial Guinea,1996,female,,,
+GNQ,Equatorial Guinea,1997,female,,,
+GNQ,Equatorial Guinea,1998,female,,,
+GNQ,Equatorial Guinea,1999,female,,,
+GNQ,Equatorial Guinea,2000,female,,,
+GNQ,Equatorial Guinea,2001,female,,,
+GNQ,Equatorial Guinea,2002,female,,,
+GNQ,Equatorial Guinea,2003,female,,,
+GNQ,Equatorial Guinea,2004,female,,,
+GNQ,Equatorial Guinea,2005,female,,,
+GNQ,Equatorial Guinea,2006,female,,,
+GNQ,Equatorial Guinea,2007,female,,,
+GNQ,Equatorial Guinea,2008,female,,,
+GNQ,Equatorial Guinea,2009,female,,,
+GNQ,Equatorial Guinea,2010,female,,,
+GNQ,Equatorial Guinea,2011,female,,,
+GNQ,Equatorial Guinea,2012,female,,,
+GNQ,Equatorial Guinea,2013,female,,,
+GNQ,Equatorial Guinea,2014,female,,,
+GNQ,Equatorial Guinea,2015,female,,,
+GNQ,Equatorial Guinea,2016,female,,,
+GNQ,Equatorial Guinea,2017,female,,,
+GNQ,Equatorial Guinea,2018,female,,,
+GNQ,Equatorial Guinea,2019,female,,,
+GNQ,Equatorial Guinea,2020,female,,,
+GNQ,Equatorial Guinea,2021,female,,,
+GNQ,Equatorial Guinea,2022,female,,,
+GNQ,Equatorial Guinea,2023,female,,,
+GNQ,Equatorial Guinea,2024,female,,,
+GNQ,Equatorial Guinea,1990,male,,,
+GNQ,Equatorial Guinea,1991,male,,,
+GNQ,Equatorial Guinea,1992,male,,,
+GNQ,Equatorial Guinea,1993,male,,,
+GNQ,Equatorial Guinea,1994,male,,,
+GNQ,Equatorial Guinea,1995,male,,,
+GNQ,Equatorial Guinea,1996,male,,,
+GNQ,Equatorial Guinea,1997,male,,,
+GNQ,Equatorial Guinea,1998,male,,,
+GNQ,Equatorial Guinea,1999,male,,,
+GNQ,Equatorial Guinea,2000,male,,,
+GNQ,Equatorial Guinea,2001,male,,,
+GNQ,Equatorial Guinea,2002,male,,,
+GNQ,Equatorial Guinea,2003,male,,,
+GNQ,Equatorial Guinea,2004,male,,,
+GNQ,Equatorial Guinea,2005,male,,,
+GNQ,Equatorial Guinea,2006,male,,,
+GNQ,Equatorial Guinea,2007,male,,,
+GNQ,Equatorial Guinea,2008,male,,,
+GNQ,Equatorial Guinea,2009,male,,,
+GNQ,Equatorial Guinea,2010,male,,,
+GNQ,Equatorial Guinea,2011,male,,,
+GNQ,Equatorial Guinea,2012,male,,,
+GNQ,Equatorial Guinea,2013,male,,,
+GNQ,Equatorial Guinea,2014,male,,,
+GNQ,Equatorial Guinea,2015,male,,,
+GNQ,Equatorial Guinea,2016,male,,,
+GNQ,Equatorial Guinea,2017,male,,,
+GNQ,Equatorial Guinea,2018,male,,,
+GNQ,Equatorial Guinea,2019,male,,,
+GNQ,Equatorial Guinea,2020,male,,,
+GNQ,Equatorial Guinea,2021,male,,,
+GNQ,Equatorial Guinea,2022,male,,,
+GNQ,Equatorial Guinea,2023,male,,,
+GNQ,Equatorial Guinea,2024,male,,,
+ERI,Eritrea,1990,female,0.0,0.0,0.0
+ERI,Eritrea,1991,female,0.0,0.0,0.0
+ERI,Eritrea,1992,female,0.0,0.0,0.0
+ERI,Eritrea,1993,female,0.0,0.0,0.0
+ERI,Eritrea,1994,female,0.0,0.0,0.0
+ERI,Eritrea,1995,female,0.0,0.0,0.0
+ERI,Eritrea,1996,female,0.0,0.0,0.0
+ERI,Eritrea,1997,female,0.0,0.0,0.0
+ERI,Eritrea,1998,female,0.0,0.0,0.0
+ERI,Eritrea,1999,female,0.0,0.0,0.0
+ERI,Eritrea,2000,female,0.0,0.0,0.0
+ERI,Eritrea,2001,female,0.0,0.0,0.0
+ERI,Eritrea,2002,female,0.03391,0.02561,0.0439
+ERI,Eritrea,2003,female,0.06757,0.05004,0.08674
+ERI,Eritrea,2004,female,0.04022,0.02963,0.05148
+ERI,Eritrea,2005,female,1.6027,1.20494,2.04597
+ERI,Eritrea,2006,female,4.54591,3.43175,5.85913
+ERI,Eritrea,2007,female,9.57951,7.29619,12.46288
+ERI,Eritrea,2008,female,14.10991,10.60874,18.18365
+ERI,Eritrea,2009,female,18.19562,13.89867,23.4168
+ERI,Eritrea,2010,female,24.88461,19.31823,31.93069
+ERI,Eritrea,2011,female,31.87391,24.74707,40.71105
+ERI,Eritrea,2012,female,36.68839,28.30964,46.41826
+ERI,Eritrea,2013,female,42.52912,32.48621,53.2835
+ERI,Eritrea,2014,female,50.48132,38.39811,62.25817
+ERI,Eritrea,2015,female,56.04262,42.71574,68.40154
+ERI,Eritrea,2016,female,58.4794,44.27223,70.90403
+ERI,Eritrea,2017,female,66.48049,50.71488,81.61038
+ERI,Eritrea,2018,female,68.39956,52.82038,84.55785
+ERI,Eritrea,2019,female,68.7127,53.81188,85.10743
+ERI,Eritrea,2020,female,70.9214,55.64135,86.60878
+ERI,Eritrea,2021,female,70.18396,54.9002,84.73266
+ERI,Eritrea,2022,female,71.10074,55.43613,85.03772
+ERI,Eritrea,2023,female,71.73036,55.82533,86.16964
+ERI,Eritrea,2024,female,72.27495,56.00805,86.53524
+ERI,Eritrea,1990,male,0.0,0.0,0.0
+ERI,Eritrea,1991,male,0.0,0.0,0.0
+ERI,Eritrea,1992,male,0.0,0.0,0.0
+ERI,Eritrea,1993,male,0.0,0.0,0.0
+ERI,Eritrea,1994,male,0.0,0.0,0.0
+ERI,Eritrea,1995,male,0.0,0.0,0.0
+ERI,Eritrea,1996,male,0.0,0.0,0.0
+ERI,Eritrea,1997,male,0.0,0.0,0.0
+ERI,Eritrea,1998,male,0.0,0.0,0.0
+ERI,Eritrea,1999,male,0.0,0.0,0.0
+ERI,Eritrea,2000,male,0.0,0.0,0.0
+ERI,Eritrea,2001,male,0.0,0.0,0.0
+ERI,Eritrea,2002,male,0.03935,0.02879,0.0516
+ERI,Eritrea,2003,male,0.07673,0.05733,0.09835
+ERI,Eritrea,2004,male,0.04496,0.03344,0.05758
+ERI,Eritrea,2005,male,2.50596,1.89689,3.26345
+ERI,Eritrea,2006,male,7.39086,5.6591,9.76187
+ERI,Eritrea,2007,male,12.16784,9.27313,16.05868
+ERI,Eritrea,2008,male,17.13968,12.89546,22.37667
+ERI,Eritrea,2009,male,23.83364,18.18647,30.61401
+ERI,Eritrea,2010,male,28.69673,21.81692,36.54706
+ERI,Eritrea,2011,male,33.84952,25.59737,42.85644
+ERI,Eritrea,2012,male,42.28836,31.83934,52.78768
+ERI,Eritrea,2013,male,48.84206,36.54138,60.12989
+ERI,Eritrea,2014,male,55.68484,41.96174,68.45714
+ERI,Eritrea,2015,male,61.92028,47.05965,76.20741
+ERI,Eritrea,2016,male,67.2121,51.78306,82.8189
+ERI,Eritrea,2017,male,61.95955,48.25976,76.01982
+ERI,Eritrea,2018,male,62.2061,49.13514,75.76351
+ERI,Eritrea,2019,male,63.80521,50.9519,77.26506
+ERI,Eritrea,2020,male,69.96714,56.44476,84.30611
+ERI,Eritrea,2021,male,66.85922,54.10839,80.00169
+ERI,Eritrea,2022,male,69.45056,56.06094,82.57269
+ERI,Eritrea,2023,male,71.08805,57.33013,84.37863
+ERI,Eritrea,2024,male,71.72775,57.72509,85.03793
+SWZ,Eswatini,1990,female,0.0,0.0,0.0
+SWZ,Eswatini,1991,female,0.0,0.0,0.0
+SWZ,Eswatini,1992,female,0.0,0.0,0.0
+SWZ,Eswatini,1993,female,0.0,0.0,0.0
+SWZ,Eswatini,1994,female,0.0,0.0,0.0
+SWZ,Eswatini,1995,female,0.0,0.0,0.0
+SWZ,Eswatini,1996,female,0.0,0.0,0.0
+SWZ,Eswatini,1997,female,0.0,0.0,0.0
+SWZ,Eswatini,1998,female,0.0,0.0,0.0
+SWZ,Eswatini,1999,female,0.0,0.0,0.0
+SWZ,Eswatini,2000,female,0.0,0.0,0.0
+SWZ,Eswatini,2001,female,0.42175,0.34863,0.49666
+SWZ,Eswatini,2002,female,0.97863,0.81135,1.14858
+SWZ,Eswatini,2003,female,1.49301,1.23785,1.75002
+SWZ,Eswatini,2004,female,2.60272,2.14459,3.03455
+SWZ,Eswatini,2005,female,5.36926,4.44633,6.26763
+SWZ,Eswatini,2006,female,9.43045,7.82781,10.9573
+SWZ,Eswatini,2007,female,14.62784,12.08321,16.94559
+SWZ,Eswatini,2008,female,18.90053,15.60152,21.88186
+SWZ,Eswatini,2009,female,23.80351,19.60146,27.56211
+SWZ,Eswatini,2010,female,33.68831,27.77302,38.96917
+SWZ,Eswatini,2011,female,37.05944,30.60132,42.77265
+SWZ,Eswatini,2012,female,41.2689,34.08941,47.56617
+SWZ,Eswatini,2013,female,46.33701,38.32416,53.78651
+SWZ,Eswatini,2014,female,57.19811,47.30254,66.295
+SWZ,Eswatini,2015,female,75.00707,62.12098,87.16491
+SWZ,Eswatini,2016,female,86.64139,71.77797,100.0
+SWZ,Eswatini,2017,female,87.0403,71.9511,100.0
+SWZ,Eswatini,2018,female,87.34429,71.99166,100.0
+SWZ,Eswatini,2019,female,93.04892,76.48301,100.0
+SWZ,Eswatini,2020,female,100.0,80.73077,100.0
+SWZ,Eswatini,2021,female,96.36329,79.32957,100.0
+SWZ,Eswatini,2022,female,96.65312,79.63977,100.0
+SWZ,Eswatini,2023,female,97.86792,80.90247,100.0
+SWZ,Eswatini,2024,female,100.0,82.82124,100.0
+SWZ,Eswatini,1990,male,0.0,0.0,0.0
+SWZ,Eswatini,1991,male,0.0,0.0,0.0
+SWZ,Eswatini,1992,male,0.0,0.0,0.0
+SWZ,Eswatini,1993,male,0.0,0.0,0.0
+SWZ,Eswatini,1994,male,0.0,0.0,0.0
+SWZ,Eswatini,1995,male,0.0,0.0,0.0
+SWZ,Eswatini,1996,male,0.0,0.0,0.0
+SWZ,Eswatini,1997,male,0.0,0.0,0.0
+SWZ,Eswatini,1998,male,0.0,0.0,0.0
+SWZ,Eswatini,1999,male,0.0,0.0,0.0
+SWZ,Eswatini,2000,male,0.0,0.0,0.0
+SWZ,Eswatini,2001,male,0.41787,0.34873,0.49414
+SWZ,Eswatini,2002,male,0.9883,0.82549,1.1647
+SWZ,Eswatini,2003,male,1.52911,1.27812,1.79162
+SWZ,Eswatini,2004,male,2.69119,2.25809,3.14532
+SWZ,Eswatini,2005,male,5.58099,4.67476,6.52327
+SWZ,Eswatini,2006,male,9.83508,8.2737,11.45653
+SWZ,Eswatini,2007,male,11.52126,9.63287,13.45456
+SWZ,Eswatini,2008,male,14.93958,12.41504,17.38665
+SWZ,Eswatini,2009,male,17.96872,14.85447,20.78318
+SWZ,Eswatini,2010,male,25.47902,21.14692,29.51048
+SWZ,Eswatini,2011,male,28.24851,23.56722,32.7606
+SWZ,Eswatini,2012,male,31.97849,26.85582,37.1551
+SWZ,Eswatini,2013,male,37.17243,31.38438,43.12534
+SWZ,Eswatini,2014,male,44.35615,37.4018,51.26283
+SWZ,Eswatini,2015,male,55.70597,46.93534,64.33562
+SWZ,Eswatini,2016,male,63.19951,53.32578,73.07801
+SWZ,Eswatini,2017,male,63.01009,53.21664,73.02965
+SWZ,Eswatini,2018,male,64.91114,54.81188,75.09225
+SWZ,Eswatini,2019,male,70.95123,59.93869,82.35973
+SWZ,Eswatini,2020,male,77.26394,65.40503,89.95947
+SWZ,Eswatini,2021,male,75.12975,63.82696,87.66341
+SWZ,Eswatini,2022,male,78.33616,66.80983,91.45279
+SWZ,Eswatini,2023,male,80.45119,68.75163,94.35178
+SWZ,Eswatini,2024,male,83.96957,72.00525,100.0
+ETH,Ethiopia,1990,female,0.0,0.0,0.0
+ETH,Ethiopia,1991,female,0.0,0.0,0.0
+ETH,Ethiopia,1992,female,0.0,0.0,0.0
+ETH,Ethiopia,1993,female,0.0,0.0,0.0
+ETH,Ethiopia,1994,female,0.0,0.0,0.0
+ETH,Ethiopia,1995,female,0.0,0.0,0.0
+ETH,Ethiopia,1996,female,0.0,0.0,0.0
+ETH,Ethiopia,1997,female,0.0,0.0,0.0
+ETH,Ethiopia,1998,female,0.0,0.0,0.0
+ETH,Ethiopia,1999,female,0.0,0.0,0.0
+ETH,Ethiopia,2000,female,0.0,0.0,0.0
+ETH,Ethiopia,2001,female,0.0,0.0,0.0
+ETH,Ethiopia,2002,female,0.0,0.0,0.0
+ETH,Ethiopia,2003,female,0.07555412596169386,0.06355773373233477,0.09056398318856099
+ETH,Ethiopia,2004,female,0.9729589927400569,0.8184737705532346,1.16625059537084
+ETH,Ethiopia,2005,female,2.8651310391652385,2.410209211530927,3.434328660702751
+ETH,Ethiopia,2006,female,7.492318772156579,6.302697870995254,8.980770560434001
+ETH,Ethiopia,2007,female,14.604024888774155,12.28521486511478,17.50531253060098
+ETH,Ethiopia,2008,female,21.277727270876717,17.899275989765542,25.50483843376695
+ETH,Ethiopia,2009,female,28.735563381824367,24.172966353868773,34.44427594200766
+ETH,Ethiopia,2010,female,35.91842150695865,30.21534008508865,43.05410829873479
+ETH,Ethiopia,2011,female,42.634678860816976,35.86520094803497,51.10464557814561
+ETH,Ethiopia,2012,female,43.70056935837074,36.76184986190784,52.382288638345656
+ETH,Ethiopia,2013,female,49.473812561904204,41.61842756409769,59.3024696414041
+ETH,Ethiopia,2014,female,55.95776267875903,47.0728613825277,67.07454117720603
+ETH,Ethiopia,2015,female,61.946448580172365,52.11066072434953,74.25294649021161
+ETH,Ethiopia,2016,female,66.33644642704573,55.80363175857372,79.51509395331921
+ETH,Ethiopia,2017,female,69.48888265785114,58.45551721886422,83.29378925580245
+ETH,Ethiopia,2018,female,71.94295319157334,60.519941979245814,86.23540657527383
+ETH,Ethiopia,2019,female,75.09995790328749,63.17567680134152,90.0195868710985
+ETH,Ethiopia,2020,female,78.05335784944668,65.66014617753697,93.55972949913047
+ETH,Ethiopia,2021,female,78.7916700688069,66.28122643627903,94.44471232479691
+ETH,Ethiopia,2022,female,83.21529160948099,70.00247831933896,100.0
+ETH,Ethiopia,2023,female,86.18900312243944,72.50402832523768,100.0
+ETH,Ethiopia,2024,female,89.51245528424442,75.29977086177645,100.0
+ETH,Ethiopia,1990,male,0.0,0.0,0.0
+ETH,Ethiopia,1991,male,0.0,0.0,0.0
+ETH,Ethiopia,1992,male,0.0,0.0,0.0
+ETH,Ethiopia,1993,male,0.0,0.0,0.0
+ETH,Ethiopia,1994,male,0.0,0.0,0.0
+ETH,Ethiopia,1995,male,0.0,0.0,0.0
+ETH,Ethiopia,1996,male,0.0,0.0,0.0
+ETH,Ethiopia,1997,male,0.0,0.0,0.0
+ETH,Ethiopia,1998,male,0.0,0.0,0.0
+ETH,Ethiopia,1999,male,0.0,0.0,0.0
+ETH,Ethiopia,2000,male,0.0,0.0,0.0
+ETH,Ethiopia,2001,male,0.0,0.0,0.0
+ETH,Ethiopia,2002,male,0.0,0.0,0.0
+ETH,Ethiopia,2003,male,0.0936422404979792,0.07832412903805096,0.11201547411941584
+ETH,Ethiopia,2004,male,1.1879828169678348,0.9936511831312885,1.4210730436480017
+ETH,Ethiopia,2005,male,3.4478975635893514,2.8838865455760665,4.124398479327861
+ETH,Ethiopia,2006,male,8.849087161489756,7.4015431530823115,10.585337826425665
+ETH,Ethiopia,2007,male,16.87454639982708,14.11418731150356,20.185444801941408
+ETH,Ethiopia,2008,male,24.012958438912015,20.08489065751565,28.72446304407786
+ETH,Ethiopia,2009,male,31.687122124562915,26.503704674960783,37.90434802700805
+ETH,Ethiopia,2010,male,38.8304062732509,32.478481912165584,46.449192540828975
+ETH,Ethiopia,2011,male,45.32078976830054,37.907163193294274,54.21303637906294
+ETH,Ethiopia,2012,male,52.34775009530048,43.78464510619749,62.61873372211429
+ETH,Ethiopia,2013,male,54.47415273211602,45.563211218994354,65.16235509738667
+ETH,Ethiopia,2014,male,61.644190695256974,51.56036263555074,73.73919810685211
+ETH,Ethiopia,2015,male,63.22432799240074,52.88201437545173,75.6293620705319
+ETH,Ethiopia,2016,male,71.56612985831975,59.85926115442284,85.60789126991232
+ETH,Ethiopia,2017,male,74.06734406044312,61.9513192973491,88.59985411196587
+ETH,Ethiopia,2018,male,76.12561383926513,63.67289899377547,91.06197614941668
+ETH,Ethiopia,2019,male,81.24803088475646,67.95738084909115,97.1894399543965
+ETH,Ethiopia,2020,male,84.34531026392555,70.54800536235989,100.0
+ETH,Ethiopia,2021,male,82.73817298643449,69.20376523719926,100.0
+ETH,Ethiopia,2022,male,87.68445794270677,73.34093543443727,100.0
+ETH,Ethiopia,2023,male,88.70659265875011,74.19586906891519,100.0
+ETH,Ethiopia,2024,male,92.72537080914299,77.55724036048666,100.0
+GAB,Gabon,1990,female,0.0,0.0,0.0
+GAB,Gabon,1991,female,0.0,0.0,0.0
+GAB,Gabon,1992,female,0.0,0.0,0.0
+GAB,Gabon,1993,female,0.0,0.0,0.0
+GAB,Gabon,1994,female,0.0,0.0,0.0
+GAB,Gabon,1995,female,0.0,0.0,0.0
+GAB,Gabon,1996,female,0.0,0.0,0.0
+GAB,Gabon,1997,female,0.0,0.0,0.0
+GAB,Gabon,1998,female,0.0,0.0,0.0
+GAB,Gabon,1999,female,0.0,0.0,0.0
+GAB,Gabon,2000,female,0.0,0.0,0.0
+GAB,Gabon,2001,female,0.21482,0.15354,0.29374
+GAB,Gabon,2002,female,0.83292,0.60388,1.11161
+GAB,Gabon,2003,female,1.25632,0.91365,1.64505
+GAB,Gabon,2004,female,4.00038,2.95237,5.20568
+GAB,Gabon,2005,female,8.81824,6.55024,11.24754
+GAB,Gabon,2006,female,10.0145,7.51788,12.80924
+GAB,Gabon,2007,female,11.80262,8.94497,15.0342
+GAB,Gabon,2008,female,14.26487,10.88775,17.89285
+GAB,Gabon,2009,female,17.9575,13.83628,22.40294
+GAB,Gabon,2010,female,19.33958,15.11261,23.98221
+GAB,Gabon,2011,female,26.05561,20.41276,32.25969
+GAB,Gabon,2012,female,32.32092,25.44325,39.77688
+GAB,Gabon,2013,female,38.15224,30.04341,47.0324
+GAB,Gabon,2014,female,39.96638,31.48953,49.66677
+GAB,Gabon,2015,female,40.50988,32.11496,50.59548
+GAB,Gabon,2016,female,41.34033,32.71547,51.3982
+GAB,Gabon,2017,female,42.2097,33.5455,52.69407
+GAB,Gabon,2018,female,42.50357,33.95593,53.04253
+GAB,Gabon,2019,female,45.21113,35.50845,56.49163
+GAB,Gabon,2020,female,45.55388,35.51986,56.5639
+GAB,Gabon,2021,female,48.40868,37.22761,60.45935
+GAB,Gabon,2022,female,53.32559,40.61056,66.81224
+GAB,Gabon,2023,female,56.51624,42.80239,71.0712
+GAB,Gabon,2024,female,62.60994,47.36842,79.3866
+GAB,Gabon,1990,male,0.0,0.0,0.0
+GAB,Gabon,1991,male,0.0,0.0,0.0
+GAB,Gabon,1992,male,0.0,0.0,0.0
+GAB,Gabon,1993,male,0.0,0.0,0.0
+GAB,Gabon,1994,male,0.0,0.0,0.0
+GAB,Gabon,1995,male,0.0,0.0,0.0
+GAB,Gabon,1996,male,0.0,0.0,0.0
+GAB,Gabon,1997,male,0.0,0.0,0.0
+GAB,Gabon,1998,male,0.0,0.0,0.0
+GAB,Gabon,1999,male,0.0,0.0,0.0
+GAB,Gabon,2000,male,0.0,0.0,0.0
+GAB,Gabon,2001,male,0.47261,0.33406,0.65665
+GAB,Gabon,2002,male,1.82275,1.30198,2.50607
+GAB,Gabon,2003,male,2.72863,1.97165,3.68385
+GAB,Gabon,2004,male,8.57055,6.29232,11.20874
+GAB,Gabon,2005,male,18.4728,13.66999,23.85025
+GAB,Gabon,2006,male,20.39685,15.03673,26.17494
+GAB,Gabon,2007,male,23.34669,17.52129,29.8252
+GAB,Gabon,2008,male,26.05324,19.89841,32.91181
+GAB,Gabon,2009,male,32.10116,24.77129,39.95946
+GAB,Gabon,2010,male,33.84238,26.29037,41.9051
+GAB,Gabon,2011,male,37.24534,29.14338,46.1442
+GAB,Gabon,2012,male,40.51561,31.83314,49.94695
+GAB,Gabon,2013,male,43.72024,34.48321,54.51665
+GAB,Gabon,2014,male,46.1309,36.55947,57.6454
+GAB,Gabon,2015,male,45.88567,36.63723,57.0381
+GAB,Gabon,2016,male,46.12921,37.12796,57.05509
+GAB,Gabon,2017,male,46.58072,37.64901,57.03563
+GAB,Gabon,2018,male,47.33689,38.54965,57.97109
+GAB,Gabon,2019,male,48.11435,38.91661,58.71364
+GAB,Gabon,2020,male,49.17058,39.60414,59.84944
+GAB,Gabon,2021,male,51.15085,40.87464,62.15272
+GAB,Gabon,2022,male,62.09229,48.81096,75.81163
+GAB,Gabon,2023,male,63.24349,49.54334,77.89164
+GAB,Gabon,2024,male,74.425,57.70421,92.78341
+GMB,Gambia,1990,female,0.0,0.0,0.0
+GMB,Gambia,1991,female,0.0,0.0,0.0
+GMB,Gambia,1992,female,0.0,0.0,0.0
+GMB,Gambia,1993,female,0.0,0.0,0.0
+GMB,Gambia,1994,female,0.0,0.0,0.0
+GMB,Gambia,1995,female,0.0,0.0,0.0
+GMB,Gambia,1996,female,0.0,0.0,0.0
+GMB,Gambia,1997,female,0.0,0.0,0.0
+GMB,Gambia,1998,female,0.0,0.0,0.0
+GMB,Gambia,1999,female,0.0,0.0,0.0
+GMB,Gambia,2000,female,0.0,0.0,0.0
+GMB,Gambia,2001,female,0.0,0.0,0.0
+GMB,Gambia,2002,female,0.0,0.0,0.0
+GMB,Gambia,2003,female,0.0,0.0,0.0
+GMB,Gambia,2004,female,0.0,0.0,0.0
+GMB,Gambia,2005,female,1.77987,1.33657,2.43019
+GMB,Gambia,2006,female,1.94276,1.46622,2.64618
+GMB,Gambia,2007,female,2.68387,2.0179,3.64421
+GMB,Gambia,2008,female,4.27747,3.21913,5.76464
+GMB,Gambia,2009,female,5.13402,3.8669,6.81795
+GMB,Gambia,2010,female,9.75579,7.43794,12.98939
+GMB,Gambia,2011,female,16.79061,12.83432,22.27819
+GMB,Gambia,2012,female,20.29976,15.47148,26.79111
+GMB,Gambia,2013,female,20.41845,15.56516,26.80854
+GMB,Gambia,2014,female,23.17947,17.63996,30.25878
+GMB,Gambia,2015,female,25.10402,19.2285,32.61646
+GMB,Gambia,2016,female,29.88664,23.02295,38.85055
+GMB,Gambia,2017,female,35.04073,27.14033,45.34477
+GMB,Gambia,2018,female,38.33725,29.7237,49.65901
+GMB,Gambia,2019,female,41.68259,32.47028,54.19437
+GMB,Gambia,2020,female,41.36017,32.06385,53.76111
+GMB,Gambia,2021,female,43.68896,33.66585,56.70644
+GMB,Gambia,2022,female,48.02387,37.11218,62.05097
+GMB,Gambia,2023,female,51.57326,39.28181,66.21424
+GMB,Gambia,2024,female,55.36664,42.05478,71.28692
+GMB,Gambia,1990,male,0.0,0.0,0.0
+GMB,Gambia,1991,male,0.0,0.0,0.0
+GMB,Gambia,1992,male,0.0,0.0,0.0
+GMB,Gambia,1993,male,0.0,0.0,0.0
+GMB,Gambia,1994,male,0.0,0.0,0.0
+GMB,Gambia,1995,male,0.0,0.0,0.0
+GMB,Gambia,1996,male,0.0,0.0,0.0
+GMB,Gambia,1997,male,0.0,0.0,0.0
+GMB,Gambia,1998,male,0.0,0.0,0.0
+GMB,Gambia,1999,male,0.0,0.0,0.0
+GMB,Gambia,2000,male,0.0,0.0,0.0
+GMB,Gambia,2001,male,0.0,0.0,0.0
+GMB,Gambia,2002,male,0.0,0.0,0.0
+GMB,Gambia,2003,male,0.0,0.0,0.0
+GMB,Gambia,2004,male,0.0,0.0,0.0
+GMB,Gambia,2005,male,1.5492,1.15003,2.14813
+GMB,Gambia,2006,male,1.69798,1.28172,2.34472
+GMB,Gambia,2007,male,2.32196,1.74958,3.16334
+GMB,Gambia,2008,male,3.54234,2.67123,4.80813
+GMB,Gambia,2009,male,4.22533,3.23246,5.74104
+GMB,Gambia,2010,male,8.00482,6.13874,10.77587
+GMB,Gambia,2011,male,9.16444,6.92607,12.1795
+GMB,Gambia,2012,male,10.58211,8.12475,14.07628
+GMB,Gambia,2013,male,10.72071,8.12092,14.10324
+GMB,Gambia,2014,male,9.70681,7.31072,12.69292
+GMB,Gambia,2015,male,11.6177,8.68034,15.25739
+GMB,Gambia,2016,male,13.93389,10.32496,18.50237
+GMB,Gambia,2017,male,13.95348,10.26635,18.7439
+GMB,Gambia,2018,male,15.64347,11.49878,21.33508
+GMB,Gambia,2019,male,17.21826,12.54197,23.79101
+GMB,Gambia,2020,male,18.00545,13.11844,24.88332
+GMB,Gambia,2021,male,19.07102,13.96203,26.40624
+GMB,Gambia,2022,male,22.59749,16.63847,31.23447
+GMB,Gambia,2023,male,24.05196,17.56812,33.19335
+GMB,Gambia,2024,male,27.1566,19.49623,37.75692
+GHA,Ghana,1990,female,0.0,0.0,0.0
+GHA,Ghana,1991,female,0.0,0.0,0.0
+GHA,Ghana,1992,female,0.0,0.0,0.0
+GHA,Ghana,1993,female,0.0,0.0,0.0
+GHA,Ghana,1994,female,0.0,0.0,0.0
+GHA,Ghana,1995,female,0.0,0.0,0.0
+GHA,Ghana,1996,female,0.0,0.0,0.0
+GHA,Ghana,1997,female,0.0,0.0,0.0
+GHA,Ghana,1998,female,0.0,0.0,0.0
+GHA,Ghana,1999,female,0.0,0.0,0.0
+GHA,Ghana,2000,female,0.0,0.0,0.0
+GHA,Ghana,2001,female,0.0,0.0,0.0
+GHA,Ghana,2002,female,0.0,0.0,0.0
+GHA,Ghana,2003,female,0.06585,0.05284,0.07958
+GHA,Ghana,2004,female,0.60179,0.4815,0.72657
+GHA,Ghana,2005,female,1.22702,0.9684,1.47577
+GHA,Ghana,2006,female,2.26245,1.77418,2.71385
+GHA,Ghana,2007,female,3.95936,3.10798,4.7458
+GHA,Ghana,2008,female,6.98909,5.47502,8.37986
+GHA,Ghana,2009,female,9.67235,7.54069,11.5927
+GHA,Ghana,2010,female,12.7961,9.94053,15.32625
+GHA,Ghana,2011,female,20.30808,15.72774,24.24905
+GHA,Ghana,2012,female,24.43918,18.99929,29.1371
+GHA,Ghana,2013,female,26.41401,20.76468,31.64841
+GHA,Ghana,2014,female,29.03721,22.69615,34.81036
+GHA,Ghana,2015,female,32.57676,25.49774,39.13453
+GHA,Ghana,2016,female,35.5781,28.14166,42.94879
+GHA,Ghana,2017,female,38.40277,30.45399,46.36549
+GHA,Ghana,2018,female,38.94667,30.86301,46.64987
+GHA,Ghana,2019,female,39.58885,31.34153,47.44078
+GHA,Ghana,2020,female,42.91862,33.87231,51.20209
+GHA,Ghana,2021,female,45.67986,35.95308,54.70868
+GHA,Ghana,2022,female,50.04548,39.17105,60.19993
+GHA,Ghana,2023,female,50.27321,39.04755,60.7829
+GHA,Ghana,2024,female,50.70228,39.25731,61.7601
+GHA,Ghana,1990,male,0.0,0.0,0.0
+GHA,Ghana,1991,male,0.0,0.0,0.0
+GHA,Ghana,1992,male,0.0,0.0,0.0
+GHA,Ghana,1993,male,0.0,0.0,0.0
+GHA,Ghana,1994,male,0.0,0.0,0.0
+GHA,Ghana,1995,male,0.0,0.0,0.0
+GHA,Ghana,1996,male,0.0,0.0,0.0
+GHA,Ghana,1997,male,0.0,0.0,0.0
+GHA,Ghana,1998,male,0.0,0.0,0.0
+GHA,Ghana,1999,male,0.0,0.0,0.0
+GHA,Ghana,2000,male,0.0,0.0,0.0
+GHA,Ghana,2001,male,0.0,0.0,0.0
+GHA,Ghana,2002,male,0.0,0.0,0.0
+GHA,Ghana,2003,male,0.0924,0.07325,0.11114
+GHA,Ghana,2004,male,0.84779,0.6669,1.02517
+GHA,Ghana,2005,male,1.71936,1.34531,2.08735
+GHA,Ghana,2006,male,3.15284,2.46297,3.82283
+GHA,Ghana,2007,male,5.47649,4.28245,6.61234
+GHA,Ghana,2008,male,9.34751,7.31545,11.26363
+GHA,Ghana,2009,male,12.85602,10.13124,15.52098
+GHA,Ghana,2010,male,16.91029,13.31141,20.41823
+GHA,Ghana,2011,male,21.37767,16.82388,25.69093
+GHA,Ghana,2012,male,23.52899,18.44661,28.35424
+GHA,Ghana,2013,male,24.40596,19.03065,29.4789
+GHA,Ghana,2014,male,25.81114,20.18586,31.21843
+GHA,Ghana,2015,male,17.48743,13.66745,21.11342
+GHA,Ghana,2016,male,20.09233,15.64263,24.30508
+GHA,Ghana,2017,male,22.83172,17.83117,27.609
+GHA,Ghana,2018,male,24.23342,18.96924,29.30784
+GHA,Ghana,2019,male,25.5613,20.01172,30.93
+GHA,Ghana,2020,male,28.75774,22.39298,34.65323
+GHA,Ghana,2021,male,31.68617,24.57161,38.16347
+GHA,Ghana,2022,male,36.58367,28.29991,44.42606
+GHA,Ghana,2023,male,38.15306,29.55528,46.66003
+GHA,Ghana,2024,male,40.13352,30.94282,49.33497
+GIN,Guinea,1990,female,0.0,0.0,0.0
+GIN,Guinea,1991,female,0.0,0.0,0.0
+GIN,Guinea,1992,female,0.0,0.0,0.0
+GIN,Guinea,1993,female,0.0,0.0,0.0
+GIN,Guinea,1994,female,0.0,0.0,0.0
+GIN,Guinea,1995,female,0.0,0.0,0.0
+GIN,Guinea,1996,female,0.0,0.0,0.0
+GIN,Guinea,1997,female,0.0,0.0,0.0
+GIN,Guinea,1998,female,0.0,0.0,0.0
+GIN,Guinea,1999,female,0.0,0.0,0.0
+GIN,Guinea,2000,female,0.0,0.0,0.0
+GIN,Guinea,2001,female,0.1105,0.0847,0.1397
+GIN,Guinea,2002,female,0.28639,0.22041,0.35581
+GIN,Guinea,2003,female,0.44623,0.34623,0.55023
+GIN,Guinea,2004,female,0.57042,0.44619,0.70029
+GIN,Guinea,2005,female,1.75176,1.38719,2.14359
+GIN,Guinea,2006,female,5.10402,4.0954,6.28191
+GIN,Guinea,2007,female,5.44886,4.3573,6.70403
+GIN,Guinea,2008,female,9.2839,7.4082,11.30792
+GIN,Guinea,2009,female,14.66686,11.81762,17.83626
+GIN,Guinea,2010,female,19.04337,15.28246,23.21177
+GIN,Guinea,2011,female,21.36152,17.16775,25.94615
+GIN,Guinea,2012,female,29.07805,23.31666,35.29192
+GIN,Guinea,2013,female,27.88496,22.31741,33.88139
+GIN,Guinea,2014,female,32.53712,26.03699,39.40054
+GIN,Guinea,2015,female,32.73267,26.26639,39.64639
+GIN,Guinea,2016,female,37.08314,29.85327,44.9117
+GIN,Guinea,2017,female,35.4924,28.64208,43.08117
+GIN,Guinea,2018,female,39.61597,31.87704,48.09563
+GIN,Guinea,2019,female,51.67695,41.33139,62.91149
+GIN,Guinea,2020,female,56.52372,45.03324,68.99653
+GIN,Guinea,2021,female,63.76387,50.87848,78.10917
+GIN,Guinea,2022,female,72.61628,57.83705,89.38878
+GIN,Guinea,2023,female,74.03108,59.06357,91.92592
+GIN,Guinea,2024,female,82.63887,66.03144,100.0
+GIN,Guinea,1990,male,0.0,0.0,0.0
+GIN,Guinea,1991,male,0.0,0.0,0.0
+GIN,Guinea,1992,male,0.0,0.0,0.0
+GIN,Guinea,1993,male,0.0,0.0,0.0
+GIN,Guinea,1994,male,0.0,0.0,0.0
+GIN,Guinea,1995,male,0.0,0.0,0.0
+GIN,Guinea,1996,male,0.0,0.0,0.0
+GIN,Guinea,1997,male,0.0,0.0,0.0
+GIN,Guinea,1998,male,0.0,0.0,0.0
+GIN,Guinea,1999,male,0.0,0.0,0.0
+GIN,Guinea,2000,male,0.0,0.0,0.0
+GIN,Guinea,2001,male,0.1321,0.10092,0.16859
+GIN,Guinea,2002,male,0.34321,0.2632,0.43581
+GIN,Guinea,2003,male,0.53489,0.41532,0.67424
+GIN,Guinea,2004,male,0.68653,0.53716,0.85422
+GIN,Guinea,2005,male,2.12134,1.66361,2.61533
+GIN,Guinea,2006,male,6.19377,4.87312,7.64011
+GIN,Guinea,2007,male,6.61496,5.18801,8.12259
+GIN,Guinea,2008,male,11.29233,8.8862,13.8077
+GIN,Guinea,2009,male,17.86478,14.10042,21.85026
+GIN,Guinea,2010,male,22.25356,17.52362,27.13586
+GIN,Guinea,2011,male,25.08212,19.70179,30.56626
+GIN,Guinea,2012,male,22.60643,17.7035,27.51421
+GIN,Guinea,2013,male,22.33451,17.53738,26.97122
+GIN,Guinea,2014,male,23.95526,18.90379,28.89164
+GIN,Guinea,2015,male,24.64077,19.5261,29.86594
+GIN,Guinea,2016,male,25.25441,20.07429,30.70907
+GIN,Guinea,2017,male,35.50169,28.26459,43.38901
+GIN,Guinea,2018,male,30.50371,24.22348,37.26464
+GIN,Guinea,2019,male,35.58054,28.3904,43.70831
+GIN,Guinea,2020,male,39.63971,31.7193,48.87672
+GIN,Guinea,2021,male,45.4176,36.17764,56.36302
+GIN,Guinea,2022,male,51.39625,41.02394,63.74249
+GIN,Guinea,2023,male,56.03237,44.58802,69.22467
+GIN,Guinea,2024,male,63.66526,50.61709,78.94611
+GNB,Guinea-Bissau,1990,female,0.0,0.0,0.0
+GNB,Guinea-Bissau,1991,female,0.0,0.0,0.0
+GNB,Guinea-Bissau,1992,female,0.0,0.0,0.0
+GNB,Guinea-Bissau,1993,female,0.0,0.0,0.0
+GNB,Guinea-Bissau,1994,female,0.0,0.0,0.0
+GNB,Guinea-Bissau,1995,female,0.0,0.0,0.0
+GNB,Guinea-Bissau,1996,female,0.0,0.0,0.0
+GNB,Guinea-Bissau,1997,female,0.0,0.0,0.0
+GNB,Guinea-Bissau,1998,female,0.0,0.0,0.0
+GNB,Guinea-Bissau,1999,female,0.0,0.0,0.0
+GNB,Guinea-Bissau,2000,female,0.0,0.0,0.0
+GNB,Guinea-Bissau,2001,female,0.0066,0.00505,0.00818
+GNB,Guinea-Bissau,2002,female,0.02769,0.02133,0.03374
+GNB,Guinea-Bissau,2003,female,0.0501,0.03849,0.0604
+GNB,Guinea-Bissau,2004,female,0.06897,0.05312,0.08322
+GNB,Guinea-Bissau,2005,female,0.09106,0.07048,0.10873
+GNB,Guinea-Bissau,2006,female,0.88944,0.69571,1.06598
+GNB,Guinea-Bissau,2007,female,2.39742,1.88544,2.87305
+GNB,Guinea-Bissau,2008,female,5.5069,4.3758,6.6222
+GNB,Guinea-Bissau,2009,female,7.78781,6.20057,9.3251
+GNB,Guinea-Bissau,2010,female,10.25192,8.30549,12.30523
+GNB,Guinea-Bissau,2011,female,13.93476,11.32642,16.68682
+GNB,Guinea-Bissau,2012,female,21.61004,17.70675,25.85631
+GNB,Guinea-Bissau,2013,female,23.39247,19.23199,27.96907
+GNB,Guinea-Bissau,2014,female,27.31774,22.40955,32.64004
+GNB,Guinea-Bissau,2015,female,31.98984,26.30651,38.19523
+GNB,Guinea-Bissau,2016,female,39.60885,32.62711,47.50888
+GNB,Guinea-Bissau,2017,female,41.09591,33.89402,49.20575
+GNB,Guinea-Bissau,2018,female,56.1126,46.29017,67.31108
+GNB,Guinea-Bissau,2019,female,57.18801,47.08308,68.87577
+GNB,Guinea-Bissau,2020,female,60.00412,49.33469,72.05974
+GNB,Guinea-Bissau,2021,female,66.87027,54.84689,80.44235
+GNB,Guinea-Bissau,2022,female,73.89363,60.61655,89.08459
+GNB,Guinea-Bissau,2023,female,73.79258,60.41993,89.24258
+GNB,Guinea-Bissau,2024,female,89.16194,72.75675,100.0
+GNB,Guinea-Bissau,1990,male,0.0,0.0,0.0
+GNB,Guinea-Bissau,1991,male,0.0,0.0,0.0
+GNB,Guinea-Bissau,1992,male,0.0,0.0,0.0
+GNB,Guinea-Bissau,1993,male,0.0,0.0,0.0
+GNB,Guinea-Bissau,1994,male,0.0,0.0,0.0
+GNB,Guinea-Bissau,1995,male,0.0,0.0,0.0
+GNB,Guinea-Bissau,1996,male,0.0,0.0,0.0
+GNB,Guinea-Bissau,1997,male,0.0,0.0,0.0
+GNB,Guinea-Bissau,1998,male,0.0,0.0,0.0
+GNB,Guinea-Bissau,1999,male,0.0,0.0,0.0
+GNB,Guinea-Bissau,2000,male,0.0,0.0,0.0
+GNB,Guinea-Bissau,2001,male,0.00891,0.00692,0.01106
+GNB,Guinea-Bissau,2002,male,0.03666,0.02826,0.04436
+GNB,Guinea-Bissau,2003,male,0.0652,0.05005,0.07855
+GNB,Guinea-Bissau,2004,male,0.08849,0.06812,0.1065
+GNB,Guinea-Bissau,2005,male,0.11527,0.08981,0.13762
+GNB,Guinea-Bissau,2006,male,1.1098,0.87931,1.33081
+GNB,Guinea-Bissau,2007,male,2.94747,2.3649,3.51959
+GNB,Guinea-Bissau,2008,male,6.65702,5.41346,7.99607
+GNB,Guinea-Bissau,2009,male,9.25858,7.56735,11.10666
+GNB,Guinea-Bissau,2010,male,12.01447,9.74759,14.5194
+GNB,Guinea-Bissau,2011,male,15.53535,12.66673,18.6938
+GNB,Guinea-Bissau,2012,male,13.23346,10.87164,15.83783
+GNB,Guinea-Bissau,2013,male,13.29692,10.87903,15.94829
+GNB,Guinea-Bissau,2014,male,16.80636,13.6928,20.2043
+GNB,Guinea-Bissau,2015,male,19.37999,15.74259,23.33126
+GNB,Guinea-Bissau,2016,male,24.94135,20.22268,30.15684
+GNB,Guinea-Bissau,2017,male,23.1103,18.74479,28.06515
+GNB,Guinea-Bissau,2018,male,21.54415,17.35899,26.26338
+GNB,Guinea-Bissau,2019,male,33.57721,27.00661,40.93898
+GNB,Guinea-Bissau,2020,male,35.80354,28.67741,43.65179
+GNB,Guinea-Bissau,2021,male,43.75824,34.93992,53.30144
+GNB,Guinea-Bissau,2022,male,48.93532,39.09723,59.79383
+GNB,Guinea-Bissau,2023,male,48.93517,39.0835,59.78152
+GNB,Guinea-Bissau,2024,male,61.93433,49.59101,75.80133
+KEN,Kenya,1990,female,0.0,0.0,0.0
+KEN,Kenya,1991,female,0.0,0.0,0.0
+KEN,Kenya,1992,female,0.0,0.0,0.0
+KEN,Kenya,1993,female,0.0,0.0,0.0
+KEN,Kenya,1994,female,0.0,0.0,0.0
+KEN,Kenya,1995,female,0.0,0.0,0.0
+KEN,Kenya,1996,female,0.0,0.0,0.0
+KEN,Kenya,1997,female,0.0,0.0,0.0
+KEN,Kenya,1998,female,0.0,0.0,0.0
+KEN,Kenya,1999,female,0.0,0.0,0.0
+KEN,Kenya,2000,female,0.0,0.0,0.0
+KEN,Kenya,2001,female,0.0,0.0,0.0
+KEN,Kenya,2002,female,0.0,0.0,0.0
+KEN,Kenya,2003,female,0.0,0.0,0.0
+KEN,Kenya,2004,female,1.736939818775509,1.5516989477452818,1.9999607594232272
+KEN,Kenya,2005,female,3.862182841686213,3.4502893571561337,4.447024555629374
+KEN,Kenya,2006,female,8.759932505921936,7.825704772498822,10.086429770478349
+KEN,Kenya,2007,female,12.385233390540968,11.064375066175447,14.260701790022182
+KEN,Kenya,2008,female,17.05338778124645,15.234681445554868,19.635745140458486
+KEN,Kenya,2009,female,23.453625307062982,20.952348498566273,27.0051577223589
+KEN,Kenya,2010,female,29.61203942249561,26.453980290332463,34.096125794807946
+KEN,Kenya,2011,female,42.37781022686702,37.85831051080635,48.794990518484234
+KEN,Kenya,2012,female,46.83096689658351,41.83654526948682,53.92247573480013
+KEN,Kenya,2013,female,51.04088920308521,45.597488742138935,58.76989756707601
+KEN,Kenya,2014,female,59.5981069660117,53.24209567898541,68.62291314510108
+KEN,Kenya,2015,female,70.59818375038274,63.06904040660195,81.28871012009664
+KEN,Kenya,2016,female,80.68579672775283,72.08082985091521,92.90386606950582
+KEN,Kenya,2017,female,86.98582907329347,77.70897705972364,100.0
+KEN,Kenya,2018,female,85.36135765413427,76.25775456579069,100.0
+KEN,Kenya,2019,female,81.5377810254023,72.84195489364477,93.88486835906727
+KEN,Kenya,2020,female,81.56338329119588,72.86482418097616,93.91434423114366
+KEN,Kenya,2021,female,87.40068520192254,78.07959321902452,100.0
+KEN,Kenya,2022,female,87.77232169411977,78.41159727579657,100.0
+KEN,Kenya,2023,female,88.98149856029671,79.49181335643017,100.0
+KEN,Kenya,2024,female,89.77086107495045,80.19699246927826,100.0
+KEN,Kenya,1990,male,0.0,0.0,0.0
+KEN,Kenya,1991,male,0.0,0.0,0.0
+KEN,Kenya,1992,male,0.0,0.0,0.0
+KEN,Kenya,1993,male,0.0,0.0,0.0
+KEN,Kenya,1994,male,0.0,0.0,0.0
+KEN,Kenya,1995,male,0.0,0.0,0.0
+KEN,Kenya,1996,male,0.0,0.0,0.0
+KEN,Kenya,1997,male,0.0,0.0,0.0
+KEN,Kenya,1998,male,0.0,0.0,0.0
+KEN,Kenya,1999,male,0.0,0.0,0.0
+KEN,Kenya,2000,male,0.0,0.0,0.0
+KEN,Kenya,2001,male,0.0,0.0,0.0
+KEN,Kenya,2002,male,0.0,0.0,0.0
+KEN,Kenya,2003,male,0.0,0.0,0.0
+KEN,Kenya,2004,male,2.483280195150071,2.2298254411858247,2.818786175995929
+KEN,Kenya,2005,male,5.50308382266762,4.941414182088708,6.246583132156337
+KEN,Kenya,2006,male,12.388146180226705,11.12375616620475,14.061858623669316
+KEN,Kenya,2007,male,17.32734420973503,15.558837354753726,19.668371723078888
+KEN,Kenya,2008,male,23.56337270675736,21.15838896735842,26.746925224130276
+KEN,Kenya,2009,male,31.92466814242656,28.66629429681167,36.23788328450535
+KEN,Kenya,2010,male,39.16124745604034,35.16427424794995,44.452165773063186
+KEN,Kenya,2011,male,37.49289677955088,33.66620403008157,42.558412322142125
+KEN,Kenya,2012,male,41.71253742189401,37.45516697445594,47.34814885171044
+KEN,Kenya,2013,male,43.91129043427502,39.429505647302975,49.8439668899849
+KEN,Kenya,2014,male,48.60794816130093,43.64679978219862,55.175169141466775
+KEN,Kenya,2015,male,58.70944207241227,52.717291520742585,66.64143742114899
+KEN,Kenya,2016,male,65.27289193452492,58.61084401411016,74.09164584984165
+KEN,Kenya,2017,male,72.63811493178085,65.22433864090864,82.45195374075614
+KEN,Kenya,2018,male,72.6406253327214,65.22659561705207,82.45480684690854
+KEN,Kenya,2019,male,70.61016698656208,63.403374201627734,80.15002045084881
+KEN,Kenya,2020,male,72.07349559256635,64.71734788775443,81.81105220821287
+KEN,Kenya,2021,male,78.18359554637574,70.20382552846355,88.74666566830093
+KEN,Kenya,2022,male,79.58355904578733,71.4609031331167,90.335773452343
+KEN,Kenya,2023,male,81.31102503508292,73.01205404747368,92.29662774649134
+KEN,Kenya,2024,male,83.60563402264857,75.07246504827114,94.90125227447786
+LSO,Lesotho,1990,female,0.0,0.0,0.0
+LSO,Lesotho,1991,female,0.0,0.0,0.0
+LSO,Lesotho,1992,female,0.0,0.0,0.0
+LSO,Lesotho,1993,female,0.0,0.0,0.0
+LSO,Lesotho,1994,female,0.0,0.0,0.0
+LSO,Lesotho,1995,female,0.0,0.0,0.0
+LSO,Lesotho,1996,female,0.0,0.0,0.0
+LSO,Lesotho,1997,female,0.0,0.0,0.0
+LSO,Lesotho,1998,female,0.0,0.0,0.0
+LSO,Lesotho,1999,female,0.0,0.0,0.0
+LSO,Lesotho,2000,female,0.0,0.0,0.0
+LSO,Lesotho,2001,female,0.0,0.0,0.0
+LSO,Lesotho,2002,female,0.18152,0.14934,0.2158
+LSO,Lesotho,2003,female,0.51797,0.42263,0.61121
+LSO,Lesotho,2004,female,0.84654,0.68708,0.9954
+LSO,Lesotho,2005,female,3.74406,3.04845,4.39975
+LSO,Lesotho,2006,female,6.51914,5.31998,7.62539
+LSO,Lesotho,2007,female,15.10263,12.34603,17.64088
+LSO,Lesotho,2008,female,19.83756,16.25256,23.04425
+LSO,Lesotho,2009,female,30.0047,24.47745,34.66894
+LSO,Lesotho,2010,female,36.26427,29.62379,41.91663
+LSO,Lesotho,2011,female,35.77872,29.38155,41.36697
+LSO,Lesotho,2012,female,40.59219,33.57366,46.94701
+LSO,Lesotho,2013,female,44.81585,37.09399,51.81726
+LSO,Lesotho,2014,female,48.65526,40.45808,56.37229
+LSO,Lesotho,2015,female,54.57332,45.53851,63.39655
+LSO,Lesotho,2016,female,63.71542,53.18752,74.23943
+LSO,Lesotho,2017,female,73.43783,61.28001,85.53876
+LSO,Lesotho,2018,female,74.08809,61.94139,86.60828
+LSO,Lesotho,2019,female,80.69538,67.62683,94.08319
+LSO,Lesotho,2020,female,85.21783,71.43749,100.0
+LSO,Lesotho,2021,female,88.28806,73.89869,100.0
+LSO,Lesotho,2022,female,90.91047,76.12665,100.0
+LSO,Lesotho,2023,female,94.77696,79.23587,100.0
+LSO,Lesotho,2024,female,97.60467,81.54973,100.0
+LSO,Lesotho,1990,male,0.0,0.0,0.0
+LSO,Lesotho,1991,male,0.0,0.0,0.0
+LSO,Lesotho,1992,male,0.0,0.0,0.0
+LSO,Lesotho,1993,male,0.0,0.0,0.0
+LSO,Lesotho,1994,male,0.0,0.0,0.0
+LSO,Lesotho,1995,male,0.0,0.0,0.0
+LSO,Lesotho,1996,male,0.0,0.0,0.0
+LSO,Lesotho,1997,male,0.0,0.0,0.0
+LSO,Lesotho,1998,male,0.0,0.0,0.0
+LSO,Lesotho,1999,male,0.0,0.0,0.0
+LSO,Lesotho,2000,male,0.0,0.0,0.0
+LSO,Lesotho,2001,male,0.0,0.0,0.0
+LSO,Lesotho,2002,male,0.1558,0.12353,0.18671
+LSO,Lesotho,2003,male,0.44025,0.34418,0.52645
+LSO,Lesotho,2004,male,0.71791,0.56536,0.85471
+LSO,Lesotho,2005,male,3.15876,2.48764,3.74038
+LSO,Lesotho,2006,male,7.1589,5.60767,8.42935
+LSO,Lesotho,2007,male,15.92805,12.54148,18.71978
+LSO,Lesotho,2008,male,20.79628,16.50382,24.50951
+LSO,Lesotho,2009,male,24.81935,19.75404,29.11998
+LSO,Lesotho,2010,male,30.13908,24.05655,35.37142
+LSO,Lesotho,2011,male,32.41356,25.89878,38.01788
+LSO,Lesotho,2012,male,33.39011,26.73067,39.16489
+LSO,Lesotho,2013,male,36.24695,29.03203,42.32465
+LSO,Lesotho,2014,male,39.3396,31.56646,45.86794
+LSO,Lesotho,2015,male,47.00324,37.8569,54.80488
+LSO,Lesotho,2016,male,56.68118,45.90871,66.26042
+LSO,Lesotho,2017,male,61.83082,50.38721,72.36733
+LSO,Lesotho,2018,male,67.16668,54.8831,78.35106
+LSO,Lesotho,2019,male,72.75266,59.48775,85.03644
+LSO,Lesotho,2020,male,76.28924,62.52975,89.55965
+LSO,Lesotho,2021,male,79.56098,65.6005,93.3753
+LSO,Lesotho,2022,male,81.65696,67.4732,96.00864
+LSO,Lesotho,2023,male,84.73961,70.28785,100.0
+LSO,Lesotho,2024,male,88.43593,73.46779,100.0
+LBR,Liberia,1990,female,0.0,0.0,0.0
+LBR,Liberia,1991,female,0.0,0.0,0.0
+LBR,Liberia,1992,female,0.0,0.0,0.0
+LBR,Liberia,1993,female,0.0,0.0,0.0
+LBR,Liberia,1994,female,0.0,0.0,0.0
+LBR,Liberia,1995,female,0.0,0.0,0.0
+LBR,Liberia,1996,female,0.0,0.0,0.0
+LBR,Liberia,1997,female,0.0,0.0,0.0
+LBR,Liberia,1998,female,0.0,0.0,0.0
+LBR,Liberia,1999,female,0.0,0.0,0.0
+LBR,Liberia,2000,female,0.0,0.0,0.0
+LBR,Liberia,2001,female,0.0,0.0,0.0
+LBR,Liberia,2002,female,0.0,0.0,0.0
+LBR,Liberia,2003,female,0.0,0.0,0.0
+LBR,Liberia,2004,female,0.0,0.0,0.0
+LBR,Liberia,2005,female,0.0,0.0,0.0
+LBR,Liberia,2006,female,2.2993,1.88574,2.81838
+LBR,Liberia,2007,female,3.35115,2.76415,4.06299
+LBR,Liberia,2008,female,4.72162,3.86721,5.68911
+LBR,Liberia,2009,female,7.13905,5.81327,8.56399
+LBR,Liberia,2010,female,11.21974,9.07511,13.53627
+LBR,Liberia,2011,female,14.09689,11.59584,17.09825
+LBR,Liberia,2012,female,15.65875,12.84536,19.01513
+LBR,Liberia,2013,female,20.25312,16.39848,24.50712
+LBR,Liberia,2014,female,21.94163,17.67681,26.59744
+LBR,Liberia,2015,female,22.7059,18.05254,27.42345
+LBR,Liberia,2016,female,27.42521,21.5485,32.86023
+LBR,Liberia,2017,female,42.21051,33.02822,50.93426
+LBR,Liberia,2018,female,47.06883,36.93548,57.06968
+LBR,Liberia,2019,female,52.48906,41.19579,64.01054
+LBR,Liberia,2020,female,62.68271,49.45079,76.33677
+LBR,Liberia,2021,female,68.44187,54.2354,83.70202
+LBR,Liberia,2022,female,78.47485,61.77668,96.4683
+LBR,Liberia,2023,female,81.2868,63.59875,100.0
+LBR,Liberia,2024,female,96.21117,74.80497,100.0
+LBR,Liberia,1990,male,0.0,0.0,0.0
+LBR,Liberia,1991,male,0.0,0.0,0.0
+LBR,Liberia,1992,male,0.0,0.0,0.0
+LBR,Liberia,1993,male,0.0,0.0,0.0
+LBR,Liberia,1994,male,0.0,0.0,0.0
+LBR,Liberia,1995,male,0.0,0.0,0.0
+LBR,Liberia,1996,male,0.0,0.0,0.0
+LBR,Liberia,1997,male,0.0,0.0,0.0
+LBR,Liberia,1998,male,0.0,0.0,0.0
+LBR,Liberia,1999,male,0.0,0.0,0.0
+LBR,Liberia,2000,male,0.0,0.0,0.0
+LBR,Liberia,2001,male,0.0,0.0,0.0
+LBR,Liberia,2002,male,0.0,0.0,0.0
+LBR,Liberia,2003,male,0.0,0.0,0.0
+LBR,Liberia,2004,male,0.0,0.0,0.0
+LBR,Liberia,2005,male,0.0,0.0,0.0
+LBR,Liberia,2006,male,2.67249,2.13466,3.25233
+LBR,Liberia,2007,male,3.82965,3.07037,4.66779
+LBR,Liberia,2008,male,5.29938,4.23324,6.46113
+LBR,Liberia,2009,male,7.87161,6.36145,9.62015
+LBR,Liberia,2010,male,11.59092,9.32007,14.27711
+LBR,Liberia,2011,male,14.39432,11.4992,17.6957
+LBR,Liberia,2012,male,11.20232,8.91785,13.80167
+LBR,Liberia,2013,male,11.85578,9.38104,14.48132
+LBR,Liberia,2014,male,13.35236,10.48347,16.34248
+LBR,Liberia,2015,male,16.61373,12.9684,20.37523
+LBR,Liberia,2016,male,14.92326,11.57664,18.30646
+LBR,Liberia,2017,male,18.15703,13.96757,22.2395
+LBR,Liberia,2018,male,28.13659,21.61989,34.7844
+LBR,Liberia,2019,male,31.10068,24.01521,38.66728
+LBR,Liberia,2020,male,38.59644,29.90922,47.91846
+LBR,Liberia,2021,male,50.58324,39.19539,62.6381
+LBR,Liberia,2022,male,64.10495,49.71318,79.38603
+LBR,Liberia,2023,male,75.91624,58.95772,94.65364
+LBR,Liberia,2024,male,86.01773,66.63825,100.0
+MDG,Madagascar,1990,female,0.0,0.0,0.0
+MDG,Madagascar,1991,female,0.0,0.0,0.0
+MDG,Madagascar,1992,female,0.0,0.0,0.0
+MDG,Madagascar,1993,female,0.0,0.0,0.0
+MDG,Madagascar,1994,female,0.0,0.0,0.0
+MDG,Madagascar,1995,female,0.0,0.0,0.0
+MDG,Madagascar,1996,female,0.0,0.0,0.0
+MDG,Madagascar,1997,female,0.0,0.0,0.0
+MDG,Madagascar,1998,female,0.0,0.0,0.0
+MDG,Madagascar,1999,female,0.0,0.0,0.0
+MDG,Madagascar,2000,female,0.0,0.0,0.0
+MDG,Madagascar,2001,female,0.0,0.0,0.0
+MDG,Madagascar,2002,female,0.0,0.0,0.0
+MDG,Madagascar,2003,female,0.09215,0.04941,0.14979
+MDG,Madagascar,2004,female,0.24761,0.14188,0.39011
+MDG,Madagascar,2005,female,0.36254,0.21389,0.5435
+MDG,Madagascar,2006,female,0.73412,0.44652,1.0601
+MDG,Madagascar,2007,female,0.95668,0.61314,1.37378
+MDG,Madagascar,2008,female,0.93043,0.6123,1.2831
+MDG,Madagascar,2009,female,1.07769,0.73278,1.43792
+MDG,Madagascar,2010,female,1.14629,0.81436,1.50053
+MDG,Madagascar,2011,female,1.59181,1.16227,2.05386
+MDG,Madagascar,2012,female,1.49419,1.06821,1.9018
+MDG,Madagascar,2013,female,2.02291,1.48165,2.57123
+MDG,Madagascar,2014,female,2.75507,2.0275,3.50751
+MDG,Madagascar,2015,female,4.08122,2.95267,5.30872
+MDG,Madagascar,2016,female,5.20351,3.74208,6.78058
+MDG,Madagascar,2017,female,6.10119,4.3453,7.9668
+MDG,Madagascar,2018,female,8.78354,6.3171,11.51097
+MDG,Madagascar,2019,female,11.84974,8.72096,15.71858
+MDG,Madagascar,2020,female,12.55022,9.31641,16.70446
+MDG,Madagascar,2021,female,18.79553,13.81161,25.07916
+MDG,Madagascar,2022,female,23.47258,17.33578,32.01543
+MDG,Madagascar,2023,female,28.73387,21.47532,39.40032
+MDG,Madagascar,2024,female,38.72282,29.2751,52.82311
+MDG,Madagascar,1990,male,0.0,0.0,0.0
+MDG,Madagascar,1991,male,0.0,0.0,0.0
+MDG,Madagascar,1992,male,0.0,0.0,0.0
+MDG,Madagascar,1993,male,0.0,0.0,0.0
+MDG,Madagascar,1994,male,0.0,0.0,0.0
+MDG,Madagascar,1995,male,0.0,0.0,0.0
+MDG,Madagascar,1996,male,0.0,0.0,0.0
+MDG,Madagascar,1997,male,0.0,0.0,0.0
+MDG,Madagascar,1998,male,0.0,0.0,0.0
+MDG,Madagascar,1999,male,0.0,0.0,0.0
+MDG,Madagascar,2000,male,0.0,0.0,0.0
+MDG,Madagascar,2001,male,0.0,0.0,0.0
+MDG,Madagascar,2002,male,0.0,0.0,0.0
+MDG,Madagascar,2003,male,0.07041,0.03797,0.11924
+MDG,Madagascar,2004,male,0.21291,0.11754,0.34384
+MDG,Madagascar,2005,male,0.28871,0.1725,0.4484
+MDG,Madagascar,2006,male,0.60703,0.37764,0.90416
+MDG,Madagascar,2007,male,0.81801,0.53446,1.18546
+MDG,Madagascar,2008,male,0.8096,0.56539,1.16322
+MDG,Madagascar,2009,male,0.9427,0.69277,1.34152
+MDG,Madagascar,2010,male,0.99394,0.74544,1.35158
+MDG,Madagascar,2011,male,1.39446,1.04887,1.85253
+MDG,Madagascar,2012,male,1.07832,0.80077,1.44309
+MDG,Madagascar,2013,male,1.32618,0.99093,1.75638
+MDG,Madagascar,2014,male,1.83491,1.39564,2.41789
+MDG,Madagascar,2015,male,2.88037,2.1859,3.7718
+MDG,Madagascar,2016,male,3.62587,2.67777,4.69832
+MDG,Madagascar,2017,male,4.96173,3.58219,6.5978
+MDG,Madagascar,2018,male,6.66894,4.93994,9.0283
+MDG,Madagascar,2019,male,9.00356,6.65113,12.23357
+MDG,Madagascar,2020,male,9.36768,6.95813,12.7622
+MDG,Madagascar,2021,male,11.93672,8.7737,16.05475
+MDG,Madagascar,2022,male,14.83875,10.91384,20.10083
+MDG,Madagascar,2023,male,17.08285,12.75111,23.47718
+MDG,Madagascar,2024,male,22.24884,16.82817,31.03838
+MWI,Malawi,1990,female,0.0,0.0,0.0
+MWI,Malawi,1991,female,0.0,0.0,0.0
+MWI,Malawi,1992,female,0.0,0.0,0.0
+MWI,Malawi,1993,female,0.0,0.0,0.0
+MWI,Malawi,1994,female,0.0,0.0,0.0
+MWI,Malawi,1995,female,0.0,0.0,0.0
+MWI,Malawi,1996,female,0.0,0.0,0.0
+MWI,Malawi,1997,female,0.0,0.0,0.0
+MWI,Malawi,1998,female,0.0,0.0,0.0
+MWI,Malawi,1999,female,0.0,0.0,0.0
+MWI,Malawi,2000,female,0.0,0.0,0.0
+MWI,Malawi,2001,female,0.0,0.0,0.0
+MWI,Malawi,2002,female,0.0,0.0,0.0
+MWI,Malawi,2003,female,0.0,0.0,0.0
+MWI,Malawi,2004,female,1.33205,1.08827,1.5831
+MWI,Malawi,2005,female,3.75661,3.07564,4.46333
+MWI,Malawi,2006,female,7.71191,6.31475,9.15635
+MWI,Malawi,2007,female,12.96244,10.60184,15.34816
+MWI,Malawi,2008,female,19.58499,16.07458,23.17166
+MWI,Malawi,2009,female,24.92898,20.47568,29.46221
+MWI,Malawi,2010,female,30.48511,25.10048,36.03622
+MWI,Malawi,2011,female,38.9161,32.03847,46.04608
+MWI,Malawi,2012,female,48.44915,39.86866,57.43812
+MWI,Malawi,2013,female,55.33589,45.51214,65.65574
+MWI,Malawi,2014,female,61.60745,50.62877,72.85066
+MWI,Malawi,2015,female,66.3335,54.6661,78.43095
+MWI,Malawi,2016,female,73.84098,61.03186,87.23131
+MWI,Malawi,2017,female,79.16519,65.55791,93.67225
+MWI,Malawi,2018,female,85.47726,70.91481,100.0
+MWI,Malawi,2019,female,86.21824,71.68468,100.0
+MWI,Malawi,2020,female,89.24767,74.39196,100.0
+MWI,Malawi,2021,female,90.70304,75.85482,100.0
+MWI,Malawi,2022,female,91.8449,77.01013,100.0
+MWI,Malawi,2023,female,93.17765,78.21533,100.0
+MWI,Malawi,2024,female,93.27932,78.36926,100.0
+MWI,Malawi,1990,male,0.0,0.0,0.0
+MWI,Malawi,1991,male,0.0,0.0,0.0
+MWI,Malawi,1992,male,0.0,0.0,0.0
+MWI,Malawi,1993,male,0.0,0.0,0.0
+MWI,Malawi,1994,male,0.0,0.0,0.0
+MWI,Malawi,1995,male,0.0,0.0,0.0
+MWI,Malawi,1996,male,0.0,0.0,0.0
+MWI,Malawi,1997,male,0.0,0.0,0.0
+MWI,Malawi,1998,male,0.0,0.0,0.0
+MWI,Malawi,1999,male,0.0,0.0,0.0
+MWI,Malawi,2000,male,0.0,0.0,0.0
+MWI,Malawi,2001,male,0.0,0.0,0.0
+MWI,Malawi,2002,male,0.0,0.0,0.0
+MWI,Malawi,2003,male,0.0,0.0,0.0
+MWI,Malawi,2004,male,1.22041,0.995,1.46694
+MWI,Malawi,2005,male,3.27059,2.67507,3.91552
+MWI,Malawi,2006,male,6.62633,5.41817,7.91193
+MWI,Malawi,2007,male,11.10608,9.10498,13.25785
+MWI,Malawi,2008,male,17.87916,14.70025,21.26392
+MWI,Malawi,2009,male,23.07255,19.06336,27.4386
+MWI,Malawi,2010,male,28.74095,23.8123,34.0118
+MWI,Malawi,2011,male,35.08438,29.07027,41.50681
+MWI,Malawi,2012,male,41.28537,34.28984,48.73626
+MWI,Malawi,2013,male,46.53773,38.65761,54.65163
+MWI,Malawi,2014,male,52.10019,43.25229,61.08039
+MWI,Malawi,2015,male,56.75936,47.22792,66.32759
+MWI,Malawi,2016,male,64.06471,53.24581,74.79173
+MWI,Malawi,2017,male,72.14865,59.89842,84.35523
+MWI,Malawi,2018,male,78.13369,64.87943,91.36485
+MWI,Malawi,2019,male,79.08236,65.56952,92.4145
+MWI,Malawi,2020,male,82.58923,68.59668,96.01717
+MWI,Malawi,2021,male,84.99629,70.7803,100.0
+MWI,Malawi,2022,male,87.2401,72.88056,100.0
+MWI,Malawi,2023,male,89.09994,74.6299,100.0
+MWI,Malawi,2024,male,90.34484,75.94279,100.0
+MLI,Mali,1990,female,0.0,0.0,0.0
+MLI,Mali,1991,female,0.0,0.0,0.0
+MLI,Mali,1992,female,0.0,0.0,0.0
+MLI,Mali,1993,female,0.0,0.0,0.0
+MLI,Mali,1994,female,0.0,0.0,0.0
+MLI,Mali,1995,female,0.0,0.0,0.0
+MLI,Mali,1996,female,0.0,0.0,0.0
+MLI,Mali,1997,female,0.0,0.0,0.0
+MLI,Mali,1998,female,0.0,0.0,0.0
+MLI,Mali,1999,female,0.0,0.0,0.0
+MLI,Mali,2000,female,0.0,0.0,0.0
+MLI,Mali,2001,female,0.09467,0.0722,0.11829
+MLI,Mali,2002,female,0.3851,0.29507,0.47959
+MLI,Mali,2003,female,1.0075,0.77149,1.24786
+MLI,Mali,2004,female,3.24367,2.48101,4.01964
+MLI,Mali,2005,female,2.82328,2.16617,3.48396
+MLI,Mali,2006,female,7.6272,5.91301,9.40685
+MLI,Mali,2007,female,11.62619,9.06566,14.2749
+MLI,Mali,2008,female,16.0099,12.56077,19.68934
+MLI,Mali,2009,female,19.35413,15.24389,23.78603
+MLI,Mali,2010,female,22.43901,17.6308,27.26654
+MLI,Mali,2011,female,29.88723,23.39197,36.59447
+MLI,Mali,2012,female,29.38143,22.8799,35.99996
+MLI,Mali,2013,female,29.70692,23.21786,36.14574
+MLI,Mali,2014,female,31.9506,25.08974,38.77244
+MLI,Mali,2015,female,35.22525,27.70922,42.60438
+MLI,Mali,2016,female,37.35616,29.28935,45.1123
+MLI,Mali,2017,female,40.82739,32.07498,49.46536
+MLI,Mali,2018,female,45.46072,35.88983,55.14508
+MLI,Mali,2019,female,45.49532,35.72534,55.21754
+MLI,Mali,2020,female,54.26164,42.49401,66.15387
+MLI,Mali,2021,female,52.49443,41.02444,64.19597
+MLI,Mali,2022,female,58.13419,45.76354,71.68456
+MLI,Mali,2023,female,68.0687,53.55759,84.17684
+MLI,Mali,2024,female,72.89429,57.5043,90.38967
+MLI,Mali,1990,male,0.0,0.0,0.0
+MLI,Mali,1991,male,0.0,0.0,0.0
+MLI,Mali,1992,male,0.0,0.0,0.0
+MLI,Mali,1993,male,0.0,0.0,0.0
+MLI,Mali,1994,male,0.0,0.0,0.0
+MLI,Mali,1995,male,0.0,0.0,0.0
+MLI,Mali,1996,male,0.0,0.0,0.0
+MLI,Mali,1997,male,0.0,0.0,0.0
+MLI,Mali,1998,male,0.0,0.0,0.0
+MLI,Mali,1999,male,0.0,0.0,0.0
+MLI,Mali,2000,male,0.0,0.0,0.0
+MLI,Mali,2001,male,0.1002,0.07741,0.12715
+MLI,Mali,2002,male,0.40616,0.31567,0.5172
+MLI,Mali,2003,male,1.06048,0.8306,1.34992
+MLI,Mali,2004,male,3.4102,2.68742,4.35868
+MLI,Mali,2005,male,2.96656,2.35688,3.77996
+MLI,Mali,2006,male,8.01517,6.37349,10.09688
+MLI,Mali,2007,male,12.21932,9.69725,15.3567
+MLI,Mali,2008,male,16.44457,12.93053,20.64757
+MLI,Mali,2009,male,19.9427,15.77346,24.85203
+MLI,Mali,2010,male,23.15757,18.17935,28.68174
+MLI,Mali,2011,male,21.24625,16.56684,26.26259
+MLI,Mali,2012,male,20.6064,16.01747,25.28787
+MLI,Mali,2013,male,19.30237,14.98011,23.73926
+MLI,Mali,2014,male,21.60695,16.75742,26.79581
+MLI,Mali,2015,male,24.25516,18.68652,30.16507
+MLI,Mali,2016,male,27.58183,21.26092,34.59402
+MLI,Mali,2017,male,29.9765,22.95162,37.49925
+MLI,Mali,2018,male,33.71711,25.74678,42.24411
+MLI,Mali,2019,male,32.64802,24.87161,40.94912
+MLI,Mali,2020,male,40.31771,30.77987,50.45472
+MLI,Mali,2021,male,41.11332,31.33332,51.71831
+MLI,Mali,2022,male,48.43639,36.87373,61.17124
+MLI,Mali,2023,male,54.32959,41.46052,69.16826
+MLI,Mali,2024,male,63.51061,48.41884,81.3615
+MRT,Mauritania,1990,female,0.0,0.0,0.0
+MRT,Mauritania,1991,female,0.0,0.0,0.0
+MRT,Mauritania,1992,female,0.0,0.0,0.0
+MRT,Mauritania,1993,female,0.0,0.0,0.0
+MRT,Mauritania,1994,female,0.0,0.0,0.0
+MRT,Mauritania,1995,female,0.0,0.0,0.0
+MRT,Mauritania,1996,female,0.0,0.0,0.0
+MRT,Mauritania,1997,female,0.0,0.0,0.0
+MRT,Mauritania,1998,female,0.0,0.0,0.0
+MRT,Mauritania,1999,female,0.0,0.0,0.0
+MRT,Mauritania,2000,female,0.0,0.0,0.0
+MRT,Mauritania,2001,female,0.0,0.0,0.0
+MRT,Mauritania,2002,female,0.03685,0.02946,0.04675
+MRT,Mauritania,2003,female,0.13446,0.10798,0.16897
+MRT,Mauritania,2004,female,0.75147,0.60161,0.94242
+MRT,Mauritania,2005,female,3.10339,2.49098,3.84117
+MRT,Mauritania,2006,female,6.60273,5.25409,8.13685
+MRT,Mauritania,2007,female,10.93707,8.59014,13.43423
+MRT,Mauritania,2008,female,14.50909,11.33266,17.84882
+MRT,Mauritania,2009,female,19.03337,14.81996,23.03546
+MRT,Mauritania,2010,female,22.44516,17.4697,27.05637
+MRT,Mauritania,2011,female,21.71156,16.89651,26.06041
+MRT,Mauritania,2012,female,25.5245,19.62284,30.98662
+MRT,Mauritania,2013,female,30.6785,23.4625,37.38095
+MRT,Mauritania,2014,female,33.06688,25.41339,40.13461
+MRT,Mauritania,2015,female,36.28412,28.03239,44.3052
+MRT,Mauritania,2016,female,38.12148,29.04002,46.80763
+MRT,Mauritania,2017,female,47.5714,36.52483,58.88098
+MRT,Mauritania,2018,female,48.12462,36.58936,59.22411
+MRT,Mauritania,2019,female,52.6637,40.35571,64.91698
+MRT,Mauritania,2020,female,53.90892,41.09707,66.97179
+MRT,Mauritania,2021,female,55.99999,42.50965,69.71175
+MRT,Mauritania,2022,female,59.82968,45.34311,74.44403
+MRT,Mauritania,2023,female,64.05396,48.6579,79.86079
+MRT,Mauritania,2024,female,67.52658,51.62909,84.63305
+MRT,Mauritania,1990,male,0.0,0.0,0.0
+MRT,Mauritania,1991,male,0.0,0.0,0.0
+MRT,Mauritania,1992,male,0.0,0.0,0.0
+MRT,Mauritania,1993,male,0.0,0.0,0.0
+MRT,Mauritania,1994,male,0.0,0.0,0.0
+MRT,Mauritania,1995,male,0.0,0.0,0.0
+MRT,Mauritania,1996,male,0.0,0.0,0.0
+MRT,Mauritania,1997,male,0.0,0.0,0.0
+MRT,Mauritania,1998,male,0.0,0.0,0.0
+MRT,Mauritania,1999,male,0.0,0.0,0.0
+MRT,Mauritania,2000,male,0.0,0.0,0.0
+MRT,Mauritania,2001,male,0.0,0.0,0.0
+MRT,Mauritania,2002,male,0.02632,0.02176,0.03411
+MRT,Mauritania,2003,male,0.09399,0.07572,0.11953
+MRT,Mauritania,2004,male,0.51527,0.41556,0.64468
+MRT,Mauritania,2005,male,2.10045,1.68397,2.61795
+MRT,Mauritania,2006,male,4.42926,3.54505,5.52478
+MRT,Mauritania,2007,male,7.36802,5.82084,9.11891
+MRT,Mauritania,2008,male,9.87309,7.75073,12.13581
+MRT,Mauritania,2009,male,13.20374,10.2004,16.1763
+MRT,Mauritania,2010,male,15.47076,11.81958,19.18415
+MRT,Mauritania,2011,male,21.16985,16.12258,26.42755
+MRT,Mauritania,2012,male,21.97026,16.72565,27.5111
+MRT,Mauritania,2013,male,25.16486,19.09171,31.51169
+MRT,Mauritania,2014,male,28.11544,21.21653,34.83446
+MRT,Mauritania,2015,male,32.86763,24.93654,40.69883
+MRT,Mauritania,2016,male,39.1179,30.01268,48.09554
+MRT,Mauritania,2017,male,45.81517,35.65219,55.9531
+MRT,Mauritania,2018,male,48.56311,38.2592,58.86126
+MRT,Mauritania,2019,male,56.14204,44.53558,67.48659
+MRT,Mauritania,2020,male,62.52608,49.74258,74.3681
+MRT,Mauritania,2021,male,72.56102,58.3227,85.95288
+MRT,Mauritania,2022,male,74.74494,60.58917,89.59762
+MRT,Mauritania,2023,male,89.06752,72.71429,100.0
+MRT,Mauritania,2024,male,97.49693,79.34896,100.0
+MUS,Mauritius,1990,female,,,
+MUS,Mauritius,1991,female,,,
+MUS,Mauritius,1992,female,,,
+MUS,Mauritius,1993,female,,,
+MUS,Mauritius,1994,female,,,
+MUS,Mauritius,1995,female,,,
+MUS,Mauritius,1996,female,,,
+MUS,Mauritius,1997,female,,,
+MUS,Mauritius,1998,female,,,
+MUS,Mauritius,1999,female,,,
+MUS,Mauritius,2000,female,,,
+MUS,Mauritius,2001,female,,,
+MUS,Mauritius,2002,female,,,
+MUS,Mauritius,2003,female,,,
+MUS,Mauritius,2004,female,,,
+MUS,Mauritius,2005,female,,,
+MUS,Mauritius,2006,female,,,
+MUS,Mauritius,2007,female,,,
+MUS,Mauritius,2008,female,,,
+MUS,Mauritius,2009,female,,,
+MUS,Mauritius,2010,female,,,
+MUS,Mauritius,2011,female,,,
+MUS,Mauritius,2012,female,,,
+MUS,Mauritius,2013,female,,,
+MUS,Mauritius,2014,female,,,
+MUS,Mauritius,2015,female,,,
+MUS,Mauritius,2016,female,,,
+MUS,Mauritius,2017,female,,,
+MUS,Mauritius,2018,female,,,
+MUS,Mauritius,2019,female,,,
+MUS,Mauritius,2020,female,,,
+MUS,Mauritius,2021,female,,,
+MUS,Mauritius,2022,female,,,
+MUS,Mauritius,2023,female,,,
+MUS,Mauritius,2024,female,,,
+MUS,Mauritius,1990,male,,,
+MUS,Mauritius,1991,male,,,
+MUS,Mauritius,1992,male,,,
+MUS,Mauritius,1993,male,,,
+MUS,Mauritius,1994,male,,,
+MUS,Mauritius,1995,male,,,
+MUS,Mauritius,1996,male,,,
+MUS,Mauritius,1997,male,,,
+MUS,Mauritius,1998,male,,,
+MUS,Mauritius,1999,male,,,
+MUS,Mauritius,2000,male,,,
+MUS,Mauritius,2001,male,,,
+MUS,Mauritius,2002,male,,,
+MUS,Mauritius,2003,male,,,
+MUS,Mauritius,2004,male,,,
+MUS,Mauritius,2005,male,,,
+MUS,Mauritius,2006,male,,,
+MUS,Mauritius,2007,male,,,
+MUS,Mauritius,2008,male,,,
+MUS,Mauritius,2009,male,,,
+MUS,Mauritius,2010,male,,,
+MUS,Mauritius,2011,male,,,
+MUS,Mauritius,2012,male,,,
+MUS,Mauritius,2013,male,,,
+MUS,Mauritius,2014,male,,,
+MUS,Mauritius,2015,male,,,
+MUS,Mauritius,2016,male,,,
+MUS,Mauritius,2017,male,,,
+MUS,Mauritius,2018,male,,,
+MUS,Mauritius,2019,male,,,
+MUS,Mauritius,2020,male,,,
+MUS,Mauritius,2021,male,,,
+MUS,Mauritius,2022,male,,,
+MUS,Mauritius,2023,male,,,
+MUS,Mauritius,2024,male,,,
+MOZ,Mozambique,1990,female,0.0,0.0,0.0
+MOZ,Mozambique,1991,female,0.0,0.0,0.0
+MOZ,Mozambique,1992,female,0.0,0.0,0.0
+MOZ,Mozambique,1993,female,0.0,0.0,0.0
+MOZ,Mozambique,1994,female,0.0,0.0,0.0
+MOZ,Mozambique,1995,female,0.0,0.0,0.0
+MOZ,Mozambique,1996,female,0.0,0.0,0.0
+MOZ,Mozambique,1997,female,0.0,0.0,0.0
+MOZ,Mozambique,1998,female,0.0,0.0,0.0
+MOZ,Mozambique,1999,female,0.0,0.0,0.0
+MOZ,Mozambique,2000,female,0.0,0.0,0.0
+MOZ,Mozambique,2001,female,0.0,0.0,0.0
+MOZ,Mozambique,2002,female,0.0,0.0,0.0
+MOZ,Mozambique,2003,female,0.27325,0.22291,0.32638
+MOZ,Mozambique,2004,female,0.58637,0.47453,0.69896
+MOZ,Mozambique,2005,female,1.44643,1.16385,1.7176
+MOZ,Mozambique,2006,female,3.26754,2.63427,3.84544
+MOZ,Mozambique,2007,female,7.27433,5.88264,8.49033
+MOZ,Mozambique,2008,female,10.18117,8.31219,11.874
+MOZ,Mozambique,2009,female,12.14159,10.01842,14.12465
+MOZ,Mozambique,2010,female,15.09379,12.52634,17.54646
+MOZ,Mozambique,2011,female,17.88591,14.78509,20.79642
+MOZ,Mozambique,2012,female,19.71323,16.39136,22.97412
+MOZ,Mozambique,2013,female,28.65282,23.79654,33.34705
+MOZ,Mozambique,2014,female,38.72875,32.14059,44.77294
+MOZ,Mozambique,2015,female,46.84865,38.87291,53.99946
+MOZ,Mozambique,2016,female,55.99394,46.43512,64.83417
+MOZ,Mozambique,2017,female,61.68036,50.9011,71.71594
+MOZ,Mozambique,2018,female,62.45479,51.37471,72.6496
+MOZ,Mozambique,2019,female,66.39767,54.36469,77.05913
+MOZ,Mozambique,2020,female,67.60651,55.107,78.64752
+MOZ,Mozambique,2021,female,72.33583,58.89917,84.35207
+MOZ,Mozambique,2022,female,77.08859,63.28245,90.30025
+MOZ,Mozambique,2023,female,81.21125,67.11756,95.31268
+MOZ,Mozambique,2024,female,85.07026,70.74016,100.0
+MOZ,Mozambique,1990,male,0.0,0.0,0.0
+MOZ,Mozambique,1991,male,0.0,0.0,0.0
+MOZ,Mozambique,1992,male,0.0,0.0,0.0
+MOZ,Mozambique,1993,male,0.0,0.0,0.0
+MOZ,Mozambique,1994,male,0.0,0.0,0.0
+MOZ,Mozambique,1995,male,0.0,0.0,0.0
+MOZ,Mozambique,1996,male,0.0,0.0,0.0
+MOZ,Mozambique,1997,male,0.0,0.0,0.0
+MOZ,Mozambique,1998,male,0.0,0.0,0.0
+MOZ,Mozambique,1999,male,0.0,0.0,0.0
+MOZ,Mozambique,2000,male,0.0,0.0,0.0
+MOZ,Mozambique,2001,male,0.0,0.0,0.0
+MOZ,Mozambique,2002,male,0.0,0.0,0.0
+MOZ,Mozambique,2003,male,0.34496,0.27993,0.41172
+MOZ,Mozambique,2004,male,0.72025,0.59,0.8582
+MOZ,Mozambique,2005,male,1.73051,1.41756,2.0574
+MOZ,Mozambique,2006,male,3.8555,3.17653,4.56813
+MOZ,Mozambique,2007,male,7.19707,5.95709,8.48003
+MOZ,Mozambique,2008,male,9.83746,8.16602,11.61861
+MOZ,Mozambique,2009,male,11.00037,9.07325,12.94264
+MOZ,Mozambique,2010,male,13.19738,10.76092,15.57151
+MOZ,Mozambique,2011,male,15.51049,12.68569,18.28668
+MOZ,Mozambique,2012,male,15.89153,13.09685,18.75206
+MOZ,Mozambique,2013,male,23.01347,19.17571,27.1202
+MOZ,Mozambique,2014,male,27.28321,22.72457,32.19331
+MOZ,Mozambique,2015,male,32.58022,27.13486,38.11972
+MOZ,Mozambique,2016,male,38.04911,31.59858,44.3945
+MOZ,Mozambique,2017,male,45.16059,37.54357,52.78919
+MOZ,Mozambique,2018,male,46.2981,38.50221,53.95922
+MOZ,Mozambique,2019,male,49.96819,41.64035,58.13355
+MOZ,Mozambique,2020,male,54.20042,45.2623,62.84778
+MOZ,Mozambique,2021,male,61.72642,51.56871,71.81828
+MOZ,Mozambique,2022,male,69.18882,57.64464,80.36765
+MOZ,Mozambique,2023,male,75.7445,63.20716,88.52204
+MOZ,Mozambique,2024,male,81.74344,68.06042,96.05931
+NAM,Namibia,1990,female,0.0,0.0,0.0
+NAM,Namibia,1991,female,0.0,0.0,0.0
+NAM,Namibia,1992,female,0.0,0.0,0.0
+NAM,Namibia,1993,female,0.0,0.0,0.0
+NAM,Namibia,1994,female,0.0,0.0,0.0
+NAM,Namibia,1995,female,0.0,0.0,0.0
+NAM,Namibia,1996,female,0.0,0.0,0.0
+NAM,Namibia,1997,female,0.0,0.0,0.0
+NAM,Namibia,1998,female,0.0,0.0,0.0
+NAM,Namibia,1999,female,0.0,0.0,0.0
+NAM,Namibia,2000,female,0.0,0.0,0.0
+NAM,Namibia,2001,female,0.0,0.0,0.0
+NAM,Namibia,2002,female,0.0,0.0,0.0
+NAM,Namibia,2003,female,0.11606,0.09385,0.13729
+NAM,Namibia,2004,female,3.18185,2.56995,3.7501
+NAM,Namibia,2005,female,7.95738,6.47413,9.3365
+NAM,Namibia,2006,female,14.91416,12.21907,17.51089
+NAM,Namibia,2007,female,25.71265,21.18429,30.27328
+NAM,Namibia,2008,female,31.52678,26.13864,37.22815
+NAM,Namibia,2009,female,35.01445,28.98802,41.45561
+NAM,Namibia,2010,female,42.14248,34.86679,49.74984
+NAM,Namibia,2011,female,50.18978,41.55007,58.99386
+NAM,Namibia,2012,female,54.83123,45.48217,64.53038
+NAM,Namibia,2013,female,58.13217,48.31191,68.3858
+NAM,Namibia,2014,female,56.66954,47.23624,66.79933
+NAM,Namibia,2015,female,62.6556,52.44568,74.116
+NAM,Namibia,2016,female,66.9136,56.16302,79.17769
+NAM,Namibia,2017,female,74.77655,62.92261,88.38612
+NAM,Namibia,2018,female,77.99319,65.6162,92.00632
+NAM,Namibia,2019,female,86.1716,72.7049,100.0
+NAM,Namibia,2020,female,87.82,74.27664,100.0
+NAM,Namibia,2021,female,91.22,77.27163,100.0
+NAM,Namibia,2022,female,93.12682,79.05289,100.0
+NAM,Namibia,2023,female,96.63007,82.19008,100.0
+NAM,Namibia,2024,female,100.0,84.10907,100.0
+NAM,Namibia,1990,male,0.0,0.0,0.0
+NAM,Namibia,1991,male,0.0,0.0,0.0
+NAM,Namibia,1992,male,0.0,0.0,0.0
+NAM,Namibia,1993,male,0.0,0.0,0.0
+NAM,Namibia,1994,male,0.0,0.0,0.0
+NAM,Namibia,1995,male,0.0,0.0,0.0
+NAM,Namibia,1996,male,0.0,0.0,0.0
+NAM,Namibia,1997,male,0.0,0.0,0.0
+NAM,Namibia,1998,male,0.0,0.0,0.0
+NAM,Namibia,1999,male,0.0,0.0,0.0
+NAM,Namibia,2000,male,0.0,0.0,0.0
+NAM,Namibia,2001,male,0.0,0.0,0.0
+NAM,Namibia,2002,male,0.0,0.0,0.0
+NAM,Namibia,2003,male,0.11893,0.09762,0.14051
+NAM,Namibia,2004,male,2.68582,2.21689,3.18026
+NAM,Namibia,2005,male,6.86397,5.71302,8.16479
+NAM,Namibia,2006,male,14.39849,11.91709,17.06643
+NAM,Namibia,2007,male,22.58509,18.71563,26.75839
+NAM,Namibia,2008,male,29.29736,24.23659,34.74092
+NAM,Namibia,2009,male,31.70618,26.22798,37.46946
+NAM,Namibia,2010,male,36.50769,30.17856,43.334
+NAM,Namibia,2011,male,43.58562,36.12085,51.72832
+NAM,Namibia,2012,male,46.84384,38.93485,55.78922
+NAM,Namibia,2013,male,52.09272,43.30124,62.10305
+NAM,Namibia,2014,male,50.84106,42.20879,60.27384
+NAM,Namibia,2015,male,60.4067,50.34202,71.46569
+NAM,Namibia,2016,male,53.14178,44.37856,62.71698
+NAM,Namibia,2017,male,62.83759,52.68603,73.95847
+NAM,Namibia,2018,male,67.99039,57.23362,80.06768
+NAM,Namibia,2019,male,74.69737,63.126,88.26849
+NAM,Namibia,2020,male,77.6403,65.81591,91.55999
+NAM,Namibia,2021,male,81.36652,69.27057,96.3986
+NAM,Namibia,2022,male,83.21836,70.95826,100.0
+NAM,Namibia,2023,male,86.81458,74.16639,100.0
+NAM,Namibia,2024,male,89.95595,76.8978,100.0
+NER,Niger,1990,female,0.0,0.0,0.0
+NER,Niger,1991,female,0.0,0.0,0.0
+NER,Niger,1992,female,0.0,0.0,0.0
+NER,Niger,1993,female,0.0,0.0,0.0
+NER,Niger,1994,female,0.0,0.0,0.0
+NER,Niger,1995,female,0.0,0.0,0.0
+NER,Niger,1996,female,0.0,0.0,0.0
+NER,Niger,1997,female,0.0,0.0,0.0
+NER,Niger,1998,female,0.0,0.0,0.0
+NER,Niger,1999,female,0.0,0.0,0.0
+NER,Niger,2000,female,0.0,0.0,0.0
+NER,Niger,2001,female,0.0,0.0,0.0
+NER,Niger,2002,female,0.0,0.0,0.0
+NER,Niger,2003,female,0.0,0.0,0.0
+NER,Niger,2004,female,0.3197,0.25488,0.39726
+NER,Niger,2005,female,2.28054,1.82955,2.82744
+NER,Niger,2006,female,5.71003,4.59753,7.02855
+NER,Niger,2007,female,8.16326,6.58512,9.97501
+NER,Niger,2008,female,9.97315,8.07038,12.12215
+NER,Niger,2009,female,24.08704,19.52231,29.12176
+NER,Niger,2010,female,27.93239,22.71839,33.61299
+NER,Niger,2011,female,35.95226,29.40669,43.08572
+NER,Niger,2012,female,42.31622,34.81067,50.53838
+NER,Niger,2013,female,50.35399,41.63361,60.1048
+NER,Niger,2014,female,45.21394,37.55552,53.85404
+NER,Niger,2015,female,52.13746,43.54694,61.66907
+NER,Niger,2016,female,59.68884,50.04342,70.57895
+NER,Niger,2017,female,71.90722,60.40373,85.08203
+NER,Niger,2018,female,78.54995,66.15805,93.32319
+NER,Niger,2019,female,81.096,68.16528,96.59387
+NER,Niger,2020,female,84.86006,70.86117,100.0
+NER,Niger,2021,female,84.56916,70.42967,100.0
+NER,Niger,2022,female,83.90147,69.81865,100.0
+NER,Niger,2023,female,83.46963,69.73388,100.0
+NER,Niger,2024,female,79.0049,65.89209,94.92736
+NER,Niger,1990,male,0.0,0.0,0.0
+NER,Niger,1991,male,0.0,0.0,0.0
+NER,Niger,1992,male,0.0,0.0,0.0
+NER,Niger,1993,male,0.0,0.0,0.0
+NER,Niger,1994,male,0.0,0.0,0.0
+NER,Niger,1995,male,0.0,0.0,0.0
+NER,Niger,1996,male,0.0,0.0,0.0
+NER,Niger,1997,male,0.0,0.0,0.0
+NER,Niger,1998,male,0.0,0.0,0.0
+NER,Niger,1999,male,0.0,0.0,0.0
+NER,Niger,2000,male,0.0,0.0,0.0
+NER,Niger,2001,male,0.0,0.0,0.0
+NER,Niger,2002,male,0.0,0.0,0.0
+NER,Niger,2003,male,0.0,0.0,0.0
+NER,Niger,2004,male,0.23059,0.18977,0.2843
+NER,Niger,2005,male,1.59616,1.31058,1.95159
+NER,Niger,2006,male,3.89384,3.23063,4.75591
+NER,Niger,2007,male,5.45783,4.52776,6.69017
+NER,Niger,2008,male,6.58829,5.47718,8.04152
+NER,Niger,2009,male,15.91041,13.20499,19.34645
+NER,Niger,2010,male,17.77094,14.7167,21.50799
+NER,Niger,2011,male,23.30836,19.17334,28.05927
+NER,Niger,2012,male,28.00162,22.95102,33.4633
+NER,Niger,2013,male,27.41075,22.45536,32.64361
+NER,Niger,2014,male,26.93901,22.0662,31.9993
+NER,Niger,2015,male,29.62403,24.27107,35.07882
+NER,Niger,2016,male,35.38858,29.08168,41.71897
+NER,Niger,2017,male,40.03663,33.04593,47.14585
+NER,Niger,2018,male,48.74484,40.15869,57.25619
+NER,Niger,2019,male,50.44923,41.92407,59.21287
+NER,Niger,2020,male,53.15886,44.54026,62.27077
+NER,Niger,2021,male,55.703,47.14126,64.96392
+NER,Niger,2022,male,56.77367,47.75699,65.53325
+NER,Niger,2023,male,57.97817,48.5707,66.76592
+NER,Niger,2024,male,56.37769,47.66229,64.66797
+NGA,Nigeria,1990,female,0.0,0.0,0.0
+NGA,Nigeria,1991,female,0.0,0.0,0.0
+NGA,Nigeria,1992,female,0.0,0.0,0.0
+NGA,Nigeria,1993,female,0.0,0.0,0.0
+NGA,Nigeria,1994,female,0.0,0.0,0.0
+NGA,Nigeria,1995,female,0.0,0.0,0.0
+NGA,Nigeria,1996,female,0.0,0.0,0.0
+NGA,Nigeria,1997,female,0.0,0.0,0.0
+NGA,Nigeria,1998,female,0.0,0.0,0.0
+NGA,Nigeria,1999,female,0.0,0.0,0.0
+NGA,Nigeria,2000,female,0.0,0.0,0.0
+NGA,Nigeria,2001,female,0.0,0.0,0.0
+NGA,Nigeria,2002,female,0.59249,0.46841,0.69698
+NGA,Nigeria,2003,female,0.60499,0.47874,0.71328
+NGA,Nigeria,2004,female,2.10959,1.67358,2.48135
+NGA,Nigeria,2005,female,3.04193,2.42473,3.58134
+NGA,Nigeria,2006,female,6.38961,5.10503,7.51255
+NGA,Nigeria,2007,female,6.98492,5.59382,8.2221
+NGA,Nigeria,2008,female,12.83892,10.34067,15.10468
+NGA,Nigeria,2009,female,16.5865,13.44108,19.52844
+NGA,Nigeria,2010,female,21.0021,17.09466,24.59789
+NGA,Nigeria,2011,female,23.77187,19.48658,27.74459
+NGA,Nigeria,2012,female,33.62946,27.77691,39.16189
+NGA,Nigeria,2013,female,39.44122,32.73284,45.81967
+NGA,Nigeria,2014,female,43.564,36.16276,50.46011
+NGA,Nigeria,2015,female,47.38712,39.45945,54.71015
+NGA,Nigeria,2016,female,52.88251,44.20194,61.13583
+NGA,Nigeria,2017,female,55.75912,46.77118,64.52066
+NGA,Nigeria,2018,female,55.36017,46.6752,64.14657
+NGA,Nigeria,2019,female,61.04577,51.36669,70.59469
+NGA,Nigeria,2020,female,66.78256,56.19949,77.1523
+NGA,Nigeria,2021,female,72.57528,60.80117,83.47366
+NGA,Nigeria,2022,female,78.52966,65.68265,90.19597
+NGA,Nigeria,2023,female,84.50278,70.54169,97.5762
+NGA,Nigeria,2024,female,89.073,74.19893,100.0
+NGA,Nigeria,1990,male,0.0,0.0,0.0
+NGA,Nigeria,1991,male,0.0,0.0,0.0
+NGA,Nigeria,1992,male,0.0,0.0,0.0
+NGA,Nigeria,1993,male,0.0,0.0,0.0
+NGA,Nigeria,1994,male,0.0,0.0,0.0
+NGA,Nigeria,1995,male,0.0,0.0,0.0
+NGA,Nigeria,1996,male,0.0,0.0,0.0
+NGA,Nigeria,1997,male,0.0,0.0,0.0
+NGA,Nigeria,1998,male,0.0,0.0,0.0
+NGA,Nigeria,1999,male,0.0,0.0,0.0
+NGA,Nigeria,2000,male,0.0,0.0,0.0
+NGA,Nigeria,2001,male,0.0,0.0,0.0
+NGA,Nigeria,2002,male,0.27269,0.21875,0.3264
+NGA,Nigeria,2003,male,0.69181,0.55746,0.82621
+NGA,Nigeria,2004,male,2.37266,1.93294,2.83974
+NGA,Nigeria,2005,male,3.36807,2.75655,4.02249
+NGA,Nigeria,2006,male,6.9664,5.67233,8.29923
+NGA,Nigeria,2007,male,7.50918,6.12383,8.91584
+NGA,Nigeria,2008,male,13.65424,11.13717,16.29407
+NGA,Nigeria,2009,male,17.52644,14.33191,20.8669
+NGA,Nigeria,2010,male,15.8008,12.92964,18.78112
+NGA,Nigeria,2011,male,18.10599,14.89477,21.45742
+NGA,Nigeria,2012,male,18.66669,15.40058,22.06743
+NGA,Nigeria,2013,male,23.8748,19.66393,28.06229
+NGA,Nigeria,2014,male,27.63496,22.75339,32.43067
+NGA,Nigeria,2015,male,31.15651,25.72287,36.49622
+NGA,Nigeria,2016,male,35.62014,29.40508,41.50626
+NGA,Nigeria,2017,male,38.51208,31.87131,44.82924
+NGA,Nigeria,2018,male,39.48788,32.86653,45.85016
+NGA,Nigeria,2019,male,46.36914,38.74959,53.81677
+NGA,Nigeria,2020,male,53.32743,44.4507,61.73547
+NGA,Nigeria,2021,male,60.35317,50.1112,69.90161
+NGA,Nigeria,2022,male,67.51124,55.79492,77.77779
+NGA,Nigeria,2023,male,74.66119,61.20761,85.87639
+NGA,Nigeria,2024,male,83.93265,68.37632,96.97661
+RWA,Rwanda,1990,female,0.0,0.0,0.0
+RWA,Rwanda,1991,female,0.0,0.0,0.0
+RWA,Rwanda,1992,female,0.0,0.0,0.0
+RWA,Rwanda,1993,female,0.0,0.0,0.0
+RWA,Rwanda,1994,female,0.0,0.0,0.0
+RWA,Rwanda,1995,female,0.0,0.0,0.0
+RWA,Rwanda,1996,female,0.0,0.0,0.0
+RWA,Rwanda,1997,female,0.0,0.0,0.0
+RWA,Rwanda,1998,female,0.0,0.0,0.0
+RWA,Rwanda,1999,female,0.0,0.0,0.0
+RWA,Rwanda,2000,female,0.0,0.0,0.0
+RWA,Rwanda,2001,female,0.0,0.0,0.0
+RWA,Rwanda,2002,female,0.0,0.0,0.0
+RWA,Rwanda,2003,female,0.0,0.0,0.0
+RWA,Rwanda,2004,female,2.71897,2.25519,3.2224
+RWA,Rwanda,2005,female,8.9804,7.44184,10.59051
+RWA,Rwanda,2006,female,15.67909,13.02687,18.35313
+RWA,Rwanda,2007,female,20.74884,17.24705,24.16858
+RWA,Rwanda,2008,female,28.39049,23.64964,33.11423
+RWA,Rwanda,2009,female,34.28699,28.61504,39.98224
+RWA,Rwanda,2010,female,39.20022,32.79472,45.67817
+RWA,Rwanda,2011,female,42.99789,36.0851,50.14742
+RWA,Rwanda,2012,female,50.64651,42.62967,59.19591
+RWA,Rwanda,2013,female,56.30623,47.50965,65.84485
+RWA,Rwanda,2014,female,62.2564,52.59452,72.73338
+RWA,Rwanda,2015,female,67.58749,57.19731,78.768
+RWA,Rwanda,2016,female,74.6247,63.08135,86.77002
+RWA,Rwanda,2017,female,77.18857,65.25749,89.81468
+RWA,Rwanda,2018,female,80.14297,67.37437,92.94528
+RWA,Rwanda,2019,female,82.06553,68.79682,95.18752
+RWA,Rwanda,2020,female,84.99729,71.37403,100.0
+RWA,Rwanda,2021,female,88.01348,73.78761,100.0
+RWA,Rwanda,2022,female,90.79602,75.99116,100.0
+RWA,Rwanda,2023,female,93.32394,78.17616,100.0
+RWA,Rwanda,2024,female,96.9645,81.13482,100.0
+RWA,Rwanda,1990,male,0.0,0.0,0.0
+RWA,Rwanda,1991,male,0.0,0.0,0.0
+RWA,Rwanda,1992,male,0.0,0.0,0.0
+RWA,Rwanda,1993,male,0.0,0.0,0.0
+RWA,Rwanda,1994,male,0.0,0.0,0.0
+RWA,Rwanda,1995,male,0.0,0.0,0.0
+RWA,Rwanda,1996,male,0.0,0.0,0.0
+RWA,Rwanda,1997,male,0.0,0.0,0.0
+RWA,Rwanda,1998,male,0.0,0.0,0.0
+RWA,Rwanda,1999,male,0.0,0.0,0.0
+RWA,Rwanda,2000,male,0.0,0.0,0.0
+RWA,Rwanda,2001,male,0.0,0.0,0.0
+RWA,Rwanda,2002,male,0.0,0.0,0.0
+RWA,Rwanda,2003,male,0.0,0.0,0.0
+RWA,Rwanda,2004,male,2.52159,2.08927,2.96812
+RWA,Rwanda,2005,male,8.36066,6.94734,9.82122
+RWA,Rwanda,2006,male,14.64954,12.10101,17.14421
+RWA,Rwanda,2007,male,19.44435,16.01127,22.70278
+RWA,Rwanda,2008,male,26.67709,22.03272,31.01325
+RWA,Rwanda,2009,male,32.30171,26.85206,37.67442
+RWA,Rwanda,2010,male,37.1433,31.03522,43.57526
+RWA,Rwanda,2011,male,42.17645,35.21096,49.71418
+RWA,Rwanda,2012,male,46.88543,39.04777,55.19034
+RWA,Rwanda,2013,male,51.16432,42.56886,59.92377
+RWA,Rwanda,2014,male,56.20409,46.77823,65.61728
+RWA,Rwanda,2015,male,62.55219,52.21979,72.98375
+RWA,Rwanda,2016,male,70.61842,58.82188,82.20243
+RWA,Rwanda,2017,male,74.19594,61.92077,86.19708
+RWA,Rwanda,2018,male,77.15223,64.37148,89.40456
+RWA,Rwanda,2019,male,81.51677,68.16412,94.26218
+RWA,Rwanda,2020,male,84.51803,70.70886,97.58348
+RWA,Rwanda,2021,male,86.77721,72.57401,100.0
+RWA,Rwanda,2022,male,89.18409,74.60866,100.0
+RWA,Rwanda,2023,male,93.61361,78.2784,100.0
+RWA,Rwanda,2024,male,95.13441,79.63657,100.0
+STP,Sao Tome and Principe,1990,female,,,
+STP,Sao Tome and Principe,1991,female,,,
+STP,Sao Tome and Principe,1992,female,,,
+STP,Sao Tome and Principe,1993,female,,,
+STP,Sao Tome and Principe,1994,female,,,
+STP,Sao Tome and Principe,1995,female,,,
+STP,Sao Tome and Principe,1996,female,,,
+STP,Sao Tome and Principe,1997,female,,,
+STP,Sao Tome and Principe,1998,female,,,
+STP,Sao Tome and Principe,1999,female,,,
+STP,Sao Tome and Principe,2000,female,,,
+STP,Sao Tome and Principe,2001,female,,,
+STP,Sao Tome and Principe,2002,female,,,
+STP,Sao Tome and Principe,2003,female,,,
+STP,Sao Tome and Principe,2004,female,,,
+STP,Sao Tome and Principe,2005,female,,,
+STP,Sao Tome and Principe,2006,female,,,
+STP,Sao Tome and Principe,2007,female,,,
+STP,Sao Tome and Principe,2008,female,,,
+STP,Sao Tome and Principe,2009,female,,,
+STP,Sao Tome and Principe,2010,female,,,
+STP,Sao Tome and Principe,2011,female,,,
+STP,Sao Tome and Principe,2012,female,,,
+STP,Sao Tome and Principe,2013,female,,,
+STP,Sao Tome and Principe,2014,female,,,
+STP,Sao Tome and Principe,2015,female,,,
+STP,Sao Tome and Principe,2016,female,,,
+STP,Sao Tome and Principe,2017,female,,,
+STP,Sao Tome and Principe,2018,female,,,
+STP,Sao Tome and Principe,2019,female,,,
+STP,Sao Tome and Principe,2020,female,,,
+STP,Sao Tome and Principe,2021,female,,,
+STP,Sao Tome and Principe,2022,female,,,
+STP,Sao Tome and Principe,2023,female,,,
+STP,Sao Tome and Principe,2024,female,,,
+STP,Sao Tome and Principe,1990,male,,,
+STP,Sao Tome and Principe,1991,male,,,
+STP,Sao Tome and Principe,1992,male,,,
+STP,Sao Tome and Principe,1993,male,,,
+STP,Sao Tome and Principe,1994,male,,,
+STP,Sao Tome and Principe,1995,male,,,
+STP,Sao Tome and Principe,1996,male,,,
+STP,Sao Tome and Principe,1997,male,,,
+STP,Sao Tome and Principe,1998,male,,,
+STP,Sao Tome and Principe,1999,male,,,
+STP,Sao Tome and Principe,2000,male,,,
+STP,Sao Tome and Principe,2001,male,,,
+STP,Sao Tome and Principe,2002,male,,,
+STP,Sao Tome and Principe,2003,male,,,
+STP,Sao Tome and Principe,2004,male,,,
+STP,Sao Tome and Principe,2005,male,,,
+STP,Sao Tome and Principe,2006,male,,,
+STP,Sao Tome and Principe,2007,male,,,
+STP,Sao Tome and Principe,2008,male,,,
+STP,Sao Tome and Principe,2009,male,,,
+STP,Sao Tome and Principe,2010,male,,,
+STP,Sao Tome and Principe,2011,male,,,
+STP,Sao Tome and Principe,2012,male,,,
+STP,Sao Tome and Principe,2013,male,,,
+STP,Sao Tome and Principe,2014,male,,,
+STP,Sao Tome and Principe,2015,male,,,
+STP,Sao Tome and Principe,2016,male,,,
+STP,Sao Tome and Principe,2017,male,,,
+STP,Sao Tome and Principe,2018,male,,,
+STP,Sao Tome and Principe,2019,male,,,
+STP,Sao Tome and Principe,2020,male,,,
+STP,Sao Tome and Principe,2021,male,,,
+STP,Sao Tome and Principe,2022,male,,,
+STP,Sao Tome and Principe,2023,male,,,
+STP,Sao Tome and Principe,2024,male,,,
+SEN,Senegal,1990,female,0.0,0.0,0.0
+SEN,Senegal,1991,female,0.0,0.0,0.0
+SEN,Senegal,1992,female,0.0,0.0,0.0
+SEN,Senegal,1993,female,0.0,0.0,0.0
+SEN,Senegal,1994,female,0.0,0.0,0.0
+SEN,Senegal,1995,female,0.0,0.0,0.0
+SEN,Senegal,1996,female,0.0,0.0,0.0
+SEN,Senegal,1997,female,0.0,0.0,0.0
+SEN,Senegal,1998,female,0.0,0.0,0.0
+SEN,Senegal,1999,female,0.0,0.0,0.0
+SEN,Senegal,2000,female,0.0,0.0,0.0
+SEN,Senegal,2001,female,0.42132,0.34236,0.49914
+SEN,Senegal,2002,female,0.4084,0.33182,0.48273
+SEN,Senegal,2003,female,0.40728,0.32881,0.4802
+SEN,Senegal,2004,female,0.42951,0.34688,0.50762
+SEN,Senegal,2005,female,0.45284,0.36656,0.53585
+SEN,Senegal,2006,female,0.50269,0.40799,0.59337
+SEN,Senegal,2007,female,29.83041,24.197,35.12182
+SEN,Senegal,2008,female,35.23666,28.57959,41.6325
+SEN,Senegal,2009,female,40.28149,32.61219,47.64079
+SEN,Senegal,2010,female,45.17195,36.64331,53.49332
+SEN,Senegal,2011,female,47.96599,38.99497,56.67408
+SEN,Senegal,2012,female,44.06978,36.02545,51.97454
+SEN,Senegal,2013,female,48.015,39.55848,56.44168
+SEN,Senegal,2014,female,55.818,46.18937,65.30796
+SEN,Senegal,2015,female,59.2442,49.19228,69.08041
+SEN,Senegal,2016,female,71.88147,59.80618,83.47043
+SEN,Senegal,2017,female,77.2544,64.27723,89.61383
+SEN,Senegal,2018,female,87.16162,72.50019,100.0
+SEN,Senegal,2019,female,92.11363,76.66381,100.0
+SEN,Senegal,2020,female,93.43323,77.85612,100.0
+SEN,Senegal,2021,female,94.36004,78.81965,100.0
+SEN,Senegal,2022,female,94.16975,78.62078,100.0
+SEN,Senegal,2023,female,96.16412,80.32442,100.0
+SEN,Senegal,2024,female,100.0,81.94747,100.0
+SEN,Senegal,1990,male,0.0,0.0,0.0
+SEN,Senegal,1991,male,0.0,0.0,0.0
+SEN,Senegal,1992,male,0.0,0.0,0.0
+SEN,Senegal,1993,male,0.0,0.0,0.0
+SEN,Senegal,1994,male,0.0,0.0,0.0
+SEN,Senegal,1995,male,0.0,0.0,0.0
+SEN,Senegal,1996,male,0.0,0.0,0.0
+SEN,Senegal,1997,male,0.0,0.0,0.0
+SEN,Senegal,1998,male,0.0,0.0,0.0
+SEN,Senegal,1999,male,0.0,0.0,0.0
+SEN,Senegal,2000,male,0.0,0.0,0.0
+SEN,Senegal,2001,male,0.32438,0.26159,0.38915
+SEN,Senegal,2002,male,0.32538,0.26251,0.38855
+SEN,Senegal,2003,male,0.34022,0.27477,0.40701
+SEN,Senegal,2004,male,0.3562,0.2879,0.42467
+SEN,Senegal,2005,male,0.40259,0.32558,0.48043
+SEN,Senegal,2006,male,0.459,0.37116,0.54588
+SEN,Senegal,2007,male,10.80183,8.7912,12.88148
+SEN,Senegal,2008,male,13.13322,10.69881,15.60169
+SEN,Senegal,2009,male,15.5291,12.70929,18.36849
+SEN,Senegal,2010,male,18.0495,14.77821,21.26422
+SEN,Senegal,2011,male,19.92347,16.40191,23.43263
+SEN,Senegal,2012,male,19.09945,15.7184,22.44926
+SEN,Senegal,2013,male,24.2975,19.85512,28.4518
+SEN,Senegal,2014,male,28.19907,23.03884,32.99895
+SEN,Senegal,2015,male,33.09565,27.04672,38.75225
+SEN,Senegal,2016,male,33.97978,27.83389,39.77185
+SEN,Senegal,2017,male,38.73069,31.80875,45.29189
+SEN,Senegal,2018,male,44.05895,36.19535,51.30371
+SEN,Senegal,2019,male,48.63545,40.11479,56.35835
+SEN,Senegal,2020,male,52.03554,43.08509,60.08883
+SEN,Senegal,2021,male,52.47073,43.55935,60.42471
+SEN,Senegal,2022,male,53.72702,44.95357,61.72865
+SEN,Senegal,2023,male,53.28117,44.6734,61.13026
+SEN,Senegal,2024,male,56.33668,47.31467,64.54666
+SLE,Sierra Leone,1990,female,0.0,0.0,0.0
+SLE,Sierra Leone,1991,female,0.0,0.0,0.0
+SLE,Sierra Leone,1992,female,0.0,0.0,0.0
+SLE,Sierra Leone,1993,female,0.0,0.0,0.0
+SLE,Sierra Leone,1994,female,0.0,0.0,0.0
+SLE,Sierra Leone,1995,female,0.0,0.0,0.0
+SLE,Sierra Leone,1996,female,0.0,0.0,0.0
+SLE,Sierra Leone,1997,female,0.0,0.0,0.0
+SLE,Sierra Leone,1998,female,0.0,0.0,0.0
+SLE,Sierra Leone,1999,female,0.0,0.0,0.0
+SLE,Sierra Leone,2000,female,0.0,0.0,0.0
+SLE,Sierra Leone,2001,female,0.0,0.0,0.0
+SLE,Sierra Leone,2002,female,0.0,0.0,0.0
+SLE,Sierra Leone,2003,female,0.0,0.0,0.0
+SLE,Sierra Leone,2004,female,0.0,0.0,0.0
+SLE,Sierra Leone,2005,female,0.59405,0.47939,0.73456
+SLE,Sierra Leone,2006,female,1.43331,1.15304,1.75659
+SLE,Sierra Leone,2007,female,1.9838,1.5796,2.41649
+SLE,Sierra Leone,2008,female,3.80323,3.04255,4.63892
+SLE,Sierra Leone,2009,female,6.94565,5.55669,8.46896
+SLE,Sierra Leone,2010,female,10.22781,8.14754,12.29589
+SLE,Sierra Leone,2011,female,13.55166,10.78074,16.3108
+SLE,Sierra Leone,2012,female,16.36956,13.1462,19.74031
+SLE,Sierra Leone,2013,female,18.46114,15.09204,22.10118
+SLE,Sierra Leone,2014,female,21.81189,17.7627,26.16798
+SLE,Sierra Leone,2015,female,25.86762,20.92652,31.22186
+SLE,Sierra Leone,2016,female,33.27854,26.80813,40.56775
+SLE,Sierra Leone,2017,female,41.65463,33.17592,50.81412
+SLE,Sierra Leone,2018,female,47.89868,37.71179,58.41645
+SLE,Sierra Leone,2019,female,54.56935,42.71333,66.71867
+SLE,Sierra Leone,2020,female,60.82595,47.49106,75.1144
+SLE,Sierra Leone,2021,female,74.06011,57.20602,92.02193
+SLE,Sierra Leone,2022,female,84.43729,64.95299,100.0
+SLE,Sierra Leone,2023,female,88.17376,67.05995,100.0
+SLE,Sierra Leone,2024,female,94.75703,72.04691,100.0
+SLE,Sierra Leone,1990,male,0.0,0.0,0.0
+SLE,Sierra Leone,1991,male,0.0,0.0,0.0
+SLE,Sierra Leone,1992,male,0.0,0.0,0.0
+SLE,Sierra Leone,1993,male,0.0,0.0,0.0
+SLE,Sierra Leone,1994,male,0.0,0.0,0.0
+SLE,Sierra Leone,1995,male,0.0,0.0,0.0
+SLE,Sierra Leone,1996,male,0.0,0.0,0.0
+SLE,Sierra Leone,1997,male,0.0,0.0,0.0
+SLE,Sierra Leone,1998,male,0.0,0.0,0.0
+SLE,Sierra Leone,1999,male,0.0,0.0,0.0
+SLE,Sierra Leone,2000,male,0.0,0.0,0.0
+SLE,Sierra Leone,2001,male,0.0,0.0,0.0
+SLE,Sierra Leone,2002,male,0.0,0.0,0.0
+SLE,Sierra Leone,2003,male,0.0,0.0,0.0
+SLE,Sierra Leone,2004,male,0.0,0.0,0.0
+SLE,Sierra Leone,2005,male,0.63114,0.50553,0.78367
+SLE,Sierra Leone,2006,male,1.41964,1.15102,1.76628
+SLE,Sierra Leone,2007,male,1.96569,1.58826,2.42623
+SLE,Sierra Leone,2008,male,3.77494,3.0508,4.64827
+SLE,Sierra Leone,2009,male,6.88979,5.61448,8.46597
+SLE,Sierra Leone,2010,male,10.14786,8.3215,12.39489
+SLE,Sierra Leone,2011,male,13.44709,11.01022,16.25947
+SLE,Sierra Leone,2012,male,9.43091,7.68511,11.38376
+SLE,Sierra Leone,2013,male,9.1762,7.47042,11.11353
+SLE,Sierra Leone,2014,male,9.80059,7.97236,11.90878
+SLE,Sierra Leone,2015,male,15.12717,12.19343,18.47685
+SLE,Sierra Leone,2016,male,17.59333,14.07316,21.42423
+SLE,Sierra Leone,2017,male,22.479,17.86633,27.44239
+SLE,Sierra Leone,2018,male,27.50378,21.65619,33.56474
+SLE,Sierra Leone,2019,male,32.52973,25.53317,39.525
+SLE,Sierra Leone,2020,male,35.71968,27.76609,43.58437
+SLE,Sierra Leone,2021,male,45.37744,34.92014,55.91249
+SLE,Sierra Leone,2022,male,55.93039,42.70292,68.87664
+SLE,Sierra Leone,2023,male,64.78283,49.1508,79.4682
+SLE,Sierra Leone,2024,male,81.62704,60.71908,100.0
+SOM,Somalia,1990,female,0.0,0.0,0.0
+SOM,Somalia,1991,female,0.0,0.0,0.0
+SOM,Somalia,1992,female,0.0,0.0,0.0
+SOM,Somalia,1993,female,0.0,0.0,0.0
+SOM,Somalia,1994,female,0.0,0.0,0.0
+SOM,Somalia,1995,female,0.0,0.0,0.0
+SOM,Somalia,1996,female,0.0,0.0,0.0
+SOM,Somalia,1997,female,0.0,0.0,0.0
+SOM,Somalia,1998,female,0.0,0.0,0.0
+SOM,Somalia,1999,female,0.0,0.0,0.0
+SOM,Somalia,2000,female,0.0,0.0,0.0
+SOM,Somalia,2001,female,0.0,0.0,0.0
+SOM,Somalia,2002,female,0.0,0.0,0.0
+SOM,Somalia,2003,female,0.0,0.0,0.0
+SOM,Somalia,2004,female,0.0,0.0,0.0
+SOM,Somalia,2005,female,0.40762,0.29739,0.54126
+SOM,Somalia,2006,female,0.99486,0.74074,1.31456
+SOM,Somalia,2007,female,1.90313,1.4402,2.48161
+SOM,Somalia,2008,female,3.87823,2.94792,4.98792
+SOM,Somalia,2009,female,5.67427,4.33193,7.31957
+SOM,Somalia,2010,female,9.35237,7.13761,11.88382
+SOM,Somalia,2011,female,13.66635,10.56044,17.22092
+SOM,Somalia,2012,female,18.11735,14.17758,22.74408
+SOM,Somalia,2013,female,24.76675,19.66437,30.82293
+SOM,Somalia,2014,female,25.76767,20.76479,31.89844
+SOM,Somalia,2015,female,31.74408,25.90578,39.0964
+SOM,Somalia,2016,female,36.42724,29.99341,44.67841
+SOM,Somalia,2017,female,41.2034,34.052,49.81975
+SOM,Somalia,2018,female,44.24814,36.7642,53.05358
+SOM,Somalia,2019,female,48.24771,40.41251,57.67903
+SOM,Somalia,2020,female,51.41208,43.34869,61.1542
+SOM,Somalia,2021,female,56.03207,47.03375,66.33948
+SOM,Somalia,2022,female,59.32526,49.95777,70.32028
+SOM,Somalia,2023,female,65.73717,55.06852,77.45354
+SOM,Somalia,2024,female,70.25389,58.93656,82.75915
+SOM,Somalia,1990,male,0.0,0.0,0.0
+SOM,Somalia,1991,male,0.0,0.0,0.0
+SOM,Somalia,1992,male,0.0,0.0,0.0
+SOM,Somalia,1993,male,0.0,0.0,0.0
+SOM,Somalia,1994,male,0.0,0.0,0.0
+SOM,Somalia,1995,male,0.0,0.0,0.0
+SOM,Somalia,1996,male,0.0,0.0,0.0
+SOM,Somalia,1997,male,0.0,0.0,0.0
+SOM,Somalia,1998,male,0.0,0.0,0.0
+SOM,Somalia,1999,male,0.0,0.0,0.0
+SOM,Somalia,2000,male,0.0,0.0,0.0
+SOM,Somalia,2001,male,0.0,0.0,0.0
+SOM,Somalia,2002,male,0.0,0.0,0.0
+SOM,Somalia,2003,male,0.0,0.0,0.0
+SOM,Somalia,2004,male,0.0,0.0,0.0
+SOM,Somalia,2005,male,0.47376,0.35455,0.62925
+SOM,Somalia,2006,male,1.16917,0.88933,1.54311
+SOM,Somalia,2007,male,2.24389,1.71388,2.91937
+SOM,Somalia,2008,male,4.56798,3.50874,5.85855
+SOM,Somalia,2009,male,6.66555,5.17103,8.49889
+SOM,Somalia,2010,male,10.32838,8.15391,13.02368
+SOM,Somalia,2011,male,12.07538,9.54663,15.09293
+SOM,Somalia,2012,male,16.03293,12.79381,19.85332
+SOM,Somalia,2013,male,16.51894,13.20393,20.36053
+SOM,Somalia,2014,male,20.03932,16.08452,24.58446
+SOM,Somalia,2015,male,24.59353,19.8968,29.99825
+SOM,Somalia,2016,male,28.86043,23.57636,35.07462
+SOM,Somalia,2017,male,32.96778,27.09907,39.86289
+SOM,Somalia,2018,male,36.62586,30.19405,44.04796
+SOM,Somalia,2019,male,39.38143,32.17176,47.46686
+SOM,Somalia,2020,male,42.91822,35.33817,52.20841
+SOM,Somalia,2021,male,44.65082,36.546,53.98481
+SOM,Somalia,2022,male,47.54375,38.85063,57.56242
+SOM,Somalia,2023,male,55.8182,45.60943,66.96008
+SOM,Somalia,2024,male,63.07985,51.64197,76.32855
+ZAF,South Africa,1990,female,0.0,0.0,0.0
+ZAF,South Africa,1991,female,0.0,0.0,0.0
+ZAF,South Africa,1992,female,0.0,0.0,0.0
+ZAF,South Africa,1993,female,0.0,0.0,0.0
+ZAF,South Africa,1994,female,0.0,0.0,0.0
+ZAF,South Africa,1995,female,0.0,0.0,0.0
+ZAF,South Africa,1996,female,0.0,0.0,0.0
+ZAF,South Africa,1997,female,0.0,0.0,0.0
+ZAF,South Africa,1998,female,0.0,0.0,0.0
+ZAF,South Africa,1999,female,0.0,0.0,0.0
+ZAF,South Africa,2000,female,0.19019,0.15559,0.22833
+ZAF,South Africa,2001,female,0.3651,0.29733,0.43736
+ZAF,South Africa,2002,female,0.63673,0.51797,0.76052
+ZAF,South Africa,2003,female,0.96106,0.78162,1.1487
+ZAF,South Africa,2004,female,1.92218,1.56517,2.2973
+ZAF,South Africa,2005,female,3.88304,3.16387,4.61873
+ZAF,South Africa,2006,female,6.77075,5.52259,8.06137
+ZAF,South Africa,2007,female,10.56236,8.62,12.54313
+ZAF,South Africa,2008,female,14.99885,12.29379,17.74762
+ZAF,South Africa,2009,female,20.30715,16.65227,24.00085
+ZAF,South Africa,2010,female,26.68009,21.91326,31.49629
+ZAF,South Africa,2011,female,34.81413,28.64198,41.02189
+ZAF,South Africa,2012,female,42.27977,34.90027,49.88981
+ZAF,South Africa,2013,female,47.36026,39.13103,55.87361
+ZAF,South Africa,2014,female,52.26283,43.20208,61.59094
+ZAF,South Africa,2015,female,57.53615,47.529,67.73216
+ZAF,South Africa,2016,female,63.78396,52.69766,75.07556
+ZAF,South Africa,2017,female,69.79421,57.6471,82.10962
+ZAF,South Africa,2018,female,73.92128,61.06607,86.93794
+ZAF,South Africa,2019,female,76.88968,63.61379,90.55334
+ZAF,South Africa,2020,female,78.97067,65.51361,93.19539
+ZAF,South Africa,2021,female,80.58017,66.97607,95.34617
+ZAF,South Africa,2022,female,81.92254,68.10549,96.9778
+ZAF,South Africa,2023,female,82.96827,68.99936,100.0
+ZAF,South Africa,2024,female,83.94902,69.88438,100.0
+ZAF,South Africa,1990,male,0.0,0.0,0.0
+ZAF,South Africa,1991,male,0.0,0.0,0.0
+ZAF,South Africa,1992,male,0.0,0.0,0.0
+ZAF,South Africa,1993,male,0.0,0.0,0.0
+ZAF,South Africa,1994,male,0.0,0.0,0.0
+ZAF,South Africa,1995,male,0.0,0.0,0.0
+ZAF,South Africa,1996,male,0.0,0.0,0.0
+ZAF,South Africa,1997,male,0.0,0.0,0.0
+ZAF,South Africa,1998,male,0.0,0.0,0.0
+ZAF,South Africa,1999,male,0.0,0.0,0.0
+ZAF,South Africa,2000,male,0.14455,0.11755,0.17431
+ZAF,South Africa,2001,male,0.2859,0.2334,0.3431
+ZAF,South Africa,2002,male,0.48818,0.3968,0.58803
+ZAF,South Africa,2003,male,0.71479,0.58325,0.85854
+ZAF,South Africa,2004,male,1.37363,1.12703,1.64808
+ZAF,South Africa,2005,male,2.75356,2.26402,3.30303
+ZAF,South Africa,2006,male,4.84424,3.98162,5.80601
+ZAF,South Africa,2007,male,7.69467,6.34818,9.21368
+ZAF,South Africa,2008,male,11.10612,9.17914,13.32304
+ZAF,South Africa,2009,male,15.29202,12.68035,18.23079
+ZAF,South Africa,2010,male,20.54801,17.0743,24.44387
+ZAF,South Africa,2011,male,27.35351,22.75538,32.46397
+ZAF,South Africa,2012,male,33.86842,28.16084,40.16563
+ZAF,South Africa,2013,male,38.67065,32.25815,45.76681
+ZAF,South Africa,2014,male,43.168,36.04571,50.98799
+ZAF,South Africa,2015,male,47.71722,40.02219,56.46004
+ZAF,South Africa,2016,male,53.05824,44.61034,62.80407
+ZAF,South Africa,2017,male,58.38194,49.25566,68.88713
+ZAF,South Africa,2018,male,62.42588,52.79292,73.58686
+ZAF,South Africa,2019,male,65.67826,55.58277,77.09289
+ZAF,South Africa,2020,male,68.17873,57.91434,79.9269
+ZAF,South Africa,2021,male,70.17959,59.80947,82.32644
+ZAF,South Africa,2022,male,71.89248,61.37327,84.06061
+ZAF,South Africa,2023,male,73.27523,62.64021,85.57357
+ZAF,South Africa,2024,male,74.59138,63.812,87.01298
+SSD,South Sudan,1990,female,0.0,0.0,0.0
+SSD,South Sudan,1991,female,0.0,0.0,0.0
+SSD,South Sudan,1992,female,0.0,0.0,0.0
+SSD,South Sudan,1993,female,0.0,0.0,0.0
+SSD,South Sudan,1994,female,0.0,0.0,0.0
+SSD,South Sudan,1995,female,0.0,0.0,0.0
+SSD,South Sudan,1996,female,0.0,0.0,0.0
+SSD,South Sudan,1997,female,0.0,0.0,0.0
+SSD,South Sudan,1998,female,0.0,0.0,0.0
+SSD,South Sudan,1999,female,0.0,0.0,0.0
+SSD,South Sudan,2000,female,0.0,0.0,0.0
+SSD,South Sudan,2001,female,0.0,0.0,0.0
+SSD,South Sudan,2002,female,0.0,0.0,0.0
+SSD,South Sudan,2003,female,0.0,0.0,0.0
+SSD,South Sudan,2004,female,0.0,0.0,0.0
+SSD,South Sudan,2005,female,0.0,0.0,0.0
+SSD,South Sudan,2006,female,0.0,0.0,0.0
+SSD,South Sudan,2007,female,0.09413,0.06973,0.13029
+SSD,South Sudan,2008,female,0.27516,0.20259,0.37717
+SSD,South Sudan,2009,female,1.26004,0.92605,1.70204
+SSD,South Sudan,2010,female,1.42185,1.05769,1.90214
+SSD,South Sudan,2011,female,2.66885,1.98223,3.49767
+SSD,South Sudan,2012,female,3.20851,2.4075,4.17399
+SSD,South Sudan,2013,female,5.01495,3.7932,6.52942
+SSD,South Sudan,2014,female,8.61412,6.56204,11.12498
+SSD,South Sudan,2015,female,14.66013,11.3269,18.8554
+SSD,South Sudan,2016,female,15.55097,12.05388,19.67422
+SSD,South Sudan,2017,female,19.39448,15.0793,24.39669
+SSD,South Sudan,2018,female,24.36446,19.08131,30.59126
+SSD,South Sudan,2019,female,26.19372,20.65904,32.68818
+SSD,South Sudan,2020,female,31.16853,24.72441,39.03134
+SSD,South Sudan,2021,female,33.86652,26.94127,42.54516
+SSD,South Sudan,2022,female,40.35983,31.9239,50.44803
+SSD,South Sudan,2023,female,47.18499,37.25082,58.74464
+SSD,South Sudan,2024,female,50.62543,39.77258,62.86303
+SSD,South Sudan,1990,male,0.0,0.0,0.0
+SSD,South Sudan,1991,male,0.0,0.0,0.0
+SSD,South Sudan,1992,male,0.0,0.0,0.0
+SSD,South Sudan,1993,male,0.0,0.0,0.0
+SSD,South Sudan,1994,male,0.0,0.0,0.0
+SSD,South Sudan,1995,male,0.0,0.0,0.0
+SSD,South Sudan,1996,male,0.0,0.0,0.0
+SSD,South Sudan,1997,male,0.0,0.0,0.0
+SSD,South Sudan,1998,male,0.0,0.0,0.0
+SSD,South Sudan,1999,male,0.0,0.0,0.0
+SSD,South Sudan,2000,male,0.0,0.0,0.0
+SSD,South Sudan,2001,male,0.0,0.0,0.0
+SSD,South Sudan,2002,male,0.0,0.0,0.0
+SSD,South Sudan,2003,male,0.0,0.0,0.0
+SSD,South Sudan,2004,male,0.0,0.0,0.0
+SSD,South Sudan,2005,male,0.0,0.0,0.0
+SSD,South Sudan,2006,male,0.0,0.0,0.0
+SSD,South Sudan,2007,male,0.11432,0.08414,0.1586
+SSD,South Sudan,2008,male,0.33033,0.24229,0.44859
+SSD,South Sudan,2009,male,1.49637,1.09852,2.00853
+SSD,South Sudan,2010,male,1.67139,1.22444,2.22175
+SSD,South Sudan,2011,male,2.01116,1.48365,2.67174
+SSD,South Sudan,2012,male,2.50672,1.87459,3.31418
+SSD,South Sudan,2013,male,3.86871,2.91622,5.07646
+SSD,South Sudan,2014,male,5.54308,4.23678,7.23233
+SSD,South Sudan,2015,male,8.84993,6.81459,11.52915
+SSD,South Sudan,2016,male,10.87158,8.45896,13.88275
+SSD,South Sudan,2017,male,16.84717,13.2544,21.32449
+SSD,South Sudan,2018,male,20.6472,16.43683,26.0372
+SSD,South Sudan,2019,male,24.61574,19.75246,31.15013
+SSD,South Sudan,2020,male,29.3143,23.50161,36.8754
+SSD,South Sudan,2021,male,31.02871,24.7656,38.95407
+SSD,South Sudan,2022,male,39.03828,31.01344,48.80539
+SSD,South Sudan,2023,male,46.0766,36.40534,57.82963
+SSD,South Sudan,2024,male,51.56228,40.75929,64.94782
+TGO,Togo,1990,female,0.0,0.0,0.0
+TGO,Togo,1991,female,0.0,0.0,0.0
+TGO,Togo,1992,female,0.0,0.0,0.0
+TGO,Togo,1993,female,0.0,0.0,0.0
+TGO,Togo,1994,female,0.0,0.0,0.0
+TGO,Togo,1995,female,0.0,0.0,0.0
+TGO,Togo,1996,female,0.0,0.0,0.0
+TGO,Togo,1997,female,0.0,0.0,0.0
+TGO,Togo,1998,female,0.0,0.0,0.0
+TGO,Togo,1999,female,0.0,0.0,0.0
+TGO,Togo,2000,female,0.0,0.0,0.0
+TGO,Togo,2001,female,0.0,0.0,0.0
+TGO,Togo,2002,female,0.13776,0.10666,0.17751
+TGO,Togo,2003,female,0.97455,0.75977,1.24908
+TGO,Togo,2004,female,1.92113,1.50375,2.44252
+TGO,Togo,2005,female,5.07343,3.97066,6.39042
+TGO,Togo,2006,female,6.33411,4.97374,7.90728
+TGO,Togo,2007,female,7.2108,5.68996,8.95169
+TGO,Togo,2008,female,9.99557,7.88882,12.28689
+TGO,Togo,2009,female,15.45966,12.2822,18.93741
+TGO,Togo,2010,female,23.68241,18.94432,28.86854
+TGO,Togo,2011,female,28.31184,22.76529,34.50863
+TGO,Togo,2012,female,36.10233,28.87316,43.89334
+TGO,Togo,2013,female,40.81754,32.49341,49.54535
+TGO,Togo,2014,female,43.71814,34.70386,52.96326
+TGO,Togo,2015,female,50.22428,39.73101,60.73117
+TGO,Togo,2016,female,61.16313,48.16496,73.63577
+TGO,Togo,2017,female,73.05721,57.40788,88.22988
+TGO,Togo,2018,female,74.34178,57.89412,90.4433
+TGO,Togo,2019,female,84.84605,66.60395,100.0
+TGO,Togo,2020,female,90.03228,70.0418,100.0
+TGO,Togo,2021,female,90.34494,70.30579,100.0
+TGO,Togo,2022,female,85.53109,66.8136,100.0
+TGO,Togo,2023,female,93.75437,73.50899,100.0
+TGO,Togo,2024,female,96.37337,75.37821,100.0
+TGO,Togo,1990,male,0.0,0.0,0.0
+TGO,Togo,1991,male,0.0,0.0,0.0
+TGO,Togo,1992,male,0.0,0.0,0.0
+TGO,Togo,1993,male,0.0,0.0,0.0
+TGO,Togo,1994,male,0.0,0.0,0.0
+TGO,Togo,1995,male,0.0,0.0,0.0
+TGO,Togo,1996,male,0.0,0.0,0.0
+TGO,Togo,1997,male,0.0,0.0,0.0
+TGO,Togo,1998,male,0.0,0.0,0.0
+TGO,Togo,1999,male,0.0,0.0,0.0
+TGO,Togo,2000,male,0.0,0.0,0.0
+TGO,Togo,2001,male,0.0,0.0,0.0
+TGO,Togo,2002,male,0.19288,0.14922,0.24684
+TGO,Togo,2003,male,1.3474,1.04279,1.71908
+TGO,Togo,2004,male,2.62367,2.03136,3.34598
+TGO,Togo,2005,male,6.84155,5.32482,8.64968
+TGO,Togo,2006,male,8.42652,6.67377,10.65026
+TGO,Togo,2007,male,9.48128,7.50269,11.90527
+TGO,Togo,2008,male,12.99066,10.35729,16.16539
+TGO,Togo,2009,male,19.84402,15.85822,24.59484
+TGO,Togo,2010,male,30.03906,24.04816,37.15385
+TGO,Togo,2011,male,34.07892,27.30429,41.88961
+TGO,Togo,2012,male,23.78858,19.11307,29.0474
+TGO,Togo,2013,male,27.16563,21.83557,33.19868
+TGO,Togo,2014,male,29.61695,23.77742,36.28037
+TGO,Togo,2015,male,36.03534,28.7306,44.02438
+TGO,Togo,2016,male,39.24117,31.29188,47.73765
+TGO,Togo,2017,male,41.59611,33.35039,50.31962
+TGO,Togo,2018,male,52.97057,42.66503,64.06947
+TGO,Togo,2019,male,61.36123,49.31721,74.0046
+TGO,Togo,2020,male,65.83144,53.01183,80.01925
+TGO,Togo,2021,male,66.75669,53.62016,81.20592
+TGO,Togo,2022,male,73.84348,59.48693,90.03017
+TGO,Togo,2023,male,78.00716,63.18595,95.92316
+TGO,Togo,2024,male,86.42636,69.7362,100.0
+UGA,Uganda,1990,female,0.0,0.0,0.0
+UGA,Uganda,1991,female,0.0,0.0,0.0
+UGA,Uganda,1992,female,0.0,0.0,0.0
+UGA,Uganda,1993,female,0.0,0.0,0.0
+UGA,Uganda,1994,female,0.0,0.0,0.0
+UGA,Uganda,1995,female,0.0,0.0,0.0
+UGA,Uganda,1996,female,0.0,0.0,0.0
+UGA,Uganda,1997,female,0.0,0.0,0.0
+UGA,Uganda,1998,female,0.0,0.0,0.0
+UGA,Uganda,1999,female,0.0,0.0,0.0
+UGA,Uganda,2000,female,0.0,0.0,0.0
+UGA,Uganda,2001,female,0.4489,0.37275,0.52801
+UGA,Uganda,2002,female,1.04013,0.86844,1.22522
+UGA,Uganda,2003,female,1.63195,1.35661,1.91935
+UGA,Uganda,2004,female,4.62825,3.81877,5.42181
+UGA,Uganda,2005,female,8.36929,6.88025,9.78692
+UGA,Uganda,2006,female,8.12199,6.68671,9.48379
+UGA,Uganda,2007,female,9.98114,8.26305,11.67416
+UGA,Uganda,2008,female,13.60323,11.32839,15.83364
+UGA,Uganda,2009,female,15.44849,12.96467,18.01603
+UGA,Uganda,2010,female,19.10312,16.07365,22.19585
+UGA,Uganda,2011,female,21.63701,18.14809,25.12095
+UGA,Uganda,2012,female,32.55526,27.29751,37.72976
+UGA,Uganda,2013,female,45.94628,38.4297,53.12064
+UGA,Uganda,2014,female,54.84132,45.78013,63.35761
+UGA,Uganda,2015,female,58.1238,48.57955,67.13607
+UGA,Uganda,2016,female,64.32979,53.88629,74.24289
+UGA,Uganda,2017,female,71.97831,60.37919,82.83006
+UGA,Uganda,2018,female,76.11913,63.85188,87.51613
+UGA,Uganda,2019,female,78.57595,65.71428,90.81228
+UGA,Uganda,2020,female,79.56693,66.33893,91.72513
+UGA,Uganda,2021,female,81.20086,68.00003,93.59671
+UGA,Uganda,2022,female,83.28111,70.19093,96.22592
+UGA,Uganda,2023,female,85.16875,71.78566,100.0
+UGA,Uganda,2024,female,87.80281,73.85429,100.0
+UGA,Uganda,1990,male,0.0,0.0,0.0
+UGA,Uganda,1991,male,0.0,0.0,0.0
+UGA,Uganda,1992,male,0.0,0.0,0.0
+UGA,Uganda,1993,male,0.0,0.0,0.0
+UGA,Uganda,1994,male,0.0,0.0,0.0
+UGA,Uganda,1995,male,0.0,0.0,0.0
+UGA,Uganda,1996,male,0.0,0.0,0.0
+UGA,Uganda,1997,male,0.0,0.0,0.0
+UGA,Uganda,1998,male,0.0,0.0,0.0
+UGA,Uganda,1999,male,0.0,0.0,0.0
+UGA,Uganda,2000,male,0.0,0.0,0.0
+UGA,Uganda,2001,male,0.56996,0.46886,0.66924
+UGA,Uganda,2002,male,1.29355,1.07034,1.51913
+UGA,Uganda,2003,male,1.99534,1.64927,2.33558
+UGA,Uganda,2004,male,5.58724,4.65666,6.51513
+UGA,Uganda,2005,male,10.01855,8.37604,11.64227
+UGA,Uganda,2006,male,9.66472,8.05497,11.27966
+UGA,Uganda,2007,male,11.86012,9.90627,13.83158
+UGA,Uganda,2008,male,16.03676,13.41219,18.75915
+UGA,Uganda,2009,male,18.30134,15.28521,21.40406
+UGA,Uganda,2010,male,22.73675,18.9587,26.46013
+UGA,Uganda,2011,male,25.54716,21.30989,29.56116
+UGA,Uganda,2012,male,28.01988,23.40818,32.34539
+UGA,Uganda,2013,male,32.87394,27.46431,37.77939
+UGA,Uganda,2014,male,41.68931,34.84702,47.99776
+UGA,Uganda,2015,male,45.26893,37.91439,52.14175
+UGA,Uganda,2016,male,51.3845,43.1502,59.06408
+UGA,Uganda,2017,male,60.30285,50.87641,69.08113
+UGA,Uganda,2018,male,65.55128,55.17907,74.82645
+UGA,Uganda,2019,male,69.06057,58.02591,78.88293
+UGA,Uganda,2020,male,71.88708,60.5481,81.86054
+UGA,Uganda,2021,male,73.10596,61.88411,83.28807
+UGA,Uganda,2022,male,75.19689,63.90114,85.38044
+UGA,Uganda,2023,male,77.10014,65.61389,87.54793
+UGA,Uganda,2024,male,80.70545,68.87453,91.50354
+TZA,United Republic of Tanzania,1990,female,0.0,0.0,0.0
+TZA,United Republic of Tanzania,1991,female,0.0,0.0,0.0
+TZA,United Republic of Tanzania,1992,female,0.0,0.0,0.0
+TZA,United Republic of Tanzania,1993,female,0.0,0.0,0.0
+TZA,United Republic of Tanzania,1994,female,0.0,0.0,0.0
+TZA,United Republic of Tanzania,1995,female,0.0,0.0,0.0
+TZA,United Republic of Tanzania,1996,female,0.0,0.0,0.0
+TZA,United Republic of Tanzania,1997,female,0.0,0.0,0.0
+TZA,United Republic of Tanzania,1998,female,0.0,0.0,0.0
+TZA,United Republic of Tanzania,1999,female,0.0,0.0,0.0
+TZA,United Republic of Tanzania,2000,female,0.0,0.0,0.0
+TZA,United Republic of Tanzania,2001,female,0.0,0.0,0.0
+TZA,United Republic of Tanzania,2002,female,0.0,0.0,0.0
+TZA,United Republic of Tanzania,2003,female,0.0,0.0,0.0
+TZA,United Republic of Tanzania,2004,female,0.0,0.0,0.0
+TZA,United Republic of Tanzania,2005,female,1.04235,0.86458,1.22081
+TZA,United Republic of Tanzania,2006,female,4.68879,3.89052,5.48071
+TZA,United Republic of Tanzania,2007,female,11.46036,9.51964,13.40948
+TZA,United Republic of Tanzania,2008,female,12.90816,10.75155,15.11212
+TZA,United Republic of Tanzania,2009,female,16.77155,13.98593,19.63604
+TZA,United Republic of Tanzania,2010,female,22.92431,19.16561,26.76511
+TZA,United Republic of Tanzania,2011,female,22.88858,19.181,26.73908
+TZA,United Republic of Tanzania,2012,female,35.4594,29.72476,41.41303
+TZA,United Republic of Tanzania,2013,female,39.34014,32.96778,45.84246
+TZA,United Republic of Tanzania,2014,female,46.84137,39.13031,54.44766
+TZA,United Republic of Tanzania,2015,female,48.33562,40.3418,56.10901
+TZA,United Republic of Tanzania,2016,female,49.80569,41.57159,57.51414
+TZA,United Republic of Tanzania,2017,female,56.5693,47.32052,65.20054
+TZA,United Republic of Tanzania,2018,female,58.62556,49.08984,67.59695
+TZA,United Republic of Tanzania,2019,female,64.17751,53.78794,73.85176
+TZA,United Republic of Tanzania,2020,female,69.6514,58.43121,80.04332
+TZA,United Republic of Tanzania,2021,female,71.77302,60.53802,82.66519
+TZA,United Republic of Tanzania,2022,female,75.76507,64.03939,87.30963
+TZA,United Republic of Tanzania,2023,female,81.52314,68.84943,94.08387
+TZA,United Republic of Tanzania,2024,female,89.87398,75.57014,100.0
+TZA,United Republic of Tanzania,1990,male,0.0,0.0,0.0
+TZA,United Republic of Tanzania,1991,male,0.0,0.0,0.0
+TZA,United Republic of Tanzania,1992,male,0.0,0.0,0.0
+TZA,United Republic of Tanzania,1993,male,0.0,0.0,0.0
+TZA,United Republic of Tanzania,1994,male,0.0,0.0,0.0
+TZA,United Republic of Tanzania,1995,male,0.0,0.0,0.0
+TZA,United Republic of Tanzania,1996,male,0.0,0.0,0.0
+TZA,United Republic of Tanzania,1997,male,0.0,0.0,0.0
+TZA,United Republic of Tanzania,1998,male,0.0,0.0,0.0
+TZA,United Republic of Tanzania,1999,male,0.0,0.0,0.0
+TZA,United Republic of Tanzania,2000,male,0.0,0.0,0.0
+TZA,United Republic of Tanzania,2001,male,0.0,0.0,0.0
+TZA,United Republic of Tanzania,2002,male,0.0,0.0,0.0
+TZA,United Republic of Tanzania,2003,male,0.0,0.0,0.0
+TZA,United Republic of Tanzania,2004,male,0.0,0.0,0.0
+TZA,United Republic of Tanzania,2005,male,1.21885,0.98904,1.45125
+TZA,United Republic of Tanzania,2006,male,5.50029,4.4758,6.57201
+TZA,United Republic of Tanzania,2007,male,13.45458,11.01231,16.02749
+TZA,United Republic of Tanzania,2008,male,15.1055,12.40427,17.97384
+TZA,United Republic of Tanzania,2009,male,19.62702,16.15428,23.29676
+TZA,United Republic of Tanzania,2010,male,17.77446,14.62364,21.03077
+TZA,United Republic of Tanzania,2011,male,19.53651,16.08722,23.05881
+TZA,United Republic of Tanzania,2012,male,27.46877,22.75763,32.2969
+TZA,United Republic of Tanzania,2013,male,29.24819,24.33104,34.18698
+TZA,United Republic of Tanzania,2014,male,31.8938,26.6028,37.20202
+TZA,United Republic of Tanzania,2015,male,34.62461,28.90244,40.32711
+TZA,United Republic of Tanzania,2016,male,37.34803,31.14149,43.27053
+TZA,United Republic of Tanzania,2017,male,45.86716,38.38645,53.19402
+TZA,United Republic of Tanzania,2018,male,48.1849,40.37201,55.87047
+TZA,United Republic of Tanzania,2019,male,57.00154,47.7593,66.13987
+TZA,United Republic of Tanzania,2020,male,63.84922,53.56359,73.76504
+TZA,United Republic of Tanzania,2021,male,67.53295,56.77817,78.04652
+TZA,United Republic of Tanzania,2022,male,72.70594,61.36033,84.04166
+TZA,United Republic of Tanzania,2023,male,76.34609,64.58594,88.18724
+TZA,United Republic of Tanzania,2024,male,83.08203,70.42295,95.79334
+ZMB,Zambia,1990,female,0.0,0.0,0.0
+ZMB,Zambia,1991,female,0.0,0.0,0.0
+ZMB,Zambia,1992,female,0.0,0.0,0.0
+ZMB,Zambia,1993,female,0.0,0.0,0.0
+ZMB,Zambia,1994,female,0.0,0.0,0.0
+ZMB,Zambia,1995,female,0.0,0.0,0.0
+ZMB,Zambia,1996,female,0.0,0.0,0.0
+ZMB,Zambia,1997,female,0.0,0.0,0.0
+ZMB,Zambia,1998,female,0.0,0.0,0.0
+ZMB,Zambia,1999,female,0.0,0.0,0.0
+ZMB,Zambia,2000,female,0.0,0.0,0.0
+ZMB,Zambia,2001,female,0.0,0.0,0.0
+ZMB,Zambia,2002,female,0.02105,0.01722,0.02476
+ZMB,Zambia,2003,female,2.23905,1.8316,2.63807
+ZMB,Zambia,2004,female,4.32646,3.53099,5.07755
+ZMB,Zambia,2005,female,7.32414,5.97281,8.55104
+ZMB,Zambia,2006,female,10.88471,8.8779,12.69057
+ZMB,Zambia,2007,female,20.32449,16.66856,23.64086
+ZMB,Zambia,2008,female,27.61272,22.78088,32.11228
+ZMB,Zambia,2009,female,32.53666,26.91373,37.71612
+ZMB,Zambia,2010,female,38.23059,31.72887,44.26282
+ZMB,Zambia,2011,female,44.28035,36.67012,51.14569
+ZMB,Zambia,2012,female,45.52172,37.70398,52.35386
+ZMB,Zambia,2013,female,51.04181,42.32903,58.48844
+ZMB,Zambia,2014,female,59.35793,49.25785,67.96996
+ZMB,Zambia,2015,female,65.86032,54.73111,75.51854
+ZMB,Zambia,2016,female,66.67521,55.4435,76.46289
+ZMB,Zambia,2017,female,69.55619,57.9719,79.77986
+ZMB,Zambia,2018,female,76.88188,64.40841,88.27533
+ZMB,Zambia,2019,female,82.36983,69.21364,94.51606
+ZMB,Zambia,2020,female,88.53017,74.43035,100.0
+ZMB,Zambia,2021,female,89.11849,74.86659,100.0
+ZMB,Zambia,2022,female,93.52278,78.66497,100.0
+ZMB,Zambia,2023,female,93.96219,79.12244,100.0
+ZMB,Zambia,2024,female,96.37726,81.24799,100.0
+ZMB,Zambia,1990,male,0.0,0.0,0.0
+ZMB,Zambia,1991,male,0.0,0.0,0.0
+ZMB,Zambia,1992,male,0.0,0.0,0.0
+ZMB,Zambia,1993,male,0.0,0.0,0.0
+ZMB,Zambia,1994,male,0.0,0.0,0.0
+ZMB,Zambia,1995,male,0.0,0.0,0.0
+ZMB,Zambia,1996,male,0.0,0.0,0.0
+ZMB,Zambia,1997,male,0.0,0.0,0.0
+ZMB,Zambia,1998,male,0.0,0.0,0.0
+ZMB,Zambia,1999,male,0.0,0.0,0.0
+ZMB,Zambia,2000,male,0.0,0.0,0.0
+ZMB,Zambia,2001,male,0.0,0.0,0.0
+ZMB,Zambia,2002,male,0.02184,0.01785,0.02584
+ZMB,Zambia,2003,male,2.32776,1.90944,2.75694
+ZMB,Zambia,2004,male,4.48233,3.67466,5.26943
+ZMB,Zambia,2005,male,7.53789,6.21321,8.86515
+ZMB,Zambia,2006,male,11.14012,9.19423,13.08866
+ZMB,Zambia,2007,male,20.66341,17.15608,24.35187
+ZMB,Zambia,2008,male,26.79741,22.17356,31.36467
+ZMB,Zambia,2009,male,33.66248,27.74966,39.43817
+ZMB,Zambia,2010,male,39.04812,32.0039,45.65683
+ZMB,Zambia,2011,male,45.71175,37.43625,53.30229
+ZMB,Zambia,2012,male,52.55502,43.01713,61.3481
+ZMB,Zambia,2013,male,57.47398,47.0326,67.21525
+ZMB,Zambia,2014,male,60.06595,49.29311,70.53231
+ZMB,Zambia,2015,male,65.99635,54.42688,77.92927
+ZMB,Zambia,2016,male,66.57727,54.96477,78.85517
+ZMB,Zambia,2017,male,66.27707,54.89641,78.28393
+ZMB,Zambia,2018,male,72.52155,60.27029,85.44179
+ZMB,Zambia,2019,male,79.46504,66.10898,93.40484
+ZMB,Zambia,2020,male,87.58204,72.85829,100.0
+ZMB,Zambia,2021,male,88.19929,73.6429,100.0
+ZMB,Zambia,2022,male,93.16662,77.72983,100.0
+ZMB,Zambia,2023,male,92.08219,77.19012,100.0
+ZMB,Zambia,2024,male,94.95765,79.75658,100.0
+ZWE,Zimbabwe,1990,female,0.0,0.0,0.0
+ZWE,Zimbabwe,1991,female,0.0,0.0,0.0
+ZWE,Zimbabwe,1992,female,0.0,0.0,0.0
+ZWE,Zimbabwe,1993,female,0.0,0.0,0.0
+ZWE,Zimbabwe,1994,female,0.0,0.0,0.0
+ZWE,Zimbabwe,1995,female,0.0,0.0,0.0
+ZWE,Zimbabwe,1996,female,0.0,0.0,0.0
+ZWE,Zimbabwe,1997,female,0.0,0.0,0.0
+ZWE,Zimbabwe,1998,female,0.0,0.0,0.0
+ZWE,Zimbabwe,1999,female,0.0,0.0,0.0
+ZWE,Zimbabwe,2000,female,0.0,0.0,0.0
+ZWE,Zimbabwe,2001,female,0.0,0.0,0.0
+ZWE,Zimbabwe,2002,female,0.0,0.0,0.0
+ZWE,Zimbabwe,2003,female,0.0,0.0,0.0
+ZWE,Zimbabwe,2004,female,0.80215,0.66163,0.94001
+ZWE,Zimbabwe,2005,female,2.14831,1.77414,2.51534
+ZWE,Zimbabwe,2006,female,4.40003,3.63071,5.1589
+ZWE,Zimbabwe,2007,female,7.59846,6.29446,8.92144
+ZWE,Zimbabwe,2008,female,11.37581,9.46525,13.33812
+ZWE,Zimbabwe,2009,female,17.48223,14.57436,20.4521
+ZWE,Zimbabwe,2010,female,30.9006,25.93688,36.14903
+ZWE,Zimbabwe,2011,female,42.84276,35.96392,50.14966
+ZWE,Zimbabwe,2012,female,48.46019,40.76511,56.75868
+ZWE,Zimbabwe,2013,female,52.22938,43.82561,61.08223
+ZWE,Zimbabwe,2014,female,62.15856,52.16451,72.56769
+ZWE,Zimbabwe,2015,female,67.11315,56.35649,78.30495
+ZWE,Zimbabwe,2016,female,73.70064,61.88958,85.8397
+ZWE,Zimbabwe,2017,female,82.98554,69.66935,96.30837
+ZWE,Zimbabwe,2018,female,86.90988,72.95178,100.0
+ZWE,Zimbabwe,2019,female,90.77709,76.22177,100.0
+ZWE,Zimbabwe,2020,female,92.19885,77.51776,100.0
+ZWE,Zimbabwe,2021,female,93.78091,79.00386,100.0
+ZWE,Zimbabwe,2022,female,100.0,83.04164,100.0
+ZWE,Zimbabwe,2023,female,100.0,85.45168,100.0
+ZWE,Zimbabwe,2024,female,100.0,86.03529,100.0
+ZWE,Zimbabwe,1990,male,0.0,0.0,0.0
+ZWE,Zimbabwe,1991,male,0.0,0.0,0.0
+ZWE,Zimbabwe,1992,male,0.0,0.0,0.0
+ZWE,Zimbabwe,1993,male,0.0,0.0,0.0
+ZWE,Zimbabwe,1994,male,0.0,0.0,0.0
+ZWE,Zimbabwe,1995,male,0.0,0.0,0.0
+ZWE,Zimbabwe,1996,male,0.0,0.0,0.0
+ZWE,Zimbabwe,1997,male,0.0,0.0,0.0
+ZWE,Zimbabwe,1998,male,0.0,0.0,0.0
+ZWE,Zimbabwe,1999,male,0.0,0.0,0.0
+ZWE,Zimbabwe,2000,male,0.0,0.0,0.0
+ZWE,Zimbabwe,2001,male,0.0,0.0,0.0
+ZWE,Zimbabwe,2002,male,0.0,0.0,0.0
+ZWE,Zimbabwe,2003,male,0.0,0.0,0.0
+ZWE,Zimbabwe,2004,male,0.82621,0.64185,0.97881
+ZWE,Zimbabwe,2005,male,1.79101,1.37941,2.12202
+ZWE,Zimbabwe,2006,male,4.13549,3.19679,4.91351
+ZWE,Zimbabwe,2007,male,7.16992,5.5599,8.53148
+ZWE,Zimbabwe,2008,male,11.23505,8.71734,13.37495
+ZWE,Zimbabwe,2009,male,16.1969,12.56935,19.24173
+ZWE,Zimbabwe,2010,male,23.76023,18.53483,28.12222
+ZWE,Zimbabwe,2011,male,29.50257,23.20314,34.74609
+ZWE,Zimbabwe,2012,male,35.15196,27.96365,41.22682
+ZWE,Zimbabwe,2013,male,48.21974,38.73745,56.39249
+ZWE,Zimbabwe,2014,male,49.5348,40.17486,57.97026
+ZWE,Zimbabwe,2015,male,55.52597,45.38786,64.82196
+ZWE,Zimbabwe,2016,male,60.11755,49.16222,69.81891
+ZWE,Zimbabwe,2017,male,70.37261,57.64436,81.6537
+ZWE,Zimbabwe,2018,male,75.3788,61.72484,87.15324
+ZWE,Zimbabwe,2019,male,81.26983,66.58494,93.98421
+ZWE,Zimbabwe,2020,male,85.79535,70.27756,100.0
+ZWE,Zimbabwe,2021,male,87.38233,71.74388,100.0
+ZWE,Zimbabwe,2022,male,90.57848,74.3146,100.0
+ZWE,Zimbabwe,2023,male,88.96186,73.01908,100.0
+ZWE,Zimbabwe,2024,male,88.90189,73.26172,100.0
