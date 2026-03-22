@@ -450,6 +450,14 @@ hiv_treatment_rate = hiv_treatment_rate.rename(
         "upper": "treatment_proportion_upper",
     }
 )
+
+# not all art is effective -- data from real studies suggests ~78% in Africa
+hiv_treatment_rate = hiv_treatment_rate.with_columns(
+    val=pl.col("val") * params["art_efficacy"],
+    lower=pl.col("lower") * params["art_efficacy"],
+    upper=pl.col("upper") * params["art_efficacy"],
+)
+
 # join to existing data on basis of year and country_code and sex
 # drop location from treatment data since we already have it from IHME
 data = data.join(
