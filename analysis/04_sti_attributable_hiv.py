@@ -2,18 +2,25 @@ import os
 
 import numpy as np
 import polars as pl
+from scipy import stats
 
 from averted_burden import conditional_exposure
 
 output_dir = "outputs"
 data_dir = "data"
 
-# we want to assess the probability that an individual with gc acquired hiv
-# we need the RR of acquiring HIV given gonorrhea
+# we want to assess the probability that an individual with an STI acquired hiv
+# we need the RR of acquiring HIV given STI
 rrs_causal = pl.read_csv(
     os.path.join(output_dir, "meta_estimated_RRs_causal_STI_given_HIV.csv")
 )
+
 hiv_sti = pl.read_csv(os.path.join(output_dir, "hiv_sti_with_gc_abx_r.csv"))
+
+hiv_sti = hiv_sti.filter(
+    (pl.col("cols_unaids_analysis")) | (pl.col("year") > 2023)
+)
+hiv_sti = hiv_sti.filter(pl.col("unaids_incidence_number").is_not_null())
 
 # relabel the sex column to match the GBD data
 rrs_causal = rrs_causal.with_columns(
@@ -112,6 +119,63 @@ female_coinfection = female_coinfection.filter(
 
 male_coinfection = pl.read_csv(
     os.path.join(data_dir, "male_sti_coinfection_rates.csv")
+)
+
+# Add Beta distribution bounds to male coinfection data
+# Prior is beta(1, 1), lower is 2.5 percentile and upper is 97.5 percentile
+prior_coinfected = 1
+prior_not_coinfected = 1
+
+male_coinfection = male_coinfection.with_columns(
+    n_not_coinfected=pl.col("n STI 1") - pl.col("n coinfected"),
+)
+
+male_coinfection = male_coinfection.with_columns(
+    n_coinfected_posterior=pl.col("n coinfected") + pl.lit(prior_coinfected),
+    n_not_coinfected_posterior=pl.col("n_not_coinfected")
+    + pl.lit(prior_not_coinfected),
+)
+
+male_coinfection = male_coinfection.with_columns(
+    pl.struct(["n_coinfected_posterior", "n_not_coinfected_posterior"])
+    .map_elements(
+        lambda x: stats.beta.ppf(
+            0.025, x["n_coinfected_posterior"], x["n_not_coinfected_posterior"]
+        )
+        * 100
+        if (
+            x["n_coinfected_posterior"] is not None
+            and x["n_not_coinfected_posterior"] is not None
+        )
+        else None,
+        return_dtype=pl.Float64,
+    )
+    .alias("Coinfection prevalence lower"),
+)
+
+male_coinfection = male_coinfection.with_columns(
+    pl.struct(["n_coinfected_posterior", "n_not_coinfected_posterior"])
+    .map_elements(
+        lambda x: stats.beta.ppf(
+            0.975, x["n_coinfected_posterior"], x["n_not_coinfected_posterior"]
+        )
+        * 100  # multiply by 100 bc coinfection prev is stored as a percentage
+        if (
+            x["n_coinfected_posterior"] is not None
+            and x["n_not_coinfected_posterior"] is not None
+        )
+        else None,
+        return_dtype=pl.Float64,
+    )
+    .alias("Coinfection prevalence upper"),
+)
+
+male_coinfection = male_coinfection.drop(
+    [
+        "n_not_coinfected",
+        "n_coinfected_posterior",
+        "n_not_coinfected_posterior",
+    ]
 )
 
 # the male data is missing anything for syphilis
@@ -319,6 +383,108 @@ sti_names = {
 coinfection_female = coinfection.filter(pl.col("sex") == "Female")
 coinfection_male = coinfection.filter(pl.col("sex") == "Male")
 
+# Calculation location-specific coinfection columns
+# Instead of using absolute coinfection rates from the study directly, we compute
+# a relative risk (RR = P(STI2|STI1)_study / P(STI2)_study) and then multiply by the
+# local STI2 prevalence for each row. This makes coinfection rates vary by country/year.
+# For females: separate RRs for South Africa vs Southern/Eastern Africa.
+# For male syphillis data we still just use the values we impute
+# TODO: add bounds for men
+_female_coin_sea = female_coinfection.filter(
+    pl.col("Population") == "women, 15–24, Southern/Eastern Africa"
+)
+_female_coin_sa = female_coinfection.filter(
+    pl.col("Population") == "women, 15–24, South Africa"
+)
+# Male original rows only (exclude syphilis rows with Overall prevalence of STI 2)
+_male_coin_orig = (
+    coinfection.filter(pl.col("sex") == "Male")
+    .filter(pl.col("location_South_Africa"))
+    .filter(pl.col("Overall prevalence of STI 2").is_not_null())
+)
+
+
+def _get_rr(coin_df, sti1_disp, sti2_disp, coin_col="Coinfection prevalence"):
+    # Return RR = coinfection_rate / study_prev
+    rows = coin_df.filter(
+        (pl.col("STI 1 (for those infected with)") == sti1_disp)
+        & (pl.col("STI 2 (how many are coinfected w)") == sti2_disp)
+    )
+    if rows.height == 0 or rows["Overall prevalence of STI 2"][0] is None:
+        return None
+    study_prev = rows["Overall prevalence of STI 2"][0] / 100.0
+    coin_rate = rows[coin_col][0] / 100.0
+    return coin_rate / study_prev if study_prev > 0 else 0.0
+
+
+for sti1 in ["gc", "chlamydia", "syphilis", "trichomoniasis"]:
+    for sti2 in ["gc", "chlamydia", "syphilis", "trichomoniasis"]:
+        if sti1 == sti2:
+            continue
+        s1, s2 = sti_names[sti1], sti_names[sti2]
+
+        rr_f_sea = _get_rr(_female_coin_sea, s1, s2) or 0.0
+        rr_f_sea_lo = (
+            _get_rr(_female_coin_sea, s1, s2, "Coinfection prevalence lower")
+            or 0.0
+        )
+        rr_f_sea_hi = (
+            _get_rr(_female_coin_sea, s1, s2, "Coinfection prevalence upper")
+            or 0.0
+        )
+        rr_f_sa = _get_rr(_female_coin_sa, s1, s2) or 0.0
+        rr_f_sa_lo = (
+            _get_rr(_female_coin_sa, s1, s2, "Coinfection prevalence lower")
+            or 0.0
+        )
+        rr_f_sa_hi = (
+            _get_rr(_female_coin_sa, s1, s2, "Coinfection prevalence upper")
+            or 0.0
+        )
+        rr_m = _get_rr(_male_coin_orig, s1, s2)
+        rr_m_lo = _get_rr(
+            _male_coin_orig, s1, s2, "Coinfection prevalence lower"
+        )
+        rr_m_hi = _get_rr(
+            _male_coin_orig, s1, s2, "Coinfection prevalence upper"
+        )
+        if rr_m is None:
+            rr_m = rr_f_sea  # for male syphilis pairs, fall back to female SEA
+            rr_m_lo = rr_f_sea_lo
+            rr_m_hi = rr_f_sea_hi
+
+        for estimate, f_sea, f_sa, m in [
+            ("", rr_f_sea, rr_f_sa, rr_m),
+            ("_lower", rr_f_sea_lo, rr_f_sa_lo, rr_m_lo),
+            ("_upper", rr_f_sea_hi, rr_f_sa_hi, rr_m_hi),
+        ]:
+            hiv_sti = hiv_sti.with_columns(
+                pl.when(
+                    (pl.col("sex") == "Female")
+                    & (pl.col("location") != "South Africa")
+                )
+                .then(
+                    (f_sea * pl.col(f"{sti2}_prevalence{estimate}")).clip(
+                        upper_bound=1.0
+                    )
+                )
+                .when(
+                    (pl.col("sex") == "Female")
+                    & (pl.col("location") == "South Africa")
+                )
+                .then(
+                    (f_sa * pl.col(f"{sti2}_prevalence{estimate}")).clip(
+                        upper_bound=1.0
+                    )
+                )
+                .otherwise(
+                    (m * pl.col(f"{sti2}_prevalence{estimate}")).clip(
+                        upper_bound=1.0
+                    )
+                )
+                .alias(f"{sti2}_given_{sti1}_coin{estimate}")
+            )
+
 for sex in hiv_sti["sex"].unique():
     # Select appropriate coinfection dataframe
     # because sex in hiv_sti can be MSM, and for MSM we want to use
@@ -333,42 +499,9 @@ for sex in hiv_sti["sex"].unique():
     ].to_list()
 
     for idx, bacteria in enumerate(risk[1:], start=1):
-        # Pre-filter coinfection data for this bacteria
-        bacteria_coinfections = coinfection_sex.filter(
-            pl.col("STI 1 (for those infected with)") == sti_names[bacteria]
-        ).filter(
-            pl.col("STI 2 (how many are coinfected w)").is_in(
-                [sti_names[b] for b in risk[:idx]]
-            )
-        )
+        higher_risk = risk[:idx]
 
         for location in hiv_sti["location"].unique():
-            if location == "South Africa":
-                bacteria_coinfections_location = bacteria_coinfections.filter(
-                    pl.col("location_South_Africa")
-                )
-            else:
-                bacteria_coinfections_location = bacteria_coinfections.filter(
-                    ~pl.col("location_South_Africa")
-                )
-
-            coinfection_rate = (
-                bacteria_coinfections_location["Coinfection prevalence"].sum()
-                / 100
-            )
-            coinfection_rate_lower = (
-                bacteria_coinfections_location[
-                    "Coinfection prevalence lower"
-                ].sum()
-                / 100
-            )
-            coinfection_rate_upper = (
-                bacteria_coinfections_location[
-                    "Coinfection prevalence upper"
-                ].sum()
-                / 100
-            )
-
             # Apply updates in a single pass
             mask = (pl.col("sex") == sex) & (pl.col("location") == location)
 
@@ -378,7 +511,15 @@ for sex in hiv_sti["sex"].unique():
                     pl.when(mask)
                     .then(
                         pl.col(f"{bacteria}_prevalence")
-                        * (1 - coinfection_rate)
+                        * (
+                            1
+                            - pl.sum_horizontal(
+                                [
+                                    pl.col(f"{sti2}_given_{bacteria}_coin")
+                                    for sti2 in higher_risk
+                                ]
+                            ).clip(upper_bound=1.0)
+                        )
                     )
                     .otherwise(pl.col(f"{bacteria}_prevalence"))
                     .alias(f"{bacteria}_prevalence"),
@@ -386,14 +527,34 @@ for sex in hiv_sti["sex"].unique():
                     pl.when(mask)
                     .then(
                         pl.col(f"{bacteria}_prevalence_lower")
-                        * (1 - coinfection_rate_lower)
+                        * (
+                            1
+                            - pl.sum_horizontal(
+                                [
+                                    pl.col(
+                                        f"{sti2}_given_{bacteria}_coin_lower"
+                                    )
+                                    for sti2 in higher_risk
+                                ]
+                            ).clip(upper_bound=1.0)
+                        )
                     )
                     .otherwise(pl.col(f"{bacteria}_prevalence_lower"))
                     .alias(f"{bacteria}_prevalence_lower"),
                     pl.when(mask)
                     .then(
                         pl.col(f"{bacteria}_prevalence_upper")
-                        * (1 - coinfection_rate_upper)
+                        * (
+                            1
+                            - pl.sum_horizontal(
+                                [
+                                    pl.col(
+                                        f"{sti2}_given_{bacteria}_coin_upper"
+                                    )
+                                    for sti2 in higher_risk
+                                ]
+                            ).clip(upper_bound=1.0)
+                        )
                     )
                     .otherwise(pl.col(f"{bacteria}_prevalence_upper"))
                     .alias(f"{bacteria}_prevalence_upper"),
@@ -407,6 +568,11 @@ for sex in hiv_sti["sex"].unique():
 # we have to do this for each of our STIs
 
 STIs = ["gc", "chlamydia", "syphilis", "trichomoniasis"]
+
+# ============================================================
+# GBD analysis
+# ============================================================
+
 hiv_sti = hiv_sti.with_columns(
     [
         pl.struct(
@@ -453,6 +619,19 @@ hiv_sti = hiv_sti.with_columns(
             pl.col(f"{sti}_prevalence{estimate}")
             - pl.col(f"p_{sti}_and_hiv{estimate}")
         ).alias(f"{sti}_prevalence_no_hiv{estimate}")
+        for sti in STIs
+        for estimate in ["", "_lower", "_upper"]
+    ]
+)
+
+# it is possible to get negative prevalences because we don't do clever
+# extrapolations with the gbd data, so clip any negative sti prevalences no hiv
+# at 0
+hiv_sti = hiv_sti.with_columns(
+    [
+        pl.col(f"{sti}_prevalence_no_hiv{estimate}")
+        .clip(lower_bound=0)
+        .alias(f"{sti}_prevalence_no_hiv{estimate}")
         for sti in STIs
         for estimate in ["", "_lower", "_upper"]
     ]
@@ -651,13 +830,272 @@ hiv_sti = hiv_sti.with_columns(
 
 # now multiply GC attributable cases by resistance rates to get the number of
 # cases resistant to a particular drug
-
 hiv_sti = hiv_sti.with_columns(
     [
         (
             pl.col(f"hiv_incidence_number_attributable_to_gc{estimate}")
-            * pl.col(f"{abx}{estimate}")
+            * pl.col(f"{abx}{estimate}").cast(pl.Float64)
         ).alias(f"{abx}_resistant_number{estimate}")
+        for abx in ["Ciprofloxacin", "Cefixime", "Azithromycin", "Ceftriaxone"]
+        for estimate in ["", "_lower", "_upper"]
+    ]
+)
+# ============================================================
+# UNAIDS analysis
+# uses unaids_prevalence_number, unaids_incidence_rate_uninfected,
+# and unaids_incidence_number in place of the GBD equivalents
+# ============================================================
+
+hiv_sti = hiv_sti.with_columns(
+    [
+        pl.struct(
+            [
+                f"{sti}_prevalence{estimate}",
+                f"unaids_prevalence_number{estimate}",
+                "un_pop",  # no bounds for UN pop; use same value for all estimates
+                f"rr_associative{estimate}_{sti}",
+            ]
+        )
+        .map_elements(
+            lambda x, s=sti, e=estimate: conditional_exposure.p_a_given_b(
+                x[f"{s}_prevalence{e}"],
+                x[f"unaids_prevalence_number{e}"] / x["un_pop"],
+                x[f"rr_associative{e}_{s}"],
+            ),
+            return_dtype=pl.Float64,
+        )
+        .alias(f"unaids_p_{sti}_given_hiv{estimate}")
+        for sti in STIs
+        for estimate in ["", "_lower", "_upper"]
+    ]
+)
+
+# now calculate P(STI and HIV)
+hiv_sti = hiv_sti.with_columns(
+    [
+        (
+            pl.col(f"unaids_p_{sti}_given_hiv{estimate}")
+            * (
+                pl.col(f"unaids_prevalence_number{estimate}")
+                / pl.col(
+                    "un_pop"
+                )  # no bounds for UN pop; use same value for all estimates
+            )
+        ).alias(f"unaids_p_{sti}_and_hiv{estimate}")
+        for sti in STIs
+        for estimate in ["", "_lower", "_upper"]
+    ]
+)
+
+# now calculate STI prevalence in people without HIV
+hiv_sti = hiv_sti.with_columns(
+    [
+        (
+            pl.col(f"{sti}_prevalence{estimate}")
+            - pl.col(f"unaids_p_{sti}_and_hiv{estimate}")
+        ).alias(f"unaids_{sti}_prevalence_no_hiv{estimate}")
+        for sti in STIs
+        for estimate in ["", "_lower", "_upper"]
+    ]
+)
+
+# because we do naive linear extrapolation, it's possible that some of these
+# prevalences are below 0 -- clip them
+hiv_sti = hiv_sti.with_columns(
+    [
+        pl.col(f"unaids_{sti}_prevalence_no_hiv{estimate}")
+        .clip(lower_bound=0)
+        .alias(f"unaids_{sti}_prevalence_no_hiv{estimate}")
+        for sti in STIs
+        for estimate in ["", "_lower", "_upper"]
+    ]
+)
+
+# the multiplicative nature of this model means that for some highly uncertain
+# places, we may see main <= lower <= upper or something like that
+# print out places like this
+for sti in STIs:
+    print(
+        hiv_sti.select(
+            [
+                "year",
+                "sex",
+                "location",
+                f"unaids_{sti}_prevalence_no_hiv_lower",
+                f"unaids_{sti}_prevalence_no_hiv",
+                f"unaids_{sti}_prevalence_no_hiv_upper",
+            ]
+        )
+        .with_columns(
+            in_bounds=(
+                pl.col(f"unaids_{sti}_prevalence_no_hiv_lower")
+                <= pl.col(f"unaids_{sti}_prevalence_no_hiv")
+            ).and_(
+                pl.col(f"unaids_{sti}_prevalence_no_hiv")
+                <= pl.col(f"unaids_{sti}_prevalence_no_hiv_upper")
+            )
+        )
+        .filter(~pl.col("in_bounds"))
+    )
+# we notice that these are all places where quantification of population size
+# is really tough
+# so we apply a post-hoc correction where we reorder the values
+for sti in STIs:
+    hiv_sti = hiv_sti.with_columns(
+        [
+            # Calculate the minimum, median, and maximum of the three values
+            pl.min_horizontal(
+                [
+                    f"unaids_{sti}_prevalence_no_hiv_lower",
+                    f"unaids_{sti}_prevalence_no_hiv",
+                    f"unaids_{sti}_prevalence_no_hiv_upper",
+                ]
+            ).alias(f"unaids_{sti}_prevalence_no_hiv_lower"),
+            pl.max_horizontal(
+                [
+                    f"unaids_{sti}_prevalence_no_hiv_lower",
+                    f"unaids_{sti}_prevalence_no_hiv",
+                    f"unaids_{sti}_prevalence_no_hiv_upper",
+                ]
+            ).alias(f"unaids_{sti}_prevalence_no_hiv_upper"),
+            pl.concat_list(
+                [
+                    f"unaids_{sti}_prevalence_no_hiv_lower",
+                    f"unaids_{sti}_prevalence_no_hiv",
+                    f"unaids_{sti}_prevalence_no_hiv_upper",
+                ]
+            )
+            .list.sort()
+            .list.get(1)
+            .alias(f"unaids_{sti}_prevalence_no_hiv"),
+        ]
+    )
+
+# use RR definition and law of total probability to calculate
+# P(acquired HIV (attributable to STI) | has STI)
+# The causal part is baked into using the causal RRs
+hiv_sti = hiv_sti.with_columns(
+    [
+        pl.struct(
+            [
+                f"unaids_p_acquiring_hiv{estimate}",
+                f"unaids_{sti}_prevalence_no_hiv{estimate}",
+                f"rr_causal{estimate}_{sti}",
+            ]
+        )
+        .map_elements(
+            lambda x, s=sti, e=estimate: conditional_exposure.p_a_given_b(
+                x[f"unaids_p_acquiring_hiv{e}"],
+                x[f"unaids_{s}_prevalence_no_hiv{e}"],
+                x[f"rr_causal{e}_{s}"],
+            ),
+            return_dtype=pl.Float64,
+        )
+        .alias(f"unaids_p_acquiring_hiv_given_{sti}{estimate}")
+        for sti in STIs
+        for estimate in ["", "_lower", "_upper"]
+    ]
+)
+
+# we want to calculate the probability of acquiring hiv because of STI,
+# not conditioned on having the STI
+
+# in order to calculate the attributable probability of HIV, we need to
+# subtract out the people who would have acquired HIV anyways -- not because
+# of the STI
+hiv_sti = hiv_sti.with_columns(
+    [
+        pl.struct(
+            [
+                f"unaids_p_acquiring_hiv{estimate}",
+                f"unaids_{sti}_prevalence_no_hiv{estimate}",
+                f"rr_causal{estimate}_{sti}",
+            ]
+        )
+        .map_elements(
+            lambda x, s=sti, e=estimate: conditional_exposure.p_a_given_not_b(
+                x[f"unaids_p_acquiring_hiv{e}"],
+                x[f"unaids_{s}_prevalence_no_hiv{e}"],
+                x[f"rr_causal{e}_{s}"],
+            ),
+            return_dtype=pl.Float64,
+        )
+        .alias(f"unaids_p_acquiring_hiv_given_no_{sti}{estimate}")
+        for sti in STIs
+        for estimate in ["", "_lower", "_upper"]
+    ]
+)
+
+
+hiv_sti = hiv_sti.with_columns(
+    [
+        (
+            (
+                pl.col(f"unaids_p_acquiring_hiv_given_{sti}{estimate}")
+                - pl.col(f"unaids_p_acquiring_hiv_given_no_{sti}{estimate}")
+            )
+            * pl.col(f"unaids_{sti}_prevalence_no_hiv{estimate}")
+        ).alias(f"unaids_p_hiv_attributable_{sti}{estimate}")
+        for sti in STIs
+        for estimate in ["", "_lower", "_upper"]
+    ]
+)
+
+# make sure no unaids_p_hiv_attributable go below 0
+for sti in STIs:
+    hiv_sti = hiv_sti.with_columns(
+        pl.when(pl.col(f"unaids_p_hiv_attributable_{sti}{estimate}") < 0)
+        .then(pl.lit(0))
+        .otherwise(pl.col(f"unaids_p_hiv_attributable_{sti}{estimate}"))
+        .alias(f"unaids_p_hiv_attributable_{sti}{estimate}")
+        for estimate in ["", "_lower", "_upper"]
+    )
+
+# assert that unaids_p_hiv_attributable for males for trichomoniasis is 0
+assert np.all(
+    hiv_sti.filter(pl.col("sex") != "Female")
+    .select(
+        [
+            f"unaids_p_hiv_attributable_trichomoniasis{estimate}"
+            for estimate in ["", "_lower", "_upper"]
+        ]
+    )
+    .to_numpy()
+    == 0
+)
+
+# now we want to calculate how much of hiv is attributable to the STI
+hiv_sti = hiv_sti.with_columns(
+    [
+        (
+            pl.col(f"unaids_p_hiv_attributable_{sti}{estimate}")
+            / pl.col(f"unaids_p_acquiring_hiv{estimate}")
+        ).alias(f"unaids_paf_{sti}_hiv{estimate}")
+        for sti in STIs
+        for estimate in ["", "_lower", "_upper"]
+    ]
+)
+
+# multiply the pafs by the unaids incidence number to get attributable infections
+hiv_sti = hiv_sti.with_columns(
+    [
+        (
+            pl.col(f"unaids_incidence_number{estimate}")
+            * pl.col(f"unaids_paf_{sti}_hiv{estimate}")
+        ).alias(f"unaids_hiv_incidence_number_attributable_to_{sti}{estimate}")
+        for sti in STIs
+        for estimate in ["", "_lower", "_upper"]
+    ]
+)
+
+# now multiply GC attributable cases by resistance rates to get the number of
+# cases resistant to a particular drug
+hiv_sti = hiv_sti.with_columns(
+    [
+        (
+            pl.col(f"unaids_hiv_incidence_number_attributable_to_gc{estimate}")
+            * pl.col(f"{abx}{estimate}").cast(pl.Float64)
+        ).alias(f"unaids_{abx}_resistant_number{estimate}")
         for abx in ["Ciprofloxacin", "Cefixime", "Azithromycin", "Ceftriaxone"]
         for estimate in ["", "_lower", "_upper"]
     ]

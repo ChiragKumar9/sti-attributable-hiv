@@ -1,0 +1,3287 @@
+year,countrycode,location,age,estimate,lower,upper
+1990,AGO,Angola,all ages,8500.0,5400.0,13000.0
+1990,AGO,Angola,child,1800.0,1100.0,3000.0
+1990,BDI,Burundi,all ages,28000.0,19000.0,39000.0
+1990,BDI,Burundi,child,5100.0,2800.0,7700.0
+1990,BEN,Benin,all ages,2600.0,1900.0,3600.0
+1990,BEN,Benin,child,0.0,0.0,0.0
+1990,BFA,Burkina Faso,all ages,23000.0,16000.0,32000.0
+1990,BFA,Burkina Faso,child,5700.0,3600.0,8300.0
+1990,BWA,Botswana,all ages,18000.0,17000.0,20000.0
+1990,BWA,Botswana,child,1500.0,1300.0,1700.0
+1990,CAF,Central African Republic,all ages,16000.0,12000.0,24000.0
+1990,CAF,Central African Republic,child,2500.0,1800.0,3700.0
+1990,CIV,Cote dIvoire,all ages,85000.0,63000.0,110000.0
+1990,CIV,Cote dIvoire,child,11000.0,7900.0,17000.0
+1990,CMR,Cameroon,all ages,19000.0,14000.0,23000.0
+1990,CMR,Cameroon,child,2000.0,1400.0,2500.0
+1990,COD,Democratic Republic of the Congo,all ages,85000.0,64000.0,120000.0
+1990,COD,Democratic Republic of the Congo,child,15000.0,11000.0,20000.0
+1990,COG,Congo,all ages,11000.0,8600.0,14000.0
+1990,COG,Congo,child,2000.0,1600.0,2600.0
+1990,CPV,Cape Verde,all ages,0.0,0.0,0.0
+1990,CPV,Cape Verde,child,0.0,0.0,0.0
+1990,DJI,Djibouti,all ages,930.0,540.0,1400.0
+1990,DJI,Djibouti,child,0.0,0.0,0.0
+1990,DZA,Algeria,all ages,0.0,0.0,0.0
+1990,DZA,Algeria,child,0.0,0.0,0.0
+1990,EGY,Egypt,all ages,1100.0,660.0,2100.0
+1990,EGY,Egypt,child,0.0,0.0,0.0
+1990,ERI,Eritrea,all ages,3800.0,2500.0,6100.0
+1990,ERI,Eritrea,child,0.0,0.0,670.0
+1990,ETH,Ethiopia,all ages,140000.0,79000.0,280000.0
+1990,ETH,Ethiopia,child,20000.0,11000.0,48000.0
+1990,GAB,Gabon,all ages,2000.0,1100.0,3400.0
+1990,GAB,Gabon,child,0.0,0.0,0.0
+1990,GHA,Ghana,all ages,29000.0,19000.0,37000.0
+1990,GHA,Ghana,child,4400.0,2700.0,6400.0
+1990,GIN,Guinea,all ages,3500.0,1500.0,5400.0
+1990,GIN,Guinea,child,0.0,0.0,820.0
+1990,GMB,Gambia,all ages,0.0,0.0,680.0
+1990,GMB,Gambia,child,0.0,0.0,0.0
+1990,GNB,Guinea-Bissau,all ages,0.0,0.0,660.0
+1990,GNB,Guinea-Bissau,child,0.0,0.0,0.0
+1990,KEN,Kenya,all ages,210000.0,130000.0,320000.0
+1990,KEN,Kenya,child,32000.0,22000.0,53000.0
+1990,LBY,Libya,all ages,0.0,0.0,0.0
+1990,LBY,Libya,child,0.0,0.0,0.0
+1990,LSO,Lesotho,all ages,8400.0,6600.0,10000.0
+1990,LSO,Lesotho,child,750.0,570.0,980.0
+1990,MAR,Morocco,all ages,590.0,0.0,910.0
+1990,MAR,Morocco,child,0.0,0.0,0.0
+1990,MDG,Madagascar,all ages,0.0,0.0,0.0
+1990,MDG,Madagascar,child,0.0,0.0,0.0
+1990,MLI,Mali,all ages,12000.0,7200.0,18000.0
+1990,MLI,Mali,child,1500.0,810.0,2500.0
+1990,MOZ,Mozambique,all ages,39000.0,31000.0,49000.0
+1990,MOZ,Mozambique,child,5300.0,4000.0,7000.0
+1990,MRT,Mauritania,all ages,520.0,0.0,910.0
+1990,MRT,Mauritania,child,0.0,0.0,0.0
+1990,MWI,Malawi,all ages,120000.0,110000.0,120000.0
+1990,MWI,Malawi,child,19000.0,17000.0,21000.0
+1990,NAM,Namibia,all ages,6000.0,5200.0,6900.0
+1990,NAM,Namibia,child,750.0,610.0,890.0
+1990,NER,Niger,all ages,3900.0,2900.0,5200.0
+1990,NER,Niger,child,500.0,0.0,680.0
+1990,RWA,Rwanda,all ages,29000.0,21000.0,41000.0
+1990,RWA,Rwanda,child,4600.0,3100.0,7100.0
+1990,SDN,Sudan,all ages,1400.0,900.0,2300.0
+1990,SDN,Sudan,child,0.0,0.0,0.0
+1990,SEN,Senegal,all ages,1600.0,1500.0,1700.0
+1990,SEN,Senegal,child,0.0,0.0,0.0
+1990,SLE,Sierra Leone,all ages,3900.0,2200.0,5800.0
+1990,SLE,Sierra Leone,child,650.0,0.0,1000.0
+1990,SOM,Somalia,all ages,1900.0,1100.0,3300.0
+1990,SOM,Somalia,child,0.0,0.0,680.0
+1990,SSD,South Sudan,all ages,8100.0,3700.0,12000.0
+1990,SSD,South Sudan,child,1300.0,560.0,2100.0
+1990,SWZ,Eswatini,all ages,2900.0,2400.0,3700.0
+1990,SWZ,Eswatini,child,0.0,0.0,0.0
+1990,TCD,Chad,all ages,10000.0,5800.0,16000.0
+1990,TCD,Chad,child,1700.0,930.0,2900.0
+1990,TGO,Togo,all ages,5000.0,3600.0,6800.0
+1990,TGO,Togo,child,710.0,0.0,960.0
+1990,TUN,Tunisia,all ages,0.0,0.0,0.0
+1990,TUN,Tunisia,child,0.0,0.0,0.0
+1990,TZA,United Republic of Tanzania,all ages,150000.0,130000.0,170000.0
+1990,TZA,United Republic of Tanzania,child,23000.0,20000.0,27000.0
+1990,UGA,Uganda,all ages,110000.0,99000.0,130000.0
+1990,UGA,Uganda,child,31000.0,28000.0,35000.0
+1990,ZAF,South Africa,all ages,120000.0,110000.0,140000.0
+1990,ZAF,South Africa,child,8500.0,7500.0,9900.0
+1990,ZMB,Zambia,all ages,90000.0,80000.0,100000.0
+1990,ZMB,Zambia,child,15000.0,13000.0,17000.0
+1990,ZWE,Zimbabwe,all ages,280000.0,260000.0,320000.0
+1990,ZWE,Zimbabwe,child,33000.0,29000.0,37000.0
+1991,AGO,Angola,all ages,9700.0,6300.0,14000.0
+1991,AGO,Angola,child,2200.0,1400.0,3500.0
+1991,BDI,Burundi,all ages,25000.0,18000.0,33000.0
+1991,BDI,Burundi,child,5300.0,3500.0,7500.0
+1991,BEN,Benin,all ages,3800.0,2900.0,5000.0
+1991,BEN,Benin,child,500.0,0.0,690.0
+1991,BFA,Burkina Faso,all ages,22000.0,17000.0,29000.0
+1991,BFA,Burkina Faso,child,6100.0,4000.0,8500.0
+1991,BWA,Botswana,all ages,24000.0,22000.0,26000.0
+1991,BWA,Botswana,child,1900.0,1700.0,2200.0
+1991,CAF,Central African Republic,all ages,18000.0,14000.0,28000.0
+1991,CAF,Central African Republic,child,3000.0,2200.0,4500.0
+1991,CIV,Cote dIvoire,all ages,95000.0,76000.0,120000.0
+1991,CIV,Cote dIvoire,child,13000.0,9800.0,18000.0
+1991,CMR,Cameroon,all ages,25000.0,19000.0,29000.0
+1991,CMR,Cameroon,child,2700.0,2000.0,3300.0
+1991,COD,Democratic Republic of the Congo,all ages,84000.0,65000.0,120000.0
+1991,COD,Democratic Republic of the Congo,child,16000.0,12000.0,21000.0
+1991,COG,Congo,all ages,10000.0,8500.0,14000.0
+1991,COG,Congo,child,2200.0,1700.0,2700.0
+1991,CPV,Cape Verde,all ages,0.0,0.0,0.0
+1991,CPV,Cape Verde,child,0.0,0.0,0.0
+1991,DJI,Djibouti,all ages,1300.0,790.0,1900.0
+1991,DJI,Djibouti,child,0.0,0.0,0.0
+1991,DZA,Algeria,all ages,0.0,0.0,0.0
+1991,DZA,Algeria,child,0.0,0.0,0.0
+1991,EGY,Egypt,all ages,1200.0,740.0,2200.0
+1991,EGY,Egypt,child,0.0,0.0,0.0
+1991,ERI,Eritrea,all ages,4100.0,2800.0,6400.0
+1991,ERI,Eritrea,child,0.0,0.0,720.0
+1991,ETH,Ethiopia,all ages,150000.0,86000.0,300000.0
+1991,ETH,Ethiopia,child,24000.0,13000.0,57000.0
+1991,GAB,Gabon,all ages,2500.0,1400.0,4300.0
+1991,GAB,Gabon,child,0.0,0.0,0.0
+1991,GHA,Ghana,all ages,34000.0,25000.0,42000.0
+1991,GHA,Ghana,child,5300.0,3500.0,6800.0
+1991,GIN,Guinea,all ages,4400.0,2100.0,6400.0
+1991,GIN,Guinea,child,630.0,0.0,1000.0
+1991,GMB,Gambia,all ages,520.0,0.0,870.0
+1991,GMB,Gambia,child,0.0,0.0,0.0
+1991,GNB,Guinea-Bissau,all ages,620.0,0.0,900.0
+1991,GNB,Guinea-Bissau,child,0.0,0.0,0.0
+1991,KEN,Kenya,all ages,240000.0,150000.0,370000.0
+1991,KEN,Kenya,child,40000.0,27000.0,65000.0
+1991,LBY,Libya,all ages,0.0,0.0,0.0
+1991,LBY,Libya,child,0.0,0.0,0.0
+1991,LSO,Lesotho,all ages,13000.0,11000.0,16000.0
+1991,LSO,Lesotho,child,1200.0,950.0,1500.0
+1991,MAR,Morocco,all ages,720.0,510.0,1000.0
+1991,MAR,Morocco,child,0.0,0.0,0.0
+1991,MDG,Madagascar,all ages,0.0,0.0,0.0
+1991,MDG,Madagascar,child,0.0,0.0,0.0
+1991,MLI,Mali,all ages,14000.0,9300.0,20000.0
+1991,MLI,Mali,child,1800.0,1100.0,2800.0
+1991,MOZ,Mozambique,all ages,48000.0,39000.0,60000.0
+1991,MOZ,Mozambique,child,6800.0,5400.0,8500.0
+1991,MRT,Mauritania,all ages,640.0,0.0,950.0
+1991,MRT,Mauritania,child,0.0,0.0,0.0
+1991,MWI,Malawi,all ages,130000.0,120000.0,130000.0
+1991,MWI,Malawi,child,22000.0,20000.0,24000.0
+1991,NAM,Namibia,all ages,8600.0,7600.0,9800.0
+1991,NAM,Namibia,child,1100.0,890.0,1200.0
+1991,NER,Niger,all ages,4900.0,3700.0,6100.0
+1991,NER,Niger,child,690.0,500.0,890.0
+1991,RWA,Rwanda,all ages,32000.0,25000.0,41000.0
+1991,RWA,Rwanda,child,5300.0,3900.0,7400.0
+1991,SDN,Sudan,all ages,1600.0,1000.0,2500.0
+1991,SDN,Sudan,child,0.0,0.0,0.0
+1991,SEN,Senegal,all ages,2000.0,1900.0,2200.0
+1991,SEN,Senegal,child,0.0,0.0,0.0
+1991,SLE,Sierra Leone,all ages,4600.0,2800.0,6600.0
+1991,SLE,Sierra Leone,child,830.0,0.0,1300.0
+1991,SOM,Somalia,all ages,1900.0,1200.0,3200.0
+1991,SOM,Somalia,child,0.0,0.0,700.0
+1991,SSD,South Sudan,all ages,9700.0,4800.0,14000.0
+1991,SSD,South Sudan,child,1600.0,750.0,2400.0
+1991,SWZ,Eswatini,all ages,5600.0,4600.0,7000.0
+1991,SWZ,Eswatini,child,0.0,0.0,510.0
+1991,TCD,Chad,all ages,12000.0,7700.0,18000.0
+1991,TCD,Chad,child,2100.0,1200.0,3400.0
+1991,TGO,Togo,all ages,6600.0,4900.0,8600.0
+1991,TGO,Togo,child,930.0,660.0,1300.0
+1991,TUN,Tunisia,all ages,0.0,0.0,0.0
+1991,TUN,Tunisia,child,0.0,0.0,0.0
+1991,TZA,United Republic of Tanzania,all ages,150000.0,140000.0,170000.0
+1991,TZA,United Republic of Tanzania,child,26000.0,22000.0,30000.0
+1991,UGA,Uganda,all ages,110000.0,96000.0,120000.0
+1991,UGA,Uganda,child,32000.0,28000.0,36000.0
+1991,ZAF,South Africa,all ages,180000.0,160000.0,200000.0
+1991,ZAF,South Africa,child,13000.0,11000.0,15000.0
+1991,ZMB,Zambia,all ages,94000.0,85000.0,100000.0
+1991,ZMB,Zambia,child,17000.0,15000.0,19000.0
+1991,ZWE,Zimbabwe,all ages,290000.0,260000.0,330000.0
+1991,ZWE,Zimbabwe,child,37000.0,34000.0,42000.0
+1992,AGO,Angola,all ages,11000.0,7800.0,15000.0
+1992,AGO,Angola,child,2600.0,1700.0,3900.0
+1992,BDI,Burundi,all ages,23000.0,18000.0,30000.0
+1992,BDI,Burundi,child,5300.0,3800.0,7000.0
+1992,BEN,Benin,all ages,5000.0,3900.0,6500.0
+1992,BEN,Benin,child,700.0,540.0,920.0
+1992,BFA,Burkina Faso,all ages,20000.0,16000.0,26000.0
+1992,BFA,Burkina Faso,child,6300.0,4500.0,8500.0
+1992,BWA,Botswana,all ages,29000.0,27000.0,31000.0
+1992,BWA,Botswana,child,2500.0,2200.0,2800.0
+1992,CAF,Central African Republic,all ages,19000.0,15000.0,29000.0
+1992,CAF,Central African Republic,child,3400.0,2500.0,4800.0
+1992,CIV,Cote dIvoire,all ages,99000.0,83000.0,120000.0
+1992,CIV,Cote dIvoire,child,15000.0,12000.0,20000.0
+1992,CMR,Cameroon,all ages,33000.0,26000.0,38000.0
+1992,CMR,Cameroon,child,3600.0,2700.0,4200.0
+1992,COD,Democratic Republic of the Congo,all ages,85000.0,64000.0,120000.0
+1992,COD,Democratic Republic of the Congo,child,17000.0,13000.0,22000.0
+1992,COG,Congo,all ages,9200.0,7700.0,12000.0
+1992,COG,Congo,child,2200.0,1700.0,2700.0
+1992,CPV,Cape Verde,all ages,0.0,0.0,0.0
+1992,CPV,Cape Verde,child,0.0,0.0,0.0
+1992,DJI,Djibouti,all ages,1900.0,1200.0,2600.0
+1992,DJI,Djibouti,child,0.0,0.0,0.0
+1992,DZA,Algeria,all ages,0.0,0.0,0.0
+1992,DZA,Algeria,child,0.0,0.0,0.0
+1992,EGY,Egypt,all ages,1300.0,770.0,2200.0
+1992,EGY,Egypt,child,0.0,0.0,0.0
+1992,ERI,Eritrea,all ages,3600.0,2500.0,5300.0
+1992,ERI,Eritrea,child,0.0,0.0,650.0
+1992,ETH,Ethiopia,all ages,150000.0,83000.0,290000.0
+1992,ETH,Ethiopia,child,26000.0,14000.0,62000.0
+1992,GAB,Gabon,all ages,3100.0,1900.0,5100.0
+1992,GAB,Gabon,child,0.0,0.0,570.0
+1992,GHA,Ghana,all ages,35000.0,28000.0,44000.0
+1992,GHA,Ghana,child,6000.0,4400.0,7600.0
+1992,GIN,Guinea,all ages,5400.0,2900.0,7700.0
+1992,GIN,Guinea,child,800.0,0.0,1200.0
+1992,GMB,Gambia,all ages,740.0,0.0,1200.0
+1992,GMB,Gambia,child,0.0,0.0,0.0
+1992,GNB,Guinea-Bissau,all ages,870.0,580.0,1200.0
+1992,GNB,Guinea-Bissau,child,0.0,0.0,0.0
+1992,KEN,Kenya,all ages,250000.0,160000.0,390000.0
+1992,KEN,Kenya,child,46000.0,31000.0,75000.0
+1992,LBY,Libya,all ages,0.0,0.0,0.0
+1992,LBY,Libya,child,0.0,0.0,0.0
+1992,LSO,Lesotho,all ages,20000.0,16000.0,24000.0
+1992,LSO,Lesotho,child,1800.0,1500.0,2100.0
+1992,MAR,Morocco,all ages,840.0,610.0,1200.0
+1992,MAR,Morocco,child,0.0,0.0,0.0
+1992,MDG,Madagascar,all ages,0.0,0.0,0.0
+1992,MDG,Madagascar,child,0.0,0.0,0.0
+1992,MLI,Mali,all ages,14000.0,11000.0,19000.0
+1992,MLI,Mali,child,2000.0,1300.0,2900.0
+1992,MOZ,Mozambique,all ages,59000.0,49000.0,72000.0
+1992,MOZ,Mozambique,child,8500.0,6900.0,11000.0
+1992,MRT,Mauritania,all ages,760.0,560.0,1100.0
+1992,MRT,Mauritania,child,0.0,0.0,0.0
+1992,MWI,Malawi,all ages,130000.0,130000.0,140000.0
+1992,MWI,Malawi,child,26000.0,24000.0,28000.0
+1992,NAM,Namibia,all ages,11000.0,10000.0,13000.0
+1992,NAM,Namibia,child,1400.0,1200.0,1700.0
+1992,NER,Niger,all ages,5500.0,4300.0,6800.0
+1992,NER,Niger,child,890.0,670.0,1100.0
+1992,RWA,Rwanda,all ages,35000.0,29000.0,43000.0
+1992,RWA,Rwanda,child,6100.0,4500.0,7900.0
+1992,SDN,Sudan,all ages,1800.0,1200.0,2800.0
+1992,SDN,Sudan,child,0.0,0.0,0.0
+1992,SEN,Senegal,all ages,2600.0,2500.0,2800.0
+1992,SEN,Senegal,child,0.0,0.0,0.0
+1992,SLE,Sierra Leone,all ages,4900.0,3100.0,6900.0
+1992,SLE,Sierra Leone,child,930.0,540.0,1400.0
+1992,SOM,Somalia,all ages,1700.0,1100.0,2700.0
+1992,SOM,Somalia,child,0.0,0.0,670.0
+1992,SSD,South Sudan,all ages,11000.0,5800.0,16000.0
+1992,SSD,South Sudan,child,1900.0,960.0,2900.0
+1992,SWZ,Eswatini,all ages,9400.0,7900.0,11000.0
+1992,SWZ,Eswatini,child,730.0,610.0,910.0
+1992,TCD,Chad,all ages,13000.0,8800.0,18000.0
+1992,TCD,Chad,child,2600.0,1600.0,3900.0
+1992,TGO,Togo,all ages,8200.0,6200.0,11000.0
+1992,TGO,Togo,child,1200.0,880.0,1600.0
+1992,TUN,Tunisia,all ages,0.0,0.0,0.0
+1992,TUN,Tunisia,child,0.0,0.0,0.0
+1992,TZA,United Republic of Tanzania,all ages,150000.0,130000.0,170000.0
+1992,TZA,United Republic of Tanzania,child,28000.0,24000.0,32000.0
+1992,UGA,Uganda,all ages,110000.0,97000.0,120000.0
+1992,UGA,Uganda,child,32000.0,28000.0,36000.0
+1992,ZAF,South Africa,all ages,240000.0,220000.0,270000.0
+1992,ZAF,South Africa,child,19000.0,16000.0,21000.0
+1992,ZMB,Zambia,all ages,95000.0,86000.0,110000.0
+1992,ZMB,Zambia,child,19000.0,17000.0,21000.0
+1992,ZWE,Zimbabwe,all ages,270000.0,240000.0,310000.0
+1992,ZWE,Zimbabwe,child,40000.0,37000.0,45000.0
+1993,AGO,Angola,all ages,12000.0,9000.0,16000.0
+1993,AGO,Angola,child,3000.0,2000.0,4400.0
+1993,BDI,Burundi,all ages,14000.0,9700.0,22000.0
+1993,BDI,Burundi,child,4800.0,3600.0,6100.0
+1993,BEN,Benin,all ages,6700.0,5300.0,8600.0
+1993,BEN,Benin,child,960.0,760.0,1200.0
+1993,BFA,Burkina Faso,all ages,18000.0,15000.0,24000.0
+1993,BFA,Burkina Faso,child,6300.0,4700.0,8400.0
+1993,BWA,Botswana,all ages,33000.0,30000.0,35000.0
+1993,BWA,Botswana,child,3100.0,2800.0,3400.0
+1993,CAF,Central African Republic,all ages,20000.0,16000.0,28000.0
+1993,CAF,Central African Republic,child,3800.0,2900.0,5300.0
+1993,CIV,Cote dIvoire,all ages,97000.0,80000.0,120000.0
+1993,CIV,Cote dIvoire,child,16000.0,13000.0,20000.0
+1993,CMR,Cameroon,all ages,41000.0,33000.0,47000.0
+1993,CMR,Cameroon,child,4600.0,3600.0,5300.0
+1993,COD,Democratic Republic of the Congo,all ages,84000.0,63000.0,110000.0
+1993,COD,Democratic Republic of the Congo,child,18000.0,14000.0,23000.0
+1993,COG,Congo,all ages,8800.0,7600.0,11000.0
+1993,COG,Congo,child,2300.0,1800.0,2800.0
+1993,CPV,Cape Verde,all ages,0.0,0.0,0.0
+1993,CPV,Cape Verde,child,0.0,0.0,0.0
+1993,DJI,Djibouti,all ages,1700.0,1200.0,2300.0
+1993,DJI,Djibouti,child,0.0,0.0,0.0
+1993,DZA,Algeria,all ages,0.0,0.0,0.0
+1993,DZA,Algeria,child,0.0,0.0,0.0
+1993,EGY,Egypt,all ages,1300.0,830.0,2100.0
+1993,EGY,Egypt,child,0.0,0.0,0.0
+1993,ERI,Eritrea,all ages,3800.0,2600.0,5500.0
+1993,ERI,Eritrea,child,0.0,0.0,690.0
+1993,ETH,Ethiopia,all ages,140000.0,78000.0,270000.0
+1993,ETH,Ethiopia,child,28000.0,15000.0,66000.0
+1993,GAB,Gabon,all ages,3600.0,2300.0,5700.0
+1993,GAB,Gabon,child,0.0,0.0,680.0
+1993,GHA,Ghana,all ages,37000.0,32000.0,45000.0
+1993,GHA,Ghana,child,6700.0,5100.0,8200.0
+1993,GIN,Guinea,all ages,6500.0,3800.0,9100.0
+1993,GIN,Guinea,child,990.0,520.0,1400.0
+1993,GMB,Gambia,all ages,960.0,590.0,1500.0
+1993,GMB,Gambia,child,0.0,0.0,0.0
+1993,GNB,Guinea-Bissau,all ages,1200.0,820.0,1700.0
+1993,GNB,Guinea-Bissau,child,0.0,0.0,0.0
+1993,KEN,Kenya,all ages,250000.0,160000.0,380000.0
+1993,KEN,Kenya,child,51000.0,35000.0,83000.0
+1993,LBY,Libya,all ages,0.0,0.0,0.0
+1993,LBY,Libya,child,0.0,0.0,0.0
+1993,LSO,Lesotho,all ages,26000.0,22000.0,32000.0
+1993,LSO,Lesotho,child,2400.0,2000.0,2900.0
+1993,MAR,Morocco,all ages,950.0,720.0,1300.0
+1993,MAR,Morocco,child,0.0,0.0,0.0
+1993,MDG,Madagascar,all ages,0.0,0.0,540.0
+1993,MDG,Madagascar,child,0.0,0.0,0.0
+1993,MLI,Mali,all ages,14000.0,11000.0,18000.0
+1993,MLI,Mali,child,2200.0,1600.0,3000.0
+1993,MOZ,Mozambique,all ages,69000.0,59000.0,83000.0
+1993,MOZ,Mozambique,child,10000.0,8600.0,13000.0
+1993,MRT,Mauritania,all ages,890.0,650.0,1200.0
+1993,MRT,Mauritania,child,0.0,0.0,0.0
+1993,MWI,Malawi,all ages,140000.0,130000.0,150000.0
+1993,MWI,Malawi,child,28000.0,26000.0,31000.0
+1993,NAM,Namibia,all ages,15000.0,13000.0,17000.0
+1993,NAM,Namibia,child,1900.0,1600.0,2100.0
+1993,NER,Niger,all ages,6200.0,5000.0,7500.0
+1993,NER,Niger,child,1100.0,860.0,1400.0
+1993,RWA,Rwanda,all ages,35000.0,29000.0,42000.0
+1993,RWA,Rwanda,child,6700.0,5300.0,8500.0
+1993,SDN,Sudan,all ages,1900.0,1300.0,2800.0
+1993,SDN,Sudan,child,0.0,0.0,0.0
+1993,SEN,Senegal,all ages,3100.0,2900.0,3400.0
+1993,SEN,Senegal,child,0.0,0.0,0.0
+1993,SLE,Sierra Leone,all ages,5400.0,3800.0,7400.0
+1993,SLE,Sierra Leone,child,1100.0,650.0,1500.0
+1993,SOM,Somalia,all ages,1600.0,1100.0,2500.0
+1993,SOM,Somalia,child,0.0,0.0,640.0
+1993,SSD,South Sudan,all ages,12000.0,6800.0,18000.0
+1993,SSD,South Sudan,child,2300.0,1200.0,3300.0
+1993,SWZ,Eswatini,all ages,14000.0,12000.0,16000.0
+1993,SWZ,Eswatini,child,1200.0,1000.0,1400.0
+1993,TCD,Chad,all ages,14000.0,9900.0,19000.0
+1993,TCD,Chad,child,3000.0,1900.0,4300.0
+1993,TGO,Togo,all ages,10000.0,7800.0,13000.0
+1993,TGO,Togo,child,1500.0,1100.0,2000.0
+1993,TUN,Tunisia,all ages,0.0,0.0,0.0
+1993,TUN,Tunisia,child,0.0,0.0,0.0
+1993,TZA,United Republic of Tanzania,all ages,150000.0,130000.0,170000.0
+1993,TZA,United Republic of Tanzania,child,30000.0,26000.0,33000.0
+1993,UGA,Uganda,all ages,100000.0,96000.0,120000.0
+1993,UGA,Uganda,child,32000.0,28000.0,36000.0
+1993,ZAF,South Africa,all ages,320000.0,280000.0,350000.0
+1993,ZAF,South Africa,child,26000.0,22000.0,29000.0
+1993,ZMB,Zambia,all ages,92000.0,82000.0,100000.0
+1993,ZMB,Zambia,child,20000.0,18000.0,22000.0
+1993,ZWE,Zimbabwe,all ages,250000.0,220000.0,280000.0
+1993,ZWE,Zimbabwe,child,42000.0,38000.0,46000.0
+1994,AGO,Angola,all ages,14000.0,10000.0,18000.0
+1994,AGO,Angola,child,3500.0,2400.0,4800.0
+1994,BDI,Burundi,all ages,23000.0,19000.0,27000.0
+1994,BDI,Burundi,child,4700.0,3600.0,5800.0
+1994,BEN,Benin,all ages,8300.0,6600.0,10000.0
+1994,BEN,Benin,child,1300.0,1000.0,1600.0
+1994,BFA,Burkina Faso,all ages,16000.0,13000.0,21000.0
+1994,BFA,Burkina Faso,child,6300.0,4900.0,8000.0
+1994,BWA,Botswana,all ages,35000.0,33000.0,38000.0
+1994,BWA,Botswana,child,3700.0,3300.0,4000.0
+1994,CAF,Central African Republic,all ages,21000.0,17000.0,28000.0
+1994,CAF,Central African Republic,child,4100.0,3200.0,5600.0
+1994,CIV,Cote dIvoire,all ages,95000.0,79000.0,110000.0
+1994,CIV,Cote dIvoire,child,17000.0,14000.0,21000.0
+1994,CMR,Cameroon,all ages,50000.0,42000.0,58000.0
+1994,CMR,Cameroon,child,5800.0,4600.0,6700.0
+1994,COD,Democratic Republic of the Congo,all ages,80000.0,61000.0,100000.0
+1994,COD,Democratic Republic of the Congo,child,18000.0,14000.0,24000.0
+1994,COG,Congo,all ages,8600.0,7400.0,11000.0
+1994,COG,Congo,child,2300.0,1800.0,2800.0
+1994,CPV,Cape Verde,all ages,0.0,0.0,0.0
+1994,CPV,Cape Verde,child,0.0,0.0,0.0
+1994,DJI,Djibouti,all ages,1800.0,1300.0,2400.0
+1994,DJI,Djibouti,child,0.0,0.0,0.0
+1994,DZA,Algeria,all ages,0.0,0.0,0.0
+1994,DZA,Algeria,child,0.0,0.0,0.0
+1994,EGY,Egypt,all ages,1400.0,930.0,2100.0
+1994,EGY,Egypt,child,0.0,0.0,0.0
+1994,ERI,Eritrea,all ages,3600.0,2500.0,5000.0
+1994,ERI,Eritrea,child,0.0,0.0,680.0
+1994,ETH,Ethiopia,all ages,120000.0,69000.0,240000.0
+1994,ETH,Ethiopia,child,29000.0,15000.0,68000.0
+1994,GAB,Gabon,all ages,4200.0,2700.0,6600.0
+1994,GAB,Gabon,child,510.0,0.0,820.0
+1994,GHA,Ghana,all ages,37000.0,32000.0,46000.0
+1994,GHA,Ghana,child,7100.0,5900.0,8700.0
+1994,GIN,Guinea,all ages,7400.0,4700.0,10000.0
+1994,GIN,Guinea,child,1200.0,690.0,1700.0
+1994,GMB,Gambia,all ages,1200.0,800.0,1800.0
+1994,GMB,Gambia,child,0.0,0.0,0.0
+1994,GNB,Guinea-Bissau,all ages,1800.0,1100.0,2300.0
+1994,GNB,Guinea-Bissau,child,0.0,0.0,0.0
+1994,KEN,Kenya,all ages,230000.0,140000.0,350000.0
+1994,KEN,Kenya,child,53000.0,36000.0,88000.0
+1994,LBY,Libya,all ages,0.0,0.0,0.0
+1994,LBY,Libya,child,0.0,0.0,0.0
+1994,LSO,Lesotho,all ages,32000.0,27000.0,39000.0
+1994,LSO,Lesotho,child,3100.0,2600.0,3600.0
+1994,MAR,Morocco,all ages,1100.0,840.0,1400.0
+1994,MAR,Morocco,child,0.0,0.0,0.0
+1994,MDG,Madagascar,all ages,0.0,0.0,640.0
+1994,MDG,Madagascar,child,0.0,0.0,0.0
+1994,MLI,Mali,all ages,14000.0,12000.0,18000.0
+1994,MLI,Mali,child,2400.0,1700.0,3100.0
+1994,MOZ,Mozambique,all ages,83000.0,72000.0,99000.0
+1994,MOZ,Mozambique,child,13000.0,11000.0,15000.0
+1994,MRT,Mauritania,all ages,1100.0,790.0,1400.0
+1994,MRT,Mauritania,child,0.0,0.0,0.0
+1994,MWI,Malawi,all ages,130000.0,130000.0,140000.0
+1994,MWI,Malawi,child,30000.0,27000.0,32000.0
+1994,NAM,Namibia,all ages,18000.0,16000.0,20000.0
+1994,NAM,Namibia,child,2300.0,2000.0,2600.0
+1994,NER,Niger,all ages,6800.0,5400.0,8200.0
+1994,NER,Niger,child,1300.0,1100.0,1600.0
+1994,RWA,Rwanda,all ages,31000.0,26000.0,37000.0
+1994,RWA,Rwanda,child,6800.0,5600.0,8600.0
+1994,SDN,Sudan,all ages,1900.0,1400.0,2800.0
+1994,SDN,Sudan,child,0.0,0.0,0.0
+1994,SEN,Senegal,all ages,3600.0,3400.0,3900.0
+1994,SEN,Senegal,child,0.0,0.0,530.0
+1994,SLE,Sierra Leone,all ages,5800.0,4200.0,7600.0
+1994,SLE,Sierra Leone,child,1200.0,780.0,1700.0
+1994,SOM,Somalia,all ages,1700.0,1200.0,2400.0
+1994,SOM,Somalia,child,0.0,0.0,680.0
+1994,SSD,South Sudan,all ages,14000.0,8000.0,20000.0
+1994,SSD,South Sudan,child,2600.0,1500.0,3700.0
+1994,SWZ,Eswatini,all ages,18000.0,16000.0,21000.0
+1994,SWZ,Eswatini,child,1700.0,1500.0,2000.0
+1994,TCD,Chad,all ages,14000.0,10000.0,19000.0
+1994,TCD,Chad,child,3100.0,2100.0,4400.0
+1994,TGO,Togo,all ages,11000.0,8400.0,14000.0
+1994,TGO,Togo,child,1700.0,1300.0,2200.0
+1994,TUN,Tunisia,all ages,0.0,0.0,540.0
+1994,TUN,Tunisia,child,0.0,0.0,0.0
+1994,TZA,United Republic of Tanzania,all ages,140000.0,130000.0,160000.0
+1994,TZA,United Republic of Tanzania,child,31000.0,27000.0,35000.0
+1994,UGA,Uganda,all ages,100000.0,96000.0,120000.0
+1994,UGA,Uganda,child,31000.0,27000.0,36000.0
+1994,ZAF,South Africa,all ages,380000.0,340000.0,420000.0
+1994,ZAF,South Africa,child,33000.0,29000.0,39000.0
+1994,ZMB,Zambia,all ages,90000.0,81000.0,100000.0
+1994,ZMB,Zambia,child,21000.0,19000.0,23000.0
+1994,ZWE,Zimbabwe,all ages,230000.0,210000.0,260000.0
+1994,ZWE,Zimbabwe,child,44000.0,40000.0,48000.0
+1995,AGO,Angola,all ages,15000.0,12000.0,20000.0
+1995,AGO,Angola,child,3900.0,2800.0,5300.0
+1995,BDI,Burundi,all ages,8600.0,5400.0,15000.0
+1995,BDI,Burundi,child,4300.0,3500.0,5400.0
+1995,BEN,Benin,all ages,9100.0,7500.0,11000.0
+1995,BEN,Benin,child,1500.0,1200.0,1900.0
+1995,BFA,Burkina Faso,all ages,15000.0,12000.0,19000.0
+1995,BFA,Burkina Faso,child,6200.0,4900.0,7800.0
+1995,BWA,Botswana,all ages,36000.0,33000.0,38000.0
+1995,BWA,Botswana,child,4200.0,3800.0,4600.0
+1995,CAF,Central African Republic,all ages,21000.0,17000.0,27000.0
+1995,CAF,Central African Republic,child,4400.0,3500.0,5600.0
+1995,CIV,Cote dIvoire,all ages,89000.0,74000.0,110000.0
+1995,CIV,Cote dIvoire,child,18000.0,15000.0,21000.0
+1995,CMR,Cameroon,all ages,56000.0,48000.0,65000.0
+1995,CMR,Cameroon,child,6900.0,5700.0,7900.0
+1995,COD,Democratic Republic of the Congo,all ages,80000.0,61000.0,100000.0
+1995,COD,Democratic Republic of the Congo,child,20000.0,15000.0,25000.0
+1995,COG,Congo,all ages,8400.0,7400.0,10000.0
+1995,COG,Congo,child,2300.0,1900.0,2900.0
+1995,CPV,Cape Verde,all ages,0.0,0.0,0.0
+1995,CPV,Cape Verde,child,0.0,0.0,0.0
+1995,DJI,Djibouti,all ages,1900.0,1400.0,2600.0
+1995,DJI,Djibouti,child,0.0,0.0,0.0
+1995,DZA,Algeria,all ages,0.0,0.0,0.0
+1995,DZA,Algeria,child,0.0,0.0,0.0
+1995,EGY,Egypt,all ages,1500.0,1000.0,2100.0
+1995,EGY,Egypt,child,0.0,0.0,0.0
+1995,ERI,Eritrea,all ages,3500.0,2600.0,4800.0
+1995,ERI,Eritrea,child,0.0,0.0,650.0
+1995,ETH,Ethiopia,all ages,110000.0,61000.0,210000.0
+1995,ETH,Ethiopia,child,29000.0,15000.0,69000.0
+1995,GAB,Gabon,all ages,4800.0,3200.0,7300.0
+1995,GAB,Gabon,child,600.0,0.0,920.0
+1995,GHA,Ghana,all ages,35000.0,30000.0,42000.0
+1995,GHA,Ghana,child,7300.0,6100.0,8600.0
+1995,GIN,Guinea,all ages,8400.0,5900.0,11000.0
+1995,GIN,Guinea,child,1400.0,840.0,1800.0
+1995,GMB,Gambia,all ages,1500.0,1000.0,2100.0
+1995,GMB,Gambia,child,0.0,0.0,0.0
+1995,GNB,Guinea-Bissau,all ages,2500.0,1700.0,3100.0
+1995,GNB,Guinea-Bissau,child,0.0,0.0,0.0
+1995,KEN,Kenya,all ages,200000.0,130000.0,310000.0
+1995,KEN,Kenya,child,55000.0,37000.0,90000.0
+1995,LBY,Libya,all ages,0.0,0.0,0.0
+1995,LBY,Libya,child,0.0,0.0,0.0
+1995,LSO,Lesotho,all ages,35000.0,30000.0,42000.0
+1995,LSO,Lesotho,child,3700.0,3200.0,4300.0
+1995,MAR,Morocco,all ages,1200.0,920.0,1500.0
+1995,MAR,Morocco,child,0.0,0.0,0.0
+1995,MDG,Madagascar,all ages,0.0,0.0,750.0
+1995,MDG,Madagascar,child,0.0,0.0,0.0
+1995,MLI,Mali,all ages,14000.0,11000.0,17000.0
+1995,MLI,Mali,child,2400.0,1900.0,3100.0
+1995,MOZ,Mozambique,all ages,100000.0,89000.0,120000.0
+1995,MOZ,Mozambique,child,16000.0,14000.0,19000.0
+1995,MRT,Mauritania,all ages,1200.0,910.0,1500.0
+1995,MRT,Mauritania,child,0.0,0.0,0.0
+1995,MWI,Malawi,all ages,120000.0,120000.0,130000.0
+1995,MWI,Malawi,child,30000.0,27000.0,32000.0
+1995,NAM,Namibia,all ages,20000.0,18000.0,23000.0
+1995,NAM,Namibia,child,2700.0,2400.0,3000.0
+1995,NER,Niger,all ages,6800.0,5600.0,8400.0
+1995,NER,Niger,child,1500.0,1200.0,1800.0
+1995,RWA,Rwanda,all ages,23000.0,20000.0,27000.0
+1995,RWA,Rwanda,child,5100.0,4200.0,6100.0
+1995,SDN,Sudan,all ages,2100.0,1500.0,2800.0
+1995,SDN,Sudan,child,0.0,0.0,0.0
+1995,SEN,Senegal,all ages,4300.0,4000.0,4600.0
+1995,SEN,Senegal,child,590.0,540.0,640.0
+1995,SLE,Sierra Leone,all ages,5900.0,4500.0,7500.0
+1995,SLE,Sierra Leone,child,1300.0,880.0,1800.0
+1995,SOM,Somalia,all ages,1600.0,1200.0,2300.0
+1995,SOM,Somalia,child,0.0,0.0,650.0
+1995,SSD,South Sudan,all ages,14000.0,8100.0,19000.0
+1995,SSD,South Sudan,child,2900.0,1600.0,4100.0
+1995,SWZ,Eswatini,all ages,21000.0,18000.0,23000.0
+1995,SWZ,Eswatini,child,2100.0,1800.0,2400.0
+1995,TCD,Chad,all ages,14000.0,11000.0,19000.0
+1995,TCD,Chad,child,3400.0,2400.0,4700.0
+1995,TGO,Togo,all ages,13000.0,10000.0,16000.0
+1995,TGO,Togo,child,2000.0,1500.0,2600.0
+1995,TUN,Tunisia,all ages,0.0,0.0,540.0
+1995,TUN,Tunisia,child,0.0,0.0,0.0
+1995,TZA,United Republic of Tanzania,all ages,140000.0,120000.0,160000.0
+1995,TZA,United Republic of Tanzania,child,32000.0,28000.0,36000.0
+1995,UGA,Uganda,all ages,100000.0,95000.0,120000.0
+1995,UGA,Uganda,child,31000.0,27000.0,35000.0
+1995,ZAF,South Africa,all ages,440000.0,400000.0,490000.0
+1995,ZAF,South Africa,child,41000.0,36000.0,47000.0
+1995,ZMB,Zambia,all ages,88000.0,78000.0,97000.0
+1995,ZMB,Zambia,child,22000.0,19000.0,24000.0
+1995,ZWE,Zimbabwe,all ages,200000.0,180000.0,220000.0
+1995,ZWE,Zimbabwe,child,43000.0,39000.0,48000.0
+1996,AGO,Angola,all ages,16000.0,13000.0,21000.0
+1996,AGO,Angola,child,4400.0,3100.0,5900.0
+1996,BDI,Burundi,all ages,13000.0,11000.0,18000.0
+1996,BDI,Burundi,child,4500.0,3600.0,5500.0
+1996,BEN,Benin,all ages,9200.0,7700.0,11000.0
+1996,BEN,Benin,child,1700.0,1400.0,2000.0
+1996,BFA,Burkina Faso,all ages,14000.0,11000.0,17000.0
+1996,BFA,Burkina Faso,child,6000.0,4900.0,7600.0
+1996,BWA,Botswana,all ages,35000.0,33000.0,38000.0
+1996,BWA,Botswana,child,4600.0,4300.0,5000.0
+1996,CAF,Central African Republic,all ages,19000.0,16000.0,25000.0
+1996,CAF,Central African Republic,child,4500.0,3600.0,5800.0
+1996,CIV,Cote dIvoire,all ages,84000.0,69000.0,100000.0
+1996,CIV,Cote dIvoire,child,18000.0,15000.0,22000.0
+1996,CMR,Cameroon,all ages,63000.0,54000.0,73000.0
+1996,CMR,Cameroon,child,8000.0,6700.0,9200.0
+1996,COD,Democratic Republic of the Congo,all ages,79000.0,61000.0,100000.0
+1996,COD,Democratic Republic of the Congo,child,20000.0,15000.0,25000.0
+1996,COG,Congo,all ages,8300.0,7300.0,9900.0
+1996,COG,Congo,child,2400.0,1900.0,2900.0
+1996,CPV,Cape Verde,all ages,0.0,0.0,0.0
+1996,CPV,Cape Verde,child,0.0,0.0,0.0
+1996,DJI,Djibouti,all ages,2000.0,1400.0,2700.0
+1996,DJI,Djibouti,child,0.0,0.0,0.0
+1996,DZA,Algeria,all ages,0.0,0.0,0.0
+1996,DZA,Algeria,child,0.0,0.0,0.0
+1996,EGY,Egypt,all ages,1500.0,1100.0,2000.0
+1996,EGY,Egypt,child,0.0,0.0,0.0
+1996,ERI,Eritrea,all ages,2900.0,2200.0,4000.0
+1996,ERI,Eritrea,child,0.0,0.0,640.0
+1996,ETH,Ethiopia,all ages,93000.0,53000.0,190000.0
+1996,ETH,Ethiopia,child,29000.0,15000.0,68000.0
+1996,GAB,Gabon,all ages,4800.0,3200.0,7100.0
+1996,GAB,Gabon,child,670.0,0.0,1000.0
+1996,GHA,Ghana,all ages,34000.0,29000.0,41000.0
+1996,GHA,Ghana,child,7500.0,6500.0,8900.0
+1996,GIN,Guinea,all ages,9500.0,7500.0,12000.0
+1996,GIN,Guinea,child,1600.0,1100.0,2100.0
+1996,GMB,Gambia,all ages,1700.0,1200.0,2400.0
+1996,GMB,Gambia,child,0.0,0.0,0.0
+1996,GNB,Guinea-Bissau,all ages,3400.0,2400.0,4200.0
+1996,GNB,Guinea-Bissau,child,0.0,0.0,550.0
+1996,KEN,Kenya,all ages,180000.0,120000.0,280000.0
+1996,KEN,Kenya,child,55000.0,38000.0,91000.0
+1996,LBY,Libya,all ages,0.0,0.0,0.0
+1996,LBY,Libya,child,0.0,0.0,0.0
+1996,LSO,Lesotho,all ages,35000.0,31000.0,40000.0
+1996,LSO,Lesotho,child,4200.0,3700.0,4800.0
+1996,MAR,Morocco,all ages,1300.0,1000.0,1600.0
+1996,MAR,Morocco,child,0.0,0.0,0.0
+1996,MDG,Madagascar,all ages,0.0,0.0,940.0
+1996,MDG,Madagascar,child,0.0,0.0,0.0
+1996,MLI,Mali,all ages,13000.0,11000.0,16000.0
+1996,MLI,Mali,child,2500.0,1900.0,3000.0
+1996,MOZ,Mozambique,all ages,120000.0,100000.0,130000.0
+1996,MOZ,Mozambique,child,19000.0,16000.0,22000.0
+1996,MRT,Mauritania,all ages,1300.0,1000.0,1600.0
+1996,MRT,Mauritania,child,0.0,0.0,0.0
+1996,MWI,Malawi,all ages,120000.0,110000.0,130000.0
+1996,MWI,Malawi,child,30000.0,28000.0,33000.0
+1996,NAM,Namibia,all ages,21000.0,20000.0,24000.0
+1996,NAM,Namibia,child,3000.0,2700.0,3400.0
+1996,NER,Niger,all ages,6500.0,5400.0,7700.0
+1996,NER,Niger,child,1600.0,1300.0,1900.0
+1996,RWA,Rwanda,all ages,23000.0,21000.0,26000.0
+1996,RWA,Rwanda,child,5700.0,4800.0,6700.0
+1996,SDN,Sudan,all ages,2000.0,1500.0,2800.0
+1996,SDN,Sudan,child,0.0,0.0,530.0
+1996,SEN,Senegal,all ages,4900.0,4700.0,5400.0
+1996,SEN,Senegal,child,690.0,640.0,750.0
+1996,SLE,Sierra Leone,all ages,6000.0,4900.0,7700.0
+1996,SLE,Sierra Leone,child,1400.0,1000.0,1900.0
+1996,SOM,Somalia,all ages,1600.0,1200.0,2200.0
+1996,SOM,Somalia,child,0.0,0.0,650.0
+1996,SSD,South Sudan,all ages,14000.0,8700.0,20000.0
+1996,SSD,South Sudan,child,3100.0,1800.0,4300.0
+1996,SWZ,Eswatini,all ages,23000.0,20000.0,25000.0
+1996,SWZ,Eswatini,child,2500.0,2200.0,2800.0
+1996,TCD,Chad,all ages,13000.0,10000.0,18000.0
+1996,TCD,Chad,child,3700.0,2600.0,5100.0
+1996,TGO,Togo,all ages,14000.0,11000.0,18000.0
+1996,TGO,Togo,child,2300.0,1800.0,3000.0
+1996,TUN,Tunisia,all ages,0.0,0.0,0.0
+1996,TUN,Tunisia,child,0.0,0.0,0.0
+1996,TZA,United Republic of Tanzania,all ages,130000.0,120000.0,150000.0
+1996,TZA,United Republic of Tanzania,child,33000.0,29000.0,36000.0
+1996,UGA,Uganda,all ages,100000.0,95000.0,120000.0
+1996,UGA,Uganda,child,31000.0,27000.0,35000.0
+1996,ZAF,South Africa,all ages,490000.0,440000.0,540000.0
+1996,ZAF,South Africa,child,49000.0,43000.0,56000.0
+1996,ZMB,Zambia,all ages,85000.0,76000.0,95000.0
+1996,ZMB,Zambia,child,22000.0,20000.0,25000.0
+1996,ZWE,Zimbabwe,all ages,180000.0,160000.0,200000.0
+1996,ZWE,Zimbabwe,child,44000.0,40000.0,48000.0
+1997,AGO,Angola,all ages,17000.0,13000.0,22000.0
+1997,AGO,Angola,child,4800.0,3500.0,6500.0
+1997,BDI,Burundi,all ages,12000.0,11000.0,15000.0
+1997,BDI,Burundi,child,4100.0,3300.0,5000.0
+1997,BEN,Benin,all ages,8700.0,7200.0,10000.0
+1997,BEN,Benin,child,1800.0,1500.0,2200.0
+1997,BFA,Burkina Faso,all ages,13000.0,11000.0,16000.0
+1997,BFA,Burkina Faso,child,5800.0,4700.0,7300.0
+1997,BWA,Botswana,all ages,33000.0,31000.0,36000.0
+1997,BWA,Botswana,child,4900.0,4500.0,5400.0
+1997,CAF,Central African Republic,all ages,19000.0,15000.0,23000.0
+1997,CAF,Central African Republic,child,4600.0,3600.0,5800.0
+1997,CIV,Cote dIvoire,all ages,77000.0,64000.0,92000.0
+1997,CIV,Cote dIvoire,child,19000.0,15000.0,21000.0
+1997,CMR,Cameroon,all ages,67000.0,58000.0,76000.0
+1997,CMR,Cameroon,child,9000.0,7500.0,10000.0
+1997,COD,Democratic Republic of the Congo,all ages,76000.0,60000.0,96000.0
+1997,COD,Democratic Republic of the Congo,child,19000.0,15000.0,25000.0
+1997,COG,Congo,all ages,8000.0,7000.0,9300.0
+1997,COG,Congo,child,2300.0,1900.0,2800.0
+1997,CPV,Cape Verde,all ages,0.0,0.0,0.0
+1997,CPV,Cape Verde,child,0.0,0.0,0.0
+1997,DJI,Djibouti,all ages,1900.0,1300.0,2600.0
+1997,DJI,Djibouti,child,0.0,0.0,0.0
+1997,DZA,Algeria,all ages,0.0,0.0,0.0
+1997,DZA,Algeria,child,0.0,0.0,0.0
+1997,EGY,Egypt,all ages,1500.0,1100.0,2100.0
+1997,EGY,Egypt,child,0.0,0.0,0.0
+1997,ERI,Eritrea,all ages,3300.0,2500.0,4300.0
+1997,ERI,Eritrea,child,0.0,0.0,650.0
+1997,ETH,Ethiopia,all ages,84000.0,48000.0,170000.0
+1997,ETH,Ethiopia,child,28000.0,15000.0,66000.0
+1997,GAB,Gabon,all ages,5000.0,3400.0,7100.0
+1997,GAB,Gabon,child,740.0,0.0,1100.0
+1997,GHA,Ghana,all ages,33000.0,28000.0,38000.0
+1997,GHA,Ghana,child,7600.0,6500.0,9100.0
+1997,GIN,Guinea,all ages,10000.0,8300.0,13000.0
+1997,GIN,Guinea,child,1800.0,1300.0,2300.0
+1997,GMB,Gambia,all ages,2000.0,1400.0,2800.0
+1997,GMB,Gambia,child,0.0,0.0,0.0
+1997,GNB,Guinea-Bissau,all ages,4300.0,3200.0,5200.0
+1997,GNB,Guinea-Bissau,child,580.0,0.0,710.0
+1997,KEN,Kenya,all ages,170000.0,110000.0,260000.0
+1997,KEN,Kenya,child,55000.0,38000.0,91000.0
+1997,LBY,Libya,all ages,0.0,0.0,0.0
+1997,LBY,Libya,child,0.0,0.0,0.0
+1997,LSO,Lesotho,all ages,33000.0,29000.0,37000.0
+1997,LSO,Lesotho,child,4600.0,4000.0,5200.0
+1997,MAR,Morocco,all ages,1400.0,1100.0,1600.0
+1997,MAR,Morocco,child,0.0,0.0,0.0
+1997,MDG,Madagascar,all ages,520.0,0.0,1100.0
+1997,MDG,Madagascar,child,0.0,0.0,0.0
+1997,MLI,Mali,all ages,12000.0,10000.0,15000.0
+1997,MLI,Mali,child,2500.0,2000.0,3100.0
+1997,MOZ,Mozambique,all ages,130000.0,120000.0,150000.0
+1997,MOZ,Mozambique,child,22000.0,19000.0,26000.0
+1997,MRT,Mauritania,all ages,1400.0,1100.0,1700.0
+1997,MRT,Mauritania,child,0.0,0.0,0.0
+1997,MWI,Malawi,all ages,110000.0,110000.0,120000.0
+1997,MWI,Malawi,child,31000.0,28000.0,34000.0
+1997,NAM,Namibia,all ages,22000.0,20000.0,24000.0
+1997,NAM,Namibia,child,3400.0,3000.0,3900.0
+1997,NER,Niger,all ages,6200.0,5300.0,7400.0
+1997,NER,Niger,child,1700.0,1400.0,2100.0
+1997,RWA,Rwanda,all ages,27000.0,24000.0,30000.0
+1997,RWA,Rwanda,child,7000.0,6000.0,8200.0
+1997,SDN,Sudan,all ages,2200.0,1600.0,2900.0
+1997,SDN,Sudan,child,0.0,0.0,550.0
+1997,SEN,Senegal,all ages,5700.0,5500.0,6300.0
+1997,SEN,Senegal,child,810.0,740.0,880.0
+1997,SLE,Sierra Leone,all ages,6200.0,5100.0,7800.0
+1997,SLE,Sierra Leone,child,1500.0,1100.0,2000.0
+1997,SOM,Somalia,all ages,1500.0,1100.0,2000.0
+1997,SOM,Somalia,child,0.0,0.0,630.0
+1997,SSD,South Sudan,all ages,14000.0,9600.0,20000.0
+1997,SSD,South Sudan,child,3300.0,1900.0,4700.0
+1997,SWZ,Eswatini,all ages,23000.0,21000.0,26000.0
+1997,SWZ,Eswatini,child,2900.0,2600.0,3200.0
+1997,TCD,Chad,all ages,14000.0,11000.0,19000.0
+1997,TCD,Chad,child,3900.0,2700.0,5200.0
+1997,TGO,Togo,all ages,14000.0,11000.0,19000.0
+1997,TGO,Togo,child,2600.0,1900.0,3300.0
+1997,TUN,Tunisia,all ages,0.0,0.0,0.0
+1997,TUN,Tunisia,child,0.0,0.0,0.0
+1997,TZA,United Republic of Tanzania,all ages,130000.0,120000.0,150000.0
+1997,TZA,United Republic of Tanzania,child,33000.0,28000.0,37000.0
+1997,UGA,Uganda,all ages,100000.0,94000.0,110000.0
+1997,UGA,Uganda,child,31000.0,27000.0,34000.0
+1997,ZAF,South Africa,all ages,520000.0,470000.0,580000.0
+1997,ZAF,South Africa,child,56000.0,48000.0,63000.0
+1997,ZMB,Zambia,all ages,82000.0,74000.0,90000.0
+1997,ZMB,Zambia,child,23000.0,20000.0,25000.0
+1997,ZWE,Zimbabwe,all ages,160000.0,150000.0,180000.0
+1997,ZWE,Zimbabwe,child,43000.0,39000.0,47000.0
+1998,AGO,Angola,all ages,18000.0,15000.0,23000.0
+1998,AGO,Angola,child,5200.0,3900.0,6700.0
+1998,BDI,Burundi,all ages,11000.0,9200.0,13000.0
+1998,BDI,Burundi,child,3700.0,3100.0,4400.0
+1998,BEN,Benin,all ages,8000.0,6500.0,9600.0
+1998,BEN,Benin,child,1900.0,1600.0,2200.0
+1998,BFA,Burkina Faso,all ages,12000.0,10000.0,15000.0
+1998,BFA,Burkina Faso,child,5500.0,4600.0,6800.0
+1998,BWA,Botswana,all ages,31000.0,29000.0,34000.0
+1998,BWA,Botswana,child,5100.0,4700.0,5600.0
+1998,CAF,Central African Republic,all ages,18000.0,15000.0,22000.0
+1998,CAF,Central African Republic,child,4600.0,3800.0,5800.0
+1998,CIV,Cote dIvoire,all ages,72000.0,60000.0,85000.0
+1998,CIV,Cote dIvoire,child,19000.0,16000.0,21000.0
+1998,CMR,Cameroon,all ages,69000.0,60000.0,78000.0
+1998,CMR,Cameroon,child,10000.0,8600.0,11000.0
+1998,COD,Democratic Republic of the Congo,all ages,70000.0,57000.0,88000.0
+1998,COD,Democratic Republic of the Congo,child,19000.0,15000.0,24000.0
+1998,COG,Congo,all ages,8200.0,7300.0,9500.0
+1998,COG,Congo,child,2300.0,1900.0,2800.0
+1998,CPV,Cape Verde,all ages,0.0,0.0,0.0
+1998,CPV,Cape Verde,child,0.0,0.0,0.0
+1998,DJI,Djibouti,all ages,1900.0,1200.0,2600.0
+1998,DJI,Djibouti,child,0.0,0.0,0.0
+1998,DZA,Algeria,all ages,0.0,0.0,0.0
+1998,DZA,Algeria,child,0.0,0.0,0.0
+1998,EGY,Egypt,all ages,1500.0,1200.0,2000.0
+1998,EGY,Egypt,child,0.0,0.0,0.0
+1998,ERI,Eritrea,all ages,2900.0,2200.0,3700.0
+1998,ERI,Eritrea,child,0.0,0.0,580.0
+1998,ETH,Ethiopia,all ages,76000.0,43000.0,150000.0
+1998,ETH,Ethiopia,child,27000.0,14000.0,64000.0
+1998,GAB,Gabon,all ages,4800.0,3500.0,6600.0
+1998,GAB,Gabon,child,790.0,560.0,1100.0
+1998,GHA,Ghana,all ages,32000.0,27000.0,37000.0
+1998,GHA,Ghana,child,7800.0,6700.0,9200.0
+1998,GIN,Guinea,all ages,11000.0,8700.0,13000.0
+1998,GIN,Guinea,child,1900.0,1500.0,2400.0
+1998,GMB,Gambia,all ages,2200.0,1600.0,3000.0
+1998,GMB,Gambia,child,0.0,0.0,0.0
+1998,GNB,Guinea-Bissau,all ages,5100.0,4100.0,6200.0
+1998,GNB,Guinea-Bissau,child,720.0,530.0,870.0
+1998,KEN,Kenya,all ages,150000.0,99000.0,240000.0
+1998,KEN,Kenya,child,54000.0,37000.0,89000.0
+1998,LBY,Libya,all ages,0.0,0.0,0.0
+1998,LBY,Libya,child,0.0,0.0,0.0
+1998,LSO,Lesotho,all ages,31000.0,27000.0,34000.0
+1998,LSO,Lesotho,child,4700.0,4100.0,5200.0
+1998,MAR,Morocco,all ages,1500.0,1200.0,1700.0
+1998,MAR,Morocco,child,0.0,0.0,0.0
+1998,MDG,Madagascar,all ages,670.0,0.0,1400.0
+1998,MDG,Madagascar,child,0.0,0.0,0.0
+1998,MLI,Mali,all ages,11000.0,9500.0,14000.0
+1998,MLI,Mali,child,2500.0,2100.0,3000.0
+1998,MOZ,Mozambique,all ages,140000.0,130000.0,160000.0
+1998,MOZ,Mozambique,child,25000.0,22000.0,28000.0
+1998,MRT,Mauritania,all ages,1500.0,1200.0,1700.0
+1998,MRT,Mauritania,child,0.0,0.0,0.0
+1998,MWI,Malawi,all ages,110000.0,100000.0,120000.0
+1998,MWI,Malawi,child,31000.0,28000.0,34000.0
+1998,NAM,Namibia,all ages,22000.0,20000.0,24000.0
+1998,NAM,Namibia,child,3800.0,3400.0,4300.0
+1998,NER,Niger,all ages,5900.0,5100.0,6900.0
+1998,NER,Niger,child,1800.0,1500.0,2100.0
+1998,RWA,Rwanda,all ages,29000.0,26000.0,33000.0
+1998,RWA,Rwanda,child,7700.0,6700.0,8800.0
+1998,SDN,Sudan,all ages,2300.0,1800.0,3100.0
+1998,SDN,Sudan,child,0.0,0.0,580.0
+1998,SEN,Senegal,all ages,6300.0,6000.0,6900.0
+1998,SEN,Senegal,child,930.0,850.0,1000.0
+1998,SLE,Sierra Leone,all ages,6200.0,5200.0,7700.0
+1998,SLE,Sierra Leone,child,1600.0,1200.0,2100.0
+1998,SOM,Somalia,all ages,1400.0,1100.0,1800.0
+1998,SOM,Somalia,child,0.0,0.0,600.0
+1998,SSD,South Sudan,all ages,14000.0,10000.0,20000.0
+1998,SSD,South Sudan,child,3500.0,2200.0,4900.0
+1998,SWZ,Eswatini,all ages,23000.0,21000.0,24000.0
+1998,SWZ,Eswatini,child,3200.0,2900.0,3500.0
+1998,TCD,Chad,all ages,14000.0,11000.0,18000.0
+1998,TCD,Chad,child,4000.0,3000.0,5300.0
+1998,TGO,Togo,all ages,13000.0,11000.0,18000.0
+1998,TGO,Togo,child,2700.0,2200.0,3400.0
+1998,TUN,Tunisia,all ages,0.0,0.0,0.0
+1998,TUN,Tunisia,child,0.0,0.0,0.0
+1998,TZA,United Republic of Tanzania,all ages,120000.0,110000.0,140000.0
+1998,TZA,United Republic of Tanzania,child,33000.0,29000.0,37000.0
+1998,UGA,Uganda,all ages,100000.0,94000.0,110000.0
+1998,UGA,Uganda,child,30000.0,27000.0,34000.0
+1998,ZAF,South Africa,all ages,540000.0,490000.0,590000.0
+1998,ZAF,South Africa,child,62000.0,53000.0,70000.0
+1998,ZMB,Zambia,all ages,80000.0,73000.0,88000.0
+1998,ZMB,Zambia,child,23000.0,20000.0,25000.0
+1998,ZWE,Zimbabwe,all ages,150000.0,140000.0,160000.0
+1998,ZWE,Zimbabwe,child,43000.0,38000.0,47000.0
+1999,AGO,Angola,all ages,19000.0,16000.0,24000.0
+1999,AGO,Angola,child,5600.0,4200.0,7500.0
+1999,BDI,Burundi,all ages,8700.0,7300.0,11000.0
+1999,BDI,Burundi,child,3500.0,2800.0,4100.0
+1999,BEN,Benin,all ages,7300.0,6100.0,8700.0
+1999,BEN,Benin,child,2000.0,1600.0,2300.0
+1999,BFA,Burkina Faso,all ages,11000.0,9600.0,14000.0
+1999,BFA,Burkina Faso,child,5300.0,4200.0,6400.0
+1999,BWA,Botswana,all ages,29000.0,27000.0,31000.0
+1999,BWA,Botswana,child,5300.0,4700.0,5800.0
+1999,CAF,Central African Republic,all ages,17000.0,14000.0,20000.0
+1999,CAF,Central African Republic,child,4600.0,3800.0,5800.0
+1999,CIV,Cote dIvoire,all ages,70000.0,60000.0,83000.0
+1999,CIV,Cote dIvoire,child,18000.0,16000.0,22000.0
+1999,CMR,Cameroon,all ages,68000.0,60000.0,78000.0
+1999,CMR,Cameroon,child,11000.0,9300.0,12000.0
+1999,COD,Democratic Republic of the Congo,all ages,67000.0,54000.0,85000.0
+1999,COD,Democratic Republic of the Congo,child,18000.0,14000.0,23000.0
+1999,COG,Congo,all ages,7400.0,6600.0,8700.0
+1999,COG,Congo,child,2200.0,1800.0,2700.0
+1999,CPV,Cape Verde,all ages,0.0,0.0,0.0
+1999,CPV,Cape Verde,child,0.0,0.0,0.0
+1999,DJI,Djibouti,all ages,2000.0,1300.0,2700.0
+1999,DJI,Djibouti,child,0.0,0.0,0.0
+1999,DZA,Algeria,all ages,0.0,0.0,0.0
+1999,DZA,Algeria,child,0.0,0.0,0.0
+1999,EGY,Egypt,all ages,1600.0,1200.0,2100.0
+1999,EGY,Egypt,child,0.0,0.0,0.0
+1999,ERI,Eritrea,all ages,2500.0,2000.0,3400.0
+1999,ERI,Eritrea,child,0.0,0.0,550.0
+1999,ETH,Ethiopia,all ages,69000.0,40000.0,140000.0
+1999,ETH,Ethiopia,child,26000.0,13000.0,61000.0
+1999,GAB,Gabon,all ages,4500.0,3300.0,6000.0
+1999,GAB,Gabon,child,830.0,600.0,1200.0
+1999,GHA,Ghana,all ages,31000.0,27000.0,37000.0
+1999,GHA,Ghana,child,7900.0,6800.0,9400.0
+1999,GIN,Guinea,all ages,11000.0,9100.0,14000.0
+1999,GIN,Guinea,child,2100.0,1600.0,2600.0
+1999,GMB,Gambia,all ages,2300.0,1700.0,3100.0
+1999,GMB,Gambia,child,0.0,0.0,0.0
+1999,GNB,Guinea-Bissau,all ages,5500.0,4600.0,6500.0
+1999,GNB,Guinea-Bissau,child,830.0,640.0,990.0
+1999,KEN,Kenya,all ages,140000.0,93000.0,230000.0
+1999,KEN,Kenya,child,53000.0,36000.0,87000.0
+1999,LBY,Libya,all ages,0.0,0.0,0.0
+1999,LBY,Libya,child,0.0,0.0,0.0
+1999,LSO,Lesotho,all ages,29000.0,25000.0,32000.0
+1999,LSO,Lesotho,child,4700.0,4100.0,5300.0
+1999,MAR,Morocco,all ages,1600.0,1300.0,1900.0
+1999,MAR,Morocco,child,0.0,0.0,0.0
+1999,MDG,Madagascar,all ages,830.0,0.0,1700.0
+1999,MDG,Madagascar,child,0.0,0.0,0.0
+1999,MLI,Mali,all ages,11000.0,9400.0,14000.0
+1999,MLI,Mali,child,2600.0,2100.0,3200.0
+1999,MOZ,Mozambique,all ages,150000.0,140000.0,180000.0
+1999,MOZ,Mozambique,child,28000.0,24000.0,32000.0
+1999,MRT,Mauritania,all ages,1500.0,1200.0,1700.0
+1999,MRT,Mauritania,child,0.0,0.0,0.0
+1999,MWI,Malawi,all ages,96000.0,91000.0,100000.0
+1999,MWI,Malawi,child,30000.0,27000.0,33000.0
+1999,NAM,Namibia,all ages,21000.0,19000.0,24000.0
+1999,NAM,Namibia,child,4100.0,3600.0,4500.0
+1999,NER,Niger,all ages,5300.0,4600.0,6200.0
+1999,NER,Niger,child,1800.0,1500.0,2100.0
+1999,RWA,Rwanda,all ages,27000.0,25000.0,30000.0
+1999,RWA,Rwanda,child,7500.0,6600.0,8600.0
+1999,SDN,Sudan,all ages,2500.0,1900.0,3200.0
+1999,SDN,Sudan,child,0.0,0.0,610.0
+1999,SEN,Senegal,all ages,6700.0,6400.0,7300.0
+1999,SEN,Senegal,child,1000.0,960.0,1100.0
+1999,SLE,Sierra Leone,all ages,6100.0,5200.0,7600.0
+1999,SLE,Sierra Leone,child,1700.0,1300.0,2200.0
+1999,SOM,Somalia,all ages,1400.0,1100.0,1800.0
+1999,SOM,Somalia,child,0.0,0.0,610.0
+1999,SSD,South Sudan,all ages,14000.0,9900.0,20000.0
+1999,SSD,South Sudan,child,3600.0,2400.0,5000.0
+1999,SWZ,Eswatini,all ages,22000.0,21000.0,24000.0
+1999,SWZ,Eswatini,child,3500.0,3100.0,3900.0
+1999,TCD,Chad,all ages,13000.0,10000.0,16000.0
+1999,TCD,Chad,child,4000.0,3000.0,5300.0
+1999,TGO,Togo,all ages,12000.0,10000.0,16000.0
+1999,TGO,Togo,child,2800.0,2300.0,3500.0
+1999,TUN,Tunisia,all ages,0.0,0.0,0.0
+1999,TUN,Tunisia,child,0.0,0.0,0.0
+1999,TZA,United Republic of Tanzania,all ages,120000.0,110000.0,140000.0
+1999,TZA,United Republic of Tanzania,child,32000.0,28000.0,36000.0
+1999,UGA,Uganda,all ages,100000.0,93000.0,110000.0
+1999,UGA,Uganda,child,30000.0,26000.0,34000.0
+1999,ZAF,South Africa,all ages,540000.0,490000.0,600000.0
+1999,ZAF,South Africa,child,69000.0,57000.0,79000.0
+1999,ZMB,Zambia,all ages,78000.0,72000.0,85000.0
+1999,ZMB,Zambia,child,23000.0,20000.0,26000.0
+1999,ZWE,Zimbabwe,all ages,140000.0,130000.0,150000.0
+1999,ZWE,Zimbabwe,child,42000.0,37000.0,46000.0
+2000,AGO,Angola,all ages,20000.0,17000.0,24000.0
+2000,AGO,Angola,child,6000.0,4600.0,7800.0
+2000,BDI,Burundi,all ages,8000.0,6700.0,10000.0
+2000,BDI,Burundi,child,3300.0,2700.0,3800.0
+2000,BEN,Benin,all ages,6800.0,5700.0,8200.0
+2000,BEN,Benin,child,2000.0,1700.0,2300.0
+2000,BFA,Burkina Faso,all ages,11000.0,8900.0,13000.0
+2000,BFA,Burkina Faso,child,5000.0,4100.0,6100.0
+2000,BWA,Botswana,all ages,27000.0,25000.0,29000.0
+2000,BWA,Botswana,child,5100.0,4500.0,5600.0
+2000,CAF,Central African Republic,all ages,16000.0,13000.0,19000.0
+2000,CAF,Central African Republic,child,4500.0,3700.0,5600.0
+2000,CIV,Cote dIvoire,all ages,62000.0,53000.0,72000.0
+2000,CIV,Cote dIvoire,child,18000.0,15000.0,21000.0
+2000,CMR,Cameroon,all ages,66000.0,59000.0,75000.0
+2000,CMR,Cameroon,child,11000.0,9700.0,13000.0
+2000,COD,Democratic Republic of the Congo,all ages,65000.0,53000.0,80000.0
+2000,COD,Democratic Republic of the Congo,child,18000.0,14000.0,22000.0
+2000,COG,Congo,all ages,7500.0,6600.0,8700.0
+2000,COG,Congo,child,2100.0,1700.0,2700.0
+2000,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2000,CPV,Cape Verde,child,0.0,0.0,0.0
+2000,DJI,Djibouti,all ages,2000.0,1400.0,2800.0
+2000,DJI,Djibouti,child,0.0,0.0,0.0
+2000,DZA,Algeria,all ages,0.0,0.0,510.0
+2000,DZA,Algeria,child,0.0,0.0,0.0
+2000,EGY,Egypt,all ages,1600.0,1300.0,2100.0
+2000,EGY,Egypt,child,0.0,0.0,0.0
+2000,ERI,Eritrea,all ages,2200.0,1700.0,3000.0
+2000,ERI,Eritrea,child,0.0,0.0,0.0
+2000,ETH,Ethiopia,all ages,59000.0,34000.0,120000.0
+2000,ETH,Ethiopia,child,21000.0,11000.0,49000.0
+2000,GAB,Gabon,all ages,4300.0,3200.0,5500.0
+2000,GAB,Gabon,child,860.0,590.0,1200.0
+2000,GHA,Ghana,all ages,30000.0,26000.0,35000.0
+2000,GHA,Ghana,child,8000.0,6900.0,9400.0
+2000,GIN,Guinea,all ages,11000.0,9300.0,14000.0
+2000,GIN,Guinea,child,2200.0,1700.0,2600.0
+2000,GMB,Gambia,all ages,2400.0,1800.0,3200.0
+2000,GMB,Gambia,child,0.0,0.0,520.0
+2000,GNB,Guinea-Bissau,all ages,5600.0,4700.0,6700.0
+2000,GNB,Guinea-Bissau,child,920.0,760.0,1100.0
+2000,KEN,Kenya,all ages,130000.0,85000.0,210000.0
+2000,KEN,Kenya,child,51000.0,35000.0,84000.0
+2000,LBY,Libya,all ages,0.0,0.0,0.0
+2000,LBY,Libya,child,0.0,0.0,0.0
+2000,LSO,Lesotho,all ages,27000.0,24000.0,31000.0
+2000,LSO,Lesotho,child,4800.0,4200.0,5400.0
+2000,MAR,Morocco,all ages,1700.0,1400.0,1900.0
+2000,MAR,Morocco,child,0.0,0.0,0.0
+2000,MDG,Madagascar,all ages,1100.0,600.0,1900.0
+2000,MDG,Madagascar,child,0.0,0.0,0.0
+2000,MLI,Mali,all ages,11000.0,9200.0,13000.0
+2000,MLI,Mali,child,2600.0,2100.0,3100.0
+2000,MOZ,Mozambique,all ages,160000.0,140000.0,180000.0
+2000,MOZ,Mozambique,child,31000.0,26000.0,35000.0
+2000,MRT,Mauritania,all ages,1400.0,1200.0,1700.0
+2000,MRT,Mauritania,child,0.0,0.0,0.0
+2000,MWI,Malawi,all ages,96000.0,91000.0,110000.0
+2000,MWI,Malawi,child,30000.0,27000.0,33000.0
+2000,NAM,Namibia,all ages,20000.0,19000.0,23000.0
+2000,NAM,Namibia,child,4200.0,3700.0,4700.0
+2000,NER,Niger,all ages,4900.0,4300.0,5800.0
+2000,NER,Niger,child,1700.0,1500.0,2100.0
+2000,RWA,Rwanda,all ages,25000.0,23000.0,28000.0
+2000,RWA,Rwanda,child,7300.0,6400.0,8400.0
+2000,SDN,Sudan,all ages,2500.0,2000.0,3300.0
+2000,SDN,Sudan,child,0.0,0.0,630.0
+2000,SEN,Senegal,all ages,6600.0,6300.0,7200.0
+2000,SEN,Senegal,child,1100.0,1000.0,1200.0
+2000,SLE,Sierra Leone,all ages,6000.0,5100.0,7300.0
+2000,SLE,Sierra Leone,child,1700.0,1400.0,2200.0
+2000,SOM,Somalia,all ages,1300.0,1100.0,1700.0
+2000,SOM,Somalia,child,0.0,0.0,570.0
+2000,SSD,South Sudan,all ages,14000.0,10000.0,19000.0
+2000,SSD,South Sudan,child,3700.0,2400.0,5100.0
+2000,SWZ,Eswatini,all ages,21000.0,20000.0,23000.0
+2000,SWZ,Eswatini,child,3700.0,3300.0,4100.0
+2000,TCD,Chad,all ages,12000.0,9300.0,15000.0
+2000,TCD,Chad,child,4000.0,3000.0,5400.0
+2000,TGO,Togo,all ages,12000.0,9500.0,15000.0
+2000,TGO,Togo,child,2900.0,2300.0,3600.0
+2000,TUN,Tunisia,all ages,0.0,0.0,510.0
+2000,TUN,Tunisia,child,0.0,0.0,0.0
+2000,TZA,United Republic of Tanzania,all ages,110000.0,100000.0,130000.0
+2000,TZA,United Republic of Tanzania,child,32000.0,28000.0,36000.0
+2000,UGA,Uganda,all ages,100000.0,92000.0,110000.0
+2000,UGA,Uganda,child,30000.0,26000.0,33000.0
+2000,ZAF,South Africa,all ages,530000.0,480000.0,580000.0
+2000,ZAF,South Africa,child,73000.0,61000.0,84000.0
+2000,ZMB,Zambia,all ages,77000.0,71000.0,83000.0
+2000,ZMB,Zambia,child,22000.0,20000.0,25000.0
+2000,ZWE,Zimbabwe,all ages,130000.0,120000.0,140000.0
+2000,ZWE,Zimbabwe,child,40000.0,35000.0,44000.0
+2001,AGO,Angola,all ages,21000.0,18000.0,26000.0
+2001,AGO,Angola,child,6500.0,5100.0,8000.0
+2001,BDI,Burundi,all ages,7700.0,6200.0,9500.0
+2001,BDI,Burundi,child,3100.0,2600.0,3600.0
+2001,BEN,Benin,all ages,6500.0,5500.0,7800.0
+2001,BEN,Benin,child,2000.0,1700.0,2300.0
+2001,BFA,Burkina Faso,all ages,9800.0,8000.0,12000.0
+2001,BFA,Burkina Faso,child,4700.0,3900.0,5700.0
+2001,BWA,Botswana,all ages,25000.0,23000.0,27000.0
+2001,BWA,Botswana,child,4700.0,4100.0,5200.0
+2001,CAF,Central African Republic,all ages,16000.0,13000.0,18000.0
+2001,CAF,Central African Republic,child,4400.0,3600.0,5400.0
+2001,CIV,Cote dIvoire,all ages,57000.0,49000.0,67000.0
+2001,CIV,Cote dIvoire,child,17000.0,14000.0,20000.0
+2001,CMR,Cameroon,all ages,62000.0,55000.0,70000.0
+2001,CMR,Cameroon,child,11000.0,9900.0,13000.0
+2001,COD,Democratic Republic of the Congo,all ages,61000.0,51000.0,76000.0
+2001,COD,Democratic Republic of the Congo,child,18000.0,14000.0,22000.0
+2001,COG,Congo,all ages,7400.0,6400.0,8500.0
+2001,COG,Congo,child,2200.0,1800.0,2600.0
+2001,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2001,CPV,Cape Verde,child,0.0,0.0,0.0
+2001,DJI,Djibouti,all ages,1900.0,1300.0,2700.0
+2001,DJI,Djibouti,child,0.0,0.0,0.0
+2001,DZA,Algeria,all ages,570.0,530.0,600.0
+2001,DZA,Algeria,child,0.0,0.0,0.0
+2001,EGY,Egypt,all ages,1700.0,1300.0,2200.0
+2001,EGY,Egypt,child,0.0,0.0,0.0
+2001,ERI,Eritrea,all ages,1800.0,1300.0,2500.0
+2001,ERI,Eritrea,child,0.0,0.0,0.0
+2001,ETH,Ethiopia,all ages,54000.0,31000.0,110000.0
+2001,ETH,Ethiopia,child,19000.0,10000.0,45000.0
+2001,GAB,Gabon,all ages,4200.0,3300.0,5300.0
+2001,GAB,Gabon,child,880.0,640.0,1200.0
+2001,GHA,Ghana,all ages,29000.0,25000.0,34000.0
+2001,GHA,Ghana,child,7900.0,6800.0,9200.0
+2001,GIN,Guinea,all ages,11000.0,9300.0,13000.0
+2001,GIN,Guinea,child,2200.0,1900.0,2700.0
+2001,GMB,Gambia,all ages,2400.0,1900.0,3200.0
+2001,GMB,Gambia,child,0.0,0.0,550.0
+2001,GNB,Guinea-Bissau,all ages,5100.0,4300.0,6200.0
+2001,GNB,Guinea-Bissau,child,950.0,790.0,1100.0
+2001,KEN,Kenya,all ages,130000.0,81000.0,200000.0
+2001,KEN,Kenya,child,49000.0,33000.0,80000.0
+2001,LBY,Libya,all ages,0.0,0.0,0.0
+2001,LBY,Libya,child,0.0,0.0,0.0
+2001,LSO,Lesotho,all ages,26000.0,24000.0,29000.0
+2001,LSO,Lesotho,child,5000.0,4400.0,5500.0
+2001,MAR,Morocco,all ages,1700.0,1500.0,2000.0
+2001,MAR,Morocco,child,0.0,0.0,0.0
+2001,MDG,Madagascar,all ages,1300.0,770.0,2300.0
+2001,MDG,Madagascar,child,0.0,0.0,0.0
+2001,MLI,Mali,all ages,10000.0,8700.0,12000.0
+2001,MLI,Mali,child,2500.0,2100.0,3000.0
+2001,MOZ,Mozambique,all ages,160000.0,150000.0,180000.0
+2001,MOZ,Mozambique,child,33000.0,29000.0,37000.0
+2001,MRT,Mauritania,all ages,1400.0,1200.0,1600.0
+2001,MRT,Mauritania,child,0.0,0.0,0.0
+2001,MWI,Malawi,all ages,91000.0,86000.0,100000.0
+2001,MWI,Malawi,child,29000.0,26000.0,31000.0
+2001,NAM,Namibia,all ages,19000.0,18000.0,21000.0
+2001,NAM,Namibia,child,4200.0,3700.0,4600.0
+2001,NER,Niger,all ages,4600.0,4000.0,5400.0
+2001,NER,Niger,child,1700.0,1400.0,1900.0
+2001,RWA,Rwanda,all ages,25000.0,23000.0,27000.0
+2001,RWA,Rwanda,child,7100.0,6300.0,8100.0
+2001,SDN,Sudan,all ages,2500.0,2000.0,3300.0
+2001,SDN,Sudan,child,0.0,0.0,620.0
+2001,SEN,Senegal,all ages,5900.0,5700.0,6500.0
+2001,SEN,Senegal,child,1100.0,1000.0,1200.0
+2001,SLE,Sierra Leone,all ages,6100.0,5200.0,7400.0
+2001,SLE,Sierra Leone,child,1800.0,1500.0,2200.0
+2001,SOM,Somalia,all ages,1300.0,1000.0,1600.0
+2001,SOM,Somalia,child,0.0,0.0,540.0
+2001,SSD,South Sudan,all ages,13000.0,9900.0,19000.0
+2001,SSD,South Sudan,child,3700.0,2500.0,5100.0
+2001,SWZ,Eswatini,all ages,21000.0,19000.0,22000.0
+2001,SWZ,Eswatini,child,3800.0,3400.0,4100.0
+2001,TCD,Chad,all ages,12000.0,9400.0,15000.0
+2001,TCD,Chad,child,4000.0,3100.0,5200.0
+2001,TGO,Togo,all ages,11000.0,8700.0,13000.0
+2001,TGO,Togo,child,2800.0,2200.0,3500.0
+2001,TUN,Tunisia,all ages,0.0,0.0,560.0
+2001,TUN,Tunisia,child,0.0,0.0,0.0
+2001,TZA,United Republic of Tanzania,all ages,110000.0,100000.0,130000.0
+2001,TZA,United Republic of Tanzania,child,31000.0,27000.0,35000.0
+2001,UGA,Uganda,all ages,100000.0,94000.0,110000.0
+2001,UGA,Uganda,child,30000.0,27000.0,33000.0
+2001,ZAF,South Africa,all ages,520000.0,470000.0,570000.0
+2001,ZAF,South Africa,child,76000.0,64000.0,88000.0
+2001,ZMB,Zambia,all ages,75000.0,69000.0,83000.0
+2001,ZMB,Zambia,child,22000.0,20000.0,24000.0
+2001,ZWE,Zimbabwe,all ages,120000.0,110000.0,130000.0
+2001,ZWE,Zimbabwe,child,38000.0,34000.0,42000.0
+2002,AGO,Angola,all ages,22000.0,19000.0,27000.0
+2002,AGO,Angola,child,6900.0,5400.0,8300.0
+2002,BDI,Burundi,all ages,6700.0,5300.0,8500.0
+2002,BDI,Burundi,child,2800.0,2400.0,3300.0
+2002,BEN,Benin,all ages,6100.0,5200.0,7300.0
+2002,BEN,Benin,child,2000.0,1600.0,2300.0
+2002,BFA,Burkina Faso,all ages,9200.0,7500.0,11000.0
+2002,BFA,Burkina Faso,child,4400.0,3700.0,5400.0
+2002,BWA,Botswana,all ages,23000.0,21000.0,25000.0
+2002,BWA,Botswana,child,4200.0,3700.0,4700.0
+2002,CAF,Central African Republic,all ages,14000.0,12000.0,17000.0
+2002,CAF,Central African Republic,child,4300.0,3400.0,5100.0
+2002,CIV,Cote dIvoire,all ages,53000.0,46000.0,61000.0
+2002,CIV,Cote dIvoire,child,16000.0,13000.0,19000.0
+2002,CMR,Cameroon,all ages,59000.0,54000.0,66000.0
+2002,CMR,Cameroon,child,12000.0,10000.0,13000.0
+2002,COD,Democratic Republic of the Congo,all ages,60000.0,50000.0,75000.0
+2002,COD,Democratic Republic of the Congo,child,17000.0,14000.0,21000.0
+2002,COG,Congo,all ages,7600.0,6600.0,8700.0
+2002,COG,Congo,child,2100.0,1800.0,2600.0
+2002,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2002,CPV,Cape Verde,child,0.0,0.0,0.0
+2002,DJI,Djibouti,all ages,1700.0,1100.0,2400.0
+2002,DJI,Djibouti,child,0.0,0.0,0.0
+2002,DZA,Algeria,all ages,650.0,610.0,690.0
+2002,DZA,Algeria,child,0.0,0.0,0.0
+2002,EGY,Egypt,all ages,1700.0,1400.0,2200.0
+2002,EGY,Egypt,child,0.0,0.0,0.0
+2002,ERI,Eritrea,all ages,1500.0,960.0,2100.0
+2002,ERI,Eritrea,child,0.0,0.0,0.0
+2002,ETH,Ethiopia,all ages,50000.0,28000.0,99000.0
+2002,ETH,Ethiopia,child,18000.0,9300.0,42000.0
+2002,GAB,Gabon,all ages,4100.0,3200.0,5000.0
+2002,GAB,Gabon,child,900.0,640.0,1200.0
+2002,GHA,Ghana,all ages,28000.0,24000.0,33000.0
+2002,GHA,Ghana,child,7800.0,6600.0,9200.0
+2002,GIN,Guinea,all ages,11000.0,9100.0,13000.0
+2002,GIN,Guinea,child,2300.0,1800.0,2700.0
+2002,GMB,Gambia,all ages,2500.0,1900.0,3300.0
+2002,GMB,Gambia,child,0.0,0.0,580.0
+2002,GNB,Guinea-Bissau,all ages,4600.0,3900.0,5600.0
+2002,GNB,Guinea-Bissau,child,980.0,820.0,1100.0
+2002,KEN,Kenya,all ages,120000.0,76000.0,180000.0
+2002,KEN,Kenya,child,46000.0,32000.0,76000.0
+2002,LBY,Libya,all ages,0.0,0.0,0.0
+2002,LBY,Libya,child,0.0,0.0,0.0
+2002,LSO,Lesotho,all ages,26000.0,23000.0,29000.0
+2002,LSO,Lesotho,child,5100.0,4400.0,5700.0
+2002,MAR,Morocco,all ages,1800.0,1600.0,2000.0
+2002,MAR,Morocco,child,0.0,0.0,0.0
+2002,MDG,Madagascar,all ages,1600.0,990.0,2600.0
+2002,MDG,Madagascar,child,0.0,0.0,0.0
+2002,MLI,Mali,all ages,10000.0,8600.0,13000.0
+2002,MLI,Mali,child,2500.0,2100.0,3000.0
+2002,MOZ,Mozambique,all ages,160000.0,150000.0,180000.0
+2002,MOZ,Mozambique,child,34000.0,30000.0,38000.0
+2002,MRT,Mauritania,all ages,1300.0,1100.0,1500.0
+2002,MRT,Mauritania,child,0.0,0.0,0.0
+2002,MWI,Malawi,all ages,86000.0,81000.0,96000.0
+2002,MWI,Malawi,child,28000.0,25000.0,31000.0
+2002,NAM,Namibia,all ages,18000.0,17000.0,20000.0
+2002,NAM,Namibia,child,4100.0,3700.0,4600.0
+2002,NER,Niger,all ages,4200.0,3600.0,4900.0
+2002,NER,Niger,child,1600.0,1300.0,1900.0
+2002,RWA,Rwanda,all ages,22000.0,20000.0,24000.0
+2002,RWA,Rwanda,child,6800.0,5900.0,7600.0
+2002,SDN,Sudan,all ages,2500.0,2000.0,3400.0
+2002,SDN,Sudan,child,0.0,0.0,640.0
+2002,SEN,Senegal,all ages,5200.0,5000.0,5700.0
+2002,SEN,Senegal,child,1100.0,1000.0,1200.0
+2002,SLE,Sierra Leone,all ages,6400.0,5500.0,7700.0
+2002,SLE,Sierra Leone,child,2000.0,1600.0,2400.0
+2002,SOM,Somalia,all ages,1200.0,990.0,1500.0
+2002,SOM,Somalia,child,0.0,0.0,530.0
+2002,SSD,South Sudan,all ages,13000.0,10000.0,18000.0
+2002,SSD,South Sudan,child,3800.0,2600.0,5100.0
+2002,SWZ,Eswatini,all ages,20000.0,19000.0,21000.0
+2002,SWZ,Eswatini,child,3900.0,3400.0,4200.0
+2002,TCD,Chad,all ages,12000.0,9300.0,15000.0
+2002,TCD,Chad,child,4000.0,3000.0,5200.0
+2002,TGO,Togo,all ages,9600.0,8100.0,12000.0
+2002,TGO,Togo,child,2800.0,2200.0,3500.0
+2002,TUN,Tunisia,all ages,0.0,0.0,560.0
+2002,TUN,Tunisia,child,0.0,0.0,0.0
+2002,TZA,United Republic of Tanzania,all ages,110000.0,100000.0,120000.0
+2002,TZA,United Republic of Tanzania,child,30000.0,27000.0,34000.0
+2002,UGA,Uganda,all ages,100000.0,95000.0,110000.0
+2002,UGA,Uganda,child,30000.0,26000.0,33000.0
+2002,ZAF,South Africa,all ages,500000.0,460000.0,550000.0
+2002,ZAF,South Africa,child,78000.0,65000.0,90000.0
+2002,ZMB,Zambia,all ages,75000.0,69000.0,82000.0
+2002,ZMB,Zambia,child,22000.0,20000.0,24000.0
+2002,ZWE,Zimbabwe,all ages,110000.0,110000.0,130000.0
+2002,ZWE,Zimbabwe,child,35000.0,31000.0,39000.0
+2003,AGO,Angola,all ages,24000.0,20000.0,28000.0
+2003,AGO,Angola,child,7300.0,5900.0,8700.0
+2003,BDI,Burundi,all ages,6400.0,5100.0,8000.0
+2003,BDI,Burundi,child,2600.0,2200.0,3100.0
+2003,BEN,Benin,all ages,5800.0,5000.0,7000.0
+2003,BEN,Benin,child,2000.0,1700.0,2300.0
+2003,BFA,Burkina Faso,all ages,8400.0,6700.0,10000.0
+2003,BFA,Burkina Faso,child,4100.0,3400.0,4900.0
+2003,BWA,Botswana,all ages,21000.0,19000.0,23000.0
+2003,BWA,Botswana,child,3800.0,3200.0,4200.0
+2003,CAF,Central African Republic,all ages,14000.0,12000.0,17000.0
+2003,CAF,Central African Republic,child,4200.0,3400.0,4900.0
+2003,CIV,Cote dIvoire,all ages,47000.0,41000.0,56000.0
+2003,CIV,Cote dIvoire,child,15000.0,12000.0,17000.0
+2003,CMR,Cameroon,all ages,56000.0,51000.0,63000.0
+2003,CMR,Cameroon,child,11000.0,9800.0,13000.0
+2003,COD,Democratic Republic of the Congo,all ages,57000.0,48000.0,70000.0
+2003,COD,Democratic Republic of the Congo,child,16000.0,13000.0,20000.0
+2003,COG,Congo,all ages,7600.0,6600.0,8700.0
+2003,COG,Congo,child,2100.0,1700.0,2500.0
+2003,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2003,CPV,Cape Verde,child,0.0,0.0,0.0
+2003,DJI,Djibouti,all ages,1400.0,900.0,2000.0
+2003,DJI,Djibouti,child,0.0,0.0,0.0
+2003,DZA,Algeria,all ages,750.0,700.0,800.0
+2003,DZA,Algeria,child,0.0,0.0,0.0
+2003,EGY,Egypt,all ages,1800.0,1400.0,2400.0
+2003,EGY,Egypt,child,0.0,0.0,0.0
+2003,ERI,Eritrea,all ages,1400.0,900.0,2000.0
+2003,ERI,Eritrea,child,0.0,0.0,0.0
+2003,ETH,Ethiopia,all ages,46000.0,26000.0,91000.0
+2003,ETH,Ethiopia,child,16000.0,8600.0,39000.0
+2003,GAB,Gabon,all ages,3900.0,3100.0,4700.0
+2003,GAB,Gabon,child,900.0,690.0,1200.0
+2003,GHA,Ghana,all ages,27000.0,23000.0,33000.0
+2003,GHA,Ghana,child,7600.0,6500.0,8900.0
+2003,GIN,Guinea,all ages,11000.0,9200.0,13000.0
+2003,GIN,Guinea,child,2400.0,1900.0,2800.0
+2003,GMB,Gambia,all ages,2500.0,1900.0,3400.0
+2003,GMB,Gambia,child,0.0,0.0,620.0
+2003,GNB,Guinea-Bissau,all ages,4200.0,3500.0,5000.0
+2003,GNB,Guinea-Bissau,child,980.0,830.0,1100.0
+2003,KEN,Kenya,all ages,110000.0,72000.0,180000.0
+2003,KEN,Kenya,child,44000.0,30000.0,72000.0
+2003,LBY,Libya,all ages,0.0,0.0,0.0
+2003,LBY,Libya,child,0.0,0.0,0.0
+2003,LSO,Lesotho,all ages,26000.0,23000.0,29000.0
+2003,LSO,Lesotho,child,5100.0,4500.0,5700.0
+2003,MAR,Morocco,all ages,1700.0,1500.0,2000.0
+2003,MAR,Morocco,child,0.0,0.0,0.0
+2003,MDG,Madagascar,all ages,2000.0,1300.0,3000.0
+2003,MDG,Madagascar,child,0.0,0.0,0.0
+2003,MLI,Mali,all ages,9400.0,8000.0,12000.0
+2003,MLI,Mali,child,2500.0,2100.0,3000.0
+2003,MOZ,Mozambique,all ages,160000.0,150000.0,180000.0
+2003,MOZ,Mozambique,child,35000.0,31000.0,39000.0
+2003,MRT,Mauritania,all ages,1200.0,970.0,1400.0
+2003,MRT,Mauritania,child,0.0,0.0,0.0
+2003,MWI,Malawi,all ages,81000.0,77000.0,91000.0
+2003,MWI,Malawi,child,27000.0,24000.0,30000.0
+2003,NAM,Namibia,all ages,17000.0,16000.0,19000.0
+2003,NAM,Namibia,child,4100.0,3600.0,4400.0
+2003,NER,Niger,all ages,4000.0,3400.0,4600.0
+2003,NER,Niger,child,1500.0,1300.0,1800.0
+2003,RWA,Rwanda,all ages,19000.0,17000.0,21000.0
+2003,RWA,Rwanda,child,6300.0,5600.0,7100.0
+2003,SDN,Sudan,all ages,2600.0,2000.0,3400.0
+2003,SDN,Sudan,child,0.0,0.0,630.0
+2003,SEN,Senegal,all ages,4500.0,4300.0,4900.0
+2003,SEN,Senegal,child,1100.0,990.0,1200.0
+2003,SLE,Sierra Leone,all ages,6400.0,5500.0,7600.0
+2003,SLE,Sierra Leone,child,2000.0,1700.0,2400.0
+2003,SOM,Somalia,all ages,1100.0,950.0,1400.0
+2003,SOM,Somalia,child,0.0,0.0,0.0
+2003,SSD,South Sudan,all ages,14000.0,10000.0,18000.0
+2003,SSD,South Sudan,child,3800.0,2700.0,5200.0
+2003,SWZ,Eswatini,all ages,19000.0,18000.0,21000.0
+2003,SWZ,Eswatini,child,3900.0,3400.0,4300.0
+2003,TCD,Chad,all ages,11000.0,9100.0,14000.0
+2003,TCD,Chad,child,3900.0,3000.0,4900.0
+2003,TGO,Togo,all ages,9000.0,7500.0,11000.0
+2003,TGO,Togo,child,2700.0,2200.0,3400.0
+2003,TUN,Tunisia,all ages,0.0,0.0,610.0
+2003,TUN,Tunisia,child,0.0,0.0,0.0
+2003,TZA,United Republic of Tanzania,all ages,110000.0,98000.0,120000.0
+2003,TZA,United Republic of Tanzania,child,30000.0,26000.0,34000.0
+2003,UGA,Uganda,all ages,100000.0,95000.0,110000.0
+2003,UGA,Uganda,child,29000.0,26000.0,32000.0
+2003,ZAF,South Africa,all ages,490000.0,440000.0,530000.0
+2003,ZAF,South Africa,child,80000.0,65000.0,94000.0
+2003,ZMB,Zambia,all ages,74000.0,69000.0,81000.0
+2003,ZMB,Zambia,child,22000.0,19000.0,24000.0
+2003,ZWE,Zimbabwe,all ages,110000.0,98000.0,120000.0
+2003,ZWE,Zimbabwe,child,32000.0,28000.0,36000.0
+2004,AGO,Angola,all ages,24000.0,21000.0,28000.0
+2004,AGO,Angola,child,7600.0,6300.0,9100.0
+2004,BDI,Burundi,all ages,5900.0,4500.0,7400.0
+2004,BDI,Burundi,child,2400.0,2000.0,2900.0
+2004,BEN,Benin,all ages,5800.0,5000.0,7100.0
+2004,BEN,Benin,child,2000.0,1600.0,2300.0
+2004,BFA,Burkina Faso,all ages,7600.0,6000.0,9200.0
+2004,BFA,Burkina Faso,child,3800.0,3200.0,4700.0
+2004,BWA,Botswana,all ages,19000.0,17000.0,22000.0
+2004,BWA,Botswana,child,3300.0,2700.0,3800.0
+2004,CAF,Central African Republic,all ages,14000.0,11000.0,16000.0
+2004,CAF,Central African Republic,child,4000.0,3200.0,4700.0
+2004,CIV,Cote dIvoire,all ages,45000.0,39000.0,54000.0
+2004,CIV,Cote dIvoire,child,14000.0,12000.0,16000.0
+2004,CMR,Cameroon,all ages,52000.0,47000.0,59000.0
+2004,CMR,Cameroon,child,11000.0,9700.0,13000.0
+2004,COD,Democratic Republic of the Congo,all ages,56000.0,46000.0,69000.0
+2004,COD,Democratic Republic of the Congo,child,16000.0,13000.0,20000.0
+2004,COG,Congo,all ages,7300.0,6300.0,8400.0
+2004,COG,Congo,child,2000.0,1700.0,2400.0
+2004,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2004,CPV,Cape Verde,child,0.0,0.0,0.0
+2004,DJI,Djibouti,all ages,1400.0,860.0,2000.0
+2004,DJI,Djibouti,child,0.0,0.0,0.0
+2004,DZA,Algeria,all ages,870.0,800.0,920.0
+2004,DZA,Algeria,child,0.0,0.0,0.0
+2004,EGY,Egypt,all ages,1900.0,1500.0,2600.0
+2004,EGY,Egypt,child,0.0,0.0,0.0
+2004,ERI,Eritrea,all ages,1100.0,570.0,1600.0
+2004,ERI,Eritrea,child,0.0,0.0,0.0
+2004,ETH,Ethiopia,all ages,41000.0,23000.0,82000.0
+2004,ETH,Ethiopia,child,15000.0,7900.0,36000.0
+2004,GAB,Gabon,all ages,3700.0,3000.0,4600.0
+2004,GAB,Gabon,child,890.0,670.0,1100.0
+2004,GHA,Ghana,all ages,26000.0,22000.0,32000.0
+2004,GHA,Ghana,child,7400.0,6100.0,8600.0
+2004,GIN,Guinea,all ages,11000.0,8900.0,13000.0
+2004,GIN,Guinea,child,2400.0,2000.0,2800.0
+2004,GMB,Gambia,all ages,2500.0,1900.0,3200.0
+2004,GMB,Gambia,child,0.0,0.0,630.0
+2004,GNB,Guinea-Bissau,all ages,3800.0,3200.0,4500.0
+2004,GNB,Guinea-Bissau,child,980.0,830.0,1100.0
+2004,KEN,Kenya,all ages,110000.0,68000.0,170000.0
+2004,KEN,Kenya,child,41000.0,28000.0,67000.0
+2004,LBY,Libya,all ages,0.0,0.0,0.0
+2004,LBY,Libya,child,0.0,0.0,0.0
+2004,LSO,Lesotho,all ages,26000.0,23000.0,29000.0
+2004,LSO,Lesotho,child,5000.0,4400.0,5600.0
+2004,MAR,Morocco,all ages,1700.0,1500.0,2000.0
+2004,MAR,Morocco,child,0.0,0.0,0.0
+2004,MDG,Madagascar,all ages,2300.0,1500.0,3400.0
+2004,MDG,Madagascar,child,0.0,0.0,0.0
+2004,MLI,Mali,all ages,9400.0,8000.0,12000.0
+2004,MLI,Mali,child,2500.0,2100.0,3000.0
+2004,MOZ,Mozambique,all ages,160000.0,150000.0,180000.0
+2004,MOZ,Mozambique,child,36000.0,32000.0,41000.0
+2004,MRT,Mauritania,all ages,1000.0,850.0,1300.0
+2004,MRT,Mauritania,child,0.0,0.0,0.0
+2004,MWI,Malawi,all ages,78000.0,73000.0,87000.0
+2004,MWI,Malawi,child,26000.0,23000.0,29000.0
+2004,NAM,Namibia,all ages,16000.0,15000.0,18000.0
+2004,NAM,Namibia,child,3900.0,3500.0,4300.0
+2004,NER,Niger,all ages,3800.0,3300.0,4500.0
+2004,NER,Niger,child,1400.0,1200.0,1700.0
+2004,RWA,Rwanda,all ages,18000.0,17000.0,21000.0
+2004,RWA,Rwanda,child,5500.0,4900.0,6300.0
+2004,SDN,Sudan,all ages,2600.0,2000.0,3400.0
+2004,SDN,Sudan,child,0.0,0.0,630.0
+2004,SEN,Senegal,all ages,3900.0,3700.0,4300.0
+2004,SEN,Senegal,child,1000.0,950.0,1200.0
+2004,SLE,Sierra Leone,all ages,6500.0,5500.0,7700.0
+2004,SLE,Sierra Leone,child,2000.0,1700.0,2400.0
+2004,SOM,Somalia,all ages,1100.0,910.0,1300.0
+2004,SOM,Somalia,child,0.0,0.0,0.0
+2004,SSD,South Sudan,all ages,15000.0,11000.0,20000.0
+2004,SSD,South Sudan,child,3900.0,2800.0,5200.0
+2004,SWZ,Eswatini,all ages,19000.0,18000.0,20000.0
+2004,SWZ,Eswatini,child,3900.0,3500.0,4200.0
+2004,TCD,Chad,all ages,11000.0,8400.0,13000.0
+2004,TCD,Chad,child,3900.0,3000.0,5000.0
+2004,TGO,Togo,all ages,8500.0,6800.0,10000.0
+2004,TGO,Togo,child,2700.0,2100.0,3300.0
+2004,TUN,Tunisia,all ages,0.0,0.0,670.0
+2004,TUN,Tunisia,child,0.0,0.0,0.0
+2004,TZA,United Republic of Tanzania,all ages,100000.0,94000.0,120000.0
+2004,TZA,United Republic of Tanzania,child,29000.0,26000.0,33000.0
+2004,UGA,Uganda,all ages,100000.0,95000.0,110000.0
+2004,UGA,Uganda,child,28000.0,26000.0,32000.0
+2004,ZAF,South Africa,all ages,470000.0,430000.0,520000.0
+2004,ZAF,South Africa,child,82000.0,68000.0,96000.0
+2004,ZMB,Zambia,all ages,71000.0,65000.0,79000.0
+2004,ZMB,Zambia,child,20000.0,18000.0,22000.0
+2004,ZWE,Zimbabwe,all ages,100000.0,93000.0,110000.0
+2004,ZWE,Zimbabwe,child,30000.0,26000.0,34000.0
+2005,AGO,Angola,all ages,26000.0,22000.0,29000.0
+2005,AGO,Angola,child,8000.0,6500.0,9400.0
+2005,BDI,Burundi,all ages,5300.0,4000.0,6800.0
+2005,BDI,Burundi,child,2100.0,1700.0,2600.0
+2005,BEN,Benin,all ages,5800.0,5000.0,7000.0
+2005,BEN,Benin,child,1900.0,1700.0,2300.0
+2005,BFA,Burkina Faso,all ages,7000.0,5500.0,8700.0
+2005,BFA,Burkina Faso,child,3600.0,3000.0,4500.0
+2005,BWA,Botswana,all ages,17000.0,15000.0,19000.0
+2005,BWA,Botswana,child,2100.0,1600.0,2500.0
+2005,CAF,Central African Republic,all ages,13000.0,11000.0,16000.0
+2005,CAF,Central African Republic,child,3800.0,3100.0,4500.0
+2005,CIV,Cote dIvoire,all ages,41000.0,35000.0,48000.0
+2005,CIV,Cote dIvoire,child,12000.0,10000.0,14000.0
+2005,CMR,Cameroon,all ages,49000.0,45000.0,57000.0
+2005,CMR,Cameroon,child,11000.0,9700.0,13000.0
+2005,COD,Democratic Republic of the Congo,all ages,53000.0,45000.0,66000.0
+2005,COD,Democratic Republic of the Congo,child,15000.0,12000.0,18000.0
+2005,COG,Congo,all ages,7400.0,6400.0,8600.0
+2005,COG,Congo,child,2000.0,1700.0,2400.0
+2005,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2005,CPV,Cape Verde,child,0.0,0.0,0.0
+2005,DJI,Djibouti,all ages,1300.0,800.0,1900.0
+2005,DJI,Djibouti,child,0.0,0.0,0.0
+2005,DZA,Algeria,all ages,1000.0,920.0,1100.0
+2005,DZA,Algeria,child,0.0,0.0,0.0
+2005,EGY,Egypt,all ages,2000.0,1600.0,2700.0
+2005,EGY,Egypt,child,0.0,0.0,0.0
+2005,ERI,Eritrea,all ages,890.0,500.0,1400.0
+2005,ERI,Eritrea,child,0.0,0.0,0.0
+2005,ETH,Ethiopia,all ages,38000.0,22000.0,75000.0
+2005,ETH,Ethiopia,child,14000.0,7200.0,33000.0
+2005,GAB,Gabon,all ages,3600.0,2900.0,4500.0
+2005,GAB,Gabon,child,880.0,690.0,1100.0
+2005,GHA,Ghana,all ages,26000.0,22000.0,31000.0
+2005,GHA,Ghana,child,7200.0,6100.0,8500.0
+2005,GIN,Guinea,all ages,11000.0,9100.0,13000.0
+2005,GIN,Guinea,child,2400.0,2000.0,2900.0
+2005,GMB,Gambia,all ages,2500.0,2000.0,3300.0
+2005,GMB,Gambia,child,0.0,0.0,640.0
+2005,GNB,Guinea-Bissau,all ages,3500.0,3000.0,4300.0
+2005,GNB,Guinea-Bissau,child,960.0,820.0,1100.0
+2005,KEN,Kenya,all ages,100000.0,64000.0,150000.0
+2005,KEN,Kenya,child,36000.0,25000.0,59000.0
+2005,LBY,Libya,all ages,0.0,0.0,0.0
+2005,LBY,Libya,child,0.0,0.0,0.0
+2005,LSO,Lesotho,all ages,25000.0,23000.0,29000.0
+2005,LSO,Lesotho,child,4800.0,4200.0,5400.0
+2005,MAR,Morocco,all ages,1700.0,1500.0,1900.0
+2005,MAR,Morocco,child,0.0,0.0,0.0
+2005,MDG,Madagascar,all ages,2800.0,1900.0,3800.0
+2005,MDG,Madagascar,child,0.0,0.0,0.0
+2005,MLI,Mali,all ages,9700.0,8100.0,12000.0
+2005,MLI,Mali,child,2500.0,2100.0,2900.0
+2005,MOZ,Mozambique,all ages,160000.0,150000.0,180000.0
+2005,MOZ,Mozambique,child,37000.0,33000.0,42000.0
+2005,MRT,Mauritania,all ages,910.0,720.0,1100.0
+2005,MRT,Mauritania,child,0.0,0.0,0.0
+2005,MWI,Malawi,all ages,73000.0,69000.0,83000.0
+2005,MWI,Malawi,child,25000.0,22000.0,28000.0
+2005,NAM,Namibia,all ages,15000.0,14000.0,17000.0
+2005,NAM,Namibia,child,3300.0,2900.0,3700.0
+2005,NER,Niger,all ages,3400.0,2800.0,4000.0
+2005,NER,Niger,child,1400.0,1200.0,1600.0
+2005,RWA,Rwanda,all ages,17000.0,16000.0,20000.0
+2005,RWA,Rwanda,child,5100.0,4500.0,5700.0
+2005,SDN,Sudan,all ages,2600.0,2000.0,3400.0
+2005,SDN,Sudan,child,0.0,0.0,650.0
+2005,SEN,Senegal,all ages,3500.0,3300.0,3900.0
+2005,SEN,Senegal,child,980.0,890.0,1100.0
+2005,SLE,Sierra Leone,all ages,6400.0,5500.0,7500.0
+2005,SLE,Sierra Leone,child,2000.0,1700.0,2400.0
+2005,SOM,Somalia,all ages,1000.0,840.0,1200.0
+2005,SOM,Somalia,child,0.0,0.0,0.0
+2005,SSD,South Sudan,all ages,14000.0,11000.0,18000.0
+2005,SSD,South Sudan,child,3800.0,2800.0,5200.0
+2005,SWZ,Eswatini,all ages,18000.0,17000.0,19000.0
+2005,SWZ,Eswatini,child,3800.0,3300.0,4100.0
+2005,TCD,Chad,all ages,10000.0,8500.0,13000.0
+2005,TCD,Chad,child,3900.0,3100.0,5000.0
+2005,TGO,Togo,all ages,8000.0,6500.0,9900.0
+2005,TGO,Togo,child,2600.0,2100.0,3200.0
+2005,TUN,Tunisia,all ages,0.0,0.0,710.0
+2005,TUN,Tunisia,child,0.0,0.0,0.0
+2005,TZA,United Republic of Tanzania,all ages,99000.0,92000.0,110000.0
+2005,TZA,United Republic of Tanzania,child,27000.0,23000.0,31000.0
+2005,UGA,Uganda,all ages,100000.0,92000.0,110000.0
+2005,UGA,Uganda,child,28000.0,25000.0,31000.0
+2005,ZAF,South Africa,all ages,460000.0,410000.0,500000.0
+2005,ZAF,South Africa,child,77000.0,59000.0,92000.0
+2005,ZMB,Zambia,all ages,68000.0,62000.0,75000.0
+2005,ZMB,Zambia,child,17000.0,15000.0,19000.0
+2005,ZWE,Zimbabwe,all ages,96000.0,89000.0,110000.0
+2005,ZWE,Zimbabwe,child,27000.0,24000.0,31000.0
+2006,AGO,Angola,all ages,25000.0,22000.0,29000.0
+2006,AGO,Angola,child,7700.0,6500.0,9300.0
+2006,BDI,Burundi,all ages,5300.0,4100.0,6800.0
+2006,BDI,Burundi,child,2000.0,1600.0,2400.0
+2006,BEN,Benin,all ages,5400.0,4600.0,6500.0
+2006,BEN,Benin,child,1900.0,1600.0,2200.0
+2006,BFA,Burkina Faso,all ages,6300.0,4900.0,8000.0
+2006,BFA,Burkina Faso,child,3300.0,2700.0,4100.0
+2006,BWA,Botswana,all ages,15000.0,13000.0,17000.0
+2006,BWA,Botswana,child,1500.0,930.0,1900.0
+2006,CAF,Central African Republic,all ages,12000.0,9900.0,15000.0
+2006,CAF,Central African Republic,child,3400.0,2800.0,4100.0
+2006,CIV,Cote dIvoire,all ages,38000.0,32000.0,46000.0
+2006,CIV,Cote dIvoire,child,12000.0,10000.0,14000.0
+2006,CMR,Cameroon,all ages,47000.0,42000.0,54000.0
+2006,CMR,Cameroon,child,10000.0,8900.0,12000.0
+2006,COD,Democratic Republic of the Congo,all ages,51000.0,43000.0,64000.0
+2006,COD,Democratic Republic of the Congo,child,15000.0,12000.0,18000.0
+2006,COG,Congo,all ages,7400.0,6200.0,8700.0
+2006,COG,Congo,child,2000.0,1600.0,2400.0
+2006,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2006,CPV,Cape Verde,child,0.0,0.0,0.0
+2006,DJI,Djibouti,all ages,1200.0,730.0,1700.0
+2006,DJI,Djibouti,child,0.0,0.0,0.0
+2006,DZA,Algeria,all ages,1100.0,1000.0,1200.0
+2006,DZA,Algeria,child,0.0,0.0,0.0
+2006,EGY,Egypt,all ages,2000.0,1500.0,2800.0
+2006,EGY,Egypt,child,0.0,0.0,0.0
+2006,ERI,Eritrea,all ages,800.0,0.0,1300.0
+2006,ERI,Eritrea,child,0.0,0.0,0.0
+2006,ETH,Ethiopia,all ages,34000.0,20000.0,69000.0
+2006,ETH,Ethiopia,child,12000.0,6500.0,29000.0
+2006,GAB,Gabon,all ages,3500.0,2900.0,4500.0
+2006,GAB,Gabon,child,890.0,700.0,1100.0
+2006,GHA,Ghana,all ages,25000.0,21000.0,30000.0
+2006,GHA,Ghana,child,6900.0,5900.0,8200.0
+2006,GIN,Guinea,all ages,10000.0,9000.0,12000.0
+2006,GIN,Guinea,child,2400.0,2000.0,2800.0
+2006,GMB,Gambia,all ages,2500.0,2000.0,3400.0
+2006,GMB,Gambia,child,0.0,0.0,660.0
+2006,GNB,Guinea-Bissau,all ages,3400.0,2900.0,4100.0
+2006,GNB,Guinea-Bissau,child,900.0,780.0,1000.0
+2006,KEN,Kenya,all ages,93000.0,59000.0,140000.0
+2006,KEN,Kenya,child,32000.0,22000.0,52000.0
+2006,LBY,Libya,all ages,0.0,0.0,0.0
+2006,LBY,Libya,child,0.0,0.0,0.0
+2006,LSO,Lesotho,all ages,25000.0,23000.0,29000.0
+2006,LSO,Lesotho,child,4600.0,3900.0,5100.0
+2006,MAR,Morocco,all ages,1700.0,1500.0,1900.0
+2006,MAR,Morocco,child,0.0,0.0,0.0
+2006,MDG,Madagascar,all ages,3100.0,2300.0,4200.0
+2006,MDG,Madagascar,child,0.0,0.0,0.0
+2006,MLI,Mali,all ages,9400.0,7900.0,12000.0
+2006,MLI,Mali,child,2400.0,2000.0,2900.0
+2006,MOZ,Mozambique,all ages,160000.0,150000.0,180000.0
+2006,MOZ,Mozambique,child,37000.0,32000.0,41000.0
+2006,MRT,Mauritania,all ages,790.0,600.0,1000.0
+2006,MRT,Mauritania,child,0.0,0.0,0.0
+2006,MWI,Malawi,all ages,69000.0,65000.0,78000.0
+2006,MWI,Malawi,child,23000.0,20000.0,26000.0
+2006,NAM,Namibia,all ages,14000.0,13000.0,16000.0
+2006,NAM,Namibia,child,2900.0,2500.0,3300.0
+2006,NER,Niger,all ages,3000.0,2600.0,3600.0
+2006,NER,Niger,child,1300.0,1100.0,1400.0
+2006,RWA,Rwanda,all ages,16000.0,14000.0,19000.0
+2006,RWA,Rwanda,child,4600.0,4100.0,5300.0
+2006,SDN,Sudan,all ages,2600.0,2000.0,3400.0
+2006,SDN,Sudan,child,0.0,0.0,630.0
+2006,SEN,Senegal,all ages,3300.0,3100.0,3600.0
+2006,SEN,Senegal,child,910.0,820.0,990.0
+2006,SLE,Sierra Leone,all ages,6400.0,5500.0,7600.0
+2006,SLE,Sierra Leone,child,2000.0,1700.0,2400.0
+2006,SOM,Somalia,all ages,940.0,780.0,1100.0
+2006,SOM,Somalia,child,0.0,0.0,0.0
+2006,SSD,South Sudan,all ages,14000.0,11000.0,18000.0
+2006,SSD,South Sudan,child,3800.0,2900.0,5000.0
+2006,SWZ,Eswatini,all ages,17000.0,16000.0,18000.0
+2006,SWZ,Eswatini,child,2800.0,2400.0,3100.0
+2006,TCD,Chad,all ages,10000.0,8100.0,13000.0
+2006,TCD,Chad,child,3700.0,2900.0,4700.0
+2006,TGO,Togo,all ages,7400.0,6000.0,9100.0
+2006,TGO,Togo,child,2500.0,2100.0,3100.0
+2006,TUN,Tunisia,all ages,0.0,0.0,720.0
+2006,TUN,Tunisia,child,0.0,0.0,0.0
+2006,TZA,United Republic of Tanzania,all ages,96000.0,88000.0,110000.0
+2006,TZA,United Republic of Tanzania,child,26000.0,22000.0,29000.0
+2006,UGA,Uganda,all ages,100000.0,93000.0,110000.0
+2006,UGA,Uganda,child,27000.0,24000.0,30000.0
+2006,ZAF,South Africa,all ages,440000.0,400000.0,480000.0
+2006,ZAF,South Africa,child,69000.0,52000.0,86000.0
+2006,ZMB,Zambia,all ages,66000.0,60000.0,73000.0
+2006,ZMB,Zambia,child,16000.0,14000.0,18000.0
+2006,ZWE,Zimbabwe,all ages,93000.0,85000.0,100000.0
+2006,ZWE,Zimbabwe,child,26000.0,22000.0,29000.0
+2007,AGO,Angola,all ages,26000.0,22000.0,30000.0
+2007,AGO,Angola,child,8100.0,6800.0,9500.0
+2007,BDI,Burundi,all ages,5000.0,3800.0,6500.0
+2007,BDI,Burundi,child,1900.0,1500.0,2300.0
+2007,BEN,Benin,all ages,5400.0,4600.0,6600.0
+2007,BEN,Benin,child,1900.0,1600.0,2200.0
+2007,BFA,Burkina Faso,all ages,5700.0,4300.0,7000.0
+2007,BFA,Burkina Faso,child,2900.0,2300.0,3600.0
+2007,BWA,Botswana,all ages,15000.0,13000.0,17000.0
+2007,BWA,Botswana,child,1600.0,1000.0,2000.0
+2007,CAF,Central African Republic,all ages,12000.0,9600.0,14000.0
+2007,CAF,Central African Republic,child,3200.0,2600.0,3900.0
+2007,CIV,Cote dIvoire,all ages,34000.0,29000.0,41000.0
+2007,CIV,Cote dIvoire,child,9900.0,8300.0,12000.0
+2007,CMR,Cameroon,all ages,45000.0,40000.0,52000.0
+2007,CMR,Cameroon,child,10000.0,8400.0,12000.0
+2007,COD,Democratic Republic of the Congo,all ages,50000.0,42000.0,62000.0
+2007,COD,Democratic Republic of the Congo,child,15000.0,12000.0,18000.0
+2007,COG,Congo,all ages,7300.0,6000.0,8600.0
+2007,COG,Congo,child,1900.0,1500.0,2400.0
+2007,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2007,CPV,Cape Verde,child,0.0,0.0,0.0
+2007,DJI,Djibouti,all ages,1100.0,640.0,1600.0
+2007,DJI,Djibouti,child,0.0,0.0,0.0
+2007,DZA,Algeria,all ages,1300.0,1100.0,1400.0
+2007,DZA,Algeria,child,0.0,0.0,0.0
+2007,EGY,Egypt,all ages,2100.0,1600.0,2900.0
+2007,EGY,Egypt,child,0.0,0.0,0.0
+2007,ERI,Eritrea,all ages,680.0,0.0,1200.0
+2007,ERI,Eritrea,child,0.0,0.0,0.0
+2007,ETH,Ethiopia,all ages,32000.0,18000.0,64000.0
+2007,ETH,Ethiopia,child,11000.0,6000.0,27000.0
+2007,GAB,Gabon,all ages,3500.0,2800.0,4500.0
+2007,GAB,Gabon,child,830.0,640.0,1100.0
+2007,GHA,Ghana,all ages,24000.0,20000.0,29000.0
+2007,GHA,Ghana,child,5800.0,4700.0,7100.0
+2007,GIN,Guinea,all ages,10000.0,8600.0,12000.0
+2007,GIN,Guinea,child,2200.0,1800.0,2700.0
+2007,GMB,Gambia,all ages,2500.0,2000.0,3300.0
+2007,GMB,Gambia,child,0.0,0.0,660.0
+2007,GNB,Guinea-Bissau,all ages,3400.0,2800.0,4000.0
+2007,GNB,Guinea-Bissau,child,890.0,770.0,1000.0
+2007,KEN,Kenya,all ages,86000.0,55000.0,130000.0
+2007,KEN,Kenya,child,28000.0,19000.0,46000.0
+2007,LBY,Libya,all ages,0.0,0.0,0.0
+2007,LBY,Libya,child,0.0,0.0,0.0
+2007,LSO,Lesotho,all ages,24000.0,22000.0,28000.0
+2007,LSO,Lesotho,child,3900.0,3200.0,4500.0
+2007,MAR,Morocco,all ages,1600.0,1500.0,1900.0
+2007,MAR,Morocco,child,0.0,0.0,0.0
+2007,MDG,Madagascar,all ages,3500.0,2600.0,4500.0
+2007,MDG,Madagascar,child,0.0,0.0,520.0
+2007,MLI,Mali,all ages,9100.0,7800.0,12000.0
+2007,MLI,Mali,child,2200.0,1800.0,2800.0
+2007,MOZ,Mozambique,all ages,150000.0,140000.0,170000.0
+2007,MOZ,Mozambique,child,30000.0,26000.0,35000.0
+2007,MRT,Mauritania,all ages,640.0,0.0,850.0
+2007,MRT,Mauritania,child,0.0,0.0,0.0
+2007,MWI,Malawi,all ages,65000.0,61000.0,75000.0
+2007,MWI,Malawi,child,22000.0,19000.0,24000.0
+2007,NAM,Namibia,all ages,13000.0,12000.0,15000.0
+2007,NAM,Namibia,child,2500.0,2000.0,2900.0
+2007,NER,Niger,all ages,2700.0,2300.0,3200.0
+2007,NER,Niger,child,1200.0,980.0,1300.0
+2007,RWA,Rwanda,all ages,14000.0,12000.0,17000.0
+2007,RWA,Rwanda,child,3700.0,3100.0,4300.0
+2007,SDN,Sudan,all ages,2600.0,2000.0,3500.0
+2007,SDN,Sudan,child,0.0,0.0,650.0
+2007,SEN,Senegal,all ages,2800.0,2600.0,3100.0
+2007,SEN,Senegal,child,790.0,730.0,870.0
+2007,SLE,Sierra Leone,all ages,6400.0,5500.0,7500.0
+2007,SLE,Sierra Leone,child,2000.0,1600.0,2300.0
+2007,SOM,Somalia,all ages,880.0,740.0,1000.0
+2007,SOM,Somalia,child,0.0,0.0,0.0
+2007,SSD,South Sudan,all ages,14000.0,12000.0,19000.0
+2007,SSD,South Sudan,child,3800.0,2900.0,5100.0
+2007,SWZ,Eswatini,all ages,17000.0,16000.0,18000.0
+2007,SWZ,Eswatini,child,2800.0,2300.0,3100.0
+2007,TCD,Chad,all ages,10000.0,8000.0,13000.0
+2007,TCD,Chad,child,3700.0,2900.0,4600.0
+2007,TGO,Togo,all ages,7400.0,6100.0,9300.0
+2007,TGO,Togo,child,2500.0,2000.0,3000.0
+2007,TUN,Tunisia,all ages,500.0,0.0,750.0
+2007,TUN,Tunisia,child,0.0,0.0,0.0
+2007,TZA,United Republic of Tanzania,all ages,88000.0,79000.0,100000.0
+2007,TZA,United Republic of Tanzania,child,21000.0,18000.0,24000.0
+2007,UGA,Uganda,all ages,100000.0,93000.0,110000.0
+2007,UGA,Uganda,child,25000.0,22000.0,28000.0
+2007,ZAF,South Africa,all ages,420000.0,380000.0,460000.0
+2007,ZAF,South Africa,child,61000.0,41000.0,76000.0
+2007,ZMB,Zambia,all ages,64000.0,57000.0,71000.0
+2007,ZMB,Zambia,child,15000.0,13000.0,17000.0
+2007,ZWE,Zimbabwe,all ages,88000.0,80000.0,98000.0
+2007,ZWE,Zimbabwe,child,24000.0,20000.0,27000.0
+2008,AGO,Angola,all ages,27000.0,23000.0,31000.0
+2008,AGO,Angola,child,8200.0,6900.0,9700.0
+2008,BDI,Burundi,all ages,5000.0,3800.0,6500.0
+2008,BDI,Burundi,child,1700.0,1300.0,2100.0
+2008,BEN,Benin,all ages,4700.0,3800.0,5800.0
+2008,BEN,Benin,child,1500.0,1200.0,1800.0
+2008,BFA,Burkina Faso,all ages,5400.0,4100.0,6900.0
+2008,BFA,Burkina Faso,child,2800.0,2300.0,3500.0
+2008,BWA,Botswana,all ages,14000.0,12000.0,16000.0
+2008,BWA,Botswana,child,1400.0,820.0,1700.0
+2008,CAF,Central African Republic,all ages,11000.0,8800.0,14000.0
+2008,CAF,Central African Republic,child,3000.0,2400.0,3600.0
+2008,CIV,Cote dIvoire,all ages,28000.0,23000.0,34000.0
+2008,CIV,Cote dIvoire,child,7800.0,6000.0,9400.0
+2008,CMR,Cameroon,all ages,43000.0,37000.0,49000.0
+2008,CMR,Cameroon,child,9000.0,7400.0,10000.0
+2008,COD,Democratic Republic of the Congo,all ages,47000.0,39000.0,59000.0
+2008,COD,Democratic Republic of the Congo,child,14000.0,11000.0,17000.0
+2008,COG,Congo,all ages,7200.0,5800.0,8700.0
+2008,COG,Congo,child,1900.0,1500.0,2300.0
+2008,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2008,CPV,Cape Verde,child,0.0,0.0,0.0
+2008,DJI,Djibouti,all ages,1000.0,610.0,1500.0
+2008,DJI,Djibouti,child,0.0,0.0,0.0
+2008,DZA,Algeria,all ages,1300.0,1100.0,1500.0
+2008,DZA,Algeria,child,0.0,0.0,0.0
+2008,EGY,Egypt,all ages,2300.0,1700.0,3200.0
+2008,EGY,Egypt,child,0.0,0.0,0.0
+2008,ERI,Eritrea,all ages,590.0,0.0,1100.0
+2008,ERI,Eritrea,child,0.0,0.0,0.0
+2008,ETH,Ethiopia,all ages,30000.0,17000.0,60000.0
+2008,ETH,Ethiopia,child,9800.0,5200.0,23000.0
+2008,GAB,Gabon,all ages,3300.0,2600.0,4200.0
+2008,GAB,Gabon,child,790.0,590.0,990.0
+2008,GHA,Ghana,all ages,23000.0,19000.0,29000.0
+2008,GHA,Ghana,child,5200.0,4100.0,6500.0
+2008,GIN,Guinea,all ages,10000.0,8500.0,12000.0
+2008,GIN,Guinea,child,2200.0,1800.0,2700.0
+2008,GMB,Gambia,all ages,2500.0,1900.0,3300.0
+2008,GMB,Gambia,child,0.0,0.0,620.0
+2008,GNB,Guinea-Bissau,all ages,3200.0,2700.0,3900.0
+2008,GNB,Guinea-Bissau,child,890.0,740.0,1000.0
+2008,KEN,Kenya,all ages,76000.0,48000.0,120000.0
+2008,KEN,Kenya,child,20000.0,13000.0,32000.0
+2008,LBY,Libya,all ages,0.0,0.0,0.0
+2008,LBY,Libya,child,0.0,0.0,0.0
+2008,LSO,Lesotho,all ages,24000.0,21000.0,27000.0
+2008,LSO,Lesotho,child,4300.0,3500.0,4800.0
+2008,MAR,Morocco,all ages,1600.0,1400.0,1900.0
+2008,MAR,Morocco,child,0.0,0.0,0.0
+2008,MDG,Madagascar,all ages,3800.0,2900.0,4900.0
+2008,MDG,Madagascar,child,0.0,0.0,580.0
+2008,MLI,Mali,all ages,9100.0,7700.0,12000.0
+2008,MLI,Mali,child,2300.0,1900.0,2900.0
+2008,MOZ,Mozambique,all ages,160000.0,150000.0,180000.0
+2008,MOZ,Mozambique,child,33000.0,28000.0,37000.0
+2008,MRT,Mauritania,all ages,520.0,0.0,720.0
+2008,MRT,Mauritania,child,0.0,0.0,0.0
+2008,MWI,Malawi,all ages,63000.0,58000.0,71000.0
+2008,MWI,Malawi,child,19000.0,16000.0,21000.0
+2008,NAM,Namibia,all ages,12000.0,11000.0,14000.0
+2008,NAM,Namibia,child,2300.0,1800.0,2700.0
+2008,NER,Niger,all ages,2500.0,2100.0,3000.0
+2008,NER,Niger,child,1000.0,860.0,1200.0
+2008,RWA,Rwanda,all ages,13000.0,11000.0,16000.0
+2008,RWA,Rwanda,child,3000.0,2400.0,3500.0
+2008,SDN,Sudan,all ages,2500.0,1900.0,3400.0
+2008,SDN,Sudan,child,0.0,0.0,650.0
+2008,SEN,Senegal,all ages,2300.0,2200.0,2600.0
+2008,SEN,Senegal,child,680.0,620.0,750.0
+2008,SLE,Sierra Leone,all ages,6100.0,5100.0,7300.0
+2008,SLE,Sierra Leone,child,1600.0,1200.0,1900.0
+2008,SOM,Somalia,all ages,840.0,700.0,990.0
+2008,SOM,Somalia,child,0.0,0.0,0.0
+2008,SSD,South Sudan,all ages,14000.0,11000.0,19000.0
+2008,SSD,South Sudan,child,3800.0,2800.0,5000.0
+2008,SWZ,Eswatini,all ages,17000.0,15000.0,18000.0
+2008,SWZ,Eswatini,child,2800.0,2400.0,3100.0
+2008,TCD,Chad,all ages,9400.0,7400.0,12000.0
+2008,TCD,Chad,child,3500.0,2600.0,4400.0
+2008,TGO,Togo,all ages,7000.0,5500.0,8800.0
+2008,TGO,Togo,child,2200.0,1700.0,2800.0
+2008,TUN,Tunisia,all ages,0.0,0.0,750.0
+2008,TUN,Tunisia,child,0.0,0.0,0.0
+2008,TZA,United Republic of Tanzania,all ages,87000.0,79000.0,100000.0
+2008,TZA,United Republic of Tanzania,child,20000.0,16000.0,23000.0
+2008,UGA,Uganda,all ages,99000.0,91000.0,110000.0
+2008,UGA,Uganda,child,22000.0,19000.0,25000.0
+2008,ZAF,South Africa,all ages,400000.0,360000.0,440000.0
+2008,ZAF,South Africa,child,49000.0,28000.0,68000.0
+2008,ZMB,Zambia,all ages,59000.0,52000.0,68000.0
+2008,ZMB,Zambia,child,13000.0,10000.0,15000.0
+2008,ZWE,Zimbabwe,all ages,83000.0,77000.0,93000.0
+2008,ZWE,Zimbabwe,child,22000.0,18000.0,25000.0
+2009,AGO,Angola,all ages,27000.0,24000.0,32000.0
+2009,AGO,Angola,child,8300.0,6900.0,9900.0
+2009,BDI,Burundi,all ages,4100.0,2900.0,5500.0
+2009,BDI,Burundi,child,1500.0,1200.0,1900.0
+2009,BEN,Benin,all ages,4500.0,3600.0,5600.0
+2009,BEN,Benin,child,1500.0,1200.0,1800.0
+2009,BFA,Burkina Faso,all ages,4900.0,3800.0,6300.0
+2009,BFA,Burkina Faso,child,2400.0,1800.0,3000.0
+2009,BWA,Botswana,all ages,13000.0,12000.0,15000.0
+2009,BWA,Botswana,child,970.0,590.0,1300.0
+2009,CAF,Central African Republic,all ages,11000.0,8500.0,13000.0
+2009,CAF,Central African Republic,child,2800.0,2200.0,3400.0
+2009,CIV,Cote dIvoire,all ages,27000.0,21000.0,35000.0
+2009,CIV,Cote dIvoire,child,6800.0,5300.0,8600.0
+2009,CMR,Cameroon,all ages,40000.0,36000.0,47000.0
+2009,CMR,Cameroon,child,8800.0,7300.0,9900.0
+2009,COD,Democratic Republic of the Congo,all ages,47000.0,38000.0,59000.0
+2009,COD,Democratic Republic of the Congo,child,14000.0,11000.0,17000.0
+2009,COG,Congo,all ages,7300.0,5800.0,8800.0
+2009,COG,Congo,child,2000.0,1500.0,2400.0
+2009,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2009,CPV,Cape Verde,child,0.0,0.0,0.0
+2009,DJI,Djibouti,all ages,980.0,580.0,1500.0
+2009,DJI,Djibouti,child,0.0,0.0,0.0
+2009,DZA,Algeria,all ages,1300.0,1100.0,1600.0
+2009,DZA,Algeria,child,0.0,0.0,0.0
+2009,EGY,Egypt,all ages,2300.0,1700.0,3300.0
+2009,EGY,Egypt,child,0.0,0.0,0.0
+2009,ERI,Eritrea,all ages,0.0,0.0,840.0
+2009,ERI,Eritrea,child,0.0,0.0,0.0
+2009,ETH,Ethiopia,all ages,27000.0,16000.0,55000.0
+2009,ETH,Ethiopia,child,9300.0,4900.0,22000.0
+2009,GAB,Gabon,all ages,3300.0,2600.0,4200.0
+2009,GAB,Gabon,child,810.0,620.0,1000.0
+2009,GHA,Ghana,all ages,23000.0,19000.0,28000.0
+2009,GHA,Ghana,child,5500.0,4400.0,6600.0
+2009,GIN,Guinea,all ages,10000.0,8500.0,12000.0
+2009,GIN,Guinea,child,2400.0,2000.0,2800.0
+2009,GMB,Gambia,all ages,2400.0,1900.0,3300.0
+2009,GMB,Gambia,child,0.0,0.0,580.0
+2009,GNB,Guinea-Bissau,all ages,3100.0,2500.0,3700.0
+2009,GNB,Guinea-Bissau,child,820.0,670.0,950.0
+2009,KEN,Kenya,all ages,72000.0,46000.0,110000.0
+2009,KEN,Kenya,child,19000.0,13000.0,31000.0
+2009,LBY,Libya,all ages,0.0,0.0,0.0
+2009,LBY,Libya,child,0.0,0.0,0.0
+2009,LSO,Lesotho,all ages,22000.0,19000.0,25000.0
+2009,LSO,Lesotho,child,3100.0,2400.0,3600.0
+2009,MAR,Morocco,all ages,1600.0,1400.0,1800.0
+2009,MAR,Morocco,child,0.0,0.0,0.0
+2009,MDG,Madagascar,all ages,4000.0,3100.0,5100.0
+2009,MDG,Madagascar,child,0.0,0.0,610.0
+2009,MLI,Mali,all ages,8400.0,6900.0,11000.0
+2009,MLI,Mali,child,1800.0,1400.0,2400.0
+2009,MOZ,Mozambique,all ages,160000.0,140000.0,180000.0
+2009,MOZ,Mozambique,child,31000.0,26000.0,35000.0
+2009,MRT,Mauritania,all ages,0.0,0.0,580.0
+2009,MRT,Mauritania,child,0.0,0.0,0.0
+2009,MWI,Malawi,all ages,57000.0,52000.0,65000.0
+2009,MWI,Malawi,child,17000.0,14000.0,20000.0
+2009,NAM,Namibia,all ages,12000.0,11000.0,14000.0
+2009,NAM,Namibia,child,2400.0,2000.0,2800.0
+2009,NER,Niger,all ages,2000.0,1700.0,2600.0
+2009,NER,Niger,child,880.0,720.0,1000.0
+2009,RWA,Rwanda,all ages,12000.0,9600.0,15000.0
+2009,RWA,Rwanda,child,2500.0,2000.0,3000.0
+2009,SDN,Sudan,all ages,2800.0,2200.0,3700.0
+2009,SDN,Sudan,child,0.0,0.0,640.0
+2009,SEN,Senegal,all ages,2200.0,2100.0,2500.0
+2009,SEN,Senegal,child,580.0,510.0,640.0
+2009,SLE,Sierra Leone,all ages,6000.0,5000.0,7200.0
+2009,SLE,Sierra Leone,child,1700.0,1300.0,2000.0
+2009,SOM,Somalia,all ages,770.0,650.0,900.0
+2009,SOM,Somalia,child,0.0,0.0,0.0
+2009,SSD,South Sudan,all ages,15000.0,12000.0,19000.0
+2009,SSD,South Sudan,child,3800.0,2800.0,4800.0
+2009,SWZ,Eswatini,all ages,16000.0,14000.0,17000.0
+2009,SWZ,Eswatini,child,2100.0,1700.0,2300.0
+2009,TCD,Chad,all ages,8800.0,6700.0,11000.0
+2009,TCD,Chad,child,3400.0,2600.0,4100.0
+2009,TGO,Togo,all ages,6600.0,5300.0,8500.0
+2009,TGO,Togo,child,2100.0,1600.0,2600.0
+2009,TUN,Tunisia,all ages,510.0,0.0,760.0
+2009,TUN,Tunisia,child,0.0,0.0,0.0
+2009,TZA,United Republic of Tanzania,all ages,88000.0,79000.0,100000.0
+2009,TZA,United Republic of Tanzania,child,15000.0,12000.0,17000.0
+2009,UGA,Uganda,all ages,99000.0,91000.0,110000.0
+2009,UGA,Uganda,child,21000.0,18000.0,25000.0
+2009,ZAF,South Africa,all ages,370000.0,340000.0,420000.0
+2009,ZAF,South Africa,child,35000.0,20000.0,53000.0
+2009,ZMB,Zambia,all ages,60000.0,53000.0,68000.0
+2009,ZMB,Zambia,child,12000.0,9600.0,14000.0
+2009,ZWE,Zimbabwe,all ages,81000.0,74000.0,90000.0
+2009,ZWE,Zimbabwe,child,21000.0,17000.0,23000.0
+2010,AGO,Angola,all ages,27000.0,23000.0,32000.0
+2010,AGO,Angola,child,8400.0,7000.0,9900.0
+2010,BDI,Burundi,all ages,4500.0,3300.0,6000.0
+2010,BDI,Burundi,child,1200.0,890.0,1600.0
+2010,BEN,Benin,all ages,4100.0,3300.0,5200.0
+2010,BEN,Benin,child,1500.0,1200.0,1900.0
+2010,BFA,Burkina Faso,all ages,4700.0,3600.0,5900.0
+2010,BFA,Burkina Faso,child,2200.0,1700.0,2900.0
+2010,BWA,Botswana,all ages,13000.0,12000.0,14000.0
+2010,BWA,Botswana,child,1200.0,610.0,1500.0
+2010,CAF,Central African Republic,all ages,10000.0,8100.0,13000.0
+2010,CAF,Central African Republic,child,2700.0,2100.0,3300.0
+2010,CIV,Cote dIvoire,all ages,25000.0,20000.0,33000.0
+2010,CIV,Cote dIvoire,child,6300.0,4700.0,8000.0
+2010,CMR,Cameroon,all ages,36000.0,31000.0,42000.0
+2010,CMR,Cameroon,child,6700.0,5200.0,8000.0
+2010,COD,Democratic Republic of the Congo,all ages,44000.0,36000.0,55000.0
+2010,COD,Democratic Republic of the Congo,child,13000.0,11000.0,16000.0
+2010,COG,Congo,all ages,7600.0,6000.0,9300.0
+2010,COG,Congo,child,2000.0,1600.0,2500.0
+2010,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2010,CPV,Cape Verde,child,0.0,0.0,0.0
+2010,DJI,Djibouti,all ages,910.0,550.0,1300.0
+2010,DJI,Djibouti,child,0.0,0.0,0.0
+2010,DZA,Algeria,all ages,1300.0,1000.0,1400.0
+2010,DZA,Algeria,child,0.0,0.0,0.0
+2010,EGY,Egypt,all ages,2400.0,1800.0,3400.0
+2010,EGY,Egypt,child,0.0,0.0,0.0
+2010,ERI,Eritrea,all ages,0.0,0.0,740.0
+2010,ERI,Eritrea,child,0.0,0.0,0.0
+2010,ETH,Ethiopia,all ages,26000.0,15000.0,51000.0
+2010,ETH,Ethiopia,child,8500.0,4500.0,20000.0
+2010,GAB,Gabon,all ages,3200.0,2500.0,4200.0
+2010,GAB,Gabon,child,780.0,610.0,960.0
+2010,GHA,Ghana,all ages,22000.0,19000.0,28000.0
+2010,GHA,Ghana,child,4900.0,3800.0,6200.0
+2010,GIN,Guinea,all ages,9800.0,8100.0,12000.0
+2010,GIN,Guinea,child,2300.0,1900.0,2800.0
+2010,GMB,Gambia,all ages,2300.0,1700.0,3100.0
+2010,GMB,Gambia,child,0.0,0.0,510.0
+2010,GNB,Guinea-Bissau,all ages,2900.0,2300.0,3400.0
+2010,GNB,Guinea-Bissau,child,770.0,650.0,910.0
+2010,KEN,Kenya,all ages,67000.0,43000.0,100000.0
+2010,KEN,Kenya,child,17000.0,11000.0,27000.0
+2010,LBY,Libya,all ages,0.0,0.0,0.0
+2010,LBY,Libya,child,0.0,0.0,0.0
+2010,LSO,Lesotho,all ages,19000.0,17000.0,22000.0
+2010,LSO,Lesotho,child,2200.0,1600.0,2600.0
+2010,MAR,Morocco,all ages,1500.0,1400.0,1800.0
+2010,MAR,Morocco,child,0.0,0.0,0.0
+2010,MDG,Madagascar,all ages,4200.0,3300.0,5300.0
+2010,MDG,Madagascar,child,510.0,0.0,650.0
+2010,MLI,Mali,all ages,7800.0,6400.0,11000.0
+2010,MLI,Mali,child,1700.0,1400.0,2300.0
+2010,MOZ,Mozambique,all ages,170000.0,150000.0,180000.0
+2010,MOZ,Mozambique,child,38000.0,33000.0,42000.0
+2010,MRT,Mauritania,all ages,0.0,0.0,520.0
+2010,MRT,Mauritania,child,0.0,0.0,0.0
+2010,MWI,Malawi,all ages,57000.0,52000.0,65000.0
+2010,MWI,Malawi,child,17000.0,14000.0,19000.0
+2010,NAM,Namibia,all ages,12000.0,10000.0,13000.0
+2010,NAM,Namibia,child,2000.0,1500.0,2400.0
+2010,NER,Niger,all ages,1300.0,940.0,1900.0
+2010,NER,Niger,child,0.0,0.0,530.0
+2010,RWA,Rwanda,all ages,11000.0,9400.0,15000.0
+2010,RWA,Rwanda,child,2300.0,1800.0,2800.0
+2010,SDN,Sudan,all ages,2900.0,2200.0,3900.0
+2010,SDN,Sudan,child,500.0,0.0,660.0
+2010,SEN,Senegal,all ages,2200.0,2000.0,2500.0
+2010,SEN,Senegal,child,620.0,570.0,680.0
+2010,SLE,Sierra Leone,all ages,5900.0,5000.0,7000.0
+2010,SLE,Sierra Leone,child,1500.0,1200.0,1800.0
+2010,SOM,Somalia,all ages,710.0,600.0,830.0
+2010,SOM,Somalia,child,0.0,0.0,0.0
+2010,SSD,South Sudan,all ages,14000.0,11000.0,18000.0
+2010,SSD,South Sudan,child,3400.0,2600.0,4600.0
+2010,SWZ,Eswatini,all ages,14000.0,13000.0,16000.0
+2010,SWZ,Eswatini,child,1600.0,1200.0,1800.0
+2010,TCD,Chad,all ages,8500.0,6600.0,11000.0
+2010,TCD,Chad,child,3100.0,2400.0,3800.0
+2010,TGO,Togo,all ages,6300.0,4900.0,7900.0
+2010,TGO,Togo,child,1800.0,1400.0,2400.0
+2010,TUN,Tunisia,all ages,500.0,0.0,790.0
+2010,TUN,Tunisia,child,0.0,0.0,0.0
+2010,TZA,United Republic of Tanzania,all ages,89000.0,79000.0,100000.0
+2010,TZA,United Republic of Tanzania,child,13000.0,11000.0,15000.0
+2010,UGA,Uganda,all ages,96000.0,88000.0,110000.0
+2010,UGA,Uganda,child,20000.0,16000.0,22000.0
+2010,ZAF,South Africa,all ages,350000.0,320000.0,390000.0
+2010,ZAF,South Africa,child,25000.0,20000.0,43000.0
+2010,ZMB,Zambia,all ages,63000.0,57000.0,71000.0
+2010,ZMB,Zambia,child,12000.0,9500.0,13000.0
+2010,ZWE,Zimbabwe,all ages,76000.0,70000.0,87000.0
+2010,ZWE,Zimbabwe,child,18000.0,14000.0,20000.0
+2011,AGO,Angola,all ages,28000.0,24000.0,32000.0
+2011,AGO,Angola,child,8900.0,7600.0,10000.0
+2011,BDI,Burundi,all ages,3800.0,2600.0,5000.0
+2011,BDI,Burundi,child,1100.0,780.0,1500.0
+2011,BEN,Benin,all ages,3800.0,3100.0,4800.0
+2011,BEN,Benin,child,1500.0,1200.0,1800.0
+2011,BFA,Burkina Faso,all ages,4100.0,3100.0,5300.0
+2011,BFA,Burkina Faso,child,1900.0,1500.0,2500.0
+2011,BWA,Botswana,all ages,14000.0,13000.0,15000.0
+2011,BWA,Botswana,child,1500.0,990.0,1800.0
+2011,CAF,Central African Republic,all ages,9800.0,7400.0,12000.0
+2011,CAF,Central African Republic,child,2400.0,1900.0,3000.0
+2011,CIV,Cote dIvoire,all ages,23000.0,18000.0,31000.0
+2011,CIV,Cote dIvoire,child,6100.0,4700.0,7700.0
+2011,CMR,Cameroon,all ages,34000.0,29000.0,40000.0
+2011,CMR,Cameroon,child,5800.0,4600.0,7100.0
+2011,COD,Democratic Republic of the Congo,all ages,43000.0,35000.0,54000.0
+2011,COD,Democratic Republic of the Congo,child,12000.0,10000.0,15000.0
+2011,COG,Congo,all ages,7800.0,6000.0,9500.0
+2011,COG,Congo,child,1900.0,1400.0,2300.0
+2011,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2011,CPV,Cape Verde,child,0.0,0.0,0.0
+2011,DJI,Djibouti,all ages,750.0,0.0,1100.0
+2011,DJI,Djibouti,child,0.0,0.0,0.0
+2011,DZA,Algeria,all ages,1200.0,1000.0,1400.0
+2011,DZA,Algeria,child,0.0,0.0,0.0
+2011,EGY,Egypt,all ages,2600.0,1900.0,3700.0
+2011,EGY,Egypt,child,0.0,0.0,0.0
+2011,ERI,Eritrea,all ages,0.0,0.0,690.0
+2011,ERI,Eritrea,child,0.0,0.0,0.0
+2011,ETH,Ethiopia,all ages,23000.0,13000.0,47000.0
+2011,ETH,Ethiopia,child,7300.0,3900.0,17000.0
+2011,GAB,Gabon,all ages,3100.0,2300.0,4000.0
+2011,GAB,Gabon,child,720.0,550.0,890.0
+2011,GHA,Ghana,all ages,21000.0,17000.0,26000.0
+2011,GHA,Ghana,child,4200.0,3200.0,5400.0
+2011,GIN,Guinea,all ages,9200.0,7700.0,11000.0
+2011,GIN,Guinea,child,2000.0,1600.0,2500.0
+2011,GMB,Gambia,all ages,2200.0,1600.0,3000.0
+2011,GMB,Gambia,child,0.0,0.0,0.0
+2011,GNB,Guinea-Bissau,all ages,2600.0,2100.0,3200.0
+2011,GNB,Guinea-Bissau,child,680.0,560.0,800.0
+2011,KEN,Kenya,all ages,59000.0,38000.0,92000.0
+2011,KEN,Kenya,child,13000.0,9000.0,22000.0
+2011,LBY,Libya,all ages,0.0,0.0,0.0
+2011,LBY,Libya,child,0.0,0.0,0.0
+2011,LSO,Lesotho,all ages,18000.0,15000.0,21000.0
+2011,LSO,Lesotho,child,1400.0,990.0,1900.0
+2011,MAR,Morocco,all ages,1500.0,1300.0,1800.0
+2011,MAR,Morocco,child,0.0,0.0,0.0
+2011,MDG,Madagascar,all ages,4300.0,3400.0,5500.0
+2011,MDG,Madagascar,child,510.0,0.0,650.0
+2011,MLI,Mali,all ages,7400.0,5800.0,10000.0
+2011,MLI,Mali,child,1400.0,980.0,2000.0
+2011,MOZ,Mozambique,all ages,160000.0,150000.0,180000.0
+2011,MOZ,Mozambique,child,32000.0,27000.0,36000.0
+2011,MRT,Mauritania,all ages,0.0,0.0,0.0
+2011,MRT,Mauritania,child,0.0,0.0,0.0
+2011,MWI,Malawi,all ages,54000.0,49000.0,62000.0
+2011,MWI,Malawi,child,14000.0,11000.0,16000.0
+2011,NAM,Namibia,all ages,11000.0,10000.0,13000.0
+2011,NAM,Namibia,child,1800.0,1400.0,2200.0
+2011,NER,Niger,all ages,1400.0,1000.0,1900.0
+2011,NER,Niger,child,0.0,0.0,660.0
+2011,RWA,Rwanda,all ages,9700.0,7600.0,13000.0
+2011,RWA,Rwanda,child,1100.0,910.0,1300.0
+2011,SDN,Sudan,all ages,3000.0,2300.0,4000.0
+2011,SDN,Sudan,child,510.0,0.0,670.0
+2011,SEN,Senegal,all ages,2100.0,1900.0,2400.0
+2011,SEN,Senegal,child,570.0,520.0,640.0
+2011,SLE,Sierra Leone,all ages,5700.0,4800.0,6900.0
+2011,SLE,Sierra Leone,child,1400.0,1000.0,1700.0
+2011,SOM,Somalia,all ages,650.0,540.0,780.0
+2011,SOM,Somalia,child,0.0,0.0,0.0
+2011,SSD,South Sudan,all ages,15000.0,12000.0,19000.0
+2011,SSD,South Sudan,child,3400.0,2600.0,4500.0
+2011,SWZ,Eswatini,all ages,14000.0,12000.0,15000.0
+2011,SWZ,Eswatini,child,990.0,720.0,1200.0
+2011,TCD,Chad,all ages,8100.0,6200.0,11000.0
+2011,TCD,Chad,child,2900.0,2200.0,3700.0
+2011,TGO,Togo,all ages,4900.0,3600.0,6500.0
+2011,TGO,Togo,child,1000.0,670.0,1500.0
+2011,TUN,Tunisia,all ages,520.0,0.0,830.0
+2011,TUN,Tunisia,child,0.0,0.0,0.0
+2011,TZA,United Republic of Tanzania,all ages,93000.0,83000.0,110000.0
+2011,TZA,United Republic of Tanzania,child,12000.0,11000.0,14000.0
+2011,UGA,Uganda,all ages,92000.0,84000.0,110000.0
+2011,UGA,Uganda,child,16000.0,13000.0,19000.0
+2011,ZAF,South Africa,all ages,330000.0,300000.0,360000.0
+2011,ZAF,South Africa,child,19000.0,16000.0,25000.0
+2011,ZMB,Zambia,all ages,65000.0,59000.0,74000.0
+2011,ZMB,Zambia,child,11000.0,9400.0,13000.0
+2011,ZWE,Zimbabwe,all ages,63000.0,57000.0,74000.0
+2011,ZWE,Zimbabwe,child,16000.0,13000.0,19000.0
+2012,AGO,Angola,all ages,28000.0,24000.0,33000.0
+2012,AGO,Angola,child,9000.0,7700.0,11000.0
+2012,BDI,Burundi,all ages,3500.0,2400.0,4800.0
+2012,BDI,Burundi,child,970.0,670.0,1300.0
+2012,BEN,Benin,all ages,3700.0,2900.0,4800.0
+2012,BEN,Benin,child,1500.0,1200.0,1800.0
+2012,BFA,Burkina Faso,all ages,4000.0,3000.0,5200.0
+2012,BFA,Burkina Faso,child,1900.0,1400.0,2400.0
+2012,BWA,Botswana,all ages,13000.0,11000.0,14000.0
+2012,BWA,Botswana,child,770.0,0.0,1100.0
+2012,CAF,Central African Republic,all ages,9200.0,6800.0,12000.0
+2012,CAF,Central African Republic,child,2200.0,1700.0,2800.0
+2012,CIV,Cote dIvoire,all ages,20000.0,15000.0,28000.0
+2012,CIV,Cote dIvoire,child,4900.0,3600.0,6500.0
+2012,CMR,Cameroon,all ages,29000.0,25000.0,35000.0
+2012,CMR,Cameroon,child,4800.0,3800.0,5900.0
+2012,COD,Democratic Republic of the Congo,all ages,40000.0,32000.0,51000.0
+2012,COD,Democratic Republic of the Congo,child,12000.0,9700.0,15000.0
+2012,COG,Congo,all ages,8100.0,6200.0,10000.0
+2012,COG,Congo,child,2000.0,1600.0,2500.0
+2012,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2012,CPV,Cape Verde,child,0.0,0.0,0.0
+2012,DJI,Djibouti,all ages,640.0,0.0,980.0
+2012,DJI,Djibouti,child,0.0,0.0,0.0
+2012,DZA,Algeria,all ages,1200.0,1000.0,1400.0
+2012,DZA,Algeria,child,0.0,0.0,0.0
+2012,EGY,Egypt,all ages,2800.0,2000.0,3900.0
+2012,EGY,Egypt,child,0.0,0.0,0.0
+2012,ERI,Eritrea,all ages,0.0,0.0,780.0
+2012,ERI,Eritrea,child,0.0,0.0,0.0
+2012,ETH,Ethiopia,all ages,21000.0,12000.0,41000.0
+2012,ETH,Ethiopia,child,5600.0,3000.0,13000.0
+2012,GAB,Gabon,all ages,2900.0,2100.0,3900.0
+2012,GAB,Gabon,child,660.0,0.0,830.0
+2012,GHA,Ghana,all ages,21000.0,17000.0,26000.0
+2012,GHA,Ghana,child,3900.0,3000.0,5200.0
+2012,GIN,Guinea,all ages,8900.0,7300.0,11000.0
+2012,GIN,Guinea,child,2000.0,1600.0,2400.0
+2012,GMB,Gambia,all ages,2200.0,1600.0,3000.0
+2012,GMB,Gambia,child,0.0,0.0,0.0
+2012,GNB,Guinea-Bissau,all ages,2400.0,1900.0,2900.0
+2012,GNB,Guinea-Bissau,child,570.0,0.0,700.0
+2012,KEN,Kenya,all ages,57000.0,36000.0,88000.0
+2012,KEN,Kenya,child,15000.0,10000.0,24000.0
+2012,LBY,Libya,all ages,0.0,0.0,0.0
+2012,LBY,Libya,child,0.0,0.0,0.0
+2012,LSO,Lesotho,all ages,17000.0,14000.0,20000.0
+2012,LSO,Lesotho,child,1300.0,950.0,1600.0
+2012,MAR,Morocco,all ages,1400.0,1200.0,1600.0
+2012,MAR,Morocco,child,0.0,0.0,0.0
+2012,MDG,Madagascar,all ages,4400.0,3400.0,5700.0
+2012,MDG,Madagascar,child,540.0,0.0,660.0
+2012,MLI,Mali,all ages,6700.0,5300.0,9400.0
+2012,MLI,Mali,child,1200.0,840.0,1900.0
+2012,MOZ,Mozambique,all ages,160000.0,150000.0,180000.0
+2012,MOZ,Mozambique,child,26000.0,22000.0,30000.0
+2012,MRT,Mauritania,all ages,0.0,0.0,0.0
+2012,MRT,Mauritania,child,0.0,0.0,0.0
+2012,MWI,Malawi,all ages,51000.0,47000.0,58000.0
+2012,MWI,Malawi,child,12000.0,10000.0,14000.0
+2012,NAM,Namibia,all ages,10000.0,9100.0,12000.0
+2012,NAM,Namibia,child,2000.0,1600.0,2400.0
+2012,NER,Niger,all ages,1300.0,990.0,1800.0
+2012,NER,Niger,child,520.0,0.0,660.0
+2012,RWA,Rwanda,all ages,9400.0,7400.0,13000.0
+2012,RWA,Rwanda,child,1200.0,990.0,1700.0
+2012,SDN,Sudan,all ages,3000.0,2200.0,4000.0
+2012,SDN,Sudan,child,510.0,0.0,690.0
+2012,SEN,Senegal,all ages,1900.0,1700.0,2200.0
+2012,SEN,Senegal,child,570.0,520.0,630.0
+2012,SLE,Sierra Leone,all ages,5600.0,4600.0,6700.0
+2012,SLE,Sierra Leone,child,1200.0,900.0,1500.0
+2012,SOM,Somalia,all ages,570.0,0.0,700.0
+2012,SOM,Somalia,child,0.0,0.0,0.0
+2012,SSD,South Sudan,all ages,15000.0,12000.0,19000.0
+2012,SSD,South Sudan,child,3400.0,2600.0,4500.0
+2012,SWZ,Eswatini,all ages,14000.0,12000.0,15000.0
+2012,SWZ,Eswatini,child,1000.0,740.0,1200.0
+2012,TCD,Chad,all ages,7700.0,5900.0,10000.0
+2012,TCD,Chad,child,2700.0,2000.0,3400.0
+2012,TGO,Togo,all ages,4300.0,3000.0,5800.0
+2012,TGO,Togo,child,840.0,520.0,1300.0
+2012,TUN,Tunisia,all ages,510.0,0.0,810.0
+2012,TUN,Tunisia,child,0.0,0.0,0.0
+2012,TZA,United Republic of Tanzania,all ages,91000.0,82000.0,110000.0
+2012,TZA,United Republic of Tanzania,child,9000.0,8100.0,10000.0
+2012,UGA,Uganda,all ages,84000.0,75000.0,98000.0
+2012,UGA,Uganda,child,11000.0,9800.0,12000.0
+2012,ZAF,South Africa,all ages,310000.0,280000.0,350000.0
+2012,ZAF,South Africa,child,17000.0,14000.0,20000.0
+2012,ZMB,Zambia,all ages,68000.0,62000.0,76000.0
+2012,ZMB,Zambia,child,11000.0,9100.0,13000.0
+2012,ZWE,Zimbabwe,all ages,56000.0,49000.0,68000.0
+2012,ZWE,Zimbabwe,child,10000.0,7300.0,12000.0
+2013,AGO,Angola,all ages,27000.0,23000.0,32000.0
+2013,AGO,Angola,child,8700.0,7300.0,10000.0
+2013,BDI,Burundi,all ages,3100.0,2000.0,4400.0
+2013,BDI,Burundi,child,790.0,530.0,1100.0
+2013,BEN,Benin,all ages,3700.0,2900.0,4800.0
+2013,BEN,Benin,child,1500.0,1200.0,1900.0
+2013,BFA,Burkina Faso,all ages,3600.0,2700.0,4800.0
+2013,BFA,Burkina Faso,child,1700.0,1300.0,2200.0
+2013,BWA,Botswana,all ages,12000.0,10000.0,13000.0
+2013,BWA,Botswana,child,600.0,0.0,910.0
+2013,CAF,Central African Republic,all ages,9200.0,6800.0,12000.0
+2013,CAF,Central African Republic,child,2400.0,1900.0,3000.0
+2013,CIV,Cote dIvoire,all ages,19000.0,13000.0,26000.0
+2013,CIV,Cote dIvoire,child,3800.0,2600.0,5600.0
+2013,CMR,Cameroon,all ages,26000.0,22000.0,32000.0
+2013,CMR,Cameroon,child,3400.0,2500.0,4500.0
+2013,COD,Democratic Republic of the Congo,all ages,38000.0,30000.0,49000.0
+2013,COD,Democratic Republic of the Congo,child,10000.0,8400.0,13000.0
+2013,COG,Congo,all ages,8200.0,6200.0,11000.0
+2013,COG,Congo,child,1900.0,1400.0,2400.0
+2013,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2013,CPV,Cape Verde,child,0.0,0.0,0.0
+2013,DJI,Djibouti,all ages,550.0,0.0,850.0
+2013,DJI,Djibouti,child,0.0,0.0,0.0
+2013,DZA,Algeria,all ages,1200.0,1000.0,1400.0
+2013,DZA,Algeria,child,0.0,0.0,0.0
+2013,EGY,Egypt,all ages,3000.0,2200.0,4300.0
+2013,EGY,Egypt,child,0.0,0.0,0.0
+2013,ERI,Eritrea,all ages,0.0,0.0,620.0
+2013,ERI,Eritrea,child,0.0,0.0,0.0
+2013,ETH,Ethiopia,all ages,18000.0,11000.0,37000.0
+2013,ETH,Ethiopia,child,4800.0,2500.0,11000.0
+2013,GAB,Gabon,all ages,2800.0,1900.0,3800.0
+2013,GAB,Gabon,child,600.0,0.0,780.0
+2013,GHA,Ghana,all ages,21000.0,17000.0,27000.0
+2013,GHA,Ghana,child,4400.0,3400.0,5500.0
+2013,GIN,Guinea,all ages,8100.0,6300.0,10000.0
+2013,GIN,Guinea,child,1400.0,1000.0,1800.0
+2013,GMB,Gambia,all ages,2100.0,1500.0,2900.0
+2013,GMB,Gambia,child,0.0,0.0,0.0
+2013,GNB,Guinea-Bissau,all ages,2100.0,1600.0,2700.0
+2013,GNB,Guinea-Bissau,child,0.0,0.0,550.0
+2013,KEN,Kenya,all ages,52000.0,33000.0,81000.0
+2013,KEN,Kenya,child,14000.0,9300.0,22000.0
+2013,LBY,Libya,all ages,0.0,0.0,0.0
+2013,LBY,Libya,child,0.0,0.0,0.0
+2013,LSO,Lesotho,all ages,17000.0,14000.0,20000.0
+2013,LSO,Lesotho,child,1400.0,950.0,1800.0
+2013,MAR,Morocco,all ages,1300.0,1100.0,1600.0
+2013,MAR,Morocco,child,0.0,0.0,0.0
+2013,MDG,Madagascar,all ages,4700.0,3600.0,6000.0
+2013,MDG,Madagascar,child,570.0,0.0,700.0
+2013,MLI,Mali,all ages,7500.0,5900.0,10000.0
+2013,MLI,Mali,child,1700.0,1300.0,2300.0
+2013,MOZ,Mozambique,all ages,160000.0,150000.0,180000.0
+2013,MOZ,Mozambique,child,26000.0,21000.0,31000.0
+2013,MRT,Mauritania,all ages,0.0,0.0,0.0
+2013,MRT,Mauritania,child,0.0,0.0,0.0
+2013,MWI,Malawi,all ages,48000.0,44000.0,55000.0
+2013,MWI,Malawi,child,11000.0,8900.0,13000.0
+2013,NAM,Namibia,all ages,9100.0,7900.0,11000.0
+2013,NAM,Namibia,child,1600.0,1100.0,1900.0
+2013,NER,Niger,all ages,1300.0,950.0,1700.0
+2013,NER,Niger,child,0.0,0.0,630.0
+2013,RWA,Rwanda,all ages,9100.0,7200.0,12000.0
+2013,RWA,Rwanda,child,1100.0,910.0,1500.0
+2013,SDN,Sudan,all ages,3100.0,2300.0,4300.0
+2013,SDN,Sudan,child,530.0,0.0,700.0
+2013,SEN,Senegal,all ages,1600.0,1400.0,1900.0
+2013,SEN,Senegal,child,0.0,0.0,0.0
+2013,SLE,Sierra Leone,all ages,5500.0,4500.0,6700.0
+2013,SLE,Sierra Leone,child,1300.0,940.0,1600.0
+2013,SOM,Somalia,all ages,550.0,0.0,670.0
+2013,SOM,Somalia,child,0.0,0.0,0.0
+2013,SSD,South Sudan,all ages,15000.0,12000.0,20000.0
+2013,SSD,South Sudan,child,3200.0,2400.0,4200.0
+2013,SWZ,Eswatini,all ages,13000.0,12000.0,15000.0
+2013,SWZ,Eswatini,child,980.0,690.0,1200.0
+2013,TCD,Chad,all ages,7100.0,5200.0,9400.0
+2013,TCD,Chad,child,2200.0,1600.0,2900.0
+2013,TGO,Togo,all ages,3900.0,2700.0,5500.0
+2013,TGO,Togo,child,730.0,0.0,1100.0
+2013,TUN,Tunisia,all ages,540.0,0.0,860.0
+2013,TUN,Tunisia,child,0.0,0.0,0.0
+2013,TZA,United Republic of Tanzania,all ages,94000.0,84000.0,110000.0
+2013,TZA,United Republic of Tanzania,child,9200.0,8200.0,11000.0
+2013,UGA,Uganda,all ages,80000.0,71000.0,94000.0
+2013,UGA,Uganda,child,12000.0,11000.0,14000.0
+2013,ZAF,South Africa,all ages,300000.0,270000.0,330000.0
+2013,ZAF,South Africa,child,15000.0,12000.0,19000.0
+2013,ZMB,Zambia,all ages,71000.0,64000.0,80000.0
+2013,ZMB,Zambia,child,10000.0,8700.0,12000.0
+2013,ZWE,Zimbabwe,all ages,52000.0,45000.0,63000.0
+2013,ZWE,Zimbabwe,child,10000.0,7400.0,13000.0
+2014,AGO,Angola,all ages,27000.0,23000.0,31000.0
+2014,AGO,Angola,child,8200.0,6800.0,9800.0
+2014,BDI,Burundi,all ages,3000.0,1900.0,4200.0
+2014,BDI,Burundi,child,600.0,0.0,910.0
+2014,BEN,Benin,all ages,3300.0,2500.0,4400.0
+2014,BEN,Benin,child,1300.0,960.0,1600.0
+2014,BFA,Burkina Faso,all ages,3100.0,2300.0,4300.0
+2014,BFA,Burkina Faso,child,1400.0,970.0,1800.0
+2014,BWA,Botswana,all ages,12000.0,10000.0,13000.0
+2014,BWA,Botswana,child,780.0,0.0,1100.0
+2014,CAF,Central African Republic,all ages,8100.0,5800.0,11000.0
+2014,CAF,Central African Republic,child,1900.0,1500.0,2500.0
+2014,CIV,Cote dIvoire,all ages,16000.0,10000.0,23000.0
+2014,CIV,Cote dIvoire,child,2900.0,1800.0,4200.0
+2014,CMR,Cameroon,all ages,24000.0,20000.0,31000.0
+2014,CMR,Cameroon,child,3300.0,2400.0,4400.0
+2014,COD,Democratic Republic of the Congo,all ages,36000.0,27000.0,46000.0
+2014,COD,Democratic Republic of the Congo,child,8900.0,6700.0,11000.0
+2014,COG,Congo,all ages,8500.0,6400.0,11000.0
+2014,COG,Congo,child,1900.0,1500.0,2400.0
+2014,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2014,CPV,Cape Verde,child,0.0,0.0,0.0
+2014,DJI,Djibouti,all ages,0.0,0.0,760.0
+2014,DJI,Djibouti,child,0.0,0.0,0.0
+2014,DZA,Algeria,all ages,1300.0,1100.0,1500.0
+2014,DZA,Algeria,child,0.0,0.0,0.0
+2014,EGY,Egypt,all ages,3200.0,2300.0,4500.0
+2014,EGY,Egypt,child,0.0,0.0,0.0
+2014,ERI,Eritrea,all ages,0.0,0.0,680.0
+2014,ERI,Eritrea,child,0.0,0.0,0.0
+2014,ETH,Ethiopia,all ages,17000.0,9700.0,34000.0
+2014,ETH,Ethiopia,child,4600.0,2400.0,11000.0
+2014,GAB,Gabon,all ages,2700.0,1900.0,3800.0
+2014,GAB,Gabon,child,620.0,0.0,800.0
+2014,GHA,Ghana,all ages,21000.0,17000.0,26000.0
+2014,GHA,Ghana,child,4000.0,3000.0,5100.0
+2014,GIN,Guinea,all ages,9500.0,7600.0,12000.0
+2014,GIN,Guinea,child,2600.0,2200.0,3100.0
+2014,GMB,Gambia,all ages,2100.0,1400.0,2800.0
+2014,GMB,Gambia,child,0.0,0.0,0.0
+2014,GNB,Guinea-Bissau,all ages,1800.0,1300.0,2400.0
+2014,GNB,Guinea-Bissau,child,0.0,0.0,0.0
+2014,KEN,Kenya,all ages,46000.0,30000.0,72000.0
+2014,KEN,Kenya,child,11000.0,7800.0,19000.0
+2014,LBY,Libya,all ages,0.0,0.0,0.0
+2014,LBY,Libya,child,0.0,0.0,0.0
+2014,LSO,Lesotho,all ages,15000.0,13000.0,18000.0
+2014,LSO,Lesotho,child,1100.0,900.0,1500.0
+2014,MAR,Morocco,all ages,1200.0,1000.0,1500.0
+2014,MAR,Morocco,child,0.0,0.0,0.0
+2014,MDG,Madagascar,all ages,5000.0,3700.0,6600.0
+2014,MDG,Madagascar,child,590.0,0.0,740.0
+2014,MLI,Mali,all ages,6900.0,5500.0,9400.0
+2014,MLI,Mali,child,1600.0,1300.0,2300.0
+2014,MOZ,Mozambique,all ages,150000.0,140000.0,170000.0
+2014,MOZ,Mozambique,child,25000.0,21000.0,30000.0
+2014,MRT,Mauritania,all ages,0.0,0.0,0.0
+2014,MRT,Mauritania,child,0.0,0.0,0.0
+2014,MWI,Malawi,all ages,45000.0,42000.0,52000.0
+2014,MWI,Malawi,child,10000.0,7800.0,12000.0
+2014,NAM,Namibia,all ages,8400.0,7300.0,10000.0
+2014,NAM,Namibia,child,1200.0,790.0,1600.0
+2014,NER,Niger,all ages,1200.0,890.0,1700.0
+2014,NER,Niger,child,0.0,0.0,550.0
+2014,RWA,Rwanda,all ages,7500.0,5900.0,11000.0
+2014,RWA,Rwanda,child,950.0,800.0,1300.0
+2014,SDN,Sudan,all ages,3300.0,2400.0,4600.0
+2014,SDN,Sudan,child,530.0,0.0,730.0
+2014,SEN,Senegal,all ages,1600.0,1400.0,1900.0
+2014,SEN,Senegal,child,0.0,0.0,0.0
+2014,SLE,Sierra Leone,all ages,5800.0,4800.0,7000.0
+2014,SLE,Sierra Leone,child,1400.0,1100.0,1700.0
+2014,SOM,Somalia,all ages,510.0,0.0,610.0
+2014,SOM,Somalia,child,0.0,0.0,0.0
+2014,SSD,South Sudan,all ages,16000.0,13000.0,20000.0
+2014,SSD,South Sudan,child,3200.0,2400.0,4200.0
+2014,SWZ,Eswatini,all ages,13000.0,11000.0,14000.0
+2014,SWZ,Eswatini,child,1100.0,830.0,1300.0
+2014,TCD,Chad,all ages,6200.0,4400.0,8400.0
+2014,TCD,Chad,child,1600.0,1000.0,2300.0
+2014,TGO,Togo,all ages,3900.0,2600.0,5300.0
+2014,TGO,Togo,child,660.0,0.0,1000.0
+2014,TUN,Tunisia,all ages,540.0,0.0,890.0
+2014,TUN,Tunisia,child,0.0,0.0,0.0
+2014,TZA,United Republic of Tanzania,all ages,98000.0,88000.0,120000.0
+2014,TZA,United Republic of Tanzania,child,10000.0,8800.0,13000.0
+2014,UGA,Uganda,all ages,74000.0,65000.0,88000.0
+2014,UGA,Uganda,child,12000.0,11000.0,13000.0
+2014,ZAF,South Africa,all ages,280000.0,260000.0,310000.0
+2014,ZAF,South Africa,child,13000.0,11000.0,21000.0
+2014,ZMB,Zambia,all ages,72000.0,66000.0,82000.0
+2014,ZMB,Zambia,child,9400.0,8200.0,11000.0
+2014,ZWE,Zimbabwe,all ages,45000.0,39000.0,56000.0
+2014,ZWE,Zimbabwe,child,8900.0,6200.0,11000.0
+2015,AGO,Angola,all ages,26000.0,22000.0,31000.0
+2015,AGO,Angola,child,8400.0,7100.0,9900.0
+2015,BDI,Burundi,all ages,2800.0,1800.0,4000.0
+2015,BDI,Burundi,child,0.0,0.0,730.0
+2015,BEN,Benin,all ages,2600.0,1900.0,3700.0
+2015,BEN,Benin,child,680.0,510.0,950.0
+2015,BFA,Burkina Faso,all ages,3500.0,2700.0,4600.0
+2015,BFA,Burkina Faso,child,1800.0,1400.0,2300.0
+2015,BWA,Botswana,all ages,11000.0,9800.0,12000.0
+2015,BWA,Botswana,child,590.0,0.0,810.0
+2015,CAF,Central African Republic,all ages,7500.0,5200.0,10000.0
+2015,CAF,Central African Republic,child,1600.0,1100.0,2100.0
+2015,CIV,Cote dIvoire,all ages,16000.0,11000.0,22000.0
+2015,CIV,Cote dIvoire,child,2600.0,1600.0,3900.0
+2015,CMR,Cameroon,all ages,23000.0,19000.0,30000.0
+2015,CMR,Cameroon,child,3200.0,2100.0,4100.0
+2015,COD,Democratic Republic of the Congo,all ages,35000.0,26000.0,46000.0
+2015,COD,Democratic Republic of the Congo,child,8600.0,6400.0,11000.0
+2015,COG,Congo,all ages,8700.0,6400.0,12000.0
+2015,COG,Congo,child,1900.0,1500.0,2400.0
+2015,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2015,CPV,Cape Verde,child,0.0,0.0,0.0
+2015,DJI,Djibouti,all ages,0.0,0.0,770.0
+2015,DJI,Djibouti,child,0.0,0.0,0.0
+2015,DZA,Algeria,all ages,1300.0,1200.0,1600.0
+2015,DZA,Algeria,child,0.0,0.0,0.0
+2015,EGY,Egypt,all ages,3400.0,2500.0,4900.0
+2015,EGY,Egypt,child,0.0,0.0,0.0
+2015,ERI,Eritrea,all ages,0.0,0.0,600.0
+2015,ERI,Eritrea,child,0.0,0.0,0.0
+2015,ETH,Ethiopia,all ages,14000.0,8300.0,29000.0
+2015,ETH,Ethiopia,child,4000.0,2100.0,9600.0
+2015,GAB,Gabon,all ages,2600.0,1800.0,3600.0
+2015,GAB,Gabon,child,560.0,0.0,730.0
+2015,GHA,Ghana,all ages,21000.0,17000.0,27000.0
+2015,GHA,Ghana,child,4100.0,3200.0,5200.0
+2015,GIN,Guinea,all ages,9200.0,7400.0,12000.0
+2015,GIN,Guinea,child,2600.0,2200.0,3100.0
+2015,GMB,Gambia,all ages,1900.0,1300.0,2700.0
+2015,GMB,Gambia,child,0.0,0.0,0.0
+2015,GNB,Guinea-Bissau,all ages,1800.0,1200.0,2300.0
+2015,GNB,Guinea-Bissau,child,0.0,0.0,0.0
+2015,KEN,Kenya,all ages,38000.0,24000.0,59000.0
+2015,KEN,Kenya,child,6900.0,4700.0,11000.0
+2015,LBY,Libya,all ages,0.0,0.0,0.0
+2015,LBY,Libya,child,0.0,0.0,0.0
+2015,LSO,Lesotho,all ages,13000.0,11000.0,16000.0
+2015,LSO,Lesotho,child,810.0,680.0,1200.0
+2015,MAR,Morocco,all ages,1200.0,1000.0,1500.0
+2015,MAR,Morocco,child,0.0,0.0,0.0
+2015,MDG,Madagascar,all ages,5200.0,3900.0,7100.0
+2015,MDG,Madagascar,child,620.0,0.0,790.0
+2015,MLI,Mali,all ages,6700.0,5100.0,9000.0
+2015,MLI,Mali,child,1500.0,1100.0,2100.0
+2015,MOZ,Mozambique,all ages,150000.0,140000.0,170000.0
+2015,MOZ,Mozambique,child,25000.0,20000.0,29000.0
+2015,MRT,Mauritania,all ages,0.0,0.0,0.0
+2015,MRT,Mauritania,child,0.0,0.0,0.0
+2015,MWI,Malawi,all ages,40000.0,37000.0,47000.0
+2015,MWI,Malawi,child,8000.0,5800.0,9400.0
+2015,NAM,Namibia,all ages,7900.0,6800.0,9900.0
+2015,NAM,Namibia,child,1000.0,630.0,1300.0
+2015,NER,Niger,all ages,1400.0,1100.0,1800.0
+2015,NER,Niger,child,560.0,0.0,690.0
+2015,RWA,Rwanda,all ages,6900.0,5300.0,10000.0
+2015,RWA,Rwanda,child,720.0,610.0,980.0
+2015,SDN,Sudan,all ages,3500.0,2600.0,5000.0
+2015,SDN,Sudan,child,560.0,0.0,750.0
+2015,SEN,Senegal,all ages,1500.0,1300.0,1800.0
+2015,SEN,Senegal,child,0.0,0.0,0.0
+2015,SLE,Sierra Leone,all ages,5800.0,4600.0,7100.0
+2015,SLE,Sierra Leone,child,1300.0,900.0,1600.0
+2015,SOM,Somalia,all ages,0.0,0.0,600.0
+2015,SOM,Somalia,child,0.0,0.0,0.0
+2015,SSD,South Sudan,all ages,13000.0,11000.0,17000.0
+2015,SSD,South Sudan,child,2400.0,1700.0,3200.0
+2015,SWZ,Eswatini,all ages,11000.0,9400.0,12000.0
+2015,SWZ,Eswatini,child,890.0,650.0,1000.0
+2015,TCD,Chad,all ages,6600.0,4800.0,9000.0
+2015,TCD,Chad,child,2100.0,1500.0,2800.0
+2015,TGO,Togo,all ages,3800.0,2600.0,5200.0
+2015,TGO,Togo,child,770.0,580.0,1100.0
+2015,TUN,Tunisia,all ages,530.0,0.0,910.0
+2015,TUN,Tunisia,child,0.0,0.0,0.0
+2015,TZA,United Republic of Tanzania,all ages,100000.0,91000.0,120000.0
+2015,TZA,United Republic of Tanzania,child,11000.0,9000.0,13000.0
+2015,UGA,Uganda,all ages,71000.0,62000.0,84000.0
+2015,UGA,Uganda,child,12000.0,11000.0,12000.0
+2015,ZAF,South Africa,all ages,270000.0,250000.0,300000.0
+2015,ZAF,South Africa,child,12000.0,10000.0,25000.0
+2015,ZMB,Zambia,all ages,74000.0,69000.0,84000.0
+2015,ZMB,Zambia,child,10000.0,8300.0,12000.0
+2015,ZWE,Zimbabwe,all ages,42000.0,37000.0,53000.0
+2015,ZWE,Zimbabwe,child,8800.0,6200.0,11000.0
+2016,AGO,Angola,all ages,27000.0,23000.0,32000.0
+2016,AGO,Angola,child,8700.0,7200.0,10000.0
+2016,BDI,Burundi,all ages,2200.0,1400.0,3300.0
+2016,BDI,Burundi,child,0.0,0.0,0.0
+2016,BEN,Benin,all ages,2500.0,1800.0,3600.0
+2016,BEN,Benin,child,610.0,510.0,800.0
+2016,BFA,Burkina Faso,all ages,3300.0,2500.0,4400.0
+2016,BFA,Burkina Faso,child,1600.0,1300.0,2100.0
+2016,BWA,Botswana,all ages,10000.0,9400.0,11000.0
+2016,BWA,Botswana,child,600.0,0.0,820.0
+2016,CAF,Central African Republic,all ages,6800.0,4400.0,9600.0
+2016,CAF,Central African Republic,child,1500.0,990.0,2000.0
+2016,CIV,Cote dIvoire,all ages,17000.0,11000.0,24000.0
+2016,CIV,Cote dIvoire,child,3200.0,2200.0,4400.0
+2016,CMR,Cameroon,all ages,23000.0,18000.0,30000.0
+2016,CMR,Cameroon,child,3100.0,2200.0,4000.0
+2016,COD,Democratic Republic of the Congo,all ages,34000.0,25000.0,46000.0
+2016,COD,Democratic Republic of the Congo,child,8400.0,6100.0,11000.0
+2016,COG,Congo,all ages,9200.0,6600.0,13000.0
+2016,COG,Congo,child,2100.0,1600.0,2600.0
+2016,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2016,CPV,Cape Verde,child,0.0,0.0,0.0
+2016,DJI,Djibouti,all ages,0.0,0.0,580.0
+2016,DJI,Djibouti,child,0.0,0.0,0.0
+2016,DZA,Algeria,all ages,1400.0,1200.0,1700.0
+2016,DZA,Algeria,child,0.0,0.0,0.0
+2016,EGY,Egypt,all ages,3700.0,2700.0,5300.0
+2016,EGY,Egypt,child,0.0,0.0,0.0
+2016,ERI,Eritrea,all ages,0.0,0.0,540.0
+2016,ERI,Eritrea,child,0.0,0.0,0.0
+2016,ETH,Ethiopia,all ages,15000.0,8800.0,31000.0
+2016,ETH,Ethiopia,child,4200.0,2200.0,9900.0
+2016,GAB,Gabon,all ages,2400.0,1600.0,3500.0
+2016,GAB,Gabon,child,0.0,0.0,660.0
+2016,GHA,Ghana,all ages,20000.0,16000.0,26000.0
+2016,GHA,Ghana,child,3700.0,2900.0,4800.0
+2016,GIN,Guinea,all ages,8900.0,7200.0,11000.0
+2016,GIN,Guinea,child,2600.0,2200.0,3000.0
+2016,GMB,Gambia,all ages,1900.0,1300.0,2600.0
+2016,GMB,Gambia,child,0.0,0.0,0.0
+2016,GNB,Guinea-Bissau,all ages,1700.0,1200.0,2200.0
+2016,GNB,Guinea-Bissau,child,0.0,0.0,0.0
+2016,KEN,Kenya,all ages,32000.0,21000.0,50000.0
+2016,KEN,Kenya,child,5900.0,4100.0,9800.0
+2016,LBY,Libya,all ages,0.0,0.0,0.0
+2016,LBY,Libya,child,0.0,0.0,0.0
+2016,LSO,Lesotho,all ages,11000.0,9200.0,13000.0
+2016,LSO,Lesotho,child,790.0,540.0,1100.0
+2016,MAR,Morocco,all ages,1200.0,1000.0,1500.0
+2016,MAR,Morocco,child,0.0,0.0,0.0
+2016,MDG,Madagascar,all ages,5700.0,4200.0,7800.0
+2016,MDG,Madagascar,child,660.0,510.0,860.0
+2016,MLI,Mali,all ages,6500.0,5100.0,8800.0
+2016,MLI,Mali,child,1600.0,1200.0,2100.0
+2016,MOZ,Mozambique,all ages,140000.0,130000.0,160000.0
+2016,MOZ,Mozambique,child,26000.0,21000.0,30000.0
+2016,MRT,Mauritania,all ages,0.0,0.0,0.0
+2016,MRT,Mauritania,child,0.0,0.0,0.0
+2016,MWI,Malawi,all ages,36000.0,33000.0,42000.0
+2016,MWI,Malawi,child,6600.0,4500.0,8100.0
+2016,NAM,Namibia,all ages,7600.0,6400.0,9700.0
+2016,NAM,Namibia,child,860.0,510.0,1200.0
+2016,NER,Niger,all ages,1200.0,830.0,1500.0
+2016,NER,Niger,child,0.0,0.0,0.0
+2016,RWA,Rwanda,all ages,5800.0,4500.0,8800.0
+2016,RWA,Rwanda,child,640.0,530.0,880.0
+2016,SDN,Sudan,all ages,3600.0,2600.0,5200.0
+2016,SDN,Sudan,child,580.0,0.0,790.0
+2016,SEN,Senegal,all ages,1600.0,1400.0,1900.0
+2016,SEN,Senegal,child,0.0,0.0,0.0
+2016,SLE,Sierra Leone,all ages,5700.0,4400.0,7000.0
+2016,SLE,Sierra Leone,child,1300.0,930.0,1600.0
+2016,SOM,Somalia,all ages,0.0,0.0,590.0
+2016,SOM,Somalia,child,0.0,0.0,0.0
+2016,SSD,South Sudan,all ages,14000.0,11000.0,17000.0
+2016,SSD,South Sudan,child,2600.0,1900.0,3400.0
+2016,SWZ,Eswatini,all ages,8400.0,7400.0,9500.0
+2016,SWZ,Eswatini,child,640.0,0.0,760.0
+2016,TCD,Chad,all ages,6400.0,4500.0,8600.0
+2016,TCD,Chad,child,2100.0,1500.0,2800.0
+2016,TGO,Togo,all ages,3600.0,2600.0,4900.0
+2016,TGO,Togo,child,720.0,550.0,1100.0
+2016,TUN,Tunisia,all ages,550.0,0.0,960.0
+2016,TUN,Tunisia,child,0.0,0.0,0.0
+2016,TZA,United Republic of Tanzania,all ages,110000.0,98000.0,130000.0
+2016,TZA,United Republic of Tanzania,child,12000.0,9300.0,13000.0
+2016,UGA,Uganda,all ages,69000.0,60000.0,83000.0
+2016,UGA,Uganda,child,11000.0,9800.0,12000.0
+2016,ZAF,South Africa,all ages,260000.0,230000.0,290000.0
+2016,ZAF,South Africa,child,12000.0,10000.0,28000.0
+2016,ZMB,Zambia,all ages,75000.0,69000.0,85000.0
+2016,ZMB,Zambia,child,9500.0,7800.0,11000.0
+2016,ZWE,Zimbabwe,all ages,39000.0,33000.0,50000.0
+2016,ZWE,Zimbabwe,child,7400.0,5000.0,8900.0
+2017,AGO,Angola,all ages,27000.0,23000.0,32000.0
+2017,AGO,Angola,child,8800.0,7300.0,10000.0
+2017,BDI,Burundi,all ages,1900.0,1200.0,3000.0
+2017,BDI,Burundi,child,0.0,0.0,0.0
+2017,BEN,Benin,all ages,2400.0,1600.0,3500.0
+2017,BEN,Benin,child,550.0,0.0,830.0
+2017,BFA,Burkina Faso,all ages,3200.0,2300.0,4300.0
+2017,BFA,Burkina Faso,child,1500.0,1100.0,1900.0
+2017,BWA,Botswana,all ages,9200.0,8400.0,9800.0
+2017,BWA,Botswana,child,0.0,0.0,530.0
+2017,CAF,Central African Republic,all ages,6500.0,4200.0,9500.0
+2017,CAF,Central African Republic,child,1700.0,1200.0,2300.0
+2017,CIV,Cote dIvoire,all ages,14000.0,9300.0,21000.0
+2017,CIV,Cote dIvoire,child,2700.0,1900.0,4100.0
+2017,CMR,Cameroon,all ages,21000.0,17000.0,28000.0
+2017,CMR,Cameroon,child,2800.0,2000.0,3800.0
+2017,COD,Democratic Republic of the Congo,all ages,33000.0,24000.0,46000.0
+2017,COD,Democratic Republic of the Congo,child,8700.0,6400.0,11000.0
+2017,COG,Congo,all ages,9500.0,6400.0,13000.0
+2017,COG,Congo,child,2100.0,1500.0,2700.0
+2017,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2017,CPV,Cape Verde,child,0.0,0.0,0.0
+2017,DJI,Djibouti,all ages,0.0,0.0,580.0
+2017,DJI,Djibouti,child,0.0,0.0,0.0
+2017,DZA,Algeria,all ages,1500.0,1300.0,1800.0
+2017,DZA,Algeria,child,0.0,0.0,0.0
+2017,EGY,Egypt,all ages,3900.0,2700.0,5600.0
+2017,EGY,Egypt,child,0.0,0.0,0.0
+2017,ERI,Eritrea,all ages,0.0,0.0,560.0
+2017,ERI,Eritrea,child,0.0,0.0,0.0
+2017,ETH,Ethiopia,all ages,15000.0,8400.0,29000.0
+2017,ETH,Ethiopia,child,4200.0,2200.0,10000.0
+2017,GAB,Gabon,all ages,2600.0,1700.0,3800.0
+2017,GAB,Gabon,child,0.0,0.0,730.0
+2017,GHA,Ghana,all ages,20000.0,16000.0,26000.0
+2017,GHA,Ghana,child,3300.0,2500.0,4400.0
+2017,GIN,Guinea,all ages,8800.0,7000.0,11000.0
+2017,GIN,Guinea,child,2600.0,2200.0,3000.0
+2017,GMB,Gambia,all ages,1700.0,1200.0,2400.0
+2017,GMB,Gambia,child,0.0,0.0,0.0
+2017,GNB,Guinea-Bissau,all ages,1600.0,1100.0,2100.0
+2017,GNB,Guinea-Bissau,child,0.0,0.0,0.0
+2017,KEN,Kenya,all ages,30000.0,19000.0,46000.0
+2017,KEN,Kenya,child,6800.0,4700.0,11000.0
+2017,LBY,Libya,all ages,0.0,0.0,0.0
+2017,LBY,Libya,child,0.0,0.0,0.0
+2017,LSO,Lesotho,all ages,9100.0,7600.0,11000.0
+2017,LSO,Lesotho,child,1000.0,670.0,1300.0
+2017,MAR,Morocco,all ages,1200.0,1000.0,1500.0
+2017,MAR,Morocco,child,0.0,0.0,0.0
+2017,MDG,Madagascar,all ages,6200.0,4500.0,8500.0
+2017,MDG,Madagascar,child,690.0,540.0,890.0
+2017,MLI,Mali,all ages,6200.0,4700.0,8500.0
+2017,MLI,Mali,child,1600.0,1200.0,2200.0
+2017,MOZ,Mozambique,all ages,130000.0,120000.0,150000.0
+2017,MOZ,Mozambique,child,24000.0,18000.0,28000.0
+2017,MRT,Mauritania,all ages,0.0,0.0,0.0
+2017,MRT,Mauritania,child,0.0,0.0,0.0
+2017,MWI,Malawi,all ages,30000.0,27000.0,36000.0
+2017,MWI,Malawi,child,5200.0,3900.0,6500.0
+2017,NAM,Namibia,all ages,6900.0,5700.0,9000.0
+2017,NAM,Namibia,child,600.0,0.0,890.0
+2017,NER,Niger,all ages,1300.0,1000.0,1700.0
+2017,NER,Niger,child,550.0,0.0,690.0
+2017,RWA,Rwanda,all ages,4900.0,3800.0,7500.0
+2017,RWA,Rwanda,child,760.0,540.0,1100.0
+2017,SDN,Sudan,all ages,3500.0,2500.0,5400.0
+2017,SDN,Sudan,child,580.0,0.0,800.0
+2017,SEN,Senegal,all ages,1600.0,1500.0,1900.0
+2017,SEN,Senegal,child,0.0,0.0,0.0
+2017,SLE,Sierra Leone,all ages,5400.0,4200.0,7100.0
+2017,SLE,Sierra Leone,child,1200.0,840.0,1500.0
+2017,SOM,Somalia,all ages,0.0,0.0,570.0
+2017,SOM,Somalia,child,0.0,0.0,0.0
+2017,SSD,South Sudan,all ages,11000.0,8900.0,14000.0
+2017,SSD,South Sudan,child,1600.0,970.0,2200.0
+2017,SWZ,Eswatini,all ages,7200.0,6400.0,8300.0
+2017,SWZ,Eswatini,child,650.0,0.0,770.0
+2017,TCD,Chad,all ages,5700.0,4000.0,7600.0
+2017,TCD,Chad,child,1900.0,1300.0,2500.0
+2017,TGO,Togo,all ages,4000.0,2800.0,5400.0
+2017,TGO,Togo,child,880.0,560.0,1200.0
+2017,TUN,Tunisia,all ages,540.0,0.0,940.0
+2017,TUN,Tunisia,child,0.0,0.0,0.0
+2017,TZA,United Republic of Tanzania,all ages,100000.0,92000.0,130000.0
+2017,TZA,United Republic of Tanzania,child,9000.0,7400.0,11000.0
+2017,UGA,Uganda,all ages,61000.0,53000.0,76000.0
+2017,UGA,Uganda,child,9600.0,8700.0,10000.0
+2017,ZAF,South Africa,all ages,240000.0,210000.0,260000.0
+2017,ZAF,South Africa,child,12000.0,9400.0,28000.0
+2017,ZMB,Zambia,all ages,75000.0,68000.0,85000.0
+2017,ZMB,Zambia,child,8600.0,6800.0,10000.0
+2017,ZWE,Zimbabwe,all ages,31000.0,26000.0,40000.0
+2017,ZWE,Zimbabwe,child,5900.0,4200.0,7600.0
+2018,AGO,Angola,all ages,27000.0,22000.0,31000.0
+2018,AGO,Angola,child,8200.0,6600.0,9500.0
+2018,BDI,Burundi,all ages,1500.0,980.0,2500.0
+2018,BDI,Burundi,child,0.0,0.0,0.0
+2018,BEN,Benin,all ages,2100.0,1400.0,3100.0
+2018,BEN,Benin,child,520.0,0.0,700.0
+2018,BFA,Burkina Faso,all ages,3400.0,2500.0,4500.0
+2018,BFA,Burkina Faso,child,1300.0,980.0,1700.0
+2018,BWA,Botswana,all ages,8200.0,7400.0,9000.0
+2018,BWA,Botswana,child,0.0,0.0,0.0
+2018,CAF,Central African Republic,all ages,5900.0,3700.0,9000.0
+2018,CAF,Central African Republic,child,1500.0,1000.0,2100.0
+2018,CIV,Cote dIvoire,all ages,13000.0,8200.0,20000.0
+2018,CIV,Cote dIvoire,child,2500.0,1800.0,3600.0
+2018,CMR,Cameroon,all ages,20000.0,16000.0,27000.0
+2018,CMR,Cameroon,child,2900.0,2000.0,3700.0
+2018,COD,Democratic Republic of the Congo,all ages,33000.0,24000.0,46000.0
+2018,COD,Democratic Republic of the Congo,child,9300.0,7000.0,12000.0
+2018,COG,Congo,all ages,9800.0,6300.0,14000.0
+2018,COG,Congo,child,2200.0,1600.0,2800.0
+2018,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2018,CPV,Cape Verde,child,0.0,0.0,0.0
+2018,DJI,Djibouti,all ages,0.0,0.0,730.0
+2018,DJI,Djibouti,child,0.0,0.0,0.0
+2018,DZA,Algeria,all ages,1600.0,1400.0,2000.0
+2018,DZA,Algeria,child,0.0,0.0,0.0
+2018,EGY,Egypt,all ages,4100.0,2800.0,5900.0
+2018,EGY,Egypt,child,0.0,0.0,0.0
+2018,ERI,Eritrea,all ages,0.0,0.0,620.0
+2018,ERI,Eritrea,child,0.0,0.0,0.0
+2018,ETH,Ethiopia,all ages,14000.0,7900.0,28000.0
+2018,ETH,Ethiopia,child,3700.0,1900.0,8800.0
+2018,GAB,Gabon,all ages,2500.0,1600.0,3900.0
+2018,GAB,Gabon,child,0.0,0.0,670.0
+2018,GHA,Ghana,all ages,19000.0,15000.0,26000.0
+2018,GHA,Ghana,child,3000.0,2100.0,4100.0
+2018,GIN,Guinea,all ages,8700.0,6700.0,11000.0
+2018,GIN,Guinea,child,2500.0,2100.0,3000.0
+2018,GMB,Gambia,all ages,1600.0,1000.0,2300.0
+2018,GMB,Gambia,child,0.0,0.0,0.0
+2018,GNB,Guinea-Bissau,all ages,1600.0,1100.0,2100.0
+2018,GNB,Guinea-Bissau,child,0.0,0.0,0.0
+2018,KEN,Kenya,all ages,25000.0,16000.0,39000.0
+2018,KEN,Kenya,child,4700.0,3200.0,7800.0
+2018,LBY,Libya,all ages,0.0,0.0,0.0
+2018,LBY,Libya,child,0.0,0.0,0.0
+2018,LSO,Lesotho,all ages,7400.0,5900.0,9300.0
+2018,LSO,Lesotho,child,690.0,0.0,900.0
+2018,MAR,Morocco,all ages,1200.0,1000.0,1500.0
+2018,MAR,Morocco,child,0.0,0.0,0.0
+2018,MDG,Madagascar,all ages,6700.0,4800.0,9200.0
+2018,MDG,Madagascar,child,710.0,520.0,990.0
+2018,MLI,Mali,all ages,6100.0,4600.0,8400.0
+2018,MLI,Mali,child,1500.0,1200.0,2100.0
+2018,MOZ,Mozambique,all ages,130000.0,110000.0,150000.0
+2018,MOZ,Mozambique,child,23000.0,18000.0,27000.0
+2018,MRT,Mauritania,all ages,0.0,0.0,0.0
+2018,MRT,Mauritania,child,0.0,0.0,0.0
+2018,MWI,Malawi,all ages,25000.0,21000.0,30000.0
+2018,MWI,Malawi,child,3700.0,3300.0,4900.0
+2018,NAM,Namibia,all ages,6100.0,5100.0,8000.0
+2018,NAM,Namibia,child,550.0,0.0,800.0
+2018,NER,Niger,all ages,1400.0,1100.0,1700.0
+2018,NER,Niger,child,550.0,0.0,670.0
+2018,RWA,Rwanda,all ages,4500.0,3200.0,7200.0
+2018,RWA,Rwanda,child,720.0,0.0,1100.0
+2018,SDN,Sudan,all ages,3700.0,2600.0,5800.0
+2018,SDN,Sudan,child,610.0,0.0,840.0
+2018,SEN,Senegal,all ages,1700.0,1600.0,2000.0
+2018,SEN,Senegal,child,0.0,0.0,0.0
+2018,SLE,Sierra Leone,all ages,5000.0,3800.0,6700.0
+2018,SLE,Sierra Leone,child,1100.0,700.0,1500.0
+2018,SOM,Somalia,all ages,0.0,0.0,520.0
+2018,SOM,Somalia,child,0.0,0.0,0.0
+2018,SSD,South Sudan,all ages,9100.0,6600.0,12000.0
+2018,SSD,South Sudan,child,1100.0,680.0,1600.0
+2018,SWZ,Eswatini,all ages,6900.0,5800.0,8000.0
+2018,SWZ,Eswatini,child,0.0,0.0,550.0
+2018,TCD,Chad,all ages,5400.0,3600.0,7300.0
+2018,TCD,Chad,child,1600.0,1000.0,2200.0
+2018,TGO,Togo,all ages,3500.0,2400.0,4700.0
+2018,TGO,Togo,child,710.0,510.0,1100.0
+2018,TUN,Tunisia,all ages,580.0,0.0,1000.0
+2018,TUN,Tunisia,child,0.0,0.0,0.0
+2018,TZA,United Republic of Tanzania,all ages,99000.0,88000.0,120000.0
+2018,TZA,United Republic of Tanzania,child,8000.0,6600.0,10000.0
+2018,UGA,Uganda,all ages,53000.0,45000.0,67000.0
+2018,UGA,Uganda,child,7300.0,6700.0,8100.0
+2018,ZAF,South Africa,all ages,220000.0,200000.0,250000.0
+2018,ZAF,South Africa,child,11000.0,8700.0,29000.0
+2018,ZMB,Zambia,all ages,70000.0,64000.0,80000.0
+2018,ZMB,Zambia,child,8100.0,6300.0,9400.0
+2018,ZWE,Zimbabwe,all ages,24000.0,20000.0,31000.0
+2018,ZWE,Zimbabwe,child,5000.0,3600.0,6400.0
+2019,AGO,Angola,all ages,25000.0,21000.0,30000.0
+2019,AGO,Angola,child,6900.0,5500.0,8500.0
+2019,BDI,Burundi,all ages,1500.0,990.0,2300.0
+2019,BDI,Burundi,child,0.0,0.0,0.0
+2019,BEN,Benin,all ages,2100.0,1400.0,3100.0
+2019,BEN,Benin,child,650.0,0.0,930.0
+2019,BFA,Burkina Faso,all ages,3000.0,2100.0,4100.0
+2019,BFA,Burkina Faso,child,1100.0,800.0,1500.0
+2019,BWA,Botswana,all ages,7300.0,6400.0,8000.0
+2019,BWA,Botswana,child,0.0,0.0,0.0
+2019,CAF,Central African Republic,all ages,5400.0,3100.0,8500.0
+2019,CAF,Central African Republic,child,1300.0,840.0,1900.0
+2019,CIV,Cote dIvoire,all ages,11000.0,6700.0,17000.0
+2019,CIV,Cote dIvoire,child,1600.0,820.0,2700.0
+2019,CMR,Cameroon,all ages,20000.0,16000.0,27000.0
+2019,CMR,Cameroon,child,3700.0,2700.0,4500.0
+2019,COD,Democratic Republic of the Congo,all ages,34000.0,24000.0,46000.0
+2019,COD,Democratic Republic of the Congo,child,8500.0,6200.0,11000.0
+2019,COG,Congo,all ages,11000.0,6900.0,15000.0
+2019,COG,Congo,child,2200.0,1600.0,2900.0
+2019,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2019,CPV,Cape Verde,child,0.0,0.0,0.0
+2019,DJI,Djibouti,all ages,0.0,0.0,690.0
+2019,DJI,Djibouti,child,0.0,0.0,0.0
+2019,DZA,Algeria,all ages,1800.0,1400.0,2100.0
+2019,DZA,Algeria,child,0.0,0.0,0.0
+2019,EGY,Egypt,all ages,4400.0,2900.0,6400.0
+2019,EGY,Egypt,child,0.0,0.0,0.0
+2019,ERI,Eritrea,all ages,0.0,0.0,620.0
+2019,ERI,Eritrea,child,0.0,0.0,0.0
+2019,ETH,Ethiopia,all ages,12000.0,7200.0,25000.0
+2019,ETH,Ethiopia,child,3300.0,1700.0,7800.0
+2019,GAB,Gabon,all ages,2400.0,1400.0,3800.0
+2019,GAB,Gabon,child,0.0,0.0,650.0
+2019,GHA,Ghana,all ages,19000.0,14000.0,25000.0
+2019,GHA,Ghana,child,2500.0,1600.0,3600.0
+2019,GIN,Guinea,all ages,7500.0,5500.0,10000.0
+2019,GIN,Guinea,child,1700.0,1300.0,2200.0
+2019,GMB,Gambia,all ages,1600.0,1000.0,2300.0
+2019,GMB,Gambia,child,0.0,0.0,0.0
+2019,GNB,Guinea-Bissau,all ages,1400.0,930.0,1900.0
+2019,GNB,Guinea-Bissau,child,0.0,0.0,0.0
+2019,KEN,Kenya,all ages,25000.0,16000.0,38000.0
+2019,KEN,Kenya,child,4600.0,3100.0,7500.0
+2019,LBY,Libya,all ages,0.0,0.0,0.0
+2019,LBY,Libya,child,0.0,0.0,0.0
+2019,LSO,Lesotho,all ages,6600.0,5300.0,8400.0
+2019,LSO,Lesotho,child,520.0,0.0,690.0
+2019,MAR,Morocco,all ages,1200.0,980.0,1500.0
+2019,MAR,Morocco,child,0.0,0.0,0.0
+2019,MDG,Madagascar,all ages,7200.0,5200.0,9900.0
+2019,MDG,Madagascar,child,760.0,550.0,1000.0
+2019,MLI,Mali,all ages,5700.0,4300.0,8100.0
+2019,MLI,Mali,child,1600.0,1200.0,2200.0
+2019,MOZ,Mozambique,all ages,130000.0,110000.0,150000.0
+2019,MOZ,Mozambique,child,22000.0,17000.0,26000.0
+2019,MRT,Mauritania,all ages,0.0,0.0,0.0
+2019,MRT,Mauritania,child,0.0,0.0,0.0
+2019,MWI,Malawi,all ages,22000.0,19000.0,27000.0
+2019,MWI,Malawi,child,3900.0,3000.0,5100.0
+2019,NAM,Namibia,all ages,5100.0,4200.0,6700.0
+2019,NAM,Namibia,child,510.0,0.0,750.0
+2019,NER,Niger,all ages,1400.0,1100.0,1700.0
+2019,NER,Niger,child,570.0,0.0,690.0
+2019,RWA,Rwanda,all ages,3700.0,2500.0,6300.0
+2019,RWA,Rwanda,child,0.0,0.0,750.0
+2019,SDN,Sudan,all ages,3800.0,2700.0,6200.0
+2019,SDN,Sudan,child,640.0,0.0,910.0
+2019,SEN,Senegal,all ages,1700.0,1600.0,2000.0
+2019,SEN,Senegal,child,0.0,0.0,0.0
+2019,SLE,Sierra Leone,all ages,4800.0,3500.0,6500.0
+2019,SLE,Sierra Leone,child,1100.0,720.0,1500.0
+2019,SOM,Somalia,all ages,0.0,0.0,530.0
+2019,SOM,Somalia,child,0.0,0.0,0.0
+2019,SSD,South Sudan,all ages,9400.0,7000.0,12000.0
+2019,SSD,South Sudan,child,1400.0,900.0,1900.0
+2019,SWZ,Eswatini,all ages,6300.0,5300.0,7300.0
+2019,SWZ,Eswatini,child,0.0,0.0,0.0
+2019,TCD,Chad,all ages,5100.0,3300.0,7200.0
+2019,TCD,Chad,child,1400.0,850.0,2000.0
+2019,TGO,Togo,all ages,3300.0,2300.0,4700.0
+2019,TGO,Togo,child,660.0,0.0,1000.0
+2019,TUN,Tunisia,all ages,590.0,0.0,1100.0
+2019,TUN,Tunisia,child,0.0,0.0,0.0
+2019,TZA,United Republic of Tanzania,all ages,91000.0,81000.0,110000.0
+2019,TZA,United Republic of Tanzania,child,7600.0,5700.0,9500.0
+2019,UGA,Uganda,all ages,50000.0,42000.0,64000.0
+2019,UGA,Uganda,child,6900.0,6300.0,7700.0
+2019,ZAF,South Africa,all ages,210000.0,190000.0,230000.0
+2019,ZAF,South Africa,child,9700.0,7800.0,27000.0
+2019,ZMB,Zambia,all ages,59000.0,52000.0,69000.0
+2019,ZMB,Zambia,child,5500.0,4800.0,6700.0
+2019,ZWE,Zimbabwe,all ages,21000.0,17000.0,27000.0
+2019,ZWE,Zimbabwe,child,4500.0,3100.0,5600.0
+2020,AGO,Angola,all ages,25000.0,21000.0,30000.0
+2020,AGO,Angola,child,6500.0,5200.0,8200.0
+2020,BDI,Burundi,all ages,1400.0,960.0,2100.0
+2020,BDI,Burundi,child,0.0,0.0,540.0
+2020,BEN,Benin,all ages,1900.0,1300.0,2800.0
+2020,BEN,Benin,child,550.0,0.0,840.0
+2020,BFA,Burkina Faso,all ages,2800.0,1900.0,3800.0
+2020,BFA,Burkina Faso,child,930.0,650.0,1300.0
+2020,BWA,Botswana,all ages,6700.0,5800.0,7400.0
+2020,BWA,Botswana,child,0.0,0.0,0.0
+2020,CAF,Central African Republic,all ages,5200.0,2900.0,8300.0
+2020,CAF,Central African Republic,child,1400.0,840.0,2000.0
+2020,CIV,Cote dIvoire,all ages,11000.0,6700.0,17000.0
+2020,CIV,Cote dIvoire,child,1800.0,930.0,2900.0
+2020,CMR,Cameroon,all ages,19000.0,15000.0,26000.0
+2020,CMR,Cameroon,child,3500.0,2500.0,4200.0
+2020,COD,Democratic Republic of the Congo,all ages,32000.0,22000.0,44000.0
+2020,COD,Democratic Republic of the Congo,child,8800.0,6300.0,11000.0
+2020,COG,Congo,all ages,11000.0,6600.0,15000.0
+2020,COG,Congo,child,2200.0,1500.0,3000.0
+2020,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2020,CPV,Cape Verde,child,0.0,0.0,0.0
+2020,DJI,Djibouti,all ages,0.0,0.0,740.0
+2020,DJI,Djibouti,child,0.0,0.0,0.0
+2020,DZA,Algeria,all ages,1900.0,1600.0,2400.0
+2020,DZA,Algeria,child,0.0,0.0,0.0
+2020,EGY,Egypt,all ages,4700.0,3100.0,6900.0
+2020,EGY,Egypt,child,0.0,0.0,0.0
+2020,ERI,Eritrea,all ages,0.0,0.0,540.0
+2020,ERI,Eritrea,child,0.0,0.0,0.0
+2020,ETH,Ethiopia,all ages,11000.0,6000.0,21000.0
+2020,ETH,Ethiopia,child,2200.0,1200.0,5400.0
+2020,GAB,Gabon,all ages,2200.0,1300.0,3700.0
+2020,GAB,Gabon,child,0.0,0.0,560.0
+2020,GHA,Ghana,all ages,19000.0,14000.0,27000.0
+2020,GHA,Ghana,child,2300.0,1500.0,3400.0
+2020,GIN,Guinea,all ages,7000.0,4900.0,9700.0
+2020,GIN,Guinea,child,1600.0,1200.0,2100.0
+2020,GMB,Gambia,all ages,1500.0,980.0,2300.0
+2020,GMB,Gambia,child,0.0,0.0,0.0
+2020,GNB,Guinea-Bissau,all ages,1300.0,850.0,1800.0
+2020,GNB,Guinea-Bissau,child,0.0,0.0,0.0
+2020,KEN,Kenya,all ages,24000.0,15000.0,37000.0
+2020,KEN,Kenya,child,4400.0,3000.0,7200.0
+2020,LBY,Libya,all ages,0.0,0.0,0.0
+2020,LBY,Libya,child,0.0,0.0,0.0
+2020,LSO,Lesotho,all ages,5800.0,4600.0,7500.0
+2020,LSO,Lesotho,child,0.0,0.0,560.0
+2020,MAR,Morocco,all ages,1200.0,950.0,1400.0
+2020,MAR,Morocco,child,0.0,0.0,0.0
+2020,MDG,Madagascar,all ages,7900.0,5500.0,11000.0
+2020,MDG,Madagascar,child,830.0,630.0,1100.0
+2020,MLI,Mali,all ages,5300.0,3900.0,7600.0
+2020,MLI,Mali,child,1500.0,1100.0,2000.0
+2020,MOZ,Mozambique,all ages,130000.0,110000.0,150000.0
+2020,MOZ,Mozambique,child,23000.0,17000.0,28000.0
+2020,MRT,Mauritania,all ages,0.0,0.0,0.0
+2020,MRT,Mauritania,child,0.0,0.0,0.0
+2020,MWI,Malawi,all ages,19000.0,16000.0,24000.0
+2020,MWI,Malawi,child,3100.0,2600.0,4200.0
+2020,NAM,Namibia,all ages,4500.0,3500.0,6000.0
+2020,NAM,Namibia,child,0.0,0.0,540.0
+2020,NER,Niger,all ages,1400.0,1100.0,1800.0
+2020,NER,Niger,child,590.0,500.0,730.0
+2020,RWA,Rwanda,all ages,3200.0,2000.0,5500.0
+2020,RWA,Rwanda,child,0.0,0.0,580.0
+2020,SDN,Sudan,all ages,4400.0,3000.0,7300.0
+2020,SDN,Sudan,child,670.0,0.0,970.0
+2020,SEN,Senegal,all ages,1900.0,1700.0,2100.0
+2020,SEN,Senegal,child,0.0,0.0,0.0
+2020,SLE,Sierra Leone,all ages,4800.0,3400.0,6600.0
+2020,SLE,Sierra Leone,child,1200.0,750.0,1600.0
+2020,SOM,Somalia,all ages,0.0,0.0,0.0
+2020,SOM,Somalia,child,0.0,0.0,0.0
+2020,SSD,South Sudan,all ages,8900.0,6500.0,12000.0
+2020,SSD,South Sudan,child,1300.0,830.0,1900.0
+2020,SWZ,Eswatini,all ages,5300.0,4400.0,6200.0
+2020,SWZ,Eswatini,child,0.0,0.0,0.0
+2020,TCD,Chad,all ages,4700.0,2900.0,6600.0
+2020,TCD,Chad,child,1300.0,770.0,1900.0
+2020,TGO,Togo,all ages,3200.0,2000.0,4800.0
+2020,TGO,Togo,child,760.0,0.0,1100.0
+2020,TUN,Tunisia,all ages,610.0,0.0,1100.0
+2020,TUN,Tunisia,child,0.0,0.0,0.0
+2020,TZA,United Republic of Tanzania,all ages,77000.0,67000.0,97000.0
+2020,TZA,United Republic of Tanzania,child,7000.0,5400.0,8900.0
+2020,UGA,Uganda,all ages,48000.0,39000.0,62000.0
+2020,UGA,Uganda,child,6400.0,5800.0,7300.0
+2020,ZAF,South Africa,all ages,200000.0,180000.0,220000.0
+2020,ZAF,South Africa,child,9000.0,7400.0,25000.0
+2020,ZMB,Zambia,all ages,48000.0,41000.0,57000.0
+2020,ZMB,Zambia,child,4700.0,3700.0,6000.0
+2020,ZWE,Zimbabwe,all ages,18000.0,15000.0,23000.0
+2020,ZWE,Zimbabwe,child,4300.0,2700.0,5500.0
+2021,AGO,Angola,all ages,24000.0,20000.0,29000.0
+2021,AGO,Angola,child,6000.0,4700.0,7500.0
+2021,BDI,Burundi,all ages,1500.0,1100.0,2300.0
+2021,BDI,Burundi,child,0.0,0.0,660.0
+2021,BEN,Benin,all ages,1800.0,1200.0,2600.0
+2021,BEN,Benin,child,610.0,0.0,850.0
+2021,BFA,Burkina Faso,all ages,3100.0,2100.0,4300.0
+2021,BFA,Burkina Faso,child,820.0,560.0,1200.0
+2021,BWA,Botswana,all ages,5500.0,4700.0,6300.0
+2021,BWA,Botswana,child,0.0,0.0,0.0
+2021,CAF,Central African Republic,all ages,5100.0,2900.0,8300.0
+2021,CAF,Central African Republic,child,1300.0,790.0,2000.0
+2021,CIV,Cote dIvoire,all ages,10000.0,6100.0,16000.0
+2021,CIV,Cote dIvoire,child,900.0,550.0,1800.0
+2021,CMR,Cameroon,all ages,17000.0,13000.0,24000.0
+2021,CMR,Cameroon,child,3000.0,2100.0,3800.0
+2021,COD,Democratic Republic of the Congo,all ages,30000.0,20000.0,45000.0
+2021,COD,Democratic Republic of the Congo,child,9000.0,6600.0,12000.0
+2021,COG,Congo,all ages,11000.0,6500.0,16000.0
+2021,COG,Congo,child,2100.0,1300.0,2900.0
+2021,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2021,CPV,Cape Verde,child,0.0,0.0,0.0
+2021,DJI,Djibouti,all ages,0.0,0.0,700.0
+2021,DJI,Djibouti,child,0.0,0.0,0.0
+2021,DZA,Algeria,all ages,2100.0,1700.0,2700.0
+2021,DZA,Algeria,child,0.0,0.0,0.0
+2021,EGY,Egypt,all ages,5100.0,3300.0,7600.0
+2021,EGY,Egypt,child,0.0,0.0,0.0
+2021,ERI,Eritrea,all ages,0.0,0.0,620.0
+2021,ERI,Eritrea,child,0.0,0.0,0.0
+2021,ETH,Ethiopia,all ages,13000.0,7200.0,25000.0
+2021,ETH,Ethiopia,child,2500.0,1300.0,5900.0
+2021,GAB,Gabon,all ages,2300.0,1300.0,3700.0
+2021,GAB,Gabon,child,0.0,0.0,650.0
+2021,GHA,Ghana,all ages,18000.0,13000.0,26000.0
+2021,GHA,Ghana,child,2000.0,1200.0,3000.0
+2021,GIN,Guinea,all ages,6600.0,4400.0,9300.0
+2021,GIN,Guinea,child,1500.0,1100.0,2000.0
+2021,GMB,Gambia,all ages,1400.0,870.0,2100.0
+2021,GMB,Gambia,child,0.0,0.0,0.0
+2021,GNB,Guinea-Bissau,all ages,1300.0,840.0,1800.0
+2021,GNB,Guinea-Bissau,child,0.0,0.0,0.0
+2021,KEN,Kenya,all ages,24000.0,15000.0,37000.0
+2021,KEN,Kenya,child,4800.0,3300.0,8000.0
+2021,LBY,Libya,all ages,0.0,0.0,0.0
+2021,LBY,Libya,child,0.0,0.0,0.0
+2021,LSO,Lesotho,all ages,4800.0,3700.0,6200.0
+2021,LSO,Lesotho,child,0.0,0.0,580.0
+2021,MAR,Morocco,all ages,1200.0,950.0,1400.0
+2021,MAR,Morocco,child,0.0,0.0,0.0
+2021,MDG,Madagascar,all ages,8600.0,6000.0,12000.0
+2021,MDG,Madagascar,child,870.0,630.0,1200.0
+2021,MLI,Mali,all ages,5100.0,3600.0,7300.0
+2021,MLI,Mali,child,1300.0,970.0,1900.0
+2021,MOZ,Mozambique,all ages,120000.0,100000.0,140000.0
+2021,MOZ,Mozambique,child,21000.0,15000.0,25000.0
+2021,MRT,Mauritania,all ages,0.0,0.0,0.0
+2021,MRT,Mauritania,child,0.0,0.0,0.0
+2021,MWI,Malawi,all ages,16000.0,13000.0,21000.0
+2021,MWI,Malawi,child,3100.0,2300.0,4100.0
+2021,NAM,Namibia,all ages,4900.0,3800.0,6500.0
+2021,NAM,Namibia,child,530.0,0.0,650.0
+2021,NER,Niger,all ages,1400.0,1100.0,1800.0
+2021,NER,Niger,child,590.0,0.0,710.0
+2021,RWA,Rwanda,all ages,3400.0,2200.0,5700.0
+2021,RWA,Rwanda,child,0.0,0.0,570.0
+2021,SDN,Sudan,all ages,4900.0,3400.0,8200.0
+2021,SDN,Sudan,child,700.0,510.0,1000.0
+2021,SEN,Senegal,all ages,2300.0,2100.0,2600.0
+2021,SEN,Senegal,child,0.0,0.0,0.0
+2021,SLE,Sierra Leone,all ages,4100.0,2700.0,5900.0
+2021,SLE,Sierra Leone,child,910.0,600.0,1300.0
+2021,SOM,Somalia,all ages,0.0,0.0,0.0
+2021,SOM,Somalia,child,0.0,0.0,0.0
+2021,SSD,South Sudan,all ages,8800.0,6400.0,12000.0
+2021,SSD,South Sudan,child,1400.0,860.0,1800.0
+2021,SWZ,Eswatini,all ages,5300.0,4400.0,6400.0
+2021,SWZ,Eswatini,child,0.0,0.0,0.0
+2021,TCD,Chad,all ages,4300.0,2700.0,6500.0
+2021,TCD,Chad,child,1200.0,740.0,1800.0
+2021,TGO,Togo,all ages,3300.0,2000.0,5000.0
+2021,TGO,Togo,child,740.0,0.0,1100.0
+2021,TUN,Tunisia,all ages,610.0,0.0,1200.0
+2021,TUN,Tunisia,child,0.0,0.0,0.0
+2021,TZA,United Republic of Tanzania,all ages,71000.0,61000.0,91000.0
+2021,TZA,United Republic of Tanzania,child,7900.0,5600.0,9600.0
+2021,UGA,Uganda,all ages,48000.0,39000.0,64000.0
+2021,UGA,Uganda,child,6100.0,5400.0,7100.0
+2021,ZAF,South Africa,all ages,190000.0,170000.0,210000.0
+2021,ZAF,South Africa,child,8600.0,7100.0,24000.0
+2021,ZMB,Zambia,all ages,42000.0,34000.0,52000.0
+2021,ZMB,Zambia,child,5000.0,3600.0,6100.0
+2021,ZWE,Zimbabwe,all ages,21000.0,18000.0,27000.0
+2021,ZWE,Zimbabwe,child,4500.0,2900.0,5700.0
+2022,AGO,Angola,all ages,22000.0,18000.0,27000.0
+2022,AGO,Angola,child,5300.0,4000.0,6700.0
+2022,BDI,Burundi,all ages,1400.0,1000.0,2100.0
+2022,BDI,Burundi,child,0.0,0.0,630.0
+2022,BEN,Benin,all ages,1800.0,1100.0,2600.0
+2022,BEN,Benin,child,590.0,0.0,840.0
+2022,BFA,Burkina Faso,all ages,2900.0,2000.0,4400.0
+2022,BFA,Burkina Faso,child,750.0,520.0,1100.0
+2022,BWA,Botswana,all ages,4700.0,3900.0,5500.0
+2022,BWA,Botswana,child,0.0,0.0,0.0
+2022,CAF,Central African Republic,all ages,4700.0,2500.0,8200.0
+2022,CAF,Central African Republic,child,1400.0,850.0,2100.0
+2022,CIV,Cote dIvoire,all ages,9200.0,5200.0,16000.0
+2022,CIV,Cote dIvoire,child,930.0,0.0,1900.0
+2022,CMR,Cameroon,all ages,14000.0,10000.0,21000.0
+2022,CMR,Cameroon,child,2900.0,2100.0,3600.0
+2022,COD,Democratic Republic of the Congo,all ages,29000.0,18000.0,46000.0
+2022,COD,Democratic Republic of the Congo,child,9200.0,6600.0,12000.0
+2022,COG,Congo,all ages,11000.0,6100.0,17000.0
+2022,COG,Congo,child,2100.0,1300.0,3000.0
+2022,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2022,CPV,Cape Verde,child,0.0,0.0,0.0
+2022,DJI,Djibouti,all ages,0.0,0.0,670.0
+2022,DJI,Djibouti,child,0.0,0.0,0.0
+2022,DZA,Algeria,all ages,2300.0,1900.0,2900.0
+2022,DZA,Algeria,child,0.0,0.0,0.0
+2022,EGY,Egypt,all ages,5300.0,3400.0,8200.0
+2022,EGY,Egypt,child,0.0,0.0,0.0
+2022,ERI,Eritrea,all ages,0.0,0.0,640.0
+2022,ERI,Eritrea,child,0.0,0.0,0.0
+2022,ETH,Ethiopia,all ages,9700.0,5500.0,19000.0
+2022,ETH,Ethiopia,child,2100.0,1100.0,5100.0
+2022,GAB,Gabon,all ages,2000.0,1100.0,3700.0
+2022,GAB,Gabon,child,0.0,0.0,590.0
+2022,GHA,Ghana,all ages,17000.0,12000.0,26000.0
+2022,GHA,Ghana,child,1900.0,1100.0,2800.0
+2022,GIN,Guinea,all ages,6000.0,3900.0,8700.0
+2022,GIN,Guinea,child,1500.0,1100.0,2000.0
+2022,GMB,Gambia,all ages,1300.0,750.0,2100.0
+2022,GMB,Gambia,child,0.0,0.0,0.0
+2022,GNB,Guinea-Bissau,all ages,1100.0,710.0,1700.0
+2022,GNB,Guinea-Bissau,child,0.0,0.0,0.0
+2022,KEN,Kenya,all ages,23000.0,15000.0,36000.0
+2022,KEN,Kenya,child,4600.0,3100.0,7500.0
+2022,LBY,Libya,all ages,0.0,0.0,520.0
+2022,LBY,Libya,child,0.0,0.0,0.0
+2022,LSO,Lesotho,all ages,3900.0,2900.0,5200.0
+2022,LSO,Lesotho,child,0.0,0.0,700.0
+2022,MAR,Morocco,all ages,1000.0,840.0,1300.0
+2022,MAR,Morocco,child,0.0,0.0,0.0
+2022,MDG,Madagascar,all ages,9100.0,6200.0,13000.0
+2022,MDG,Madagascar,child,930.0,660.0,1300.0
+2022,MLI,Mali,all ages,4800.0,3300.0,7000.0
+2022,MLI,Mali,child,1300.0,990.0,1900.0
+2022,MOZ,Mozambique,all ages,110000.0,89000.0,130000.0
+2022,MOZ,Mozambique,child,18000.0,13000.0,23000.0
+2022,MRT,Mauritania,all ages,0.0,0.0,0.0
+2022,MRT,Mauritania,child,0.0,0.0,0.0
+2022,MWI,Malawi,all ages,15000.0,12000.0,19000.0
+2022,MWI,Malawi,child,3300.0,2200.0,4200.0
+2022,NAM,Namibia,all ages,4400.0,3500.0,5800.0
+2022,NAM,Namibia,child,0.0,0.0,710.0
+2022,NER,Niger,all ages,1200.0,980.0,1700.0
+2022,NER,Niger,child,540.0,0.0,660.0
+2022,RWA,Rwanda,all ages,3100.0,2000.0,5300.0
+2022,RWA,Rwanda,child,0.0,0.0,730.0
+2022,SDN,Sudan,all ages,5900.0,4000.0,9900.0
+2022,SDN,Sudan,child,730.0,520.0,1100.0
+2022,SEN,Senegal,all ages,3100.0,3000.0,3500.0
+2022,SEN,Senegal,child,0.0,0.0,0.0
+2022,SLE,Sierra Leone,all ages,3500.0,2200.0,5400.0
+2022,SLE,Sierra Leone,child,1000.0,570.0,1500.0
+2022,SOM,Somalia,all ages,0.0,0.0,0.0
+2022,SOM,Somalia,child,0.0,0.0,0.0
+2022,SSD,South Sudan,all ages,8300.0,5800.0,11000.0
+2022,SSD,South Sudan,child,1300.0,790.0,1700.0
+2022,SWZ,Eswatini,all ages,4400.0,3500.0,5300.0
+2022,SWZ,Eswatini,child,0.0,0.0,0.0
+2022,TCD,Chad,all ages,4400.0,2700.0,6500.0
+2022,TCD,Chad,child,1400.0,860.0,1900.0
+2022,TGO,Togo,all ages,3200.0,1900.0,5000.0
+2022,TGO,Togo,child,680.0,0.0,1100.0
+2022,TUN,Tunisia,all ages,640.0,0.0,1300.0
+2022,TUN,Tunisia,child,0.0,0.0,0.0
+2022,TZA,United Republic of Tanzania,all ages,62000.0,52000.0,81000.0
+2022,TZA,United Republic of Tanzania,child,7600.0,5400.0,9300.0
+2022,UGA,Uganda,all ages,45000.0,35000.0,60000.0
+2022,UGA,Uganda,child,6800.0,5700.0,8800.0
+2022,ZAF,South Africa,all ages,180000.0,160000.0,200000.0
+2022,ZAF,South Africa,child,7900.0,6500.0,24000.0
+2022,ZMB,Zambia,all ages,38000.0,30000.0,47000.0
+2022,ZMB,Zambia,child,4800.0,3400.0,5900.0
+2022,ZWE,Zimbabwe,all ages,17000.0,14000.0,22000.0
+2022,ZWE,Zimbabwe,child,4000.0,2600.0,5000.0
+2023,AGO,Angola,all ages,21000.0,17000.0,26000.0
+2023,AGO,Angola,child,4800.0,3600.0,6500.0
+2023,BDI,Burundi,all ages,1300.0,990.0,2000.0
+2023,BDI,Burundi,child,0.0,0.0,640.0
+2023,BEN,Benin,all ages,1500.0,910.0,2300.0
+2023,BEN,Benin,child,570.0,0.0,840.0
+2023,BFA,Burkina Faso,all ages,3100.0,2100.0,4600.0
+2023,BFA,Burkina Faso,child,930.0,660.0,1300.0
+2023,BWA,Botswana,all ages,4300.0,3500.0,5300.0
+2023,BWA,Botswana,child,0.0,0.0,0.0
+2023,CAF,Central African Republic,all ages,4100.0,2100.0,7800.0
+2023,CAF,Central African Republic,child,1300.0,740.0,2000.0
+2023,CIV,Cote dIvoire,all ages,9000.0,4900.0,15000.0
+2023,CIV,Cote dIvoire,child,1100.0,0.0,2000.0
+2023,CMR,Cameroon,all ages,13000.0,9600.0,19000.0
+2023,CMR,Cameroon,child,2300.0,1600.0,3000.0
+2023,COD,Democratic Republic of the Congo,all ages,27000.0,15000.0,45000.0
+2023,COD,Democratic Republic of the Congo,child,9000.0,6100.0,12000.0
+2023,COG,Congo,all ages,11000.0,5500.0,17000.0
+2023,COG,Congo,child,2000.0,1100.0,3000.0
+2023,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2023,CPV,Cape Verde,child,0.0,0.0,0.0
+2023,DJI,Djibouti,all ages,0.0,0.0,750.0
+2023,DJI,Djibouti,child,0.0,0.0,0.0
+2023,DZA,Algeria,all ages,2600.0,2000.0,3200.0
+2023,DZA,Algeria,child,0.0,0.0,0.0
+2023,EGY,Egypt,all ages,5900.0,3700.0,9600.0
+2023,EGY,Egypt,child,0.0,0.0,0.0
+2023,ERI,Eritrea,all ages,0.0,0.0,580.0
+2023,ERI,Eritrea,child,0.0,0.0,0.0
+2023,ETH,Ethiopia,all ages,8700.0,5000.0,17000.0
+2023,ETH,Ethiopia,child,1500.0,810.0,3600.0
+2023,GAB,Gabon,all ages,2000.0,1100.0,3800.0
+2023,GAB,Gabon,child,0.0,0.0,660.0
+2023,GHA,Ghana,all ages,17000.0,11000.0,26000.0
+2023,GHA,Ghana,child,1800.0,1000.0,2900.0
+2023,GIN,Guinea,all ages,5300.0,3200.0,8100.0
+2023,GIN,Guinea,child,1300.0,840.0,1900.0
+2023,GMB,Gambia,all ages,1200.0,720.0,2100.0
+2023,GMB,Gambia,child,0.0,0.0,0.0
+2023,GNB,Guinea-Bissau,all ages,1100.0,660.0,1600.0
+2023,GNB,Guinea-Bissau,child,0.0,0.0,0.0
+2023,KEN,Kenya,all ages,20000.0,13000.0,31000.0
+2023,KEN,Kenya,child,3600.0,2500.0,6000.0
+2023,LBY,Libya,all ages,0.0,0.0,560.0
+2023,LBY,Libya,child,0.0,0.0,0.0
+2023,LSO,Lesotho,all ages,3800.0,2700.0,5000.0
+2023,LSO,Lesotho,child,0.0,0.0,710.0
+2023,MAR,Morocco,all ages,1000.0,830.0,1300.0
+2023,MAR,Morocco,child,0.0,0.0,0.0
+2023,MDG,Madagascar,all ages,14000.0,11000.0,19000.0
+2023,MDG,Madagascar,child,1100.0,820.0,1600.0
+2023,MLI,Mali,all ages,4300.0,3000.0,6400.0
+2023,MLI,Mali,child,1300.0,890.0,1800.0
+2023,MOZ,Mozambique,all ages,100000.0,81000.0,120000.0
+2023,MOZ,Mozambique,child,18000.0,12000.0,23000.0
+2023,MRT,Mauritania,all ages,0.0,0.0,0.0
+2023,MRT,Mauritania,child,0.0,0.0,0.0
+2023,MWI,Malawi,all ages,13000.0,10000.0,17000.0
+2023,MWI,Malawi,child,2600.0,2000.0,3400.0
+2023,NAM,Namibia,all ages,4700.0,3800.0,5900.0
+2023,NAM,Namibia,child,660.0,0.0,890.0
+2023,NER,Niger,all ages,1200.0,930.0,1600.0
+2023,NER,Niger,child,0.0,0.0,620.0
+2023,RWA,Rwanda,all ages,2900.0,1900.0,4500.0
+2023,RWA,Rwanda,child,540.0,0.0,820.0
+2023,SDN,Sudan,all ages,6700.0,4400.0,11000.0
+2023,SDN,Sudan,child,800.0,560.0,1200.0
+2023,SEN,Senegal,all ages,3100.0,2900.0,3400.0
+2023,SEN,Senegal,child,0.0,0.0,0.0
+2023,SLE,Sierra Leone,all ages,2900.0,1800.0,4700.0
+2023,SLE,Sierra Leone,child,740.0,540.0,1200.0
+2023,SSD,South Sudan,all ages,7500.0,5000.0,11000.0
+2023,SSD,South Sudan,child,1100.0,610.0,1600.0
+2023,SWZ,Eswatini,all ages,4600.0,3800.0,5600.0
+2023,SWZ,Eswatini,child,0.0,0.0,0.0
+2023,TCD,Chad,all ages,4000.0,2400.0,6400.0
+2023,TCD,Chad,child,1100.0,600.0,1700.0
+2023,TGO,Togo,all ages,3200.0,1900.0,5000.0
+2023,TGO,Togo,child,630.0,0.0,1000.0
+2023,TUN,Tunisia,all ages,660.0,0.0,1400.0
+2023,TUN,Tunisia,child,0.0,0.0,0.0
+2023,TZA,United Republic of Tanzania,all ages,54000.0,42000.0,74000.0
+2023,TZA,United Republic of Tanzania,child,5600.0,3800.0,7200.0
+2023,UGA,Uganda,all ages,40000.0,30000.0,57000.0
+2023,UGA,Uganda,child,5400.0,4600.0,6700.0
+2023,ZAF,South Africa,all ages,170000.0,150000.0,190000.0
+2023,ZAF,South Africa,child,7200.0,6000.0,19000.0
+2023,ZMB,Zambia,all ages,33000.0,25000.0,42000.0
+2023,ZMB,Zambia,child,3900.0,2600.0,5000.0
+2023,ZWE,Zimbabwe,all ages,15000.0,12000.0,20000.0
+2023,ZWE,Zimbabwe,child,3200.0,1900.0,4200.0
+2024,AGO,Angola,all ages,21000.0,17000.0,25000.0
+2024,AGO,Angola,child,4500.0,3200.0,6000.0
+2024,BDI,Burundi,all ages,1400.0,1100.0,2100.0
+2024,BDI,Burundi,child,0.0,0.0,640.0
+2024,BEN,Benin,all ages,1400.0,840.0,2200.0
+2024,BEN,Benin,child,0.0,0.0,710.0
+2024,BFA,Burkina Faso,all ages,3000.0,2000.0,4300.0
+2024,BFA,Burkina Faso,child,800.0,530.0,1200.0
+2024,BWA,Botswana,all ages,4200.0,3300.0,5200.0
+2024,BWA,Botswana,child,0.0,0.0,0.0
+2024,CAF,Central African Republic,all ages,4000.0,1900.0,8300.0
+2024,CAF,Central African Republic,child,1000.0,540.0,1900.0
+2024,CIV,Cote dIvoire,all ages,8200.0,4200.0,15000.0
+2024,CIV,Cote dIvoire,child,1000.0,0.0,2000.0
+2024,CMR,Cameroon,all ages,13000.0,10000.0,18000.0
+2024,CMR,Cameroon,child,2700.0,2000.0,3400.0
+2024,COD,Democratic Republic of the Congo,all ages,26000.0,15000.0,44000.0
+2024,COD,Democratic Republic of the Congo,child,9100.0,6000.0,12000.0
+2024,COG,Congo,all ages,11000.0,5000.0,17000.0
+2024,COG,Congo,child,1900.0,890.0,3100.0
+2024,CPV,Cape Verde,all ages,0.0,0.0,0.0
+2024,CPV,Cape Verde,child,0.0,0.0,0.0
+2024,DJI,Djibouti,all ages,0.0,0.0,720.0
+2024,DJI,Djibouti,child,0.0,0.0,0.0
+2024,DZA,Algeria,all ages,2800.0,2200.0,3500.0
+2024,DZA,Algeria,child,0.0,0.0,0.0
+2024,EGY,Egypt,all ages,6300.0,3900.0,11000.0
+2024,EGY,Egypt,child,0.0,0.0,0.0
+2024,ERI,Eritrea,all ages,0.0,0.0,570.0
+2024,ERI,Eritrea,child,0.0,0.0,0.0
+2024,ETH,Ethiopia,all ages,8000.0,4600.0,16000.0
+2024,ETH,Ethiopia,child,1300.0,690.0,3100.0
+2024,GAB,Gabon,all ages,1700.0,840.0,3300.0
+2024,GAB,Gabon,child,0.0,0.0,570.0
+2024,GHA,Ghana,all ages,15000.0,10000.0,25000.0
+2024,GHA,Ghana,child,1200.0,850.0,2300.0
+2024,GIN,Guinea,all ages,4700.0,2600.0,7400.0
+2024,GIN,Guinea,child,1100.0,630.0,1600.0
+2024,GMB,Gambia,all ages,1100.0,620.0,2000.0
+2024,GMB,Gambia,child,0.0,0.0,0.0
+2024,GNB,Guinea-Bissau,all ages,880.0,530.0,1400.0
+2024,GNB,Guinea-Bissau,child,0.0,0.0,0.0
+2024,KEN,Kenya,all ages,20000.0,13000.0,31000.0
+2024,KEN,Kenya,child,4300.0,3000.0,7200.0
+2024,LBY,Libya,all ages,0.0,0.0,570.0
+2024,LBY,Libya,child,0.0,0.0,0.0
+2024,LSO,Lesotho,all ages,3200.0,2300.0,4200.0
+2024,LSO,Lesotho,child,0.0,0.0,0.0
+2024,MAR,Morocco,all ages,990.0,790.0,1300.0
+2024,MAR,Morocco,child,0.0,0.0,0.0
+2024,MDG,Madagascar,all ages,16000.0,12000.0,22000.0
+2024,MDG,Madagascar,child,1300.0,920.0,1700.0
+2024,MLI,Mali,all ages,4000.0,2900.0,6200.0
+2024,MLI,Mali,child,1200.0,830.0,1700.0
+2024,MOZ,Mozambique,all ages,92000.0,73000.0,110000.0
+2024,MOZ,Mozambique,child,16000.0,11000.0,21000.0
+2024,MRT,Mauritania,all ages,0.0,0.0,0.0
+2024,MRT,Mauritania,child,0.0,0.0,0.0
+2024,MWI,Malawi,all ages,12000.0,9300.0,16000.0
+2024,MWI,Malawi,child,2200.0,1700.0,2900.0
+2024,NAM,Namibia,all ages,4500.0,3600.0,5800.0
+2024,NAM,Namibia,child,0.0,0.0,610.0
+2024,NER,Niger,all ages,1200.0,880.0,1600.0
+2024,NER,Niger,child,0.0,0.0,550.0
+2024,RWA,Rwanda,all ages,2600.0,1700.0,3800.0
+2024,RWA,Rwanda,child,0.0,0.0,530.0
+2024,SDN,Sudan,all ages,6800.0,4400.0,12000.0
+2024,SDN,Sudan,child,820.0,570.0,1300.0
+2024,SEN,Senegal,all ages,3000.0,2800.0,3400.0
+2024,SEN,Senegal,child,0.0,0.0,0.0
+2024,SLE,Sierra Leone,all ages,2500.0,1500.0,4600.0
+2024,SLE,Sierra Leone,child,660.0,510.0,1100.0
+2024,SSD,South Sudan,all ages,7500.0,4700.0,11000.0
+2024,SSD,South Sudan,child,1100.0,650.0,1700.0
+2024,SWZ,Eswatini,all ages,4200.0,3400.0,5200.0
+2024,SWZ,Eswatini,child,0.0,0.0,0.0
+2024,TCD,Chad,all ages,4300.0,2700.0,6800.0
+2024,TCD,Chad,child,1300.0,750.0,1900.0
+2024,TGO,Togo,all ages,3100.0,1800.0,4700.0
+2024,TGO,Togo,child,530.0,0.0,880.0
+2024,TUN,Tunisia,all ages,700.0,0.0,1500.0
+2024,TUN,Tunisia,child,0.0,0.0,0.0
+2024,TZA,United Republic of Tanzania,all ages,43000.0,33000.0,61000.0
+2024,TZA,United Republic of Tanzania,child,5100.0,3200.0,6900.0
+2024,UGA,Uganda,all ages,37000.0,26000.0,52000.0
+2024,UGA,Uganda,child,4700.0,4000.0,5700.0
+2024,ZAF,South Africa,all ages,170000.0,150000.0,190000.0
+2024,ZAF,South Africa,child,6600.0,5500.0,18000.0
+2024,ZMB,Zambia,all ages,30000.0,23000.0,40000.0
+2024,ZMB,Zambia,child,3000.0,2200.0,4100.0
+2024,ZWE,Zimbabwe,all ages,15000.0,12000.0,20000.0
+2024,ZWE,Zimbabwe,child,2800.0,1700.0,3800.0
