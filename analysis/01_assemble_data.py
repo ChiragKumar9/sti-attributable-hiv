@@ -453,9 +453,12 @@ hiv_treatment_rate = hiv_treatment_rate.rename(
 
 # not all art is effective -- data from real studies suggests ~78% in Africa
 hiv_treatment_rate = hiv_treatment_rate.with_columns(
-    val=pl.col("val") * params["art_efficacy"],
-    lower=pl.col("lower") * params["art_efficacy"],
-    upper=pl.col("upper") * params["art_efficacy"],
+    treatment_proportion=pl.col("treatment_proportion")
+    * params["art_efficacy"],
+    treatment_proportion_lower=pl.col("treatment_proportion_lower")
+    * params["art_efficacy"],
+    treatment_proportion_upper=pl.col("treatment_proportion_upper")
+    * params["art_efficacy"],
 )
 
 # join to existing data on basis of year and country_code and sex
@@ -1156,17 +1159,10 @@ sti_cols = [
     "trichomoniasis_prevalence_upper",
 ]
 
-# we're actually going to do the same method for population because we don't have
-# future population projections
+# Fit linear trend using only data from 2015 onwards, then extrapolate
+recent_cutoff = 2015
 
-pop_cols = [
-    "un_pop",
-]
-
-# Fit linear trend using only data from 2019 onwards, then extrapolate
-recent_cutoff = 2014
-
-for col in [*sti_cols, *pop_cols]:
+for col in sti_cols:
     data = (
         data.with_columns(
             # Mark recent non-null values for fitting
@@ -1231,14 +1227,26 @@ for col in [*sti_cols, *pop_cols]:
         )
     )
 
-# for treatment proportions and frac sought treatment, let's do last value carried
-# forward
+# for treatment proportions for antiretrovrial therapy, in our projections, we
+# use the 95-95-95 scenario
+# this assumes that 95% of people living with HIV know their status, 95% are on
+# ART, and 95% have viral load suppression
+# as a cascade, this means that we expect 0.95 * 0.95 * 0.95 = 85.7% coverage at
+# least
+# so for countries that are greater than this value, we keep them at that value
+# for countries below that value, we linearly interpolate between their last
+# known value and 85.7% by 2030.
+TARGET_COVERAGE = 0.95**3
+TARGET_YEAR = 2030
+LAST_OBSERVED_YEAR = 2023
+
 treatment_cols = [
     "treatment_proportion",
     "treatment_proportion_lower",
     "treatment_proportion_upper",
 ]
 
+# First, forward fill the 2023 values
 data = data.with_columns(
     **{
         col: pl.col(col)
@@ -1248,7 +1256,28 @@ data = data.with_columns(
     }
 )
 
-# frac sought treatment is null filled with 100%
+# For each column, interpolate to at least 85.7% by 2030
+for col in treatment_cols:
+    data = data.with_columns(
+        pl.when(pl.col("year") <= LAST_OBSERVED_YEAR)
+        .then(pl.col(col))  # Keep original values up to 2023
+        .otherwise(
+            # Get the 2023 value (last observed)
+            pl.col(col)
+            +
+            # Calculate the interpolation
+            (
+                pl.max_horizontal(pl.col(col), pl.lit(TARGET_COVERAGE))
+                - pl.col(col)
+            )
+            * (pl.col("year") - LAST_OBSERVED_YEAR)
+            / (TARGET_YEAR - LAST_OBSERVED_YEAR)
+        )
+        .alias(col)
+    )
+
+# frac sought treatment is null filled with 100% because we are modeling
+# the effect of expanding antibiotic access, so 100% with symptoms get an abx
 data = data.with_columns(
     frac_sought_treatment=pl.col("frac_sought_treatment").fill_null(1)
 )
@@ -1275,9 +1304,20 @@ data = data.with_columns(
 
 # now we need to calculate unaids prevalence and unaids prevalence year end
 # prevalence = prevalence + incidence - deaths
-# assume that without treatment, hiv is 100% fatal within 10 years
-# but we are only extrapolating over a few years, so we assume that the number of
-# deaths is negligable
+# people who are on treatment (recall that our treatment estimates are really
+# people who have viral suppression) do not die
+# people who are off treatment die but are unlikely to die over a short time
+# HIV survival curves show that the if people die in a short time frame from
+# hiv, they do so in the first year. Let us assume that all deaths from incidence
+# HIV cases occur in the first year among people not on treatment
+# from the Survival rate of AIDS disease and mortality in HIV-infected patients: a meta-analysis
+# paper we use in 05, we know that the first two year survival is 0.82 (0.70, 0.95)
+# we do know that the majority of those are in the first year, so let us assume
+# that is the first year survival rate
+
+# so in totality, the incidence cases who progress to being included in prevalence
+# are those who are treated plus those who are not treated * (1 - 0.18)
+# written cleanly: incidence progressing = incidence * (treatment_proportion + (1 - treatment_proportion) * 0.82)
 
 # so prevalence = prevalence in the last year + incidence
 # so we forward fill prevalence, and then we add the cumulative sum of incidence
@@ -1291,8 +1331,13 @@ data = data.with_columns(
     unaids_prevalence_number_upper=pl.col("unaids_prevalence_number_upper")
     .fill_null(strategy="forward")
     .over(["country_code", "sex"]),
-    cumulative_incidence=pl.col("unaids_inc_num_proj")
-    .fill_null(0)
+    cumulative_incidence=(
+        pl.col("unaids_inc_num_proj").fill_null(0)
+        * (
+            pl.col("treatment_proportion")
+            + (1 - pl.col("treatment_proportion")) * 0.82
+        )
+    )
     .cum_sum()
     .over(["country_code", "sex"]),
 ).with_columns(
