@@ -650,10 +650,9 @@ data = data.with_columns(
 
 # add a column that is a true or false for whether this row will be used in the UNAIDS analysis
 # false for the following countries: Liberia, Equatorial Guinea, São Tomé and Príncipe
-# Cabo Verde, Cote dIvoire
-countries_to_exclude = ["LBR", "GNQ", "STP", "CPV", "CIV"]
+# Cabo Verde
+countries_to_exclude = ["LBR", "GNQ", "STP", "CPV"]
 
-# TODO - why are we excluding Cote dIvoire
 data = data.with_columns(
     cols_unaids_analysis=pl.when(
         pl.col("country_code").is_in(countries_to_exclude)
@@ -825,39 +824,37 @@ data = data.drop("cause")  # cause column is all hiv, remenant from merge
 # PR = MSM_prev / all_male_prev (from source data / GBD data)
 # where f is the 15% MSM fraction:
 # all_male_prev = f * MSM_prev + (1-f) * non_MSM_prev
-# Solving for each group:
-#   non_MSM_prev = all_male_prev / (1 - f + f * PR)
-#   MSM_prev     = PR * all_male_prev / (1 - f + f * PR)
-# Use lower/upper bounds on PR
+# recall that PR * all_male_prev = MSM_prev
+# we substitute this into the total eqn:
+# all_male_prev = f * PR * all_male_prev + (1 - f) * non_MSM_prev
+# all_male_prev - f * PR * all_male_prev = (1 - f) * non_MSM_prev
+# non_MSM_prev = all_male_prev * (1 - f * PR) / (1 - f)
+# MSM_prev = PR * all_male_prev
 
 
 def _msm(pr, f, all_male_prev):
-    return (all_male_prev * pr) / (1 - f + f * pr)
+    return pr * all_male_prev
 
 
 def _non_msm(pr, f, all_male_prev):
-    return all_male_prev / (1 - f + f * pr)
+    return all_male_prev * (1 - f * pr) / (1 - f)
 
 
 msm_sti_prev = pl.read_csv(os.path.join(data_dir, "MSM_STI_prev.csv"))
-msm_sti_prev = msm_sti_prev.rename(
-    {col: col.strip() for col in msm_sti_prev.columns}
-)
-msm_sti_prev = msm_sti_prev.with_columns(
-    pl.col("Pathogen").str.strip_chars(),
-    pl.col("Population").str.strip_chars(),
-)
 
-# calculate the PR values - swap upper and lower bounds for non MSM since higher PR means lower non MSM prev
+# calculate the PR values
 gc_msm_row = msm_sti_prev.filter(
     (pl.col("Pathogen") == "GC") & (pl.col("Population") == "MSM, 15-49")
 )
 gc_all_row = msm_sti_prev.filter(
     (pl.col("Pathogen") == "GC") & (pl.col("Population") == "All men, 15-49")
 )
+# we calculate paired bounds here because higher MSM prevalance drives higher
+# all men prevalence -- these aren't independent things
+# but this does mean lower / lower ends up giving us the upper bounds
 pr_gc = gc_msm_row["Value"].item() / gc_all_row["Value"].item()
-pr_gc_lower = gc_msm_row["Lower"].item() / gc_all_row["Upper"].item()
-pr_gc_upper = gc_msm_row["Upper"].item() / gc_all_row["Lower"].item()
+pr_gc_upper = gc_msm_row["Lower"].item() / gc_all_row["Lower"].item()
+pr_gc_lower = gc_msm_row["Upper"].item() / gc_all_row["Upper"].item()
 
 chlamydia_msm_row = msm_sti_prev.filter(
     (pl.col("Pathogen") == "Chlamydia")
@@ -870,11 +867,11 @@ chlamydia_all_row = msm_sti_prev.filter(
 pr_chlamydia = (
     chlamydia_msm_row["Value"].item() / chlamydia_all_row["Value"].item()
 )
-pr_chlamydia_lower = (
-    chlamydia_msm_row["Lower"].item() / chlamydia_all_row["Upper"].item()
-)
 pr_chlamydia_upper = (
-    chlamydia_msm_row["Upper"].item() / chlamydia_all_row["Lower"].item()
+    chlamydia_msm_row["Lower"].item() / chlamydia_all_row["Lower"].item()
+)
+pr_chlamydia_lower = (
+    chlamydia_msm_row["Upper"].item() / chlamydia_all_row["Upper"].item()
 )
 
 # GC
@@ -904,7 +901,6 @@ data = data.with_columns(
     .otherwise(pl.col("gc_prevalence_upper"))
     .alias("gc_prevalence_upper")
 )
-
 
 # Chlamydia
 data = data.with_columns(
@@ -966,7 +962,11 @@ unaids_proj = pl.read_csv(
 )
 unaids_proj = unaids_proj.filter(pl.col("metric") == "new_infections")
 
-# Use the 98-98-99 treatment scenario for everything
+# Use the 95-95-95 treatment scenario for everything
+# there are two variants of this scenario
+# one with 2024 levels of protection (i.e., condoms),
+# and the other where protection reaches its 2030 goal
+# we use the 2024 level of prevention because cuts in global funding
 unaids_proj = unaids_proj.with_columns(
     value=pl.when(pl.col("year") <= 2024)
     .then(pl.col("95-95-95 treatment, 2024 level of prevention"))
