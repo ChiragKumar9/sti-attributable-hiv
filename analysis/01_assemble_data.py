@@ -1274,7 +1274,7 @@ for col in sti_cols:
         )
     )
 
-# for treatment proportions for antiretrovrial therapy, in our projections, we
+# for treatment proportions for antiretroviral therapy, in our projections, we
 # use the 95-95-95 scenario
 # this assumes that 95% of people living with HIV know their status, 95% are on
 # ART, and 95% have viral load suppression
