@@ -708,6 +708,7 @@ def plot_attributable_hiv_burden_region(hiv, ax, fig):
 def plot_attributable_hiv_burden_sex_pathogen(hiv, ax, fig):
     # for males, the chlamydia value is at 0, but we still want to show a small
     # bar for visualization purposes
+    # same with the gonorrhea bar
     hiv = hiv.with_columns(
         pl.when(
             (
@@ -720,7 +721,14 @@ def plot_attributable_hiv_burden_sex_pathogen(hiv, ax, fig):
         .otherwise(
             pl.col("unaids_hiv_incidence_number_attributable_to_chlamydia")
         )
-        .alias("unaids_hiv_incidence_number_attributable_to_chlamydia")
+        .alias("unaids_hiv_incidence_number_attributable_to_chlamydia"),
+        pl.when(
+            (pl.col("unaids_hiv_incidence_number_attributable_to_gc") <= 10)
+            & (pl.col("sex") == "Male")
+        )
+        .then(pl.lit(10))
+        .otherwise(pl.col("unaids_hiv_incidence_number_attributable_to_gc"))
+        .alias("unaids_hiv_incidence_number_attributable_to_gc"),
     )
 
     # bar graph of attributable burden in 2023 by sex and pathogen
@@ -858,8 +866,8 @@ def plot_attributable_hiv_burden_sex_pathogen(hiv, ax, fig):
     ax.set_xlabel("Group")
     ax.set_ylabel("Attributable HIV incidence, 2023 (%)")
     ax.legend()
-    # minor y ticks every 1%
-    ax.yaxis.set_minor_locator(ticker.MultipleLocator(1))
+    # minor y ticks every 5%
+    ax.yaxis.set_minor_locator(ticker.MultipleLocator(5))
 
 
 def plot_attributable_hiv_burden_region_pathogen(hiv, ax, fig):
@@ -1188,10 +1196,118 @@ def plot_sensitivity_country_bar(
     )
 
 
-def plot_attributable_hiv_burden_age_pathogen(hiv, ax, fig):
-    ax.set_xlabel("Age")
-    ax.set_ylabel("Attributable HIV incidence, 2023 (%)")
+def plot_attributable_hiv_burden_age_pathogen(hiv, ax, sex, fig):
+    # we need the age groups in a particular order
+
+    age_groups = ["15-24", "25-49", "50+"]
+    hiv = hiv.with_columns(pl.col("age_group").cast(pl.Enum(age_groups)))
+    hiv = hiv.sort("age_group")
+
+    hiv = hiv.group_by(["age_group"], maintain_order=True).agg(
+        gc=pl.sum("unaids_hiv_incidence_number_attributable_to_gc")
+        / pl.sum("unaids_incidence_number")
+        * 100,
+        gc_upper=pl.sum("unaids_hiv_incidence_number_attributable_to_gc_upper")
+        / pl.sum("unaids_incidence_number_upper")
+        * 100,
+        gc_lower=pl.sum("unaids_hiv_incidence_number_attributable_to_gc_lower")
+        / pl.sum("unaids_incidence_number_lower")
+        * 100,
+        syphilis=pl.sum("unaids_hiv_incidence_number_attributable_to_syphilis")
+        / pl.sum("unaids_incidence_number")
+        * 100,
+        syphilis_upper=pl.sum(
+            "unaids_hiv_incidence_number_attributable_to_syphilis_upper"
+        )
+        / pl.sum("unaids_incidence_number_upper")
+        * 100,
+        syphilis_lower=pl.sum(
+            "unaids_hiv_incidence_number_attributable_to_syphilis_lower"
+        )
+        / pl.sum("unaids_incidence_number_lower")
+        * 100,
+        trichomoniasis=pl.sum(
+            "unaids_hiv_incidence_number_attributable_to_trichomoniasis"
+        )
+        / pl.sum("unaids_incidence_number")
+        * 100,
+        trichomoniasis_upper=pl.sum(
+            "unaids_hiv_incidence_number_attributable_to_trichomoniasis_upper"
+        )
+        / pl.sum("unaids_incidence_number_upper")
+        * 100,
+        trichomoniasis_lower=pl.sum(
+            "unaids_hiv_incidence_number_attributable_to_trichomoniasis_lower"
+        )
+        / pl.sum("unaids_incidence_number_lower")
+        * 100,
+        chlamydia=pl.sum(
+            "unaids_hiv_incidence_number_attributable_to_chlamydia"
+        )
+        / pl.sum("unaids_incidence_number")
+        * 100,
+        chlamydia_upper=pl.sum(
+            "unaids_hiv_incidence_number_attributable_to_chlamydia_upper"
+        )
+        / pl.sum("unaids_incidence_number_upper")
+        * 100,
+        chlamydia_lower=pl.sum(
+            "unaids_hiv_incidence_number_attributable_to_chlamydia_lower"
+        )
+        / pl.sum("unaids_incidence_number_lower")
+        * 100,
+    )
+
+    stis = ["gc", "chlamydia", "syphilis", "trichomoniasis"]
+    sti_names = {
+        "gc": "Gonorrhea",
+        "syphilis": "Syphilis",
+        "trichomoniasis": "Trichomoniasis",
+        "chlamydia": "Chlamydia",
+    }
+
+    colors = {
+        "gc": "firebrick",
+        "syphilis": "purple",
+        "trichomoniasis": "gold",
+        "chlamydia": "forestgreen",
+    }
+
+    ages = hiv["age_group"].unique(maintain_order=True).to_list()
+
+    x = np.arange(len(ages))
+
+    width = 0.2
+    # Determine which STIs to plot for this sex
+    if sex == "Female":
+        stis = stis
+        offsets = [width * (i - 1.5) for i in range(4)]  # 4 bars centered
+    else:  # Heterosexual male or MSM
+        stis = [s for s in stis if s != "trichomoniasis"]
+        offsets = [width * (i - 1) for i in range(3)]  # 3 bars centered
+
+    for i, pathogen in enumerate(stis):
+        offset = offsets[i]  # center the group of bars
+        ax.bar(
+            x + offset,
+            hiv[pathogen],
+            yerr=[
+                hiv[pathogen] - hiv[f"{pathogen}_lower"],
+                hiv[f"{pathogen}_upper"] - hiv[pathogen],
+            ],
+            capsize=5,
+            width=width,
+            label=sti_names[pathogen],
+            color=colors[pathogen],
+        )
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(ages)
+    ax.set_xlabel("Age group")
+    ax.set_ylabel(f"Attributable HIV incidence among {sex.lower()}s, 2023 (%)")
     ax.legend()
+    # add minor y ticks every 1%
+    ax.yaxis.set_minor_locator(ticker.MultipleLocator(1))
 
 
 if __name__ == "__main__":
@@ -1247,6 +1363,7 @@ if __name__ == "__main__":
     ax = ax_new
 
     hiv = pl.read_csv(os.path.join(output_dir, "hiv_attributable_to_stis.csv"))
+    hiv = hiv.filter(pl.col("year") <= 2023)
 
     ax_full_1.text(
         -0.08,
@@ -1383,6 +1500,11 @@ if __name__ == "__main__":
     )
     plot_attributable_hiv_burden_sex_pathogen(hiv, ax[2, 0], fig)  # type: ignore
 
+    hiv = pl.read_csv(
+        os.path.join(output_dir, "hiv_attributable_to_stis_age_stratified.csv")
+    )
+    hiv = hiv.filter(pl.col("year") <= 2023)
+
     # by age-pathogen for males
     ax[2, 1].text(  # type: ignore
         -0.25,
@@ -1395,8 +1517,11 @@ if __name__ == "__main__":
         ha="right",
     )
     plot_attributable_hiv_burden_age_pathogen(
-        hiv.filter(pl.col("sex") != "Female"), ax[2, 1], fig
-    )  # type: ignore
+        hiv.filter(pl.col("sex") != "Female"),
+        ax[2, 1],  # type: ignore
+        "Male",
+        fig,
+    )
 
     # by age-pathogen for females
     ax[2, 2].text(  # type: ignore
@@ -1410,8 +1535,11 @@ if __name__ == "__main__":
         ha="right",
     )
     plot_attributable_hiv_burden_age_pathogen(
-        hiv.filter(pl.col("sex") == "Female"), ax[2, 2], fig
-    )  # type: ignore
+        hiv.filter(pl.col("sex") == "Female"),
+        ax[2, 2],  # type: ignore
+        "Female",
+        fig,
+    )
 
     fig.tight_layout()
 
