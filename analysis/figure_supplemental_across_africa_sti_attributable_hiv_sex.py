@@ -142,7 +142,7 @@ def plot_attributable_hiv_burden_sex(
     ax.set_xlabel("Year")
     ax.set_ylabel(label)
     if legend:
-        ax.legend()
+        ax.legend(edgecolor="black")
     ax.set_xticks([1990, 2000, 2010, 2020])
     ax.set_ylim(0)
     ax.yaxis.set_major_formatter(
@@ -166,15 +166,13 @@ if __name__ == "__main__":
             hiv = pl.read_csv(
                 os.path.join(output_dir, "hiv_attributable_to_stis.csv")
             )
+            hiv = hiv.filter(pl.col("year") <= 2023)
 
             if sti == "trichomoniasis":
-                # because trich is a long name
-                base_label = "HIV incidence attributable to\ntrichomoniasis "
-                # also remove men with trich
+                # remove men with trich
                 hiv = hiv.filter(pl.col("sex") != "Male")
                 hiv = hiv.filter(pl.col("sex") != "MSM")
-            else:
-                base_label = f"HIV incidence attributable to {sti_map[sti]}\n"
+            base_label = f"HIV incidence attributable to\n{sti_map[sti]}"
 
             # western africa
             ax[0, 0].text(  # type: ignore

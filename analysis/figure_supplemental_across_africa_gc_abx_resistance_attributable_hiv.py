@@ -1,9 +1,10 @@
 import os
 
 import matplotlib.pyplot as plt
+import numpy as np
 import polars as pl
 from matplotlib import rc
-from matplotlib.ticker import FuncFormatter
+from matplotlib.ticker import FuncFormatter, LogLocator
 
 data_dir = "data"
 output_dir = "outputs"
@@ -56,22 +57,37 @@ def sum_preserve_null(column: str) -> pl.Expr:
 def plot_attributable_hiv_burden_drug_resistance(
     hiv, ax, label, fig, legend=False
 ):
-    hiv = hiv.group_by(["year"]).agg(
-        sum_preserve_null("Ciprofloxacin_resistant_number"),
-        sum_preserve_null("Ciprofloxacin_resistant_number_lower"),
-        sum_preserve_null("Ciprofloxacin_resistant_number_upper"),
-        sum_preserve_null("Cefixime_resistant_number"),
-        sum_preserve_null("Cefixime_resistant_number_lower"),
-        sum_preserve_null("Cefixime_resistant_number_upper"),
-        sum_preserve_null("Azithromycin_resistant_number"),
-        sum_preserve_null("Azithromycin_resistant_number_lower"),
-        sum_preserve_null("Azithromycin_resistant_number_upper"),
-        sum_preserve_null("Ceftriaxone_resistant_number"),
-        sum_preserve_null("Ceftriaxone_resistant_number_lower"),
-        sum_preserve_null("Ceftriaxone_resistant_number_upper"),
-        pl.sum("hiv_incidence_number_attributable_to_gc"),
-        pl.sum("hiv_incidence_number_attributable_to_gc_upper"),
-        pl.sum("hiv_incidence_number_attributable_to_gc_lower"),
+    hiv = (
+        hiv.group_by(["year"])
+        .agg(
+            sum_preserve_null("Ciprofloxacin_resistant_number"),
+            sum_preserve_null("Ciprofloxacin_resistant_number_lower"),
+            sum_preserve_null("Ciprofloxacin_resistant_number_upper"),
+            sum_preserve_null("Cefixime_resistant_number"),
+            sum_preserve_null("Cefixime_resistant_number_lower"),
+            sum_preserve_null("Cefixime_resistant_number_upper"),
+            sum_preserve_null("Azithromycin_resistant_number"),
+            sum_preserve_null("Azithromycin_resistant_number_lower"),
+            sum_preserve_null("Azithromycin_resistant_number_upper"),
+            sum_preserve_null("Ceftriaxone_resistant_number"),
+            sum_preserve_null("Ceftriaxone_resistant_number_lower"),
+            sum_preserve_null("Ceftriaxone_resistant_number_upper"),
+            pl.sum("hiv_incidence_number_attributable_to_gc"),
+            pl.sum("hiv_incidence_number_attributable_to_gc_upper"),
+            pl.sum("hiv_incidence_number_attributable_to_gc_lower"),
+        )
+        .with_columns(
+            # any cefixime pre 2009 should be None so we don't plot the 0
+            Cefixime_resistant_number=pl.when(pl.col("year") < 2009)
+            .then(None)
+            .otherwise(pl.col("Cefixime_resistant_number")),
+            Cefixime_resistant_number_lower=pl.when(pl.col("year") < 2009)
+            .then(None)
+            .otherwise(pl.col("Cefixime_resistant_number_lower")),
+            Cefixime_resistant_number_upper=pl.when(pl.col("year") < 2009)
+            .then(None)
+            .otherwise(pl.col("Cefixime_resistant_number_upper")),
+        )
     )
     # mask all values at the attributable incidence
     hiv = hiv.with_columns(
@@ -214,11 +230,24 @@ def plot_attributable_hiv_burden_drug_resistance(
     ax.set_xlabel("Year")
     ax.set_ylabel(f"HIV incidence\nin {label} (N)")
     if legend:
-        ax.legend()
+        ax.legend(loc=(0, 1.0), edgecolor="black")
     ax.set_yscale("log")
     # make sure y axis ticks are not in scientific notation
+    # with nicely formatted including commas for thousands
     ax.get_yaxis().set_major_formatter(
-        FuncFormatter(lambda y, _: "{:g}".format(y))
+        FuncFormatter(lambda y, _: "{:,g}".format(y))
+    )
+    # minor y ticks
+    # Set major ticks at every order of magnitude (10^n)
+    ax.yaxis.set_major_locator(LogLocator(base=10.0, numticks=15))
+
+    # Set minor ticks at 2,3,4,5,6,7,8,9 times each order of magnitude
+    ax.yaxis.set_minor_locator(
+        LogLocator(
+            base=10.0,
+            subs=np.arange(2, 10),  # type: ignore
+            numticks=15,
+        )
     )
 
 
@@ -226,6 +255,8 @@ if __name__ == "__main__":
     fig, ax = setup_plot(2, 2)  # type: ignore
 
     hiv = pl.read_csv(os.path.join(output_dir, "hiv_attributable_to_stis.csv"))
+
+    hiv = hiv.filter(pl.col("year") >= 2008).filter(pl.col("year") <= 2023)
 
     # western africa
     ax[0, 0].text(  # type: ignore

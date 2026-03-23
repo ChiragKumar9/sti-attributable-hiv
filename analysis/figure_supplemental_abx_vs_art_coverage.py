@@ -66,11 +66,11 @@ def plot_abx_treatment_rates(df, ax, label, fig, legend=False):
     ax.set_xlabel("Year")
     ax.set_ylabel(label)
     if legend:
-        ax.legend()
+        ax.legend(loc="lower right", edgecolor="black")
     ax.set_xticks([2000, 2010, 2020, 2030])
     # minor ticks every two years
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))
-    ax.set_ylim(0)
+    ax.set_ylim(0, 100)
     ax.yaxis.set_major_formatter(
         ticker.FuncFormatter(lambda x, _: f"{int(x):,}")
     )
@@ -124,7 +124,7 @@ def plot_art_coverage(df, ax, label, fig, legend=False):
     ax.set_xlabel("Year")
     ax.set_ylabel(label)
     if legend:
-        ax.legend()
+        ax.legend(edgecolor="black")
     ax.set_xticks([2000, 2010, 2020, 2030])
     # minor ticks every two years
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))
@@ -175,7 +175,7 @@ if __name__ == "__main__":
         ax[1],  # type: ignore
         "STI antibiotic treatment rate (%)",
         fig,
-        legend=False,
+        legend=True,
     )
 
     fig.tight_layout()

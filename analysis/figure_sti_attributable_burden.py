@@ -217,7 +217,7 @@ def plot_attributable_hiv_burden_source(hiv, ax, fig):
 
     ax.set_xlabel("Year")
     ax.set_ylabel("Attributable HIV incidence (N)")
-    ax.legend()
+    ax.legend(edgecolor="black")
     ax.set_ylim(0)
     ax.set_xticks([1990, 2000, 2010, 2020])
     ax.set_yticks([0, 200000, 400000, 600000, 800000])
@@ -366,7 +366,7 @@ def plot_attributable_hiv_burden_sti(hiv, ax, fig):
 
     ax.set_xlabel("Year")
     ax.set_ylabel("Attributable HIV incidence (N)")
-    ax.legend()
+    ax.legend(edgecolor="black")
     ax.set_ylim(0)
     ax.set_xticks([1990, 2000, 2010, 2020])
     ax.yaxis.set_major_formatter(
@@ -539,7 +539,7 @@ def plot_attributable_hiv_burden_sex(hiv, ax, fig, number):
         ax.set_ylabel(
             "Attributable HIV incidence rate (per 100,000 population)"
         )
-    ax.legend(loc="upper right")
+    ax.legend(loc="upper right", edgecolor="black")
     ax.set_ylim(0)
     if number:
         ax.set_yticks([0, 100000, 200000, 300000, 400000])
@@ -694,7 +694,7 @@ def plot_attributable_hiv_burden_region(hiv, ax, fig):
 
     ax.set_xlabel("Year")
     ax.set_ylabel("Attributable HIV incidence (N)")
-    ax.legend(loc="upper right")
+    ax.legend(loc="upper right", edgecolor="black")
     ax.set_xticks([1990, 2000, 2010, 2020])
     ax.set_ylim(0)
     ax.yaxis.set_major_formatter(
@@ -865,7 +865,7 @@ def plot_attributable_hiv_burden_sex_pathogen(hiv, ax, fig):
     ax.set_xticklabels(sexes, rotation=-45, ha="center")
     ax.set_xlabel("Group")
     ax.set_ylabel("Attributable HIV incidence, 2023 (%)")
-    ax.legend()
+    ax.legend(edgecolor="black")
     # minor y ticks every 5%
     ax.yaxis.set_minor_locator(ticker.MultipleLocator(5))
 
@@ -977,7 +977,7 @@ def plot_attributable_hiv_burden_region_pathogen(hiv, ax, fig):
     ax.set_xticklabels(regions, rotation=-45, ha="center")
     ax.set_xlabel("Region")
     ax.set_ylabel("Attributable HIV incidence, 2023 (%)")
-    ax.legend(loc=(0.01, 0.72))
+    ax.legend(loc=(0.01, 0.80), edgecolor="black")
     # add minor y ticks every 1%
     ax.yaxis.set_minor_locator(ticker.MultipleLocator(1))
 
@@ -1186,8 +1186,9 @@ def plot_sensitivity_country_bar(
         ax.legend(
             [label_to_handle[label] for label in desired_labels],
             desired_labels,
-            loc="upper right",
             ncol=2,
+            loc=(0.65, 0.82),
+            edgecolor="black",
         )
     ax.yaxis.set_major_formatter(  # format log scale with commas and 0s written out
         ticker.FuncFormatter(
@@ -1305,7 +1306,7 @@ def plot_attributable_hiv_burden_age_pathogen(hiv, ax, sex, fig):
     ax.set_xticklabels(ages)
     ax.set_xlabel("Age group")
     ax.set_ylabel(f"Attributable HIV incidence among {sex.lower()}s, 2023 (%)")
-    ax.legend()
+    ax.legend(loc=(0.63, 0.73), edgecolor="black")
     # add minor y ticks every 1%
     ax.yaxis.set_minor_locator(ticker.MultipleLocator(1))
 
@@ -1395,7 +1396,9 @@ if __name__ == "__main__":
 
     # Attributable HIV cases in latest year (2023) by country, GBD vs UNAIDS
     latest_year = 2023
-    plot_sensitivity_country_bar(hiv, ax_full_2, fig, year=latest_year)
+    plot_sensitivity_country_bar(
+        hiv, ax_full_2, fig, year=latest_year, legend=True
+    )
     ax_full_2.set_ylabel("Attributable HIV incidence, 2023 (N)")
     # ax_full_2.get_legend().remove()
 
@@ -1488,6 +1491,24 @@ if __name__ == "__main__":
     plot_attributable_hiv_burden_region_pathogen(hiv, ax[1, 2], fig)  # type: ignore
 
     # by sex-pathogen
+    ax[2, 2].text(  # type: ignore
+        -0.25,
+        1.08,
+        "k",
+        transform=ax[2, 2].transAxes,  # type: ignore
+        fontsize=24,
+        fontweight="bold",
+        va="top",
+        ha="right",
+    )
+    plot_attributable_hiv_burden_sex_pathogen(hiv, ax[2, 2], fig)  # type: ignore
+
+    hiv = pl.read_csv(
+        os.path.join(output_dir, "hiv_attributable_to_stis_age_stratified.csv")
+    )
+    hiv = hiv.filter(pl.col("year") <= 2023)
+
+    # by age-pathogen for females
     ax[2, 0].text(  # type: ignore
         -0.25,
         1.08,
@@ -1498,12 +1519,12 @@ if __name__ == "__main__":
         va="top",
         ha="right",
     )
-    plot_attributable_hiv_burden_sex_pathogen(hiv, ax[2, 0], fig)  # type: ignore
-
-    hiv = pl.read_csv(
-        os.path.join(output_dir, "hiv_attributable_to_stis_age_stratified.csv")
+    plot_attributable_hiv_burden_age_pathogen(
+        hiv.filter(pl.col("sex") == "Female"),
+        ax[2, 0],  # type: ignore
+        "Female",
+        fig,
     )
-    hiv = hiv.filter(pl.col("year") <= 2023)
 
     # by age-pathogen for males
     ax[2, 1].text(  # type: ignore
@@ -1520,24 +1541,6 @@ if __name__ == "__main__":
         hiv.filter(pl.col("sex") != "Female"),
         ax[2, 1],  # type: ignore
         "Male",
-        fig,
-    )
-
-    # by age-pathogen for females
-    ax[2, 2].text(  # type: ignore
-        -0.25,
-        1.08,
-        "k",
-        transform=ax[2, 2].transAxes,  # type: ignore
-        fontsize=24,
-        fontweight="bold",
-        va="top",
-        ha="right",
-    )
-    plot_attributable_hiv_burden_age_pathogen(
-        hiv.filter(pl.col("sex") == "Female"),
-        ax[2, 2],  # type: ignore
-        "Female",
         fig,
     )
 
