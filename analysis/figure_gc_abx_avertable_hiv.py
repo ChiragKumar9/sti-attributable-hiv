@@ -55,22 +55,26 @@ def sum_preserve_null(column: str) -> pl.Expr:
 
 
 def plot_attributable_hiv_burden_drug_resistance(hiv, ax, fig):
-    hiv = hiv.group_by(["year"]).agg(
-        sum_preserve_null("Ciprofloxacin_resistant_number"),
-        sum_preserve_null("Ciprofloxacin_resistant_number_lower"),
-        sum_preserve_null("Ciprofloxacin_resistant_number_upper"),
-        sum_preserve_null("Cefixime_resistant_number"),
-        sum_preserve_null("Cefixime_resistant_number_lower"),
-        sum_preserve_null("Cefixime_resistant_number_upper"),
-        sum_preserve_null("Azithromycin_resistant_number"),
-        sum_preserve_null("Azithromycin_resistant_number_lower"),
-        sum_preserve_null("Azithromycin_resistant_number_upper"),
-        sum_preserve_null("Ceftriaxone_resistant_number"),
-        sum_preserve_null("Ceftriaxone_resistant_number_lower"),
-        sum_preserve_null("Ceftriaxone_resistant_number_upper"),
-        pl.sum("hiv_incidence_number_attributable_to_gc"),
-        pl.sum("hiv_incidence_number_attributable_to_gc_upper"),
-        pl.sum("hiv_incidence_number_attributable_to_gc_lower"),
+    hiv = (
+        hiv.group_by(["year"])
+        .agg(
+            sum_preserve_null("Ciprofloxacin_resistant_number"),
+            sum_preserve_null("Ciprofloxacin_resistant_number_lower"),
+            sum_preserve_null("Ciprofloxacin_resistant_number_upper"),
+            sum_preserve_null("Cefixime_resistant_number"),
+            sum_preserve_null("Cefixime_resistant_number_lower"),
+            sum_preserve_null("Cefixime_resistant_number_upper"),
+            sum_preserve_null("Azithromycin_resistant_number"),
+            sum_preserve_null("Azithromycin_resistant_number_lower"),
+            sum_preserve_null("Azithromycin_resistant_number_upper"),
+            sum_preserve_null("Ceftriaxone_resistant_number"),
+            sum_preserve_null("Ceftriaxone_resistant_number_lower"),
+            sum_preserve_null("Ceftriaxone_resistant_number_upper"),
+            pl.sum("hiv_incidence_number_attributable_to_gc"),
+            pl.sum("hiv_incidence_number_attributable_to_gc_upper"),
+            pl.sum("hiv_incidence_number_attributable_to_gc_lower"),
+        )
+        .filter(pl.col("year") >= 2008)
     )
     # mask all values at the attributable incidence
     hiv = hiv.with_columns(
@@ -688,7 +692,7 @@ def plot_access_vs_resistance(hiv, ax, year, fig):
         hiv["year"],
         hiv["untreated"],
         linewidth=3,
-        label="Lack of access",
+        label="Universal access",
         color="goldenrod",
     )
     ax.fill_between(
@@ -703,7 +707,7 @@ def plot_access_vs_resistance(hiv, ax, year, fig):
         hiv["year"],
         hiv["resistance"],
         linewidth=3,
-        label="Antibiotic resistance",
+        label="Susceptible to first treatment",
         color="brown",
     )
     ax.fill_between(
@@ -721,6 +725,78 @@ def plot_access_vs_resistance(hiv, ax, year, fig):
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
     ax.yaxis.set_major_formatter(
         ticker.FuncFormatter(lambda x, pos: f"{int(x):,}")
+    )
+
+
+def plot_access_vs_resistance_sex(hiv, ax, year, fig):
+    # compute proportion of total averted that is attributable to lack of
+    # access: untreated / (untreated + resistance), grouped by region and year
+    hiv = (
+        hiv.filter(pl.col("year") >= year)
+        .group_by(["year", "sex"])
+        .agg(
+            pl.sum("hiv_averted_gc_untreated"),
+            pl.sum("hiv_averted_gc_untreated_lower"),
+            pl.sum("hiv_averted_gc_untreated_upper"),
+            pl.sum("hiv_averted_gc_resistance"),
+            pl.sum("hiv_averted_gc_resistance_lower"),
+            pl.sum("hiv_averted_gc_resistance_upper"),
+        )
+        .with_columns(
+            # proportion = untreated / (untreated + resistance)
+            # for the lower bound of the proportion, use lower untreated and
+            # upper resistance (most conservative split toward resistance)
+            # for the upper bound, use upper untreated and lower resistance
+            proportion=pl.col("hiv_averted_gc_untreated")
+            / (
+                pl.col("hiv_averted_gc_untreated")
+                + pl.col("hiv_averted_gc_resistance")
+            ),
+            proportion_lower=pl.col("hiv_averted_gc_untreated_lower")
+            / (
+                pl.col("hiv_averted_gc_untreated_lower")
+                + pl.col("hiv_averted_gc_resistance_lower")
+            ),
+            proportion_upper=pl.col("hiv_averted_gc_untreated_upper")
+            / (
+                pl.col("hiv_averted_gc_untreated_upper")
+                + pl.col("hiv_averted_gc_resistance_upper")
+            ),
+        )
+        .sort(by="year")
+    )
+
+    sex_colors = {
+        "Female": "magenta",
+        "Male": "midnightblue",
+        "MSM": "slategrey",
+    }
+
+    for sex, color in sex_colors.items():
+        region_df = hiv.filter(pl.col("sex") == sex)
+        ax.plot(
+            region_df["year"],
+            region_df["proportion"],
+            linewidth=3,
+            label=sex,
+            color=color,
+        )
+        ax.fill_between(
+            region_df["year"],
+            region_df["proportion_lower"],
+            region_df["proportion_upper"],
+            alpha=0.3,
+            color=color,
+        )
+
+    ax.set_xlabel("Year")
+    ax.set_ylabel(
+        "GC-attributable HIV\navertible by antibiotic access alone (%)"
+    )
+    ax.legend()
+    ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
+    ax.yaxis.set_major_formatter(
+        ticker.FuncFormatter(lambda x, pos: f"{x:.0%}")
     )
 
 
@@ -851,7 +927,12 @@ if __name__ == "__main__":
         va="top",
         ha="right",
     )
-    plot_averted_hiv(hiv, ax[1, 0], "2016_gc_change", 2017, fig)  # type: ignore
+    plot_access_vs_resistance(
+        hiv,
+        ax[1, 0],  # type: ignore
+        2009,
+        fig,
+    )
 
     ax[1, 1].text(  # type: ignore
         -0.25,
@@ -863,19 +944,24 @@ if __name__ == "__main__":
         va="top",
         ha="right",
     )
-    plot_averted_hiv_region(hiv, ax[1, 1], "2016_gc_change", 2017, fig)  # type: ignore
+    plot_access_vs_resistance_sex(
+        hiv,
+        ax[1, 1],  # type: ignore
+        2009,
+        fig,
+    )
 
     ax[2, 0].text(  # type: ignore
         -0.25,
         1.08,
         "e",
-        transform=ax[2, 0].transAxes,  # type: ignore
+        transform=ax[2, 1].transAxes,  # type: ignore
         fontsize=24,
         fontweight="bold",
         va="top",
         ha="right",
     )
-    plot_access_vs_resistance(
+    plot_access_vs_resistance_region(
         hiv,
         ax[2, 0],  # type: ignore
         2009,
@@ -892,12 +978,7 @@ if __name__ == "__main__":
         va="top",
         ha="right",
     )
-    plot_access_vs_resistance_region(
-        hiv,
-        ax[2, 1],  # type: ignore
-        2009,
-        fig,
-    )
+    plot_averted_hiv_region(hiv, ax[2, 1], "2016_gc_change", 2017, fig)  # type: ignore
 
     fig.tight_layout()
 
