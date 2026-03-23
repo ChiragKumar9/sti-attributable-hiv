@@ -133,7 +133,7 @@ def plot_avertible_hiv_burden_sex(
         ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
         ax.set_ylim(top=0)
     else:
-        ax.set_xticks([1990, 2000, 2010, 2020])
+        ax.set_xticks([2000, 2010, 2020])
         ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))
         ax.set_ylim(0)
     ax.yaxis.set_minor_locator(ticker.MultipleLocator(10000))
