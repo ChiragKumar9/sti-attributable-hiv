@@ -87,14 +87,6 @@ def calculate_indirect_averted_cases(
     )
     df = df.sort(by="year")
 
-    df = df.with_columns(
-        [
-            pl.col(col).fill_null(0)
-            for col in df.columns
-            if col.startswith("direct_hiv_averted")
-        ]
-    )
-
     # now assess how many incident infections each prevalent infection generated
     # in the next year
 
@@ -956,27 +948,31 @@ for location in tqdm(hiv["location"].unique()):
     # calculate indirect averted cases for the resistance pathway (>= 2008),
     # i.e. the HIV cases that propagated forward because the index case sought
     # care but treatment failed due to antibiotic resistance
-    gc_resistance = loc_df.filter(pl.col("year") >= 2008).select(
-        [
-            "year",
-            "sex",
-            "unaids_prevalence_year_end_number",
-            "unaids_prevalence_year_end_number_lower",
-            "unaids_prevalence_year_end_number_upper",
-            "unaids_incidence_number",
-            "unaids_incidence_number_lower",
-            "unaids_incidence_number_upper",
-            "treatment_proportion",
-            "treatment_proportion_lower",
-            "treatment_proportion_upper",
-            "direct_hiv_averted_gc_resistance",
-            "direct_hiv_averted_gc_resistance_lower",
-            "direct_hiv_averted_gc_resistance_upper",
-            *[
-                f"paf_gc_hiv{estimate}"
-                for estimate in ["", "_lower", "_upper"]
-            ],
-        ]
+    gc_resistance = (
+        loc_df.filter(pl.col("year") >= 2008)
+        .filter(pl.col("year") <= 2023)
+        .select(
+            [
+                "year",
+                "sex",
+                "unaids_prevalence_year_end_number",
+                "unaids_prevalence_year_end_number_lower",
+                "unaids_prevalence_year_end_number_upper",
+                "unaids_incidence_number",
+                "unaids_incidence_number_lower",
+                "unaids_incidence_number_upper",
+                "treatment_proportion",
+                "treatment_proportion_lower",
+                "treatment_proportion_upper",
+                "direct_hiv_averted_gc_resistance",
+                "direct_hiv_averted_gc_resistance_lower",
+                "direct_hiv_averted_gc_resistance_upper",
+                *[
+                    f"paf_gc_hiv{estimate}"
+                    for estimate in ["", "_lower", "_upper"]
+                ],
+            ]
+        )
     )
     gc_resistance = gc_resistance.rename(
         {
