@@ -163,6 +163,7 @@ def plot_best_case(hiv, ax, year, fig, forward=False, reference=None):
     hiv = hiv.filter(pl.col("year") >= year)
 
     hiv = hiv.sort(by="year")
+    print("HIV values in 2023")
     print(
         hiv.filter(pl.col("year") == 2023).select(
             [
@@ -176,10 +177,12 @@ def plot_best_case(hiv, ax, year, fig, forward=False, reference=None):
         )
     )
 
+    print("Total HIV averted")
     print(hiv["total"].sum() - hiv["reference"].sum())
     print(hiv["total_lower"].sum() - hiv["reference_lower"].sum())
     print(hiv["total_upper"].sum() - hiv["reference_upper"].sum())
 
+    print("Total HIV averted as percentage of reference")
     print(
         (hiv["total"].sum() - hiv["reference"].sum()) / hiv["reference"].sum()
     )
@@ -437,23 +440,23 @@ def plot_averted_sex(hiv, ax, year, fig, forward=False):
     hiv = hiv.filter(pl.col("year") >= year)
 
     # sum the values by sex
-    print("Male:")
+    print("HIV numbers averted Male:")
     print(hiv.filter(pl.col("sex") == "Male")["total"].sum())
     print(hiv.filter(pl.col("sex") == "Male")["total_upper"].sum())
     print(hiv.filter(pl.col("sex") == "Male")["total_lower"].sum())
 
-    print("Female:")
+    print("HIV numbers averted Female:")
     print(hiv.filter(pl.col("sex") == "Female")["total"].sum())
     print(hiv.filter(pl.col("sex") == "Female")["total_upper"].sum())
     print(hiv.filter(pl.col("sex") == "Female")["total_lower"].sum())
 
-    print("MSM:")
+    print("HIV numbers averted MSM:")
     print(hiv.filter(pl.col("sex") == "MSM")["total"].sum())
     print(hiv.filter(pl.col("sex") == "MSM")["total_upper"].sum())
     print(hiv.filter(pl.col("sex") == "MSM")["total_lower"].sum())
 
     # print these values as percentages
-    print("Male:")
+    print("HIV proportion averted Male:")
     print(
         hiv.filter(pl.col("sex") == "Male")["total"].sum()
         / hiv.filter(pl.col("sex") == "Male")["unaids_incidence_number"].sum()
@@ -471,7 +474,7 @@ def plot_averted_sex(hiv, ax, year, fig, forward=False):
         ].sum()
     )
 
-    print("Female:")
+    print("HIV proportion averted Female:")
     print(
         hiv.filter(pl.col("sex") == "Female")["total"].sum()
         / hiv.filter(pl.col("sex") == "Female")[
@@ -491,7 +494,7 @@ def plot_averted_sex(hiv, ax, year, fig, forward=False):
         ].sum()
     )
 
-    print("MSM:")
+    print("HIV proportion averted MSM:")
     print(
         hiv.filter(pl.col("sex") == "MSM")["total"].sum()
         / hiv.filter(pl.col("sex") == "MSM")["unaids_incidence_number"].sum()
