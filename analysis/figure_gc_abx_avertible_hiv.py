@@ -616,6 +616,61 @@ def plot_access_vs_resistance(hiv, ax, year, fig):
     ax.yaxis.set_major_formatter(
         ticker.FuncFormatter(lambda x, pos: f"{int(x):,}")
     )
+    ax.yaxis.set_minor_locator(
+        ticker.FixedLocator(
+            -1
+            * np.array(
+                [
+                    20,
+                    30,
+                    40,
+                    50,
+                    60,
+                    70,
+                    80,
+                    90,
+                    200,
+                    300,
+                    400,
+                    500,
+                    600,
+                    700,
+                    800,
+                    900,
+                    2000,
+                    3000,
+                    4000,
+                    5000,
+                    6000,
+                    7000,
+                    8000,
+                    9000,
+                    20000,
+                    30000,
+                    40000,
+                    50000,
+                    60000,
+                    70000,
+                    80000,
+                    90000,
+                    200000,
+                ]
+            )  # type: ignore
+        )
+    )
+
+    print(
+        hiv["untreated"].sum()
+        / (hiv["untreated"].sum() + hiv["resistance"].sum())
+    )
+    print(
+        hiv["untreated_lower"].sum()
+        / (hiv["untreated_lower"].sum() + hiv["resistance_lower"].sum())
+    )
+    print(
+        hiv["untreated_upper"].sum()
+        / (hiv["untreated_upper"].sum() + hiv["resistance_upper"].sum())
+    )
 
 
 def plot_access_vs_resistance_sex(hiv, ax, year, fig):
@@ -688,7 +743,9 @@ def plot_access_vs_resistance_sex(hiv, ax, year, fig):
     )
     ax.legend(edgecolor="black")
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
-    ax.set_ylim(None, 100)
+    ax.set_ylim(50, 100)
+    # set minor y ticks every 5
+    ax.yaxis.set_minor_locator(ticker.MultipleLocator(5))
 
 
 def plot_access_vs_resistance_region(hiv, ax, year, fig):
@@ -762,7 +819,9 @@ def plot_access_vs_resistance_region(hiv, ax, year, fig):
     )
     ax.legend(edgecolor="black")
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
-    ax.set_ylim(None, 100)
+    ax.set_ylim(50, 100)
+    # set minor y ticks every 5
+    ax.yaxis.set_minor_locator(ticker.MultipleLocator(5))
 
 
 if __name__ == "__main__":
