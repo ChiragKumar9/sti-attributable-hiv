@@ -15,7 +15,7 @@ rc("font", **font)
 
 
 def setup_plot(nrows, ncols):
-    fig, ax = plt.subplots(nrows, ncols, figsize=(20, 22.5))
+    fig, ax = plt.subplots(nrows, ncols, figsize=(20, 25))
     if nrows * ncols == 1:
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
@@ -75,6 +75,17 @@ def plot_attributable_hiv_burden_drug_resistance(hiv, ax, fig):
             pl.sum("hiv_incidence_number_attributable_to_gc_lower"),
         )
         .filter(pl.col("year") >= 2008)
+    ).with_columns(
+        # Cefixime pre 2009 should be None
+        Cefixime_resistant_number=pl.when((pl.col("year") < 2009))
+        .then(pl.lit(None))
+        .otherwise(pl.col("Cefixime_resistant_number")),
+        Cefixime_resistant_number_lower=pl.when((pl.col("year") < 2009))
+        .then(pl.lit(None))
+        .otherwise(pl.col("Cefixime_resistant_number_lower")),
+        Cefixime_resistant_number_upper=pl.when((pl.col("year") < 2009))
+        .then(pl.lit(None))
+        .otherwise(pl.col("Cefixime_resistant_number_upper")),
     )
     # mask all values at the attributable incidence
     hiv = hiv.with_columns(
@@ -223,7 +234,7 @@ def plot_attributable_hiv_burden_drug_resistance(hiv, ax, fig):
     # put y ticks in normal notation
     ax.set_yticks([1, 10, 100, 1000, 10000, 100000])
     ax.set_yticklabels(["1", "10", "100", "1,000", "10,000", "100,000"])
-    ax.legend(loc=(0, 0))
+    ax.legend(loc=(0.5, 1.0), edgecolor="black")
 
 
 def plot_attributable_hiv_burden_drug_resistance_region(hiv, ax, fig):
@@ -383,133 +394,12 @@ def plot_attributable_hiv_burden_drug_resistance_region(hiv, ax, fig):
     ax.set_xticks(x)
     ax.set_xticklabels(regions, rotation=-45, ha="left")
     ax.set_xlabel("Region")
-    ax.set_ylabel("HIV incidence (N)")
+    ax.set_ylabel("HIV incidence, 2023 (N)")
     ax.set_yscale("log")
     # put y ticks in normal notation
     ax.set_yticks([0.01, 0.1, 1, 10, 100, 1000, 10000])
     ax.set_yticklabels(["0.01", "0.1", "1", "10", "100", "1,000", "10,000"])
-    ax.legend(loc=(0, 0))
-
-
-def plot_averted_hiv(hiv, ax, scenario_name, year, fig, forward=False):
-    if forward:
-        scalar = -1.0
-    else:
-        scalar = 1.0
-
-    hiv = (
-        hiv.group_by(["year"])
-        .agg(
-            pl.sum(f"hiv_averted_{scenario_name}"),
-            pl.sum(f"hiv_averted_{scenario_name}_lower"),
-            pl.sum(f"hiv_averted_{scenario_name}_upper"),
-            pl.sum(f"direct_hiv_averted_{scenario_name}"),
-            pl.sum(f"direct_hiv_averted_{scenario_name}_lower"),
-            pl.sum(f"direct_hiv_averted_{scenario_name}_upper"),
-            pl.sum("hiv_incidence_number"),
-            pl.sum("hiv_incidence_number_upper"),
-            pl.sum("hiv_incidence_number_lower"),
-        )
-        .with_columns(
-            direct=pl.col(f"direct_hiv_averted_{scenario_name}"),
-            direct_lower=pl.col(f"direct_hiv_averted_{scenario_name}_lower"),
-            direct_upper=pl.col(f"direct_hiv_averted_{scenario_name}_upper"),
-            total=pl.col(f"hiv_averted_{scenario_name}"),
-            total_lower=pl.col(f"hiv_averted_{scenario_name}_lower"),
-            total_upper=pl.col(f"hiv_averted_{scenario_name}_upper"),
-            reference=pl.col("hiv_incidence_number"),
-            reference_lower=pl.col("hiv_incidence_number_lower"),
-            reference_upper=pl.col("hiv_incidence_number_upper"),
-        )
-    )
-    if forward:
-        hiv = hiv.with_columns(
-            direct=pl.col("reference") + (pl.col("direct") * pl.lit(scalar)),
-            direct_lower=pl.col("reference_lower")
-            + (pl.col("direct_upper") * pl.lit(scalar)),
-            direct_upper=pl.col("reference_upper")
-            + (pl.col("direct_lower") * pl.lit(scalar)),
-            total=pl.col("reference") + (pl.col("total") * pl.lit(scalar)),
-            total_lower=pl.col("reference_lower")
-            + (pl.col("total_upper") * pl.lit(scalar)),
-            total_upper=pl.col("reference_upper")
-            + (pl.col("total_lower") * pl.lit(scalar)),
-        )
-    else:
-        hiv = hiv.with_columns(
-            direct=pl.col("reference") + pl.col("direct"),
-            direct_lower=pl.col("reference_lower") + pl.col("direct_lower"),
-            direct_upper=pl.col("reference_upper") + pl.col("direct_upper"),
-            total=pl.col("reference") + pl.col("total"),
-            total_lower=pl.col("reference_lower") + pl.col("total_lower"),
-            total_upper=pl.col("reference_upper") + pl.col("total_upper"),
-        )
-
-    hiv = hiv.filter(pl.col("year") >= year)
-
-    hiv = hiv.sort(by="year")
-
-    ax.plot(
-        hiv["year"],
-        hiv["reference"],
-        linewidth=3,
-        label="Current",
-        color="black",
-    )
-
-    ax.fill_between(
-        hiv["year"],
-        hiv["reference_lower"],
-        hiv["reference_upper"],
-        alpha=0.3,
-        color="black",
-    )
-
-    ax.plot(
-        hiv["year"],
-        hiv["direct"],
-        linewidth=3,
-        label="Direct",
-        color="goldenrod",
-    )
-
-    ax.fill_between(
-        hiv["year"],
-        hiv["direct_lower"],
-        hiv["direct_upper"],
-        alpha=0.3,
-        color="goldenrod",
-    )
-
-    ax.plot(
-        hiv["year"], hiv["total"], linewidth=3, label="Total", color="brown"
-    )
-
-    ax.fill_between(
-        hiv["year"],
-        hiv["total_lower"],
-        hiv["total_upper"],
-        alpha=0.3,
-        color="brown",
-    )
-
-    ax.set_xlabel("Year")
-    ax.set_ylabel("HIV incidence (N)")
-    if forward:
-        ax.legend(loc=(0, 0))
-        ax.set_yticks([0, 500000, 1000000, 1500000])
-        # minor y ticks every 250,000
-        ax.yaxis.set_minor_locator(ticker.MultipleLocator(250000))
-    else:
-        ax.legend(loc=(0, 0))
-        ax.set_yticks([0, 500000, 1000000, 1500000, 2000000, 2500000])
-        # minor y ticks every 250,000
-        ax.yaxis.set_minor_locator(ticker.MultipleLocator(250000))
-    ax.yaxis.set_major_formatter(
-        ticker.FuncFormatter(lambda x, pos: f"{int(x):,}")
-    )
-    # minor x axis ticks every year
-    ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
+    ax.legend(loc=(0.5, 1.0), edgecolor="black")
 
 
 def plot_averted_hiv_region(hiv, ax, scenario_name, year, fig, forward=False):
@@ -612,13 +502,13 @@ def plot_averted_hiv_region(hiv, ax, scenario_name, year, fig, forward=False):
         ticker.FuncFormatter(lambda x, pos: f"{int(x):,}")
     )
     if forward:
-        ax.legend(loc=(0.6, 0.6))
+        ax.legend(loc=(0.6, 0.6), edgecolor="black")
     else:
-        ax.set_ylim(7)
-        ax.legend(loc=(0.6, 0))
+        ax.legend(loc=(0.6, 0.95), edgecolor="black")
         # minor x axis ticks every year
         ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
         # minor y axis ticks at custom values
+        ax.set_ylim(20)
         ax.yaxis.set_minor_locator(
             ticker.FixedLocator(
                 scalar
@@ -693,14 +583,14 @@ def plot_access_vs_resistance(hiv, ax, year, fig):
         hiv["untreated"],
         linewidth=3,
         label="Universal access",
-        color="goldenrod",
+        color="darkgoldenrod",
     )
     ax.fill_between(
         hiv["year"],
         hiv["untreated_lower"],
         hiv["untreated_upper"],
         alpha=0.3,
-        color="goldenrod",
+        color="darkgoldenrod",
     )
 
     ax.plot(
@@ -719,9 +609,9 @@ def plot_access_vs_resistance(hiv, ax, year, fig):
     )
 
     ax.set_xlabel("Year")
-    ax.set_ylabel("Change in HIV cases (N)")
+    ax.set_ylabel("Change in HIV incidence (N)")
     ax.set_yscale("symlog")
-    ax.legend()
+    ax.legend(loc=(0.03, 0.9), edgecolor="black")
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
     ax.yaxis.set_major_formatter(
         ticker.FuncFormatter(lambda x, pos: f"{int(x):,}")
@@ -747,17 +637,20 @@ def plot_access_vs_resistance_sex(hiv, ax, year, fig):
             # for the lower bound of the proportion, use lower untreated and
             # upper resistance (most conservative split toward resistance)
             # for the upper bound, use upper untreated and lower resistance
-            proportion=pl.col("hiv_averted_gc_untreated")
+            proportion=100
+            * pl.col("hiv_averted_gc_untreated")
             / (
                 pl.col("hiv_averted_gc_untreated")
                 + pl.col("hiv_averted_gc_resistance")
             ),
-            proportion_lower=pl.col("hiv_averted_gc_untreated_lower")
+            proportion_lower=100
+            * pl.col("hiv_averted_gc_untreated_lower")
             / (
                 pl.col("hiv_averted_gc_untreated_lower")
                 + pl.col("hiv_averted_gc_resistance_lower")
             ),
-            proportion_upper=pl.col("hiv_averted_gc_untreated_upper")
+            proportion_upper=100
+            * pl.col("hiv_averted_gc_untreated_upper")
             / (
                 pl.col("hiv_averted_gc_untreated_upper")
                 + pl.col("hiv_averted_gc_resistance_upper")
@@ -791,13 +684,11 @@ def plot_access_vs_resistance_sex(hiv, ax, year, fig):
 
     ax.set_xlabel("Year")
     ax.set_ylabel(
-        "GC-attributable HIV\navertible by antibiotic access alone (%)"
+        "GC-attributable HIV avertible\nby antibiotic access alone (%)"
     )
-    ax.legend()
+    ax.legend(edgecolor="black")
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
-    ax.yaxis.set_major_formatter(
-        ticker.FuncFormatter(lambda x, pos: f"{x:.0%}")
-    )
+    ax.set_ylim(None, 100)
 
 
 def plot_access_vs_resistance_region(hiv, ax, year, fig):
@@ -819,17 +710,20 @@ def plot_access_vs_resistance_region(hiv, ax, year, fig):
             # for the lower bound of the proportion, use lower untreated and
             # upper resistance (most conservative split toward resistance)
             # for the upper bound, use upper untreated and lower resistance
-            proportion=pl.col("hiv_averted_gc_untreated")
+            proportion=100
+            * pl.col("hiv_averted_gc_untreated")
             / (
                 pl.col("hiv_averted_gc_untreated")
                 + pl.col("hiv_averted_gc_resistance")
             ),
-            proportion_lower=pl.col("hiv_averted_gc_untreated_lower")
+            proportion_lower=100
+            * pl.col("hiv_averted_gc_untreated_lower")
             / (
                 pl.col("hiv_averted_gc_untreated_lower")
                 + pl.col("hiv_averted_gc_resistance_lower")
             ),
-            proportion_upper=pl.col("hiv_averted_gc_untreated_upper")
+            proportion_upper=100
+            * pl.col("hiv_averted_gc_untreated_upper")
             / (
                 pl.col("hiv_averted_gc_untreated_upper")
                 + pl.col("hiv_averted_gc_resistance_upper")
@@ -864,13 +758,11 @@ def plot_access_vs_resistance_region(hiv, ax, year, fig):
 
     ax.set_xlabel("Year")
     ax.set_ylabel(
-        "GC-attributable HIV\navertible by antibiotic access alone (%)"
+        "GC-attributable HIV avertible\nby antibiotic access alone (%)"
     )
-    ax.legend()
+    ax.legend(edgecolor="black")
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
-    ax.yaxis.set_major_formatter(
-        ticker.FuncFormatter(lambda x, pos: f"{x:.0%}")
-    )
+    ax.set_ylim(None, 100)
 
 
 if __name__ == "__main__":
@@ -955,7 +847,7 @@ if __name__ == "__main__":
         -0.25,
         1.08,
         "e",
-        transform=ax[2, 1].transAxes,  # type: ignore
+        transform=ax[2, 0].transAxes,  # type: ignore
         fontsize=24,
         fontweight="bold",
         va="top",

@@ -22,10 +22,8 @@ def setup_plot(nrows, ncols):
         ax.get_yaxis().tick_left()
         ax.tick_params(axis="x", direction="out")
         ax.tick_params(axis="y", direction="out")
-        # offset the spines
         for spine in ax.spines.values():
             spine.set_position(("outward", 5))
-        # put the grid behind
         ax.set_axisbelow(True)
         return fig, ax
     for temp in ax.flatten():  # type: ignore
@@ -35,31 +33,23 @@ def setup_plot(nrows, ncols):
         temp.get_yaxis().tick_left()
         temp.tick_params(axis="x", direction="out")
         temp.tick_params(axis="y", direction="out")
-        # offset the spines
         for spine in temp.spines.values():
             spine.set_position(("outward", 5))
-        # put the grid behind
         temp.set_axisbelow(True)
     return fig, ax
 
 
-def plot_best_case(hiv, ax, year, label, fig, legend=False, forward=False):
-    # if forward, we need to plot the blue sdg target
-    # to do this, we need to get the value in 2010
-    if forward:
-        reference_2010 = hiv.filter(pl.col("year") == 2010)[
-            "unaids_hiv_incidence_number"
-        ][0]
-
+def plot_best_case(
+    hiv, ax, year, fig, forward=False, reference=None, legend=False
+):
     if forward:
         scalar = -1.0
-        # this may change based on how the future sims are set up?
         stub = "upper_bound_future"
-        hiv = hiv.filter(pl.col("year") >= 2023)
+        hiv = hiv.filter(pl.col("year") >= 2026)
     else:
         scalar = 1.0
         stub = "upper_bound"
-        hiv = hiv.filter(pl.col("year") <= 2023)
+        hiv = hiv.filter(pl.col("year") <= 2024)
 
     hiv = (
         hiv.group_by(["year"])
@@ -70,9 +60,9 @@ def plot_best_case(hiv, ax, year, label, fig, legend=False, forward=False):
             pl.sum("direct_hiv_averted_upper_bound"),
             pl.sum("direct_hiv_averted_upper_bound_lower"),
             pl.sum("direct_hiv_averted_upper_bound_upper"),
-            pl.sum("unaids_hiv_incidence_number"),
-            pl.sum("hiv_incidence_number_upper"),
-            pl.sum("hiv_incidence_number_lower"),
+            pl.sum("unaids_incidence_number"),
+            pl.sum("unaids_incidence_number_upper"),
+            pl.sum("unaids_incidence_number_lower"),
         )
         .with_columns(
             direct=pl.col("direct_hiv_averted_upper_bound"),
@@ -81,9 +71,9 @@ def plot_best_case(hiv, ax, year, label, fig, legend=False, forward=False):
             total=pl.col(f"hiv_averted_{stub}"),
             total_lower=pl.col(f"hiv_averted_{stub}_lower"),
             total_upper=pl.col(f"hiv_averted_{stub}_upper"),
-            reference=pl.col("hiv_incidence_number"),
-            reference_lower=pl.col("hiv_incidence_number_lower"),
-            reference_upper=pl.col("hiv_incidence_number_upper"),
+            reference=pl.col("unaids_incidence_number"),
+            reference_lower=pl.col("unaids_incidence_number_lower"),
+            reference_upper=pl.col("unaids_incidence_number_upper"),
         )
     )
     if forward:
@@ -116,6 +106,7 @@ def plot_best_case(hiv, ax, year, label, fig, legend=False, forward=False):
     hiv = hiv.filter(pl.col("year") >= year)
 
     hiv = hiv.sort(by="year")
+    print("HIV values in 2023")
     print(
         hiv.filter(pl.col("year") == 2023).select(
             [
@@ -129,12 +120,30 @@ def plot_best_case(hiv, ax, year, label, fig, legend=False, forward=False):
         )
     )
 
+    print("Total HIV averted")
+    print(hiv["total"].sum() - hiv["reference"].sum())
+    print(hiv["total_lower"].sum() - hiv["reference_lower"].sum())
+    print(hiv["total_upper"].sum() - hiv["reference_upper"].sum())
+
+    print("Total HIV averted as percentage of reference")
+    print(
+        (hiv["total"].sum() - hiv["reference"].sum()) / hiv["reference"].sum()
+    )
+    print(
+        (hiv["total_lower"].sum() - hiv["reference_lower"].sum())
+        / hiv["reference_lower"].sum()
+    )
+    print(
+        (hiv["total_upper"].sum() - hiv["reference_upper"].sum())
+        / hiv["reference_upper"].sum()
+    )
+
     ax.plot(
         hiv["year"],
         hiv["direct"],
         linewidth=3,
         label="Direct",
-        color="goldenrod",
+        color="#275DAD",
     )
 
     ax.fill_between(
@@ -142,11 +151,11 @@ def plot_best_case(hiv, ax, year, label, fig, legend=False, forward=False):
         hiv["direct_lower"],
         hiv["direct_upper"],
         alpha=0.3,
-        color="goldenrod",
+        color="#275DAD",
     )
 
     ax.plot(
-        hiv["year"], hiv["total"], linewidth=3, label="Total", color="brown"
+        hiv["year"], hiv["total"], linewidth=3, label="Total", color="darkred"
     )
 
     ax.fill_between(
@@ -154,14 +163,14 @@ def plot_best_case(hiv, ax, year, label, fig, legend=False, forward=False):
         hiv["total_lower"],
         hiv["total_upper"],
         alpha=0.3,
-        color="brown",
+        color="darkred",
     )
 
     ax.plot(
         hiv["year"],
         hiv["reference"],
         linewidth=3,
-        label="Current",
+        label="Historic" if not forward else "Projected",
         color="black",
     )
 
@@ -173,38 +182,44 @@ def plot_best_case(hiv, ax, year, label, fig, legend=False, forward=False):
         color="black",
     )
 
-    if forward:
+    ax.set_xlabel("Year")
+    ax.set_ylabel("HIV incidence (N)")
+    if legend:
+        if forward:
+            loc = (0.55, 0.75)
+        else:
+            loc = (0.6, 0.7)
+        ax.legend(loc=loc, edgecolor="black")
+    ax.set_ylim(0)
+    ax.yaxis.set_major_formatter(
+        ticker.FuncFormatter(lambda x, p: format(int(x), ","))
+    )
+
+    ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
+    ax.yaxis.set_minor_locator(ticker.MultipleLocator(10000))
+
+    if reference is not None:
         ax.axhline(
-            0.1 * reference_2010,  # type: ignore
+            0.1 * reference,  # type: ignore
             linestyle="--",
             color="#009CDE",
             label="SDG target",
         )
-        ax.set_xticks([2025, 2030])
-        # minor tick every 1 year
-        ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
+        ax.set_xticks([2026, 2030])
     else:
-        ax.set_xticks([1990, 2000, 2010, 2020])
-        # minor ticks every two years
-        ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))
-
-    ax.set_xlabel("Year")
-    ax.set_ylabel(f"HIV incidence in\n{label} (N)")
-    if legend:
-        ax.legend()
-    ax.set_ylim(0)
-    ax.yaxis.set_major_formatter(
-        ticker.FuncFormatter(lambda x, _: f"{int(x):,}")
-    )
+        ax.set_xticks([2000, 2010, 2020])
 
 
 if __name__ == "__main__":
+    regions = [
+        ("Western", "a", "Western Africa"),
+        ("Eastern", "b", "Eastern Africa"),
+        ("Central", "c", "Central Africa"),
+        ("Southern", "d", "Southern Africa"),
+    ]
+
     for forward in [True, False]:
-        if forward:
-            # TODO: we will change this in the future
-            year = 1991
-        else:
-            year = 1991
+        year = 1991
 
         fig, ax = setup_plot(2, 2)  # type: ignore
 
@@ -212,90 +227,43 @@ if __name__ == "__main__":
             os.path.join(output_dir, "hiv_averted.csv"),
         )
 
-        ax[0, 0].text(  # type: ignore
-            -0.25,
-            1.08,
-            "a",
-            transform=ax[0, 0].transAxes,  # type: ignore
-            fontsize=24,
-            fontweight="bold",
-            va="top",
-            ha="right",
-        )
-        plot_best_case(
-            hiv.filter(pl.col("region") == "Western"),
-            ax[0, 0],  # type: ignore
-            year,
-            "Western Africa",
-            fig,
-            legend=True,
-            forward=forward,
-        )
+        for i, (region, panel_label, region_label) in enumerate(regions):
+            row, col = divmod(i, 2)
 
-        ax[0, 1].text(  # type: ignore
-            -0.25,
-            1.08,
-            "b",
-            transform=ax[0, 1].transAxes,  # type: ignore
-            fontsize=24,
-            fontweight="bold",
-            va="top",
-            ha="right",
-        )
-        plot_best_case(
-            hiv.filter(pl.col("region") == "Eastern"),
-            ax[0, 1],  # type: ignore
-            year,
-            "Eastern Africa",
-            fig,
-            forward=forward,
-        )
+            # Get 2010 reference value for SDG target line (forward only)
+            reference_2010 = None
+            if forward:
+                reference_2010 = hiv.filter(
+                    (pl.col("region") == region) & (pl.col("year") == 2010)
+                )["unaids_incidence_number"].sum()
 
-        ax[1, 0].text(  # type: ignore
-            -0.25,
-            1.08,
-            "c",
-            transform=ax[1, 0].transAxes,  # type: ignore
-            fontsize=24,
-            fontweight="bold",
-            va="top",
-            ha="right",
-        )
-        plot_best_case(
-            hiv.filter(pl.col("region") == "Central"),
-            ax[1, 0],  # type: ignore
-            year,
-            "Central Africa",
-            fig,
-            forward=forward,
-        )
+            ax[row, col].text(  # type: ignore
+                -0.25,
+                1.08,
+                panel_label,
+                transform=ax[row, col].transAxes,  # type: ignore
+                fontsize=24,
+                fontweight="bold",
+                va="top",
+                ha="right",
+            )
 
-        ax[1, 1].text(  # type: ignore
-            -0.25,
-            1.08,
-            "d",
-            transform=ax[1, 1].transAxes,  # type: ignore
-            fontsize=24,
-            fontweight="bold",
-            va="top",
-            ha="right",
-        )
-        plot_best_case(
-            hiv.filter(pl.col("region") == "Southern"),
-            ax[1, 1],  # type: ignore
-            year,
-            "Southern Africa",
-            fig,
-            forward=forward,
-        )
+            plot_best_case(
+                hiv.filter(pl.col("region") == region),
+                ax[row, col],  # type: ignore
+                year,
+                fig,
+                forward=forward,
+                reference=reference_2010,
+                legend=(i == 0),
+            )
+
+            # Override y-axis label to include region name
+            ax[row, col].set_ylabel(f"HIV incidence in\n{region_label} (N)")  # type: ignore
 
         fig.tight_layout()
 
-        # save
-        if forward:
-            stub = "future"
-        else:
-            stub = "historical"
+        stub = "future" if forward else "historical"
 
         fig.savefig(
             os.path.join(
