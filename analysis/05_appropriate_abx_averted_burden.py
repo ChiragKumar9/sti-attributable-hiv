@@ -86,6 +86,15 @@ def calculate_indirect_averted_cases(
         index="year",
     )
     df = df.sort(by="year")
+
+    df = df.with_columns(
+        [
+            pl.col(col).fill_null(0)
+            for col in df.columns
+            if col.startswith("direct_hiv_averted")
+        ]
+    )
+
     # now assess how many incident infections each prevalent infection generated
     # in the next year
 
@@ -475,6 +484,24 @@ hiv = hiv.with_columns(
     ),
 )
 
+# pre-2016, ciprofloxacin was the first-line treatment for gonorrhea, so
+# treatment failure was entirely determined by ciprofloxacin resistance.
+# post-2016, the WHO switched first-line treatment so we use the minimum
+# resistance across azithromycin, cefixime, and ceftriaxone (as above).
+# we stitch these together with a year conditional so that the decomposition
+# into untreated vs resistance uses the era-appropriate failure rate.
+hiv = hiv.with_columns(
+    gc_treatment_failure_era=pl.when(pl.col("year") < 2016)
+    .then(pl.col("Ciprofloxacin"))
+    .otherwise(pl.col("gc_treatment_failure")),
+    gc_treatment_failure_era_lower=pl.when(pl.col("year") < 2016)
+    .then(pl.col("Ciprofloxacin_lower"))
+    .otherwise(pl.col("gc_treatment_failure_lower")),
+    gc_treatment_failure_era_upper=pl.when(pl.col("year") < 2016)
+    .then(pl.col("Ciprofloxacin_upper"))
+    .otherwise(pl.col("gc_treatment_failure_upper")),
+)
+
 # recall our formula -- this allows us to estimate the total number of HIV
 # cases that would have been attributable to GC had there not been the treatment
 # change
@@ -491,15 +518,12 @@ hiv = hiv.with_columns(
         )
     )
     - pl.col("unaids_hiv_incidence_number_attributable_to_gc"),
-    # lower bound -- we can debate about the right way to do uncertainty propagation
-    # but for now I assume that we would have a higher treatment failure rate
-    # meaning that the observed and unobserved cases would be closer
     direct_hiv_averted_2016_gc_change_lower=(
         pl.col("unaids_hiv_incidence_number_attributable_to_gc_lower")
         / (
             (1 - pl.col("gc_treatment_rate"))
             + pl.col("gc_treatment_rate")
-            * pl.col("gc_treatment_failure_upper")
+            * pl.col("gc_treatment_failure_lower")
         )
     )
     - pl.col("unaids_hiv_incidence_number_attributable_to_gc_lower"),
@@ -509,10 +533,86 @@ hiv = hiv.with_columns(
         / (
             (1 - pl.col("gc_treatment_rate"))
             + pl.col("gc_treatment_rate")
-            * pl.col("gc_treatment_failure_lower")
+            * pl.col("gc_treatment_failure_upper")
         )
     )
     - pl.col("unaids_hiv_incidence_number_attributable_to_gc_upper"),
+)
+
+# decompose the observed gc-attributable HIV burden into the share caused by
+# lack of treatment access vs antibiotic resistance, for all years >= 2008.
+# total burden = observed / ((1-t) + t*(1-e))  [same formula as above]
+# untreated share = (1-t) * total_burden
+# resistance share = t * (1-e) * total_burden
+# the era-appropriate failure rate e is used so that pre-2016 uses cipro
+# resistance only, and post-2016 uses min(azithro, cefixime, ceftriaxone)
+hiv = hiv.with_columns(
+    # total gc-attributable HIV burden (what would have been observed with
+    # perfect treatment coverage and zero resistance)
+    gc_hiv_total_burden=pl.col(
+        "unaids_hiv_incidence_number_attributable_to_gc"
+    )
+    / (
+        (1 - pl.col("gc_treatment_rate"))
+        + pl.col("gc_treatment_rate") * pl.col("gc_treatment_failure_era")
+    ),
+    gc_hiv_total_burden_lower=pl.col(
+        "unaids_hiv_incidence_number_attributable_to_gc_lower"
+    )
+    / (
+        (1 - pl.col("gc_treatment_rate"))
+        + pl.col("gc_treatment_rate")
+        * pl.col("gc_treatment_failure_era_lower")
+    ),
+    gc_hiv_total_burden_upper=pl.col(
+        "unaids_hiv_incidence_number_attributable_to_gc_upper"
+    )
+    / (
+        (1 - pl.col("gc_treatment_rate"))
+        + pl.col("gc_treatment_rate")
+        * pl.col("gc_treatment_failure_era_upper")
+    ),
+)
+
+hiv = hiv.with_columns(
+    # direct HIV cases attributable to lack of treatment access:
+    # these are the cases among people who never sought care
+    direct_hiv_averted_gc_untreated=pl.when(pl.col("year") >= 2008)
+    .then((1 - pl.col("gc_treatment_rate")) * pl.col("gc_hiv_total_burden"))
+    .otherwise(pl.lit(None)),
+    direct_hiv_averted_gc_untreated_lower=pl.when(pl.col("year") >= 2008)
+    .then(
+        (1 - pl.col("gc_treatment_rate")) * pl.col("gc_hiv_total_burden_lower")
+    )
+    .otherwise(pl.lit(None)),
+    direct_hiv_averted_gc_untreated_upper=pl.when(pl.col("year") >= 2008)
+    .then(
+        (1 - pl.col("gc_treatment_rate")) * pl.col("gc_hiv_total_burden_upper")
+    )
+    .otherwise(pl.lit(None)),
+    # direct HIV cases attributable to antibiotic resistance:
+    # these are the cases among people who sought care but treatment failed
+    direct_hiv_averted_gc_resistance=pl.when(pl.col("year") >= 2008)
+    .then(
+        pl.col("gc_treatment_rate")
+        * pl.col("gc_treatment_failure_era")
+        * pl.col("gc_hiv_total_burden")
+    )
+    .otherwise(pl.lit(None)),
+    direct_hiv_averted_gc_resistance_lower=pl.when(pl.col("year") >= 2008)
+    .then(
+        pl.col("gc_treatment_rate")
+        * pl.col("gc_treatment_failure_era_lower")
+        * pl.col("gc_hiv_total_burden_lower")
+    )
+    .otherwise(pl.lit(None)),
+    direct_hiv_averted_gc_resistance_upper=pl.when(pl.col("year") >= 2008)
+    .then(
+        pl.col("gc_treatment_rate")
+        * pl.col("gc_treatment_failure_era_upper")
+        * pl.col("gc_hiv_total_burden_upper")
+    )
+    .otherwise(pl.lit(None)),
 )
 
 # for our abx access scenario, we use a similar formulation, but we now apply it
@@ -583,6 +683,13 @@ for location in tqdm(hiv["location"].unique()):
                 "direct_hiv_averted_2016_gc_change",
                 "direct_hiv_averted_2016_gc_change_lower",
                 "direct_hiv_averted_2016_gc_change_upper",
+                # direct averted cases decomposed into untreated vs resistance
+                "direct_hiv_averted_gc_untreated",
+                "direct_hiv_averted_gc_untreated_lower",
+                "direct_hiv_averted_gc_untreated_upper",
+                "direct_hiv_averted_gc_resistance",
+                "direct_hiv_averted_gc_resistance_lower",
+                "direct_hiv_averted_gc_resistance_upper",
             ],
             *[
                 f"paf_{sti}_hiv{estimate}"
@@ -607,6 +714,12 @@ for location in tqdm(hiv["location"].unique()):
                 "direct_hiv_averted_2016_gc_change",
                 "direct_hiv_averted_2016_gc_change_lower",
                 "direct_hiv_averted_2016_gc_change_upper",
+                "direct_hiv_averted_gc_untreated",
+                "direct_hiv_averted_gc_untreated_lower",
+                "direct_hiv_averted_gc_untreated_upper",
+                "direct_hiv_averted_gc_resistance",
+                "direct_hiv_averted_gc_resistance_lower",
+                "direct_hiv_averted_gc_resistance_upper",
             ]
         )
 
@@ -770,6 +883,142 @@ for location in tqdm(hiv["location"].unique()):
         }
     )
 
+    # calculate indirect averted cases for the untreated pathway (>= 2008),
+    # i.e. the HIV cases that propagated forward because the index case never
+    # sought care
+    gc_untreated = (
+        loc_df.filter(pl.col("year") >= 2008)
+        .filter(pl.col("year") <= 2023)
+        .select(
+            [
+                "year",
+                "sex",
+                "unaids_prevalence_year_end_number",
+                "unaids_prevalence_year_end_number_lower",
+                "unaids_prevalence_year_end_number_upper",
+                "unaids_incidence_number",
+                "unaids_incidence_number_lower",
+                "unaids_incidence_number_upper",
+                "treatment_proportion",
+                "treatment_proportion_lower",
+                "treatment_proportion_upper",
+                "direct_hiv_averted_gc_untreated",
+                "direct_hiv_averted_gc_untreated_lower",
+                "direct_hiv_averted_gc_untreated_upper",
+                *[
+                    f"paf_gc_hiv{estimate}"
+                    for estimate in ["", "_lower", "_upper"]
+                ],
+            ]
+        )
+    )
+    gc_untreated = gc_untreated.rename(
+        {
+            "direct_hiv_averted_gc_untreated": "direct_hiv_averted",
+            "direct_hiv_averted_gc_untreated_lower": "direct_hiv_averted_lower",
+            "direct_hiv_averted_gc_untreated_upper": "direct_hiv_averted_upper",
+        }
+    )
+    gc_untreated = calculate_indirect_averted_cases(
+        gc_untreated,
+        "gc",
+        sti_hiv_transmission_increase_male=sti_transmission_increase.filter(
+            (pl.col("bacteria") == "gc") & (pl.col("sex") == "Both")
+        )["rr_mu"].item(),
+        sti_hiv_transmission_increase_lower_male=sti_transmission_increase.filter(
+            (pl.col("bacteria") == "gc") & (pl.col("sex") == "Both")
+        )["rr_lower"].item(),
+        sti_hiv_transmission_increase_upper_male=sti_transmission_increase.filter(
+            (pl.col("bacteria") == "gc") & (pl.col("sex") == "Both")
+        )["rr_upper"].item(),
+        sti_hiv_transmission_increase_female=sti_transmission_increase.filter(
+            (pl.col("bacteria") == "gc") & (pl.col("sex") == "Women")
+        )["rr_mu"].item(),
+        sti_hiv_transmission_increase_lower_female=sti_transmission_increase.filter(
+            (pl.col("bacteria") == "gc") & (pl.col("sex") == "Women")
+        )["rr_lower"].item(),
+        sti_hiv_transmission_increase_upper_female=sti_transmission_increase.filter(
+            (pl.col("bacteria") == "gc") & (pl.col("sex") == "Women")
+        )["rr_upper"].item(),
+    )
+    gc_untreated = gc_untreated.rename(
+        {
+            "indirect_hiv_averted": "indirect_hiv_averted_gc_untreated",
+            "indirect_hiv_averted_lower": "indirect_hiv_averted_gc_untreated_lower",
+            "indirect_hiv_averted_upper": "indirect_hiv_averted_gc_untreated_upper",
+        }
+    )
+    gc_untreated = gc_untreated.with_columns(
+        location=pl.lit(location),
+        region=pl.lit(loc_df[0, "region"]),
+    )
+
+    # calculate indirect averted cases for the resistance pathway (>= 2008),
+    # i.e. the HIV cases that propagated forward because the index case sought
+    # care but treatment failed due to antibiotic resistance
+    gc_resistance = loc_df.filter(pl.col("year") >= 2008).select(
+        [
+            "year",
+            "sex",
+            "unaids_prevalence_year_end_number",
+            "unaids_prevalence_year_end_number_lower",
+            "unaids_prevalence_year_end_number_upper",
+            "unaids_incidence_number",
+            "unaids_incidence_number_lower",
+            "unaids_incidence_number_upper",
+            "treatment_proportion",
+            "treatment_proportion_lower",
+            "treatment_proportion_upper",
+            "direct_hiv_averted_gc_resistance",
+            "direct_hiv_averted_gc_resistance_lower",
+            "direct_hiv_averted_gc_resistance_upper",
+            *[
+                f"paf_gc_hiv{estimate}"
+                for estimate in ["", "_lower", "_upper"]
+            ],
+        ]
+    )
+    gc_resistance = gc_resistance.rename(
+        {
+            "direct_hiv_averted_gc_resistance": "direct_hiv_averted",
+            "direct_hiv_averted_gc_resistance_lower": "direct_hiv_averted_lower",
+            "direct_hiv_averted_gc_resistance_upper": "direct_hiv_averted_upper",
+        }
+    )
+    gc_resistance = calculate_indirect_averted_cases(
+        gc_resistance,
+        "gc",
+        sti_hiv_transmission_increase_male=sti_transmission_increase.filter(
+            (pl.col("bacteria") == "gc") & (pl.col("sex") == "Both")
+        )["rr_mu"].item(),
+        sti_hiv_transmission_increase_lower_male=sti_transmission_increase.filter(
+            (pl.col("bacteria") == "gc") & (pl.col("sex") == "Both")
+        )["rr_lower"].item(),
+        sti_hiv_transmission_increase_upper_male=sti_transmission_increase.filter(
+            (pl.col("bacteria") == "gc") & (pl.col("sex") == "Both")
+        )["rr_upper"].item(),
+        sti_hiv_transmission_increase_female=sti_transmission_increase.filter(
+            (pl.col("bacteria") == "gc") & (pl.col("sex") == "Women")
+        )["rr_mu"].item(),
+        sti_hiv_transmission_increase_lower_female=sti_transmission_increase.filter(
+            (pl.col("bacteria") == "gc") & (pl.col("sex") == "Women")
+        )["rr_lower"].item(),
+        sti_hiv_transmission_increase_upper_female=sti_transmission_increase.filter(
+            (pl.col("bacteria") == "gc") & (pl.col("sex") == "Women")
+        )["rr_upper"].item(),
+    )
+    gc_resistance = gc_resistance.rename(
+        {
+            "indirect_hiv_averted": "indirect_hiv_averted_gc_resistance",
+            "indirect_hiv_averted_lower": "indirect_hiv_averted_gc_resistance_lower",
+            "indirect_hiv_averted_upper": "indirect_hiv_averted_gc_resistance_upper",
+        }
+    )
+    gc_resistance = gc_resistance.with_columns(
+        location=pl.lit(location),
+        region=pl.lit(loc_df[0, "region"]),
+    )
+
     upper_bound = upper_bounds_past_and_future[0].join(
         upper_bounds_past_and_future[1],
         on=["year", "sex", "location", "region"],
@@ -778,6 +1027,17 @@ for location in tqdm(hiv["location"].unique()):
     )
     scenarios = upper_bound.join(
         first_line_treatment_change,
+        on=["year", "sex", "location", "region"],
+        how="left",
+    )
+    # join the untreated and resistance decomposition indirects
+    scenarios = scenarios.join(
+        gc_untreated,
+        on=["year", "sex", "location", "region"],
+        how="left",
+    )
+    scenarios = scenarios.join(
+        gc_resistance,
         on=["year", "sex", "location", "region"],
         how="left",
     )
@@ -927,6 +1187,30 @@ hiv = hiv.with_columns(
     + pl.col("indirect_hiv_averted_2016_gc_change_upper"),
 )
 
+# sum direct + indirect for the untreated and resistance decomposition pathways
+hiv = hiv.with_columns(
+    hiv_averted_gc_untreated=pl.col("direct_hiv_averted_gc_untreated")
+    + pl.col("indirect_hiv_averted_gc_untreated"),
+    hiv_averted_gc_untreated_lower=pl.col(
+        "direct_hiv_averted_gc_untreated_lower"
+    )
+    + pl.col("indirect_hiv_averted_gc_untreated_lower"),
+    hiv_averted_gc_untreated_upper=pl.col(
+        "direct_hiv_averted_gc_untreated_upper"
+    )
+    + pl.col("indirect_hiv_averted_gc_untreated_upper"),
+    hiv_averted_gc_resistance=pl.col("direct_hiv_averted_gc_resistance")
+    + pl.col("indirect_hiv_averted_gc_resistance"),
+    hiv_averted_gc_resistance_lower=pl.col(
+        "direct_hiv_averted_gc_resistance_lower"
+    )
+    + pl.col("indirect_hiv_averted_gc_resistance_lower"),
+    hiv_averted_gc_resistance_upper=pl.col(
+        "direct_hiv_averted_gc_resistance_upper"
+    )
+    + pl.col("indirect_hiv_averted_gc_resistance_upper"),
+)
+
 # save csv
 hiv.write_csv(os.path.join(output_dir, "hiv_averted.csv"))
 
@@ -1004,6 +1288,25 @@ hiv = hiv.sort(by=["location", "sex", "year"]).select(
         "indirect_hiv_averted_2016_gc_change",
         "indirect_hiv_averted_2016_gc_change_lower",
         "indirect_hiv_averted_2016_gc_change_upper",
+        # untreated vs resistance decomposition (direct + indirect + total)
+        "direct_hiv_averted_gc_untreated",
+        "direct_hiv_averted_gc_untreated_lower",
+        "direct_hiv_averted_gc_untreated_upper",
+        "indirect_hiv_averted_gc_untreated",
+        "indirect_hiv_averted_gc_untreated_lower",
+        "indirect_hiv_averted_gc_untreated_upper",
+        "hiv_averted_gc_untreated",
+        "hiv_averted_gc_untreated_lower",
+        "hiv_averted_gc_untreated_upper",
+        "direct_hiv_averted_gc_resistance",
+        "direct_hiv_averted_gc_resistance_lower",
+        "direct_hiv_averted_gc_resistance_upper",
+        "indirect_hiv_averted_gc_resistance",
+        "indirect_hiv_averted_gc_resistance_lower",
+        "indirect_hiv_averted_gc_resistance_upper",
+        "hiv_averted_gc_resistance",
+        "hiv_averted_gc_resistance_lower",
+        "hiv_averted_gc_resistance_upper",
     ]
 )
 
