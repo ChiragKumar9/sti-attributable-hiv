@@ -697,9 +697,9 @@ for location in tqdm(hiv["location"].unique()):
     )
 
     # we need to calculate the upper bound twice -- once for
-    # >= 2000, and once for >= 2023
+    # >= 2000, and once for >= 2025
     upper_bounds_past_and_future = []
-    for year_cutoff in [2000, 2023]:
+    for year_cutoff in [2000, 2025]:
         upper_bound = loc_df.filter((pl.col("year") >= year_cutoff))
         upper_bound = upper_bound.drop(
             [

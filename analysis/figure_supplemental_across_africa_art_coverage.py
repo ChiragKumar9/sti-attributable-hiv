@@ -91,7 +91,7 @@ def plot_art_coverage(df, ax, label, fig, legend=False):
     ax.set_xlabel("Year")
     ax.set_ylabel(label)
     if legend:
-        ax.legend()
+        ax.legend(edgecolor="black")
     ax.set_xticks([2000, 2010, 2020, 2030])
     # minor ticks every two years
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))

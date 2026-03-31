@@ -15,7 +15,7 @@ rc("font", **font)
 
 
 def setup_plot(nrows, ncols):
-    fig, ax = plt.subplots(nrows, ncols, figsize=(40, 15))
+    fig, ax = plt.subplots(nrows, ncols, figsize=(40, 17))
     if nrows * ncols == 1:
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
@@ -46,9 +46,50 @@ def setup_plot(nrows, ncols):
 
 def ax_formatting(ax, forward):
     if forward:
-        ax.set_xticks([2025, 2030])
+        ax.set_xticks([2026, 2030])
         # minor x ticks every year
         ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
+        ax.yaxis.set_minor_locator(
+            ticker.FixedLocator(
+                -1
+                * np.array(
+                    [
+                        200,
+                        300,
+                        400,
+                        500,
+                        600,
+                        700,
+                        800,
+                        900,
+                        2000,
+                        3000,
+                        4000,
+                        5000,
+                        6000,
+                        7000,
+                        8000,
+                        9000,
+                        20000,
+                        30000,
+                        40000,
+                        50000,
+                        60000,
+                        70000,
+                        80000,
+                        90000,
+                        200000,
+                        300000,
+                        400000,
+                        500000,
+                        600000,
+                        700000,
+                        800000,
+                        900000,
+                    ]
+                )  # type: ignore
+            )
+        )
     else:
         ax.set_xticks([2000, 2010, 2020])
         # minor x ticks every two years
@@ -100,9 +141,8 @@ def ax_formatting(ax, forward):
 def plot_best_case(hiv, ax, year, fig, forward=False, reference=None):
     if forward:
         scalar = -1.0
-        # this may change based on how the future sims are set up?
         stub = "upper_bound_future"
-        hiv = hiv.filter(pl.col("year") >= 2025)
+        hiv = hiv.filter(pl.col("year") >= 2026)
     else:
         scalar = 1.0
         stub = "upper_bound"
@@ -200,7 +240,7 @@ def plot_best_case(hiv, ax, year, fig, forward=False, reference=None):
         hiv["direct"],
         linewidth=3,
         label="Direct",
-        color="goldenrod",
+        color="#275DAD",
     )
 
     ax.fill_between(
@@ -208,11 +248,11 @@ def plot_best_case(hiv, ax, year, fig, forward=False, reference=None):
         hiv["direct_lower"],
         hiv["direct_upper"],
         alpha=0.3,
-        color="goldenrod",
+        color="#275DAD",
     )
 
     ax.plot(
-        hiv["year"], hiv["total"], linewidth=3, label="Total", color="brown"
+        hiv["year"], hiv["total"], linewidth=3, label="Total", color="darkred"
     )
 
     ax.fill_between(
@@ -220,14 +260,14 @@ def plot_best_case(hiv, ax, year, fig, forward=False, reference=None):
         hiv["total_lower"],
         hiv["total_upper"],
         alpha=0.3,
-        color="brown",
+        color="darkred",
     )
 
     ax.plot(
         hiv["year"],
         hiv["reference"],
         linewidth=3,
-        label="Current" if not forward else "Projected",
+        label="Historic" if not forward else "Projected",
         color="black",
     )
 
@@ -244,8 +284,8 @@ def plot_best_case(hiv, ax, year, fig, forward=False, reference=None):
     if forward:
         loc = (0.55, 0.75)
     else:
-        loc = None
-    ax.legend(loc=loc)
+        loc = (0.6, 0.7)
+    ax.legend(loc=loc, edgecolor="black")
     ax.set_ylim(0)
     ax.yaxis.set_major_formatter(
         ticker.FuncFormatter(lambda x, p: format(int(x), ","))
@@ -258,7 +298,7 @@ def plot_best_case(hiv, ax, year, fig, forward=False, reference=None):
             color="#009CDE",
             label="SDG target",
         )
-        ax.set_xticks([2025, 2030])
+        ax.set_xticks([2026, 2030])
         # minor x ticks every year
         ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
     else:
@@ -278,7 +318,7 @@ def plot_averted_sti(hiv, ax, year, fig, forward=False):
     if forward:
         scalar = -1.0
         stub = "upper_bound_future"
-        hiv = hiv.filter(pl.col("year") >= 2024)
+        hiv = hiv.filter(pl.col("year") >= 2026)
     else:
         scalar = 1.0
         stub = "upper_bound"
@@ -398,10 +438,10 @@ def plot_averted_sti(hiv, ax, year, fig, forward=False):
     ax.set_xlabel("Year")
     ax.set_ylabel("Change in HIV incidence (N)")
     if forward:
-        loc = (0.4, 0.7)
+        loc = (0.4, 0.95)
     else:
-        loc = (0, 0)
-    ax.legend(loc=loc)
+        loc = (0.4, 0.95)
+    ax.legend(loc=loc, edgecolor="black")
     ax.set_yscale("symlog")
     # make the numbers appear in non scientific notation
     ax.yaxis.set_major_formatter(
@@ -414,7 +454,7 @@ def plot_averted_sex(hiv, ax, year, fig, forward=False):
     if forward:
         scalar = -1.0
         stub = "upper_bound_future"
-        hiv = hiv.filter(pl.col("year") >= 2024)
+        hiv = hiv.filter(pl.col("year") >= 2026)
     else:
         scalar = 1.0
         stub = "upper_bound"
@@ -565,10 +605,10 @@ def plot_averted_sex(hiv, ax, year, fig, forward=False):
     ax.set_xlabel("Year")
     ax.set_ylabel("Change in HIV incidence (N)")
     if forward:
-        loc = (0.4, 0.7)
+        loc = (0.35, 0.95)
     else:
-        loc = (0, 0)
-    ax.legend(loc=loc)
+        loc = (0.35, 0.95)
+    ax.legend(loc=loc, edgecolor="black")
     ax.set_yscale("symlog")
     # make the numbers appear in non scientific notation
     ax.yaxis.set_major_formatter(
@@ -581,7 +621,7 @@ def plot_averted_region(hiv, ax, year, fig, forward=False):
     if forward:
         scalar = -1.0
         stub = "upper_bound_future"
-        hiv = hiv.filter(pl.col("year") >= 2024)
+        hiv = hiv.filter(pl.col("year") >= 2026)
     else:
         scalar = 1.0
         stub = "upper_bound"
@@ -697,10 +737,10 @@ def plot_averted_region(hiv, ax, year, fig, forward=False):
     ax.set_xlabel("Year")
     ax.set_ylabel("Change in HIV incidence (N)")
     if forward:
-        loc = (0.6, 0.6)
+        loc = (0.55, 0.95)
     else:
-        loc = (0, 0)
-    ax.legend(loc=loc)
+        loc = (0.55, 0.96)
+    ax.legend(loc=loc, edgecolor="black")
     ax.set_yscale("symlog")
     # make the numbers appear in non scientific notation
     ax.yaxis.set_major_formatter(

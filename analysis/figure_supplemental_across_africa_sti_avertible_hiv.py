@@ -43,15 +43,17 @@ def setup_plot(nrows, ncols):
     return fig, ax
 
 
-def plot_avertable_hiv_burden_sex(
+def plot_avertible_hiv_burden_sex(
     hiv, sti, ax, label, fig, forward, legend=False
 ):
     if forward:
         scalar = -1.0
-        stub = "upper_bound"
+        stub = "upper_bound_future"
+        hiv = hiv.filter(pl.col("year") >= 2026)
     else:
         scalar = 1.0
         stub = "upper_bound"
+        hiv = hiv.filter(pl.col("year") <= 2024)
 
     hiv = (
         hiv.group_by(["year", "sex"])
@@ -125,17 +127,16 @@ def plot_avertable_hiv_burden_sex(
     ax.set_xlabel("Year")
     ax.set_ylabel(label)
     if legend:
-        ax.legend()
+        ax.legend(edgecolor="black")
     if forward:
-        ax.set_xticks([2025, 2030])
-        # minor tick every 1 year
+        ax.set_xticks([2026, 2030])
         ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
         ax.set_ylim(top=0)
     else:
-        ax.set_xticks([1990, 2000, 2010, 2020])
-        # minor ticks every two years
+        ax.set_xticks([2000, 2010, 2020])
         ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))
         ax.set_ylim(0)
+    ax.yaxis.set_minor_locator(ticker.MultipleLocator(10000))
     ax.yaxis.set_major_formatter(
         ticker.FuncFormatter(lambda x, _: f"{int(x):,}")
     )
@@ -148,116 +149,62 @@ if __name__ == "__main__":
         "syphilis": "syphilis",
         "trichomoniasis": "trichomoniasis",
     }
+    regions = [
+        ("Western", "a", "Western Africa"),
+        ("Eastern", "b", "Eastern Africa"),
+        ("Central", "c", "Central Africa"),
+        ("Southern", "d", "Southern Africa"),
+    ]
     units = "N"
+
     for forward in [True, False]:
+        name = "future" if forward else "historical"
+
         hiv = pl.read_csv(os.path.join(output_dir, "hiv_averted.csv"))
 
-        if forward:
-            name = "future"
-            # TODO: fix the year once we have the historical projections
-            hiv = hiv.filter(pl.col("year") >= 2020)
-        else:
-            hiv = hiv.filter(pl.col("year") <= 2023)
-            name = "historical"
-        for sti in sti_map.keys():
+        for sti, sti_label in sti_map.items():
             fig, ax = setup_plot(2, 2)  # type: ignore
 
-            if sti == "trichomoniasis":
-                # also remove men with trich
-                hiv = hiv.filter(pl.col("sex") != "Male")
-                hiv = hiv.filter(pl.col("sex") != "MSM")
-            base_label = (
-                f"Change in HIV incidence from treating\n{sti_map[sti]}"
+            # For trichomoniasis, exclude male sex groups
+            hiv_sti = (
+                hiv.filter(pl.col("sex") != "Male").filter(
+                    pl.col("sex") != "MSM"
+                )
+                if sti == "trichomoniasis"
+                else hiv
             )
 
-            # western africa
-            ax[0, 0].text(  # type: ignore
-                -0.25,
-                1.08,
-                "a",
-                transform=ax[0, 0].transAxes,  # type: ignore
-                fontsize=24,
-                fontweight="bold",
-                va="top",
-                ha="right",
-            )
-            plot_avertable_hiv_burden_sex(
-                hiv.filter(pl.col("region") == "Western"),
-                sti,
-                ax[0, 0],  # type: ignore
-                base_label + f"in Western Africa ({units})",
-                fig,
-                forward,
-                legend=True,
-            )
+            base_label = f"Change in HIV incidence from\ntreating {sti_label}"
 
-            # eastern africa
-            ax[0, 1].text(  # type: ignore
-                -0.25,
-                1.08,
-                "b",
-                transform=ax[0, 1].transAxes,  # type: ignore
-                fontsize=24,
-                fontweight="bold",
-                va="top",
-                ha="right",
-            )
-            plot_avertable_hiv_burden_sex(
-                hiv.filter(pl.col("region") == "Eastern"),
-                sti,
-                ax[0, 1],  # type: ignore
-                base_label + f"in Eastern Africa ({units})",
-                fig,
-                forward,
-            )
+            for i, (region, panel_label, region_label) in enumerate(regions):
+                row, col = divmod(i, 2)
 
-            # central africa
-            ax[1, 0].text(  # type: ignore
-                -0.25,
-                1.08,
-                "c",
-                transform=ax[1, 0].transAxes,  # type: ignore
-                fontsize=24,
-                fontweight="bold",
-                va="top",
-                ha="right",
-            )
-            plot_avertable_hiv_burden_sex(
-                hiv.filter(pl.col("region") == "Central"),
-                sti,
-                ax[1, 0],  # type: ignore
-                base_label + f"in Central Africa ({units})",
-                fig,
-                forward,
-            )
-
-            # southern africa
-            ax[1, 1].text(  # type: ignore
-                -0.25,
-                1.08,
-                "d",
-                transform=ax[1, 1].transAxes,  # type: ignore
-                fontsize=24,
-                fontweight="bold",
-                va="top",
-                ha="right",
-            )
-            plot_avertable_hiv_burden_sex(
-                hiv.filter(pl.col("region") == "Southern"),
-                sti,
-                ax[1, 1],  # type: ignore
-                base_label + f"in Southern Africa ({units})",
-                fig,
-                forward,
-            )
+                ax[row, col].text(  # type: ignore
+                    -0.25,
+                    1.08,
+                    panel_label,
+                    transform=ax[row, col].transAxes,  # type: ignore
+                    fontsize=24,
+                    fontweight="bold",
+                    va="top",
+                    ha="right",
+                )
+                plot_avertible_hiv_burden_sex(
+                    hiv_sti.filter(pl.col("region") == region),
+                    sti,
+                    ax[row, col],  # type: ignore
+                    base_label + f" in {region_label} ({units})",
+                    fig,
+                    forward,
+                    legend=(i == 0),
+                )
 
             fig.tight_layout()
 
-            # save
             fig.savefig(
                 os.path.join(
                     fig_dir,
-                    f"figure_supplemental_{sti}_avertable_hiv_region_sex_{name}.png",
+                    f"figure_supplemental_{sti}_avertible_hiv_region_sex_{name}.png",
                 ),
                 dpi=300,
                 bbox_inches="tight",
@@ -265,7 +212,7 @@ if __name__ == "__main__":
             fig.savefig(
                 os.path.join(
                     fig_dir,
-                    f"figure_supplemental_{sti}_avertable_hiv_region_sex_{name}.pdf",
+                    f"figure_supplemental_{sti}_avertible_hiv_region_sex_{name}.pdf",
                 ),
                 dpi=300,
                 bbox_inches="tight",

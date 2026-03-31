@@ -47,14 +47,14 @@ def plot_hiv_burden(hiv, ax, label, fig, legend=False):
     hiv = (
         hiv.group_by(["year", "sex"])
         .agg(
-            pl.sum("hiv_incidence_number"),
-            pl.sum("hiv_incidence_number_upper"),
-            pl.sum("hiv_incidence_number_lower"),
+            pl.sum("unaids_incidence_number"),
+            pl.sum("unaids_incidence_number_upper"),
+            pl.sum("unaids_incidence_number_lower"),
         )
         .with_columns(
-            hiv_incidence_rate=pl.col("hiv_incidence_number"),
-            hiv_incidence_rate_upper=pl.col("hiv_incidence_number_upper"),
-            hiv_incidence_rate_lower=pl.col("hiv_incidence_number_lower"),
+            hiv_incidence_rate=pl.col("unaids_incidence_number"),
+            hiv_incidence_rate_upper=pl.col("unaids_incidence_number_upper"),
+            hiv_incidence_rate_lower=pl.col("unaids_incidence_number_lower"),
         )
     )
 
@@ -95,9 +95,11 @@ def plot_hiv_burden(hiv, ax, label, fig, legend=False):
     ax.set_xlabel("Year")
     ax.set_ylabel(f"HIV incidence in {label} Africa (N)")
     if legend:
-        ax.legend()
+        ax.legend(edgecolor="black")
     ax.set_xticks([1990, 2000, 2010, 2020])
-    ax.xaxis.set_major_formatter(ticker.StrMethodFormatter("{x:.0f}"))
+    ax.yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:,.0f}"))
+    # minor x axis ticks every two years
+    ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))
     ax.set_ylim(0)
 
 
@@ -105,6 +107,7 @@ if __name__ == "__main__":
     fig, ax = setup_plot(2, 2)  # type: ignore
 
     hiv = pl.read_csv(os.path.join(output_dir, "hiv_attributable_to_stis.csv"))
+    hiv = hiv.filter(pl.col("year") <= 2023)
     ax[0, 0].text(  # type: ignore
         -0.25,
         1.08,

@@ -15,7 +15,7 @@ rc("font", **font)
 
 
 def setup_plot(nrows, ncols):
-    fig, ax = plt.subplots(nrows, ncols, figsize=(20, 15))
+    fig, ax = plt.subplots(nrows, ncols, figsize=(20, 17.5))
     if nrows * ncols == 1:
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
@@ -100,7 +100,7 @@ def plot_hiv_burden_by_sex(hiv, ax, fig):
 
     ax.set_xlabel("Year")
     ax.set_ylabel("HIV incidence in\nsub-Saharan Africa (N)")
-    ax.legend(loc=(0.5, 0.73))
+    ax.legend(loc=(0.5, 0.73), edgecolor="black")
     ax.set_xticks([1990, 2000, 2010, 2020])
     ax.set_yticks([0, 500000, 1000000])
     ax.yaxis.set_major_formatter(
@@ -156,7 +156,7 @@ def plot_hiv_burden_by_region(hiv, ax, fig):
 
     ax.set_xlabel("Year")
     ax.set_ylabel("HIV incidence (N)")
-    ax.legend(loc=(0.5, 0.68))
+    ax.legend(loc=(0.5, 0.55), edgecolor="black")
     ax.set_xticks([1990, 2000, 2010, 2020])
     ax.set_yticks([0, 250000, 500000, 750000, 1000000])
     ax.yaxis.set_major_formatter(
@@ -244,7 +244,7 @@ def plot_rr_estimates(aggregated_rrs, ax, fig):
     )
 
     ax.set_ylim(0.1)
-    ax.legend(loc=(0.35, 0))
+    ax.legend(loc=(0.3, 1.03), edgecolor="black")
     ax.set_xlabel("STI")
     ax.set_xticks(
         female_xs,
@@ -258,7 +258,7 @@ def plot_rr_estimates(aggregated_rrs, ax, fig):
     ax.set_yticklabels(["1", "10"])
     ax.axhline(1, color="grey", linestyle="--")
     ax.set_xlabel("STI")
-    ax.set_ylabel("Causal RR(HIV acquisition | STI infection)")
+    ax.set_ylabel("Causal RR(HIV acquisition | untreated STI)")
 
 
 def plot_drug_resistance(estimated_resistance_rates, ax, fig):
@@ -348,7 +348,7 @@ def plot_drug_resistance(estimated_resistance_rates, ax, fig):
 
     ax.set_xlabel("Year")
     ax.set_ylabel("Gonorrhea resistance (%)")
-    ax.legend()
+    ax.legend(loc=(0.4, 0.97), edgecolor="black")
     ax.set_xticks([2010, 2015, 2020])
     ax.set_ylim(0)
     # y axis ticks every 10%
