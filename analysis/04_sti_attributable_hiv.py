@@ -1,13 +1,96 @@
 import os
+import pickle
 
-import numpy as np
 import polars as pl
+import yaml
 from scipy import stats
+from tqdm.auto import tqdm
 
 from averted_burden import conditional_exposure
+from averted_burden.delta_method import (
+    LeafCache,
+    ci_via_log,
+    ci_via_logit,
+    logit_normal_leaf,
+    lognormal_cluster_member,
+    lognormal_leaf,
+    new_cluster_latent,
+    point_mass,
+)
 
 output_dir = "outputs"
 data_dir = "data"
+
+STIS = ["gc", "chlamydia", "syphilis", "trichomoniasis"]
+ABX = ["Ciprofloxacin", "Cefixime", "Azithromycin", "Ceftriaxone"]
+
+# read params
+with open("params.yml", "r") as f:
+    params = yaml.safe_load(f)
+
+# Add this near the top after loading params
+sti_symptom_params = params["sti_symptoms"]
+
+
+def umax0(x):
+    """max(x, 0) for a UFloat -- a real subgradient kink, same as the
+    np.clip(lower_bound=0) calls in the original code."""
+    if x.nominal_value >= 0:
+        return x
+    return x - x  # exact zero, including zero variance, like a true clip
+
+
+# ----------------------------------------------------------------------
+# Leaf caches: shared across every row that draws from the same upstream
+# estimate, so uncertainty isn't diluted when many rows share one value.
+# ----------------------------------------------------------------------
+
+rr_causal_cache = LeafCache(lognormal_leaf)  # keyed by (sex, sti)
+rr_assoc_cache = LeafCache(lognormal_leaf)  # keyed by (merging_sex, sti)
+resistance_cache = LeafCache(
+    logit_normal_leaf
+)  # keyed by (location, year, abx)
+tx_prop_cache = LeafCache(logit_normal_leaf)  # keyed by (location, year, sex)
+
+
+def get_rr_causal(sex, sti, mean, lower, upper):
+    return rr_causal_cache.get(
+        (sex, sti), mean, lower, upper, f"rr_causal_{sti}_{sex}"
+    )
+
+
+def get_rr_assoc(sex, sti, mean, lower, upper):
+    return rr_assoc_cache.get(
+        (sex, sti), mean, lower, upper, f"rr_assoc_{sti}_{sex}"
+    )
+
+
+def get_resistance(location, year, abx, mean, lower, upper):
+    """Antibiotic resistance is a [0,1] proportion, so use logit_normal_leaf."""
+    return resistance_cache.get(
+        (location, year, abx), mean, lower, upper, f"{abx}_{location}_{year}"
+    )
+
+
+def get_treatment_proportion(location, year, sex, mean, lower, upper):
+    """treatment_proportion is a [0,1] coverage proportion, broadcast across
+    age groups but estimated per (location, year, sex). Cache it at that grain
+    so every age row reuses the same object (same reasoning as the resistance
+    cache), and fall back to a fixed point mass if it is degenerate/missing."""
+    leaf = tx_prop_cache.get(
+        (location, year, sex),
+        mean,
+        lower,
+        upper,
+        f"tx_prop_{location}_{year}_{sex}",
+    )
+    if leaf is None:
+        return point_mass(
+            mean if mean is not None else 0.0,
+            f"tx_prop_fallback_{location}_{year}_{sex}",
+        )
+    return leaf
+
 
 # we want to assess the probability that an individual with an STI acquired hiv
 # we need the RR of acquiring HIV given STI
@@ -300,8 +383,9 @@ male_syphilis1 = male_coinfection2_mean.join(
 )
 male_syphilis1 = male_syphilis1.with_columns(
     pl.lit("Syphilis").alias("STI 1 (for those infected with)"),
-    pl.col("Coinfection prevalence")
-    * pl.col("syphilis_ratio").alias("Coinfection prevalence"),
+    (pl.col("Coinfection prevalence") * pl.col("syphilis_ratio")).alias(
+        "Coinfection prevalence"
+    ),
 ).select(
     [
         "STI 1 (for those infected with)",
@@ -329,8 +413,9 @@ male_syphilis2 = male_coinfection1_mean.join(
 )
 male_syphilis2 = male_syphilis2.with_columns(
     pl.lit("Syphilis").alias("STI 2 (how many are coinfected w)"),
-    pl.col("Coinfection prevalence")
-    * pl.col("syphilis_ratio").alias("Coinfection prevalence"),
+    (pl.col("Coinfection prevalence") * pl.col("syphilis_ratio")).alias(
+        "Coinfection prevalence"
+    ),
 ).select(
     [
         "STI 1 (for those infected with)",
@@ -484,7 +569,7 @@ for sti1 in ["gc", "chlamydia", "syphilis", "trichomoniasis"]:
                 ).alias(f"{sti2}_given_{sti1}_coin{estimate}")
             )
 
-# coinfection deduction loop -- unchanged, operates row-wise on already
+# coinfection deduction loop
 # age-specific coin columns
 for sex in hiv_sti["sex"].unique():
     # Select appropriate coinfection dataframe
@@ -563,604 +648,585 @@ for sex in hiv_sti["sex"].unique():
                 ]
             )
 
-# calculate the prevalence of STIs in people without HIV
-# this is the eligible population that can develop HIV because of the STI
-# we have P(STI) and RR(STI|HIV) associative, so we can calculate P(STI|HIV)
-# and then multiply by P(HIV) to get P(STI and HIV), then subtract from P(STI)
-# we have to do this for each of our STIs
-
-STIs = ["gc", "chlamydia", "syphilis", "trichomoniasis"]
-
-# ============================================================
-# GBD analysis
-# ============================================================
-
-hiv_sti = hiv_sti.with_columns(
-    [
-        pl.struct(
-            [
-                f"{sti}_prevalence{estimate}",
-                f"hiv_prevalence_number{estimate}",
-                f"population{estimate}",
-                f"rr_associative{estimate}_{sti}",
-            ]
-        )
-        .map_elements(
-            lambda x, s=sti, e=estimate: conditional_exposure.p_a_given_b(
-                x[f"{s}_prevalence{e}"],
-                x[f"hiv_prevalence_number{e}"] / x[f"population{e}"],
-                x[f"rr_associative{e}_{s}"],
-            ),
-            return_dtype=pl.Float64,
-        )
-        .alias(f"p_{sti}_given_hiv{estimate}")
-        for sti in STIs
-        for estimate in ["", "_lower", "_upper"]
-    ]
-)
-
-# now calculate P(STI and HIV)
-hiv_sti = hiv_sti.with_columns(
-    [
-        (
-            pl.col(f"p_{sti}_given_hiv{estimate}")
-            * (
-                pl.col(f"hiv_prevalence_number{estimate}")
-                / pl.col(f"population{estimate}")
-            )
-        ).alias(f"p_{sti}_and_hiv{estimate}")
-        for sti in STIs
-        for estimate in ["", "_lower", "_upper"]
-    ]
-)
-
-# now calculate STI prevalence in people without HIV
-hiv_sti = hiv_sti.with_columns(
-    [
-        (
-            pl.col(f"{sti}_prevalence{estimate}")
-            - pl.col(f"p_{sti}_and_hiv{estimate}")
-        ).alias(f"{sti}_prevalence_no_hiv{estimate}")
-        for sti in STIs
-        for estimate in ["", "_lower", "_upper"]
-    ]
-)
-
-# it is possible to get negative prevalences because we don't do clever
-# extrapolations with the gbd data, so clip any negative sti prevalences no hiv
-# at 0
-hiv_sti = hiv_sti.with_columns(
-    [
-        pl.col(f"{sti}_prevalence_no_hiv{estimate}")
-        .clip(lower_bound=0)
-        .alias(f"{sti}_prevalence_no_hiv{estimate}")
-        for sti in STIs
-        for estimate in ["", "_lower", "_upper"]
-    ]
-)
-
-# check that we don't have any negative prevalences
-assert np.all(
-    hiv_sti.select(
-        [
-            f"{sti}_prevalence_no_hiv{estimate}"
-            for sti in STIs
-            for estimate in ["", "_lower", "_upper"]
-        ]
-    )
-    .min()
-    .to_numpy()
-    >= 0
-)
-
-# the multiplicative nature of this model means that for some highly uncertain
-# places, we may see main <= lower <= upper or something like that
-# print out places like this
-for sti in STIs:
-    print(
-        hiv_sti.select(
-            [
-                "year",
-                "sex",
-                "age_group",
-                "location",
-                f"{sti}_prevalence_no_hiv_lower",
-                f"{sti}_prevalence_no_hiv",
-                f"{sti}_prevalence_no_hiv_upper",
-            ]
-        )
-        .with_columns(
-            in_bounds=(
-                pl.col(f"{sti}_prevalence_no_hiv_lower")
-                <= pl.col(f"{sti}_prevalence_no_hiv")
-            ).and_(
-                pl.col(f"{sti}_prevalence_no_hiv")
-                <= pl.col(f"{sti}_prevalence_no_hiv_upper")
-            )
-        )
-        .filter(~pl.col("in_bounds"))
-    )
-
-# we notice that these are all places where quantification of population size
-# is really tough
-# so we apply a post-hoc correction where we reorder the values
-for sti in STIs:
+for sti in STIS:
     hiv_sti = hiv_sti.with_columns(
         [
-            # Calculate the minimum, median, and maximum of the three values
             pl.min_horizontal(
                 [
-                    f"{sti}_prevalence_no_hiv_lower",
-                    f"{sti}_prevalence_no_hiv",
-                    f"{sti}_prevalence_no_hiv_upper",
+                    f"{sti}_prevalence_lower",
+                    f"{sti}_prevalence",
+                    f"{sti}_prevalence_upper",
                 ]
-            ).alias(f"{sti}_prevalence_no_hiv_lower"),
+            ).alias(f"{sti}_prevalence_lower"),
             pl.max_horizontal(
                 [
-                    f"{sti}_prevalence_no_hiv_lower",
-                    f"{sti}_prevalence_no_hiv",
-                    f"{sti}_prevalence_no_hiv_upper",
+                    f"{sti}_prevalence_lower",
+                    f"{sti}_prevalence",
+                    f"{sti}_prevalence_upper",
                 ]
-            ).alias(f"{sti}_prevalence_no_hiv_upper"),
+            ).alias(f"{sti}_prevalence_upper"),
             pl.concat_list(
                 [
-                    f"{sti}_prevalence_no_hiv_lower",
-                    f"{sti}_prevalence_no_hiv",
-                    f"{sti}_prevalence_no_hiv_upper",
+                    f"{sti}_prevalence_lower",
+                    f"{sti}_prevalence",
+                    f"{sti}_prevalence_upper",
                 ]
             )
             .list.sort()
             .list.get(1)
-            .alias(f"{sti}_prevalence_no_hiv"),
+            .alias(f"{sti}_prevalence"),
         ]
     )
 
-# use RR definition and law of total probability to calculate
-# P(acquired HIV (attributable to STI) | has STI)
-# The causal part is baked into using the causal RRs
-hiv_sti = hiv_sti.with_columns(
-    [
-        pl.struct(
-            [
-                f"p_acquiring_hiv{estimate}",
-                f"{sti}_prevalence_no_hiv{estimate}",
-                f"rr_causal{estimate}_{sti}",
-            ]
-        )
-        .map_elements(
-            lambda x, s=sti, e=estimate: conditional_exposure.p_a_given_b(
-                x[f"p_acquiring_hiv{e}"],
-                x[f"{s}_prevalence_no_hiv{e}"],
-                x[f"rr_causal{e}_{s}"],
-            ),
-            return_dtype=pl.Float64,
-        )
-        .alias(f"p_acquiring_hiv_given_{sti}{estimate}")
-        for sti in STIs
-        for estimate in ["", "_lower", "_upper"]
-    ]
-)
 
-# we want to calculate the probability of acquiring hiv because of STI,
-# not conditioned on having the STI
+def compute_attributable_block(
+    sti_prevalence: dict,  # sti -> UFloat, post-coinfection-deduction prevalence
+    hiv_prevalence_proportion,  # e.g. hiv_prevalence_number / population
+    p_acquiring_hiv,
+    incidence_number,  # e.g. hiv_incidence_number (for scaling attributable counts)
+    rr_assoc: dict,  # sti -> UFloat
+    rr_causal: dict,  # sti -> UFloat
+    treatment_rate: dict,  # sti -> float (constant; zero variance)
+    gc_treatment_effectiveness,
+):
+    """
+    Audit notes:
+    - All conditional probability calculations use the unchanged conditional_exposure
+      functions, which implement the law of total probability correctly.
+    - Treatment adjustment: prevalence_no_hiv_effective = prevalence_no_hiv * [(1-t) + t*(1-e)]
+      This removes the fraction that is effectively treated. Correct.
+    - Attributable risk: (P(HIV|STI) - P(HIV|no STI)) * P(STI) is the classic
+      attributable risk formula. Correct.
+    - PAF = attributable_risk / P(acquiring HIV). Correct.
+    - The result dict now also carries prevalence_no_hiv (the PRE-treatment
+      no-HIV prevalence) so the counterfactual direct-averted burdens can be
+      re-evaluated exactly via attributable_at_multiplier below, rather than
+      reconstructed by dividing attrib by a treatment factor (which linearly
+      inverts the saturating p_a_given_b map and biases the counterfactual).
+    """
+    results = {}
+    for sti in STIS:
+        p_a = sti_prevalence[sti]
 
-# in order to calculate the attributable probability of HIV, we need to
-# subtract out the people who would have acquired HIV anyways -- not because
-# of the STI
-hiv_sti = hiv_sti.with_columns(
-    [
-        pl.struct(
-            [
-                f"p_acquiring_hiv{estimate}",
-                f"{sti}_prevalence_no_hiv{estimate}",
-                f"rr_causal{estimate}_{sti}",
-            ]
+        # P(STI | HIV), P(STI and HIV), P(STI | no HIV)
+        p_sti_given_hiv = conditional_exposure.p_a_given_b(
+            p_a, hiv_prevalence_proportion, rr_assoc[sti]
         )
-        .map_elements(
-            lambda x, s=sti, e=estimate: conditional_exposure.p_a_given_not_b(
-                x[f"p_acquiring_hiv{e}"],
-                x[f"{s}_prevalence_no_hiv{e}"],
-                x[f"rr_causal{e}_{s}"],
-            ),
-            return_dtype=pl.Float64,
+        p_sti_and_hiv = p_sti_given_hiv * hiv_prevalence_proportion
+        prevalence_no_hiv = p_a - p_sti_and_hiv
+
+        # treatment adjustment
+        if sti == "gc":
+            effectiveness = gc_treatment_effectiveness
+        else:
+            # Fixed effectiveness for other STIs (no uncertainty)
+            effectiveness = 1.0
+        t = treatment_rate[sti]  # This is a float, not UFloat
+        prevalence_no_hiv_effective = prevalence_no_hiv * (
+            (1 - t) + t * (1 - effectiveness)
         )
-        .alias(f"p_acquiring_hiv_given_no_{sti}{estimate}")
-        for sti in STIs
-        for estimate in ["", "_lower", "_upper"]
-    ]
-)
+        prevalence_no_hiv_effective = umax0(prevalence_no_hiv_effective)
 
-hiv_sti = hiv_sti.with_columns(
-    [
-        (
-            (
-                pl.col(f"p_acquiring_hiv_given_{sti}{estimate}")
-                - pl.col(f"p_acquiring_hiv_given_no_{sti}{estimate}")
-            )
-            * pl.col(f"{sti}_prevalence_no_hiv{estimate}")
-        ).alias(f"p_hiv_attributable_{sti}{estimate}")
-        for sti in STIs
-        for estimate in ["", "_lower", "_upper"]
-    ]
-)
+        # attributable risk
+        p_acq_given_sti = conditional_exposure.p_a_given_b(
+            p_acquiring_hiv, prevalence_no_hiv_effective, rr_causal[sti]
+        )
+        p_acq_given_no_sti = conditional_exposure.p_a_given_not_b(
+            p_acquiring_hiv, prevalence_no_hiv_effective, rr_causal[sti]
+        )
+        p_hiv_attributable = (p_acq_given_sti - p_acq_given_no_sti) * (
+            prevalence_no_hiv_effective
+        )
+        p_hiv_attributable = umax0(p_hiv_attributable)
 
-# make sure no p_hiv_attributable go below 0
-for sti in STIs:
-    hiv_sti = hiv_sti.with_columns(
-        pl.when(pl.col(f"p_hiv_attributable_{sti}{estimate}") < 0)
-        .then(pl.lit(0))
-        .otherwise(pl.col(f"p_hiv_attributable_{sti}{estimate}"))
-        .alias(f"p_hiv_attributable_{sti}{estimate}")
-        for estimate in ["", "_lower", "_upper"]
+        paf = p_hiv_attributable / p_acquiring_hiv
+        incidence_attributable = incidence_number * paf
+
+        results[sti] = {
+            "prevalence_no_hiv": prevalence_no_hiv,  # PRE-treatment (for counterfactuals)
+            "prevalence_no_hiv_effective": prevalence_no_hiv_effective,
+            "paf": paf,
+            "incidence_attributable": incidence_attributable,
+        }
+    return results
+
+
+def attributable_at_multiplier(
+    prevalence_no_hiv, p_acquiring_hiv, rr_causal_sti, incidence_number, m
+):
+    """Exact attributable HIV incidence for one STI with treatment multiplier m
+    applied to the PRE-treatment no-HIV prevalence. m is the transmitting-pool
+    fraction:  m = (1 - t) + t * (1 - effectiveness).
+
+    Passing m equal to the block's observed multiplier reproduces the block's
+    incidence_attributable exactly (same conditional-exposure chain, same umax0
+    clips). Counterfactual direct-averted burdens are then DIFFERENCES of this
+    function at various m -- NOT attrib divided by a treatment factor. Division
+    only linearly inverts p_a_given_b, which is a saturating (Michaelis-Menten)
+    map in prevalence, so it overstates the counterfactual "no-treatment"
+    burden, worst where (rr-1)*prevalence is large. Differencing exact
+    evaluations removes that bias while keeping every UFloat leaf/correlation
+    intact (same rr, incidence, prevalence objects reused)."""
+    prev_eff = umax0(prevalence_no_hiv * m)
+    p_acq_given_sti = conditional_exposure.p_a_given_b(
+        p_acquiring_hiv, prev_eff, rr_causal_sti
+    )
+    p_acq_given_no_sti = conditional_exposure.p_a_given_not_b(
+        p_acquiring_hiv, prev_eff, rr_causal_sti
+    )
+    p_hiv_attr = umax0((p_acq_given_sti - p_acq_given_no_sti) * prev_eff)
+    return incidence_number * (p_hiv_attr / p_acquiring_hiv)
+
+
+# ----------------------------------------------------------------------
+# Row-by-row pass. Each row gets fresh independent leaves for its own
+# prevalence/population-cluster quantities; RR and resistance leaves are
+# pulled from the shared caches above by their natural grain.
+# ----------------------------------------------------------------------
+
+output_rows = []
+
+for i, row in tqdm(
+    enumerate(hiv_sti.iter_rows(named=True)),
+    total=hiv_sti.height,
+    desc="Processing rows",
+):
+    sex = row["sex"]
+    merging_sex = "Male" if sex == "MSM" else sex
+    location = row["location"]
+    year = row["year"]
+
+    sti_prev = {
+        sti: logit_normal_leaf(
+            row[f"{sti}_prevalence"],
+            row[f"{sti}_prevalence_lower"],
+            row[f"{sti}_prevalence_upper"],
+            f"{sti}_prev_{i}",
+        )
+        for sti in STIS
+    }
+
+    # --- RR leaves (shared across age groups for the same sex) ---
+    # RRs are positive, unbounded, so use lognormal_leaf
+    rr_causal = {
+        sti: get_rr_causal(
+            sex,
+            sti,
+            row[f"rr_causal_{sti}"],
+            row[f"rr_causal_lower_{sti}"],
+            row[f"rr_causal_upper_{sti}"],
+        )
+        for sti in STIS
+    }
+    rr_assoc = {
+        sti: get_rr_assoc(
+            merging_sex,
+            sti,
+            row[f"rr_associative_{sti}"],
+            row[f"rr_associative_lower_{sti}"],
+            row[f"rr_associative_upper_{sti}"],
+        )
+        for sti in STIS
+    }
+
+    # --- treatment_proportion leaf (shared across age groups for the same
+    #     location-year-sex; [0,1] coverage proportion, so logit_normal) ---
+    treatment_proportion = get_treatment_proportion(
+        location,
+        year,
+        sex,
+        row["treatment_proportion"],
+        row["treatment_proportion_lower"],
+        row["treatment_proportion_upper"],
     )
 
-# assert that the p_hiv_attributable for males for trichomoniasis is 0
-assert np.all(
-    hiv_sti.filter(pl.col("sex") != "Female")
-    .select(
-        [
-            f"p_hiv_attributable_trichomoniasis{estimate}"
-            for estimate in ["", "_lower", "_upper"]
+    # --- antibiotic resistance leaves (shared across age groups & sex
+    #     for the same location-year; pre-2006 rows have mean=lower=upper=0
+    #     which logit_normal_leaf handles by returning a zero-variance leaf) ---
+    # Resistance proportions are [0,1], so use logit_normal_leaf.
+    #
+    # FIX (was filling missing values to 0.0 BEFORE building leaves, which
+    # meant a single missing drug in the post-2016 min() comparison forced
+    # gc_treatment_failure_era to exactly 0 regardless of the other two
+    # drugs -- i.e. "no data for Azithromycin" silently became "treatment
+    # is perfectly effective". Now: build a leaf only for drugs that have
+    # data, take min() over whatever's actually present, and only fall
+    # back to a zero point-mass if NOTHING is present for this location-
+    # year (matching the original script's fill_null(0) as a true last
+    # resort, not a per-drug default).
+    abx_leaf = {}
+    for abx in ABX:
+        if row[abx] is None:
+            abx_leaf[abx] = None
+        else:
+            abx_leaf[abx] = get_resistance(
+                location,
+                year,
+                abx,
+                row[abx],
+                row[f"{abx}_lower"],
+                row[f"{abx}_upper"],
+            )
+
+    # standalone post-2016 gonorrhoea failure rate (min over the drugs that
+    # actually have data). Used by the indirect script's 2016-change scenario
+    # regardless of year, so compute it independently of the era branch and
+    # with the same present-only protection.
+    present_post2016 = [
+        abx_leaf[a]
+        for a in ("Azithromycin", "Cefixime", "Ceftriaxone")
+        if abx_leaf[a] is not None
+    ]
+    gc_treatment_failure = (
+        min(present_post2016, key=lambda u: u.nominal_value)
+        if present_post2016
+        else point_mass(0.0, f"gc_failure_min_fallback_{location}_{year}")
+    )
+
+    if year < 2016:
+        gc_treatment_failure_era = abx_leaf["Ciprofloxacin"]
+    else:
+        gc_treatment_failure_era = (
+            gc_treatment_failure if present_post2016 else None
+        )
+
+    if gc_treatment_failure_era is None:
+        # no resistance data available at all for this location-year/era
+        # branch -- fall back to a fixed zero-variance point mass, matching
+        # the original script's fill_null(0) behavior
+        gc_treatment_failure_era = point_mass(
+            0.0, f"gc_failure_fallback_{location}_{year}"
+        )
+
+    # fill any individually-missing antibiotics with the same zero point
+    # mass so the resistant-case multiplication below doesn't hit a None
+    for abx in ABX:
+        if abx_leaf[abx] is None:
+            abx_leaf[abx] = point_mass(
+                0.0, f"{abx}_fallback_{location}_{year}"
+            )
+
+    gc_treatment_effectiveness = 1 - gc_treatment_failure_era  # type: ignore
+
+    # --- treatment-seeking rate per STI (frac_sought_treatment + the
+    #     symptom params are fixed constants -- zero variance, as agreed) ---
+    sex_key = "female" if sex == "Female" else "male"
+    treatment_rate = {
+        sti: sti_symptom_params[sti][sex_key] * row["frac_sought_treatment"]
+        for sti in STIS
+    }
+
+    # --- GBD cluster: population, hiv_incidence_number, hiv_prevalence_number
+    #     are perfectly correlated lognormal quantities sharing one latent ---
+    # AUDIT: These are counts (positive, unbounded), so lognormal is correct
+    z_gbd = new_cluster_latent(f"z_gbd_{i}")
+    population = lognormal_cluster_member(
+        row["population"],
+        row["population_lower"],
+        row["population_upper"],
+        z_gbd,
+    )
+    hiv_incidence_number = lognormal_cluster_member(
+        row["hiv_incidence_number"],
+        row["hiv_incidence_number_lower"],
+        row["hiv_incidence_number_upper"],
+        z_gbd,
+    )
+    hiv_prevalence_number = lognormal_cluster_member(
+        row["hiv_prevalence_number"],
+        row["hiv_prevalence_number_lower"],
+        row["hiv_prevalence_number_upper"],
+        z_gbd,
+    )
+
+    # AUDIT: Division of correlated quantities preserves correlation
+    hiv_prevalence_proportion = hiv_prevalence_number / population  # type: ignore
+    # AUDIT: This is P(acquiring HIV) = incidence / (population - prevalence)
+    # The denominator is "population at risk" (those without HIV)
+    p_acquiring_hiv = hiv_incidence_number / (
+        population - hiv_prevalence_number  # type: ignore
+    )
+
+    gbd_results = compute_attributable_block(
+        sti_prevalence=sti_prev,
+        hiv_prevalence_proportion=hiv_prevalence_proportion,
+        p_acquiring_hiv=p_acquiring_hiv,
+        incidence_number=hiv_incidence_number,
+        rr_assoc=rr_assoc,
+        rr_causal=rr_causal,
+        treatment_rate=treatment_rate,
+        gc_treatment_effectiveness=gc_treatment_effectiveness,
+    )
+
+    # --- UNAIDS cluster: un_pop, unaids_incidence_number,
+    #     unaids_prevalence_number share their own latent ---
+    z_un = new_cluster_latent(f"z_unaids_{i}")
+
+    # AUDIT: Original code treats un_pop as having no CI (exact)
+    # We still create a lognormal cluster member with identical upper/lower
+    # which gives zero variance, but keeps it in the correlation structure
+    un_pop = lognormal_cluster_member(
+        row["un_pop"], row["un_pop"], row["un_pop"], z_un
+    )
+    unaids_incidence_number = lognormal_cluster_member(
+        row["unaids_incidence_number"],
+        row["unaids_incidence_number_lower"],
+        row["unaids_incidence_number_upper"],
+        z_un,
+    )
+    unaids_prevalence_number = lognormal_cluster_member(
+        row["unaids_prevalence_number"],
+        row["unaids_prevalence_number_lower"],
+        row["unaids_prevalence_number_upper"],
+        z_un,
+    )
+    # unaids_prevalence_year_end_number shares the SAME UNAIDS latent z_un, so
+    # it stays correlated with the incidence/prevalence members. The indirect
+    # script needs it for the transmission-rate denominator.
+    unaids_prevalence_year_end_number = lognormal_cluster_member(
+        row["unaids_prevalence_year_end_number"],
+        row["unaids_prevalence_year_end_number_lower"],
+        row["unaids_prevalence_year_end_number_upper"],
+        z_un,
+    )
+    if unaids_prevalence_year_end_number is None:  # mean <= 0 fallback
+        unaids_prevalence_year_end_number = point_mass(
+            row["unaids_prevalence_year_end_number"] or 0.0,
+            f"un_prev_ye_fallback_{i}",
+        )
+    unaids_prevalence_proportion = unaids_prevalence_number / un_pop  # type: ignore
+    unaids_p_acquiring_hiv = unaids_incidence_number / (
+        un_pop - unaids_prevalence_number  # type: ignore
+    )
+
+    unaids_results = compute_attributable_block(
+        sti_prevalence=sti_prev,
+        hiv_prevalence_proportion=unaids_prevalence_proportion,
+        p_acquiring_hiv=unaids_p_acquiring_hiv,
+        incidence_number=unaids_incidence_number,
+        rr_assoc=rr_assoc,
+        rr_causal=rr_causal,
+        treatment_rate=treatment_rate,
+        gc_treatment_effectiveness=gc_treatment_effectiveness,
+    )
+
+    # ------------------------------------------------------------------
+    # EXACT counterfactual direct-averted burdens (UNAIDS cluster). These
+    # used to live in the indirect script as attrib / (treatment factor)
+    # reconstructions; they are moved here (where prevalence_no_hiv,
+    # p_acquiring_hiv, rr_causal and the incidence leaves are still in scope)
+    # and expressed as DIFFERENCES of attributable_at_multiplier evaluations,
+    # so the saturation of p_a_given_b is handled at every treatment level.
+    # ------------------------------------------------------------------
+    def B_un(sti, m):
+        return attributable_at_multiplier(
+            unaids_results[sti]["prevalence_no_hiv"],
+            unaids_p_acquiring_hiv,
+            rr_causal[sti],
+            unaids_incidence_number,
+            m,
+        )
+
+    # per-STI universal-access upper bound: HIV currently averted by
+    # symptomatic treatment = burden with NO treatment (m=1) minus the observed
+    # (treated) attributable burden. Replaces `attrib * t/(1-t)`.
+    direct_ub = {}
+    for sti in STIS:
+        attrib_sti = unaids_results[sti]["incidence_attributable"]
+        direct_ub[sti] = umax0(B_un(sti, 1.0) - attrib_sti)
+
+    # gc access / resistance decomposition -- multiplicative partition of the
+    # observed gc-attributable HIV burden into the share caused by lack of
+    # treatment access vs antibiotic resistance (as in the original script):
+    #   total_burden     = observed / ((1 - t) + t * failure_era)
+    #   untreated share  = (1 - t)         * total_burden
+    #   resistance share = t * failure_era * total_burden
+    # The era-appropriate failure rate is used (cipro pre-2016, min of
+    # azithro/cefixime/ceftriaxone post-2016). The two shares sum exactly to the
+    # observed attributable burden.
+    t_gc = treatment_rate["gc"]
+    attrib_gc_un = unaids_results["gc"]["incidence_attributable"]
+
+    gc_hiv_total_burden = attrib_gc_un / (
+        (1 - t_gc) + t_gc * gc_treatment_failure_era
+    )
+    direct_untreated_gc = (1 - t_gc) * gc_hiv_total_burden
+    direct_resistance_gc = (
+        t_gc * gc_treatment_failure_era * gc_hiv_total_burden
+    )
+
+    # 2016 gonorrhoea first-line change -- the REAL cipro -> post-2016 switch.
+    # First-line failure was ciprofloxacin resistance; it becomes the post-2016
+    # regimen's failure (min over the post-2016 drugs, = gc_treatment_failure).
+    # The averted burden is the difference of the exact burdens under the two
+    # first-line multipliers -- nonzero in every year (including pre-2016), not
+    # just a universal-access upper bound restricted to 2016-2023.
+    m_pre = (1 - t_gc) + t_gc * abx_leaf["Ciprofloxacin"]
+    m_post = (1 - t_gc) + t_gc * gc_treatment_failure
+    direct_2016_gc = umax0(B_un("gc", m_pre) - B_un("gc", m_post))
+
+    # --- antibiotic-resistant case counts (reuses the SAME cached
+    #     resistance leaf used above, so correlation with treatment
+    #     effectiveness is automatic) ---
+    # AUDIT: This multiplies GC-attributable HIV cases by resistance proportion
+    # to get cases attributable to resistant GC. Correct.
+    resistant_counts = {}
+    unaids_resistant_counts = {}
+    for abx in ABX:
+        resistant_counts[abx] = (
+            gbd_results["gc"]["incidence_attributable"] * abx_leaf[abx]
+        )
+        unaids_resistant_counts[abx] = (
+            unaids_results["gc"]["incidence_attributable"] * abx_leaf[abx]
+        )
+
+    # ---- assemble the row's output, keeping the raw UFloat objects so
+    #      the aggregation step downstream can sum() them directly before
+    #      extracting any intervals (extracting intervals first and then
+    #      summing would throw away the correlation structure) ----
+    out_row = {
+        "country_code": row["country_code"],
+        "location": location,
+        "region": row["region"],
+        "sex": sex,
+        "year": year,
+        "age_group": row["age_group"],
+        "cols_unaids_analysis": row["cols_unaids_analysis"],
+        "hiv_incidence_number": hiv_incidence_number,
+        "hiv_prevalence_number": hiv_prevalence_number,
+        "unaids_incidence_number": unaids_incidence_number,
+        "unaids_prevalence_number": unaids_prevalence_number,
+        "unaids_prevalence_year_end_number": unaids_prevalence_year_end_number,
+        "population": population,
+        "un_pop": un_pop,
+        # broadcast quantities carried forward for the merged indirect script
+        "treatment_proportion": treatment_proportion,
+        "frac_sought_treatment": row["frac_sought_treatment"],
+        "gc_treatment_failure": gc_treatment_failure,
+        "gc_treatment_failure_era": gc_treatment_failure_era,
+    }
+    for sti in STIS:
+        out_row[f"paf_{sti}_hiv"] = gbd_results[sti]["paf"]
+        out_row[f"hiv_incidence_number_attributable_to_{sti}"] = gbd_results[
+            sti
+        ]["incidence_attributable"]
+        out_row[f"unaids_paf_{sti}_hiv"] = unaids_results[sti]["paf"]
+        out_row[f"unaids_hiv_incidence_number_attributable_to_{sti}"] = (
+            unaids_results[sti]["incidence_attributable"]
+        )
+    for abx in ABX:
+        out_row[f"{abx}_resistant_number"] = resistant_counts[abx]
+        out_row[f"unaids_{abx}_resistant_number"] = unaids_resistant_counts[
+            abx
         ]
-    )
-    .to_numpy()
-    == 0
-)
 
-# now we want to calculate how much of hiv is attributable to the STI
-hiv_sti = hiv_sti.with_columns(
+    # exact direct-averted burdens (UNAIDS cluster) -- consumed by the
+    # indirect script, which no longer reconstructs them by division.
+    for sti in STIS:
+        out_row[f"direct_ub_{sti}"] = direct_ub[sti]
+    out_row["direct_2016_gc"] = direct_2016_gc
+    out_row["direct_untreated_gc"] = direct_untreated_gc
+    out_row["direct_resistance_gc"] = direct_resistance_gc
+
+    output_rows.append(out_row)
+
+# ----------------------------------------------------------------------
+# Write the age-stratified output, extracting mean/lower/upper from each
+# UFloat via the domain-matched transform.
+# ----------------------------------------------------------------------
+
+# AUDIT: PAFs are proportions [0,1], so use ci_via_logit
+# Counts are positive unbounded, so use ci_via_log
+BOUNDED_COLS = [f"paf_{s}_hiv" for s in STIS] + [
+    f"unaids_paf_{s}_hiv" for s in STIS
+]
+COUNT_COLS = (
     [
-        (
-            pl.col(f"p_hiv_attributable_{sti}{estimate}")
-            / pl.col(f"p_acquiring_hiv{estimate}")
-        ).alias(f"paf_{sti}_hiv{estimate}")
-        for sti in STIs
-        for estimate in ["", "_lower", "_upper"]
+        "hiv_incidence_number",
+        "hiv_prevalence_number",
+        "unaids_incidence_number",
+        "unaids_prevalence_number",
+        "unaids_prevalence_year_end_number",
+        "population",
+        "un_pop",
     ]
+    + [f"hiv_incidence_number_attributable_to_{s}" for s in STIS]
+    + [f"unaids_hiv_incidence_number_attributable_to_{s}" for s in STIS]
+    + [f"{abx}_resistant_number" for abx in ABX]
+    + [f"unaids_{abx}_resistant_number" for abx in ABX]
 )
+# direct-averted counterfactual burdens (positive counts) -- summed across age,
+# passed only through the handoff pickle (not the flat CSVs).
+DIRECT_COLS = [f"direct_ub_{sti}" for sti in STIS] + [
+    "direct_2016_gc",
+    "direct_untreated_gc",
+    "direct_resistance_gc",
+]
+PASSTHROUGH_COLS = [
+    "country_code",
+    "location",
+    "region",
+    "sex",
+    "year",
+    "age_group",
+    "cols_unaids_analysis",
+]
 
-# multiply the pafs by the hiv incidence number to get attributable infections
-hiv_sti = hiv_sti.with_columns(
-    [
-        (
-            pl.col(f"hiv_incidence_number{estimate}")
-            * pl.col(f"paf_{sti}_hiv{estimate}")
-        ).alias(f"hiv_incidence_number_attributable_to_{sti}{estimate}")
-        for sti in STIs
-        for estimate in ["", "_lower", "_upper"]
-    ]
-)
+flat_rows = []
+for r in output_rows:
+    flat = {c: r[c] for c in PASSTHROUGH_COLS}
+    for c in BOUNDED_COLS:
+        mean, lower, upper = ci_via_logit(r[c])
+        flat[c], flat[f"{c}_lower"], flat[f"{c}_upper"] = mean, lower, upper
+    for c in COUNT_COLS:
+        mean, lower, upper = ci_via_log(r[c])
+        flat[c], flat[f"{c}_lower"], flat[f"{c}_upper"] = mean, lower, upper
+    flat_rows.append(flat)
 
-# now multiply GC attributable cases by resistance rates to get the number of
-# cases resistant to a particular drug
-hiv_sti = hiv_sti.with_columns(
-    [
-        (
-            pl.col(f"hiv_incidence_number_attributable_to_gc{estimate}")
-            * pl.col(f"{abx}{estimate}").cast(pl.Float64)
-        ).alias(f"{abx}_resistant_number{estimate}")
-        for abx in ["Ciprofloxacin", "Cefixime", "Azithromycin", "Ceftriaxone"]
-        for estimate in ["", "_lower", "_upper"]
-    ]
-)
-
-# ============================================================
-# UNAIDS analysis
-# ============================================================
-
-hiv_sti = hiv_sti.with_columns(
-    [
-        pl.struct(
-            [
-                f"{sti}_prevalence{estimate}",
-                f"unaids_prevalence_number{estimate}",
-                "un_pop",  # no bounds for UN pop; use same value for all estimates
-                f"rr_associative{estimate}_{sti}",
-            ]
-        )
-        .map_elements(
-            lambda x, s=sti, e=estimate: conditional_exposure.p_a_given_b(
-                x[f"{s}_prevalence{e}"],
-                x[f"unaids_prevalence_number{e}"] / x["un_pop"],
-                x[f"rr_associative{e}_{s}"],
-            ),
-            return_dtype=pl.Float64,
-        )
-        .alias(f"unaids_p_{sti}_given_hiv{estimate}")
-        for sti in STIs
-        for estimate in ["", "_lower", "_upper"]
-    ]
-)
-
-# now calculate P(STI and HIV)
-hiv_sti = hiv_sti.with_columns(
-    [
-        (
-            pl.col(f"unaids_p_{sti}_given_hiv{estimate}")
-            * (
-                pl.col(f"unaids_prevalence_number{estimate}")
-                / pl.col("un_pop")
-            )
-        ).alias(f"unaids_p_{sti}_and_hiv{estimate}")
-        for sti in STIs
-        for estimate in ["", "_lower", "_upper"]
-    ]
-)
-
-# now calculate STI prevalence in people without HIV
-hiv_sti = hiv_sti.with_columns(
-    [
-        (
-            pl.col(f"{sti}_prevalence{estimate}")
-            - pl.col(f"unaids_p_{sti}_and_hiv{estimate}")
-        ).alias(f"unaids_{sti}_prevalence_no_hiv{estimate}")
-        for sti in STIs
-        for estimate in ["", "_lower", "_upper"]
-    ]
-)
-
-# because we do naive linear extrapolation, it's possible that some of these
-# prevalences are below 0 -- clip them
-hiv_sti = hiv_sti.with_columns(
-    [
-        pl.col(f"unaids_{sti}_prevalence_no_hiv{estimate}")
-        .clip(lower_bound=0)
-        .alias(f"unaids_{sti}_prevalence_no_hiv{estimate}")
-        for sti in STIs
-        for estimate in ["", "_lower", "_upper"]
-    ]
-)
-
-# the multiplicative nature of this model means that for some highly uncertain
-# places, we may see main <= lower <= upper or something like that
-# print out places like this
-for sti in STIs:
-    print(
-        hiv_sti.select(
-            [
-                "year",
-                "sex",
-                "age_group",
-                "location",
-                f"unaids_{sti}_prevalence_no_hiv_lower",
-                f"unaids_{sti}_prevalence_no_hiv",
-                f"unaids_{sti}_prevalence_no_hiv_upper",
-            ]
-        )
-        .with_columns(
-            in_bounds=(
-                pl.col(f"unaids_{sti}_prevalence_no_hiv_lower")
-                <= pl.col(f"unaids_{sti}_prevalence_no_hiv")
-            ).and_(
-                pl.col(f"unaids_{sti}_prevalence_no_hiv")
-                <= pl.col(f"unaids_{sti}_prevalence_no_hiv_upper")
-            )
-        )
-        .filter(~pl.col("in_bounds"))
-    )
-# we notice that these are all places where quantification of population size
-# is really tough
-# so we apply a post-hoc correction where we reorder the values
-for sti in STIs:
-    hiv_sti = hiv_sti.with_columns(
-        [
-            # Calculate the minimum, median, and maximum of the three values
-            pl.min_horizontal(
-                [
-                    f"unaids_{sti}_prevalence_no_hiv_lower",
-                    f"unaids_{sti}_prevalence_no_hiv",
-                    f"unaids_{sti}_prevalence_no_hiv_upper",
-                ]
-            ).alias(f"unaids_{sti}_prevalence_no_hiv_lower"),
-            pl.max_horizontal(
-                [
-                    f"unaids_{sti}_prevalence_no_hiv_lower",
-                    f"unaids_{sti}_prevalence_no_hiv",
-                    f"unaids_{sti}_prevalence_no_hiv_upper",
-                ]
-            ).alias(f"unaids_{sti}_prevalence_no_hiv_upper"),
-            pl.concat_list(
-                [
-                    f"unaids_{sti}_prevalence_no_hiv_lower",
-                    f"unaids_{sti}_prevalence_no_hiv",
-                    f"unaids_{sti}_prevalence_no_hiv_upper",
-                ]
-            )
-            .list.sort()
-            .list.get(1)
-            .alias(f"unaids_{sti}_prevalence_no_hiv"),
-        ]
-    )
-
-# use RR definition and law of total probability to calculate
-# P(acquired HIV (attributable to STI) | has STI)
-# The causal part is baked into using the causal RRs
-hiv_sti = hiv_sti.with_columns(
-    [
-        pl.struct(
-            [
-                f"unaids_p_acquiring_hiv{estimate}",
-                f"unaids_{sti}_prevalence_no_hiv{estimate}",
-                f"rr_causal{estimate}_{sti}",
-            ]
-        )
-        .map_elements(
-            lambda x, s=sti, e=estimate: conditional_exposure.p_a_given_b(
-                x[f"unaids_p_acquiring_hiv{e}"],
-                x[f"unaids_{s}_prevalence_no_hiv{e}"],
-                x[f"rr_causal{e}_{s}"],
-            ),
-            return_dtype=pl.Float64,
-        )
-        .alias(f"unaids_p_acquiring_hiv_given_{sti}{estimate}")
-        for sti in STIs
-        for estimate in ["", "_lower", "_upper"]
-    ]
-)
-
-# we want to calculate the probability of acquiring hiv because of STI,
-# not conditioned on having the STI
-
-# in order to calculate the attributable probability of HIV, we need to
-# subtract out the people who would have acquired HIV anyways -- not because
-# of the STI
-hiv_sti = hiv_sti.with_columns(
-    [
-        pl.struct(
-            [
-                f"unaids_p_acquiring_hiv{estimate}",
-                f"unaids_{sti}_prevalence_no_hiv{estimate}",
-                f"rr_causal{estimate}_{sti}",
-            ]
-        )
-        .map_elements(
-            lambda x, s=sti, e=estimate: conditional_exposure.p_a_given_not_b(
-                x[f"unaids_p_acquiring_hiv{e}"],
-                x[f"unaids_{s}_prevalence_no_hiv{e}"],
-                x[f"rr_causal{e}_{s}"],
-            ),
-            return_dtype=pl.Float64,
-        )
-        .alias(f"unaids_p_acquiring_hiv_given_no_{sti}{estimate}")
-        for sti in STIs
-        for estimate in ["", "_lower", "_upper"]
-    ]
-)
-
-hiv_sti = hiv_sti.with_columns(
-    [
-        (
-            (
-                pl.col(f"unaids_p_acquiring_hiv_given_{sti}{estimate}")
-                - pl.col(f"unaids_p_acquiring_hiv_given_no_{sti}{estimate}")
-            )
-            * pl.col(f"unaids_{sti}_prevalence_no_hiv{estimate}")
-        ).alias(f"unaids_p_hiv_attributable_{sti}{estimate}")
-        for sti in STIs
-        for estimate in ["", "_lower", "_upper"]
-    ]
-)
-
-# make sure no unaids_p_hiv_attributable go below 0
-for sti in STIs:
-    hiv_sti = hiv_sti.with_columns(
-        pl.when(pl.col(f"unaids_p_hiv_attributable_{sti}{estimate}") < 0)
-        .then(pl.lit(0))
-        .otherwise(pl.col(f"unaids_p_hiv_attributable_{sti}{estimate}"))
-        .alias(f"unaids_p_hiv_attributable_{sti}{estimate}")
-        for estimate in ["", "_lower", "_upper"]
-    )
-
-# assert that unaids_p_hiv_attributable for males for trichomoniasis is 0
-assert np.all(
-    hiv_sti.filter(pl.col("sex") != "Female")
-    .select(
-        [
-            f"unaids_p_hiv_attributable_trichomoniasis{estimate}"
-            for estimate in ["", "_lower", "_upper"]
-        ]
-    )
-    .to_numpy()
-    == 0
-)
-
-# now we want to calculate how much of hiv is attributable to the STI
-hiv_sti = hiv_sti.with_columns(
-    [
-        (
-            pl.col(f"unaids_p_hiv_attributable_{sti}{estimate}")
-            / pl.col(f"unaids_p_acquiring_hiv{estimate}")
-        ).alias(f"unaids_paf_{sti}_hiv{estimate}")
-        for sti in STIs
-        for estimate in ["", "_lower", "_upper"]
-    ]
-)
-
-# multiply the pafs by the unaids incidence number to get attributable infections
-hiv_sti = hiv_sti.with_columns(
-    [
-        (
-            pl.col(f"unaids_incidence_number{estimate}")
-            * pl.col(f"unaids_paf_{sti}_hiv{estimate}")
-        ).alias(f"unaids_hiv_incidence_number_attributable_to_{sti}{estimate}")
-        for sti in STIs
-        for estimate in ["", "_lower", "_upper"]
-    ]
-)
-
-# now multiply GC attributable cases by resistance rates to get the number of
-# cases resistant to a particular drug
-hiv_sti = hiv_sti.with_columns(
-    [
-        (
-            pl.col(f"unaids_hiv_incidence_number_attributable_to_gc{estimate}")
-            * pl.col(f"{abx}{estimate}").cast(pl.Float64)
-        ).alias(f"unaids_{abx}_resistant_number{estimate}")
-        for abx in ["Ciprofloxacin", "Cefixime", "Azithromycin", "Ceftriaxone"]
-        for estimate in ["", "_lower", "_upper"]
-    ]
-)
-
-hiv_sti.write_csv(
+hiv_sti_out = pl.DataFrame(flat_rows)
+hiv_sti_out.write_csv(
     os.path.join(output_dir, "hiv_attributable_to_stis_age_stratified.csv")
 )
 
-# columns to sum (counts)
-count_cols = (
-    [f"hiv_incidence_number{e}" for e in ["", "_lower", "_upper"]]
-    + [f"hiv_prevalence_number{e}" for e in ["", "_lower", "_upper"]]
-    + [f"unaids_incidence_number{e}" for e in ["", "_lower", "_upper"]]
-    + [f"unaids_prevalence_number{e}" for e in ["", "_lower", "_upper"]]
-    + [
-        f"unaids_prevalence_year_end_number{e}"
-        for e in ["", "_lower", "_upper"]
-    ]
-    + [f"population{e}" for e in ["", "_lower", "_upper"]]
-    + ["un_pop"]
-    + [
-        f"hiv_incidence_number_attributable_to_{sti}{e}"
-        for sti in STIs
-        for e in ["", "_lower", "_upper"]
-    ]
-    + [
-        f"unaids_hiv_incidence_number_attributable_to_{sti}{e}"
-        for sti in STIs
-        for e in ["", "_lower", "_upper"]
-    ]
-    + [
-        f"{abx}_resistant_number{e}"
-        for abx in ["Ciprofloxacin", "Cefixime", "Azithromycin", "Ceftriaxone"]
-        for e in ["", "_lower", "_upper"]
-    ]
-    + [
-        f"unaids_{abx}_resistant_number{e}"
-        for abx in ["Ciprofloxacin", "Cefixime", "Azithromycin", "Ceftriaxone"]
-        for e in ["", "_lower", "_upper"]
-    ]
-)
+# Also pickle the raw per-age-row UFloat objects (output_rows) themselves,
+# not just the flat CSV above. The age-pathogen figure panels need to group
+# by age_group while summing across countries/years -- doing that on the
+# already-extracted lower/upper bounds in the CSV would repeat the same
+# invalid "sum the bounds" error propagation this script was written to
+# avoid, so the figure code needs these raw UFloat objects instead.
+with open(
+    os.path.join(
+        output_dir, "hiv_attributable_to_stis_age_stratified.ufloat.pkl"
+    ),
+    "wb",
+) as f:
+    pickle.dump(output_rows, f)
 
-# columns with no age dimension -- identical across all age rows for a given
-# country-sex-year, so recover the broadcast value by taking first
-broadcast_cols = [
-    "frac_sought_treatment",
+# ----------------------------------------------------------------------
+# Aggregation across age groups: sum the raw UFloat objects (kept in
+# `output_rows`, not the already-extracted flat_rows) within each
+# country/sex/year group, THEN extract intervals. Summing UFloats this
+# way automatically gives sum-of-variances for the independent per-row
+# leaves (STI prevalence, GBD/UNAIDS clusters) while correctly NOT
+# diluting the RR/resistance leaves, since those are the same cached
+# object reused across every age-group row in the group.
+# ----------------------------------------------------------------------
+
+# AUDIT: The aggregation strategy is correct:
+# 1. Sum UFloat objects directly (preserves correlation structure)
+# 2. Extract intervals only after aggregation
+# 3. Re-derive PAFs from aggregated counts (correct: PAF_total ≠ mean(PAF_age))
+
+# broadcast quantities -- identical across the age rows in a group (and the
+# SAME cached object), so pl.first-style "take first" keeps the shared leaf
+# (and its correlations) for the merged indirect script.
+BROADCAST_COLS = [
     "treatment_proportion",
-    "treatment_proportion_lower",
-    "treatment_proportion_upper",
-    "Azithromycin",
-    "Azithromycin_lower",
-    "Azithromycin_upper",
-    "Cefixime",
-    "Cefixime_lower",
-    "Cefixime_upper",
-    "Ciprofloxacin",
-    "Ciprofloxacin_lower",
-    "Ciprofloxacin_upper",
-    "Ceftriaxone",
-    "Ceftriaxone_lower",
-    "Ceftriaxone_upper",
+    "gc_treatment_failure",
+    "gc_treatment_failure_era",
 ]
 
-group_cols = [
+group_keys = [
     "country_code",
     "location",
     "region",
@@ -1168,29 +1234,78 @@ group_cols = [
     "year",
     "cols_unaids_analysis",
 ]
+groups: dict = {}
+for r in output_rows:
+    key = tuple(r[k] for k in group_keys)
+    groups.setdefault(key, []).append(r)
 
-hiv_sti_agg = hiv_sti.group_by(group_cols).agg(
-    [pl.sum(c) for c in count_cols] + [pl.first(c) for c in broadcast_cols]
-)
+# 1) aggregated UFloat rows, kept raw for the merged indirect script
+agg_ufloat_rows = []
+for key, rows in groups.items():
+    agg = dict(zip(group_keys, key))
 
-# Re-derive PAFs from aggregated counts / aggregated incidence
-hiv_sti_agg = hiv_sti_agg.with_columns(
-    [
-        (
-            pl.col(f"hiv_incidence_number_attributable_to_{sti}{e}")
-            / pl.col(f"hiv_incidence_number{e}")
-        ).alias(f"paf_{sti}_hiv{e}")
-        for sti in STIs
-        for e in ["", "_lower", "_upper"]
-    ]
-    + [
-        (
-            pl.col(f"unaids_hiv_incidence_number_attributable_to_{sti}{e}")
-            / pl.col(f"unaids_incidence_number{e}")
-        ).alias(f"unaids_paf_{sti}_hiv{e}")
-        for sti in STIs
-        for e in ["", "_lower", "_upper"]
-    ]
-)
+    # Sum counts across age groups
+    for c in COUNT_COLS:
+        agg[c] = sum(r[c] for r in rows)
 
+    # Sum the exact direct-averted burdens across age groups. Each per-age
+    # value is already a difference-of-counterfactuals, so the aggregate
+    # averted is the sum; the gc decomposition still sums to the aggregated
+    # attrib_gc because it holds age by age.
+    for c in DIRECT_COLS:
+        agg[c] = sum(r[c] for r in rows)
+
+    # AUDIT: Re-derive PAFs from aggregated attributable counts / aggregated
+    # incidence, rather than averaging the per-age-group PAFs directly.
+    # This is correct because PAF is a ratio, not a linear quantity.
+    # PAF_total = sum(attributable_i) / sum(incidence_i) ≠ mean(PAF_i)
+    for sti in STIS:
+        agg[f"paf_{sti}_hiv"] = sum(
+            r[f"hiv_incidence_number_attributable_to_{sti}"] for r in rows
+        ) / sum(r["hiv_incidence_number"] for r in rows)
+        agg[f"unaids_paf_{sti}_hiv"] = sum(
+            r[f"unaids_hiv_incidence_number_attributable_to_{sti}"]
+            for r in rows
+        ) / sum(r["unaids_incidence_number"] for r in rows)
+
+    # broadcast quantities: identical across the age rows in this group, and
+    # the SAME cached object, so rows[0] keeps the shared leaf + correlations
+    for c in BROADCAST_COLS:
+        agg[c] = rows[0][c]
+    agg["frac_sought_treatment"] = rows[0]["frac_sought_treatment"]  # float
+
+    agg_ufloat_rows.append(agg)
+
+# hand-off to the merged indirect script -- a single pickle dump preserves the
+# whole object graph, so shared latents (and therefore every correlation built
+# above) survive the boundary between the two scripts.
+with open(
+    os.path.join(output_dir, "hiv_attributable_to_stis.ufloat.pkl"), "wb"
+) as f:
+    pickle.dump(agg_ufloat_rows, f)
+
+# 2) flat CSV (unchanged downstream behaviour) -- extract intervals now.
+PAF_AGG_COLS = [f"paf_{s}_hiv" for s in STIS] + [
+    f"unaids_paf_{s}_hiv" for s in STIS
+]
+# treatment_proportion / gc_treatment_failure(_era) are all [0,1] -> ci_via_logit
+BOUNDED_BROADCAST = [
+    "treatment_proportion",
+    "gc_treatment_failure",
+    "gc_treatment_failure_era",
+]
+
+agg_rows = []
+for agg in agg_ufloat_rows:
+    flat = {k: agg[k] for k in group_keys}
+    flat["frac_sought_treatment"] = agg["frac_sought_treatment"]
+    for c in COUNT_COLS:
+        mean, lower, upper = ci_via_log(agg[c])
+        flat[c], flat[f"{c}_lower"], flat[f"{c}_upper"] = mean, lower, upper
+    for c in PAF_AGG_COLS + BOUNDED_BROADCAST:
+        mean, lower, upper = ci_via_logit(agg[c])
+        flat[c], flat[f"{c}_lower"], flat[f"{c}_upper"] = mean, lower, upper
+    agg_rows.append(flat)
+
+hiv_sti_agg = pl.DataFrame(agg_rows)
 hiv_sti_agg.write_csv(os.path.join(output_dir, "hiv_attributable_to_stis.csv"))

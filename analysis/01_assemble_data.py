@@ -1043,6 +1043,10 @@ unaids_proj_combined = unaids_proj_combined.with_columns(
     region=pl.col("country_code").replace(countries_to_regions)
 )
 
+unaids_proj_combined = unaids_proj_combined.filter(
+    pl.col("year") > last_gbd_year
+)
+
 data = pl.concat([data, unaids_proj_combined], how="diagonal_relaxed")
 data = data.sort(["country_code", "sex", "age_group", "year"])
 

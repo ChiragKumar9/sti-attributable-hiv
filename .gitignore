@@ -19,6 +19,7 @@ outputs/*.csv
 # Documents
 *.doc
 *.docx
+*.docx#
 *.htm
 *.html
 *.ppt

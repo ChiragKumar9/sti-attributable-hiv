@@ -17,6 +17,7 @@ dependencies = [
     "pyyaml>=6.0.3",
     "scipy>=1.16.3",
     "tqdm>=4.67.1",
+    "uncertainties>=3.2.3",
 ]
 
 [build-system]
