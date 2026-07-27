@@ -174,7 +174,14 @@ def get_increase(sti, sex_cat):
 
 
 # ----------------------------------------------------------------------
-# Forward-transmission simulation, delta-method version.
+# Forward-transmission simulation, delta-method version. SAME-YEAR model:
+# each year's own fresh direct cohort enters the transmitting pool and
+# transmits WITHIN that year, using the transmission rate flowing INTO that
+# year, rate(t-1 -> t) = inc(t) / [prev_ye(t-1) * (1 - treat(t-1))]. Earlier
+# cohorts stay in the pool, aged/decayed by the HIV->AIDS survival curve, and
+# keep transmitting in later years -- so a cohort protected in t averts
+# secondary infections in t, t+1, ... (the same-year analogue of the previous
+# one-year-lag machinery, where a cohort first transmitted in t+1).
 #
 # `data` maps (year, sex) -> dict with UFloat fields:
 #   inc      : unaids_incidence_number
@@ -182,6 +189,12 @@ def get_increase(sti, sex_cat):
 #   treat    : treatment_proportion          (UFloat in [0,1])
 #   paf      : paf_{sti}_hiv                  (GBD paf, UFloat in [0,1])
 #   direct   : the scenario's direct averted  (UFloat count)
+#
+# The FIRST year in `years` is a RATE-SEED year only: it supplies the prior-
+# year (untreated) prevalence in the first reported year's rate denominator,
+# but contributes NO direct cohort and receives NO indirect entry. This is what
+# lets the counterfactual start cleanly at the first reported year (the seed
+# gives a data-derived transmission rate, not a phantom pre-start cohort).
 # Returns indirect[(year, sex)] for year in years[1:].
 # ----------------------------------------------------------------------
 def calculate_indirect_averted_cases(
@@ -197,24 +210,24 @@ def calculate_indirect_averted_cases(
             return point_mass(0.0, f"missing_{k}_{y}_{s}")
         return d[k]
 
-    # transmission rates: next year's incidence over this year's transmitting
-    # (untreated) prevalence. `safe_ratio` reproduces the original inf/nan -> 0.
+    # transmission rates keyed by the RECEIVING year t: this year's incidence
+    # over LAST year's transmitting (untreated) prevalence, rate(t-1 -> t).
+    # `safe_ratio` reproduces the original inf/nan -> 0 for a zero denominator.
     tr_M_F, tr_F_M, tr_MSM = {}, {}, {}
-    for i, y in enumerate(years):
-        if i == n - 1:
-            break
-        yn = years[i + 1]
-        tr_M_F[y] = safe_ratio(
-            g(yn, "Female", "inc"),
-            g(y, "Male", "prev_ye") * (1 - g(y, "Male", "treat")),  # type: ignore
+    for i in range(1, n):
+        yprev = years[i - 1]
+        t = years[i]
+        tr_M_F[t] = safe_ratio(
+            g(t, "Female", "inc"),
+            g(yprev, "Male", "prev_ye") * (1 - g(yprev, "Male", "treat")),  # type: ignore
         )
-        tr_F_M[y] = safe_ratio(
-            g(yn, "Male", "inc"),
-            g(y, "Female", "prev_ye") * (1 - g(y, "Female", "treat")),  # type: ignore
+        tr_F_M[t] = safe_ratio(
+            g(t, "Male", "inc"),
+            g(yprev, "Female", "prev_ye") * (1 - g(yprev, "Female", "treat")),  # type: ignore
         )
-        tr_MSM[y] = safe_ratio(
-            g(yn, "MSM", "inc"),
-            g(y, "MSM", "prev_ye") * (1 - g(y, "MSM", "treat")),  # type: ignore
+        tr_MSM[t] = safe_ratio(
+            g(t, "MSM", "inc"),
+            g(yprev, "MSM", "prev_ye") * (1 - g(yprev, "MSM", "treat")),  # type: ignore
         )
 
     curve = HIV_TO_AIDS_CURVE
@@ -237,50 +250,50 @@ def calculate_indirect_averted_cases(
     pool_s = [point_mass(0.0, f"ps_{k}") for k in range(L + 1)]
 
     indirect = {}
-    for idx in range(n - 1):
-        y = years[idx]
-        yn = years[idx + 1]
-
+    # years[0] is the rate-seed year only (no cohort, no output); reported
+    # years are years[1:]. The pool therefore starts empty at the first
+    # reported year, so nothing pre-start contributes.
+    for t in years[1:]:
         # 1. age last year's survivors by one year
         pool_m = age_pool(pool_m)
         pool_f = age_pool(pool_f)
         pool_s = age_pool(pool_s)
 
-        # 2. age-0 entrants: this year's fresh DIRECT averted cohort only.
-        #    Only the untreated (non-viral-suppressed) share keeps transmitting.
-        pool_m[0] = pool_m[0] + g(y, "Male", "direct") * (
-            1 - g(y, "Male", "treat")
+        # 2. age-0 entrants: THIS year's fresh DIRECT averted cohort. Only the
+        #    untreated (non-viral-suppressed) share keeps transmitting.
+        pool_m[0] = pool_m[0] + g(t, "Male", "direct") * (
+            1 - g(t, "Male", "treat")
         )  # type: ignore
-        pool_f[0] = pool_f[0] + g(y, "Female", "direct") * (
-            1 - g(y, "Female", "treat")
+        pool_f[0] = pool_f[0] + g(t, "Female", "direct") * (
+            1 - g(t, "Female", "treat")
         )  # type: ignore
-        pool_s[0] = pool_s[0] + g(y, "MSM", "direct") * (
-            1 - g(y, "MSM", "treat")
+        pool_s[0] = pool_s[0] + g(t, "MSM", "direct") * (
+            1 - g(t, "MSM", "treat")
         )  # type: ignore
 
-        # 3. total alive transmitting pool per sex (includes age-0)
+        # 3. total alive transmitting pool per sex (includes THIS year's age-0)
         tot_m = sum(pool_m)  # type: ignore
         tot_f = sum(pool_f)  # type: ignore
         tot_s = sum(pool_s)  # type: ignore
 
-        # 4. secondary infections generated for next year, by source sex.
-        #    Recorded as indirectly-averted infections; NOT fed back into the
-        #    pool (secondary cases do not transmit onward).
-        indirect[(yn, "Female")] = tot_m * conditional_exposure.p_a_given_b(
-            tr_M_F[y],
-            g(y, "Male", "paf"),
+        # 4. secondary infections generated WITHIN year t, by source sex, using
+        #    the rate flowing into t. Recorded as indirectly-averted infections;
+        #    NOT fed back into the pool (secondary cases do not transmit onward).
+        indirect[(t, "Female")] = tot_m * conditional_exposure.p_a_given_b(
+            tr_M_F[t],
+            g(t, "Male", "paf"),
             inc_increase_male,
             allow_invalid=True,
         )  # type: ignore
-        indirect[(yn, "Male")] = tot_f * conditional_exposure.p_a_given_b(
-            tr_F_M[y],
-            g(y, "Female", "paf"),
+        indirect[(t, "Male")] = tot_f * conditional_exposure.p_a_given_b(
+            tr_F_M[t],
+            g(t, "Female", "paf"),
             inc_increase_female,
             allow_invalid=True,
         )  # type: ignore
-        indirect[(yn, "MSM")] = tot_s * conditional_exposure.p_a_given_b(
-            tr_MSM[y],
-            g(y, "MSM", "paf"),
+        indirect[(t, "MSM")] = tot_s * conditional_exposure.p_a_given_b(
+            tr_MSM[t],
+            g(t, "MSM", "paf"),
             inc_increase_male,
             allow_invalid=True,
         )  # type: ignore
@@ -293,6 +306,16 @@ def calculate_indirect_averted_cases(
 # The scenario direct-averted burdens are now read straight from the pickle
 # (exact difference-of-counterfactuals computed in the attributable script),
 # so there is no attrib/(treatment factor) reconstruction here anymore.
+#
+# Each scenario's year filter reaches ONE year below the intended reporting
+# start. That first (earliest) filtered year is a RATE-SEED year only: it
+# supplies the prior-year prevalence for the first reported year's transmission
+# rate, but contributes no direct cohort and no output (see the same-year model
+# in calculate_indirect_averted_cases). So the counterfactual starts cleanly at
+# the intended reporting year, whose indirect is driven by that year's OWN
+# cohort -- not by a pre-start one. If the seed year is absent from a location's
+# data, `g` falls back to a zero point-mass and the first reported year's rate
+# denominator is zero, so `safe_ratio` yields a zero first-year indirect there.
 # ----------------------------------------------------------------------
 
 # index rows by location
@@ -374,14 +397,17 @@ for location, loc_rows in tqdm(
         for sti in STIS
     }
 
-    # ---- scenario: upper bound, past (>= 2000) and future (>= 2025) ----
+    # ---- scenario: upper bound, past (report >= 2000) and future
+    #      (report >= 2026). The earliest filtered year (1999 / 2025) is a
+    #      rate-seed year only -- it supplies prior-year prevalence for the first
+    #      reported year's transmission rate and contributes no cohort/output. ----
     ub_indirect_past = {sti: {} for sti in STIS}
     ub_indirect_future = {sti: {} for sti in STIS}
     for sti in STIS:
         inc_both, inc_women = incr[sti]
         ub_indirect_past[sti] = calculate_indirect_averted_cases(
-            years_for(lambda y: y >= 2000),
-            make_data(lambda y: y >= 2000, ub_direct[sti], sti),
+            years_for(lambda y: y >= 1999),
+            make_data(lambda y: y >= 1999, ub_direct[sti], sti),
             inc_both,
             inc_women,
         )
@@ -392,27 +418,30 @@ for location, loc_rows in tqdm(
             inc_women,
         )
 
-    # ---- scenario: 2016 gonorrhoea first-line change (2016..2023) ----
+    # ---- scenario: 2016 gonorrhoea first-line change (report 2016..2023).
+    #      2015 is the rate-seed year only. ----
     inc_both_gc, inc_women_gc = incr["gc"]
     indirect_2016 = calculate_indirect_averted_cases(
-        years_for(lambda y: 2016 <= y <= 2023),
-        make_data(lambda y: 2016 <= y <= 2023, direct_2016, "gc"),
+        years_for(lambda y: 2015 <= y <= 2023),
+        make_data(lambda y: 2015 <= y <= 2023, direct_2016, "gc"),
         inc_both_gc,
         inc_women_gc,
     )
 
-    # ---- scenario: untreated pathway (2008..2023) ----
+    # ---- scenario: untreated pathway (report 2008..2023). 2007 is the
+    #      rate-seed year only. ----
     indirect_untreated = calculate_indirect_averted_cases(
-        years_for(lambda y: 2008 <= y <= 2023),
-        make_data(lambda y: 2008 <= y <= 2023, direct_untreated, "gc"),
+        years_for(lambda y: 2007 <= y <= 2023),
+        make_data(lambda y: 2007 <= y <= 2023, direct_untreated, "gc"),
         inc_both_gc,
         inc_women_gc,
     )
 
-    # ---- scenario: resistance pathway (2008..2023) ----
+    # ---- scenario: resistance pathway (report 2008..2023). 2007 is the
+    #      rate-seed year only. ----
     indirect_resistance = calculate_indirect_averted_cases(
-        years_for(lambda y: 2008 <= y <= 2023),
-        make_data(lambda y: 2008 <= y <= 2023, direct_resistance, "gc"),
+        years_for(lambda y: 2007 <= y <= 2023),
+        make_data(lambda y: 2007 <= y <= 2023, direct_resistance, "gc"),
         inc_both_gc,
         inc_women_gc,
     )
@@ -420,7 +449,7 @@ for location, loc_rows in tqdm(
     # ---- assemble per (year, sex) output, all still UFloats ----
     ZERO = point_mass(0.0, "zero")
     for (y, s), e in base.items():
-        O = {
+        meta = {
             "region": region,
             "location": location,
             "country_code": loc_rows[0]["country_code"],
@@ -432,77 +461,79 @@ for location, loc_rows in tqdm(
         }
         for sti in STIS:
             # both pafs reported, each correctly named
-            O[f"paf_{sti}_hiv"] = e[f"gbd_paf_{sti}"]
-            O[f"unaids_paf_{sti}_hiv"] = e[f"unaids_paf_{sti}"]
+            meta[f"paf_{sti}_hiv"] = e[f"gbd_paf_{sti}"]
+            meta[f"unaids_paf_{sti}_hiv"] = e[f"unaids_paf_{sti}"]
             d_ub = ub_direct[sti].get((y, s), ZERO)
             i_ub = ub_indirect_past[sti].get((y, s), ZERO)
             i_ub_fut = ub_indirect_future[sti].get((y, s), ZERO)
             # direct averted by treatment of {sti} (= B(1) - observed attrib),
             # named symmetrically with the indirect/total below
-            O[f"direct_hiv_averted_{sti}_upper_bound"] = d_ub
-            O[f"indirect_hiv_averted_{sti}_upper_bound"] = i_ub
-            O[f"indirect_hiv_averted_{sti}_upper_bound_future"] = i_ub_fut
-            O[f"hiv_averted_{sti}_upper_bound"] = d_ub + i_ub
-            O[f"hiv_averted_{sti}_upper_bound_future"] = d_ub + i_ub_fut
+            meta[f"direct_hiv_averted_{sti}_upper_bound"] = d_ub
+            meta[f"indirect_hiv_averted_{sti}_upper_bound"] = i_ub
+            meta[f"indirect_hiv_averted_{sti}_upper_bound_future"] = i_ub_fut
+            meta[f"hiv_averted_{sti}_upper_bound"] = d_ub + i_ub
+            meta[f"hiv_averted_{sti}_upper_bound_future"] = d_ub + i_ub_fut
             # raw observed attributable (unchanged name)
-            O[f"unaids_hiv_incidence_number_attributable_to_{sti}"] = e[
+            meta[f"unaids_hiv_incidence_number_attributable_to_{sti}"] = e[
                 f"attrib_{sti}"
             ]
         for abx in ABX:
-            O[f"{abx}_resistant_number"] = e[f"{abx}_resistant_number"]
+            meta[f"{abx}_resistant_number"] = e[f"{abx}_resistant_number"]
 
         # 2016 gc change
-        O["direct_hiv_averted_2016_gc_change"] = direct_2016.get((y, s), ZERO)
-        O["indirect_hiv_averted_2016_gc_change"] = indirect_2016.get(
+        meta["direct_hiv_averted_2016_gc_change"] = direct_2016.get(
             (y, s), ZERO
         )
-        O["hiv_averted_2016_gc_change"] = (
-            O["direct_hiv_averted_2016_gc_change"]
-            + O["indirect_hiv_averted_2016_gc_change"]
+        meta["indirect_hiv_averted_2016_gc_change"] = indirect_2016.get(
+            (y, s), ZERO
+        )
+        meta["hiv_averted_2016_gc_change"] = (
+            meta["direct_hiv_averted_2016_gc_change"]
+            + meta["indirect_hiv_averted_2016_gc_change"]
         )
 
         # untreated / resistance decomposition
-        O["direct_hiv_averted_gc_untreated"] = direct_untreated.get(
+        meta["direct_hiv_averted_gc_untreated"] = direct_untreated.get(
             (y, s), ZERO
         )
-        O["indirect_hiv_averted_gc_untreated"] = indirect_untreated.get(
+        meta["indirect_hiv_averted_gc_untreated"] = indirect_untreated.get(
             (y, s), ZERO
         )
-        O["hiv_averted_gc_untreated"] = (
-            O["direct_hiv_averted_gc_untreated"]
-            + O["indirect_hiv_averted_gc_untreated"]
+        meta["hiv_averted_gc_untreated"] = (
+            meta["direct_hiv_averted_gc_untreated"]
+            + meta["indirect_hiv_averted_gc_untreated"]
         )
-        O["direct_hiv_averted_gc_resistance"] = direct_resistance.get(
+        meta["direct_hiv_averted_gc_resistance"] = direct_resistance.get(
             (y, s), ZERO
         )
-        O["indirect_hiv_averted_gc_resistance"] = indirect_resistance.get(
+        meta["indirect_hiv_averted_gc_resistance"] = indirect_resistance.get(
             (y, s), ZERO
         )
-        O["hiv_averted_gc_resistance"] = (
-            O["direct_hiv_averted_gc_resistance"]
-            + O["indirect_hiv_averted_gc_resistance"]
+        meta["hiv_averted_gc_resistance"] = (
+            meta["direct_hiv_averted_gc_resistance"]
+            + meta["indirect_hiv_averted_gc_resistance"]
         )
 
         # cross-STI sums (UFloat sums preserve correlation between terms)
-        O["direct_hiv_averted_upper_bound"] = sum(
+        meta["direct_hiv_averted_upper_bound"] = sum(
             ub_direct[sti].get((y, s), ZERO) for sti in STIS
         )
-        O["indirect_hiv_averted_upper_bound"] = sum(
+        meta["indirect_hiv_averted_upper_bound"] = sum(
             ub_indirect_past[sti].get((y, s), ZERO) for sti in STIS
         )
-        O["indirect_hiv_averted_upper_bound_future"] = sum(
+        meta["indirect_hiv_averted_upper_bound_future"] = sum(
             ub_indirect_future[sti].get((y, s), ZERO) for sti in STIS
         )
-        O["hiv_averted_upper_bound"] = (
-            O["direct_hiv_averted_upper_bound"]
-            + O["indirect_hiv_averted_upper_bound"]
+        meta["hiv_averted_upper_bound"] = (
+            meta["direct_hiv_averted_upper_bound"]
+            + meta["indirect_hiv_averted_upper_bound"]
         )
-        O["hiv_averted_upper_bound_future"] = (
-            O["direct_hiv_averted_upper_bound"]
-            + O["indirect_hiv_averted_upper_bound_future"]
+        meta["hiv_averted_upper_bound_future"] = (
+            meta["direct_hiv_averted_upper_bound"]
+            + meta["indirect_hiv_averted_upper_bound_future"]
         )
 
-        output_rows.append(O)
+        output_rows.append(meta)
 
 
 # ----------------------------------------------------------------------
@@ -530,13 +561,13 @@ PAF_COLS = [f"paf_{sti}_hiv" for sti in STIS] + [
 COUNT_COLS = [c for c in output_rows[0] if c not in PASSTHROUGH + PAF_COLS]
 
 flat_rows = []
-for O in tqdm(output_rows, desc="Extracting intervals"):
-    flat = {c: O[c] for c in PASSTHROUGH}
+for out in tqdm(output_rows, desc="Extracting intervals"):
+    flat = {c: out[c] for c in PASSTHROUGH}
     for c in PAF_COLS:
-        m, lo, hi = ci_via_logit(O[c])
+        m, lo, hi = ci_via_logit(out[c])
         flat[c], flat[f"{c}_lower"], flat[f"{c}_upper"] = m, lo, hi
     for c in COUNT_COLS:
-        m, lo, hi = ci_via_log(O[c])
+        m, lo, hi = ci_via_log(out[c])
         flat[c], flat[f"{c}_lower"], flat[f"{c}_upper"] = m, lo, hi
     flat_rows.append(flat)
 

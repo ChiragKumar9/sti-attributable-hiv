@@ -210,7 +210,7 @@ def plot_hiv_burden_by_sex(hiv, ax, fig):
         male_hist["year"],
         male_hist["incidence"],
         linewidth=5,
-        label="Male",
+        label="Men",
         color="midnightblue",
     )
     ax.fill_between(
@@ -225,7 +225,7 @@ def plot_hiv_burden_by_sex(hiv, ax, fig):
         female_hist["year"],
         female_hist["incidence"],
         linewidth=5,
-        label="Female",
+        label="Women",
         color="magenta",
     )
     ax.fill_between(
@@ -343,11 +343,12 @@ def plot_rr_estimates(aggregated_rrs, ax, fig):
             - heterosexual_male_data["val"].to_numpy(),
         ],
         fmt="o",
-        label="Heterosexual male",
+        label="Heterosexual men",
         color="midnightblue",
         elinewidth=1,
         capsize=10,
         capthick=2,
+        markersize=8,
     )
 
     ax.errorbar(
@@ -358,11 +359,12 @@ def plot_rr_estimates(aggregated_rrs, ax, fig):
             female_data["upper"].to_numpy() - female_data["val"].to_numpy(),
         ],
         fmt="o",
-        label="Heterosexual female",
+        label="Heterosexual women",
         color="magenta",
         elinewidth=1,
         capsize=10,
         capthick=2,
+        markersize=8,
     )
 
     ax.errorbar(
@@ -378,6 +380,7 @@ def plot_rr_estimates(aggregated_rrs, ax, fig):
         elinewidth=1,
         capsize=10,
         capthick=2,
+        markersize=8,
     )
 
     ax.set_ylim(0.1)
@@ -399,7 +402,7 @@ def plot_rr_estimates(aggregated_rrs, ax, fig):
 
 
 def plot_attributable_hiv_burden_sex(ufloat_rows, ax, fig, number):
-    """New panel d: trajectory of BSTI-attributable HIV incidence by sex.
+    """New panel d: trajectory of STBI-attributable HIV incidence by sex.
     Sums the raw UFloat objects across STIs and across countries within
     each year-sex group before extracting any interval."""
 
@@ -441,15 +444,21 @@ def plot_attributable_hiv_burden_sex(ufloat_rows, ax, fig, number):
         lower = np.array(series[sex]["lower"])[order]
         upper = np.array(series[sex]["upper"])[order]
 
-        ax.plot(years, mean, linewidth=5, label=sex, color=colors[sex])
+        ax.plot(
+            years,
+            mean,
+            linewidth=5,
+            label={"Male": "Men", "Female": "Women"}[sex],
+            color=colors[sex],
+        )
         ax.fill_between(years, lower, upper, alpha=0.3, color=colors[sex])
 
     ax.set_xlabel("Year")
     if number:
-        ax.set_ylabel("BSTI-attributable HIV incidence (N)")
+        ax.set_ylabel("STBI-attributable HIV incidence (N)")
     else:
         ax.set_ylabel(
-            "BSTI-attributable HIV incidence rate (per 100,000 population)"
+            "STBI-attributable HIV incidence rate (per 100,000 population)"
         )
     ax.legend(loc="upper right", edgecolor="black")
     ax.set_ylim(0)
@@ -465,7 +474,7 @@ def plot_attributable_hiv_burden_sex(ufloat_rows, ax, fig, number):
     ax.set_xticks([2000, 2010, 2020])
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))
 
-    # cumulative BSTI-attributable cases (raw UFloats summed across all years
+    # cumulative STBI-attributable cases (raw UFloats summed across all years
     # within each merged-sex group, then extracted once)
     male_rows = [
         r for (yr, sx), rs in groups.items() if sx == "Male" for r in rs
@@ -481,19 +490,19 @@ def plot_attributable_hiv_burden_sex(ufloat_rows, ax, fig, number):
     )
     cum_total = cum_male + cum_female  # type: ignore
     print(
-        "Cumulative BSTI-attributable HIV cases, total:",
+        "Cumulative STBI-attributable HIV cases, total:",
         _fmt_count(ci_via_log(cum_total)),
     )
     print(
-        "Cumulative BSTI-attributable HIV cases, Male (incl. MSM):",
+        "Cumulative STBI-attributable HIV cases, Male (incl. MSM):",
         _fmt_count(ci_via_log(cum_male)),
     )
     print(
-        "Cumulative BSTI-attributable HIV cases, Female:",
+        "Cumulative STBI-attributable HIV cases, Female:",
         _fmt_count(ci_via_log(cum_female)),
     )
 
-    # cumulative BSTI-attributable cases as a percentage of cumulative total HIV
+    # cumulative STBI-attributable cases as a percentage of cumulative total HIV
     # incidence over 2000-2023, per stratum. attributable = incidence * PAF, so
     # the ratio shares the incidence leaves and their uncertainty cancels; form
     # it as a UFloat ratio and extract on the (0,1) proportion via ci_via_logit.
@@ -501,21 +510,21 @@ def plot_attributable_hiv_burden_sex(ufloat_rows, ax, fig, number):
     inc_female = _sum_field(female_rows, "unaids_incidence_number")
     inc_total = inc_male + inc_female  # type: ignore
     print(
-        "Cumulative BSTI-attributable HIV, % of total incidence, total:",
+        "Cumulative STBI-attributable HIV, % of total incidence, total:",
         _fmt_pct(ci_via_logit(cum_total / inc_total)),  # type: ignore
     )
     print(
-        "Cumulative BSTI-attributable HIV, % of total incidence, Male (incl. MSM):",
+        "Cumulative STBI-attributable HIV, % of total incidence, Male (incl. MSM):",
         _fmt_pct(ci_via_logit(cum_male / inc_male)),  # type: ignore
     )
     print(
-        "Cumulative BSTI-attributable HIV, % of total incidence, Female:",
+        "Cumulative STBI-attributable HIV, % of total incidence, Female:",
         _fmt_pct(ci_via_logit(cum_female / inc_female)),  # type: ignore
     )
 
 
 def plot_attributable_hiv_burden_region(ufloat_rows, ax, fig):
-    """New panel e: trajectory of BSTI-attributable HIV incidence by
+    """New panel e: trajectory of STBI-attributable HIV incidence by
     region. Sums the raw UFloat objects across STIs and across countries
     within each year-region group before extracting any interval."""
     region_colors = {
@@ -554,8 +563,8 @@ def plot_attributable_hiv_burden_region(ufloat_rows, ax, fig):
         ax.fill_between(years, lower, upper, alpha=0.3, color=color)
 
     ax.set_xlabel("Year")
-    ax.set_ylabel("BSTI-attributable HIV incidence (N)")
-    ax.legend(loc=(0.5, 0.95), edgecolor="black")
+    ax.set_ylabel("STBI-attributable HIV incidence (N)")
+    ax.legend(loc=(0.5, 0.85), edgecolor="black")
     ax.set_xticks([2000, 2010, 2020])
     ax.set_ylim(0)
     ax.yaxis.set_major_formatter(
@@ -565,7 +574,7 @@ def plot_attributable_hiv_burden_region(ufloat_rows, ax, fig):
     ax.yaxis.set_minor_locator(ticker.MultipleLocator(10000))
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))
 
-    # cumulative BSTI-attributable cases by region (raw UFloats summed across
+    # cumulative STBI-attributable cases by region (raw UFloats summed across
     # all years within each region, then extracted once)
     for region in region_colors:
         region_rows = [
@@ -575,12 +584,12 @@ def plot_attributable_hiv_burden_region(ufloat_rows, ax, fig):
             region_rows, "unaids_hiv_incidence_number_attributable_to_"
         )
         print(
-            f"Cumulative BSTI-attributable HIV cases, {region}:",
+            f"Cumulative STBI-attributable HIV cases, {region}:",
             _fmt_count(ci_via_log(cum)),
         )
         inc = _sum_field(region_rows, "unaids_incidence_number")
         print(
-            f"Cumulative BSTI-attributable HIV, % of total incidence, {region}:",
+            f"Cumulative STBI-attributable HIV, % of total incidence, {region}:",
             _fmt_pct(ci_via_logit(cum / inc)),  # type: ignore
         )
 
@@ -670,7 +679,7 @@ def plot_attributable_hiv_burden_sti(ufloat_rows, ax, fig):
     )
 
     ax.set_xlabel("Year")
-    ax.set_ylabel("BSTI-attributable HIV incidence (N)")
+    ax.set_ylabel("STBI-attributable HIV incidence (N)")
     ax.legend(loc=(0.4, 0.95), edgecolor="black")
     ax.set_ylim(0)
     ax.set_xticks([2000, 2010, 2020])
@@ -681,7 +690,7 @@ def plot_attributable_hiv_burden_sti(ufloat_rows, ax, fig):
     ax.yaxis.set_minor_locator(ticker.MultipleLocator(10000))
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))
 
-    # cumulative BSTI-attributable cases by pathogen (raw UFloats summed across
+    # cumulative STBI-attributable cases by pathogen (raw UFloats summed across
     # all years and all rows, then extracted once), plus each as a percentage
     # of cumulative total HIV incidence over the same window. attributable =
     # incidence * PAF, so the ratio shares the incidence leaves; form as a
@@ -693,125 +702,31 @@ def plot_attributable_hiv_burden_sti(ufloat_rows, ax, fig):
             all_rows, f"unaids_hiv_incidence_number_attributable_to_{sti}"
         )
         print(
-            f"Cumulative BSTI-attributable HIV cases, {sti}:",
+            f"Cumulative STBI-attributable HIV cases, {sti}:",
             _fmt_count(ci_via_log(cum)),
         )
         print(
-            f"Cumulative BSTI-attributable HIV, % of total incidence, {sti}:",
+            f"Cumulative STBI-attributable HIV, % of total incidence, {sti}:",
             _fmt_pct(ci_via_logit(cum / inc_all)),  # type: ignore
         )
 
 
-def ax_formatting(ax, forward):
-    if forward:
-        ax.set_xticks([2026, 2030])
-        # minor x ticks every year
-        ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
-        ax.yaxis.set_minor_locator(
-            ticker.FixedLocator(
-                -1
-                * np.array(
-                    [
-                        200,
-                        300,
-                        400,
-                        500,
-                        600,
-                        700,
-                        800,
-                        900,
-                        2000,
-                        3000,
-                        4000,
-                        5000,
-                        6000,
-                        7000,
-                        8000,
-                        9000,
-                        20000,
-                        30000,
-                        40000,
-                        50000,
-                        60000,
-                        70000,
-                        80000,
-                        90000,
-                        200000,
-                        300000,
-                        400000,
-                        500000,
-                        600000,
-                        700000,
-                        800000,
-                        900000,
-                    ]
-                )  # type: ignore
-            )
-        )
-    else:
-        ax.set_xticks([2000, 2010, 2020])
-        # minor x ticks every two years
-        ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))
-        # set custom y axis minor ticks
-        ax.yaxis.set_minor_locator(
-            ticker.FixedLocator(
-                np.array(
-                    [
-                        200,
-                        300,
-                        400,
-                        500,
-                        600,
-                        700,
-                        800,
-                        900,
-                        2000,
-                        3000,
-                        4000,
-                        5000,
-                        6000,
-                        7000,
-                        8000,
-                        9000,
-                        20000,
-                        30000,
-                        40000,
-                        50000,
-                        60000,
-                        70000,
-                        80000,
-                        90000,
-                        200000,
-                        300000,
-                        400000,
-                        500000,
-                        600000,
-                        700000,
-                        800000,
-                        900000,
-                    ]
-                )  # type: ignore
-            )
-        )
+def ax_formatting(ax):
+    ax.set_xticks([2000, 2010, 2020])
+    # minor x ticks every two years
+    ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))
 
 
-def plot_best_case(ufloat_rows, ax, year, fig, forward=False, reference=None):
-    if forward:
-        scalar = -1.0
-        avert_field = "hiv_averted_upper_bound_future"
-        rows = [r for r in ufloat_rows if r["year"] >= 2026]
-    else:
-        scalar = 1.0
-        avert_field = "hiv_averted_upper_bound"
-        rows = [r for r in ufloat_rows if r["year"] <= 2024]
+def plot_best_case(ufloat_rows, ax, year, fig):
+    avert_field = "hiv_averted_upper_bound"
+    rows = [r for r in ufloat_rows if r["year"] <= 2024]
     rows = [r for r in rows if r["year"] >= year]
 
     # Per-row averted UFloats (the "change in cases"): total effect from
     # `avert_field` and direct-only from `direct_hiv_averted_upper_bound`.
     # Each row's log interval is extracted from the positive averted UFloat and
     # tagged with its (country_code, sex) independence block; _block_combine
-    # does quadrature across blocks and sums across years within a block. The
-    # display sign (`scalar`) is applied after extraction, matching panels h/i.
+    # does quadrature across blocks and sums across years within a block.
     years_present = sorted({r["year"] for r in rows})
 
     def bucket():
@@ -830,8 +745,7 @@ def plot_best_case(ufloat_rows, ax, year, fig, forward=False, reference=None):
         dir_av = r["direct_hiv_averted_upper_bound"]
 
         # per-year averted quantities (change in cases). ci_via_log needs
-        # positive counts, so extract from the positive averted UFloats and
-        # apply the display sign later, in `series`.
+        # positive counts, so extract from the positive averted UFloats.
         for nm, uf in (("total", tot_av), ("direct", dir_av)):
             m, lo, hi = ci_via_log(uf)
             b = per_year[nm][y]
@@ -863,9 +777,9 @@ def plot_best_case(ufloat_rows, ax, year, fig, forward=False, reference=None):
                 continue
             mm, ll, hh = _block_combine(b["m"], b["lo"], b["hi"], b["blk"])
             ys.append(y)
-            ms.append(scalar * mm)
-            los.append(scalar * ll)
-            his.append(scalar * hh)
+            ms.append(mm)
+            los.append(ll)
+            his.append(hh)
         return np.array(ys), np.array(ms), np.array(los), np.array(his)
 
     tot_s = series("total")
@@ -914,32 +828,25 @@ def plot_best_case(ufloat_rows, ax, year, fig, forward=False, reference=None):
 
     ax.set_xlabel("Year")
     ax.set_ylabel("Change in HIV incidence (N)")
-    ax.legend(loc=(0.55, 0.75) if forward else (0.6, 0.7), edgecolor="black")
+    ax.legend(loc=(0.6, 0.7), edgecolor="black")
     ax.yaxis.set_major_formatter(
         ticker.FuncFormatter(lambda x, p: format(int(x), ","))
     )
-    ax_formatting(ax, forward)
+    ax_formatting(ax)
     ax.set_ylim(0)
 
 
-def plot_averted_sti(hiv, ax, year, fig, forward=False):
-    if forward:
-        scalar = -1.0
-        stub = "upper_bound_future"
-        hiv = hiv.filter(pl.col("year") >= 2026)
-    else:
-        scalar = 1.0
-        stub = "upper_bound"
-        hiv = hiv.filter(pl.col("year") <= 2023)
+def plot_averted_sti(hiv, ax, year, fig):
+    stub = "upper_bound"
+    hiv = hiv.filter(pl.col("year") <= 2023)
 
     hiv = hiv.filter(pl.col("year") >= year)
     raw = hiv  # keep the un-aggregated rows for the per-pathogen prints
 
     # Combine per-row intervals across locations/sexes within each year by
     # QUADRATURE (independent rows), per STI, rather than summing the lower/
-    # upper columns (which assumes perfect correlation). scalar sign is applied
-    # to the resulting triple for the symlog display; the lower band carries a
-    # positive floor from _quadrature_sum.
+    # upper columns (which assumes perfect correlation). The lower band carries
+    # a positive floor from _quadrature_sum.
     sti_cols = {
         "gc": "gc",
         "chlamydia": "chlamydia",
@@ -961,11 +868,9 @@ def plot_averted_sti(hiv, ax, year, fig, forward=False):
                 rows[f"hiv_averted_{sti}_{stub}_lower"].to_numpy(),
                 rows[f"hiv_averted_{sti}_{stub}_upper"].to_numpy(),
             )
-            # apply display sign; lower/upper swap roles under negation but
-            # fill_between handles unordered bounds
-            agg[c].append(scalar * m)
-            agg[f"{c}_lower"].append(scalar * lo)
-            agg[f"{c}_upper"].append(scalar * hi)
+            agg[c].append(m)
+            agg[f"{c}_lower"].append(lo)
+            agg[f"{c}_upper"].append(hi)
     hiv = pl.DataFrame(agg).sort(by="year")
 
     # ---- diagnostic prints: per-pathogen averted totals, quadrature-combined
@@ -1049,35 +954,25 @@ def plot_averted_sti(hiv, ax, year, fig, forward=False):
 
     ax.set_xlabel("Year")
     ax.set_ylabel("Change in HIV incidence (N)")
-    if forward:
-        loc = (0.4, 0.95)
-    else:
-        loc = (0.4, 0.95)
-    ax.legend(loc=loc, edgecolor="black")
+    ax.legend(loc=(0.4, 0.95), edgecolor="black")
     # make the numbers appear in non scientific notation
     ax.yaxis.set_major_formatter(
         ticker.FuncFormatter(lambda x, p: format(int(x), ","))
     )
-    ax_formatting(ax, forward)
+    ax_formatting(ax)
     ax.set_ylim(0)
 
 
-def plot_averted_sex(hiv, ax, year, fig, forward=False):
-    if forward:
-        scalar = -1.0
-        stub = "upper_bound_future"
-        hiv = hiv.filter(pl.col("year") >= 2026)
-    else:
-        scalar = 1.0
-        stub = "upper_bound"
-        hiv = hiv.filter(pl.col("year") <= 2023)
+def plot_averted_sex(hiv, ax, year, fig):
+    stub = "upper_bound"
+    hiv = hiv.filter(pl.col("year") <= 2023)
 
     hiv = hiv.filter(pl.col("year") >= year)
     raw = hiv  # keep the un-aggregated rows for the across-years prints
 
     # Per (year, sex) quadrature combine across locations (independent rows),
     # rather than summing lower/upper columns. Produces total/total_lower/
-    # total_upper with the display sign applied; lower band positive-floored.
+    # total_upper; lower band positive-floored.
     plot_sexes = ["Male", "Female", "MSM"]
     years_sorted = sorted(hiv["year"].unique().to_list())
     agg = {
@@ -1099,9 +994,9 @@ def plot_averted_sex(hiv, ax, year, fig, forward=False):
             )
             agg["year"].append(y)
             agg["sex"].append(s)
-            agg["total"].append(scalar * m)
-            agg["total_lower"].append(scalar * lo)
-            agg["total_upper"].append(scalar * hi)
+            agg["total"].append(m)
+            agg["total_lower"].append(lo)
+            agg["total_upper"].append(hi)
     hiv = pl.DataFrame(agg)
 
     # ---- diagnostic prints: per-sex across-years totals and proportions,
@@ -1134,7 +1029,7 @@ def plot_averted_sex(hiv, ax, year, fig, forward=False):
         hiv.filter(pl.col("sex") == "Male")["year"],
         hiv.filter(pl.col("sex") == "Male")["total"],
         linewidth=5,
-        label="Heterosexual male",
+        label="Heterosexual men",
         color="midnightblue",
     )
 
@@ -1150,7 +1045,7 @@ def plot_averted_sex(hiv, ax, year, fig, forward=False):
         hiv.filter(pl.col("sex") == "Female")["year"],
         hiv.filter(pl.col("sex") == "Female")["total"],
         linewidth=5,
-        label="Heterosexual female",
+        label="Heterosexual women",
         color="magenta",
     )
 
@@ -1180,16 +1075,12 @@ def plot_averted_sex(hiv, ax, year, fig, forward=False):
 
     ax.set_xlabel("Year")
     ax.set_ylabel("Change in HIV incidence (N)")
-    if forward:
-        loc = (0.35, 0.95)
-    else:
-        loc = (0.35, 0.95)
-    ax.legend(loc=loc, edgecolor="black")
+    ax.legend(loc=(0.35, 0.95), edgecolor="black")
     # make the numbers appear in non scientific notation
     ax.yaxis.set_major_formatter(
         ticker.FuncFormatter(lambda x, p: format(int(x), ","))
     )
-    ax_formatting(ax, forward)
+    ax_formatting(ax)
     ax.set_ylim(0)
 
 
@@ -1239,7 +1130,7 @@ if __name__ == "__main__":
     )
     plot_rr_estimates(aggregated_rrs, ax[0, 2], fig)  # type: ignore
 
-    # Panels d-f: trajectory of BSTI-attributable HIV incidence over time,
+    # Panels d-f: trajectory of STBI-attributable HIV incidence over time,
     # from the attributable-HIV UFloat pickle.
     with open(
         os.path.join(output_dir, "hiv_attributable_to_stis.ufloat.pkl"), "rb"
@@ -1251,7 +1142,7 @@ if __name__ == "__main__":
 
     ax[1, 0].text(  # type: ignore
         -0.25,
-        1.08,
+        1.1,
         "d",
         transform=ax[1, 0].transAxes,  # type: ignore
         fontsize=24,
@@ -1268,7 +1159,7 @@ if __name__ == "__main__":
 
     ax[1, 1].text(  # type: ignore
         -0.25,
-        1.08,
+        1.1,
         "e",
         transform=ax[1, 1].transAxes,  # type: ignore
         fontsize=24,
@@ -1284,7 +1175,7 @@ if __name__ == "__main__":
 
     ax[1, 2].text(  # type: ignore
         -0.25,
-        1.08,
+        1.1,
         "f",
         transform=ax[1, 2].transAxes,  # type: ignore
         fontsize=24,
@@ -1303,7 +1194,7 @@ if __name__ == "__main__":
     # figure script.
     hiv_averted = pl.read_csv(os.path.join(output_dir, "hiv_averted.csv"))
 
-    first_year_upper_bound = 2001
+    first_year_upper_bound = 2000
 
     with open(os.path.join(output_dir, "hiv_averted.ufloat.pkl"), "rb") as f:
         hiv_averted_ufloat = pickle.load(f)

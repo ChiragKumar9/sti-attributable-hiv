@@ -26,8 +26,12 @@ with open("params.yml", "r") as f:
     _params = yaml.safe_load(f)
 sti_symptom_params = _params["sti_symptoms"]
 
-# hatch style used to mark the symptomatic (access-limited) portion of a bar
-SYMPTOMATIC_HATCH = "//"
+# neutral color used for the symptomatic/asymptomatic legend swatches, and
+# the alpha used to draw the asymptomatic portion of each bar. NEUTRAL_COLOR
+# is plain black (no hue), chosen to look nothing like the blue-grey
+# "slategrey" used elsewhere for the MSM series.
+NEUTRAL_COLOR = "darkgrey"
+ASYMPTOMATIC_ALPHA = 0.5
 
 
 def _sex_key(sex):
@@ -37,12 +41,17 @@ def _sex_key(sex):
 
 
 def _symptomatic_legend_proxy():
-    """A neutral hatched swatch explaining what the hatching means."""
     return Patch(
-        facecolor="0.6",
+        facecolor=NEUTRAL_COLOR, edgecolor="black", label="Symptomatic"
+    )
+
+
+def _asymptomatic_legend_proxy():
+    return Patch(
+        facecolor=NEUTRAL_COLOR,
         edgecolor="black",
-        hatch=SYMPTOMATIC_HATCH,
-        label="Symptomatic",
+        alpha=ASYMPTOMATIC_ALPHA,
+        label="Asymptomatic",
     )
 
 
@@ -119,7 +128,7 @@ def plot_attributable_hiv_burden_region_sex(ufloat_rows, ax, fig):
         by_sex_groups[r["sex"]].append(r)
 
     # overall (all sexes, regions, and STIs pooled) fraction of 2023 HIV
-    # incidence attributable to BSTIs. Same discipline: sum the UFloat
+    # incidence attributable to STBIs. Same discipline: sum the UFloat
     # attributable counts and total incidence across every row first, then
     # ratio + logit interval.
     attributable_overall = _sum_attributable_across_stis(
@@ -190,8 +199,8 @@ def plot_attributable_hiv_burden_region_sex(ufloat_rows, ax, fig):
         )
 
     sex_names = {
-        "Male": "Heterosexual male",
-        "Female": "Heterosexual female",
+        "Male": "Heterosexual men",
+        "Female": "Heterosexual women",
         "MSM": "MSM",
     }
 
@@ -239,32 +248,44 @@ def plot_attributable_hiv_burden_region_sex(ufloat_rows, ax, fig):
             ]
         )
 
-        ax.bar(
-            x + offsets[sex],
-            mean,
-            yerr=[mean - lower, upper - mean],
-            capsize=5,
-            width=width,
-            label=sex_names[sex],
-            color=colors[sex],
-        )
-
-        # hatch the symptomatic (access-limited) portion of each bar
+        # symptomatic (access-limited) share of this bar, used to split it
+        # into a full-alpha bottom segment and a lighter-alpha top segment.
         symp_frac = np.array(
             [
                 symp_frac_by_region_sex.get((region, sex), 0.0)
                 for region in regions
             ]
         )
+        symptomatic_h = mean * symp_frac
+        asymptomatic_h = mean * (1 - symp_frac)
+
+        # symptomatic (bottom) segment, drawn at full alpha; carries the
+        # legend entry for this sex so the swatch isn't shown translucent
         ax.bar(
             x + offsets[sex],
-            mean * symp_frac,
+            symptomatic_h,
             width=width,
-            fill=False,
-            hatch=SYMPTOMATIC_HATCH,
-            edgecolor="black",
-            linewidth=0.0,
-            zorder=3,
+            label=sex_names[sex],
+            color=colors[sex],
+        )
+        # asymptomatic (top) segment, drawn at a lighter alpha
+        ax.bar(
+            x + offsets[sex],
+            asymptomatic_h,
+            bottom=symptomatic_h,
+            width=width,
+            color=colors[sex],
+            alpha=ASYMPTOMATIC_ALPHA,
+        )
+        # whisker drawn as its own artist (not part of either bar segment)
+        # so it stays fully opaque regardless of the segment alphas above
+        ax.errorbar(
+            x + offsets[sex],
+            mean,
+            yerr=[mean - lower, upper - mean],
+            fmt="none",
+            ecolor="black",
+            capsize=5,
         )
 
     # print the bar and error values by region with nice formatting
@@ -280,10 +301,12 @@ def plot_attributable_hiv_burden_region_sex(ufloat_rows, ax, fig):
     ax.set_xticks(x)
     ax.set_xticklabels(regions, ha="center")
     ax.set_xlabel("Region")
-    ax.set_ylabel("HIV incidence attributable to BSTIs (%)")
+    ax.set_ylabel("STBI-attributable HIV incidence\nby sexual activity (%)")
     handles, labels = ax.get_legend_handles_labels()
     handles.append(_symptomatic_legend_proxy())
     labels.append("Symptomatic")
+    handles.append(_asymptomatic_legend_proxy())
+    labels.append("Asymptomatic")
     ax.legend(handles, labels, loc=(0.01, 0.9), edgecolor="black")
     # add minor y ticks every 5%
     ax.yaxis.set_minor_locator(ticker.MultipleLocator(5))
@@ -323,8 +346,8 @@ def plot_attributable_hiv_burden_region_pathogen(ufloat_rows, ax, fig):
     # pct_by_region_sti[(region, sti)] = (mean, lower, upper) proportion of
     # TOTAL (sexes-pooled) incidence attributable to this STI.
     # female_frac_by_region_sti[(region, sti)] = nominal fraction of that STI's
-    # attributable burden that is female (point estimate only; used purely to
-    # split the bar visually via hatching, so no CI is extracted for it).
+    # attributable burden that is female (point estimate only; printed to the
+    # console, not drawn -- see note below).
     # symp_frac_by_region_sti[(region, sti)] = nominal symptomatic (access-
     # limited) share of that STI's attributable burden. Sexes are pooled here,
     # so it's burden-weighted across the rows' sexes (female uses female
@@ -368,7 +391,7 @@ def plot_attributable_hiv_burden_region_pathogen(ufloat_rows, ax, fig):
                 symp_num / total_num if total_num else 0.0
             )
 
-    x = np.arange(len(regions))
+    x = np.arange(len(regions))  # type; ignore
     width = 0.2
     for i, pathogen in enumerate(stis):
         offset = width * (i - 1.5)  # center the group of bars
@@ -399,53 +422,42 @@ def plot_attributable_hiv_burden_region_pathogen(ufloat_rows, ax, fig):
                 for region in regions
             ]
         )
-        female_frac = np.array(
-            [
-                female_frac_by_region_sti.get((region, pathogen), 0.0)
-                for region in regions
-            ]
-        )
-        # split the bar height: bottom = female portion (hatched), top =
-        # non-female portion (solid). Both segments share the pathogen colour
-        # and sum to the pooled proportion `mean`.
-        female_h = mean * female_frac
-        nonfemale_h = mean * (1 - female_frac)
 
-        # female (hatched) segment on the bottom; carries the pathogen legend
-        # entry
-        ax.bar(
-            x + offset,
-            female_h,
-            width=width,
-            color=colors[pathogen],
-        )
-        # non-female (solid) segment stacked on top
-        ax.bar(
-            x + offset,
-            nonfemale_h,
-            bottom=female_h,
-            width=width,
-            label=sti_names[pathogen],
-            color=colors[pathogen],
-        )
-        # hatch the symptomatic (access-limited) portion of the pooled bar
+        # symptomatic (access-limited) share of this pooled bar, used to
+        # split it into a full-alpha bottom segment and a lighter-alpha top
+        # segment. (Note: the female/non-female split that used to be drawn
+        # here as two stacked bars is removed -- both segments used the same
+        # color/alpha, so it never had a visual effect; female_frac is still
+        # tracked above and printed to the console below.)
         symp_frac = np.array(
             [
                 symp_frac_by_region_sti.get((region, pathogen), 0.0)
                 for region in regions
             ]
         )
+        symptomatic_h = mean * symp_frac
+        asymptomatic_h = mean * (1 - symp_frac)
+
+        # symptomatic (bottom) segment, drawn at full alpha; carries the
+        # legend entry for this pathogen so the swatch isn't shown translucent
         ax.bar(
             x + offset,
-            mean * symp_frac,
+            symptomatic_h,
             width=width,
-            fill=False,
-            hatch=SYMPTOMATIC_HATCH,
-            edgecolor="black",
-            linewidth=0.0,
-            zorder=3,
+            label=sti_names[pathogen],
+            color=colors[pathogen],
         )
-        # single whisker on the total bar height (the pooled proportion)
+        # asymptomatic (top) segment, drawn at a lighter alpha
+        ax.bar(
+            x + offset,
+            asymptomatic_h,
+            bottom=symptomatic_h,
+            width=width,
+            color=colors[pathogen],
+            alpha=ASYMPTOMATIC_ALPHA,
+        )
+        # single whisker on the total bar height (the pooled proportion),
+        # drawn as its own artist so it stays fully opaque
         ax.errorbar(
             x + offset,
             mean,
@@ -458,9 +470,11 @@ def plot_attributable_hiv_burden_region_pathogen(ufloat_rows, ax, fig):
     handles, labels = ax.get_legend_handles_labels()
     handles.append(_symptomatic_legend_proxy())
     labels.append("Symptomatic")
+    handles.append(_asymptomatic_legend_proxy())
+    labels.append("Asymptomatic")
 
     # print the bar and error values by region and pathogen
-    print("BSTI-attributable HIV by region and pathogen (2023):")
+    print("STBI-attributable HIV by region and pathogen (2023):")
     for region in regions:
         for pathogen in stis:
             if (region, pathogen) in pct_by_region_sti:
@@ -475,7 +489,7 @@ def plot_attributable_hiv_burden_region_pathogen(ufloat_rows, ax, fig):
     ax.set_xticks(x)
     ax.set_xticklabels(regions, ha="center")
     ax.set_xlabel("Region")
-    ax.set_ylabel("HIV incidence attributable to BSTIs (%)")
+    ax.set_ylabel("STBI-attributable HIV incidence (%)")
     ax.legend(handles, labels, loc=(0.01, 0.7), edgecolor="black")
     # add minor y ticks every 1%
     ax.yaxis.set_minor_locator(ticker.MultipleLocator(1))
@@ -551,39 +565,54 @@ def plot_attributable_hiv_burden_age_pathogen(ufloat_rows, ax, sex, fig):
         mean = np.array(pct[pathogen]["mean"])
         lower = np.array(pct[pathogen]["lower"])
         upper = np.array(pct[pathogen]["upper"])
+
+        # symptomatic (access-limited) share of this bar, used to split it
+        # into a full-alpha bottom segment and a lighter-alpha top segment.
+        symp_frac = sti_symptom_params[pathogen][sk]
+        symptomatic_h = mean * symp_frac
+        asymptomatic_h = mean * (1 - symp_frac)
+
+        # symptomatic (bottom) segment, drawn at full alpha; carries the
+        # legend entry for this pathogen so the swatch isn't shown translucent
         ax.bar(
             x + offset,
-            mean,
-            yerr=[mean - lower, upper - mean],
-            capsize=5,
+            symptomatic_h,
             width=width,
             label=sti_names[pathogen],
             color=colors[pathogen],
         )
-        # hatch the symptomatic (access-limited) portion of each bar
-        symp_frac = sti_symptom_params[pathogen][sk]
+        # asymptomatic (top) segment, drawn at a lighter alpha
         ax.bar(
             x + offset,
-            mean * symp_frac,
+            asymptomatic_h,
+            bottom=symptomatic_h,
             width=width,
-            fill=False,
-            hatch=SYMPTOMATIC_HATCH,
-            edgecolor="black",
-            linewidth=0.0,
-            zorder=3,
+            color=colors[pathogen],
+            alpha=ASYMPTOMATIC_ALPHA,
+        )
+        # whisker drawn as its own artist so it stays fully opaque
+        ax.errorbar(
+            x + offset,
+            mean,
+            yerr=[mean - lower, upper - mean],
+            fmt="none",
+            ecolor="black",
+            capsize=5,
         )
 
     ax.set_xticks(x)
     ax.set_xticklabels(age_groups)
     ax.set_xlabel("Age group")
     ax.set_ylabel(
-        f"HIV incidence attributable to BSTIs\namong {sex.lower()}s (%)"
+        f"STBI-attributable HIV incidence\namong {'women' if sex == 'Female' else 'men'} (%)"
     )
     handles, labels = ax.get_legend_handles_labels()
     handles.append(_symptomatic_legend_proxy())
     labels.append("Symptomatic")
+    handles.append(_asymptomatic_legend_proxy())
+    labels.append("Asymptomatic")
     if sex == "Female":
-        ax.legend(handles, labels, loc=(0.02, 0.85), edgecolor="black")
+        ax.legend(handles, labels, loc=(0.02, 0.87), edgecolor="black")
     else:
         ax.legend(handles, labels, loc=(0.5, 0.85), edgecolor="black")
     # add minor y ticks every 1%

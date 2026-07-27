@@ -35,8 +35,8 @@ TOTAL_COLOR = "darkred"
 
 sex_colors = {"Male": "midnightblue", "Female": "magenta", "MSM": "slategrey"}
 sex_names = {
-    "Male": "Heterosexual male",
-    "Female": "Heterosexual female",
+    "Male": "Heterosexual men",
+    "Female": "Heterosexual women",
     "MSM": "MSM",
 }
 sti_colors = {
@@ -99,37 +99,17 @@ def _year_total_nominal(rows, year, predicate=None):
     return _nominal(_usum(vals)) if vals else None
 
 
-def sdg_goal_cumulative(rows, predicate):
-    """Option C goal, as a POINT value (nominal only), in cumulative-averted-case
-    units: the area between the projected trajectory and a linear glide path that
-    starts at the 2026 projected value and lands on the SDG level (10% of 2010
-    incidence) at 2030.
-
-        goal = sum over 2026..2030 of (proj_year - target_year)
-        target_year = proj_2026 + (SDG_level - proj_2026) * (year - 2026) / 4
-
-    Per-sex via `predicate`. Returns None if the 2026/2030 anchors are missing."""
+def sdg_goal_2030(rows, predicate):
+    """Minimum single-year change in incidence needed to hit the 2030 SDG
+    target: the projected 2030 incidence minus the SDG level (10% of the 2010
+    incidence). Per-sex via `predicate`. Returns None if either the 2010 or the
+    2030 anchor is missing."""
     inc_2010 = _year_total_nominal(rows, SDG_BASELINE_YEAR, predicate)
-    if inc_2010 is None:
+    proj_2030 = _year_total_nominal(rows, SDG_TARGET_YEAR, predicate)
+    if inc_2010 is None or proj_2030 is None:
         return None
     sdg_level = SDG_FRACTION_OF_BASELINE * inc_2010
-
-    proj = {}
-    for y in range(CUM_START, SDG_TARGET_YEAR + 1):
-        v = _year_total_nominal(rows, y, predicate)
-        if v is not None:
-            proj[y] = v
-    if CUM_START not in proj or SDG_TARGET_YEAR not in proj:
-        return None
-
-    start = proj[CUM_START]  # glide-path start = 2026 projected
-    span = SDG_TARGET_YEAR - CUM_START
-    goal = 0.0
-    for y, pv in proj.items():
-        frac = (y - CUM_START) / span
-        target = start + (sdg_level - start) * frac
-        goal += pv - target
-    return goal
+    return proj_2030 - sdg_level
 
 
 def _fmt_count(triple):
@@ -187,16 +167,21 @@ def print_change_in_cases(rows):
             print(f"  {label}: {_fmt_pct(ci_via_logit(av / inc))}")  # type: ignore
 
 
+def sex_matches(r, sex):
+    return r["sex"] == sex
+
+
 def print_goal_check(rows):
     """Ground-truth for a/b/c: per-sex cumulative 2026-2030 direct and total
-    averted vs the option-C goal, with a HIT/miss flag (scale-independent)."""
-    print("SDG goal check (cumulative 2026-2030 averted vs goal):")
+    averted vs the 2030 goal, with a HIT/miss flag (scale-independent)."""
+    print("SDG goal check (cumulative 2026-2030 averted vs 2030 goal):")
     for label in ("Male", "MSM", "Female"):
-        pred = lambda r, s=label: r["sex"] == s
-        fwd = [r for r in rows if r["year"] >= CUM_START and pred(r)]
+        fwd = [
+            r for r in rows if r["year"] >= CUM_START and sex_matches(r, label)
+        ]
         direct = _usum([r["direct_hiv_averted_upper_bound"] for r in fwd])
         total = _usum([r["hiv_averted_upper_bound_future"] for r in fwd])
-        goal = sdg_goal_cumulative(rows, pred)
+        goal = sdg_goal_2030(rows, lambda r: sex_matches(r, label))
         if goal is None or total is None or direct is None:
             print(f"  {label}: n/a")
             continue
@@ -255,6 +240,9 @@ def plot_incidence_trajectory(ax, rows, sexes, ylabel):
         rows, SDG_BASELINE_YEAR, lambda r: r["sex"] in sexes
     )
     if inc_2010 is not None:
+        print(
+            f"  {ylabel}: 2010 incidence = {inc_2010:,.0f}, SDG target = {SDG_FRACTION_OF_BASELINE * inc_2010:,.0f}"
+        )
         ax.axhline(
             SDG_FRACTION_OF_BASELINE * inc_2010,
             ls="--",
@@ -275,12 +263,12 @@ def plot_incidence_trajectory(ax, rows, sexes, ylabel):
 
 
 # ------------------------------------------------------------------------
-# Row 1 (a/b/c): cumulative 2026-2030 averted CASES for one sex -- a Direct bar
-# and a Total bar (each with a CI), plus a dashed UN-blue goal line (option C,
-# a point value). Sex label lives in the y-axis label.
+# Cumulative 2026-2030 averted CASES for one group (sex or region) -- a Direct
+# bar and a Total bar (each with a CI), plus a dashed UN-blue 2030-goal line.
+# The group is selected via `predicate`; its label lives in the y-axis label.
 # ------------------------------------------------------------------------
-def plot_sex_bars(ax, rows, sexes, ylabel):
-    fwd = [r for r in rows if r["year"] >= CUM_START and r["sex"] in sexes]
+def plot_group_bars(ax, rows, predicate, ylabel):
+    fwd = [r for r in rows if r["year"] >= CUM_START and predicate(r)]
     direct = _usum([r["direct_hiv_averted_upper_bound"] for r in fwd])
     total = _usum([r["hiv_averted_upper_bound_future"] for r in fwd])
 
@@ -305,7 +293,7 @@ def plot_sex_bars(ax, rows, sexes, ylabel):
     )
 
     tops = [dhi, thi]
-    goal = sdg_goal_cumulative(rows, lambda r: r["sex"] in sexes)
+    goal = sdg_goal_2030(rows, predicate)
     ax.axhline(goal, ls="--", lw=3, color=SDG_COLOR)
     tops = [dhi, thi, goal]
 
@@ -373,9 +361,9 @@ def plot_pct_by_sex(ax, all_rows):
     ax.set_xticks(x)
     ax.set_xticklabels(REGIONS, ha="center")
     ax.set_xlabel("Region")
-    ax.set_ylabel("Cumulative decrease in\nHIV incidence (%)")
+    ax.set_ylabel("Cumulative change in HIV incidence\nby sexual activity (%)")
     # single column, lifted just above the axes
-    ax.legend(loc="lower left", bbox_to_anchor=(0.0, 1.0), edgecolor="black")
+    ax.legend(loc=(0.03, 0.92), edgecolor="black")
     ax.set_ylim(0, (max(tops) * 1.12) if tops else 1)
     ax.yaxis.set_minor_locator(ticker.MultipleLocator(5))
 
@@ -424,7 +412,7 @@ def plot_pct_by_sti(ax, all_rows):
     ax.set_xticks(x)
     ax.set_xticklabels(REGIONS, ha="center")
     ax.set_xlabel("Region")
-    ax.set_ylabel("Cumulative decrease in\nHIV incidence (%)")
+    ax.set_ylabel("Cumulative change in HIV incidence (%)")
     ax.legend(loc="upper left", edgecolor="black")
     ax.set_ylim(0, (max(tops) * 1.12) if tops else 1)
     ax.yaxis.set_minor_locator(ticker.MultipleLocator(5))
@@ -436,22 +424,25 @@ if __name__ == "__main__":
     print_change_in_cases(rows)
     print_goal_check(rows)
 
-    # 3 panels on top (Male, MSM, Female), 2 on the bottom (region x sex, region x STI)
-    fig = plt.figure(figsize=(25, 20))
-    gs = fig.add_gridspec(2, 6)
+    # Row 1: two sexes; Row 2: four regions (smaller); Row 3: original panels
+    fig = plt.figure(figsize=(22.5, 25))
+    gs = fig.add_gridspec(3, 4, height_ratios=[1, 0.7, 1])
     ax_a = fig.add_subplot(gs[0, 0:2])
     ax_b = fig.add_subplot(gs[0, 2:4])
-    ax_c = fig.add_subplot(gs[0, 4:6])
-    ax_d = fig.add_subplot(gs[1, 0:3])
-    ax_e = fig.add_subplot(gs[1, 3:6])
-    panels = [ax_a, ax_b, ax_c, ax_d, ax_e]
+    ax_c = fig.add_subplot(gs[1, 0])
+    ax_d = fig.add_subplot(gs[1, 1])
+    ax_e = fig.add_subplot(gs[1, 2])
+    ax_f = fig.add_subplot(gs[1, 3])
+    ax_g = fig.add_subplot(gs[2, 0:2])
+    ax_h = fig.add_subplot(gs[2, 2:4])
+    panels = [ax_a, ax_b, ax_c, ax_d, ax_e, ax_f, ax_g, ax_h]
 
     for a in panels:
         _style_axis(a)
-    for a, letter in zip(panels, ["a", "b", "c", "d", "e"]):
+    for a, letter in zip(panels, ["a", "b", "c", "d", "e", "f", "g", "h"]):
         a.text(
-            -0.18,
-            1.08,
+            -0.18 if letter in ["a", "b", "g", "h"] else -0.48,
+            1.1,
             letter,
             transform=a.transAxes,
             fontsize=30,
@@ -460,26 +451,57 @@ if __name__ == "__main__":
             ha="right",
         )
 
+    _panel_groups = [
+        ("a", "Male", lambda r: r["sex"] == "Male"),
+        ("b", "Female", lambda r: r["sex"] == "Female"),
+        ("c", "Western", lambda r: r["region"] == "Western"),
+        ("d", "Eastern", lambda r: r["region"] == "Eastern"),
+        ("e", "Central", lambda r: r["region"] == "Central"),
+        ("f", "Southern", lambda r: r["region"] == "Southern"),
+    ]
+    print("Blue dashed line (2030 goal), bar values, and % of goal reached:")
+    for letter, name, det in _panel_groups:
+        fwd = [r for r in rows if r["year"] >= CUM_START and det(r)]
+        direct = _usum([r["direct_hiv_averted_upper_bound"] for r in fwd])
+        total = _usum([r["hiv_averted_upper_bound_future"] for r in fwd])
+        goal = sdg_goal_2030(rows, det)
+        print(f"  {letter} ({name}): goal {goal:,.0f}")
+        print(
+            f"    Direct: {_fmt_count(ci_via_log(direct))} = "
+            + f"{_fmt_pct(ci_via_log(direct / goal))} of goal"  # type: ignore
+        )
+        print(
+            f"    Total:  {_fmt_count(ci_via_log(total))} = "
+            + f"{_fmt_pct(ci_via_log(total / goal))} of goal"  # type: ignore
+        )
+
     # Row 1: cumulative averted-case bars (Direct, Total) + goal line, by sex
-    plot_sex_bars(
+    plot_group_bars(
         ax_a,
         rows,
-        {"Male"},
-        "Cumulative change in HIV cases,\nheterosexual male (N)",
+        lambda r: r["sex"] == "Male",
+        "Cumulative change in HIV incidence,\nmen (N)",
     )
-    plot_sex_bars(
-        ax_b, rows, {"MSM"}, "Cumulative change in HIV cases, MSM (N)"
-    )
-    plot_sex_bars(
-        ax_c,
+    plot_group_bars(
+        ax_b,
         rows,
-        {"Female"},
-        "Cumulative change in HIV cases,\nheterosexual female (N)",
+        lambda r: r["sex"] == "Female",
+        "Cumulative change in HIV incidence,\nwomen (N)",
     )
 
-    # Row 2: cumulative decrease bars (no SDG line)
-    plot_pct_by_sex(ax_d, rows)
-    plot_pct_by_sti(ax_e, rows)
+    # Row 2: same plot, one panel per region
+    region_axes = [ax_c, ax_d, ax_e, ax_f]
+    for a, region in zip(region_axes, REGIONS):
+        plot_group_bars(
+            a,
+            rows,
+            lambda r, reg=region: r["region"] == reg,
+            f"Cumulative change in HIV\nincidence, {region} Africa (N)",
+        )
+
+    # Row 3: cumulative % decrease bars (region x sex, region x STI)
+    plot_pct_by_sex(ax_g, rows)
+    plot_pct_by_sti(ax_h, rows)
 
     fig.tight_layout()
     fig.savefig(

@@ -16,10 +16,11 @@ rc("font", **font)
 STIS = ["gc", "chlamydia", "syphilis", "trichomoniasis"]
 SEXES = ["Male", "Female", "MSM"]
 
-# analysis window shared by panels b and c (resistance data + the
-# untreated/resistance scenarios run 2008..2023; the indirect sim emits from
-# the second year, so the decomposition is populated from ~2009).
-FIRST_YEAR = 2009
+# analysis window shared by panels b, c and d. The untreated/resistance
+# scenarios now run with a 2007 warm-up year, so the indirect sim emits from
+# 2008 and the decomposition (direct + indirect) is fully populated from 2008
+# onward.
+FIRST_YEAR = 2008
 LAST_YEAR = 2023
 
 _Z95 = 1.959963984540054  # 97.5th percentile of the standard normal
@@ -226,12 +227,12 @@ def plot_access_vs_resistance(hiv, ax, fig):
     acc_m, acc_lo, acc_hi = _share_of_total(U, R, var_U, var_R, cov_UR)  # type: ignore
     res_m, res_lo, res_hi = _share_of_total(R, U, var_R, var_U, cov_UR)  # type: ignore
     print(
-        f"Cumulative {FIRST_YEAR}-{LAST_YEAR} GC-attributable HIV, "
+        f"Cumulative {FIRST_YEAR}-{LAST_YEAR} gonorrhea-attributable HIV, "
         f"share avertible by universal access: "
         f"{100 * acc_m:.1f}% (95% CI {100 * acc_lo:.1f}-{100 * acc_hi:.1f}%)"
     )
     print(
-        f"Cumulative {FIRST_YEAR}-{LAST_YEAR} GC-attributable HIV, "
+        f"Cumulative {FIRST_YEAR}-{LAST_YEAR} gonorrhea-attributable HIV, "
         f"share avertible by susceptibility to first-line treatment: "
         f"{100 * res_m:.1f}% (95% CI {100 * res_lo:.1f}-{100 * res_hi:.1f}%)"
     )
@@ -241,13 +242,13 @@ def plot_access_vs_resistance(hiv, ax, fig):
     U_sd = np.sqrt(var_U)
     R_sd = np.sqrt(var_R)
     print(
-        f"Cumulative {FIRST_YEAR}-{LAST_YEAR} GC-attributable HIV averted by "
+        f"Cumulative {FIRST_YEAR}-{LAST_YEAR} gonorrhea-attributable HIV averted by "
         f"universal access (cases): "
         f"{round(U):,} (95% CI {round(max(U - _Z95 * U_sd, 0)):,}-"
         f"{round(U + _Z95 * U_sd):,})"
     )
     print(
-        f"Cumulative {FIRST_YEAR}-{LAST_YEAR} GC-attributable HIV averted by "
+        f"Cumulative {FIRST_YEAR}-{LAST_YEAR} gonorrhea-attributable HIV averted by "
         f"susceptibility to first-line treatment (cases): "
         f"{round(R):,} (95% CI {round(max(R - _Z95 * R_sd, 0)):,}-"
         f"{round(R + _Z95 * R_sd):,})"
@@ -280,8 +281,8 @@ def plot_access_vs_resistance_sex(hiv, ax, fig):
         "MSM": "slategrey",
     }
     labels = {
-        "Female": "Heterosexual female",
-        "Male": "Heterosexual male",
+        "Female": "Heterosexual women",
+        "Male": "Heterosexual men",
         "MSM": "MSM",
     }
     for sex, color in sex_colors.items():
@@ -322,7 +323,7 @@ def plot_access_vs_resistance_sex(hiv, ax, fig):
 
     ax.set_xlabel("Year")
     ax.set_ylabel(
-        "GC-attributable HIV avertible\nby antibiotic access alone (%)"
+        "Gonorrhea-attributable HIV\nincidence from lack of antibiotic access (%)"
     )
     ax.legend(edgecolor="black")
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
@@ -384,7 +385,7 @@ def plot_access_vs_resistance_region(hiv, ax, fig):
 
     ax.set_xlabel("Year")
     ax.set_ylabel(
-        "GC-attributable HIV avertible\nby antibiotic access alone (%)"
+        "Gonorrhea-attributable HIV\nincidence from lack of antibiotic access (%)"
     )
     ax.legend(edgecolor="black")
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
@@ -420,6 +421,24 @@ def plot_gc_2016_counterfactual_region(hiv, ax, fig):
     OBS = "unaids_hiv_incidence_number_attributable_to_gc"
     AVERT = "hiv_averted_2016_gc_change"
 
+    # Absolute count: how many MORE gonorrhea-attributable HIV cases there would
+    # have been over 2016-2023 had the 2016 first-line change not happened.
+    # AVERT is the burden averted BY the switch (counterfactual - observed), so
+    # its sum over all rows is exactly that additional-cases figure. Sexes and
+    # regions pooled; independent-rows quadrature, matching panel b's cumulative
+    # case printouts. (This is direct + indirect; the direct-only column is
+    # "direct_hiv_averted_2016_gc_change".)
+    add_m, add_lo, add_hi = _quadrature_sum(
+        hiv[AVERT].to_numpy(),
+        hiv[f"{AVERT}_lower"].to_numpy(),
+        hiv[f"{AVERT}_upper"].to_numpy(),
+    )
+    print(
+        "Additional gonorrhea-attributable HIV cases 2016-2023 under "
+        f"no-2016-switch counterfactual: {round(add_m):,} "
+        f"(95% CI {round(add_lo):,}-{round(add_hi):,})"
+    )
+
     # Male includes MSM (merged as in the incidence figure); Female stands
     # alone. Colours/labels from panel c.
     sex_groups = {
@@ -431,8 +450,8 @@ def plot_gc_2016_counterfactual_region(hiv, ax, fig):
         "Male": "midnightblue",
     }
     labels = {
-        "Female": "Female",
-        "Male": "Male",
+        "Female": "Women",
+        "Male": "Men",
     }
 
     def _pct_change(rows):
@@ -442,8 +461,8 @@ def plot_gc_2016_counterfactual_region(hiv, ax, fig):
         independent rows. Unbounded; returns None if the observed total is
         non-positive."""
         A = float(np.nansum(rows[AVERT].to_numpy()))
-        O = float(np.nansum(rows[OBS].to_numpy()))
-        if O <= 0:
+        obs = float(np.nansum(rows[OBS].to_numpy()))
+        if obs <= 0:
             return None
         sd_av = _row_sd(
             rows[f"{AVERT}_lower"].to_numpy(),
@@ -455,8 +474,8 @@ def plot_gc_2016_counterfactual_region(hiv, ax, fig):
         var_A = float(np.nansum(sd_av**2))
         var_O = float(np.nansum(sd_obs**2))
         cov = float(np.nansum(sd_av * sd_obs))  # within-row rho = 1
-        g = A / O
-        var_g = var_A / O**2 + A**2 * var_O / O**4 - 2 * A * cov / O**3
+        g = A / obs
+        var_g = var_A / obs**2 + A**2 * var_O / obs**4 - 2 * A * cov / obs**3
         sd_g = np.sqrt(max(var_g, 0.0))
         return 100 * g, 100 * (g - _Z95 * sd_g), 100 * (g + _Z95 * sd_g)
 
@@ -514,7 +533,7 @@ def plot_gc_2016_counterfactual_region(hiv, ax, fig):
 
     # print the % change by region and group, plus an all-region total per group
     print(
-        "% change in GC-attributable HIV under no-2016-switch counterfactual "
+        "% change in gonorrhea-attributable HIV under no-2016-switch counterfactual "
         "(= averted / observed), 2016-2023, by region and sex (Male incl. MSM):"
     )
     for region in regions:
@@ -537,7 +556,9 @@ def plot_gc_2016_counterfactual_region(hiv, ax, fig):
     ax.set_xticks(x)
     ax.set_xticklabels(regions, rotation=0, ha="center")
     ax.set_xlabel("Region")
-    ax.set_ylabel("Change in GC-attributable HIV\nfrom 2016 switch (%)")
+    ax.set_ylabel(
+        "Change in gonorrhea-attributable\nHIV incidence from 2016 first-line\ntreatment change (%)"
+    )
     ax.legend(loc="upper left", edgecolor="black")
 
 
@@ -563,8 +584,8 @@ if __name__ == "__main__":
         os.path.join(output_dir, "estimated_resistance_rates.csv")
     )
     ax[0, 0].text(  # type: ignore
-        -0.2,
-        1.05,
+        -0.22,
+        1.1,
         "a",
         transform=ax[0, 0].transAxes,  # type: ignore
         fontsize=24,
@@ -578,8 +599,8 @@ if __name__ == "__main__":
     hiv_averted = pl.read_csv(os.path.join(output_dir, "hiv_averted.csv"))
 
     ax[0, 1].text(  # type: ignore
-        -0.2,
-        1.05,
+        -0.22,
+        1.1,
         "b",
         transform=ax[0, 1].transAxes,  # type: ignore
         fontsize=24,
@@ -594,8 +615,8 @@ if __name__ == "__main__":
     )
 
     ax[1, 0].text(  # type: ignore
-        -0.2,
-        1.05,
+        -0.22,
+        1.1,
         "c",
         transform=ax[1, 0].transAxes,  # type: ignore
         fontsize=24,
@@ -610,8 +631,8 @@ if __name__ == "__main__":
     )
 
     ax[1, 1].text(  # type: ignore
-        -0.2,
-        1.05,
+        -0.22,
+        1.1,
         "d",
         transform=ax[1, 1].transAxes,  # type: ignore
         fontsize=24,
@@ -627,8 +648,8 @@ if __name__ == "__main__":
 
     # ---- Panel e: gc observed vs no-2016-switch cumulative cases by region ----
     ax_e.text(
-        -0.06,
-        1.05,
+        -0.1,
+        1.25,
         "e",
         transform=ax_e.transAxes,
         fontsize=24,

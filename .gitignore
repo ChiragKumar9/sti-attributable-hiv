@@ -15,6 +15,7 @@
 # *.dbf
 # *.shx
 outputs/*.csv
+*.ufloat.pkl
 
 # Documents
 *.doc

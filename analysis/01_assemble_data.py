@@ -1130,6 +1130,9 @@ for col in sti_cols:
         )
     )
 
+# clamp all extrapolated STI prevalences to a valid proportion range [0, 1]
+data = data.with_columns([pl.col(c).clip(0.0, 1.0) for c in sti_cols])
+
 # For treatment, use our knowledge of the 95-95-95 targets to set the art efficacy
 #  by 2030 as being 95**3
 TARGET_COVERAGE = 0.95**3

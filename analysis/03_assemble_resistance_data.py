@@ -730,14 +730,73 @@ gasp_region = gasp_region.rename({"region": "location"}).select(
     ]
 )
 
+# read in our hiv sti data
+hiv_sti = pl.read_csv(os.path.join(output_dir, "hiv_sti_with_projections.csv"))
+
+# The GASP surveillance data ends in 2023, but the hiv_sti projection rows run
+# past that (to 2030). With no resistance rows for those projection years the
+# left-joins below leave the antibiotic columns null, which downstream is read
+# as "no resistance" (perfectly effective gc treatment). Instead, carry the last
+# observed resistance value forward for each location/antibiotic through the
+# projection horizon, so projected years inherit the most recent estimate.
+resistance_value_cols = [
+    "Azithromycin",
+    "Azithromycin_lower",
+    "Azithromycin_upper",
+    "Cefixime",
+    "Cefixime_lower",
+    "Cefixime_upper",
+    "Ciprofloxacin",
+    "Ciprofloxacin_lower",
+    "Ciprofloxacin_upper",
+    "Ceftriaxone",
+    "Ceftriaxone_lower",
+    "Ceftriaxone_upper",
+]
+projection_horizon_year = int(hiv_sti["year"].max())  # type: ignore
+
+
+def forward_fill_resistance_to_horizon(df, target_year, value_cols):
+    # add rows for each location from its last observed year+1 through
+    # target_year, then forward-fill the last observed value into them. Only
+    # trailing (post-last-observed) rows are created, so existing rows are
+    # untouched.
+    extension = (
+        df.group_by("location")
+        .agg(pl.col("year").max().alias("_max_year"))
+        .with_columns(
+            year=pl.int_ranges(pl.col("_max_year") + 1, target_year + 1)
+        )
+        .drop("_max_year")
+        .explode("year")
+        .drop_nulls("year")
+    )
+    if extension.height == 0:
+        return df
+    combined = pl.concat([df, extension], how="diagonal_relaxed").sort(
+        ["location", "year"]
+    )
+    combined = combined.with_columns(
+        [
+            pl.col(c).fill_null(strategy="forward").over("location")
+            for c in value_cols
+        ]
+    )
+    return combined
+
+
+gasp_country = forward_fill_resistance_to_horizon(
+    gasp_country, projection_horizon_year, resistance_value_cols
+)
+gasp_region = forward_fill_resistance_to_horizon(
+    gasp_region, projection_horizon_year, resistance_value_cols
+)
+
 resistance = pl.concat([gasp_country, gasp_region], how="vertical")
 
 resistance.write_csv(
     os.path.join(output_dir, "estimated_resistance_rates.csv")
 )
-
-# read in our hiv sti data
-hiv_sti = pl.read_csv(os.path.join(output_dir, "hiv_sti_with_projections.csv"))
 
 # merge first with the country-level data
 hiv_sti = hiv_sti.join(
