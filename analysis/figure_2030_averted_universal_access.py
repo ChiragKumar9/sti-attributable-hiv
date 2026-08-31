@@ -75,6 +75,8 @@ def _style_axis(ax):
     ax.get_yaxis().tick_left()
     ax.tick_params(axis="x", direction="out")
     ax.tick_params(axis="y", direction="out")
+    ax.tick_params(which="major", length=5.25, width=1.2)
+    ax.tick_params(which="minor", length=3.0, width=0.9)
     for spine in ax.spines.values():
         spine.set_position(("outward", 5))
     ax.set_axisbelow(True)
@@ -205,25 +207,24 @@ def plot_incidence_trajectory(ax, rows, sexes, ylabel):
     ref, direct, total = {}, {}, {}
     for y in years:
         g = [r for r in fwd if r["year"] == y]
-        ref[y] = ci_via_log(_usum([r["unaids_incidence_number"] for r in g]))
-        direct[y] = ci_via_log(
-            _usum(
-                [
-                    r["unaids_incidence_number"]
-                    - r["direct_hiv_averted_upper_bound"]
-                    for r in g
-                ]
-            )
+        ref_u = _usum([r["unaids_incidence_number"] for r in g])
+        ref_nom = _nominal(ref_u)
+        ref[y] = ci_via_log(ref_u)
+
+        # residual = reference - averted. Extract the CI on the strictly-
+        # positive averted count (where a log-normal interval is valid), then
+        # mirror-subtract from the (zero-variance) reference -- bounding the
+        # residual's upper edge at ref_nom and avoiding the overshoot from
+        # log-extracting the difference directly (averted's uncertainty can
+        # otherwise push the upper bound above the projected line).
+        d_m, d_lo, d_hi = ci_via_log(
+            _usum([r["direct_hiv_averted_upper_bound"] for r in g])
         )
-        total[y] = ci_via_log(
-            _usum(
-                [
-                    r["unaids_incidence_number"]
-                    - r["hiv_averted_upper_bound_future"]
-                    for r in g
-                ]
-            )
+        t_m, t_lo, t_hi = ci_via_log(
+            _usum([r["hiv_averted_upper_bound_future"] for r in g])
         )
+        direct[y] = (ref_nom - d_m, max(0.0, ref_nom - d_hi), ref_nom - d_lo)
+        total[y] = (ref_nom - t_m, max(0.0, ref_nom - t_hi), ref_nom - t_lo)
 
     def band(d, color, label):
         m = [d[y][0] for y in years]
@@ -267,7 +268,7 @@ def plot_incidence_trajectory(ax, rows, sexes, ylabel):
 # bar and a Total bar (each with a CI), plus a dashed UN-blue 2030-goal line.
 # The group is selected via `predicate`; its label lives in the y-axis label.
 # ------------------------------------------------------------------------
-def plot_group_bars(ax, rows, predicate, ylabel):
+def plot_group_bars(ax, rows, predicate, ylabel, tick_fontsize=None):
     fwd = [r for r in rows if r["year"] >= CUM_START and predicate(r)]
     direct = _usum([r["direct_hiv_averted_upper_bound"] for r in fwd])
     total = _usum([r["hiv_averted_upper_bound_future"] for r in fwd])
@@ -298,7 +299,10 @@ def plot_group_bars(ax, rows, predicate, ylabel):
     tops = [dhi, thi, goal]
 
     ax.set_xticks([0, 1])
-    ax.set_xticklabels(["Direct", "Total"])
+    ax.set_xticklabels(
+        ["Directly-\nattributable", "Including\ntransmission"],
+        fontsize=tick_fontsize,
+    )
     ax.set_xlim(-0.6, 1.6)
     ax.set_ylabel(ylabel)
     ax.set_ylim(0, max(tops) * 1.12)  # type: ignore
@@ -361,7 +365,7 @@ def plot_pct_by_sex(ax, all_rows):
     ax.set_xticks(x)
     ax.set_xticklabels(REGIONS, ha="center")
     ax.set_xlabel("Region")
-    ax.set_ylabel("Cumulative change in HIV incidence\nby sexual activity (%)")
+    ax.set_ylabel("Cumulative change in HIV incidence (%)")
     # single column, lifted just above the axes
     ax.legend(loc=(0.03, 0.92), edgecolor="black")
     ax.set_ylim(0, (max(tops) * 1.12) if tops else 1)
@@ -442,7 +446,7 @@ if __name__ == "__main__":
     for a, letter in zip(panels, ["a", "b", "c", "d", "e", "f", "g", "h"]):
         a.text(
             -0.18 if letter in ["a", "b", "g", "h"] else -0.48,
-            1.1,
+            1.1 if letter in ["a", "b", "g", "h"] else 1.15,
             letter,
             transform=a.transAxes,
             fontsize=30,
@@ -497,6 +501,7 @@ if __name__ == "__main__":
             rows,
             lambda r, reg=region: r["region"] == reg,
             f"Cumulative change in HIV\nincidence, {region} Africa (N)",
+            tick_fontsize=18,
         )
 
     # Row 3: cumulative % decrease bars (region x sex, region x STI)

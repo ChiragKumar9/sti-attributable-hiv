@@ -92,6 +92,8 @@ def setup_plot(nrows, ncols):
         ax.get_yaxis().tick_left()
         ax.tick_params(axis="x", direction="out")
         ax.tick_params(axis="y", direction="out")
+        ax.tick_params(which="major", length=5.25, width=1.2)
+        ax.tick_params(which="minor", length=3.0, width=0.9)
         # offset the spines
         for spine in ax.spines.values():
             spine.set_position(("outward", 5))
@@ -105,6 +107,8 @@ def setup_plot(nrows, ncols):
         temp.get_yaxis().tick_left()
         temp.tick_params(axis="x", direction="out")
         temp.tick_params(axis="y", direction="out")
+        temp.tick_params(which="major", length=5.25, width=1.2)
+        temp.tick_params(which="minor", length=3.0, width=0.9)
         # offset the spines
         for spine in temp.spines.values():
             spine.set_position(("outward", 5))
@@ -301,7 +305,7 @@ def plot_attributable_hiv_burden_region_sex(ufloat_rows, ax, fig):
     ax.set_xticks(x)
     ax.set_xticklabels(regions, ha="center")
     ax.set_xlabel("Region")
-    ax.set_ylabel("STBI-attributable HIV incidence\nby sexual activity (%)")
+    ax.set_ylabel("CSTI4-attributable HIV incidence (%)")
     handles, labels = ax.get_legend_handles_labels()
     handles.append(_symptomatic_legend_proxy())
     labels.append("Symptomatic")
@@ -474,7 +478,7 @@ def plot_attributable_hiv_burden_region_pathogen(ufloat_rows, ax, fig):
     labels.append("Asymptomatic")
 
     # print the bar and error values by region and pathogen
-    print("STBI-attributable HIV by region and pathogen (2023):")
+    print("CSTI4-attributable HIV by region and pathogen (2023):")
     for region in regions:
         for pathogen in stis:
             if (region, pathogen) in pct_by_region_sti:
@@ -489,7 +493,7 @@ def plot_attributable_hiv_burden_region_pathogen(ufloat_rows, ax, fig):
     ax.set_xticks(x)
     ax.set_xticklabels(regions, ha="center")
     ax.set_xlabel("Region")
-    ax.set_ylabel("STBI-attributable HIV incidence (%)")
+    ax.set_ylabel("HIV incidence (%)")
     ax.legend(handles, labels, loc=(0.01, 0.7), edgecolor="black")
     # add minor y ticks every 1%
     ax.yaxis.set_minor_locator(ticker.MultipleLocator(1))
@@ -604,7 +608,7 @@ def plot_attributable_hiv_burden_age_pathogen(ufloat_rows, ax, sex, fig):
     ax.set_xticklabels(age_groups)
     ax.set_xlabel("Age group")
     ax.set_ylabel(
-        f"STBI-attributable HIV incidence\namong {'women' if sex == 'Female' else 'men'} (%)"
+        f"HIV incidence, {'women' if sex == 'Female' else 'men'} (%)"
     )
     handles, labels = ax.get_legend_handles_labels()
     handles.append(_symptomatic_legend_proxy())

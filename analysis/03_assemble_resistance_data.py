@@ -4,7 +4,7 @@ import polars as pl
 from scipy import stats
 
 data_dir = "data"
-output_dir = "outputs"
+output_dir = os.environ.get("OUTPUT_DIR", "outputs")
 
 countries_to_regions = {
     "Somalia": "Eastern",

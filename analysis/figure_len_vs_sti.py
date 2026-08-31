@@ -2,20 +2,23 @@ import os
 import pickle
 
 import matplotlib.pyplot as plt
-import matplotlib.ticker as ticker
 import numpy as np
+import polars as pl
 import yaml
 from matplotlib import rc
+from matplotlib.patches import Patch
 
 from averted_burden.delta_method import (
     ci_via_log,
     ci_via_logit,
     logit_normal_leaf,
+    lognormal_leaf,
     point_mass,
 )
 
 output_dir = "outputs"
 fig_dir = "figures"
+data_dir = "data"
 params_path = "params.yml"
 
 font = {"family": "Nimbus Roman", "size": 28}
@@ -41,9 +44,15 @@ SEXES = ("Female", "Male", "MSM")
 # (still-transmitting) pool, rather than the actual anchor-year coverage.
 TARGET_COVERAGE = 0.95**3
 
-# the indirect (onward-transmission) contribution is accumulated over the number
-# of years shown in the window: 2025-2035 inclusive = 11 years.
-N_INDIRECT_YEARS = 11
+# the indirect (onward-transmission) contribution is accumulated over the 10-year
+# projection window 2026-2035 (2025 is the "remains at 2025 levels" base year),
+# matching the Wu 10-year lenacapavir rollout.
+N_INDIRECT_YEARS = 10
+
+# Representative annual cohort year for the DALY panels (c/d): the midpoint of the
+# 2026-2035 window. Under "trends continue" the 10-year cumulative is approximated
+# as 10 x this representative year's annual flow (see the c/d panel construction).
+DALY_REP_YEAR = 2030
 
 # Test sensitivity for capturing asymptomatic STI infections (e.g. via
 # screening rather than symptom-driven care-seeking), per STI.
@@ -62,12 +71,15 @@ with open(params_path, "r") as _f:
 # MSM-specific entry.
 STI_SYMPTOMATIC_FRACTION = _params["sti_symptoms"]
 
+# GBD 2023 DALY burden (as lognormal leaves, UI propagated) and HIV incidence are
+# read by read_daly_weights() for the c/d panels, assigned once it is defined below.
+
 # Wu et al., Lancet HIV 2024, MAIN scenario: % of HIV infections averted over
 # the 10-year implementation vs an oral-PrEP-only baseline. (mean, lower, upper)
 # in percent. NB: this is an AVERTED fraction under a specific modeled rollout
-# (~1.6% / ~4.0% population coverage), not an attributable ceiling. The STI bars
-# are direct + indirect attributable %. The LEN bar is a fixed 10-year-rollout
-# number with no year dimension, so it is identical in both rows.
+# concentrated in key populations, not an attributable ceiling. The LEN bar is a
+# fixed 10-year-rollout number with no year dimension, so it is identical in the
+# "trends continue" and "2025 levels" bars.
 WU_LEN = {
     "South Africa": (12.3, 5.4, 19.5),
     "Zimbabwe": (17.0, 3.3, 28.2),
@@ -81,7 +93,6 @@ sti_names = {
 }
 
 LEN_COLOR = "steelblue"
-ALL_STI_COLOR = "dimgray"
 sti_colors = {
     "gc": "firebrick",
     "chlamydia": "forestgreen",
@@ -89,7 +100,18 @@ sti_colors = {
     "trichomoniasis": "gold",
 }
 
-ALL_LABEL = "All STBIs"
+# sexes with sex-split DALY / incidence in the GBD extract (no MSM category there).
+STI_DALY_SEXES = ("Female", "Male")
+
+# GBD cause labels in the DALYs extract, keyed by our internal STI code (+ HIV).
+DALY_CSV = "IHME-GBD_2023_DATA-DALYs.csv"
+DALY_CAUSE_NAME = {
+    "gc": "Gonococcal infection",
+    "chlamydia": "Chlamydial infection",
+    "syphilis": "Syphilis",
+    "trichomoniasis": "Trichomoniasis",
+}
+HIV_CAUSE = "HIV/AIDS"
 
 ATTR_FIELD = "unaids_hiv_incidence_number_attributable_to_{sti}"
 INC_FIELD = "unaids_incidence_number"
@@ -103,6 +125,8 @@ def _style_axis(ax):
     ax.get_yaxis().tick_left()
     ax.tick_params(axis="x", direction="out")
     ax.tick_params(axis="y", direction="out")
+    ax.tick_params(which="major", length=5.25, width=1.2)
+    ax.tick_params(which="minor", length=3.0, width=0.9)
     for spine in ax.spines.values():
         spine.set_position(("outward", 5))
     ax.set_axisbelow(True)
@@ -114,10 +138,6 @@ def _logit(p):
 
 def _inv_logit(x):
     return 1.0 / (1.0 + np.exp(-x))
-
-
-def _nom(x):
-    return x.nominal_value if hasattr(x, "nominal_value") else x
 
 
 def safe_ratio(num, den):
@@ -132,14 +152,16 @@ def safe_ratio(num, den):
     return num / den
 
 
-def captured_fraction(sti, sex):
-    """Fraction of {sti} cases in {sex} that are captured: symptomatic cases
-    (always identified) plus asymptomatic cases identified via testing at
-    TEST_SENSITIVITY[sti]. MSM uses the "male" symptomatic fraction."""
+def captured_fraction(sti, sex, poc_coverage):
+    """Fraction of {sti} cases in {sex} that are captured (and thus treatable):
+    symptomatic cases (always identified) plus asymptomatic cases identified via
+    POC testing -- reached in a `poc_coverage` fraction of the asymptomatic pool,
+    each at TEST_SENSITIVITY[sti]. poc_coverage = 1.0 reproduces universal
+    asymptomatic screening. MSM uses the "male" symptomatic fraction."""
     sex_key = "male" if sex in ("Male", "MSM") else "female"
     symptomatic = STI_SYMPTOMATIC_FRACTION[sti][sex_key]
     asymptomatic = 1.0 - symptomatic
-    return symptomatic + asymptomatic * TEST_SENSITIVITY[sti]
+    return symptomatic + asymptomatic * poc_coverage * TEST_SENSITIVITY[sti]
 
 
 def guard_ci_via_logit(uf, ctx):
@@ -188,25 +210,27 @@ def _get(idx, year, sex, field):
     return row[field]
 
 
-def make_wu_factor(country):
-    """(1 - Wu averted proportion) as a UFloat leaf (Wu CI folded in), one per
-    country, reused across the three directional rates so they stay correlated
-    through Wu."""
+def len_leaf(country):
+    """LEN averted-fraction UFloat leaf (Wu CI folded in), one per country. Used
+    both as the LEN stack segment and, via (1 - leaf), as the inclusion-exclusion
+    de-overlap factor on the STI segments so the stacked total is the
+    (non-double-counted) union of the two reductions."""
     m, lo, hi = WU_LEN[country]
     leaf = logit_normal_leaf(
         m / 100.0, lo / 100.0, hi / 100.0, f"wu_len_{country}"
     )
     if leaf is None:
         leaf = point_mass(m / 100.0, f"wu_len_{country}")
-    return 1.0 - leaf  # type: ignore
+    return leaf
 
 
-def make_transmission_rates(idx, wu_factor):
-    """Directional transmission rates anchored on ANCHOR_FROM -> ANCHOR_TO and
-    held constant, scaled by the Wu factor. Definition matches the indirect
-    script: recipient incidence (next year) over source untreated year-end
-    prevalence (this year). The untreated share uses the fixed TARGET_COVERAGE
-    (95-95-95) rather than the anchor-year ART coverage."""
+def make_transmission_rates(idx):
+    """Directional (raw) transmission rates anchored on ANCHOR_FROM -> ANCHOR_TO
+    and held constant. Definition matches the indirect script: recipient incidence
+    (next year) over source untreated year-end prevalence (this year). The
+    untreated share uses the fixed TARGET_COVERAGE (95-95-95). NB: no Wu
+    attenuation -- the LEN/STI overlap correction lives at the bar level (the
+    (1 - len_leaf) discount on the STI segments)."""
     inc_F = _get(idx, ANCHOR_TO, "Female", INC_FIELD)
     inc_M = _get(idx, ANCHOR_TO, "Male", INC_FIELD)
     inc_S = _get(idx, ANCHOR_TO, "MSM", INC_FIELD)
@@ -222,249 +246,341 @@ def make_transmission_rates(idx, wu_factor):
     )
 
     return {
-        "M_F": safe_ratio(inc_F, untreated_M) * wu_factor,
-        "F_M": safe_ratio(inc_M, untreated_F) * wu_factor,
-        "MSM": safe_ratio(inc_S, untreated_S) * wu_factor,
+        "M_F": safe_ratio(inc_F, untreated_M),
+        "F_M": safe_ratio(inc_M, untreated_F),
+        "MSM": safe_ratio(inc_S, untreated_S),
     }
 
 
-def decompose_for_sti(idx, tr, year, sti):
-    """Return (direct_part, indirect_part) UFloats for one STI at `year`, summed
-    over sexes. Case counts are scaled by captured_fraction (symptomatic cases
-    plus asymptomatic cases identified via testing) before being split into
-    direct and indirect. Indirect is routed by the sex WHO HAS the STI to the
-    recipient sex: M's STI cases -> F via tr_M_F, F's -> M via tr_F_M, MSM's ->
-    MSM."""
+def combined_by_recipient_sex(idx, tr, year, sti, poc_coverage):
+    """Attributable-HIV (direct + indirect) for one STI at `year`, split by the sex
+    that ACQUIRES the HIV (the recipient), so sex-specific DALY weights can be
+    applied. Case counts are scaled by captured_fraction (symptomatic cases plus
+    asymptomatic cases reached by POC screening). Direct infections accrue to the
+    sex who has the STI; indirect (onward transmission, accumulated over
+    N_INDIRECT_YEARS) is routed to the recipient sex: M's STI cases -> F via tr_M_F,
+    F's -> M via tr_F_M, MSM's -> MSM. This is the single source of the sex-routing
+    logic (combined_num_for_sti and the c/d HIV bar both derive from it), so panels
+    a/b and c/d cannot drift apart."""
     f = ATTR_FIELD.format(sti=sti)
-    d_F = _get(idx, year, "Female", f) * captured_fraction(sti, "Female")
-    d_M = _get(idx, year, "Male", f) * captured_fraction(sti, "Male")
-    d_S = _get(idx, year, "MSM", f) * captured_fraction(sti, "MSM")
+    d_F = _get(idx, year, "Female", f) * captured_fraction(
+        sti, "Female", poc_coverage
+    )
+    d_M = _get(idx, year, "Male", f) * captured_fraction(
+        sti, "Male", poc_coverage
+    )
+    d_S = _get(idx, year, "MSM", f) * captured_fraction(
+        sti, "MSM", poc_coverage
+    )
+    return {
+        "Female": d_F + d_M * tr["M_F"] * N_INDIRECT_YEARS,
+        "Male": d_M + d_F * tr["F_M"] * N_INDIRECT_YEARS,
+        "MSM": d_S + d_S * tr["MSM"] * N_INDIRECT_YEARS,
+    }
 
-    direct = d_F + d_M + d_S
-    indirect = (
-        d_M * tr["M_F"] + d_F * tr["F_M"] + d_S * tr["MSM"]
-    ) * N_INDIRECT_YEARS
-    return direct, indirect
 
-
-def combined_num_for_sti(idx, tr, year, sti):
-    direct, indirect = decompose_for_sti(idx, tr, year, sti)
-    return direct + indirect
+def combined_num_for_sti(idx, tr, year, sti, poc_coverage):
+    return sum(
+        combined_by_recipient_sex(idx, tr, year, sti, poc_coverage).values()
+    )
 
 
 def pooled_incidence(idx, year):
     return sum(_get(idx, year, s, INC_FIELD) for s in SEXES)
 
 
-def bar_ufloat_for_sti(idx, tr, year, sti):
-    return combined_num_for_sti(idx, tr, year, sti) / pooled_incidence(
-        idx, year
-    )
+def bar_ufloat_for_sti(idx, tr, year, sti, poc_coverage):
+    """STI-attributable HIV as a fraction of pooled incidence at `year` (S_sti,
+    before the LEN de-overlap)."""
+    return combined_num_for_sti(
+        idx, tr, year, sti, poc_coverage
+    ) / pooled_incidence(idx, year)
 
 
-def bar_ufloat_all(idx, tr, year):
-    num = sum(combined_num_for_sti(idx, tr, year, sti) for sti in STIS)
-    return num / pooled_incidence(idx, year)
-
-
-def print_transmission_diagnostics(idx, tr, country):
-    """Print the (held-constant) directional transmission rates and, for each
-    fit year, the direct vs indirect (transmission-driven) split of every bar,
-    as a fraction of pooled incidence."""
-    print(
-        f"=== {country}: transmission rates "
-        f"(anchored {ANCHOR_FROM}->{ANCHOR_TO}, "
-        f"treat={TARGET_COVERAGE:.3f}) ==="
-    )
-    for key in ("M_F", "F_M", "MSM"):
-        if _nom(tr[key]) > 0:
-            m, lo, hi = ci_via_log(tr[key])
-            print(f"  tr_{key}: {m:.4g} ({lo:.4g} - {hi:.4g})")
-        else:
-            print(f"  tr_{key}: {_nom(tr[key]):.4g} (degenerate)")
-
+def extrap_sti_leaf(idx, tr, country, sti, poc_coverage):
+    """ "Trends continue" S_sti extrapolated to TARGET_YEAR: fit logit-linear to
+    the per-year (mean, lower, upper), then rebuild a logit-normal UFloat leaf
+    from the extrapolated interval so it composes with len_leaf downstream."""
+    ys, ms, los, his = [], [], [], []
     for year in FIT_YEARS:
         if any((year, s) not in idx for s in SEXES):
             continue
-        pooled = _nom(pooled_incidence(idx, year))
-
-        dA = iA = None
-        for sti in STIS:
-            d, i = decompose_for_sti(idx, tr, year, sti)
-            dA = d if dA is None else dA + d
-            iA = i if iA is None else iA + i
-        dAn, iAn = _nom(dA) / pooled, _nom(iA) / pooled  # type: ignore
-        print(
-            f"  {year} All STIs: direct={100 * dAn:.2f}% "
-            f"indirect={100 * iAn:.2f}% total={100 * (dAn + iAn):.2f}%"
-        )
-        for sti in STIS:
-            d, i = decompose_for_sti(idx, tr, year, sti)
-            dn, iN = _nom(d) / pooled, _nom(i) / pooled
-            share = 100 * iN / (dn + iN) if (dn + iN) != 0 else float("nan")
-            print(
-                f"    {year} {sti}: direct={100 * dn:.2f}% "
-                f"indirect={100 * iN:.2f}% total={100 * (dn + iN):.2f}% "
-                f"(indirect share={share:.1f}%)"
-            )
-
-
-def bars_single_year(idx, tr, country, year):
-    """Bottom-row bars: propagate the combined direct+indirect UFloats at a
-    single year and extract intervals once (logit, guarded)."""
-    bars = [("Lenacapavir", LEN_COLOR, WU_LEN[country])]
-
-    m, lo, hi = guard_ci_via_logit(
-        bar_ufloat_all(idx, tr, year), f"{country} All {year}"
-    )
-    bars.append(
-        (ALL_LABEL, ALL_STI_COLOR, (m * 100, lo * 100, hi * 100))  # type: ignore
-    )
-    for sti in STIS:
         m, lo, hi = guard_ci_via_logit(
-            bar_ufloat_for_sti(idx, tr, year, sti), f"{country} {sti} {year}"
+            bar_ufloat_for_sti(idx, tr, year, sti, poc_coverage),
+            f"{country} {sti} {year}",
         )
-        bars.append(
-            (sti_names[sti], sti_colors[sti], (m * 100, lo * 100, hi * 100))  # type: ignore
-        )
+        ys.append(year)
+        ms.append(m)
+        los.append(lo)
+        his.append(hi)
+    m = _fit_extrapolate_logit(ys, ms, TARGET_YEAR)
+    lo = _fit_extrapolate_logit(ys, los, TARGET_YEAR)
+    hi = _fit_extrapolate_logit(ys, his, TARGET_YEAR)
+    leaf = logit_normal_leaf(m, lo, hi, f"extrap_{country}_{sti}")
+    if leaf is None:
+        leaf = point_mass(m, f"extrap_{country}_{sti}")
+    return leaf
+
+
+def hiv_bars(idx, tr, country, poc_coverage):
+    """Panels a/b: two stacked bars (LEN + 4 STI segments). Each STI segment is
+    S_sti * (1 - len_leaf); the LEN segment is len_leaf; the total is their union.
+    Returns [(xlabel, [(seglabel, color, ufloat), ...], total_ufloat), ...]."""
+    leaf = len_leaf(country)
+    scenarios = [
+        (
+            "CSTI4 prevalence\ntrends continue",
+            lambda sti: extrap_sti_leaf(idx, tr, country, sti, poc_coverage),
+        ),
+        (
+            "CSTI4 prevalence\nremains at 2025 levels",
+            lambda sti: bar_ufloat_for_sti(
+                idx, tr, SINGLE_YEAR, sti, poc_coverage
+            ),
+        ),
+    ]
+    bars = []
+    for xlabel, s_getter in scenarios:
+        segs = [("Lenacapavir", LEN_COLOR, leaf)]
+        total = leaf
+        for sti in STIS:
+            seg = s_getter(sti) * (1 - leaf)  # type: ignore
+            segs.append((sti_names[sti], sti_colors[sti], seg))
+            total = total + seg
+        bars.append((xlabel, segs, total))
     return bars
 
 
-def bars_extrapolated(idx, tr, country):
-    """Top-row bars: extract the combined (mean, lower, upper) at each FIT_YEAR,
-    fit logit-linear, extrapolate to TARGET_YEAR. All-STIs mean = sum of the
-    four extrapolated STI means; All bounds come from its own combined-series
-    fit (so the All mean is generally NOT centred within its own bounds)."""
-    series = {ALL_LABEL: {"year": [], "m": [], "lo": [], "hi": []}}
-    for sti in STIS:
-        series[sti] = {"year": [], "m": [], "lo": [], "hi": []}
+def read_daly_weights():
+    """GBD 2023 per-cause DALY burden and HIV incidence for the c/d panels, by
+    country and SEX. Returns (hiv_daly_leaf[country][sex], hiv_inc_val[country][sex],
+    sti_daly_leaf[country][sti][sex]).
 
-    for year in FIT_YEARS:
-        if any((year, s) not in idx for s in SEXES):
-            continue
-        for sti in STIS:
-            m, lo, hi = guard_ci_via_logit(
-                bar_ufloat_for_sti(idx, tr, year, sti),
-                f"{country} {sti} {year}",
-            )
-            series[sti]["year"].append(year)
-            series[sti]["m"].append(m)
-            series[sti]["lo"].append(lo)
-            series[sti]["hi"].append(hi)
-        m, lo, hi = guard_ci_via_logit(
-            bar_ufloat_all(idx, tr, year), f"{country} All {year}"
-        )
-        series[ALL_LABEL]["year"].append(year)
-        series[ALL_LABEL]["m"].append(m)
-        series[ALL_LABEL]["lo"].append(lo)
-        series[ALL_LABEL]["hi"].append(hi)
-
-    extrap = {}
-    sti_mean_sum = 0.0
-    for sti in STIS:
-        s = series[sti]
-        m = _fit_extrapolate_logit(s["year"], s["m"], TARGET_YEAR)
-        lo = _fit_extrapolate_logit(s["year"], s["lo"], TARGET_YEAR)
-        hi = _fit_extrapolate_logit(s["year"], s["hi"], TARGET_YEAR)
-        extrap[sti] = (m, lo, hi)
-        sti_mean_sum += m
-
-    s_all = series[ALL_LABEL]
-    all_lo = _fit_extrapolate_logit(s_all["year"], s_all["lo"], TARGET_YEAR)
-    all_hi = _fit_extrapolate_logit(s_all["year"], s_all["hi"], TARGET_YEAR)
-    extrap[ALL_LABEL] = (sti_mean_sum, all_lo, all_hi)
-
-    bars = [("Lenacapavir", LEN_COLOR, WU_LEN[country])]
-    bars.append(
-        (ALL_LABEL, ALL_STI_COLOR, tuple(v * 100 for v in extrap[ALL_LABEL]))
+    DALY Numbers are returned as lognormal UFloat LEAVES (GBD 95% UI folded in) so
+    the DALY uncertainty propagates into the c/d error bars. How each bar uses them:
+      Bar 1 (STI morbidity) = captured_fraction x total STI DALYs. A per-case weight
+        DALY/Inc times an incident case count would put the SAME GBD incidence in
+        numerator and denominator, so it cancels -- only the DALY burden and its CI
+        remain, and no STI incidence is needed at all.
+      Bar 2 (HIV co-benefit) = attributable-HIV x HIV DALY / HIV incidence. The
+        attributable-HIV leaf is UNAIDS/PAF-derived (independent of GBD), so there is
+        no incidence to cancel: the HIV DALY CI is propagated as its own leaf and the
+        GBD HIV incidence denominator is held as a point (its UI is narrower and it
+        only normalizes to a per-infection basis).
+    Weights are sex-specific: the per-case burden is sharply sex-skewed for the
+    female-dominated STI sequelae (trichomoniasis, chlamydia) and materially
+    different for HIV (male > female in both countries). CAVEAT: annual DALY Number
+    / annual Incidence Number mixes the prevalent burden (YLD+YLL of the whole
+    epidemic) with a single year's incident cases, so the per-incident-case HIV
+    weight is overstated where prevalence >> incidence (most extreme for Zimbabwe)."""
+    df = pl.read_csv(os.path.join(data_dir, DALY_CSV)).filter(
+        pl.col("metric") == "Number"
     )
-    for sti in STIS:
-        bars.append(
-            (
-                sti_names[sti],
-                sti_colors[sti],
-                tuple(v * 100 for v in extrap[sti]),
-            )
+    rows = {
+        (r["measure"][:4], r["location"], r["cause"], r["sex"]): r
+        for r in df.iter_rows(named=True)
+    }
+
+    def daly_leaf(country, cause, sex):
+        r = rows[("DALY", country, cause, sex)]
+        return lognormal_leaf(
+            r["val"], r["lower"], r["upper"], f"daly_{cause}_{country}_{sex}"
         )
-    return bars
+
+    hiv_daly_leaf = {
+        c: {sex: daly_leaf(c, HIV_CAUSE, sex) for sex in STI_DALY_SEXES}
+        for c in COUNTRIES
+    }
+    hiv_inc_val = {
+        c: {
+            sex: rows[("Inci", c, HIV_CAUSE, sex)]["val"]
+            for sex in STI_DALY_SEXES
+        }
+        for c in COUNTRIES
+    }
+    sti_daly_leaf = {
+        c: {
+            sti: {
+                sex: daly_leaf(c, DALY_CAUSE_NAME[sti], sex)
+                for sex in STI_DALY_SEXES
+            }
+            for sti in STIS
+        }
+        for c in COUNTRIES
+    }
+    return hiv_daly_leaf, hiv_inc_val, sti_daly_leaf
 
 
-def plot_bars(ax, country, bars, header):
-    x = np.arange(len(bars))
+HIV_DALY_LEAF, HIV_INC_VAL, STI_DALY_LEAF = read_daly_weights()
+
+
+def sti_daly_parts(country, poc_coverage):
+    """Panel c/d Bar 1: STI-morbidity DALYs from treating ALL captured CSTI4
+    infections, per-STI UFloats. captured_fraction x total GBD STI DALYs (a
+    lognormal leaf carrying the GBD UI), summed over sexes, x N_INDIRECT_YEARS
+    (10-yr horizon). The incidence a per-case weight would carry cancels against the
+    case count, so this is simply the captured share of the DALY burden."""
+    parts = []
+    for sti in STIS:
+        s = None
+        for sex in STI_DALY_SEXES:
+            contrib = (
+                captured_fraction(sti, sex, poc_coverage)
+                * STI_DALY_LEAF[country][sti][sex]
+            )
+            s = contrib if s is None else s + contrib
+        s = s * N_INDIRECT_YEARS  # type: ignore
+        parts.append((sti_names[sti], sti_colors[sti], s))
+    return parts
+
+
+def hiv_daly_parts(idx, tr, country, poc_coverage):
+    """Panel c/d Bar 2: HIV DALYs from averted STI-attributable HIV, per-STI
+    UFloats. The averted HIV is split by RECIPIENT sex (via
+    combined_by_recipient_sex) and each stream is multiplied by its sex-specific HIV
+    DALY leaf (GBD UI propagated) over the GBD HIV incidence denominator (held as a
+    point); MSM recipients use the male weight (GBD has no MSM category). One
+    representative year's full flow (direct + onward-window indirect) is scaled by
+    N_INDIRECT_YEARS (the separate count of annual rollout cohorts, 2026-2035) for
+    the 10-yr cumulative, and de-overlapped against LEN by the shared (1 - len_leaf)
+    factor (matching panels a/b) -- the HIV co-benefit of STI treatment on top of
+    the LEN rollout."""
+    leaf = len_leaf(country)
+    parts = []
+    for sti in STIS:
+        by_sex = combined_by_recipient_sex(
+            idx, tr, DALY_REP_YEAR, sti, poc_coverage
+        )
+        hiv = None
+        for sex, combined in by_sex.items():
+            w = "Male" if sex == "MSM" else sex
+            term = (
+                combined * HIV_DALY_LEAF[country][w] / HIV_INC_VAL[country][w]
+            )
+            hiv = term if hiv is None else hiv + term
+        hiv_dalys = N_INDIRECT_YEARS * (1 - leaf) * hiv  # type: ignore
+        parts.append((sti_names[sti], sti_colors[sti], hiv_dalys))
+    return parts
+
+
+def draw_panel(ax, letter, bars, ylabel, ci_fn, scale):
+    """Draw one stacked-bar panel and print every segment and total with its own
+    CI. `bars` = [(xlabel, [(seglabel, color, ufloat), ...], total_ufloat), ...].
+    `ci_fn` extracts (mean, lower, upper) on the appropriate scale (logit for
+    fractions, log for counts). A framed legend built from the panel's own
+    segments is floated just above the panel's top-left corner."""
+    print(f"panel {letter}) [{ylabel.splitlines()[0]} ...]:")
     tops = []
-    print(f"{country} [{header}]:")
-    for i, (label, color, (m, lo, hi)) in enumerate(bars):
-        ax.bar(
+    for i, (xlabel, segs, total) in enumerate(bars):
+        bottom = 0.0
+        label_flat = xlabel.replace("\n", " ")
+        print(f"  bar: {label_flat}")
+        for seglabel, color, uf in segs:
+            m, lo, hi = ci_fn(uf)
+            ax.bar(i, m * scale, bottom=bottom, width=0.7, color=color)
+            bottom += m * scale
+            print(
+                f"    {seglabel}: {m * scale:.3f} "
+                f"({lo * scale:.3f} - {hi * scale:.3f})"
+            )
+        tm, tlo, thi = ci_fn(total)
+        ax.errorbar(
             i,
-            m,
-            yerr=[[m - lo], [hi - m]],
-            capsize=5,
-            width=0.7,
-            color=color,
+            tm * scale,
+            yerr=[[(tm - tlo) * scale], [(thi - tm) * scale]],
+            fmt="none",
+            ecolor="black",
+            capsize=12,
+            capthick=2.5,
+            elinewidth=2.5,
         )
-        tops.append(hi)
-        print(f"  {label}: {m:.1f}% ({lo:.1f}% - {hi:.1f}%)")
+        tops.append(thi * scale)
+        print(
+            f"    TOTAL: {tm * scale:.3f} ({tlo * scale:.3f} - {thi * scale:.3f})"
+        )
 
-    ax.set_xticks(x)
-    ax.set_xticklabels([b[0] for b in bars], rotation=30, ha="right")
-    ax.set_ylabel(f"Reduction in HIV incidence,\n{country} (%)")
-    ax.set_ylim(0, max(tops) * 1.12)
-    ax.yaxis.set_minor_locator(ticker.MultipleLocator(1))
+    ax.set_xticks(np.arange(len(bars)))  # type: ignore
+    ax.set_xticklabels([b[0] for b in bars], rotation=0, ha="center")
+    ax.set_ylabel(ylabel)
+    # minimal top padding: the top of the tallest error bar sits just below the
+    # frame, so the legend floated just above the frame reads as sitting right on
+    # top of the bars rather than in a large empty band.
+    ax.set_ylim(0, max(tops) * 1.03)
+
+    legend_handles = [
+        Patch(facecolor=color, edgecolor="black", label=seglabel)
+        for seglabel, color, _uf in bars[0][1]
+    ]
+    # float the legend just above the panel's top-left corner so it clears the
+    # error bars without inflating the y-axis
+    ax.legend(
+        handles=legend_handles,
+        loc="lower left",
+        bbox_to_anchor=(0.0, 0.97),
+        edgecolor="black",
+    )
+
+    ax.text(
+        -0.15,
+        1.05,
+        f"{letter})",
+        transform=ax.transAxes,
+        fontsize=28,
+        fontweight="bold",
+        va="bottom",
+        ha="left",
+    )
 
 
-def make_figure(rows, apply_wu_to_tr, out_stem):
-    """Build and save the 2x2 figure. When apply_wu_to_tr is True the indirect
-    transmission rate is attenuated by the Wu (1 - LEN reduction) factor (the
-    main figure); when False the rate is left un-attenuated (wu_factor = 1.0),
-    for the supplemental figure. The Lenacapavir bar (WU_LEN) is unaffected
-    either way."""
+def make_figure(rows, poc_coverage, out_stem):
+    """Build and save the 2x2 figure. Top row (a, b): HIV-incidence reduction as
+    stacked LEN + CSTI4 bars per country. Bottom row (c, d): DALYs (STI morbidity
+    vs averted-HIV) per country. `poc_coverage` sets the asymptomatic POC
+    screening reach (1.0 main figure, 0.5 supplemental)."""
     fig, axes = plt.subplots(2, 2, figsize=(20, 20))
     for a in axes.flat:
         _style_axis(a)
 
-    # per-row scenario labels (a = top row / TARGET_YEAR, b = bottom row / SINGLE_YEAR)
-    axes[0][0].text(
-        -0.15,
-        1.08,
-        "a) STBI prevalence trends continue",
-        transform=axes[0][0].transAxes,
-        fontsize=24,
-        fontweight="bold",
-        va="bottom",
-        ha="left",
-    )
-    axes[1][0].text(
-        -0.15,
-        1.08,
-        "b) STBI prevalence remains at 2025 levels",
-        transform=axes[1][0].transAxes,
-        fontsize=24,
-        fontweight="bold",
-        va="bottom",
-        ha="left",
-    )
-
+    letters = [["a", "b"], ["c", "d"]]
     for col, country in enumerate(COUNTRIES):
         rows_country = [r for r in rows if r["location"] == country]
         if not rows_country:
             raise ValueError(f"No rows found for location == {country!r}")
         idx = build_country_index(rows_country)
-        wu_factor = make_wu_factor(country) if apply_wu_to_tr else 1.0
-        tr = make_transmission_rates(idx, wu_factor)
+        tr = make_transmission_rates(idx)
 
-        print_transmission_diagnostics(idx, tr, country)
-
-        plot_bars(
+        draw_panel(
             axes[0][col],
-            country,
-            bars_extrapolated(idx, tr, country),
-            f"extrapolated to {TARGET_YEAR}",
+            letters[0][col],
+            hiv_bars(idx, tr, country, poc_coverage),
+            f"Reduction in cumulative HIV incidence\nby 2035, {country} (%)",
+            ci_via_logit,
+            scale=100.0,
         )
-        plot_bars(
+
+        daly_bars = [
+            (
+                "Treating CSTI4s",
+                sti_daly_parts(country, poc_coverage),
+                None,
+            ),
+            (
+                "Averting HIV",
+                hiv_daly_parts(idx, tr, country, poc_coverage),
+                None,
+            ),
+        ]
+        # total for each DALY bar = sum of its per-STI parts
+        daly_bars = [
+            (lbl, parts, _sum_parts(parts)) for (lbl, parts, _) in daly_bars
+        ]
+        draw_panel(
             axes[1][col],
-            country,
-            bars_single_year(idx, tr, country, SINGLE_YEAR),
-            f"{SINGLE_YEAR}",
+            letters[1][col],
+            daly_bars,
+            f"DALYs averted to 2035,\n{country} (thousands)",
+            ci_via_log,
+            scale=1e-3,
         )
 
     fig.tight_layout()
@@ -480,6 +596,13 @@ def make_figure(rows, apply_wu_to_tr, out_stem):
     )
 
 
+def _sum_parts(parts):
+    total = None
+    for _, _, uf in parts:
+        total = uf if total is None else total + uf
+    return total
+
+
 if __name__ == "__main__":
     with open(
         os.path.join(output_dir, "hiv_attributable_to_stis.ufloat.pkl"), "rb"
@@ -488,9 +611,9 @@ if __name__ == "__main__":
     keep_years = set(FIT_YEARS) | {ANCHOR_FROM, ANCHOR_TO, SINGLE_YEAR}
     rows = [r for r in rows if r["year"] in keep_years]
 
-    make_figure(rows, True, "figure_len_vs_sti_by_country")
+    make_figure(rows, 1.0, "figure_len_vs_sti_by_country")
     make_figure(
         rows,
-        False,
-        "figure_supplemental_len_vs_sti_by_country_no_indirect_attenuation",
+        0.5,
+        "figure_supplemental_len_vs_sti_by_country_half_poc_asymptomatic",
     )

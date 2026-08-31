@@ -1,0 +1,41 @@
+population_group,measure,location,sex,age,cause,metric,year,val,upper,lower
+All Population,DALYs (Disability-Adjusted Life Years),Zimbabwe,Male,All ages,HIV/AIDS,Number,2023,467235.6295937569,623936.7138679544,319509.96692480636
+All Population,DALYs (Disability-Adjusted Life Years),Zimbabwe,Female,All ages,HIV/AIDS,Number,2023,572908.4097810802,798592.1467189316,393441.2105228373
+All Population,DALYs (Disability-Adjusted Life Years),South Africa,Male,All ages,HIV/AIDS,Number,2023,3100916.194256082,4103761.511943989,2155659.1718866597
+All Population,DALYs (Disability-Adjusted Life Years),South Africa,Female,All ages,HIV/AIDS,Number,2023,3022965.8330393056,3803440.7725921767,2232360.0386480642
+All Population,DALYs (Disability-Adjusted Life Years),South Africa,Male,All ages,Syphilis,Number,2023,59170.91966963136,113149.3899945946,24202.138987497976
+All Population,DALYs (Disability-Adjusted Life Years),South Africa,Female,All ages,Syphilis,Number,2023,47608.02003991415,91328.71123153783,18644.971313153677
+All Population,DALYs (Disability-Adjusted Life Years),South Africa,Male,All ages,Chlamydial infection,Number,2023,482.77080249412325,951.8621636424721,211.84601465646145
+All Population,DALYs (Disability-Adjusted Life Years),South Africa,Female,All ages,Chlamydial infection,Number,2023,1737.370002565902,2485.083156744955,1186.6634727832356
+All Population,DALYs (Disability-Adjusted Life Years),South Africa,Male,All ages,Gonococcal infection,Number,2023,991.7705640680315,1945.3458694075052,454.76752729403677
+All Population,DALYs (Disability-Adjusted Life Years),South Africa,Female,All ages,Gonococcal infection,Number,2023,754.007133735099,1142.1813802332847,516.637680733262
+All Population,DALYs (Disability-Adjusted Life Years),South Africa,Male,All ages,Trichomoniasis,Number,2023,73.34656330526164,178.58598316033314,26.9751373772134
+All Population,DALYs (Disability-Adjusted Life Years),South Africa,Female,All ages,Trichomoniasis,Number,2023,5592.925479707354,11653.847086766444,2125.349565360563
+All Population,DALYs (Disability-Adjusted Life Years),Zimbabwe,Male,All ages,Syphilis,Number,2023,23497.305873042424,48092.69347834283,8187.621323361873
+All Population,DALYs (Disability-Adjusted Life Years),Zimbabwe,Female,All ages,Syphilis,Number,2023,17489.37274903136,32736.68794146059,6844.319750533205
+All Population,DALYs (Disability-Adjusted Life Years),Zimbabwe,Male,All ages,Chlamydial infection,Number,2023,153.03342066151384,289.85680022265933,64.30614120245734
+All Population,DALYs (Disability-Adjusted Life Years),Zimbabwe,Female,All ages,Chlamydial infection,Number,2023,452.0211185050514,763.0596154377324,272.4742270769886
+All Population,DALYs (Disability-Adjusted Life Years),Zimbabwe,Male,All ages,Gonococcal infection,Number,2023,135.83683732654325,276.053679006359,47.22865838706123
+All Population,DALYs (Disability-Adjusted Life Years),Zimbabwe,Female,All ages,Gonococcal infection,Number,2023,190.923859888638,299.58139744634065,117.37863206240704
+All Population,DALYs (Disability-Adjusted Life Years),Zimbabwe,Male,All ages,Trichomoniasis,Number,2023,23.4714526109069,53.88603407305254,8.723286860960403
+All Population,DALYs (Disability-Adjusted Life Years),Zimbabwe,Female,All ages,Trichomoniasis,Number,2023,1636.3301332627404,3634.240598077865,605.869503463435
+All Population,Incidence,South Africa,Male,All ages,HIV/AIDS,Number,2023,147485.53331899195,198077.9800498992,102564.88088958595
+All Population,Incidence,South Africa,Female,All ages,HIV/AIDS,Number,2023,216002.71086359397,281425.27029924456,165041.49877182534
+All Population,Incidence,Zimbabwe,Male,All ages,HIV/AIDS,Number,2023,10094.88080258161,15056.149504658651,6894.325303018023
+All Population,Incidence,Zimbabwe,Female,All ages,HIV/AIDS,Number,2023,14440.558758678346,21112.548080212964,9220.047924263625
+All Population,Incidence,South Africa,Male,All ages,Syphilis,Number,2023,264942.98348955624,343286.32704589143,201229.8234921679
+All Population,Incidence,South Africa,Female,All ages,Syphilis,Number,2023,215808.1938373374,282521.6092848071,154011.12828842332
+All Population,Incidence,South Africa,Male,All ages,Chlamydial infection,Number,2023,964244.4730482176,1624580.2105178523,504529.41488310974
+All Population,Incidence,South Africa,Female,All ages,Chlamydial infection,Number,2023,582700.5663973286,741092.5560434381,477079.7089074699
+All Population,Incidence,South Africa,Male,All ages,Gonococcal infection,Number,2023,1135011.3680925444,2222277.4099343587,473965.0174689359
+All Population,Incidence,South Africa,Female,All ages,Gonococcal infection,Number,2023,843126.7237377327,1106553.5918589763,620895.3501217255
+All Population,Incidence,South Africa,Male,All ages,Trichomoniasis,Number,2023,1243109.50000028,1763118.6507951836,825626.3795461532
+All Population,Incidence,South Africa,Female,All ages,Trichomoniasis,Number,2023,2149036.9704713007,3137825.836881023,1459316.0396116818
+All Population,Incidence,Zimbabwe,Male,All ages,Syphilis,Number,2023,48697.90904689863,61453.85113017916,37475.92557836528
+All Population,Incidence,Zimbabwe,Female,All ages,Syphilis,Number,2023,33664.50071366309,42412.7905291583,24860.24319163884
+All Population,Incidence,Zimbabwe,Male,All ages,Chlamydial infection,Number,2023,311652.75153172005,538416.0042388678,163479.47265142138
+All Population,Incidence,Zimbabwe,Female,All ages,Chlamydial infection,Number,2023,209035.0893352696,260279.10128646228,163571.0510578392
+All Population,Incidence,Zimbabwe,Male,All ages,Gonococcal infection,Number,2023,152716.3198619631,309935.4671642389,69198.18105940009
+All Population,Incidence,Zimbabwe,Female,All ages,Gonococcal infection,Number,2023,123320.359395571,169763.21820318053,90898.73268464282
+All Population,Incidence,Zimbabwe,Male,All ages,Trichomoniasis,Number,2023,233099.1093561924,342833.2966602706,154154.1322566044
+All Population,Incidence,Zimbabwe,Female,All ages,Trichomoniasis,Number,2023,285025.7094235226,420803.8819029027,190582.745154532

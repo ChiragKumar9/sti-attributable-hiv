@@ -4,7 +4,7 @@ import polars as pl
 import yaml
 
 data_dir = "data"
-output_dir = "outputs"
+output_dir = os.environ.get("OUTPUT_DIR", "outputs")
 
 with open("params.yml", "r") as f:
     params = yaml.safe_load(f)
@@ -760,7 +760,11 @@ assert (
 ), "Missing DHS treatment seeking rate for some rows"
 
 # let's take out part of the male population and make it msm
-msm_fraction = params["msm_fraction"]
+# allow a sensitivity-analysis override of the params.yml value (see
+# analysis/06_sensitivity_analyses.py); defaults to the params.yml value
+msm_fraction = float(
+    os.environ.get("MSM_FRACTION_OVERRIDE", params["msm_fraction"])  # type: ignore
+)
 
 msm_cols = [
     "hiv_incidence_number",
@@ -834,7 +838,17 @@ def _msm(pr, f, all_male_prev):
 
 
 def _non_msm(pr, f, all_male_prev):
-    return all_male_prev * (1 - f * pr) / (1 - f)
+    # NOTE: at large msm_fraction * pr, this back-calculation can go
+    # negative; floor at 0 rather than propagate a negative prevalence
+    # downstream. For gc specifically, pr_gc (the pooled MSM:all-men
+    # prevalence ratio) is large enough that at the msm_fraction=0.30
+    # sensitivity value, f * pr_gc >= 1 for EVERY row -- i.e. this clip
+    # zeroes out heterosexual-male gc prevalence entirely at that setting
+    # (not a rare edge case), which flows through to zero gc-attributable
+    # HIV / gc-averted burden for heterosexual men in that variant. This is
+    # an accepted, documented consequence of the 0.30 sensitivity value, not
+    # a bug -- see the msm_fraction=0.3 rows of outputs/table_s2.csv.
+    return (all_male_prev * (1 - f * pr) / (1 - f)).clip(lower_bound=0.0)
 
 
 for prev_col, pr_val, pr_lo, pr_hi in [
@@ -877,9 +891,13 @@ unaids_proj = pl.read_csv(
     os.path.join(data_dir, "unaids_future_hiv_projections_all_years.csv")
 )
 unaids_proj = unaids_proj.filter(pl.col("metric") == "new_infections")
-unaids_proj = unaids_proj.with_columns(
-    value=pl.col("95-95-95 treatment, 2024 level of prevention")
+# allow a sensitivity-analysis override of which UNAIDS future scenario
+# column is used (see analysis/06_sensitivity_analyses.py); defaults to the
+# baseline scenario
+UNAIDS_SCENARIO_COL = os.environ.get(
+    "UNAIDS_SCENARIO_COL", "95-95-95 treatment, 2024 level of prevention"
 )
+unaids_proj = unaids_proj.with_columns(value=pl.col(UNAIDS_SCENARIO_COL))
 unaids_proj = unaids_proj.with_columns(
     country_code=pl.col("country").replace(ihme_name_to_iso3),
 )

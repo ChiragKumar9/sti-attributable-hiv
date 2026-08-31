@@ -17,7 +17,7 @@ from averted_burden.delta_method import (
 )
 
 data_dir = "data"
-output_dir = "outputs"
+output_dir = os.environ.get("OUTPUT_DIR", "outputs")
 
 STIS = ["gc", "chlamydia", "syphilis", "trichomoniasis"]
 ABX = ["Ciprofloxacin", "Cefixime", "Azithromycin", "Ceftriaxone"]
@@ -632,4 +632,4 @@ for sti in STIS:
         mapping[isrc + suf] = idst + suf
 
 table = table.rename(mapping)
-table.write_csv(os.path.join(output_dir, "table_s2.csv"))
+table.write_csv(os.path.join(output_dir, "table_s2_intermediate.csv"))

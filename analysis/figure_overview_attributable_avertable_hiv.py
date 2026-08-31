@@ -161,6 +161,8 @@ def setup_plot(nrows, ncols):
         ax.get_yaxis().tick_left()
         ax.tick_params(axis="x", direction="out")
         ax.tick_params(axis="y", direction="out")
+        ax.tick_params(which="major", length=5.25, width=1.2)
+        ax.tick_params(which="minor", length=3.0, width=0.9)
         # offset the spines
         for spine in ax.spines.values():
             spine.set_position(("outward", 5))
@@ -174,6 +176,8 @@ def setup_plot(nrows, ncols):
         temp.get_yaxis().tick_left()
         temp.tick_params(axis="x", direction="out")
         temp.tick_params(axis="y", direction="out")
+        temp.tick_params(which="major", length=5.25, width=1.2)
+        temp.tick_params(which="minor", length=3.0, width=0.9)
         # offset the spines
         for spine in temp.spines.values():
             spine.set_position(("outward", 5))
@@ -398,11 +402,11 @@ def plot_rr_estimates(aggregated_rrs, ax, fig):
     ax.set_yticklabels(["1", "10"])
     ax.axhline(1, color="grey", linestyle="--")
     ax.set_xlabel("STI")
-    ax.set_ylabel("Causal RR(HIV acquisition | untreated STI)")
+    ax.set_ylabel("Adj. RR(HIV acquisition | untreated STI)")
 
 
 def plot_attributable_hiv_burden_sex(ufloat_rows, ax, fig, number):
-    """New panel d: trajectory of STBI-attributable HIV incidence by sex.
+    """New panel d: trajectory of CSTI4-attributable HIV incidence by sex.
     Sums the raw UFloat objects across STIs and across countries within
     each year-sex group before extracting any interval."""
 
@@ -455,10 +459,10 @@ def plot_attributable_hiv_burden_sex(ufloat_rows, ax, fig, number):
 
     ax.set_xlabel("Year")
     if number:
-        ax.set_ylabel("STBI-attributable HIV incidence (N)")
+        ax.set_ylabel("CSTI4-attributable HIV incidence (N)")
     else:
         ax.set_ylabel(
-            "STBI-attributable HIV incidence rate (per 100,000 population)"
+            "CSTI4-attributable HIV incidence rate (per 100,000 population)"
         )
     ax.legend(loc="upper right", edgecolor="black")
     ax.set_ylim(0)
@@ -474,7 +478,7 @@ def plot_attributable_hiv_burden_sex(ufloat_rows, ax, fig, number):
     ax.set_xticks([2000, 2010, 2020])
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))
 
-    # cumulative STBI-attributable cases (raw UFloats summed across all years
+    # cumulative CSTI4-attributable cases (raw UFloats summed across all years
     # within each merged-sex group, then extracted once)
     male_rows = [
         r for (yr, sx), rs in groups.items() if sx == "Male" for r in rs
@@ -490,19 +494,19 @@ def plot_attributable_hiv_burden_sex(ufloat_rows, ax, fig, number):
     )
     cum_total = cum_male + cum_female  # type: ignore
     print(
-        "Cumulative STBI-attributable HIV cases, total:",
+        "Cumulative CSTI4-attributable HIV cases, total:",
         _fmt_count(ci_via_log(cum_total)),
     )
     print(
-        "Cumulative STBI-attributable HIV cases, Male (incl. MSM):",
+        "Cumulative CSTI4-attributable HIV cases, Male (incl. MSM):",
         _fmt_count(ci_via_log(cum_male)),
     )
     print(
-        "Cumulative STBI-attributable HIV cases, Female:",
+        "Cumulative CSTI4-attributable HIV cases, Female:",
         _fmt_count(ci_via_log(cum_female)),
     )
 
-    # cumulative STBI-attributable cases as a percentage of cumulative total HIV
+    # cumulative CSTI4-attributable cases as a percentage of cumulative total HIV
     # incidence over 2000-2023, per stratum. attributable = incidence * PAF, so
     # the ratio shares the incidence leaves and their uncertainty cancels; form
     # it as a UFloat ratio and extract on the (0,1) proportion via ci_via_logit.
@@ -510,21 +514,21 @@ def plot_attributable_hiv_burden_sex(ufloat_rows, ax, fig, number):
     inc_female = _sum_field(female_rows, "unaids_incidence_number")
     inc_total = inc_male + inc_female  # type: ignore
     print(
-        "Cumulative STBI-attributable HIV, % of total incidence, total:",
+        "Cumulative CSTI4-attributable HIV, % of total incidence, total:",
         _fmt_pct(ci_via_logit(cum_total / inc_total)),  # type: ignore
     )
     print(
-        "Cumulative STBI-attributable HIV, % of total incidence, Male (incl. MSM):",
+        "Cumulative CSTI4-attributable HIV, % of total incidence, Male (incl. MSM):",
         _fmt_pct(ci_via_logit(cum_male / inc_male)),  # type: ignore
     )
     print(
-        "Cumulative STBI-attributable HIV, % of total incidence, Female:",
+        "Cumulative CSTI4-attributable HIV, % of total incidence, Female:",
         _fmt_pct(ci_via_logit(cum_female / inc_female)),  # type: ignore
     )
 
 
 def plot_attributable_hiv_burden_region(ufloat_rows, ax, fig):
-    """New panel e: trajectory of STBI-attributable HIV incidence by
+    """New panel e: trajectory of CSTI4-attributable HIV incidence by
     region. Sums the raw UFloat objects across STIs and across countries
     within each year-region group before extracting any interval."""
     region_colors = {
@@ -563,7 +567,7 @@ def plot_attributable_hiv_burden_region(ufloat_rows, ax, fig):
         ax.fill_between(years, lower, upper, alpha=0.3, color=color)
 
     ax.set_xlabel("Year")
-    ax.set_ylabel("STBI-attributable HIV incidence (N)")
+    ax.set_ylabel("CSTI4-attributable HIV incidence (N)")
     ax.legend(loc=(0.5, 0.85), edgecolor="black")
     ax.set_xticks([2000, 2010, 2020])
     ax.set_ylim(0)
@@ -574,7 +578,7 @@ def plot_attributable_hiv_burden_region(ufloat_rows, ax, fig):
     ax.yaxis.set_minor_locator(ticker.MultipleLocator(10000))
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))
 
-    # cumulative STBI-attributable cases by region (raw UFloats summed across
+    # cumulative CSTI4-attributable cases by region (raw UFloats summed across
     # all years within each region, then extracted once)
     for region in region_colors:
         region_rows = [
@@ -584,12 +588,12 @@ def plot_attributable_hiv_burden_region(ufloat_rows, ax, fig):
             region_rows, "unaids_hiv_incidence_number_attributable_to_"
         )
         print(
-            f"Cumulative STBI-attributable HIV cases, {region}:",
+            f"Cumulative CSTI4-attributable HIV cases, {region}:",
             _fmt_count(ci_via_log(cum)),
         )
         inc = _sum_field(region_rows, "unaids_incidence_number")
         print(
-            f"Cumulative STBI-attributable HIV, % of total incidence, {region}:",
+            f"Cumulative CSTI4-attributable HIV, % of total incidence, {region}:",
             _fmt_pct(ci_via_logit(cum / inc)),  # type: ignore
         )
 
@@ -679,7 +683,7 @@ def plot_attributable_hiv_burden_sti(ufloat_rows, ax, fig):
     )
 
     ax.set_xlabel("Year")
-    ax.set_ylabel("STBI-attributable HIV incidence (N)")
+    ax.set_ylabel("CSTI4-attributable HIV incidence (N)")
     ax.legend(loc=(0.4, 0.95), edgecolor="black")
     ax.set_ylim(0)
     ax.set_xticks([2000, 2010, 2020])
@@ -690,24 +694,32 @@ def plot_attributable_hiv_burden_sti(ufloat_rows, ax, fig):
     ax.yaxis.set_minor_locator(ticker.MultipleLocator(10000))
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(2))
 
-    # cumulative STBI-attributable cases by pathogen (raw UFloats summed across
+    # cumulative CSTI4-attributable cases by pathogen (raw UFloats summed across
     # all years and all rows, then extracted once), plus each as a percentage
     # of cumulative total HIV incidence over the same window. attributable =
     # incidence * PAF, so the ratio shares the incidence leaves; form as a
     # UFloat ratio and extract the (0,1) proportion via ci_via_logit.
     all_rows = [r for rs in groups.values() for r in rs]
     inc_all = _sum_field(all_rows, "unaids_incidence_number")
+    cum_all4 = _sum_attributable_across_stis(
+        all_rows, "unaids_hiv_incidence_number_attributable_to_"
+    )
     for sti in STIS:
         cum = _sum_field(
             all_rows, f"unaids_hiv_incidence_number_attributable_to_{sti}"
         )
         print(
-            f"Cumulative STBI-attributable HIV cases, {sti}:",
+            f"Cumulative CSTI4-attributable HIV cases, {sti}:",
             _fmt_count(ci_via_log(cum)),
         )
         print(
-            f"Cumulative STBI-attributable HIV, % of total incidence, {sti}:",
+            f"Cumulative CSTI4-attributable HIV, % of total incidence, {sti}:",
             _fmt_pct(ci_via_logit(cum / inc_all)),  # type: ignore
+        )
+        print(
+            f"Cumulative CSTI4-attributable HIV, {sti} as % of all "
+            "CSTI4-attributable:",
+            _fmt_pct(ci_via_logit(cum / cum_all4)),  # type: ignore
         )
 
 
@@ -818,17 +830,33 @@ def plot_best_case(ufloat_rows, ax, year, fig):
                 )
             ),
         )
+    # worst-case counterfactual total = observed reference incidence + the
+    # cases averted (i.e. what incidence would have been without any STI
+    # treatment access). Denominator held at its mean, as above, so only the
+    # averted-cases interval propagates into the printed range.
+    worst_case_mean = ref_ci[0] + tot_av_ci[0]
+    if worst_case_mean and worst_case_mean > 0:
+        print(
+            "Total HIV averted as % of worst-case counterfactual:",
+            _fmt_pct(
+                (
+                    tot_av_ci[0] / worst_case_mean,
+                    tot_av_ci[1] / worst_case_mean,
+                    tot_av_ci[2] / worst_case_mean,
+                )
+            ),
+        )
 
     yrs, m, lo, hi = dir_s
-    ax.plot(yrs, m, linewidth=5, label="Direct", color="grey")
+    ax.plot(yrs, m, linewidth=5, label="Directly-attributable", color="grey")
     ax.fill_between(yrs, lo, hi, alpha=0.3, color="grey")
     yrs, m, lo, hi = tot_s
-    ax.plot(yrs, m, linewidth=5, label="Total", color="black")
+    ax.plot(yrs, m, linewidth=5, label="Including transmission", color="black")
     ax.fill_between(yrs, lo, hi, alpha=0.3, color="black")
 
     ax.set_xlabel("Year")
     ax.set_ylabel("Change in HIV incidence (N)")
-    ax.legend(loc=(0.6, 0.7), edgecolor="black")
+    ax.legend(loc=(0.35, 0.89), edgecolor="black")
     ax.yaxis.set_major_formatter(
         ticker.FuncFormatter(lambda x, p: format(int(x), ","))
     )
@@ -1130,7 +1158,7 @@ if __name__ == "__main__":
     )
     plot_rr_estimates(aggregated_rrs, ax[0, 2], fig)  # type: ignore
 
-    # Panels d-f: trajectory of STBI-attributable HIV incidence over time,
+    # Panels d-f: trajectory of CSTI4-attributable HIV incidence over time,
     # from the attributable-HIV UFloat pickle.
     with open(
         os.path.join(output_dir, "hiv_attributable_to_stis.ufloat.pkl"), "rb"

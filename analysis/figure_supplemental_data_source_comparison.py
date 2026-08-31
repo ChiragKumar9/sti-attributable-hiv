@@ -27,6 +27,8 @@ def setup_plot(nrows, ncols):
         ax.get_yaxis().tick_left()
         ax.tick_params(axis="x", direction="out")
         ax.tick_params(axis="y", direction="out")
+        ax.tick_params(which="major", length=5.25, width=1.2)
+        ax.tick_params(which="minor", length=3.0, width=0.9)
         # offset the spines
         for spine in ax.spines.values():
             spine.set_position(("outward", 5))
@@ -40,6 +42,8 @@ def setup_plot(nrows, ncols):
         temp.get_yaxis().tick_left()
         temp.tick_params(axis="x", direction="out")
         temp.tick_params(axis="y", direction="out")
+        temp.tick_params(which="major", length=5.25, width=1.2)
+        temp.tick_params(which="minor", length=3.0, width=0.9)
         # offset the spines
         for spine in temp.spines.values():
             spine.set_position(("outward", 5))
@@ -443,6 +447,8 @@ if __name__ == "__main__":
     ax_full_1.get_yaxis().tick_left()
     ax_full_1.tick_params(axis="x", direction="out")
     ax_full_1.tick_params(axis="y", direction="out")
+    ax_full_1.tick_params(which="major", length=5.25, width=1.2)
+    ax_full_1.tick_params(which="minor", length=3.0, width=0.9)
     for spine in ax_full_1.spines.values():
         spine.set_position(("outward", 5))
     ax_full_1.set_axisbelow(True)
@@ -455,6 +461,8 @@ if __name__ == "__main__":
     ax_full_2.get_yaxis().tick_left()
     ax_full_2.tick_params(axis="x", direction="out")
     ax_full_2.tick_params(axis="y", direction="out")
+    ax_full_2.tick_params(which="major", length=5.25, width=1.2)
+    ax_full_2.tick_params(which="minor", length=3.0, width=0.9)
     for spine in ax_full_2.spines.values():
         spine.set_position(("outward", 5))
     ax_full_2.set_axisbelow(True)
@@ -467,6 +475,8 @@ if __name__ == "__main__":
     ax_full_3.get_yaxis().tick_left()
     ax_full_3.tick_params(axis="x", direction="out")
     ax_full_3.tick_params(axis="y", direction="out")
+    ax_full_3.tick_params(which="major", length=5.25, width=1.2)
+    ax_full_3.tick_params(which="minor", length=3.0, width=0.9)
     for spine in ax_full_3.spines.values():
         spine.set_position(("outward", 5))
     ax_full_3.set_axisbelow(True)

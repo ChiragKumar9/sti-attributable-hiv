@@ -14,8 +14,10 @@
 # *.cst
 # *.dbf
 # *.shx
-outputs/*.csv
-outputs/*.ufloat.pkl
+outputs/**/*.csv
+outputs/**/*.ufloat.pkl
+*.ufloat.pkl
+*.pkl
 
 # Documents
 *.doc

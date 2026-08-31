@@ -74,6 +74,8 @@ def _style_axis(ax):
     ax.get_yaxis().tick_left()
     ax.tick_params(axis="x", direction="out")
     ax.tick_params(axis="y", direction="out")
+    ax.tick_params(which="major", length=5.25, width=1.2)
+    ax.tick_params(which="minor", length=3.0, width=0.9)
     for spine in ax.spines.values():
         spine.set_position(("outward", 5))
     ax.set_axisbelow(True)
@@ -85,6 +87,9 @@ def _style_axis(ax):
 # estimated_resistance_rates.csv and averages across locations per year.
 # ----------------------------------------------------------------------
 def plot_drug_resistance(estimated_resistance_rates, ax, fig):
+    estimated_resistance_rates = estimated_resistance_rates.filter(
+        pl.col("year") <= LAST_YEAR
+    )
     estimated_resistance_rates = estimated_resistance_rates.group_by(
         ["year"]
     ).agg(
@@ -126,10 +131,59 @@ def plot_drug_resistance(estimated_resistance_rates, ax, fig):
         )
 
     ax.set_xlabel("Year")
-    ax.set_ylabel("Gonorrhea resistance (%)")
-    ax.legend(loc=(0.55, 0.27), edgecolor="black")
+    ax.set_ylabel("Gonorrhea isolates resistant (%)")
+    ax.legend(loc=(0.55, 0.23), edgecolor="black")
     ax.set_xticks([2010, 2015, 2020])
+    ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
     ax.set_ylim(0)
+    ax.yaxis.set_minor_locator(ticker.MultipleLocator(10))
+
+
+# ----------------------------------------------------------------------
+# Supplemental: same resistance rates as panel a, faceted by African
+# region instead of averaged across all locations. `estimated_resistance_
+# rates.csv`'s `location` column holds region rows (Western/Eastern/
+# Central/Southern) alongside country rows -- filter to one region
+# instead of grouping/averaging. Note: Central has no GASP country data
+# and is synthesized by tethering to Southern (see
+# 03_assemble_resistance_data.py), so its curve is extrapolated.
+# ----------------------------------------------------------------------
+def plot_drug_resistance_by_region(
+    estimated_resistance_rates, ax, region, fig, legend=False
+):
+    df = estimated_resistance_rates.filter(
+        (pl.col("location") == region) & (pl.col("year") <= LAST_YEAR)
+    ).sort("year")
+
+    drug_colors = {
+        "Ciprofloxacin": "red",
+        "Cefixime": "blue",
+        "Azithromycin": "green",
+        "Ceftriaxone": "purple",
+    }
+    for drug, color in drug_colors.items():
+        ax.plot(
+            df["year"],
+            df[drug] * 100,
+            label=drug,
+            linewidth=3,
+            color=color,
+        )
+        ax.fill_between(
+            df["year"],
+            df[f"{drug}_lower"] * 100,
+            df[f"{drug}_upper"] * 100,
+            color=color,
+            alpha=0.3,
+        )
+
+    ax.set_xlabel("Year")
+    ax.set_ylabel(f"Gonorrhea isolates resistant\nin {region} Africa (%)")
+    if legend:
+        ax.legend(loc=(0.55, 0.23), edgecolor="black")
+    ax.set_xticks([2010, 2015, 2020])
+    ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
+    ax.set_ylim(0, 100)
     ax.yaxis.set_minor_locator(ticker.MultipleLocator(10))
 
 
@@ -667,6 +721,52 @@ if __name__ == "__main__":
     )
     fig.savefig(
         os.path.join(fig_dir, "figure_access_vs_resistance.pdf"),
+        dpi=300,
+        bbox_inches="tight",
+    )
+
+    # ---- Supplemental: resistance rates by region (2x2 small multiples) ----
+    fig_supp, ax_supp = plt.subplots(2, 2, figsize=(20, 15))
+    for _a in ax_supp.flatten():  # type: ignore
+        _style_axis(_a)
+
+    regions = [
+        ("Western", (0, 0), "a"),
+        ("Eastern", (0, 1), "b"),
+        ("Central", (1, 0), "c"),
+        ("Southern", (1, 1), "d"),
+    ]
+    for region, (i, j), letter in regions:
+        ax_supp[i, j].text(  # type: ignore
+            -0.25,
+            1.08,
+            letter,
+            transform=ax_supp[i, j].transAxes,  # type: ignore
+            fontsize=24,
+            fontweight="bold",
+            va="top",
+            ha="right",
+        )
+        plot_drug_resistance_by_region(
+            resistance_rates,
+            ax_supp[i, j],  # type: ignore
+            region,
+            fig_supp,
+            legend=(region == "Western"),
+        )
+
+    fig_supp.tight_layout()
+    fig_supp.savefig(
+        os.path.join(
+            fig_dir, "figure_supplemental_gc_resistance_by_region.png"
+        ),
+        dpi=300,
+        bbox_inches="tight",
+    )
+    fig_supp.savefig(
+        os.path.join(
+            fig_dir, "figure_supplemental_gc_resistance_by_region.pdf"
+        ),
         dpi=300,
         bbox_inches="tight",
     )

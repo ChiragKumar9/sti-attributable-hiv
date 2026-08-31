@@ -52,6 +52,8 @@ def setup_plot(nrows, ncols):
         ax.get_yaxis().tick_left()
         ax.tick_params(axis="x", direction="out")
         ax.tick_params(axis="y", direction="out")
+        ax.tick_params(which="major", length=5.25, width=1.2)
+        ax.tick_params(which="minor", length=3.0, width=0.9)
         # offset the spines
         for spine in ax.spines.values():
             spine.set_position(("outward", 5))
@@ -65,6 +67,8 @@ def setup_plot(nrows, ncols):
         temp.get_yaxis().tick_left()
         temp.tick_params(axis="x", direction="out")
         temp.tick_params(axis="y", direction="out")
+        temp.tick_params(which="major", length=5.25, width=1.2)
+        temp.tick_params(which="minor", length=3.0, width=0.9)
         # offset the spines
         for spine in temp.spines.values():
             spine.set_position(("outward", 5))

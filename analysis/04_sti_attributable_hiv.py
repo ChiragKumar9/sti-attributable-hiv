@@ -18,7 +18,7 @@ from averted_burden.delta_method import (
     point_mass,
 )
 
-output_dir = "outputs"
+output_dir = os.environ.get("OUTPUT_DIR", "outputs")
 data_dir = "data"
 
 STIS = ["gc", "chlamydia", "syphilis", "trichomoniasis"]
@@ -713,7 +713,11 @@ def compute_attributable_block(
             p_a, hiv_prevalence_proportion, rr_assoc[sti]
         )
         p_sti_and_hiv = p_sti_given_hiv * hiv_prevalence_proportion
-        prevalence_no_hiv = p_a - p_sti_and_hiv
+        # condition the joint P(STI and no HIV) on the susceptible pool, so this
+        # shares the per-susceptible base of p_acquiring_hiv used below
+        prevalence_no_hiv = (p_a - p_sti_and_hiv) / (
+            1 - hiv_prevalence_proportion
+        )
 
         # treatment adjustment
         if sti == "gc":
@@ -1187,6 +1191,18 @@ hiv_sti_out = pl.DataFrame(flat_rows)
 hiv_sti_out.write_csv(
     os.path.join(output_dir, "hiv_attributable_to_stis_age_stratified.csv")
 )
+
+# ----------------------------------------------------------------------
+# table_s3: age-stratified attribution table (both GBD and UNAIDS), the
+# age-resolved companion to the country-level table_s2. Attribution outputs
+# only -- averted-burden scenarios are computed post-age-aggregation and are
+# age-agnostic, so they stay in table_s2. This is a straight select/rename of
+# the age-stratified frame above, dropping the internal analysis flag.
+# ----------------------------------------------------------------------
+table_s3 = hiv_sti_out.drop("cols_unaids_analysis").sort(
+    ["location", "sex", "age_group", "year"]
+)
+table_s3.write_csv(os.path.join(output_dir, "table_s3.csv"))
 
 # Also pickle the raw per-age-row UFloat objects (output_rows) themselves,
 # not just the flat CSV above. The age-pathogen figure panels need to group
